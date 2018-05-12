@@ -1,0 +1,33 @@
+Package: finalfit
+Type: Package
+Title: Finalfit
+Version: 0.6
+Author: Ewen Harrison, Tom Drake, Riinu Ots
+Maintainer: Ewen Harrison <ewen.harrison@ed.ac.uk>
+Description: Tables and plots of data and models in final publication format for
+    frontline R users.
+License: Creative Commons
+Encoding: UTF-8
+LazyData: true
+Imports:
+    Hmisc,
+    ggplot2,
+    boot,
+    dplyr,
+    grid,
+    gridExtra,
+    lme4,
+    mice,
+    pROC,
+    plyr,
+    rstan,
+    scales,
+    stats,
+    stringr,
+    survival,
+    survminer
+RoxygenNote: 6.0.1
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
