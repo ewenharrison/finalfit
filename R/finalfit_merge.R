@@ -7,6 +7,7 @@
 #' @param factorlist Output from \code{\link{summary_factorlist}(..., fit_id=TRUE)}.
 #' @param fit2df_df Output from model wrappers followed by \code{\link{fit2df}()}.
 #' @param ref_symbol Reference symbol for model reference levels, typically "-" or "1.0".
+#' @param estimate_name Provide a new name to estimate column. Defaults to OR/HR/Coefficient
 #' @return Returns a dataframe of combined tables.
 #'
 #' @family finalfit wrappers
@@ -46,9 +47,10 @@
 #' 	select(-c(fit_id, index)) -> example.final
 #' example.final
 
-finalfit_merge = function(factorlist, fit2df_df, ref_symbol = "-"){
+finalfit_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL){
 	if(is.null(factorlist$fit_id)) stop("Include fit_id=TRUE in summary_factorlist()")
-	or_col = grep("Coefficient|OR|HR", names(fit2df_df), value=TRUE)
+	or_col_id = ifelse(is.null(estimate_name), "Coefficient|OR|HR", paste0(estimate_name, "|Coefficient|OR|HR"))
+	or_col = grep(or_col_id, names(fit2df_df), value=TRUE)
 	df.out = merge(factorlist, fit2df_df, by.x = "fit_id", by.y = "explanatory", all = TRUE)
 	df.out[,or_col] = as.character(df.out[,or_col])
 	df.out[is.na(df.out[,or_col]),or_col] = ref_symbol

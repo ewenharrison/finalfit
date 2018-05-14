@@ -1,7 +1,7 @@
 #' Extract \code{glmerMod} model fit results to dataframe: \code{finalfit} model
 #' extracters
 #'
-#' Takes output from \code{lme4\link[lme4]{glmer}} and extracts to a
+#' Takes output from \code{lme4::\link[lme4]{glmer}} and extracts to a
 #' dataframe, convenient for further processing in preparation for final results
 #' table.
 #'
@@ -9,13 +9,19 @@
 #' \code{lme4::\link[lme4]{glmer}} models and for the
 #' \code{finalfit::\link{glmmixed}} model wrapper.
 #'
-#' @param fit Output from \code{lme4::\link[lme4]{glmer}} or
-#'   \code{finalfit::\link{glmmixed}}.
-#' @param condense Logical: when true, effect estimates, confidence intervals
-#'   and p-values are pasted conveniently together in single cell.
+#' @param .data Output from \code{finalfit} model wrappers.
+#' @param condense Logical: when true, effect estimates, confidence intervals and p-values
+#'   are pasted conveniently together in single cell.
 #' @param metrics Logical: when true, useful model metrics are extracted.
-#' @param estimate_suffix Character vector of length one specifying string to be
-#'   appended to output column name
+#' @param remove_intercept Logical: remove the results for the intercept term.
+#' @param explanatory_name Name for this column in output
+#' @param estimate_name Name for this column in output
+#' @param estimate_suffix Appeneded to estimate name
+#' @param p_name Name given to p-value estimate
+#' @param digits Number of digits to round to (1) estimate, (2) confidence
+#'   interval limits, (3) p-value.
+#' @param confint_sep String to separate confidence intervals, typically "-" or
+#'   " to ".
 #' @param ... Other arguments (not used).
 #' @return A dataframe of model parameters. When \code{metrics=TRUE} output is a
 #'   list of two dataframes, one is model parameters, one is model metrics.
@@ -34,31 +40,31 @@
 #'   glmmixed(dependent, explanatory, random_effect) %>%
 #' 	 fit2df(estimate_suffix=" (multilevel")
 #'
-fit2df.glmerMod = function(fit, condense=TRUE, metrics=FALSE, estimate_suffix="", ...){
-	x = fit
-	explanatory = names(lme4::fixef(x))
-	or = round(exp(lme4::fixef(x)), 2)
-	ci = round(exp(lme4::confint.merMod(x, method='Wald')), 2)
-	ci = ci[-grep("sig", rownames(ci)),]
-	p = round(summary(x)$coef[,"Pr(>|z|)"], 3)
-	df.out = data.frame(explanatory, or, ci[,1], ci[,2], p)
-	colnames(df.out) = c("explanatory", paste0("OR", estimate_suffix), "L95", "U95", "p")
+fit2df.glmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+													 explanatory_name = "explanatory",
+													 estimate_name = "OR",
+													 estimate_suffix = "",
+													 p_name = "p",
+													 digits=c(2,2,3), confint_sep = "-", ...){
 
-	# Remove intercepts
-	df.out = df.out[-which(df.out$explanatory =="(Intercept)"),]
+	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+											 p_name=p_name, digits=digits)
 
 	if (condense==TRUE){
-		p = paste0("=", sprintf("%.3f", df.out$p))
-		p[p == "=0.000"] = "<0.001"
-		df.out = data.frame(
-			"explanatory" = df.out$explanatory,
-			"OR" = paste0(sprintf("%.2f", df.out$OR), " (", sprintf("%.2f", df.out$L95), "-",
-										sprintf("%.2f", df.out$U95), ", p", p, ")"))
-		colnames(df.out) = c("explanatory", paste0("OR", estimate_suffix))
+		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
+
+	if (remove_intercept==TRUE){
+		df.out = remove_intercept(df.out)
+	}
+
+
 	# Extract model metrics
 	if (metrics==TRUE){
-		x = fit
+		x = .data
 		n_model = length(x@resp$mu)
 		n_groups = summary(x)$ngrps
 		aic = round(summary(x)$AICtab[[1]], 1)

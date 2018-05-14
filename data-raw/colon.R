@@ -1,10 +1,10 @@
 # Alterations to survival::colon dataset for summarizer vignettes
 # Load packages
+library(finalfit)
 library(Hmisc)
-library(tidyverse)
+library(dplyr)
 library(forcats)
 library(magrittr)
-library(summarizer)
 
 # Load dataset
 rm(list=ls())

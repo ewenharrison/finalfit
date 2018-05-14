@@ -1,3 +1,29 @@
+#' Summarise a set of factors by a dependent variable
+#'
+#' Internal function, not called directly.
+#'
+#' @param .data Dataframe.
+#' @param dependent Character vector of length 1:  name of depdendent variable
+#'   (2 to 5 factor levels).
+#' @param explanatory Character vector of any length: name(s) of explanatory
+#'   variables.
+#' @param cont Summary for continuous variables: mean (standard deviation) or
+#'   median (interquartile range).
+#' @param p Logical: Include statistical test (see
+#'   \code{\link[Hmisc]{summary.formula}}).
+#' @param na_include Logical: include missing data in summary (\code{NA}).
+#' @param column Logical: Compute margins by column rather than row.
+#' @param total_col Logical: include a total column summing across factor
+#'   levels.
+#' @param orderbytotal Logical: order final table by total column high to low.
+#' @param fit_id Logical: not used directly, allows merging via
+#'   \code{\link{finalfit_merge}}.
+#' @param na_to_missing Logical: convert \code{NA} to 'Missing' when
+#'   \code{na_include=TRUE}.
+#' @return Returns a \code{factorlist} dataframe.
+#'
+#' @keywords internal
+
 summary_factorlist3 <- function(.data, dependent, explanatory, cont="mean", p=FALSE, na_include=FALSE,
 																column=FALSE, total_col=FALSE, orderbytotal=FALSE, fit_id=FALSE,
 																na_to_missing = TRUE){

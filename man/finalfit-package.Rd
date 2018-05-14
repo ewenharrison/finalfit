@@ -7,8 +7,63 @@
 \description{
 finalfit: Quickly create elegant final results tables and charts when modelling.
 }
-\section{finalfit functions}{
+\section{\code{finalfit} model wrappers}{
 
-The foo functions ...
+
+\link{glmuni}
+\link{glmmulti}
+\link{glmmulti_boot}
+\link{glmmixed}
+\link{lmuni}
+\link{lmmulti}
+\link{lmmixed}
+\link{coxphuni}
+\link{coxphmulti}
+}
+
+\section{\code{finalfit} model extractor}{
+
+
+Generic
+\link{fit2df}
+
+Methods (not called directly)
+\link{fit2df.glm}
+\link{fit2df.glmlist}
+\link{fit2df.glmboot}
+\link{fit2df.lm}
+\link{fit2df.lmlist}
+\link{fit2df.glmerMod}
+\link{fit2df.lmerMod}
+\link{fit2df.coxph}
+\link{fit2df.coxphlist}
+\link{fit2df.stanfit}
+}
+
+\section{\code{finalfit} all-in-one function}{
+
+
+Generic
+\link{finalfit}
+
+Methods (not called directly)
+\link{finalfit.glm}
+\link{finalfit.lm}
+\link{finalfit.coxph}
+}
+
+\section{\code{finalfit} plotting functions}{
+
+
+\link{or_plot}
+\link{hr_plot}
+\link{surv_plot}
+}
+
+\section{\code{finalfit} helper functions}{
+
+
+\link{finalfit_merge}
+\link{finalfit_missing}
 }
 

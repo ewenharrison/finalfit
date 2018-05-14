@@ -5,19 +5,34 @@
 \title{Extract \code{glm} model fit results to dataframe: \code{finalfit} model
 extracters}
 \usage{
-\method{fit2df}{glm}(fit, condense = TRUE, metrics = FALSE,
-  estimate_suffix = "", ...)
+\method{fit2df}{glm}(.data, condense = TRUE, metrics = FALSE,
+  remove_intercept = TRUE, explanatory_name = "explanatory",
+  estimate_name = "OR", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), confint_sep = "-", ...)
 }
 \arguments{
-\item{fit}{Output from \code{glm} model.}
+\item{.data}{Output from \code{finalfit} model wrappers.}
 
-\item{condense}{Logical: when true, effect estimates, confidence intervals
-and p-values are pasted conveniently together in single cell.}
+\item{condense}{Logical: when true, effect estimates, confidence intervals and p-values
+are pasted conveniently together in single cell.}
 
 \item{metrics}{Logical: when true, useful model metrics are extracted.}
 
-\item{estimate_suffix}{Character vector of length one specifying string to be
-appended to output column name}
+\item{remove_intercept}{Logical: remove the results for the intercept term.}
+
+\item{explanatory_name}{Name for this column in output}
+
+\item{estimate_name}{Name for this column in output}
+
+\item{estimate_suffix}{Appeneded to estimate name}
+
+\item{p_name}{Name given to p-value estimate}
+
+\item{digits}{Number of digits to round to (1) estimate, (2) confidence
+interval limits, (3) p-value.}
+
+\item{confint_sep}{String to separate confidence intervals, typically "-" or
+" to ".}
 
 \item{...}{Other arguments (not used).}
 }
@@ -36,7 +51,6 @@ wrappers.
 }
 \examples{
 library(finalfit)
-library(dplyr)
 
 fit = glm(mort_5yr ~  age.factor + sex.factor + obstruct.factor + perfor.factor,
   data=colon_s, family="binomial")
@@ -45,18 +59,5 @@ fit \%>\%
   fit2df(estimate_suffix=" (multivariable)")
 }
 \seealso{
-Other \code{finalfit} model wrappers: \code{\link{coxphmulti}},
-  \code{\link{coxphuni}}, \code{\link{fit2df.coxphlist}},
-  \code{\link{fit2df.coxph}}, \code{\link{fit2df.glmboot}},
-  \code{\link{fit2df.glmerMod}},
-  \code{\link{fit2df.glmlist}},
-  \code{\link{fit2df.lmerMod}},
-  \code{\link{fit2df.lmlist}},
-  \code{\link{fit2df.stanfit}}, \code{\link{fit2df}},
-  \code{\link{glmmixed}}, \code{\link{glmmulti_boot}},
-  \code{\link{glmmulti}}, \code{\link{glmuni}},
-  \code{\link{lmmixed}}, \code{\link{lmmulti}},
-  \code{\link{lmuni}}
-
 Other \code{finalfit} model extracters: \code{\link{fit2df.glmboot}}
 }

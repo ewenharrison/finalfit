@@ -20,6 +20,9 @@
 #'   (\code{lme4::glmer lme4::lmer}).
 #' @param  metrics Logical: include useful model metrics in output in
 #'   publication format.
+#' @param ... Other arguments to pass to \code{\link{fit2df}}: estimate_name,
+#'   p_name, digits, confint_sep.
+
 #' @return Returns a dataframe with the final model table.
 #'
 #' @examples
@@ -130,13 +133,13 @@
 #' example2.final
 #'
 
-finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL, metrics=FALSE){
+finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL, metrics=FALSE, ...){
 	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
 	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
 	if(is.null(dependent)) stop("No dependent variable provided")
 
 	args = list(.data=.data, dependent=dependent, explanatory=explanatory, explanatory_multi=explanatory_multi,
-							random_effect=random_effect, metrics=metrics)
+							random_effect=random_effect, metrics=metrics, ...)
 
 	# What is dependent variable
 	d_variable = .data[,names(.data) %in% dependent]

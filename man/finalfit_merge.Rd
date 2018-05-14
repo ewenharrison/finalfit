@@ -4,7 +4,8 @@
 \alias{finalfit_merge}
 \title{Merge a \code{\link{summary_factorlist}()} table with any number of model results tables.}
 \usage{
-finalfit_merge(factorlist, fit2df_df, ref_symbol = "-")
+finalfit_merge(factorlist, fit2df_df, ref_symbol = "-",
+  estimate_name = NULL)
 }
 \arguments{
 \item{factorlist}{Output from \code{\link{summary_factorlist}(..., fit_id=TRUE)}.}
@@ -12,6 +13,8 @@ finalfit_merge(factorlist, fit2df_df, ref_symbol = "-")
 \item{fit2df_df}{Output from model wrappers followed by \code{\link{fit2df}()}.}
 
 \item{ref_symbol}{Reference symbol for model reference levels, typically "-" or "1.0".}
+
+\item{estimate_name}{Provide a new name to estimate column. Defaults to OR/HR/Coefficient}
 }
 \value{
 Returns a dataframe of combined tables.

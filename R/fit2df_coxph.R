@@ -5,22 +5,28 @@
 #'
 #' \code{fit2df.coxph} is the model extract method for \code{survival::\link[survival]{coxph}}.
 #'
-#' @param fit Output from \code{survival::coxph} models.
+#' @param .data Output from \code{finalfit} model wrappers.
 #' @param condense Logical: when true, effect estimates, confidence intervals and p-values
 #'   are pasted conveniently together in single cell.
-#' @param metrics Logical: when true, useful model metrics are extracted (not yet implemented).
-#' @param estimate_suffix Character vector of length one specifying string to be appended
-#'   to output column name
+#' @param metrics Logical: when true, useful model metrics are extracted.
+#' @param remove_intercept Logical: remove the results for the intercept term.
+#' @param explanatory_name Name for this column in output
+#' @param estimate_name Name for this column in output
+#' @param estimate_suffix Appeneded to estimate name
+#' @param p_name Name given to p-value estimate
+#' @param digits Number of digits to round to (1) estimate, (2) confidence
+#'   interval limits, (3) p-value.
+#' @param confint_sep String to separate confidence intervals, typically "-" or
+#'   " to ".
 #' @param ... Other arguments (not used).
 #' @return A dataframe of model parameters. When \code{metrics=TRUE} output is a list of two dataframes,
 #'   one is model parameters, one is model metrics. length two
 #'
-#' @family \code{finalfit} model wrappers
 #' @family \code{finalfit} model extractors
+#'
 #'
 #' @examples
 #' library(finalfit)
-#' library(dplyr)
 #' library(survival)
 #'
 #' fit = coxph(Surv(time, status) ~ age.factor + sex.factor + obstruct.factor + perfor.factor,
@@ -28,26 +34,25 @@
 #'
 #' fit %>%
 #' 	fit2df(estimate_suffix=" (multivariable)")
+#'
 
-fit2df.coxph <- function(fit, condense=TRUE, metrics=NULL, estimate_suffix="", ...){
-	if(!is.null(metrics)) warning("Metrics not currently available for this model")
-	x = fit
-	conf.int = summary(x)$conf.int
-	explanatory = row.names(conf.int)
-	hr = conf.int[,1]
-	L95 = conf.int[,3]
-	U95 = conf.int[,4]
-	p = summary(x)$coefficients[row.names(conf.int),
-															max(dim(summary(x)$coefficients)[2])] # Hack to get p fe and re
-	df.out = data.frame(explanatory, hr, L95, U95, p)
-	colnames(df.out) = c("explanatory", paste0("HR", estimate_suffix), "L95", "U95", "p")
+
+fit2df.coxph <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+												 explanatory_name = "explanatory",
+												 estimate_name = "HR",
+												 estimate_suffix = "",
+												 p_name = "p",
+												 digits=c(2,2,3), confint_sep = "-", ...){
+	if(metrics==TRUE) warning("Metrics not currently available for this model")
+
+	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+											 p_name=p_name, digits=digits)
+
 	if (condense==TRUE){
-		df.out = data.frame(
-			"explanatory" = df.out$explanatory,
-			"HR" = paste0(sprintf("%.2f", df.out$HR), " (", sprintf("%.2f", df.out$L95), "-",
-										sprintf("%.2f", df.out$U95),
-										", p=", sprintf("%.3f", df.out$p), ")"))
-		colnames(df.out) = c("explanatory", paste0("HR", estimate_suffix))
+		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
+													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	return(df.out)
 }

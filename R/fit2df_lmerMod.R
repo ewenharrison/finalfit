@@ -8,14 +8,19 @@
 #' \code{lme4::\link[lme4]{lmer}} models and for the
 #' \code{finalfit::\link{lmmixed}} model wrapper.
 #'
-#' @param fit Output from \code{lme4::\link[lme4]{lmer}} or
-#'   \code{finalfit::\link{lmmixed}}.
-#' @param condense Logical: when true, effect estimates, confidence intervals
-#'   and p-values are pasted conveniently together in single cell.
-#' @param metrics Logical: when true, useful model metrics are extracted (nor
-#'   currently implemented).
-#' @param estimate_suffix Character vector of length one specifying string to be
-#'   appended to output column name
+#' @param .data Output from \code{finalfit} model wrappers.
+#' @param condense Logical: when true, effect estimates, confidence intervals and p-values
+#'   are pasted conveniently together in single cell.
+#' @param metrics Logical: when true, useful model metrics are extracted.
+#' @param remove_intercept Logical: remove the results for the intercept term.
+#' @param explanatory_name Name for this column in output
+#' @param estimate_name Name for this column in output
+#' @param estimate_suffix Appeneded to estimate name
+#' @param p_name Name given to p-value estimate
+#' @param digits Number of digits to round to (1) estimate, (2) confidence
+#'   interval limits, (3) p-value.
+#' @param confint_sep String to separate confidence intervals, typically "-" or
+#'   " to ".
 #' @param ... Other arguments (not used).
 #' @return A dataframe of model parameters.
 #'
@@ -33,32 +38,30 @@
 #'   lmmixed(dependent, explanatory, random_effect) %>%
 #' 	 fit2df(estimate_suffix=" (multilevel")
 
-fit2df.lmerMod = function(fit, condense=TRUE, metrics=FALSE, estimate_suffix="", ...){
-	x = fit
-	explanatory = names(lme4::fixef(x))
-	coef = round(lme4::fixef(x), 2)
-	ci = round(lme4::confint.merMod(x, method='Wald'), 2)
-	ci = ci[-grep("sig", rownames(ci)),]
-	p = round(1-pnorm(abs(summary(x)$coefficients[,3])), 3) # WARNING! Simple conversion of t- to p-values assuming infinite df
-	warning("P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.")
-	df.out = data.frame(explanatory, coef, ci[,1], ci[,2], p)
-	colnames(df.out) = c("explanatory", paste0("Coefficient", estimate_suffix), "L95", "U95", "p")
+fit2df.lmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+													explanatory_name = "explanatory",
+													estimate_name = "OR",
+													estimate_suffix = "",
+													p_name = "p",
+													digits=c(2,2,3), confint_sep = "-", ...){
 
-	# Remove intercepts
-	df.out = df.out[-which(df.out$explanatory =="(Intercept)"),]
+	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+											 p_name=p_name, digits=digits)
 
 	if (condense==TRUE){
-		p = paste0("=", sprintf("%.3f", df.out$p))
-		p[p == "=0.000"] = "<0.001"
-		df.out = data.frame(
-			"explanatory" = df.out$explanatory,
-			"Coefficient" = paste0(sprintf("%.2f", df.out$Coefficient), " (", sprintf("%.2f", df.out$L95), " to ",
-														 sprintf("%.2f", df.out$U95), ", p", p, ")"))
-		colnames(df.out) = c("explanatory", paste0("Coefficient", estimate_suffix))
+		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
+
+	if (remove_intercept==TRUE){
+		df.out = remove_intercept(df.out)
+	}
+
 	# Extract model metrics
 	if (metrics==TRUE){
-		x = fit
+		x = .data
 		n_model = length(x@resp$mu)
 		n_groups = summary(x)$ngrps
 		loglik = round(summary(x)$logLik, 2)

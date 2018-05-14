@@ -19,7 +19,7 @@
 #' @return A multivariable \code{\link[stats]{glm}} fitted model with
 #'   bootstrapped confidence intervals. Output is of class \code{glmboot}.
 #'
-#' @seealso \code{\link{fit2df}}
+#' @seealso \code{\link{fit2df}, \link{finalfit_merge}}
 #' @family \code{finalfit} model wrappers
 #'
 #' @examples

@@ -8,12 +8,19 @@
 #' \code{\link[stats]{glm}} models, which have not used \code{finalfit} model
 #' wrappers.
 #'
-#' @param fit Output from \code{glm} model.
-#' @param condense Logical: when true, effect estimates, confidence intervals
-#'   and p-values are pasted conveniently together in single cell.
+#' @param .data Output from \code{finalfit} model wrappers.
+#' @param condense Logical: when true, effect estimates, confidence intervals and p-values
+#'   are pasted conveniently together in single cell.
 #' @param metrics Logical: when true, useful model metrics are extracted.
-#' @param estimate_suffix Character vector of length one specifying string to be
-#'   appended to output column name
+#' @param remove_intercept Logical: remove the results for the intercept term.
+#' @param explanatory_name Name for this column in output
+#' @param estimate_name Name for this column in output
+#' @param estimate_suffix Appeneded to estimate name
+#' @param p_name Name given to p-value estimate
+#' @param digits Number of digits to round to (1) estimate, (2) confidence
+#'   interval limits, (3) p-value.
+#' @param confint_sep String to separate confidence intervals, typically "-" or
+#'   " to ".
 #' @param ... Other arguments (not used).
 #' @return A dataframe of model parameters. When \code{metrics=TRUE} output is a
 #'   list of two dataframes, one is model parameters, one is model metrics.
@@ -22,7 +29,6 @@
 #'
 #' @examples
 #' library(finalfit)
-#' library(dplyr)
 #'
 #' fit = glm(mort_5yr ~  age.factor + sex.factor + obstruct.factor + perfor.factor,
 #'   data=colon_s, family="binomial")
@@ -30,32 +36,30 @@
 #' fit %>%
 #'   fit2df(estimate_suffix=" (multivariable)")
 
-fit2df.glm <- function(fit, condense=TRUE, metrics=FALSE, estimate_suffix="", ...){
-	x = fit
-	explanatory = names(coef(x))
-	or = round(exp(coef(x)), 2)
-	ci = round(exp(confint(x)), 2)
-	p = round(summary(x)$coef[,"Pr(>|z|)"], 3)
-	df.out = data.frame(explanatory, or, ci[,1], ci[,2], p)
-	colnames(df.out) = c("explanatory", paste0("OR", estimate_suffix), "L95", "U95", "p")
+fit2df.glm <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+											 explanatory_name = "explanatory",
+											 estimate_name = "OR",
+											 estimate_suffix = "",
+											 p_name = "p",
+											 digits=c(2,2,3), confint_sep = "-", ...){
 
-	# Remove intercept
-	df.out = df.out[-which(df.out$explanatory =="(Intercept)"),]
+	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+											 p_name=p_name, digits=digits)
 
-	# Condensed output (now made default)
 	if (condense==TRUE){
-		p = paste0("=", sprintf("%.3f", df.out$p))
-		p[p == "=0.000"] = "<0.001"
-		df.out = data.frame(
-			"explanatory" = df.out$explanatory,
-			"OR" = paste0(sprintf("%.2f", df.out$OR), " (", sprintf("%.2f", df.out$L95), "-",
-										sprintf("%.2f", df.out$U95), ", p", p, ")"))
-		colnames(df.out) = c("explanatory", paste0("OR", estimate_suffix))
+		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+													p_name=p_name, digits=digits, confint_sep=confint_sep)
+	}
+
+	if (remove_intercept==TRUE){
+		df.out = remove_intercept(df.out)
 	}
 
 	# Extract model metrics
 	if (metrics==TRUE){
-		x = fit
+		x = .data
 		n_data = dim(x$data)[1]
 		n_model = dim(x$model)[1]
 		aic = round(x$aic, 1)

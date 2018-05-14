@@ -43,14 +43,8 @@ colon_s \%>\%
 \code{\link{fit2df}}
 
 Other \code{finalfit} model wrappers: \code{\link{coxphmulti}},
-  \code{\link{coxphuni}}, \code{\link{fit2df.coxphlist}},
-  \code{\link{fit2df.coxph}}, \code{\link{fit2df.glmboot}},
-  \code{\link{fit2df.glmerMod}},
-  \code{\link{fit2df.glmlist}}, \code{\link{fit2df.glm}},
-  \code{\link{fit2df.lmerMod}},
-  \code{\link{fit2df.lmlist}},
-  \code{\link{fit2df.stanfit}}, \code{\link{fit2df}},
-  \code{\link{glmmixed}}, \code{\link{glmmulti_boot}},
-  \code{\link{glmmulti}}, \code{\link{glmuni}},
-  \code{\link{lmmixed}}, \code{\link{lmuni}}
+  \code{\link{coxphuni}}, \code{\link{glmmixed}},
+  \code{\link{glmmulti_boot}}, \code{\link{glmmulti}},
+  \code{\link{glmuni}}, \code{\link{lmmixed}},
+  \code{\link{lmuni}}
 }

@@ -5,12 +5,19 @@
 #'
 #' \code{fit2df.glmlist} is the model extract method for \code{glmuni} and \code{glmmulti}.
 #'
-#' @param fit Output from \code{finalfit} model wrappers.
+#' @param .data Output from \code{finalfit} model wrappers.
 #' @param condense Logical: when true, effect estimates, confidence intervals and p-values
 #'   are pasted conveniently together in single cell.
 #' @param metrics Logical: when true, useful model metrics are extracted.
-#' @param estimate_suffix Character vector of length one specifying string to be appended
-#'   to output column name
+#' @param remove_intercept Logical: remove the results for the intercept term.
+#' @param explanatory_name Name for this column in output
+#' @param estimate_name Name for this column in output
+#' @param estimate_suffix Appeneded to estimate name
+#' @param p_name Name given to p-value estimate
+#' @param digits Number of digits to round to (1) estimate, (2) confidence
+#'   interval limits, (3) p-value.
+#' @param confint_sep String to separate confidence intervals, typically "-" or
+#'   " to ".
 #' @param ... Other arguments (not used).
 #' @return A dataframe of model parameters. When \code{metrics=TRUE} output is a list of two dataframes,
 #'   one is model parameters, one is model metrics. length two
@@ -27,53 +34,34 @@
 #' 	glmmulti(dependent, explanatory) %>%
 #' 	fit2df(estimate_suffix=" (multivariable)")
 
-fit2df.glmlist <- function(fit, condense=TRUE, metrics=FALSE, estimate_suffix="", digits=c(2,2,3), ...){
-	x = fit
-	d1 = digits[1]
-	d2 = digits[2]
-	d3 = digits[3]
+fit2df.glmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+													 explanatory_name = "explanatory",
+													 estimate_name = "OR",
+													 estimate_suffix = "",
+													 p_name = "p",
+													 digits=c(2,2,3), confint_sep = "-", ...){
 
-	if (metrics==TRUE && length(x)>1){
+	if (metrics==TRUE && length(.data)>1){
 		stop("Metrics only generated for single models: multiple models supplied to function")
 	}
 
-	df.out <- plyr::ldply(x, .id = NULL, function(x) {
-		explanatory = names(coef(x))
-		or = round(exp(coef(x)), d1)
-		ci = round(exp(confint(x)), d2)
-		p = round(summary(x)$coef[,"Pr(>|z|)"], d3)
-		df.out = data.frame(explanatory, or, ci[,1], ci[,2], p)
-		colnames(df.out) = c("explanatory", paste0("OR", estimate_suffix), "L95", "U95", "p")
-		return(df.out)
-	})
-
-	# Remove intercepts
-	df.out = df.out[-which(df.out$explanatory =="(Intercept)"),]
+	df.out = plyr::ldply(.data, .id = NULL, extract_fit, explanatory_name=explanatory_name,
+											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+																	 p_name=p_name, digits=digits)
 
 	if (condense==TRUE){
-		p = paste0("=",
-							 do.call(sprintf, list(paste0("%.", d3, "f"), df.out$p)) # keep trailing zeros
-		)
+		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
+													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+													p_name=p_name, digits=digits, confint_sep=confint_sep)
+	}
 
-		# Replace p=0.000 with p<0.001
-		p_equals = paste0("=", do.call(sprintf, list(paste0("%.", d3, "f"), 0)))
-		p_lessthan = paste0("<", format(10^-d3, scientific=FALSE)) # suppress scientific
-		p[p == p_equals] = p_lessthan
-
-		# Out
-		df.out = data.frame(
-			"explanatory" = df.out$explanatory,
-			"OR" = paste0(
-				do.call(sprintf, list(paste0("%.", d1, "f"), df.out$OR)), " (",
-				do.call(sprintf, list(paste0("%.", d2, "f"), df.out$L95)), "-",
-				do.call(sprintf, list(paste0("%.", d2, "f"), df.out$U95)), ", p",
-								p, ")"))
-		colnames(df.out) = c("explanatory", paste0("OR", estimate_suffix))
+	if (remove_intercept==TRUE){
+		df.out = remove_intercept(df.out)
 	}
 
 	# Extract model metrics
 	if (metrics==TRUE){
-		x = fit[[1]]
+		x = .data[[1]]
 		n_data = dim(x$data)[1]
 		n_model = dim(x$model)[1]
 		aic = round(x$aic, 1)
