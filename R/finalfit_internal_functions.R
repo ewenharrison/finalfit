@@ -371,6 +371,5 @@ dependent_label = function(.data, dependent){
 	} else {
 		d.out = d_label
 	}
-	d.out = paste0("Dependent: ", d.out)
 	return(d.out)
 }

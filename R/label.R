@@ -6,8 +6,8 @@
 #' @usage label(x) = "Variable label"
 #' @name label
 #' @examples
-#' library(finalfit)
 #'
+#' library(Hmisc)
 #' label(colon_s$age.factor) = "Age"
 #'
 NULL

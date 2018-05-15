@@ -16,6 +16,8 @@
 #'   (\code{lme4::glmer lme4::lmer}).
 #' @param  metrics Logical: include useful model metrics in output in
 #'   publication format.
+#' @param add_dependent_label Add the name of the dependent label to the top
+#'   left of table
 #' @param ... Other arguments to pass to \code{\link{fit2df}}: estimate_name,
 #'   p_name, digits, confint_sep
 #' @return Returns a dataframe with the final model table.
@@ -95,7 +97,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 
 	# Add dependent name label
 	if(add_dependent_label){
-		names(df.out)[1] = dependent_label(.data, dependent)
+		names(df.out)[1] = 	paste0("Dependent: ", dependent_label(.data, dependent))
 		names(df.out)[2] = ""
 	}
 

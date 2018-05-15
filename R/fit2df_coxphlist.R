@@ -26,6 +26,7 @@
 #'
 #' @examples
 #' library(finalfit)
+#' library(dplyr)
 #'
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' dependent = "Surv(time, status)"

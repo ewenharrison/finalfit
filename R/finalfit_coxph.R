@@ -18,11 +18,14 @@
 #'   publication format.
 #' @param ... Other arguments to pass to \code{\link{fit2df}}: estimate_name,
 #'   p_name, digits, confint_sep
+#' @param add_dependent_label Add the name of the dependent label to the top
+#'   left of table
 #' @return Returns a dataframe with the final model table.
 #'
 #' @keywords internal
 
-finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL, metrics=FALSE, ...){
+finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
+													metrics=FALSE, add_dependent_label=TRUE, ...){
 
 	args = list(...)
 
@@ -86,6 +89,13 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 	index_fit_id = which(names(df.out)=="fit_id")
 	index_index = which(names(df.out)=="index")
 	df.out = df.out[,-c(index_fit_id, index_index)]
+
+	# Add dependent name label
+	if(add_dependent_label){
+		names(df.out)[1] = 	paste0("Dependent: ", dependent_label(.data, dependent))
+		names(df.out)[2] = ""
+	}
+
 	return(df.out)
 	# Add metrics
 	# if (metrics == TRUE){

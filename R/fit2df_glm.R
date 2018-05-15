@@ -29,6 +29,7 @@
 #'
 #' @examples
 #' library(finalfit)
+#' library(dplyr)
 #'
 #' fit = glm(mort_5yr ~  age.factor + sex.factor + obstruct.factor + perfor.factor,
 #'   data=colon_s, family="binomial")

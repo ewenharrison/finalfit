@@ -27,6 +27,7 @@
 #'
 #' @examples
 #' library(finalfit)
+#' library(dplyr)
 #' library(survival)
 #'
 #' fit = coxph(Surv(time, status) ~ age.factor + sex.factor + obstruct.factor + perfor.factor,

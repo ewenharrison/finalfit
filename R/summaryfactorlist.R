@@ -30,6 +30,8 @@
 #'   \code{\link{finalfit_merge}}.
 #' @param na_to_missing Logical: convert \code{NA} to 'Missing' when
 #'   \code{na_include=TRUE}.
+#' @param add_dependent_label Add the name of the dependent label to the top
+#'   left of table
 #' @return Returns a \code{factorlist} dataframe.
 #'
 #' @family finalfit wrappers
@@ -58,7 +60,7 @@
 
 summary_factorlist <- function(.data, dependent=NULL, explanatory, cont="mean", p=FALSE, na_include=FALSE,
 															 column=FALSE, total_col=FALSE, orderbytotal=FALSE, fit_id=FALSE,
-															 na_to_missing = TRUE){
+															 na_to_missing=TRUE, add_dependent_label=FALSE){
 	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
 	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data) # tbl work different, convert to data.frame
 	if(is.null(explanatory)) stop("No explanatory variable(s) provided")

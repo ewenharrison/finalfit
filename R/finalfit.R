@@ -20,6 +20,8 @@
 #'   (\code{lme4::glmer lme4::lmer}).
 #' @param  metrics Logical: include useful model metrics in output in
 #'   publication format.
+#' @param add_dependent_label Add the name of the dependent label to the top
+#'   left of table
 #' @param ... Other arguments to pass to \code{\link{fit2df}}: estimate_name,
 #'   p_name, digits, confint_sep.
 

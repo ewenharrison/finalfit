@@ -5,7 +5,7 @@
 \title{Final output tables for common regression models}
 \usage{
 finalfit.coxph(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, metrics = FALSE, ...)
+  random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE, ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -27,6 +27,9 @@ effects variable. When included mixed effects model generated
 
 \item{metrics}{Logical: include useful model metrics in output in
 publication format.}
+
+\item{add_dependent_label}{Add the name of the dependent label to the top
+left of table}
 
 \item{...}{Other arguments to pass to \code{\link{fit2df}}: estimate_name,
 p_name, digits, confint_sep}

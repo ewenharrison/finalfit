@@ -103,13 +103,8 @@ or_plot = function(.data, dependent, explanatory, factorlist=NULL, glmfit=NULL,
 					axis.ticks.y = element_blank(),
 					line = element_blank())
 
-	dependent_label =attr(.data[,which(names(.data) %in% dependent)], "label")
-
-	if (is.null(dependent_label)){
-		title = paste0(dependent, ": ", "(OR, 95% CI, p-value)")
-	} else {
-		title = paste0(dependent_label, ": ", "(OR, 95% CI, p-value)")
-	}
+	# Add dependent name label
+	title = 	paste0(dependent_label(.data, dependent), ": (OR, 95% CI, p-value)")
 
 	gridExtra::grid.arrange(t1, g1, ncol=2, widths = c(3,2),
 													top=grid::textGrob(title, x=0.02, y=0.2, gp=grid::gpar(fontsize=18), just="left"))

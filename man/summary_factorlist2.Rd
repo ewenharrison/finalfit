@@ -6,7 +6,8 @@
 \usage{
 summary_factorlist2(.data, dependent, explanatory, cont = "mean", p = FALSE,
   na_include = FALSE, column = FALSE, total_col = FALSE,
-  orderbytotal = FALSE, fit_id = FALSE, na_to_missing = TRUE)
+  orderbytotal = FALSE, fit_id = FALSE, na_to_missing = TRUE,
+  add_dependent_label = FALSE)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -37,6 +38,9 @@ levels.}
 
 \item{na_to_missing}{Logical: convert \code{NA} to 'Missing' when
 \code{na_include=TRUE}.}
+
+\item{add_dependent_label}{Add the name of the dependent label to the top
+left of table}
 }
 \value{
 Returns a \code{factorlist} dataframe.

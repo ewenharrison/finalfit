@@ -20,13 +20,15 @@
 #'   \code{\link{finalfit_merge}}.
 #' @param na_to_missing Logical: convert \code{NA} to 'Missing' when
 #'   \code{na_include=TRUE}.
+#' @param add_dependent_label Add the name of the dependent label to the top
+#'   left of table
 #' @return Returns a \code{factorlist} dataframe.
 #'
 #' @keywords internal
 
 summary_factorlist5 <- function(.data, dependent, explanatory, cont="mean", p=FALSE, na_include=FALSE,
 																column=FALSE, total_col=FALSE, orderbytotal=FALSE, fit_id=FALSE,
-																na_to_missing = TRUE){
+																na_to_missing = TRUE, add_dependent_label=FALSE){
 	s <- Hmisc:::summary.formula(as.formula(paste(dependent, "~", paste(explanatory, collapse="+"))), data = .data,
 											 method="reverse", overall=FALSE,
 											 test=TRUE,na_include=na_include)
@@ -140,5 +142,12 @@ summary_factorlist5 <- function(.data, dependent, explanatory, cont="mean", p=FA
 
 	# Remove duplicate labels
 	df.out.labels = rm_duplicate_labels(df.out.labels, na_to_missing = na_to_missing)
+
+	# Add dependent name label
+	if(add_dependent_label){
+		names(df.out.labels)[1] = 	paste0("Dependent: ", dependent_label(.data, dependent))
+		names(df.out.labels)[2] = ""
+	}
+
 	return(df.out.labels)
 }
