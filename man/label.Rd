@@ -3,12 +3,12 @@
 \name{label}
 \alias{label}
 \title{Label variable names}
+\usage{
+label(x) = "Variable label"
+}
 \description{
 This restates \code{Hmisc::\link[Hmisc]{label}} which is used to format
 variable labels. All \code{finalfit} functions recognise this.
-}
-\details{
-\usage label(x) = "Variable label"
 }
 \examples{
 library(finalfit)

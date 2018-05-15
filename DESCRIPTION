@@ -28,6 +28,6 @@ RoxygenNote: 6.0.1
 Suggests:
     knitr,
     rmarkdown,
-    Rstan,
+    rstan,
     boot
 VignetteBuilder: knitr

@@ -5,7 +5,7 @@
 \title{Final output tables for common regression models}
 \usage{
 finalfit(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, metrics = FALSE, ...)
+  random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE, ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
