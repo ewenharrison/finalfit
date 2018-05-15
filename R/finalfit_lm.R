@@ -22,12 +22,13 @@
 #'
 #' @keywords internal
 #'
-finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL, metrics=FALSE, ...){
+finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
+											 metrics=FALSE, add_dependent_label = TRUE, ...){
 
 	args = list(...)
 
 	# Defaults which can be modified via ...
-	if (is.null(args$estimate_name)) args$estimate_name = "Coeffcient"
+	if (is.null(args$estimate_name)) args$estimate_name = "Coefficient"
 	if (is.null(args$p_name)) args$p_name="p"
 	if (is.null(args$digits)) 	args$digits=c(2,2,3)
 	if (is.null(args$confint_sep)) args$confint_sep = "-"
@@ -91,6 +92,12 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 	index_fit_id = which(names(df.out)=="fit_id")
 	index_index = which(names(df.out)=="index")
 	df.out = df.out[,-c(index_fit_id, index_index)]
+
+	# Add dependent name label
+	if(add_dependent_label){
+		names(df.out)[1] = dependent_label(.data, dependent)
+		names(df.out)[2] = ""
+	}
 
 	# Add metrics
 	if (metrics == TRUE){

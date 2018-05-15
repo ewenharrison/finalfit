@@ -348,3 +348,29 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 	}
 	return(x)
 }
+
+
+
+#' Make a label for the dependent variable
+#'
+#' Not called directly.
+#'
+#' @param .data Dataframe.
+#' @param dependent Character vector of length 1:  quoted name of depdendent
+#'   variable. Can be continuous, a binary factor, or a survival object of form
+#'   \code{Surv(time, status)}
+#'
+#' @return Returns "Depdendent: " and the name of the depdendent.
+#'
+#' @keywords internal
+dependent_label = function(.data, dependent){
+	d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
+
+	if (is.null(d_label)){
+		d.out = dependent
+	} else {
+		d.out = d_label
+	}
+	d.out = paste0("Dependent: ", d.out)
+	return(d.out)
+}

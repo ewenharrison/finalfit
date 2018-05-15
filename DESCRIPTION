@@ -12,7 +12,6 @@ LazyData: true
 Imports:
     Hmisc,
     ggplot2,
-    boot,
     grid,
     gridExtra,
     lme4,
@@ -20,7 +19,6 @@ Imports:
     mice,
     pROC,
     plyr,
-    rstan,
     scales,
     stats,
     stringr,
@@ -29,5 +27,7 @@ Imports:
 RoxygenNote: 6.0.1
 Suggests:
     knitr,
-    rmarkdown
+    rmarkdown,
+    Rstan,
+    boot
 VignetteBuilder: knitr

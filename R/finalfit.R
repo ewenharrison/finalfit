@@ -133,7 +133,8 @@
 #' example2.final
 #'
 
-finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL, metrics=FALSE, ...){
+finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
+										metrics=FALSE, add_dependent_label=TRUE, ...){
 	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
 	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
 	if(is.null(dependent)) stop("No dependent variable provided")

@@ -22,7 +22,8 @@
 #'
 #' @keywords internal
 
-finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL, metrics=FALSE, ...){
+finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
+												metrics=FALSE,  add_dependent_label=TRUE, ...){
 
 	args = list(...)
 
@@ -89,6 +90,12 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 		index_fit_id = which(names(df.out)=="fit_id")
 		index_index = which(names(df.out)=="index")
 		df.out = df.out[,-c(index_fit_id, index_index)]
+
+		# Add dependent name label
+		if(add_dependent_label){
+			names(df.out)[1] = dependent_label(.data, dependent)
+			names(df.out)[2] = ""
+		}
 
 		# Add metrics
 		if (metrics == TRUE){
