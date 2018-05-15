@@ -81,9 +81,14 @@
 #' # `fit2df` is a subfunction extracting most common models to a dataframe.
 #'
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+#' dependent = 'mort_5yr'
+#' colon_s %>%
+#'   finalfit(dependent, explanatory, metrics=TRUE)
+#'
+#' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' explanatory_multi = c("age.factor", "obstruct.factor")
 #' random_effect = "hospital"
-#' dependent = "mort_5yr"
+#' dependent = 'mort_5yr'
 #'
 #' # Separate tables
 #' colon_s %>%
@@ -106,33 +111,9 @@
 #' 	finalfit_merge(example.univariable) %>%
 #' 	finalfit_merge(example.multivariable) %>%
 #' 	finalfit_merge(example.multilevel) %>%
-#' 	select(-c(fit_id, index)) -> example.final
+#' 	select(-c(fit_id, index)) %>%
+#' 	dependent_label(colon_s, dependent) -> example.final
 #' example.final
-#'
-#' # Cox Proportional Hazards example with separate tables merged together.
-#'
-#' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
-#' explanatory_multi = c("age.factor", "obstruct.factor")
-#' dependent = "Surv(time, status)"
-#'
-#' # Separate tables
-#' colon_s %>%
-#' 	summary_factorlist(dependent, explanatory, fit_id=TRUE) -> example2.summary
-#'
-#' colon_s %>%
-#' 	coxphuni(dependent, explanatory) %>%
-#' 	fit2df(estimate_suffix=" (univariable)") -> example2.univariable
-#'
-#' colon_s %>%
-#' 	coxphmulti(dependent, explanatory_multi) %>%
-#' 	fit2df(estimate_suffix=" (multivariable)") -> example2.multivariable
-#'
-#' # Pipe together
-#' example2.summary %>%
-#' 	finalfit_merge(example2.univariable) %>%
-#' 	finalfit_merge(example2.multivariable) %>%
-#' 	select(-c(fit_id, index)) -> example2.final
-#' example2.final
 #'
 
 finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,

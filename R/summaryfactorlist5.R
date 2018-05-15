@@ -22,13 +22,16 @@
 #'   \code{na_include=TRUE}.
 #' @param add_dependent_label Add the name of the dependent label to the top
 #'   left of table
+#' @param dependent_label_prefix Add text before dependent label
+#' @param dependent_label_suffix Add text after dependent label
 #' @return Returns a \code{factorlist} dataframe.
 #'
 #' @keywords internal
 
 summary_factorlist5 <- function(.data, dependent, explanatory, cont="mean", p=FALSE, na_include=FALSE,
 																column=FALSE, total_col=FALSE, orderbytotal=FALSE, fit_id=FALSE,
-																na_to_missing = TRUE, add_dependent_label=FALSE){
+																na_to_missing = TRUE, add_dependent_label=FALSE,
+																dependent_label_prefix="Dependent: ", dependent_label_suffix=""){
 	s <- Hmisc:::summary.formula(as.formula(paste(dependent, "~", paste(explanatory, collapse="+"))), data = .data,
 											 method="reverse", overall=FALSE,
 											 test=TRUE,na_include=na_include)
@@ -115,7 +118,7 @@ summary_factorlist5 <- function(.data, dependent, explanatory, cont="mean", p=FA
 
 	if (p == TRUE){
 		a = plyr::ldply(s$testresults, function(x) sprintf("%.3f",round(x[[1]], 3)))
-		names(a) = c(".id", "pvalue")
+		names(a) = c(".id", "p")
 		df.out = merge(df.out, a, by=".id")
 	}
 
@@ -145,8 +148,7 @@ summary_factorlist5 <- function(.data, dependent, explanatory, cont="mean", p=FA
 
 	# Add dependent name label
 	if(add_dependent_label){
-		names(df.out.labels)[1] = 	paste0("Dependent: ", dependent_label(.data, dependent))
-		names(df.out.labels)[2] = ""
+		df.out.labels = dependent_label(df.out.labels, .data, dependent, prefix=dependent_label_prefix, suffix_label_prefix)
 	}
 
 	return(df.out.labels)

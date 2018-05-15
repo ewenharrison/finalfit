@@ -4,19 +4,56 @@
 \alias{dependent_label}
 \title{Make a label for the dependent variable}
 \usage{
-dependent_label(.data, dependent)
+dependent_label(df.out, .data, dependent, prefix = "Dependent: ",
+  suffix = "")
 }
 \arguments{
-\item{.data}{Dataframe.}
+\item{df.out}{Dataframe (results table) to be altered.}
+
+\item{.data}{Original dataframe.}
 
 \item{dependent}{Character vector of length 1:  quoted name of depdendent
 variable. Can be continuous, a binary factor, or a survival object of form
 \code{Surv(time, status)}}
+
+\item{prefix}{Prefix for dependent label}
+
+\item{suffix}{Suffix for dependent label}
 }
 \value{
-Returns "Depdendent: " and the name of the depdendent.
+Returns the label for the dependent variable, if specified.
 }
 \description{
-Not called directly.
+Not usually called directly. Can be used to label final results dataframe.
 }
-\keyword{internal}
+\examples{
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+explanatory_multi = c("age.factor", "obstruct.factor")
+random_effect = "hospital"
+dependent = 'mort_5yr'
+
+# Separate tables
+colon_s \%>\%
+	summary_factorlist(dependent, explanatory, fit_id=TRUE) -> example.summary
+
+colon_s \%>\%
+	glmuni(dependent, explanatory) \%>\%
+	fit2df(estimate_suffix=" (univariable)") -> example.univariable
+
+colon_s \%>\%
+	 glmmulti(dependent, explanatory) \%>\%
+	 fit2df(estimate_suffix=" (multivariable)") -> example.multivariable
+
+colon_s \%>\%
+  glmmixed(dependent, explanatory, random_effect) \%>\%
+	 fit2df(estimate_suffix=" (multilevel") -> example.multilevel
+
+# Pipe together
+example.summary \%>\%
+  finalfit_merge(example.univariable) \%>\%
+  finalfit_merge(example.multivariable) \%>\%
+	 finalfit_merge(example.multilevel) \%>\%
+	 select(-c(fit_id, index)) \%>\%
+	 dependent_label(colon_s, dependent) -> example.final
+  example.final
+}

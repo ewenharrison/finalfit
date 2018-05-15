@@ -353,23 +353,84 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 
 #' Make a label for the dependent variable
 #'
+#' Not usually called directly. Can be used to label final results dataframe.
+#'
+#' @param df.out Dataframe (results table) to be altered.
+#' @param .data Original dataframe.
+#' @param dependent Character vector of length 1:  quoted name of depdendent
+#'   variable. Can be continuous, a binary factor, or a survival object of form
+#'   \code{Surv(time, status)}
+#' @param prefix Prefix for dependent label
+#' @param suffix Suffix for dependent label
+#'
+#' @return Returns the label for the dependent variable, if specified.
+#' @examples
+#' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+#' explanatory_multi = c("age.factor", "obstruct.factor")
+#' random_effect = "hospital"
+#' dependent = 'mort_5yr'
+#'
+#' # Separate tables
+#' colon_s %>%
+#' 	summary_factorlist(dependent, explanatory, fit_id=TRUE) -> example.summary
+#'
+#' colon_s %>%
+#' 	glmuni(dependent, explanatory) %>%
+#' 	fit2df(estimate_suffix=" (univariable)") -> example.univariable
+#'
+#' colon_s %>%
+#' 	 glmmulti(dependent, explanatory) %>%
+#' 	 fit2df(estimate_suffix=" (multivariable)") -> example.multivariable
+#'
+#' colon_s %>%
+#'   glmmixed(dependent, explanatory, random_effect) %>%
+#' 	 fit2df(estimate_suffix=" (multilevel") -> example.multilevel
+#'
+#' # Pipe together
+#' example.summary %>%
+#'   finalfit_merge(example.univariable) %>%
+#'   finalfit_merge(example.multivariable) %>%
+#' 	 finalfit_merge(example.multilevel) %>%
+#' 	 select(-c(fit_id, index)) %>%
+#' 	 dependent_label(colon_s, dependent) -> example.final
+#'   example.final
+dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suffix=""){
+	d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
+
+	if (is.null(d_label)){
+		d.label = dependent
+	} else {
+		d.label = d_label
+	}
+	names(df.out)[1] = paste0(prefix, d_label, suffix)
+	names(df.out)[2] = ""
+
+	return(df.out)
+}
+
+
+
+#' Label plot title
+#'
 #' Not called directly.
 #'
 #' @param .data Dataframe.
 #' @param dependent Character vector of length 1:  quoted name of depdendent
 #'   variable. Can be continuous, a binary factor, or a survival object of form
 #'   \code{Surv(time, status)}
-#'
-#' @return Returns "Depdendent: " and the name of the depdendent.
+#' @param prefix Prefix for dependent label
+#' @param suffix Suffix for dependent label
 #'
 #' @keywords internal
-dependent_label = function(.data, dependent){
+plot_title = function(.data, dependent, prefix = "", suffix=""){
 	d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
 
 	if (is.null(d_label)){
-		d.out = dependent
+		d.label = dependent
 	} else {
-		d.out = d_label
+		d.label = d_label
 	}
-	return(d.out)
+
+	out = paste0(prefix, d.label, suffix)
+	return(out)
 }

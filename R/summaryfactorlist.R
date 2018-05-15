@@ -32,6 +32,8 @@
 #'   \code{na_include=TRUE}.
 #' @param add_dependent_label Add the name of the dependent label to the top
 #'   left of table
+#' @param dependent_label_prefix Add text before dependent label
+#' @param dependent_label_suffix Add text after dependent label
 #' @return Returns a \code{factorlist} dataframe.
 #'
 #' @family finalfit wrappers
@@ -60,7 +62,8 @@
 
 summary_factorlist <- function(.data, dependent=NULL, explanatory, cont="mean", p=FALSE, na_include=FALSE,
 															 column=FALSE, total_col=FALSE, orderbytotal=FALSE, fit_id=FALSE,
-															 na_to_missing=TRUE, add_dependent_label=FALSE){
+															 na_to_missing=TRUE, add_dependent_label=FALSE,
+															 dependent_label_prefix="Dependent: ", dependent_label_suffix=""){
 	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
 	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data) # tbl work different, convert to data.frame
 	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
@@ -72,7 +75,9 @@ summary_factorlist <- function(.data, dependent=NULL, explanatory, cont="mean", 
 
 	args = list(.data=.data, dependent=dependent, explanatory=explanatory, cont=cont, p=p, na_include=na_include,
 							column=column, total_col=total_col, orderbytotal=orderbytotal, fit_id=fit_id,
-							na_to_missing=na_to_missing, add_dependent_label=add_dependent_label)
+							na_to_missing=na_to_missing, add_dependent_label=add_dependent_label,
+							dependent_label_prefix=dependent_label_prefix,
+							dependent_label_suffix=dependent_label_suffix)
 
 	# Survival object
 	d_is.surv = grepl("Surv[(].*[)]", dependent)
