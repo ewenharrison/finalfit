@@ -148,8 +148,10 @@ summary_factorlist5 <- function(.data, dependent, explanatory, cont="mean", p=FA
 
 	# Add dependent name label
 	if(add_dependent_label){
-		df.out.labels = dependent_label(df.out.labels, .data, dependent, prefix=dependent_label_prefix, suffix_label_prefix)
+		df.out.labels = dependent_label(df.out=df.out.labels, .data=.data, dependent,
+																		prefix=dependent_label_prefix, suffix = dependent_label_suffix)
 	}
+
 
 	return(df.out.labels)
 }
