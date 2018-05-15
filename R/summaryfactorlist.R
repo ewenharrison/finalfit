@@ -72,7 +72,7 @@ summary_factorlist <- function(.data, dependent=NULL, explanatory, cont="mean", 
 
 	args = list(.data=.data, dependent=dependent, explanatory=explanatory, cont=cont, p=p, na_include=na_include,
 							column=column, total_col=total_col, orderbytotal=orderbytotal, fit_id=fit_id,
-							na_to_missing=na_to_missing)
+							na_to_missing=na_to_missing, add_dependent_label=add_dependent_label)
 
 	# Survival object
 	d_is.surv = grepl("Surv[(].*[)]", dependent)
