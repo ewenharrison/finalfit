@@ -1,7 +1,7 @@
 Package: finalfit
 Type: Package
 Title: Finalfit
-Version: 0.6
+Version: 0.7.1
 Author: Ewen Harrison, Tom Drake, Riinu Ots
 Maintainer: Ewen Harrison <ewen.harrison@ed.ac.uk>
 Description: Tables and plots of data and models in final publication format for
