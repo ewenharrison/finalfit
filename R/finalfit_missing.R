@@ -13,6 +13,8 @@
 #'   row contain row and column counts, respectively.
 #'
 #'
+#' \code{finalfit} helper functions
+#'
 #' @examples
 #' library(finalfit)
 #' library(dplyr)

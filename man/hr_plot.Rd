@@ -4,9 +4,10 @@
 \alias{hr_plot}
 \title{Produce a hazard ratio table and plot}
 \usage{
-hr_plot(.data, dependent, explanatory, dependent_label = NULL,
-  factorlist = NULL, coxfit = NULL, breaks = NULL,
-  column_space = c(-0.5, 0, 0.5), ...)
+hr_plot(.data, dependent, explanatory, factorlist = NULL, coxfit = NULL,
+  breaks = NULL, column_space = c(-0.5, 0, 0.5),
+  dependent_label = "Survival", prefix = "",
+  suffix = ": (HR, 95\% CI, p-value)", ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -15,8 +16,6 @@ hr_plot(.data, dependent, explanatory, dependent_label = NULL,
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory variables.}
 
-\item{dependent_label}{Label on plot for survival object, e.g. "Overall survival".}
-
 \item{factorlist}{Option to provide output directly from \code{\link{summary_factorlist}()}.}
 
 \item{coxfit}{Option to provide output directly from \code{coxphmulti()}.}
@@ -24,6 +23,12 @@ hr_plot(.data, dependent, explanatory, dependent_label = NULL,
 \item{breaks}{Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.}
 
 \item{column_space}{Adjust table column spacing.}
+
+\item{dependent_label}{Main label for plot.}
+
+\item{prefix}{Plots are titled by default with the dependent variable. This adds text before that label.}
+
+\item{suffix}{Plots are titled with the dependent variable. This adds text after that label.}
 
 \item{...}{Other parameters.}
 }
@@ -46,9 +51,6 @@ colon_s \%>\%
 
 }
 \seealso{
-\code{\link{fit2df}}
-
-Other finalfit wrappers: \code{\link{finalfit_merge}},
-  \code{\link{or_plot}}, \code{\link{summary_factorlist}},
+Other finalfit plot functions: \code{\link{or_plot}},
   \code{\link{surv_plot}}
 }

@@ -28,7 +28,8 @@
 
 summary_factorlist0 <- function(.data, dependent, explanatory,  cont="mean", p=FALSE, na_include=FALSE,
 															 column=FALSE, total_col=FALSE, orderbytotal=FALSE, fit_id=FALSE,
-																na_to_missing = TRUE, add_dependent_label=FALSE){
+																na_to_missing = TRUE, add_dependent_label=FALSE,
+																dependent_label_prefix="Dependent: ", dependent_label_suffix=""){
 
 	s = Hmisc:::summary.formula(as.formula(paste(dependent, "~", paste(explanatory, collapse="+"))), data = .data,
 															overall=FALSE, method="response", na_include=na_include,
@@ -73,5 +74,13 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont="mean", p=F
 	}
 
 	df.out = cbind(df.out, result.out)
+
+	# Add dependent name label
+	if(add_dependent_label){
+		df.out = dependent_label(df.out=df.out, .data=.data, dependent,
+														 prefix=dependent_label_prefix, suffix = dependent_label_suffix)
+	}
+
+
 	return(df.out)
 }

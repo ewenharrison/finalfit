@@ -17,8 +17,8 @@
 #'   (2 to 5 factor levels).
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
-#' @param cont Summary for continuous variables: mean (standard deviation) or
-#'   median (interquartile range).
+#' @param cont Summary for continuous variables: "mean" (standard deviation) or
+#'   "median" (interquartile range).
 #' @param p Logical: Include statistical test (see
 #'   \code{\link[Hmisc]{summary.formula}}).
 #' @param na_include Logical: include missing data in summary (\code{NA}).

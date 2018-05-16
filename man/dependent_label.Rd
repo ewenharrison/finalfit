@@ -27,6 +27,7 @@ Returns the label for the dependent variable, if specified.
 Not usually called directly. Can be used to label final results dataframe.
 }
 \examples{
+library(dplyr)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 explanatory_multi = c("age.factor", "obstruct.factor")
 random_effect = "hospital"

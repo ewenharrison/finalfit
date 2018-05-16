@@ -13,10 +13,13 @@ finalfit_missing(.data, dependent, explanatory)
 variable.}
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory
-variables.
-to a missing data pattern (1=observed, 0=missing). Rows and columns are
-sorted in increasing amounts of missing information. The last column and
-row contain row and column counts, respectively.}
+  variables.
+  to a missing data pattern (1=observed, 0=missing). Rows and columns are
+  sorted in increasing amounts of missing information. The last column and
+  row contain row and column counts, respectively.
+
+
+\code{finalfit} helper functions}
 }
 \description{
 Using \code{finalfit} conventions, produces a missing data matrix using

@@ -365,6 +365,7 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 #'
 #' @return Returns the label for the dependent variable, if specified.
 #' @examples
+#' library(dplyr)
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' explanatory_multi = c("age.factor", "obstruct.factor")
 #' random_effect = "hospital"
@@ -398,17 +399,15 @@ dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suf
 	d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
 
 	if (is.null(d_label)){
-		d.label = dependent
+		d_label = dependent
 	} else {
-		d.label = d_label
+		d_label = d_label
 	}
 	names(df.out)[1] = paste0(prefix, d_label, suffix)
 	names(df.out)[2] = ""
 
 	return(df.out)
 }
-
-
 
 #' Label plot title
 #'
@@ -422,15 +421,17 @@ dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suf
 #' @param suffix Suffix for dependent label
 #'
 #' @keywords internal
-plot_title = function(.data, dependent, prefix = "", suffix=""){
-	d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
-
-	if (is.null(d_label)){
-		d.label = dependent
-	} else {
-		d.label = d_label
-	}
-
-	out = paste0(prefix, d.label, suffix)
+plot_title = function(.data, dependent, dependent_label, prefix = "", suffix=""){
+		if (is.null(dependent_label)){
+			d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
+			if (is.null(d_label)){
+				d_label = dependent
+			} else {
+				d_label = d_label
+			}
+		} else {
+			d_label = dependent_label
+		}
+	out = paste0(prefix, d_label, suffix)
 	return(out)
 }

@@ -16,16 +16,21 @@
 #'   (\code{lme4::glmer lme4::lmer}).
 #' @param  metrics Logical: include useful model metrics in output in
 #'   publication format.
-#' @param ... Other arguments to pass to \code{\link{fit2df}}: estimate_name,
-#'   p_name, digits, confint_sep
 #' @param add_dependent_label Add the name of the dependent label to the top
 #'   left of table
+#' @param dependent_label_prefix Add text before dependent label
+#' @param dependent_label_suffix Add text after dependent label
+#' @param ... Other arguments to pass to \code{\link{fit2df}}: estimate_name,
+#'   p_name, digits, confint_sep
 #' @return Returns a dataframe with the final model table.
+#'
+#' @family \code{finalfit} all-in-one functions
 #'
 #' @keywords internal
 
 finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-													metrics=FALSE, add_dependent_label=TRUE, ...){
+													metrics=FALSE, add_dependent_label=TRUE,
+													dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
 
 	args = list(...)
 
@@ -59,7 +64,8 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 		coxphmulti_out = coxphmulti(.data, dependent, explanatory_multi)
 	}
 	coxphmulti_df = do.call(fit2df,
-													c(list(.data=coxphmulti_out, estimate_suffix = " (multivariable)"), args)) #metrics=metrics
+													c(list(.data=coxphmulti_out, estimate_suffix = " (multivariable)"),
+														metrics=metrics, args))
 	# Merge dataframes
 	# Uni
 	df.out = finalfit_merge(summary.out, coxphuni_df, estimate_name = args$estimate_name)
@@ -92,8 +98,8 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 
 	# Add dependent name label
 	if(add_dependent_label){
-		names(df.out)[1] = 	paste0("Dependent: ", dependent_label(.data, dependent))
-		names(df.out)[2] = ""
+		df.out = dependent_label(df.out=df.out, .data=.data, dependent=dependent,
+														 prefix=dependent_label_prefix, suffix = dependent_label_suffix)
 	}
 
 	return(df.out)

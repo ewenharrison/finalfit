@@ -35,9 +35,6 @@ colon_s \%>\%
 
 }
 \seealso{
-\code{\link{fit2df}}
-
-Other finalfit wrappers: \code{\link{finalfit_merge}},
-  \code{\link{hr_plot}}, \code{\link{or_plot}},
-  \code{\link{summary_factorlist}}
+Other finalfit plot functions: \code{\link{hr_plot}},
+  \code{\link{or_plot}}
 }

@@ -10,8 +10,9 @@
 #' @param estimate_name Provide a new name to estimate column. Defaults to OR/HR/Coefficient
 #' @return Returns a dataframe of combined tables.
 #'
-#' @family finalfit wrappers
-#' @seealso \code{\link{summary_factorlist}} \code{\link{fit2df}}
+#' \code{finalfit} helper functions
+#'
+#'  @seealso \code{\link{summary_factorlist}} \code{\link{fit2df}}
 #'
 #' @examples
 #' library(finalfit)

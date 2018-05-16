@@ -18,6 +18,10 @@ finalfit_merge(factorlist, fit2df_df, ref_symbol = "-",
 }
 \value{
 Returns a dataframe of combined tables.
+
+\code{finalfit} helper functions
+
+ @seealso \code{\link{summary_factorlist}} \code{\link{fit2df}}
 }
 \description{
 A function that takes the output from \code{\link{summary_factorlist}(..., fit_id=TRUE)}
@@ -57,11 +61,4 @@ example.summary \%>\%
 	finalfit_merge(example.multilevel) \%>\%
 	select(-c(fit_id, index)) -> example.final
 example.final
-}
-\seealso{
-\code{\link{summary_factorlist}} \code{\link{fit2df}}
-
-Other finalfit wrappers: \code{\link{hr_plot}},
-  \code{\link{or_plot}}, \code{\link{summary_factorlist}},
-  \code{\link{surv_plot}}
 }

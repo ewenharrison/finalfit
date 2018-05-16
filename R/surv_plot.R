@@ -9,8 +9,7 @@
 #' @param ... Arguments passed to \code{\link[survminer]{ggsurvplot}}.
 #' @return Returns a table and plot produced in \code{ggplot2}.
 #'
-#' @family finalfit wrappers
-#' @seealso \code{\link{fit2df}}
+#' @family finalfit plot functions
 #'
 #' @examples
 #' library(finalfit)

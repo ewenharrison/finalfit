@@ -65,6 +65,6 @@ Other \code{finalfit} model extractors: \code{\link{fit2df.coxphlist}},
   \code{\link{fit2df.coxph}},
   \code{\link{fit2df.glmerMod}},
   \code{\link{fit2df.glmlist}},
-  \code{\link{fit2df.lmlist}},
+  \code{\link{fit2df.lmlist}}, \code{\link{fit2df.lm}},
   \code{\link{fit2df.stanfit}}, \code{\link{fit2df}}
 }

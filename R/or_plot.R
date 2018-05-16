@@ -14,16 +14,18 @@
 #'   and \code{\link{glmmixed}()}.
 #' @param breaks Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.
 #' @param column_space Adjust table column spacing.
+#' @param dependent_label Main label for plot.
+#' @param prefix Plots are titled by default with the dependent variable. This adds text before that label.
+#' @param suffix Plots are titled with the dependent variable. This adds text after that label.
 #' @param ... Other parameters.
 #' @return Returns a table and plot produced in \code{ggplot2}.
 #'
-#' @family finalfit wrappers
-#' @seealso \code{\link{fit2df}}
+#' @family finalfit plot functions
 #'
 #' @examples
 #' library(finalfit)
-#' library(dplyr
-#' )
+#' library(dplyr)
+#'
 #' # OR plot
 #' data(colon_s)
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
@@ -34,7 +36,9 @@
 #' @import ggplot2
 
 or_plot = function(.data, dependent, explanatory, factorlist=NULL, glmfit=NULL,
-									 breaks=NULL, column_space=c(-0.5, 0, 0.5), ...){
+									 breaks=NULL, column_space=c(-0.5, 0, 0.5),
+									 dependent_label = NULL,
+									 prefix = "", suffix = ": (OR, 95% CI, p-value)", ...){
 	requireNamespace("ggplot2", quietly = TRUE)
 	# Generate or format factorlist object
 	if(is.null(factorlist)){
@@ -92,9 +96,9 @@ or_plot = function(.data, dependent, explanatory, factorlist=NULL, glmfit=NULL,
 					legend.position="none")
 
 	t1 = ggplot(df.out, aes(x = as.numeric(OR), y = fit_id))+
-		annotate("text", x = column_space[1], y =  df.out$fit_id, label=df.out[,2], hjust=0, size=5)+
-		annotate("text", x = column_space[2], y =  df.out$fit_id, label=df.out[,3], hjust=1, size=5)+
-		annotate("text", x = column_space[3], y =  df.out$fit_id, label=df.out[,8], hjust=1, size=5)+
+		annotate("text", x = column_space[1], y = df.out$fit_id, label=df.out[,2], hjust=0, size=5)+
+		annotate("text", x = column_space[2], y = df.out$fit_id, label=df.out[,3], hjust=1, size=5)+
+		annotate("text", x = column_space[3], y = df.out$fit_id, label=df.out[,8], hjust=1, size=5)+
 		theme_classic(14)+
 		theme(axis.title.x = element_text(colour = "white"),
 					axis.text.x = element_text(colour = "white"),
@@ -104,7 +108,7 @@ or_plot = function(.data, dependent, explanatory, factorlist=NULL, glmfit=NULL,
 					line = element_blank())
 
 	# Add dependent name label
-	title = 	plot_title(.data, dependent, suffix = ": (OR, 95% CI, p-value)")
+	title = 	plot_title(.data, dependent, dependent_label = dependent_label, prefix = prefix, suffix = suffix)
 
 	gridExtra::grid.arrange(t1, g1, ncol=2, widths = c(3,2),
 													top=grid::textGrob(title, x=0.02, y=0.2, gp=grid::gpar(fontsize=18), just="left"))

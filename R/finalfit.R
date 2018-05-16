@@ -22,10 +22,14 @@
 #'   publication format.
 #' @param add_dependent_label Add the name of the dependent label to the top
 #'   left of table
+#' @param dependent_label_prefix Add text before dependent label
+#' @param dependent_label_suffix Add text after dependent label
 #' @param ... Other arguments to pass to \code{\link{fit2df}}: estimate_name,
 #'   p_name, digits, confint_sep.
 
 #' @return Returns a dataframe with the final model table.
+#'
+#' @family \code{finalfit} all-in-one functions
 #'
 #' @examples
 #' library(finalfit)
@@ -117,13 +121,16 @@
 #'
 
 finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-										metrics=FALSE, add_dependent_label=TRUE, ...){
+										metrics=FALSE, add_dependent_label=TRUE,
+										dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
 	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
 	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
 	if(is.null(dependent)) stop("No dependent variable provided")
 
 	args = list(.data=.data, dependent=dependent, explanatory=explanatory, explanatory_multi=explanatory_multi,
-							random_effect=random_effect, metrics=metrics, ...)
+							random_effect=random_effect, metrics=metrics,
+							dependent_label_prefix=dependent_label_prefix,
+							dependent_label_suffix=dependent_label_suffix, ...=...)
 
 	# What is dependent variable
 	d_variable = .data[,names(.data) %in% dependent]

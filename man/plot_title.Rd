@@ -4,7 +4,7 @@
 \alias{plot_title}
 \title{Label plot title}
 \usage{
-plot_title(.data, dependent, prefix = "", suffix = "")
+plot_title(.data, dependent, dependent_label, prefix = "", suffix = "")
 }
 \arguments{
 \item{.data}{Dataframe.}

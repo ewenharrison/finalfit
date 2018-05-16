@@ -18,14 +18,19 @@
 #'   publication format.
 #' @param add_dependent_label Add the name of the dependent label to the top
 #'   left of table
+#' @param dependent_label_prefix Add text before dependent label
+#' @param dependent_label_suffix Add text after dependent label
 #' @param ... Other arguments to pass to \code{\link{fit2df}}: estimate_name,
 #'   p_name, digits, confint_sep
 #' @return Returns a dataframe with the final model table.
 #'
+#' @family \code{finalfit} all-in-one functions
+#'
 #' @keywords internal
 #'
 finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-											 metrics=FALSE, add_dependent_label = TRUE, ...){
+											 metrics=FALSE, add_dependent_label = TRUE,
+											 dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
 
 	args = list(...)
 
@@ -33,7 +38,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 	if (is.null(args$estimate_name)) args$estimate_name = "Coefficient"
 	if (is.null(args$p_name)) args$p_name="p"
 	if (is.null(args$digits)) 	args$digits=c(2,2,3)
-	if (is.null(args$confint_sep)) args$confint_sep = "-"
+	if (is.null(args$confint_sep)) args$confint_sep = " to "
 
 	args = list(estimate_name = args$estimate_name,
 							p_name = args$p_name,
@@ -97,8 +102,8 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 
 	# Add dependent name label
 	if(add_dependent_label){
-		names(df.out)[1] = 	paste0("Dependent: ", dependent_label(.data, dependent))
-		names(df.out)[2] = ""
+		df.out = dependent_label(df.out=df.out, .data=.data, dependent=dependent,
+														 prefix=dependent_label_prefix, suffix = dependent_label_suffix)
 	}
 
 	# Add metrics

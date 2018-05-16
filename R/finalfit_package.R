@@ -1,4 +1,4 @@
-#' finalfit: Quickly create elegant final results tables and charts when modelling.
+#' finalfit: Quickly create elegant final results tables and plots when modelling.
 #'
 #' @section \code{finalfit} model wrappers:
 #'

@@ -19,8 +19,8 @@ summary_factorlist(.data, dependent = NULL, explanatory, cont = "mean",
 \item{explanatory}{Character vector of any length: name(s) of explanatory
 variables.}
 
-\item{cont}{Summary for continuous variables: mean (standard deviation) or
-median (interquartile range).}
+\item{cont}{Summary for continuous variables: "mean" (standard deviation) or
+"median" (interquartile range).}
 
 \item{p}{Logical: Include statistical test (see
 \code{\link[Hmisc]{summary.formula}}).}
@@ -87,8 +87,4 @@ colon_s \%>\%
 }
 \seealso{
 \code{\link{fit2df}}
-
-Other finalfit wrappers: \code{\link{finalfit_merge}},
-  \code{\link{hr_plot}}, \code{\link{or_plot}},
-  \code{\link{surv_plot}}
 }

@@ -5,7 +5,8 @@
 \title{Produce an odds ratio table and plot}
 \usage{
 or_plot(.data, dependent, explanatory, factorlist = NULL, glmfit = NULL,
-  breaks = NULL, column_space = c(-0.5, 0, 0.5), ...)
+  breaks = NULL, column_space = c(-0.5, 0, 0.5), dependent_label = NULL,
+  prefix = "", suffix = ": (OR, 95\% CI, p-value)", ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -26,6 +27,12 @@ and \code{\link{glmmixed}()}.}
 
 \item{column_space}{Adjust table column spacing.}
 
+\item{dependent_label}{Main label for plot.}
+
+\item{prefix}{Plots are titled by default with the dependent variable. This adds text before that label.}
+
+\item{suffix}{Plots are titled with the dependent variable. This adds text after that label.}
+
 \item{...}{Other parameters.}
 }
 \value{
@@ -37,8 +44,8 @@ Produce an odds ratio table and plot from a \code{glm()} or
 }
 \examples{
 library(finalfit)
-library(dplyr
-)
+library(dplyr)
+
 # OR plot
 data(colon_s)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
@@ -48,9 +55,6 @@ colon_s \%>\%
 
 }
 \seealso{
-\code{\link{fit2df}}
-
-Other finalfit wrappers: \code{\link{finalfit_merge}},
-  \code{\link{hr_plot}}, \code{\link{summary_factorlist}},
+Other finalfit plot functions: \code{\link{hr_plot}},
   \code{\link{surv_plot}}
 }

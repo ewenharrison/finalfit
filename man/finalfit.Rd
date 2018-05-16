@@ -5,7 +5,8 @@
 \title{Final output tables for common regression models}
 \usage{
 finalfit(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE, ...)
+  random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "", ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -30,6 +31,10 @@ publication format.}
 
 \item{add_dependent_label}{Add the name of the dependent label to the top
 left of table}
+
+\item{dependent_label_prefix}{Add text before dependent label}
+
+\item{dependent_label_suffix}{Add text after dependent label}
 
 \item{...}{Other arguments to pass to \code{\link{fit2df}}: estimate_name,
 p_name, digits, confint_sep.}
@@ -132,4 +137,8 @@ example.summary \%>\%
 	dependent_label(colon_s, dependent) -> example.final
 example.final
 
+}
+\seealso{
+Other \code{finalfit} all-in-one functions: \code{\link{finalfit.coxph}},
+  \code{\link{finalfit.glm}}, \code{\link{finalfit.lm}}
 }
