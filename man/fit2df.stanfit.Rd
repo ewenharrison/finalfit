@@ -8,13 +8,13 @@ extracters}
 \method{fit2df}{stanfit}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = "-", X, ...)
+  digits = c(2, 2, 3), confint_sep = "-", ...)
 }
 \arguments{
 \item{.data}{Output from \code{finalfit} model wrappers.}
 
-\item{condense}{Logical: when true, effect estimates, confidence intervals and p-values
-are pasted conveniently together in single cell.}
+\item{condense}{Logical: when true, effect estimates, confidence intervals
+and p-values are pasted conveniently together in single cell.}
 
 \item{metrics}{Logical: when true, useful model metrics are extracted.}
 
@@ -34,9 +34,8 @@ interval limits, (3) p-value.}
 \item{confint_sep}{String to separate confidence intervals, typically "-" or
 " to ".}
 
-\item{X}{Design matrix from stanfit modelling. Details documented else where.}
-
-\item{...}{Other arguments (not used).}
+\item{...}{Other arguments: `X` Design matrix from stanfit modelling. Details
+documented else where.}
 }
 \value{
 A dataframe of model parameters. When \code{metrics=TRUE} output is a
@@ -53,9 +52,7 @@ documented separately. However this should work for a single or multilevel
 Bayesian logistic regression done in Stan, as long as the fixed effects are
 specified in the parameters block as a vector named \code{beta}, of length
 \code{P}, where \code{P} is the number of fixed effect parameters. e.g.
-parameters{
-  vector[P] beta;
-  }
+parameters{ vector[P] beta; }
 }
 \seealso{
 Other \code{finalfit} model extractors: \code{\link{fit2df.coxphlist}},

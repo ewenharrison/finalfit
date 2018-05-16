@@ -190,7 +190,7 @@ extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_nam
 #' @keywords internal
 
 extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_name="OR",
-														 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), X, ...){
+															 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), X, ...){
 	stanfit = .data
 	pars = "beta"
 	quantiles =  c(0.025, 0.50, 0.975)
@@ -215,6 +215,7 @@ extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_n
 
 	df.out = data.frame(explanatory, estimate, confint_L, confint_U, p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+	return(df.out)
 }
 
 #' Condense model output dataframe for final tables
