@@ -4,7 +4,7 @@ Title: Finalfit
 Version: 0.7.3
 Author: Ewen Harrison, Tom Drake, Riinu Ots
 Maintainer: Ewen Harrison <ewen.harrison@ed.ac.uk>
-Description: Quickly create elegant final results tables and plots when modelling.
+Description: Quickly create elegant regression results tables and plots when modelling.
 License: Creative Commons
 Encoding: UTF-8
 LazyData: true
