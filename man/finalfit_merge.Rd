@@ -2,31 +2,37 @@
 % Please edit documentation in R/finalfit_merge.R
 \name{finalfit_merge}
 \alias{finalfit_merge}
-\title{Merge a \code{\link{summary_factorlist}()} table with any number of model results tables.}
+\title{Merge a \code{\link{summary_factorlist}()} table with any number of model
+results tables.}
 \usage{
 finalfit_merge(factorlist, fit2df_df, ref_symbol = "-",
   estimate_name = NULL)
 }
 \arguments{
-\item{factorlist}{Output from \code{\link{summary_factorlist}(..., fit_id=TRUE)}.}
+\item{factorlist}{Output from \code{\link{summary_factorlist}(...,
+fit_id=TRUE)}.}
 
-\item{fit2df_df}{Output from model wrappers followed by \code{\link{fit2df}()}.}
+\item{fit2df_df}{Output from model wrappers followed by
+\code{\link{fit2df}()}.}
 
-\item{ref_symbol}{Reference symbol for model reference levels, typically "-" or "1.0".}
+\item{ref_symbol}{Reference symbol for model reference levels, typically "-"
+or "1.0".}
 
-\item{estimate_name}{Provide a new name to estimate column. Defaults to OR/HR/Coefficient}
+\item{estimate_name}{If you have chosen a new `estimate name` (e.g. "Odds
+ratio") when running a model wrapper (e.g. `glmuni`), then you need to pass
+this new name to `finalfit_merge` to generate correct table.
+Defaults to OR/HR/Coefficient}
 }
 \value{
 Returns a dataframe of combined tables.
 
-\code{finalfit} helper functions
-
- @seealso \code{\link{summary_factorlist}} \code{\link{fit2df}}
+  \code{finalfit} helper functions
 }
 \description{
-A function that takes the output from \code{\link{summary_factorlist}(..., fit_id=TRUE)}
-  and merges with any number of model dataframes, usually produced with a model
-  wrapper followed by the \code{\link{fit2df}()} function (see examples).
+A function that takes the output from \code{\link{summary_factorlist}(...,
+fit_id=TRUE)} and merges with any number of model dataframes, usually
+produced with a model wrapper followed by the \code{\link{fit2df}()} function
+(see examples).
 }
 \examples{
 library(finalfit)
@@ -61,4 +67,7 @@ example.summary \%>\%
 	finalfit_merge(example.multilevel) \%>\%
 	select(-c(fit_id, index)) -> example.final
 example.final
+}
+\seealso{
+\code{\link{summary_factorlist}} \code{\link{fit2df}}
 }
