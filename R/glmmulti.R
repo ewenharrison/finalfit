@@ -32,12 +32,12 @@
 #' 	fit2df(estimate_suffix=" (univariable)")
 #'
 glmmulti <- function(.data, dependent, explanatory){
-	result = list()
-	for (i in 1:length(dependent)){
-		result[[i]] = glm(paste(dependent[i], "~", paste(explanatory, collapse="+")),
-											data=.data, family="binomial")
-	}
-	result = setNames(result, dependent)
-	class(result) = "glmlist"
-	return(result)
+  result = list()
+  for (i in 1:length(dependent)){
+    result[[i]] = glm(paste(dependent[i], "~", paste(explanatory, collapse="+")),
+                      data=.data, family="binomial")
+  }
+  result = setNames(result, dependent)
+  class(result) = "glmlist"
+  return(result)
 }

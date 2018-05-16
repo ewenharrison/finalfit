@@ -25,32 +25,32 @@
 #' @import ggplot2
 
 surv_plot = function(.data, dependent, explanatory, ...){
-	if(length(explanatory)>2){
-		stop("Explanatory must have a maximum of two variables")
-	}
+  if(length(explanatory)>2){
+    stop("Explanatory must have a maximum of two variables")
+  }
 
-	args = list(...)
-	args$fit = survival::survfit(
-		as.formula(paste0("survival::", dependent, "~", paste(explanatory, collapse="+"))), data=.data)
-	args$data=.data
+  args = list(...)
+  args$fit = survival::survfit(
+    as.formula(paste0("survival::", dependent, "~", paste(explanatory, collapse="+"))), data=.data)
+  args$data=.data
 
-	# Defaults which can be modified via ...
-	if (is.null(args$xlab)) args$ylab="Time"
-	if (is.null(args$ylab)) args$ylab="Probability"
-	if (is.null(args$conf.int)) args$conf.int=FALSE
-	if (is.null(args$risk.table)) args$risk.table=TRUE
-	if (is.null(args$linetype)) args$linetype="strata"
-	if (is.null(args$palette)) args$palette="Set1"
-	if (is.null(args$legend.title)) args$legend.title=""
-	if (is.null(args$font.x)) args$font.x=14
-	if (is.null(args$font.y)) args$font.y=14
-	if (is.null(args$ggtheme)) args$ggtheme=theme_classic()
+  # Defaults which can be modified via ...
+  if (is.null(args$xlab)) args$ylab="Time"
+  if (is.null(args$ylab)) args$ylab="Probability"
+  if (is.null(args$conf.int)) args$conf.int=FALSE
+  if (is.null(args$risk.table)) args$risk.table=TRUE
+  if (is.null(args$linetype)) args$linetype="strata"
+  if (is.null(args$palette)) args$palette="Set1"
+  if (is.null(args$legend.title)) args$legend.title=""
+  if (is.null(args$font.x)) args$font.x=14
+  if (is.null(args$font.y)) args$font.y=14
+  if (is.null(args$ggtheme)) args$ggtheme=theme_classic()
 
-	ggsurv = do.call(
-		survminer::ggsurvplot, args
-	)
-	ggsurv$table = ggsurv$table + survminer::theme_cleantable()
-	return(ggsurv)
+  ggsurv = do.call(
+    survminer::ggsurvplot, args
+  )
+  ggsurv$table = ggsurv$table + survminer::theme_cleantable()
+  return(ggsurv)
 }
 
 

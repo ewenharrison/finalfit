@@ -121,29 +121,29 @@
 #'
 
 finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-										metrics=FALSE, add_dependent_label=TRUE,
-										dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
-	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
-	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
-	if(is.null(dependent)) stop("No dependent variable provided")
+                    metrics=FALSE, add_dependent_label=TRUE,
+                    dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
+  if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
+  if(is.null(explanatory)) stop("No explanatory variable(s) provided")
+  if(is.null(dependent)) stop("No dependent variable provided")
 
-	args = list(.data=.data, dependent=dependent, explanatory=explanatory, explanatory_multi=explanatory_multi,
-							random_effect=random_effect, metrics=metrics,
-							dependent_label_prefix=dependent_label_prefix,
-							dependent_label_suffix=dependent_label_suffix, ...=...)
+  args = list(.data=.data, dependent=dependent, explanatory=explanatory, explanatory_multi=explanatory_multi,
+              random_effect=random_effect, metrics=metrics,
+              dependent_label_prefix=dependent_label_prefix,
+              dependent_label_suffix=dependent_label_suffix, ...=...)
 
-	# What is dependent variable
-	d_variable = .data[,names(.data) %in% dependent]
-	d_is.factor = is.factor(d_variable) |
-		is.character(d_variable)
-	d_is.surv = grepl("^Surv[(].*[)]", dependent)
+  # What is dependent variable
+  d_variable = .data[,names(.data) %in% dependent]
+  d_is.factor = is.factor(d_variable) |
+    is.character(d_variable)
+  d_is.surv = grepl("^Surv[(].*[)]", dependent)
 
-	# Send to method
-	if (!d_is.factor & !d_is.surv){
-		do.call(finalfit.lm, args)
-	} else if (d_is.factor & !d_is.surv){
-		do.call(finalfit.glm, args)
-	} else if (!d_is.factor & d_is.surv){
-		do.call(finalfit.coxph, args)
-	}
+  # Send to method
+  if (!d_is.factor & !d_is.surv){
+    do.call(finalfit.lm, args)
+  } else if (d_is.factor & !d_is.surv){
+    do.call(finalfit.glm, args)
+  } else if (!d_is.factor & d_is.surv){
+    do.call(finalfit.coxph, args)
+  }
 }

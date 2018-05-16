@@ -29,85 +29,85 @@
 #' @keywords internal
 
 finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-												metrics=FALSE,  add_dependent_label=TRUE,
-												dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
+                        metrics=FALSE,  add_dependent_label=TRUE,
+                        dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
 
-	args = list(...)
+  args = list(...)
 
-	# Defaults which can be modified via ...
-	if (is.null(args$estimate_name)) args$estimate_name = "OR"
-	if (is.null(args$p_name)) args$p_name="p"
-	if (is.null(args$digits)) 	args$digits=c(2,2,3)
-	if (is.null(args$confint_sep)) args$confint_sep = "-"
+  # Defaults which can be modified via ...
+  if (is.null(args$estimate_name)) args$estimate_name = "OR"
+  if (is.null(args$p_name)) args$p_name="p"
+  if (is.null(args$digits)) 	args$digits=c(2,2,3)
+  if (is.null(args$confint_sep)) args$confint_sep = "-"
 
-	args = list(estimate_name = args$estimate_name,
-							p_name = args$p_name,
-							digits = args$digits,
-							confint_sep = args$confint_sep)
+  args = list(estimate_name = args$estimate_name,
+              p_name = args$p_name,
+              digits = args$digits,
+              confint_sep = args$confint_sep)
 
-	# Logistic regression ----
-		# Summary table
-		summary.out = summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
-																		 column=TRUE, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE)
+  # Logistic regression ----
+  # Summary table
+  summary.out = summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
+                                   column=TRUE, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE)
 
-		# Univariable
-		glmuni.out = glmuni(.data, dependent, explanatory)
-		glmuni.df = do.call(fit2df, c(list(.data=glmuni.out, estimate_suffix = " (univariable)"), args))
+  # Univariable
+  glmuni.out = glmuni(.data, dependent, explanatory)
+  glmuni.df = do.call(fit2df, c(list(.data=glmuni.out, estimate_suffix = " (univariable)"), args))
 
-		# Multivariable/Mixed
-		if (is.null(random_effect)){
-			if (is.null(explanatory_multi)){
-				glmmulti.out = glmmulti(.data, dependent, explanatory)
-			} else {
-				glmmulti.out = glmmulti(.data, dependent, explanatory_multi)
-			}
-			glmmulti.df = do.call(fit2df,
-														c(list(.data=glmmulti.out, metrics=metrics, estimate_suffix = " (multivariable)"), args))
-		} else if (is.null(random_effect) == FALSE){
-			if (is.null(explanatory_multi)){
-				glmmulti.out = glmmixed(.data, dependent, explanatory, random_effect)
-			} else {
-				glmmulti.out = glmmixed(.data, dependent, explanatory_multi, random_effect)
-			}
-			glmmulti.df = do.call(fit2df,
-														c(list(.data=glmmulti.out, metrics=metrics, estimate_suffix = " (multilevel)"), args))
-		}
+  # Multivariable/Mixed
+  if (is.null(random_effect)){
+    if (is.null(explanatory_multi)){
+      glmmulti.out = glmmulti(.data, dependent, explanatory)
+    } else {
+      glmmulti.out = glmmulti(.data, dependent, explanatory_multi)
+    }
+    glmmulti.df = do.call(fit2df,
+                          c(list(.data=glmmulti.out, metrics=metrics, estimate_suffix = " (multivariable)"), args))
+  } else if (is.null(random_effect) == FALSE){
+    if (is.null(explanatory_multi)){
+      glmmulti.out = glmmixed(.data, dependent, explanatory, random_effect)
+    } else {
+      glmmulti.out = glmmixed(.data, dependent, explanatory_multi, random_effect)
+    }
+    glmmulti.df = do.call(fit2df,
+                          c(list(.data=glmmulti.out, metrics=metrics, estimate_suffix = " (multilevel)"), args))
+  }
 
-		# Merge dataframes
-		# Uni
-		df.out = finalfit_merge(summary.out, glmuni.df, estimate_name = args$estimate_name)
+  # Merge dataframes
+  # Uni
+  df.out = finalfit_merge(summary.out, glmuni.df, estimate_name = args$estimate_name)
 
-		# Multi
-		if (metrics == FALSE){
-			df.out = finalfit_merge(df.out, glmmulti.df, estimate_name = args$estimate_name)
-		} else {
-			df.out = finalfit_merge(df.out, glmmulti.df[[1]], estimate_name = args$estimate_name)
-		}
+  # Multi
+  if (metrics == FALSE){
+    df.out = finalfit_merge(df.out, glmmulti.df, estimate_name = args$estimate_name)
+  } else {
+    df.out = finalfit_merge(df.out, glmmulti.df[[1]], estimate_name = args$estimate_name)
+  }
 
-		# Label interactions
-		interaction_row = grep(":", df.out$fit_id)
-		df.out$label[interaction_row] = 	df.out$fit_id[interaction_row]
-		df.out$levels[interaction_row] = "Interaction"
-		df.out[,4] = as.character(df.out[,4])
-		df.out[,5] = as.character(df.out[,5])
-		df.out[interaction_row, 4] = "-"
-		df.out[interaction_row, 5] = "-"
+  # Label interactions
+  interaction_row = grep(":", df.out$fit_id)
+  df.out$label[interaction_row] = 	df.out$fit_id[interaction_row]
+  df.out$levels[interaction_row] = "Interaction"
+  df.out[,4] = as.character(df.out[,4])
+  df.out[,5] = as.character(df.out[,5])
+  df.out[interaction_row, 4] = "-"
+  df.out[interaction_row, 5] = "-"
 
-		# Tidy up
-		index_fit_id = which(names(df.out)=="fit_id")
-		index_index = which(names(df.out)=="index")
-		df.out = df.out[,-c(index_fit_id, index_index)]
+  # Tidy up
+  index_fit_id = which(names(df.out)=="fit_id")
+  index_index = which(names(df.out)=="index")
+  df.out = df.out[,-c(index_fit_id, index_index)]
 
-		# Add dependent name label
-		if(add_dependent_label){
-			df.out = dependent_label(df.out=df.out, .data=.data, dependent=dependent,
-																			prefix=dependent_label_prefix, suffix = dependent_label_suffix)
-		}
+  # Add dependent name label
+  if(add_dependent_label){
+    df.out = dependent_label(df.out=df.out, .data=.data, dependent=dependent,
+                             prefix=dependent_label_prefix, suffix = dependent_label_suffix)
+  }
 
-		# Add metrics
-		if (metrics == TRUE){
-			return(list(df.out, glmmulti.df[[2]]))
-		} else {
-			return(df.out)
-		}
+  # Add metrics
+  if (metrics == TRUE){
+    return(list(df.out, glmmulti.df[[2]]))
+  } else {
+    return(df.out)
+  }
 }

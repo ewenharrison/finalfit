@@ -27,10 +27,10 @@
 #' 	fit2df()
 
 coxphuni <- function(.data, dependent, explanatory){
-	result <- list()
-	for (i in 1:length(explanatory)){
-		result[[i]] <- survival::coxph(as.formula(paste0("survival::", dependent, "~", explanatory[i])), data=.data)
-	}
-	class(result) = "coxphlist"
-	return(result)
+  result <- list()
+  for (i in 1:length(explanatory)){
+    result[[i]] <- survival::coxph(as.formula(paste0("survival::", dependent, "~", explanatory[i])), data=.data)
+  }
+  class(result) = "coxphlist"
+  return(result)
 }

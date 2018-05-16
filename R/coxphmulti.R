@@ -30,12 +30,12 @@
 #' 	fit2df()
 
 coxphmulti <- function(.data, dependent, explanatory){
-	result = list()
-	for (i in 1:length(dependent)){
-		result[[i]] = survival::coxph(as.formula(paste0("survival::", dependent, "~",
-																										paste(explanatory, collapse="+"))), data=.data)
-	}
-	result = setNames(result, dependent)
-	class(result) = "coxphlist"
-	return(result)
+  result = list()
+  for (i in 1:length(dependent)){
+    result[[i]] = survival::coxph(as.formula(paste0("survival::", dependent, "~",
+                                                    paste(explanatory, collapse="+"))), data=.data)
+  }
+  result = setNames(result, dependent)
+  class(result) = "coxphlist"
+  return(result)
 }

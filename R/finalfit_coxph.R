@@ -29,84 +29,84 @@
 #' @keywords internal
 
 finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-													metrics=FALSE, add_dependent_label=TRUE,
-													dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
+                          metrics=FALSE, add_dependent_label=TRUE,
+                          dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
 
-	args = list(...)
+  args = list(...)
 
-	# Defaults which can be modified via ...
-	if (is.null(args$estimate_name)) args$estimate_name = "HR"
-	if (is.null(args$p_name)) args$p_name="p"
-	if (is.null(args$digits)) 	args$digits=c(2,2,3)
-	if (is.null(args$confint_sep)) args$confint_sep = "-"
+  # Defaults which can be modified via ...
+  if (is.null(args$estimate_name)) args$estimate_name = "HR"
+  if (is.null(args$p_name)) args$p_name="p"
+  if (is.null(args$digits)) 	args$digits=c(2,2,3)
+  if (is.null(args$confint_sep)) args$confint_sep = "-"
 
-	args = list(estimate_name = args$estimate_name,
-							p_name = args$p_name,
-							digits = args$digits,
-							confint_sep = args$confint_sep)
+  args = list(estimate_name = args$estimate_name,
+              p_name = args$p_name,
+              digits = args$digits,
+              confint_sep = args$confint_sep)
 
 
-	# Cox proprotional hazards model -----------------------------------------------------------
-	# Summary table
-	summary.out = suppressWarnings(
-		summary_factorlist(.data, dependent=NULL, explanatory, fit_id=TRUE)
-	)
-	summary.out = summary.out[,-3] # Remove 'all' column with total counts
+  # Cox proprotional hazards model -----------------------------------------------------------
+  # Summary table
+  summary.out = suppressWarnings(
+    summary_factorlist(.data, dependent=NULL, explanatory, fit_id=TRUE)
+  )
+  summary.out = summary.out[,-3] # Remove 'all' column with total counts
 
-	# Univariable
-	coxphuni_out = coxphuni(.data, dependent, explanatory)
-	coxphuni_df =	do.call(fit2df, c(list(.data=coxphuni_out, estimate_suffix = " (univariable)"), args))
+  # Univariable
+  coxphuni_out = coxphuni(.data, dependent, explanatory)
+  coxphuni_df =	do.call(fit2df, c(list(.data=coxphuni_out, estimate_suffix = " (univariable)"), args))
 
-	# Multivariable
-	if (is.null(explanatory_multi)){
-		coxphmulti_out = coxphmulti(.data, dependent, explanatory)
-	} else {
-		coxphmulti_out = coxphmulti(.data, dependent, explanatory_multi)
-	}
-	coxphmulti_df = do.call(fit2df,
-													c(list(.data=coxphmulti_out, estimate_suffix = " (multivariable)"),
-														metrics=metrics, args))
-	# Merge dataframes
-	# Uni
-	df.out = finalfit_merge(summary.out, coxphuni_df, estimate_name = args$estimate_name)
+  # Multivariable
+  if (is.null(explanatory_multi)){
+    coxphmulti_out = coxphmulti(.data, dependent, explanatory)
+  } else {
+    coxphmulti_out = coxphmulti(.data, dependent, explanatory_multi)
+  }
+  coxphmulti_df = do.call(fit2df,
+                          c(list(.data=coxphmulti_out, estimate_suffix = " (multivariable)"),
+                            metrics=metrics, args))
+  # Merge dataframes
+  # Uni
+  df.out = finalfit_merge(summary.out, coxphuni_df, estimate_name = args$estimate_name)
 
-	# Multi
-	df.out = finalfit_merge(df.out, coxphmulti_df, estimate_name = args$estimate_name)
+  # Multi
+  df.out = finalfit_merge(df.out, coxphmulti_df, estimate_name = args$estimate_name)
 
-	# # Multi
-	# if (metrics == FALSE){
-	# 	df.out = finalfit_merge(df.out, glmmulti_df)
-	# } else {
-	# 	df.out = finalfit_merge(df.out, glmmulti_df[[1]])
-	# }
-	#
-	# if (is.null(random_effect)){
-	# 	names(df.out)[which(names(df.out)=="OR")] = "OR (multivariable)"
-	# } else {
-	# 	names(df.out)[which(names(df.out)=="OR")] = "OR (multilevel)"
-	# }
+  # # Multi
+  # if (metrics == FALSE){
+  # 	df.out = finalfit_merge(df.out, glmmulti_df)
+  # } else {
+  # 	df.out = finalfit_merge(df.out, glmmulti_df[[1]])
+  # }
+  #
+  # if (is.null(random_effect)){
+  # 	names(df.out)[which(names(df.out)=="OR")] = "OR (multivariable)"
+  # } else {
+  # 	names(df.out)[which(names(df.out)=="OR")] = "OR (multilevel)"
+  # }
 
-	# Label interactions
-	interaction_row = grep(":", df.out$fit_id)
-	df.out$label[interaction_row] = 	df.out$fit_id[interaction_row]
-	df.out$levels[interaction_row] = "Interaction"
+  # Label interactions
+  interaction_row = grep(":", df.out$fit_id)
+  df.out$label[interaction_row] = 	df.out$fit_id[interaction_row]
+  df.out$levels[interaction_row] = "Interaction"
 
-	# Tidy up
-	index_fit_id = which(names(df.out)=="fit_id")
-	index_index = which(names(df.out)=="index")
-	df.out = df.out[,-c(index_fit_id, index_index)]
+  # Tidy up
+  index_fit_id = which(names(df.out)=="fit_id")
+  index_index = which(names(df.out)=="index")
+  df.out = df.out[,-c(index_fit_id, index_index)]
 
-	# Add dependent name label
-	if(add_dependent_label){
-		df.out = dependent_label(df.out=df.out, .data=.data, dependent=dependent,
-														 prefix=dependent_label_prefix, suffix = dependent_label_suffix)
-	}
+  # Add dependent name label
+  if(add_dependent_label){
+    df.out = dependent_label(df.out=df.out, .data=.data, dependent=dependent,
+                             prefix=dependent_label_prefix, suffix = dependent_label_suffix)
+  }
 
-	return(df.out)
-	# Add metrics
-	# if (metrics == TRUE){
-	# 	return(list(df.out, glmmulti_df[[2]]))
-	# } else {
-	# 	return(df.out)
-	# }
+  return(df.out)
+  # Add metrics
+  # if (metrics == TRUE){
+  # 	return(list(df.out, glmmulti_df[[2]]))
+  # } else {
+  # 	return(df.out)
+  # }
 }

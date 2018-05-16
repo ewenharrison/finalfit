@@ -29,87 +29,87 @@
 #' @keywords internal
 #'
 finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-											 metrics=FALSE, add_dependent_label = TRUE,
-											 dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
+                       metrics=FALSE, add_dependent_label = TRUE,
+                       dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
 
-	args = list(...)
+  args = list(...)
 
-	# Defaults which can be modified via ...
-	if (is.null(args$estimate_name)) args$estimate_name = "Coefficient"
-	if (is.null(args$p_name)) args$p_name="p"
-	if (is.null(args$digits)) 	args$digits=c(2,2,3)
-	if (is.null(args$confint_sep)) args$confint_sep = " to "
+  # Defaults which can be modified via ...
+  if (is.null(args$estimate_name)) args$estimate_name = "Coefficient"
+  if (is.null(args$p_name)) args$p_name="p"
+  if (is.null(args$digits)) 	args$digits=c(2,2,3)
+  if (is.null(args$confint_sep)) args$confint_sep = " to "
 
-	args = list(estimate_name = args$estimate_name,
-							p_name = args$p_name,
-							digits = args$digits,
-							confint_sep = args$confint_sep)
+  args = list(estimate_name = args$estimate_name,
+              p_name = args$p_name,
+              digits = args$digits,
+              confint_sep = args$confint_sep)
 
-	# Linear regression model ------------------------------------------
-	# Summary table
-	summary.out = suppressWarnings(
-		summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
-											 column=TRUE, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE)
-	)
+  # Linear regression model ------------------------------------------
+  # Summary table
+  summary.out = suppressWarnings(
+    summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
+                       column=TRUE, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE)
+  )
 
-	# Univariable
-	lmuni.out = lmuni(.data, dependent, explanatory)
-	lmuni.df = do.call(fit2df, c(list(.data=lmuni.out, estimate_suffix = " (univariable)"), args))
+  # Univariable
+  lmuni.out = lmuni(.data, dependent, explanatory)
+  lmuni.df = do.call(fit2df, c(list(.data=lmuni.out, estimate_suffix = " (univariable)"), args))
 
-	# Multivariable/Mixed
-	if (is.null(random_effect)){
-		if (is.null(explanatory_multi)){
-			lmmulti.out = lmmulti(.data, dependent, explanatory)
-		} else {
-			lmmulti.out = lmmulti(.data, dependent, explanatory_multi)
-		}
-		lmmulti.df = do.call(fit2df,
-												 c(list(.data=lmmulti.out, metrics=metrics, estimate_suffix = " (multivariable)"), args))
-	} else if (!is.null(random_effect)){
-		if (is.null(explanatory_multi)){
-			lmmulti.out = lmmixed(.data, dependent, explanatory, random_effect)
-		} else {
-			lmmulti.out = lmmixed(.data, dependent, explanatory_multi, random_effect)
-		}
-		lmmulti.df = do.call(fit2df,
-												 c(list(.data=lmmulti.out, metrics=metrics, estimate_suffix = " (multilevel)"), args))
-	}
+  # Multivariable/Mixed
+  if (is.null(random_effect)){
+    if (is.null(explanatory_multi)){
+      lmmulti.out = lmmulti(.data, dependent, explanatory)
+    } else {
+      lmmulti.out = lmmulti(.data, dependent, explanatory_multi)
+    }
+    lmmulti.df = do.call(fit2df,
+                         c(list(.data=lmmulti.out, metrics=metrics, estimate_suffix = " (multivariable)"), args))
+  } else if (!is.null(random_effect)){
+    if (is.null(explanatory_multi)){
+      lmmulti.out = lmmixed(.data, dependent, explanatory, random_effect)
+    } else {
+      lmmulti.out = lmmixed(.data, dependent, explanatory_multi, random_effect)
+    }
+    lmmulti.df = do.call(fit2df,
+                         c(list(.data=lmmulti.out, metrics=metrics, estimate_suffix = " (multilevel)"), args))
+  }
 
-	# Merge dataframes
-	# Uni
-	df.out = finalfit_merge(summary.out, lmuni.df, estimate_name = args$estimate_name)
+  # Merge dataframes
+  # Uni
+  df.out = finalfit_merge(summary.out, lmuni.df, estimate_name = args$estimate_name)
 
-	# Multi
-	if (metrics == FALSE){
-		df.out = finalfit_merge(df.out, lmmulti.df, estimate_name = args$estimate_name)
-	} else {
-		df.out = finalfit_merge(df.out, lmmulti.df[[1]])
-	}
+  # Multi
+  if (metrics == FALSE){
+    df.out = finalfit_merge(df.out, lmmulti.df, estimate_name = args$estimate_name)
+  } else {
+    df.out = finalfit_merge(df.out, lmmulti.df[[1]])
+  }
 
-	# Label interactions
-	interaction_row = grep(":", df.out$fit_id)
-	df.out$label = as.character(df.out$label)
-	df.out$levels = as.character(df.out$levels)
-	df.out[,5] = as.character(df.out[,5])
-	df.out$label[interaction_row] = 	df.out$fit_id[interaction_row]
-	df.out$levels[interaction_row] = "Interaction"
-	df.out[interaction_row, 5] = "-"
+  # Label interactions
+  interaction_row = grep(":", df.out$fit_id)
+  df.out$label = as.character(df.out$label)
+  df.out$levels = as.character(df.out$levels)
+  df.out[,5] = as.character(df.out[,5])
+  df.out$label[interaction_row] = 	df.out$fit_id[interaction_row]
+  df.out$levels[interaction_row] = "Interaction"
+  df.out[interaction_row, 5] = "-"
 
-	# Tidy up
-	index_fit_id = which(names(df.out)=="fit_id")
-	index_index = which(names(df.out)=="index")
-	df.out = df.out[,-c(index_fit_id, index_index)]
+  # Tidy up
+  index_fit_id = which(names(df.out)=="fit_id")
+  index_index = which(names(df.out)=="index")
+  df.out = df.out[,-c(index_fit_id, index_index)]
 
-	# Add dependent name label
-	if(add_dependent_label){
-		df.out = dependent_label(df.out=df.out, .data=.data, dependent=dependent,
-														 prefix=dependent_label_prefix, suffix = dependent_label_suffix)
-	}
+  # Add dependent name label
+  if(add_dependent_label){
+    df.out = dependent_label(df.out=df.out, .data=.data, dependent=dependent,
+                             prefix=dependent_label_prefix, suffix = dependent_label_suffix)
+  }
 
-	# Add metrics
-	if (metrics == TRUE){
-		return(list(df.out, lmmulti.df[[2]]))
-	} else {
-		return(df.out)
-	}
+  # Add metrics
+  if (metrics == TRUE){
+    return(list(df.out, lmmulti.df[[2]]))
+  } else {
+    return(df.out)
+  }
 }

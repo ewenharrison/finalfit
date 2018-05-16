@@ -27,10 +27,10 @@
 #'   fit2df()
 #'
 lmuni <- function(.data, dependent, explanatory){
-	result <- list()
-	for (i in 1:length(explanatory)){
-		result[[i]] <- lm(paste(dependent, "~", explanatory[i]), data=.data)
-	}
-	class(result) = "lmlist"
-	return(result)
+  result <- list()
+  for (i in 1:length(explanatory)){
+    result[[i]] <- lm(paste(dependent, "~", explanatory[i]), data=.data)
+  }
+  class(result) = "lmlist"
+  return(result)
 }

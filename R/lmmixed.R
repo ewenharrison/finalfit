@@ -31,6 +31,6 @@
 #' 	 fit2df(estimate_suffix=" (multilevel")
 
 lmmixed <- function(.data, dependent, explanatory, random_effect){
-	lme4::lmer(paste0(dependent, "~", paste(explanatory, collapse="+"), " + (1|", random_effect, ")"),
-				data=.data)
+  lme4::lmer(paste0(dependent, "~", paste(explanatory, collapse="+"), " + (1|", random_effect, ")"),
+             data=.data)
 }

@@ -31,7 +31,7 @@
 #' 	 fit2df(estimate_suffix=" (multilevel")
 
 glmmixed <- function(.data, dependent, explanatory, random_effect){
-	lme4::glmer(paste0(dependent, "~", paste(explanatory, collapse="+"), " + (1|", random_effect, ")"),
-				data=.data, family="binomial", control=lme4::glmerControl(optimizer="bobyqa",
-																														optCtrl=list(maxfun=200000)))
+  lme4::glmer(paste0(dependent, "~", paste(explanatory, collapse="+"), " + (1|", random_effect, ")"),
+              data=.data, family="binomial", control=lme4::glmerControl(optimizer="bobyqa",
+                                                                        optCtrl=list(maxfun=200000)))
 }

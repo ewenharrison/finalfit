@@ -29,11 +29,11 @@
 #'   fit2df()
 #'
 lmmulti <- function(.data, dependent, explanatory){
-	result = list()
-	for (i in 1:length(dependent)){
-		result[[i]] = lm(paste(dependent[i], "~", paste(explanatory, collapse="+")), data=.data)
-	}
-	result = setNames(result, dependent)
-	class(result) = "lmlist"
-	return(result)
+  result = list()
+  for (i in 1:length(dependent)){
+    result[[i]] = lm(paste(dependent[i], "~", paste(explanatory, collapse="+")), data=.data)
+  }
+  result = setNames(result, dependent)
+  class(result) = "lmlist"
+  return(result)
 }

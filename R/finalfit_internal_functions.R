@@ -16,8 +16,8 @@
 #' @keywords internal
 
 extract_fit = function(.data, explanatory_name, estimate_name,
-											 estimate_suffix,  p_name, digits, ...){
-	UseMethod("extract_fit")
+                       estimate_suffix,  p_name, digits, ...){
+  UseMethod("extract_fit")
 }
 
 #' Extract model output to dataframe
@@ -36,17 +36,17 @@ extract_fit = function(.data, explanatory_name, estimate_name,
 #' @keywords internal
 
 extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name="OR",
-											 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
-	x=.data
+                           estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
+  x=.data
 
-	explanatory = names(coef(x))
-	estimate = exp(coef(x))
-	confint = exp(confint(x))
-	p = summary(x)$coef[,"Pr(>|z|)"]
+  explanatory = names(coef(x))
+  estimate = exp(coef(x))
+  confint = exp(confint(x))
+  p = summary(x)$coef[,"Pr(>|z|)"]
 
-	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
-	return(df.out)
+  df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
+  colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+  return(df.out)
 }
 
 #' Extract model output to dataframe
@@ -65,18 +65,18 @@ extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name=
 #' @keywords internal
 
 extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_name="OR",
-													 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
-	x=.data
+                                estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
+  x=.data
 
-	explanatory = names(lme4::fixef(x))
-	estimate = exp(lme4::fixef(x))
-	confint = exp(lme4::confint.merMod(x, method='Wald'))
-	confint = confint[-grep("sig", rownames(confint)),]
-	p = summary(x)$coef[,"Pr(>|z|)"]
+  explanatory = names(lme4::fixef(x))
+  estimate = exp(lme4::fixef(x))
+  confint = exp(lme4::confint.merMod(x, method='Wald'))
+  confint = confint[-grep("sig", rownames(confint)),]
+  p = summary(x)$coef[,"Pr(>|z|)"]
 
-	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
-	return(df.out)
+  df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
+  colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+  return(df.out)
 
 }
 
@@ -97,17 +97,17 @@ extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_
 #' @keywords internal
 
 extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="Coefficient",
-															 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
-	x=.data
+                          estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
+  x=.data
 
-	explanatory = names(coef(x))
-	estimate = coef(x)
-	confint = confint(x)
-	p = summary(x)$coef[,"Pr(>|t|)"]
+  explanatory = names(coef(x))
+  estimate = coef(x)
+  confint = confint(x)
+  p = summary(x)$coef[,"Pr(>|t|)"]
 
-	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
-	return(df.out)
+  df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
+  colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+  return(df.out)
 }
 
 #' Extract model output to dataframe
@@ -126,19 +126,19 @@ extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="
 #' @keywords internal
 
 extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_name="OR",
-																estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
-	x=.data
+                               estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
+  x=.data
 
-	explanatory = names(lme4::fixef(x))
-	estimate = exp(lme4::fixef(x))
-	confint = exp(lme4::confint.merMod(x, method='Wald'))
-	confint = confint[-grep("sig", rownames(confint)),]
-	p = 1-pnorm(abs(summary(x)$coefficients[,3]))
-	warning("P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.")
+  explanatory = names(lme4::fixef(x))
+  estimate = exp(lme4::fixef(x))
+  confint = exp(lme4::confint.merMod(x, method='Wald'))
+  confint = confint[-grep("sig", rownames(confint)),]
+  p = 1-pnorm(abs(summary(x)$coefficients[,3]))
+  warning("P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.")
 
-	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
-	return(df.out)
+  df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
+  colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+  return(df.out)
 }
 
 #' Extract model output to dataframe
@@ -157,19 +157,19 @@ extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_n
 #' @keywords internal
 
 extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_name="HR",
-													estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
-	x=.data
+                             estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
+  x=.data
 
-	results = summary(x)$conf.int
-	explanatory = row.names(results)
-	estimate = results[,1]
-	confint_L = results[,3]
-	confint_U = results[,4]
-	p = summary(x)$coefficients[explanatory,
-															max(dim(summary(x)$coefficients)[2])] # Hack to get p fe and re
-	df.out = data.frame(explanatory, estimate, confint_L, confint_U, p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
-	return(df.out)
+  results = summary(x)$conf.int
+  explanatory = row.names(results)
+  estimate = results[,1]
+  confint_L = results[,3]
+  confint_U = results[,4]
+  p = summary(x)$coefficients[explanatory,
+                              max(dim(summary(x)$coefficients)[2])] # Hack to get p fe and re
+  df.out = data.frame(explanatory, estimate, confint_L, confint_U, p)
+  colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+  return(df.out)
 }
 
 
@@ -190,32 +190,32 @@ extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_nam
 #' @keywords internal
 
 extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_name="OR",
-															 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), X, ...){
-	stanfit = .data
-	pars = "beta"
-	quantiles =  c(0.025, 0.50, 0.975)
+                               estimate_suffix = "",  p_name = "p", digits=c(2,2,3), X, ...){
+  stanfit = .data
+  pars = "beta"
+  quantiles =  c(0.025, 0.50, 0.975)
 
-	explanatory = attr(X, "dimnames")[[2]]
-	results = rstan::summary(stanfit,
-													 pars = pars,
-													 probs = quantiles)$summary
-	estimate = exp(results[, 1])
-	confint_L = exp(results[, 4])
-	confint_U = exp(results[, 6])
+  explanatory = attr(X, "dimnames")[[2]]
+  results = rstan::summary(stanfit,
+                           pars = pars,
+                           probs = quantiles)$summary
+  estimate = exp(results[, 1])
+  confint_L = exp(results[, 4])
+  confint_U = exp(results[, 6])
 
-	# Determine a p-value based on two-sided examination of chains
-	chains = rstan::extract(stanfit, pars=pars, permuted = TRUE, inc_warmup = FALSE,
-													include = TRUE)
-	p1.out = apply(chains[[1]], 2, function(x)mean(x<0))
-	p2.out = apply(chains[[1]], 2, function(x)mean(x>0))
-	p1.out = p1.out*2
-	p2.out = p2.out*2
-	p.out = ifelse(p1.out < 1, p1.out, p2.out)
-	p = round(p.out, 3)
+  # Determine a p-value based on two-sided examination of chains
+  chains = rstan::extract(stanfit, pars=pars, permuted = TRUE, inc_warmup = FALSE,
+                          include = TRUE)
+  p1.out = apply(chains[[1]], 2, function(x)mean(x<0))
+  p2.out = apply(chains[[1]], 2, function(x)mean(x>0))
+  p1.out = p1.out*2
+  p2.out = p2.out*2
+  p.out = ifelse(p1.out < 1, p1.out, p2.out)
+  p = round(p.out, 3)
 
-	df.out = data.frame(explanatory, estimate, confint_L, confint_U, p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
-	return(df.out)
+  df.out = data.frame(explanatory, estimate, confint_L, confint_U, p)
+  colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+  return(df.out)
 }
 
 #' Condense model output dataframe for final tables
@@ -238,30 +238,30 @@ extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_n
 #' @keywords internal
 
 condense_fit = function(.data, explanatory_name="explanatory", estimate_name="OR",
-										 estimate_suffix = "", p_name = "p",
-										 digits=c(2,2,3), confint_sep = "-"){
-	x = .data
-	d.estimate = digits[1]
-	d.confint = digits[2]
-	d.p = digits[3]
+                        estimate_suffix = "", p_name = "p",
+                        digits=c(2,2,3), confint_sep = "-"){
+  x = .data
+  d.estimate = digits[1]
+  d.confint = digits[2]
+  d.p = digits[3]
 
-	explanatory = x[,1]
-	estimate = round_tidy(x[,2], d.estimate)
-	confint_low = round_tidy(x[,3], d.confint)
-	confint_high = round_tidy(x[,4], d.confint)
-	p = p_tidy(x[,5], d.p)
+  explanatory = x[,1]
+  estimate = round_tidy(x[,2], d.estimate)
+  confint_low = round_tidy(x[,3], d.confint)
+  confint_high = round_tidy(x[,4], d.confint)
+  p = p_tidy(x[,5], d.p)
 
-	df.out = data.frame(
-		explanatory,
-		paste0(
-			estimate, " (",
-			confint_low, confint_sep,
-			confint_high, ", ",
-			p_name, p, ")"))
+  df.out = data.frame(
+    explanatory,
+    paste0(
+      estimate, " (",
+      confint_low, confint_sep,
+      confint_high, ", ",
+      p_name, p, ")"))
 
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix)
-	)
-	return(df.out)
+  colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix)
+  )
+  return(df.out)
 }
 
 #' Round values but keep trailing zeros
@@ -277,9 +277,9 @@ condense_fit = function(.data, explanatory_name="explanatory", estimate_name="OR
 #' @keywords internal
 
 round_tidy = function(x, digits){
-	sprintf.arg = paste0("%.", digits, "f")
-	x.out = do.call(sprintf, list(sprintf.arg, x)) # keep trailing zeros
-	return(x.out)
+  sprintf.arg = paste0("%.", digits, "f")
+  x.out = do.call(sprintf, list(sprintf.arg, x)) # keep trailing zeros
+  return(x.out)
 }
 
 #' Round p-values but keep trailing zeros
@@ -297,11 +297,11 @@ round_tidy = function(x, digits){
 #' @keywords internal
 
 p_tidy = function(x, digits, prefix="="){
-	x.out = paste0(prefix, round_tidy(x, digits))
-	all_zeros = paste0(prefix, round_tidy(0, digits))
-	less_than = paste0("<", format(10^-digits, scientific=FALSE))
-	x.out[x.out == all_zeros] = less_than
-	return(x.out)
+  x.out = paste0(prefix, round_tidy(x, digits))
+  all_zeros = paste0(prefix, round_tidy(0, digits))
+  less_than = paste0("<", format(10^-digits, scientific=FALSE))
+  x.out[x.out == all_zeros] = less_than
+  return(x.out)
 }
 
 #' Remove intercept from model output
@@ -320,8 +320,8 @@ p_tidy = function(x, digits, prefix="="){
 # quo() enquo() !! all a bit of a nightmare
 # So let's square bracket away!
 remove_intercept = function(.data, intercept_name = "(Intercept)"){
-	.data = .data[-which(.data[,1] == intercept_name),]
-	return(.data)
+  .data = .data[-which(.data[,1] == intercept_name),]
+  return(.data)
 }
 
 #' Remove duplicate levels within \code{\link{summary_factorlist}}: \code{finalfit} helper function
@@ -335,19 +335,19 @@ remove_intercept = function(.data, intercept_name = "(Intercept)"){
 #' @keywords internal
 
 rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
-	x = factorlist
-	duplicate_rows = duplicated(x$label)
-	x$label = as.character(x$label)
-	x$label[duplicate_rows] = ""
-	if (any(names(x) %in% "pvalue")){
-		x$pvalue[duplicate_rows] = ""
-		x$pvalue[x$pvalue == "0.000"] = "<0.001"
-	}
-	if (na_to_missing == TRUE){
-		x$levels = as.character(x$levels)
-		x$levels[which(x$levels == "NA")] = "Missing"
-	}
-	return(x)
+  x = factorlist
+  duplicate_rows = duplicated(x$label)
+  x$label = as.character(x$label)
+  x$label[duplicate_rows] = ""
+  if (any(names(x) %in% "pvalue")){
+    x$pvalue[duplicate_rows] = ""
+    x$pvalue[x$pvalue == "0.000"] = "<0.001"
+  }
+  if (na_to_missing == TRUE){
+    x$levels = as.character(x$levels)
+    x$levels[which(x$levels == "NA")] = "Missing"
+  }
+  return(x)
 }
 
 
@@ -397,17 +397,17 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 #' 	 dependent_label(colon_s, dependent) -> example.final
 #'   example.final
 dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suffix=""){
-	d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
+  d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
 
-	if (is.null(d_label)){
-		d_label = dependent
-	} else {
-		d_label = d_label
-	}
-	names(df.out)[1] = paste0(prefix, d_label, suffix)
-	names(df.out)[2] = ""
+  if (is.null(d_label)){
+    d_label = dependent
+  } else {
+    d_label = d_label
+  }
+  names(df.out)[1] = paste0(prefix, d_label, suffix)
+  names(df.out)[2] = ""
 
-	return(df.out)
+  return(df.out)
 }
 
 #' Label plot title
@@ -423,16 +423,16 @@ dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suf
 #'
 #' @keywords internal
 plot_title = function(.data, dependent, dependent_label, prefix = "", suffix=""){
-		if (is.null(dependent_label)){
-			d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
-			if (is.null(d_label)){
-				d_label = dependent
-			} else {
-				d_label = d_label
-			}
-		} else {
-			d_label = dependent_label
-		}
-	out = paste0(prefix, d_label, suffix)
-	return(out)
+  if (is.null(dependent_label)){
+    d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
+    if (is.null(d_label)){
+      d_label = dependent
+    } else {
+      d_label = d_label
+    }
+  } else {
+    d_label = dependent_label
+  }
+  out = paste0(prefix, d_label, suffix)
+  return(out)
 }

@@ -35,7 +35,7 @@
 #' 	fit2df(estimate_suffix=" (univariable)")
 
 fit2df <- function(.data, condense, metrics, remove_intercept,
-									 explanatory_name, estimate_name, estimate_suffix, p_name,
-									 digits, confint_sep, ...){
-	UseMethod("fit2df")
+                   explanatory_name, estimate_name, estimate_suffix, p_name,
+                   digits, confint_sep, ...){
+  UseMethod("fit2df")
 }

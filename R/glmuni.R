@@ -27,10 +27,10 @@
 #'
 #'
 glmuni <- function(.data, dependent, explanatory){
-	result <- list()
-	for (i in 1:length(explanatory)){
-		result[[i]] <- glm(paste(dependent, "~", explanatory[i]), data=.data, family="binomial")
-	}
-	class(result) = "glmlist"
-	return(result)
+  result <- list()
+  for (i in 1:length(explanatory)){
+    result[[i]] <- glm(paste(dependent, "~", explanatory[i]), data=.data, family="binomial")
+  }
+  class(result) = "glmlist"
+  return(result)
 }

@@ -39,43 +39,43 @@
 #' 	 fit2df(estimate_suffix=" (multilevel")
 
 fit2df.lmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
-													explanatory_name = "explanatory",
-													estimate_name = "OR",
-													estimate_suffix = "",
-													p_name = "p",
-													digits=c(2,2,3), confint_sep = "-", ...){
+                          explanatory_name = "explanatory",
+                          estimate_name = "OR",
+                          estimate_suffix = "",
+                          p_name = "p",
+                          digits=c(2,2,3), confint_sep = "-", ...){
 
-	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
-											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
-											 p_name=p_name, digits=digits)
+  df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+                       estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                       p_name=p_name, digits=digits)
 
-	if (condense==TRUE){
-		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
-													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
-													p_name=p_name, digits=digits, confint_sep=confint_sep)
-	}
+  if (condense==TRUE){
+    df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
 
-	if (remove_intercept==TRUE){
-		df.out = remove_intercept(df.out)
-	}
+  if (remove_intercept==TRUE){
+    df.out = remove_intercept(df.out)
+  }
 
-	# Extract model metrics
-	if (metrics==TRUE){
-		x = .data
-		n_model = length(x@resp$mu)
-		n_groups = summary(x)$ngrps
-		loglik = round(summary(x)$logLik, 2)
-		aic = round(summary(x)$AICtab[[1]], 1)
-		metrics.out = paste0(
-			"Number in model = ", n_model,
-			", Number of groups = ", paste(n_groups, collapse="/"),
-			", Log likelihood = ", loglik,
-			", REML criterion = ", aic)
-	}
+  # Extract model metrics
+  if (metrics==TRUE){
+    x = .data
+    n_model = length(x@resp$mu)
+    n_groups = summary(x)$ngrps
+    loglik = round(summary(x)$logLik, 2)
+    aic = round(summary(x)$AICtab[[1]], 1)
+    metrics.out = paste0(
+      "Number in model = ", n_model,
+      ", Number of groups = ", paste(n_groups, collapse="/"),
+      ", Log likelihood = ", loglik,
+      ", REML criterion = ", aic)
+  }
 
-	if (metrics==TRUE){
-		return(list(df.out, metrics.out))
-	} else {
-		return(df.out)
-	}
+  if (metrics==TRUE){
+    return(list(df.out, metrics.out))
+  } else {
+    return(df.out)
+  }
 }

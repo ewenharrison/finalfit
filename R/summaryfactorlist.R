@@ -61,67 +61,67 @@
 #' 	summary_factorlist(dependent, explanatory)
 
 summary_factorlist <- function(.data, dependent=NULL, explanatory, cont="mean", p=FALSE, na_include=FALSE,
-															 column=FALSE, total_col=FALSE, orderbytotal=FALSE, fit_id=FALSE,
-															 na_to_missing=TRUE, add_dependent_label=FALSE,
-															 dependent_label_prefix="Dependent: ", dependent_label_suffix=""){
-	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
-	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data) # tbl work different, convert to data.frame
-	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
-	if(is.null(dependent)){
-		warning("No dependent variable(s) provided; defaulting to single-level factor")
-		dependent = "all"
-		.data$all = factor(1, labels="all")
-	}
+                               column=FALSE, total_col=FALSE, orderbytotal=FALSE, fit_id=FALSE,
+                               na_to_missing=TRUE, add_dependent_label=FALSE,
+                               dependent_label_prefix="Dependent: ", dependent_label_suffix=""){
+  if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
+  if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data) # tbl work different, convert to data.frame
+  if(is.null(explanatory)) stop("No explanatory variable(s) provided")
+  if(is.null(dependent)){
+    warning("No dependent variable(s) provided; defaulting to single-level factor")
+    dependent = "all"
+    .data$all = factor(1, labels="all")
+  }
 
-	args = list(.data=.data, dependent=dependent, explanatory=explanatory, cont=cont, p=p, na_include=na_include,
-							column=column, total_col=total_col, orderbytotal=orderbytotal, fit_id=fit_id,
-							na_to_missing=na_to_missing, add_dependent_label=add_dependent_label,
-							dependent_label_prefix=dependent_label_prefix,
-							dependent_label_suffix=dependent_label_suffix)
+  args = list(.data=.data, dependent=dependent, explanatory=explanatory, cont=cont, p=p, na_include=na_include,
+              column=column, total_col=total_col, orderbytotal=orderbytotal, fit_id=fit_id,
+              na_to_missing=na_to_missing, add_dependent_label=add_dependent_label,
+              dependent_label_prefix=dependent_label_prefix,
+              dependent_label_suffix=dependent_label_suffix)
 
-	# Survival object
-	d_is.surv = grepl("Surv[(].*[)]", dependent)
+  # Survival object
+  d_is.surv = grepl("Surv[(].*[)]", dependent)
 
-	if(d_is.surv){
-		warning("Dependent variable is a survival object")
-		.data$all = factor(1, labels="all")
-		suppressWarnings(
-			do.call(summary_factorlist1, args=list(.data=.data, dependent = "all",  explanatory=explanatory, fit_id=fit_id))
-		)
-	} else {
+  if(d_is.surv){
+    warning("Dependent variable is a survival object")
+    .data$all = factor(1, labels="all")
+    suppressWarnings(
+      do.call(summary_factorlist1, args=list(.data=.data, dependent = "all",  explanatory=explanatory, fit_id=fit_id))
+    )
+  } else {
 
-		# Extract dependent variable
-		d_variable = .data[,names(.data) %in% dependent]
+    # Extract dependent variable
+    d_variable = .data[,names(.data) %in% dependent]
 
-		if(length(d_variable)==0){
-			stop("Dependent variable length is 0")
-		}
+    if(length(d_variable)==0){
+      stop("Dependent variable length is 0")
+    }
 
-		# Logical is.factor
-		d_is.factor = is.factor(d_variable) |
-			is.character(d_variable)
+    # Logical is.factor
+    d_is.factor = is.factor(d_variable) |
+      is.character(d_variable)
 
-		# Number of levels of dependent
-		d.len = length(levels(d_variable))
+    # Number of levels of dependent
+    d.len = length(levels(d_variable))
 
-		# Non-factor case
-		if(!d_is.factor){
-			warning("Dependent is not a factor and will be treated as a continuous variable")
-			do.call(summary_factorlist0, args)
-		} else {
+    # Non-factor case
+    if(!d_is.factor){
+      warning("Dependent is not a factor and will be treated as a continuous variable")
+      do.call(summary_factorlist0, args)
+    } else {
 
-			# Factor case
-			if (d.len == 1){
-				do.call(summary_factorlist1, args)
-			} else if (d.len == 2){
-				do.call(summary_factorlist2, args)
-			} else if (d.len == 3){
-				do.call(summary_factorlist3, args)
-			} else if (d.len == 4){
-				do.call(summary_factorlist4, args)
-			} else if (d.len == 5){
-				do.call(summary_factorlist5, args)
-			}
-		}
-	}
+      # Factor case
+      if (d.len == 1){
+        do.call(summary_factorlist1, args)
+      } else if (d.len == 2){
+        do.call(summary_factorlist2, args)
+      } else if (d.len == 3){
+        do.call(summary_factorlist3, args)
+      } else if (d.len == 4){
+        do.call(summary_factorlist4, args)
+      } else if (d.len == 5){
+        do.call(summary_factorlist5, args)
+      }
+    }
+  }
 }

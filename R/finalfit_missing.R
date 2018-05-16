@@ -25,7 +25,7 @@
 #' 	finalfit_missing(dependent, explanatory)
 #'
 finalfit_missing = function(.data, dependent, explanatory){
-	keep = names(.data) %in% c(dependent, explanatory)
-	df.out = .data[keep]
-	mice::md.pattern(df.out)
+  keep = names(.data) %in% c(dependent, explanatory)
+  df.out = .data[keep]
+  mice::md.pattern(df.out)
 }
