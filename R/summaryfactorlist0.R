@@ -32,7 +32,7 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont="mean", p=F
                                 dependent_label_prefix="Dependent: ", dependent_label_suffix=""){
 
   s = Hmisc:::summary.formula(as.formula(paste(dependent, "~", paste(explanatory, collapse="+"))), data = .data,
-                              overall=FALSE, method="response", na_include=na_include,
+                              overall=FALSE, method="response", na_include=na_include, continuous=5,
                               fun=function(x) {
                                 mean = mean(x)
                                 sd = sd(x)
