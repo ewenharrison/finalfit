@@ -34,7 +34,7 @@ summary_factorlist5 <- function(.data, dependent, explanatory, cont="mean", p=FA
                                 dependent_label_prefix="Dependent: ", dependent_label_suffix=""){
   s <- Hmisc:::summary.formula(as.formula(paste(dependent, "~", paste(explanatory, collapse="+"))), data = .data,
                                method="reverse", overall=FALSE,
-                               test=TRUE,na_include=na_include, continuous=5)
+                               test=TRUE,na.include=na_include, continuous=5)
   # Column vs row proportions for factor variables
   df.out = plyr::ldply(s$stats, function(x){
     if(dim(x)[2] == 13){ #hack to get continuous vs categorical. Wouldn't work for factor with 13 levels
