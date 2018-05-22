@@ -5,7 +5,7 @@ Version: 0.7.5
 Author: Ewen Harrison, Tom Drake, Riinu Ots
 Maintainer: Ewen Harrison <ewen.harrison@ed.ac.uk>
 Description: Quickly create elegant regression results tables and plots when modelling.
-License: MIT + file LICENSE
+License: MIT + file LICENCE
 Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/ewenharrison/finalfit/issues

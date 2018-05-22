@@ -2,6 +2,7 @@
 
 exportPattern("^[[:alpha:]]+")
 import(ggplot2)
+importFrom(Hmisc,label)
 importFrom(magrittr,"%>%")
 importFrom(stats,as.formula)
 importFrom(stats,coef)
