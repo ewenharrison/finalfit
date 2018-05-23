@@ -6,7 +6,8 @@
 \usage{
 or_plot(.data, dependent, explanatory, factorlist = NULL, glmfit = NULL,
   breaks = NULL, column_space = c(-0.5, 0, 0.5), dependent_label = NULL,
-  prefix = "", suffix = ": (OR, 95\% CI, p-value)", ...)
+  prefix = "", suffix = ": (OR, 95\% CI, p-value)", table_text_size = 5,
+  title_text_size = 18, plot_opts = NULL, table_opts = NULL, ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -33,6 +34,14 @@ and \code{\link{glmmixed}()}.}
 
 \item{suffix}{Plots are titled with the dependent variable. This adds text after that label.}
 
+\item{table_text_size}{Alter font size of table text.}
+
+\item{title_text_size}{Alter font size of title text.}
+
+\item{plot_opts}{A list of arguments to be appended to the ggplot call by "+".}
+
+\item{table_opts}{A list of arguments to be appended to the ggplot table call by "+".}
+
 \item{...}{Other parameters.}
 }
 \value{
@@ -51,7 +60,11 @@ data(colon_s)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s \%>\%
-	or_plot(dependent, explanatory)
+	 or_plot(dependent, explanatory)
+
+colon_s \%>\%
+  or_plot(dependent, explanatory, table_text_size=4, title_text_size=14,
+    plot_opts=list(xlab("OR, 95\% CI"), theme(axis.title = element_text(size=12))))
 
 }
 \seealso{

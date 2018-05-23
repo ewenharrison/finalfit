@@ -7,7 +7,8 @@
 hr_plot(.data, dependent, explanatory, factorlist = NULL, coxfit = NULL,
   breaks = NULL, column_space = c(-0.5, 0, 0.5),
   dependent_label = "Survival", prefix = "",
-  suffix = ": (HR, 95\% CI, p-value)", ...)
+  suffix = ": (HR, 95\% CI, p-value)", table_text_size = 5,
+  title_text_size = 18, plot_opts = NULL, table_opts = NULL, ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -30,7 +31,15 @@ hr_plot(.data, dependent, explanatory, factorlist = NULL, coxfit = NULL,
 
 \item{suffix}{Plots are titled with the dependent variable. This adds text after that label.}
 
-\item{...}{Other parameters.}
+\item{table_text_size}{Alter font size of table text.}
+
+\item{title_text_size}{Alter font size of title text.}
+
+\item{plot_opts}{A list of arguments to be appended to the ggplot call by "+".}
+
+\item{table_opts}{A list of arguments to be appended to the ggplot table call by "+".}
+
+\item{...}{Other parameters passed to \code{fit2df()}.}
 }
 \value{
 Returns a table and plot produced in \code{ggplot2}.
@@ -48,6 +57,11 @@ explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "Surv(time, status)"
 colon_s \%>\%
   hr_plot(dependent, explanatory, dependent_label = "Survival")
+
+colon_s \%>\%
+  hr_plot(dependent, explanatory, dependent_label = "Survival",
+    table_text_size=4, title_text_size=14,
+    plot_opts=list(xlab("OR, 95\% CI"), theme(axis.title = element_text(size=12))))
 
 }
 \seealso{

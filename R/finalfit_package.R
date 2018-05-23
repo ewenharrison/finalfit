@@ -66,6 +66,7 @@ NULL
 #' @keywords internal
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
+#' @export
 NULL
 
 #' Chemotherapy for Stage B/C colon cancer

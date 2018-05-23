@@ -9,4 +9,5 @@
 #' @examples
 #' label(colon_s$age.factor) = "Age"
 #' @importFrom Hmisc label
+#' @export
 NULL

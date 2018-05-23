@@ -12,7 +12,11 @@
 #' @param dependent_label Main label for plot.
 #' @param prefix Plots are titled by default with the dependent variable. This adds text before that label.
 #' @param suffix Plots are titled with the dependent variable. This adds text after that label.
-#' @param ... Other parameters.
+#' @param table_text_size Alter font size of table text.
+#' @param title_text_size Alter font size of title text.
+#' @param plot_opts A list of arguments to be appended to the ggplot call by "+".
+#' @param table_opts A list of arguments to be appended to the ggplot table call by "+".
+#' @param ... Other parameters passed to \code{fit2df()}.
 #' @return Returns a table and plot produced in \code{ggplot2}.
 #'
 #' @family finalfit plot functions
@@ -28,13 +32,21 @@
 #' colon_s %>%
 #'   hr_plot(dependent, explanatory, dependent_label = "Survival")
 #'
+#' colon_s %>%
+#'   hr_plot(dependent, explanatory, dependent_label = "Survival",
+#'     table_text_size=4, title_text_size=14,
+#'     plot_opts=list(xlab("OR, 95% CI"), theme(axis.title = element_text(size=12))))
+#'
 #' @import ggplot2
 #'
 
 hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
                    breaks=NULL, column_space=c(-0.5, 0, 0.5),
                    dependent_label = "Survival",
-                   prefix = "", suffix = ": (HR, 95% CI, p-value)", ...){
+                   prefix = "", suffix = ": (HR, 95% CI, p-value)",
+                   table_text_size = 5,
+                   title_text_size = 18,
+                   plot_opts = NULL, table_opts = NULL, ...){
   requireNamespace("ggplot2", quietly = TRUE)
   # Generate or format factorlist object
   if(is.null(factorlist)){
@@ -97,9 +109,9 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
           legend.position="none")
 
   t1 = ggplot(df.out, aes(x = as.numeric(HR), y = fit_id))+
-    annotate("text", x = column_space[1], y =  df.out$fit_id, label=df.out[,2], hjust=0, size=5)+
-    annotate("text", x = column_space[2], y =  df.out$fit_id, label=df.out[,3], hjust=1, size=5)+
-    annotate("text", x = column_space[3], y =  df.out$fit_id, label=df.out[,6], hjust=1, size=5)+
+    annotate("text", x = column_space[1], y =  df.out$fit_id, label=df.out[,2], hjust=0, size=table_text_size)+
+    annotate("text", x = column_space[2], y =  df.out$fit_id, label=df.out[,3], hjust=1, size=table_text_size)+
+    annotate("text", x = column_space[3], y =  df.out$fit_id, label=df.out[,6], hjust=1, size=table_text_size)+
     theme_classic(14)+
     theme(axis.title.x = element_text(colour = "white"),
           axis.text.x = element_text(colour = "white"),
@@ -108,9 +120,14 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
           axis.ticks.y = element_blank(),
           line = element_blank())
 
+  # Add optional arguments
+  g1 = g1 + plot_opts
+  t1 = t1 + table_opts
+
   # Add dependent name label
   title = 	plot_title(.data = .data, dependent = dependent, dependent_label = dependent_label, prefix = prefix, suffix = suffix)
 
   gridExtra::grid.arrange(t1, g1, ncol=2, widths = c(3,2),
-                          top=grid::textGrob(title, x=0.02, y=0.2, gp=grid::gpar(fontsize=18), just="left"))
+                          top=grid::textGrob(title, x=0.02, y=0.2,
+                                             gp=grid::gpar(fontsize=title_text_size), just="left"))
 }
