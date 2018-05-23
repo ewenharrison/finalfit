@@ -50,7 +50,9 @@ or_plot = function(.data, dependent, explanatory, factorlist=NULL, glmfit=NULL,
                    table_text_size = 5,
                    title_text_size = 18,
                    plot_opts = NULL, table_opts = NULL, ...){
-  requireNamespace("ggplot2", quietly = TRUE)
+
+  require("ggplot2", quietly = TRUE)
+
   # Generate or format factorlist object
   if(is.null(factorlist)){
     factorlist = summary_factorlist(.data, dependent, explanatory, total_col=TRUE, fit_id=TRUE)

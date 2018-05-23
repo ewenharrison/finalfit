@@ -47,7 +47,9 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
                    table_text_size = 5,
                    title_text_size = 18,
                    plot_opts = NULL, table_opts = NULL, ...){
-  requireNamespace("ggplot2", quietly = TRUE)
+
+  require("ggplot2", quietly = TRUE)
+
   # Generate or format factorlist object
   if(is.null(factorlist)){
     factorlist = summary_factorlist(.data, dependent, explanatory, fit_id=TRUE)
