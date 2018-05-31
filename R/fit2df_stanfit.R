@@ -40,9 +40,12 @@ fit2df.stanfit = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
                           digits=c(2,2,3), confint_sep = "-", ...){
   args = list(...)
 
+  if(is.null(args$X)) stop("Must include design matrix from Stan procedure, e.g. X=X")
+
   df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
                        estimate_name=estimate_name, estimate_suffix=estimate_suffix,
                        p_name=p_name, digits=digits, X=args$X)
+
   if (condense==TRUE){
     df.out = condense_fit(df.out, explanatory_name=explanatory_name,
                           estimate_name=estimate_name, estimate_suffix=estimate_suffix,
