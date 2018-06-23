@@ -25,6 +25,7 @@
 #' @return Returns a dataframe with the final model table.
 #'
 #' @family \code{finalfit} all-in-one functions
+#' @export
 #'
 #' @keywords internal
 #'

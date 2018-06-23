@@ -25,6 +25,7 @@
 #' @param dependent_label_prefix Add text before dependent label
 #' @param dependent_label_suffix Add text after dependent label
 #' @return Returns a \code{factorlist} dataframe.
+#' @export
 #'
 #' @keywords internal
 
@@ -32,7 +33,7 @@ summary_factorlist4 <- function(.data, dependent, explanatory,  cont="mean", p=F
                                 column=FALSE, total_col=FALSE, orderbytotal=FALSE, fit_id=FALSE,
                                 na_to_missing = TRUE, add_dependent_label=FALSE,
                                 dependent_label_prefix="Dependent: ", dependent_label_suffix=""){
-  s <- Hmisc:::summary.formula(as.formula(paste(dependent, "~", paste(explanatory, collapse="+"))), data = .data,
+  s <- summary_formula(as.formula(paste(dependent, "~", paste(explanatory, collapse="+"))), data = .data,
                                method="reverse", overall=FALSE,
                                test=TRUE,na.include=na_include, continuous=5)
   # Column vs row proportions for factor variables

@@ -16,7 +16,11 @@ external.packages:
     stringr
     lme4
     survminer
+    devtools
     roxygen2
+    rmarkdown
+    caTools
+    bitops
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 

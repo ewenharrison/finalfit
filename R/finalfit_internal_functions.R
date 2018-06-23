@@ -14,6 +14,7 @@
 #' @param ... Other arguments.
 #'
 #' @keywords internal
+#' @export
 
 extract_fit = function(.data, explanatory_name, estimate_name,
                        estimate_suffix,  p_name, digits, ...){
@@ -24,16 +25,10 @@ extract_fit = function(.data, explanatory_name, estimate_name,
 #'
 #' Internal function, not called directly.
 #'
-#' @param .data Model output.
-#' @param explanatory_name Name for this column in output.
-#' @param estimate_name Name for this column in output.
-#' @param estimate_suffix Appeneded to estimate name.
-#' @param p_name Name given to p-value estimate
-#' @param digits Number of digits to round to (1) estimate, (2) confidence
-#'   interval limits, (3) p-value.
-#' @param ... Other arguments.
-#'
 #' @keywords internal
+#' @rdname extract_fit
+#' @method extract_fit glm
+#' @export
 
 extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name="OR",
                            estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
@@ -53,16 +48,10 @@ extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name=
 #'
 #' Internal function, not called directly.
 #'
-#' @param .data Model output.
-#' @param explanatory_name Name for this column in output.
-#' @param estimate_name Name for this column in output.
-#' @param estimate_suffix Appeneded to estimate name.
-#' @param p_name Name given to p-value estimate.
-#' @param digits Number of digits to round to (1) estimate, (2) confidence
-#'   interval limits, (3) p-value.
-#' @param ... Other arguments.
-#'
 #' @keywords internal
+#' @rdname extract_fit
+#' @method extract_fit glmerMod
+#' @export
 
 extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_name="OR",
                                 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
@@ -85,16 +74,10 @@ extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_
 #'
 #' Internal function, not called directly.
 #'
-#' @param .data Model output.
-#' @param explanatory_name Name for this column in output.
-#' @param estimate_name Name for this column in output.
-#' @param estimate_suffix Appeneded to estimate name.
-#' @param p_name Name given to p-value estimate.
-#' @param digits Number of digits to round to (1) estimate, (2) confidence
-#'   interval limits, (3) p-value.
-#' @param ... Other arguments.
-#'
 #' @keywords internal
+#' @rdname extract_fit
+#' @method extract_fit lm
+#' @export
 
 extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="Coefficient",
                           estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
@@ -114,16 +97,10 @@ extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="
 #'
 #' Internal function, not called directly.
 #'
-#' @param .data Model output.
-#' @param explanatory_name Name for this column in output.
-#' @param estimate_name Name for this column in output.
-#' @param estimate_suffix Appeneded to estimate name.
-#' @param p_name Name given to p-value estimate.
-#' @param digits Number of digits to round to (1) estimate, (2) confidence
-#'   interval limits, (3) p-value.
-#' @param ... Other arguments.
-#'
 #' @keywords internal
+#' @rdname extract_fit
+#' @method extract_fit lmerMod
+#' @export
 
 extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_name="OR",
                                estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
@@ -145,16 +122,10 @@ extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_n
 #'
 #' Internal function, not called directly.
 #'
-#' @param .data Model output.
-#' @param explanatory_name Name for this column in output.
-#' @param estimate_name Name for this column in output.
-#' @param estimate_suffix Appeneded to estimate name.
-#' @param p_name Name given to p-value estimate.
-#' @param digits Number of digits to round to (1) estimate, (2) confidence
-#'   interval limits, (3) p-value.
-#' @param ... Other arguments.
-#'
 #' @keywords internal
+#' @rdname extract_fit
+#' @method extract_fit coxph
+#' @export
 
 extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_name="HR",
                              estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
@@ -177,17 +148,12 @@ extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_nam
 #'
 #' Internal function, not called directly.
 #'
-#' @param .data Model output.
-#' @param explanatory_name Name for this column in output.
-#' @param estimate_name Name for this column in output.
-#' @param estimate_suffix Appeneded to estimate name
-#' @param digits Number of digits to round to (1) estimate, (2) confidence
-#'   interval limits, (3) p-value.
-#' @param p_name Name given to p-value estimate.
 #' @param X Design matrix from Stan modelling procedure.
-#' @param ... Other arguments.
 #'
 #' @keywords internal
+#' @rdname extract_fit
+#' @method extract_fit stanfit
+#' @export
 
 extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_name="OR",
                                estimate_suffix = "",  p_name = "p", digits=c(2,2,3), X, ...){
@@ -236,6 +202,7 @@ extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_n
 #'   " to ".
 #'
 #' @keywords internal
+#' @export
 
 condense_fit = function(.data, explanatory_name="explanatory", estimate_name="OR",
                         estimate_suffix = "", p_name = "p",
@@ -275,6 +242,7 @@ condense_fit = function(.data, explanatory_name="explanatory", estimate_name="OR
 #' @return Vector of strings.
 #'
 #' @keywords internal
+#' @export
 
 round_tidy = function(x, digits){
   sprintf.arg = paste0("%.", digits, "f")
@@ -295,6 +263,7 @@ round_tidy = function(x, digits){
 #' @return Vector of strings.
 #'
 #' @keywords internal
+#' @export
 
 p_tidy = function(x, digits, prefix="="){
   x.out = paste0(prefix, round_tidy(x, digits))
@@ -314,7 +283,7 @@ p_tidy = function(x, digits, prefix="="){
 #' @return Vector of strings.
 #'
 #' @keywords internal
-#'
+#' @export
 
 # Tried to do this with dplyr programming and failed miserably.
 # quo() enquo() !! all a bit of a nightmare
@@ -333,6 +302,7 @@ remove_intercept = function(.data, intercept_name = "(Intercept)"){
 #' @return Returns a \code{factorlist} dataframe.
 #'
 #' @keywords internal
+#' @export
 
 rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
   x = factorlist
@@ -350,8 +320,6 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
   return(x)
 }
 
-
-
 #' Make a label for the dependent variable
 #'
 #' Not usually called directly. Can be used to label final results dataframe.
@@ -365,6 +333,7 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 #' @param suffix Suffix for dependent label
 #'
 #' @return Returns the label for the dependent variable, if specified.
+#' @export
 #' @examples
 #' library(dplyr)
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
@@ -422,6 +391,7 @@ dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suf
 #' @param suffix Suffix for dependent label
 #'
 #' @keywords internal
+#' @export
 plot_title = function(.data, dependent, dependent_label, prefix = "", suffix=""){
   if (is.null(dependent_label)){
     d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
@@ -436,3 +406,24 @@ plot_title = function(.data, dependent, dependent_label, prefix = "", suffix="")
   out = paste0(prefix, d_label, suffix)
   return(out)
 }
+
+# Specify global variables
+globalVariables(c("L95", "U95", "fit_id", "Total", "OR", "HR"))
+
+
+
+
+# Workaround ::: as summary.formula not (yet) exported from Hmisc
+`%:::%` = function (pkg, name){
+  pkg <- as.character(substitute(pkg))
+  name <- as.character(substitute(name))
+  get(name, envir = asNamespace(pkg), inherits = FALSE)
+}
+
+#' Call to Hmisc:::summary.formula
+#'
+#' Not called directly.
+#'
+#' @keywords internal
+#' @import Hmisc
+summary_formula = 'Hmisc' %:::% 'summary.formula'
