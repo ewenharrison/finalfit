@@ -54,6 +54,7 @@ Produce an odds ratio table and plot from a \code{glm()} or
 \examples{
 library(finalfit)
 library(dplyr)
+library(ggplot2)
 
 # OR plot
 data(colon_s)

@@ -21,6 +21,7 @@
 #'   \code{finalfit} helper functions
 #'
 #' @seealso \code{\link{summary_factorlist}} \code{\link{fit2df}}
+#' @export
 #'
 #' @examples
 #' library(finalfit)

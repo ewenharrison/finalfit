@@ -10,6 +10,8 @@
 #' @return Returns a table and plot produced in \code{ggplot2}.
 #'
 #' @family finalfit plot functions
+#' @export
+#' @import ggplot2
 #'
 #' @examples
 #' library(finalfit)
@@ -22,8 +24,6 @@
 #' colon_s %>%
 #'   surv_plot(dependent, explanatory, xlab="Time (days)", pval=TRUE, legend="none")
 #'
-#' @import ggplot2
-
 surv_plot = function(.data, dependent, explanatory, ...){
   if(length(explanatory)>2){
     stop("Explanatory must have a maximum of two variables")

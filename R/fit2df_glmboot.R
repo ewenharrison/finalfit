@@ -1,40 +1,10 @@
 #' Extract \code{glmboot} model fit results to dataframe: \code{finalfit} model extracters
 #'
-#' Takes output from \code{\link[stats]{glm}} with \code{boot::\link[boot]{boot}}
-#' confidence intervals on fixed effect coefficients and extracts to a dataframe,
-#' convenient for further processing in preparation for final results table.
-#'
 #' \code{fit2df.glmboot} is the model extract method for \code{\link{glmmulti_boot}} models.
 #'
-#' @param .data Output from \code{finalfit} model wrappers.
-#' @param condense Logical: when true, effect estimates, confidence intervals and p-values
-#'   are pasted conveniently together in single cell.
-#' @param metrics Logical: when true, useful model metrics are extracted.
-#' @param remove_intercept Logical: remove the results for the intercept term.
-#' @param explanatory_name Name for this column in output
-#' @param estimate_name Name for this column in output
-#' @param estimate_suffix Appeneded to estimate name
-#' @param p_name Name given to p-value estimate
-#' @param digits Number of digits to round to (1) estimate, (2) confidence
-#'   interval limits, (3) p-value.
-#' @param confint_sep String to separate confidence intervals, typically "-" or
-#'   " to ".
-#' @param ... Other arguments (not used).
-#' @return A dataframe of model parameters. When \code{metrics=TRUE} output is a
-#'   list of two dataframes, one is model parameters, one is model metrics.
-#'
-#' @family \code{finalfit} model extracters
-#'
-#' @examples
-#' library(finalfit)
-#' library(dplyr)
-#' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
-#' dependent = "mort_5yr"
-#'
-#' colon_s %>%
-#' 	glmmulti_boot(dependent, explanatory) %>%
-#' 	fit2df(estimate_suffix=" (multivariable (BS CIs))")
-#'
+#' @rdname fit2df
+#' @method fit2df glmboot
+#' @export
 
 fit2df.glmboot = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
                           explanatory_name = "explanatory",

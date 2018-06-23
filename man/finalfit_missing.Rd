@@ -18,7 +18,6 @@ variable.}
   sorted in increasing amounts of missing information. The last column and
   row contain row and column counts, respectively.
 
-
 \code{finalfit} helper functions}
 }
 \description{

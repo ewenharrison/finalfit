@@ -25,10 +25,12 @@
 #' @return Returns a table and plot produced in \code{ggplot2}.
 #'
 #' @family finalfit plot functions
-#'
+#' @export
+#' @importFrom utils globalVariables
 #' @examples
 #' library(finalfit)
 #' library(dplyr)
+#' library(ggplot2)
 #'
 #' # OR plot
 #' data(colon_s)
@@ -51,7 +53,7 @@ or_plot = function(.data, dependent, explanatory, factorlist=NULL, glmfit=NULL,
                    title_text_size = 18,
                    plot_opts = NULL, table_opts = NULL, ...){
 
-  require("ggplot2", quietly = TRUE)
+  requireNamespace("ggplot2")
 
   # Generate or format factorlist object
   if(is.null(factorlist)){

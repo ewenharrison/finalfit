@@ -38,6 +38,7 @@
 #'
 #' @family finalfit wrappers
 #' @seealso \code{\link{fit2df}}
+#' @export
 #'
 #' @examples
 #' library(finalfit)

@@ -14,6 +14,7 @@
 #'
 #' @seealso \code{\link{fit2df}}
 #' @family \code{finalfit} model wrappers
+#' @export
 #'
 #' @examples
 #' library(finalfit)

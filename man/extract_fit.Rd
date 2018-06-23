@@ -2,10 +2,40 @@
 % Please edit documentation in R/finalfit_internal_functions.R
 \name{extract_fit}
 \alias{extract_fit}
+\alias{extract_fit.glm}
+\alias{extract_fit.glmerMod}
+\alias{extract_fit.lm}
+\alias{extract_fit.lmerMod}
+\alias{extract_fit.coxph}
+\alias{extract_fit.stanfit}
 \title{Extract model output to dataframe}
 \usage{
 extract_fit(.data, explanatory_name, estimate_name, estimate_suffix, p_name,
   digits, ...)
+
+\method{extract_fit}{glm}(.data, explanatory_name = "explanatory",
+  estimate_name = "OR", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), ...)
+
+\method{extract_fit}{glmerMod}(.data, explanatory_name = "explanatory",
+  estimate_name = "OR", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), ...)
+
+\method{extract_fit}{lm}(.data, explanatory_name = "explanatory",
+  estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), ...)
+
+\method{extract_fit}{lmerMod}(.data, explanatory_name = "explanatory",
+  estimate_name = "OR", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), ...)
+
+\method{extract_fit}{coxph}(.data, explanatory_name = "explanatory",
+  estimate_name = "HR", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), ...)
+
+\method{extract_fit}{stanfit}(.data, explanatory_name = "explanatory",
+  estimate_name = "OR", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), X, ...)
 }
 \arguments{
 \item{.data}{Model output.}
@@ -22,8 +52,22 @@ extract_fit(.data, explanatory_name, estimate_name, estimate_suffix, p_name,
 interval limits, (3) p-value.}
 
 \item{...}{Other arguments.}
+
+\item{X}{Design matrix from Stan modelling procedure.}
 }
 \description{
+Internal function, not called directly.
+
+Internal function, not called directly.
+
+Internal function, not called directly.
+
+Internal function, not called directly.
+
+Internal function, not called directly.
+
+Internal function, not called directly.
+
 Internal function, not called directly.
 }
 \keyword{internal}

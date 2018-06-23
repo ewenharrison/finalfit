@@ -51,6 +51,7 @@ Produce hazard ratio table and plot from a Cox Proportional Hazards analysis, \c
 # HR plot
 library(finalfit)
 library(dplyr)
+library(ggplot2)
 
 data(colon_s)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")

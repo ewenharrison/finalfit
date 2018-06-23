@@ -17,6 +17,7 @@
 #'
 #' @seealso \code{\link{fit2df}, \link{finalfit_merge}}
 #' @family \code{finalfit} model wrappers
+#' @export
 #'
 #' @examples
 #' library(finalfit)
