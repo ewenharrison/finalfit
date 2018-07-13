@@ -29,3 +29,6 @@ finalfit_missing = function(.data, dependent, explanatory){
   df.out = .data[keep]
   mice::md.pattern(df.out)
 }
+
+#' @rdname finalfit_missing
+ff_missing = finalfit_missing

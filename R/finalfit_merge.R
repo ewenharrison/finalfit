@@ -18,7 +18,7 @@
 #'   Defaults to OR/HR/Coefficient
 #' @return Returns a dataframe of combined tables.
 #'
-#'   \code{finalfit} helper functions
+#' \code{finalfit} helper functions
 #'
 #' @seealso \code{\link{summary_factorlist}} \code{\link{fit2df}}
 #' @export
@@ -68,3 +68,6 @@ finalfit_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name
   df.out = df.out[order(df.out$index),]
   return(df.out)
 }
+
+#' @rdname finalfit_merge
+ff_merge = finalfit_merge

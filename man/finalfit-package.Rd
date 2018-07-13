@@ -67,3 +67,13 @@ Methods (not called directly):
 \link{finalfit_missing}.
 }
 
+\section{\code{finalfit} prediction functions}{
+
+
+\link{boot_predict},
+\link{finalfit_newdata}.
+
+Methods (not called directly):
+\link{boot_compare}.
+}
+

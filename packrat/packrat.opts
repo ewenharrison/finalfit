@@ -21,12 +21,10 @@ external.packages:
     rmarkdown
     caTools
     bitops
+    purrr
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 
-ignored.directories:
-    data
-    inst
 quiet.package.installation: TRUE
 snapshot.recommended.packages: FALSE
 snapshot.fields:

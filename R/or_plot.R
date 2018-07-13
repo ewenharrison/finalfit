@@ -56,6 +56,11 @@ or_plot = function(.data, dependent, explanatory, factorlist=NULL, glmfit=NULL,
   requireNamespace("ggplot2")
 
   # Generate or format factorlist object
+  if(!is.null(factorlist)){
+    if(is.null(factorlist$Total)) stop("summary_factorlist function must include total_col=TRUE")
+    if(is.null(factorlist$fit_id)) stop("summary_factorlist function must include fit_id=TRUE")
+  }
+
   if(is.null(factorlist)){
     factorlist = summary_factorlist(.data, dependent, explanatory, total_col=TRUE, fit_id=TRUE)
   }

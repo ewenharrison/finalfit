@@ -1,0 +1,7 @@
+finalfit v0.8-0 (Release date: 2018-07-13)
+==============
+
+Changes:
+
+* New function boot_predict to simulate predictions from models
+* new function finalfit_newdata to generate data for simulations

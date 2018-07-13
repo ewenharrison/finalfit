@@ -1,16 +1,19 @@
 Package: finalfit
 Type: Package
 Title: Quickly Create Elegant Regression Results Tables and Plots when Modelling
-Version: 0.7.8
+Version: 0.8.0
 Author: Ewen Harrison, Tom Drake, Riinu Ots
 Maintainer: Ewen Harrison <ewen.harrison@ed.ac.uk>
 Description: Generate regression results tables and plots in final 
-    format for publication. Export directly to PDF and Word using knitr and rmarkdown. 
+    format for publication. Explore models and export directly to PDF 
+    and 'Word' using 'RMarkdown'. 
 License: MIT + file LICENCE
 Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/ewenharrison/finalfit/issues
 Imports:
+    boot,
+    broom,
     ggplot2,
     grid,
     gridExtra,
@@ -27,7 +30,6 @@ Imports:
     survminer
 RoxygenNote: 6.0.1
 Suggests:
-    boot,
     dplyr,
     knitr,
     rmarkdown,

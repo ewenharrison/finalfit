@@ -2,9 +2,12 @@
 % Please edit documentation in R/finalfit_missing.R
 \name{finalfit_missing}
 \alias{finalfit_missing}
+\alias{ff_missing}
 \title{Characterise missing data for \code{finalfit} models}
 \usage{
 finalfit_missing(.data, dependent, explanatory)
+
+ff_missing(.data, dependent, explanatory)
 }
 \arguments{
 \item{.data}{Dataframe. Missing values must be coded \code{NA}.}

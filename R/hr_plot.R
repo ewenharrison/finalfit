@@ -53,6 +53,10 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
   requireNamespace("ggplot2")
 
   # Generate or format factorlist object
+  if(!is.null(factorlist)){
+    if(is.null(factorlist$fit_id)) stop("summary_factorlist function must include fit_id=TRUE")
+  }
+
   if(is.null(factorlist)){
     factorlist = summary_factorlist(.data, dependent, explanatory, fit_id=TRUE)
   }
