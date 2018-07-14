@@ -56,14 +56,16 @@ boot_compare = function(bs.out, confint_sep = " to ", comparison = "difference",
   if(condense==FALSE){
     df.out = data.frame(estimate_centre, estimate_conf.low, estimate_conf.high, estimate_p,
                         stringsAsFactors=FALSE)
-    colnames(df.out) = c(comparison, paste0(comparison, "_conf.low"), paste0(comparison, "_conf.high"), paste0(comparison, "_p"))
+    colnames(df.out) = c(comparison, paste0(comparison, "_conf.low"),
+                         paste0(comparison, "_conf.high"), paste0(comparison, "_p"))
     df.out = rbind(ref_symbol, df.out)
   }else if(condense==TRUE){
     estimate_centre = round_tidy(estimate_centre, digits[1])
     estimate_conf.low = round_tidy(estimate_conf.low, digits[1])
     estimate_conf.high = round_tidy(estimate_conf.high, digits[1])
     estimate_p = p_tidy(estimate_p, digits[2])
-    df.out = paste0(estimate_centre, " (", estimate_conf.low, confint_sep, estimate_conf.high, ", p", estimate_p, ")")
+    df.out = paste0(estimate_centre, " (", estimate_conf.low, confint_sep,
+                    estimate_conf.high, ", p", estimate_p, ")")
     df.out = c(ref_symbol, df.out)
     df.out = data.frame(df.out)
     colnames(df.out) = compare_name

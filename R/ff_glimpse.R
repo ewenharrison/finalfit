@@ -34,6 +34,7 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
   df.in %>%
     dplyr::select_if(is.numeric) -> df.numeric
 
+  if(dim(df.numeric)[2]!=0){
   df.numeric %>%
     broom::tidy(na.rm = TRUE, interp=FALSE,skew = FALSE, ranges = TRUE,
                 check=TRUE,fast=F, omit=FALSE) %>%
@@ -49,9 +50,16 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
   df.numeric.out = cbind(df.numeric.out1, df.numeric.out2)
   df.numeric.out = df.numeric.out[,c(1,9, 2:7)]
 
+  }else{
+    df.numeric.out = df.numeric
+  }
+
   # Factors
   df.in %>%
-    dplyr::select_if(Negate(is.numeric)) %>%
+    dplyr::select_if(Negate(is.numeric)) -> df.factors
+
+  if(dim(df.factors)[2]!=0){
+   df.factors %>%
     lapply(function(x){
       n = which(!is.na(x)) %>% length()
       label = attr(x, "label")
@@ -81,6 +89,10 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
   df.factors.out$column = rownames(df.factors.out)
   rownames(df.factors.out) <- c()
   df.factors.out = df.factors.out[,c(7, 1:6)]
+
+  }else{
+    df.factors.out = df.factors
+  }
 
   cat("Numerics\n")
   print(df.numeric.out, row.names=FALSE)
