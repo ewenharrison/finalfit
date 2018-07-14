@@ -54,8 +54,11 @@ ff_newdata = function(.data, dependent=NULL, explanatory=NULL,  rowwise=TRUE, ne
     dplyr::select(dependent, explanatory) %>%
     dplyr::slice(0) -> df.out
 
+  is_numeric = sapply(df.out, is.numeric)
+
   if(rowwise){
-    df.new = do.call(rbind, newdata)
+    df.new = do.call(rbind.data.frame, newdata)
+    df.new[ ,is_numeric] = as.numeric(as.character(df.new[ ,is_numeric]))
   }else{
     df.new = do.call(data.frame, newdata)
   }
@@ -63,6 +66,10 @@ ff_newdata = function(.data, dependent=NULL, explanatory=NULL,  rowwise=TRUE, ne
   df.out[1:dim(df.new)[1],] = df.new
   return(df.out)
 }
+
+#' @rdname ff_newdata
+finalfit_newdata = ff_newdata
+
 
 #' @rdname ff_newdata
 finalfit_newdata = ff_newdata
