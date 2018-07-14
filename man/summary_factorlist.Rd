@@ -13,7 +13,7 @@ summary_factorlist(.data, dependent = NULL, explanatory, cont = "mean",
 \arguments{
 \item{.data}{Dataframe.}
 
-\item{dependent}{Character vector of length 1:  name of depdendent variable
+\item{dependent}{Character vector of length 1:  name of dependent variable
 (2 to 5 factor levels).}
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory

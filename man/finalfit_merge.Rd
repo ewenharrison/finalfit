@@ -28,8 +28,6 @@ Defaults to OR/HR/Coefficient}
 }
 \value{
 Returns a dataframe of combined tables.
-
-\code{finalfit} helper functions
 }
 \description{
 A function that takes the output from \code{\link{summary_factorlist}(...,

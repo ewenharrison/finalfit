@@ -13,7 +13,7 @@
 #' regression models.
 #'
 #' @param .data Dataframe.
-#' @param dependent Character vector of length 1:  name of depdendent variable
+#' @param dependent Character vector of length 1:  name of dependent variable
 #'   (2 to 5 factor levels).
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.

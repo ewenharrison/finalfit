@@ -18,8 +18,6 @@
 #' @return A list of multivariable \code{\link[stats]{glm}} fitted model
 #'   outputs. Output is of class \code{glmlist}.
 #'
-#' \code{finalfit} predict functions
-#'
 #' @seealso \code{\link{boot_predict}} \code{\link{boot_compare}}
 #' @export
 #'

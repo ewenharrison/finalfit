@@ -18,8 +18,6 @@
 #'   Defaults to OR/HR/Coefficient
 #' @return Returns a dataframe of combined tables.
 #'
-#' \code{finalfit} helper functions
-#'
 #' @seealso \code{\link{summary_factorlist}} \code{\link{fit2df}}
 #' @export
 #'
