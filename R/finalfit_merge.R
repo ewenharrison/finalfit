@@ -55,7 +55,7 @@
 #' 	select(-c(fit_id, index)) -> example.final
 #' example.final
 
-finalfit_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL){
+ff_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL){
   if(is.null(factorlist$fit_id)) stop("Include fit_id=TRUE in summary_factorlist()")
   explanatory_name = names(fit2df_df)[1]
   or_col_id = ifelse(is.null(estimate_name), "Coefficient|OR|HR", paste0(estimate_name, "|Coefficient|OR|HR"))
@@ -67,5 +67,5 @@ finalfit_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name
   return(df.out)
 }
 
-#' @rdname finalfit_merge
-ff_merge = finalfit_merge
+#' @rdname ff_merge
+finalfit_merge <- ff_merge

@@ -49,7 +49,7 @@
 #' )) -> newdata
 #'
 
-finalfit_newdata = function(.data, dependent=NULL, explanatory=NULL,  rowwise=TRUE, newdata){
+ff_newdata = function(.data, dependent=NULL, explanatory=NULL,  rowwise=TRUE, newdata){
   .data %>%
     dplyr::select(dependent, explanatory) %>%
     dplyr::slice(0) -> df.out
@@ -64,5 +64,5 @@ finalfit_newdata = function(.data, dependent=NULL, explanatory=NULL,  rowwise=TR
   return(df.out)
 }
 
-#' @rdname finalfit_newdata
-ff_newdata = finalfit_newdata
+#' @rdname ff_newdata
+finalfit_newdata = ff_newdata

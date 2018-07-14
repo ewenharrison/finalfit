@@ -22,11 +22,11 @@
 #' colon_s %>%
 #' 	finalfit_missing(dependent, explanatory)
 #'
-finalfit_missing = function(.data, dependent, explanatory){
+ff_missing = function(.data, dependent, explanatory){
   keep = names(.data) %in% c(dependent, explanatory)
   df.out = .data[keep]
   mice::md.pattern(df.out)
 }
 
-#' @rdname finalfit_missing
-ff_missing = finalfit_missing
+#' @rdname ff_missing
+finalfit_missing = ff_missing

@@ -10,8 +10,6 @@
 #'   variable(s).
 #' @param explanatory Optional character vector: name(s) of explanatory
 #'   variable(s).
-#' @param na.rm Logical. When false, summary information is provided for
-#'   complete cases only.
 #' @param digits Significant digits for continuous variable summaries
 #'
 #' @return Dataframe on summary data.
@@ -24,7 +22,7 @@
 #' colon_s %>%
 #'   finalfit_glimpse(dependent, explanatory)
 
-finalfit_glimpse <- function(.data, dependent=NULL, explanatory=NULL, na.rm = TRUE, digits = 1){
+ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
   if(is.null(dependent) && is.null(explanatory)){
     df.in = .data
   }else{
@@ -37,7 +35,7 @@ finalfit_glimpse <- function(.data, dependent=NULL, explanatory=NULL, na.rm = TR
     dplyr::select_if(is.numeric) -> df.numeric
 
   df.numeric %>%
-    broom::tidy(na.rm = na.rm, interp=FALSE,skew = FALSE, ranges = TRUE,
+    broom::tidy(na.rm = TRUE, interp=FALSE,skew = FALSE, ranges = TRUE,
                 check=TRUE,fast=F, omit=FALSE) %>%
     format(digits = digits, scientific=FALSE) -> df.numeric.out1
 
@@ -55,6 +53,7 @@ finalfit_glimpse <- function(.data, dependent=NULL, explanatory=NULL, na.rm = TR
   df.in %>%
     dplyr::select_if(Negate(is.numeric)) %>%
     lapply(function(x){
+      n = which(!is.na(x)) %>% length()
       label = attr(x, "label")
       levels_n = length(levels(x))
       levels = ifelse(is.factor(x),
@@ -72,7 +71,7 @@ finalfit_glimpse <- function(.data, dependent=NULL, explanatory=NULL, na.rm = TR
                                 format(digits = 2) %>%
                                 paste(collapse = ", "),
                               "-")
-      list(label=label, levels=levels, level_n=levels_n,
+      list(label=label, levels=levels, level_n=levels_n, n=n,
            levels_count=levels_count, levels_percent = levels_percent)
     }
     ) %>%
@@ -81,7 +80,7 @@ finalfit_glimpse <- function(.data, dependent=NULL, explanatory=NULL, na.rm = TR
 
   df.factors.out$column = rownames(df.factors.out)
   rownames(df.factors.out) <- c()
-  df.factors.out = df.factors.out[,c(6, 1:5)]
+  df.factors.out = df.factors.out[,c(7, 1:6)]
 
   cat("Numerics\n")
   print(df.numeric.out, row.names=FALSE)
@@ -95,5 +94,5 @@ finalfit_glimpse <- function(.data, dependent=NULL, explanatory=NULL, na.rm = TR
   )
 }
 
-#' @rdname finalfit_glimpse
-ff_glimpse <- finalfit_glimpse
+#' @rdname ff_glimpse
+finalfit_glimpse <- ff_glimpse
