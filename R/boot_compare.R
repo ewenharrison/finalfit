@@ -43,7 +43,7 @@ boot_compare = function(bs.out, confint_sep = " to ", comparison = "difference",
 
   if(is.null(dim(estimate))) estimate = matrix(estimate, ncol=1) #allow single vector to pass to apply
 
-  estimate_mean = apply(estimate, 2, mean)
+  estimate_centre = apply(estimate, 2, median)
   estimate_conf.low = apply(estimate, 2, quantile, probs = c(0.025))
   estimate_conf.high = apply(estimate, 2, quantile, probs = c(0.975))
   estimate_p1 = apply(estimate, 2, function(x) mean(x < null_ref ))
@@ -54,16 +54,16 @@ boot_compare = function(bs.out, confint_sep = " to ", comparison = "difference",
   estimate_p = apply(rbind(estimate_p*2, 1), 2, min)  #two-tailed, max 1
 
   if(condense==FALSE){
-    df.out = data.frame(estimate_mean, estimate_conf.low, estimate_conf.high, estimate_p,
+    df.out = data.frame(estimate_centre, estimate_conf.low, estimate_conf.high, estimate_p,
                         stringsAsFactors=FALSE)
     colnames(df.out) = c(comparison, paste0(comparison, "_conf.low"), paste0(comparison, "_conf.high"), paste0(comparison, "_p"))
     df.out = rbind(ref_symbol, df.out)
-  }else{
-    estimate_mean = round_tidy(estimate_mean, digits[1])
+  }else if(condense==TRUE){
+    estimate_centre = round_tidy(estimate_centre, digits[1])
     estimate_conf.low = round_tidy(estimate_conf.low, digits[1])
     estimate_conf.high = round_tidy(estimate_conf.high, digits[1])
     estimate_p = p_tidy(estimate_p, digits[2])
-    df.out = paste0(estimate_mean, " (", estimate_conf.low, confint_sep, estimate_conf.high, ", p", estimate_p, ")")
+    df.out = paste0(estimate_centre, " (", estimate_conf.low, confint_sep, estimate_conf.high, ", p", estimate_p, ")")
     df.out = c(ref_symbol, df.out)
     df.out = data.frame(df.out)
     colnames(df.out) = compare_name
