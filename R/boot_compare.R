@@ -24,38 +24,45 @@
 #' # See boot_predict.
 
 boot_compare = function(bs.out, confint_sep = " to ", comparison = "difference", condense=TRUE,
-                         compare_name = NA, digits = c(2, 3), ref_symbol = "-"){
+                        compare_name = NA, digits = c(2, 3), ref_symbol = "-"){
 
   if(is.na(compare_name)){
     compare_name = paste0(toupper(substring(comparison, 1, 1)), substring(comparison, 2))
   }
+
   bs_1 = bs.out$t[,1]
   bs_c = bs.out$t[,-1]
+
   if(comparison == "difference"){
     estimate = bs_c - bs_1
+    null_ref = 0
   }else if(comparison == "ratio"){
     estimate = bs_c / bs_1
+    null_ref = 1
   }
+
   if(is.null(dim(estimate))) estimate = matrix(estimate, ncol=1) #allow single vector to pass to apply
+
   estimate_mean = apply(estimate, 2, mean)
   estimate_conf.low = apply(estimate, 2, quantile, probs = c(0.025))
   estimate_conf.high = apply(estimate, 2, quantile, probs = c(0.975))
-  estimate_p1 = apply(estimate, 2, function(x) mean(x < 0))
-  estimate_p2 = apply(estimate, 2, function(x) mean(x > 0))
-  estimate_p3 = apply(estimate, 2, function(x) mean(x == 0))
+  estimate_p1 = apply(estimate, 2, function(x) mean(x < null_ref ))
+  estimate_p2 = apply(estimate, 2, function(x) mean(x > null_ref ))
+  estimate_p3 = apply(estimate, 2, function(x) mean(x == null_ref ))
   estimate_p = apply(rbind(estimate_p1, estimate_p2), 2, min)
   estimate_p = ifelse(estimate_p3==1, 1, estimate_p)
   estimate_p = apply(rbind(estimate_p*2, 1), 2, min)  #two-tailed, max 1
-  estimate_mean = round_tidy(estimate_mean, digits[1])
-  estimate_conf.low = round_tidy(estimate_conf.low, digits[1])
-  estimate_conf.high = round_tidy(estimate_conf.high, digits[1])
-  estimate_p = p_tidy(estimate_p, digits[2])
+
   if(condense==FALSE){
     df.out = data.frame(estimate_mean, estimate_conf.low, estimate_conf.high, estimate_p,
                         stringsAsFactors=FALSE)
     colnames(df.out) = c(comparison, paste0(comparison, "_conf.low"), paste0(comparison, "_conf.high"), paste0(comparison, "_p"))
     df.out = rbind(ref_symbol, df.out)
   }else{
+    estimate_mean = round_tidy(estimate_mean, digits[1])
+    estimate_conf.low = round_tidy(estimate_conf.low, digits[1])
+    estimate_conf.high = round_tidy(estimate_conf.high, digits[1])
+    estimate_p = p_tidy(estimate_p, digits[2])
     df.out = paste0(estimate_mean, " (", estimate_conf.low, confint_sep, estimate_conf.high, ", p", estimate_p, ")")
     df.out = c(ref_symbol, df.out)
     df.out = data.frame(df.out)
