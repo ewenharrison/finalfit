@@ -24,7 +24,7 @@
 #' # See boot_predict.
 
 boot_compare = function(bs.out, confint_sep = " to ", comparison = "difference", condense=TRUE,
-                        compare_name = NA, digits = c(2, 3), ref_symbol = "-"){
+                        compare_name = NA, digits = c(2, 3), ref_symbol = 1){
 
   if(is.na(compare_name)){
     compare_name = paste0(toupper(substring(comparison, 1, 1)), substring(comparison, 2))
@@ -58,7 +58,7 @@ boot_compare = function(bs.out, confint_sep = " to ", comparison = "difference",
                         stringsAsFactors=FALSE)
     colnames(df.out) = c(comparison, paste0(comparison, "_conf.low"),
                          paste0(comparison, "_conf.high"), paste0(comparison, "_p"))
-    df.out = rbind(ref_symbol, df.out)
+    df.out = rbind(null_ref, df.out)
   }else if(condense==TRUE){
     estimate_centre = round_tidy(estimate_centre, digits[1])
     estimate_conf.low = round_tidy(estimate_conf.low, digits[1])
