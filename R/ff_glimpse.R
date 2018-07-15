@@ -66,8 +66,8 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
       levels_n = length(levels(x))
       levels = ifelse(is.factor(x),
                       levels(x) %>%
-                        paste(collapse=", "),
-                      "-")
+                        paste0("\"", ., "\"", collapse = ", "),
+                        "-")
       levels_count = ifelse(is.factor(x),
                             summary(x) %>%
                               paste(collapse = ", "),
@@ -77,7 +77,7 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
                                 prop.table() %>%
                                 `*`(100) %>%
                                 format(digits = 2) %>%
-                                paste(collapse = ", "),
+                                paste(collapse=", "),
                               "-")
       list(label=label, levels=levels, level_n=levels_n, n=n,
            levels_count=levels_count, levels_percent = levels_percent)
