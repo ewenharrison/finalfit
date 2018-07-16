@@ -130,6 +130,7 @@ finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, rando
 
   args = list(.data=.data, dependent=dependent, explanatory=explanatory, explanatory_multi=explanatory_multi,
               random_effect=random_effect, metrics=metrics,
+              add_dependent_label = add_dependent_label,
               dependent_label_prefix=dependent_label_prefix,
               dependent_label_suffix=dependent_label_suffix, ...=...)
 

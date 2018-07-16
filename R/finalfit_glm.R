@@ -106,7 +106,7 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
   }
 
   # Add metrics
-  if (metrics == TRUE){
+  if (metrics){
     return(list(df.out, glmmulti.df[[2]]))
   } else {
     return(df.out)
