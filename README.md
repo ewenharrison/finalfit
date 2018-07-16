@@ -1,5 +1,5 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/finalfit)](https://cran.r-project.org/package=finalfit)
-[![CRAN_Status_Badge](https://cranlogs.r-pkg.org/badges/finalfit](https://cran.r-project.org/package=finalfit)
+[![CRAN_Status_Badge](https://cranlogs.r-pkg.org/badges/finalfit)](https://cran.r-project.org/package=finalfit)
 
 
 finalfit
