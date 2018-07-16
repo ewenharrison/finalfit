@@ -86,9 +86,10 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
     do.call(rbind, .) %>%
     data.frame() -> df.factors.out
 
-  df.factors.out$column = rownames(df.factors.out)
-  rownames(df.factors.out) <- c()
-  df.factors.out = df.factors.out[,c(7, 1:6)]
+  # df.factors.out$column = rownames(df.factors.out)
+  # rownames(df.factors.out) <- c()
+  # df.factors.out = df.factors.out[,c(7, 1:6)]
+  df.factors.out = df.factors.out[,1:6]
 
   }else{
     df.factors.out = df.factors
@@ -97,7 +98,7 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
   cat("Numerics\n")
   print(df.numeric.out, row.names=FALSE)
   cat("Factors\n")
-  print(df.factors.out, row.names=FALSE)
+  print(df.factors.out)
 
   return(invisible(
     list(
