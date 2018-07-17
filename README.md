@@ -29,7 +29,9 @@ Vignettes
 ---------
 
 [Finalfit basics](https://cran.r-project.org/web/packages/finalfit/vignettes/finalfit_basics.html)
+
 [Bootstrapping for model prediction](http://www.datasurg.net/2018/07/12/finalfit-now-includes-bootstrap-simulation-for-model-prediction/)
+
 [Exporting results to Word, PDF and html with R Markdown](http://www.datasurg.net/2018/05/22/finalfit-knitr-and-r-markdown-for-quick-results/)
 
 
