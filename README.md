@@ -34,7 +34,6 @@ Vignettes
 
 [Exporting results to Word, PDF and html with R Markdown](http://www.datasurg.net/2018/05/22/finalfit-knitr-and-r-markdown-for-quick-results/)
 
-
 Main Features
 -------------
 
