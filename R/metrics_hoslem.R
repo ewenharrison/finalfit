@@ -11,11 +11,14 @@
 #' @return Character string of chi-sq result, df, and p-value. Significant
 #'   p-value suggests poor fit.
 #' @export
+#' @importFrom stats, pchisq, xtabs
 #'
 #' @author Adapted from Peter Solymos.
 #' @source https://github.com/psolymos/ResourceSelection/blob/master/R/hoslem.test.R
 #'
 #' @examples
+#' fit = glm(mort_5yr~age.factor+extent.factor, data=colon_s, family="binomial")
+#' metrics_hoslem(fit$y, fit$fitted)
 metrics_hoslem <- function(y, yhat, g=10, digits = c(2,3)) {
   qq <- unique(quantile(yhat, probs=seq(0, 1, 1/g)))
   yhat_cut <- cut(yhat, breaks = qq, include.lowest = TRUE)
