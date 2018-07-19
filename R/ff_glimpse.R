@@ -14,6 +14,7 @@
 #'
 #' @return Dataframe on summary data.
 #' @export
+#' @importFrom stats median
 #'
 #' @examples
 #' library(finalfit)

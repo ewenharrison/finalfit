@@ -424,7 +424,7 @@ plot_title = function(.data, dependent, dependent_label, prefix = "", suffix="")
 }
 
 # Specify global variables
-globalVariables(c("L95", "U95", "fit_id", "Total", "OR", "HR"))
+globalVariables(c("L95", "U95", "fit_id", "Total", "OR", "HR", "."))
 
 
 

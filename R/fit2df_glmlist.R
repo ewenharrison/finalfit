@@ -38,12 +38,14 @@ fit2df.glmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept
     n_model = dim(x$model)[1]
     aic = round(x$aic, 1)
     auc = round(pROC::roc(x$y, x$fitted)$auc[1], 3)
+    h_l = metrics_hoslem(x$y, x$fitted)
     metrics.out = paste0(
       "Number in dataframe = ", n_data,
       ", Number in model = ", n_model,
       ", Missing = ", n_data-n_model,
       ", AIC = ", aic,
-      ", C-statistic = ", auc)
+      ", C-statistic = ", auc,
+      ", H&L = ", h_l)
   }
 
   if (metrics==TRUE){
