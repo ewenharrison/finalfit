@@ -49,7 +49,7 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
     }) %>%
     do.call(rbind, .) -> df.numeric.out2
 
-  df.numeric.out = cbind(df.numeric.out1, df.numeric.out2)
+  df.numeric.out = data.frame(df.numeric.out1, df.numeric.out2)
   df.numeric.out = df.numeric.out[,c(1,8, 2:7)]
 
   }else{
