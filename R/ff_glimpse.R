@@ -36,10 +36,11 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
     dplyr::select_if(is.numeric) -> df.numeric
 
   if(dim(df.numeric)[2]!=0){
-  df.numeric %>%
-    broom::tidy(na.rm = TRUE, interp=FALSE,skew = FALSE, ranges = TRUE,
+   df.numeric %>%
+    ff_describe(na.rm = TRUE, interp=FALSE, skew = FALSE, ranges = TRUE,
                 check=TRUE,fast=F, omit=FALSE) %>%
-    format(digits = digits, scientific=FALSE) -> df.numeric.out1
+    format(digits = digits, scientific=FALSE) %>%
+      dplyr::select(-vars)-> df.numeric.out1
 
   df.numeric %>%
     lapply(function(x){
@@ -49,7 +50,7 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
     do.call(rbind, .) -> df.numeric.out2
 
   df.numeric.out = cbind(df.numeric.out1, df.numeric.out2)
-  df.numeric.out = df.numeric.out[,c(1,9, 2:7)]
+  df.numeric.out = df.numeric.out[,c(1,8, 2:7)]
 
   }else{
     df.numeric.out = df.numeric
@@ -97,7 +98,7 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
   }
 
   cat("Numerics\n")
-  print(df.numeric.out, row.names=FALSE)
+  print(df.numeric.out)
   cat("Factors\n")
   print(df.factors.out)
 
@@ -109,4 +110,5 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
 }
 
 #' @rdname ff_glimpse
+#' @export
 finalfit_glimpse <- ff_glimpse

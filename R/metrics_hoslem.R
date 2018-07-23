@@ -11,7 +11,7 @@
 #' @return Character string of chi-sq result, df, and p-value. Significant
 #'   p-value suggests poor fit.
 #' @export
-#' @importFrom stats, pchisq, xtabs
+#' @importFrom stats pchisq xtabs
 #'
 #' @author Adapted from Peter Solymos.
 #' @source https://github.com/psolymos/ResourceSelection/blob/master/R/hoslem.test.R

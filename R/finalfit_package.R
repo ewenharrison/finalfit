@@ -64,7 +64,7 @@
 #' @importFrom stats as.formula coef confint glm lm logLik pnorm
 #'   quantile setNames
 #' @importFrom survival Surv coxph
-#' @exportPattern ^[[:alpha:]]+
+# @exportPattern ^[[:alpha:]]+
 NULL
 
 #' Pipe operator
@@ -72,7 +72,7 @@ NULL
 #' @name %>%
 #' @rdname pipe
 #' @keywords internal
-#' @importFrom magrittr %>%
+#' @importFrom dplyr %>%
 #' @usage lhs \%>\% rhs
 #' @export
 NULL

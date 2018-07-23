@@ -68,4 +68,5 @@ ff_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL)
 }
 
 #' @rdname ff_merge
+#' @export
 finalfit_merge <- ff_merge

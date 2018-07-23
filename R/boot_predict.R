@@ -140,6 +140,8 @@ boot_predict = function (fit, newdata, type = "response", R = 100,
                         formula = formula, family = family)
 
   bs.tidy = broom::tidy(bs.out, conf.int = TRUE, conf.level = 0.95, conf.method = "perc") #Future options
+  bs.tidy = data.frame(bs.tidy)
+
 
   if(condense == FALSE){
     df.out = bs.tidy[, c(1, 4,5)]

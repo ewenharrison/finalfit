@@ -21,7 +21,6 @@ external.packages:
     rmarkdown
     caTools
     bitops
-    purrr
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 

@@ -26,6 +26,10 @@ Character string of chi-sq result, df, and p-value. Significant
 \description{
 Internal, not usually called directly
 }
+\examples{
+fit = glm(mort_5yr~age.factor+extent.factor, data=colon_s, family="binomial")
+metrics_hoslem(fit$y, fit$fitted)
+}
 \author{
 Adapted from Peter Solymos.
 }

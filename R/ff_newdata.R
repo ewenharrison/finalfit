@@ -72,4 +72,5 @@ finalfit_newdata = ff_newdata
 
 
 #' @rdname ff_newdata
+#' @export
 finalfit_newdata = ff_newdata

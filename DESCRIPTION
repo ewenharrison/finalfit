@@ -1,7 +1,7 @@
 Package: finalfit
 Type: Package
 Title: Quickly Create Elegant Regression Results Tables and Plots when Modelling
-Version: 0.8.1
+Version: 0.8.2
 Author: Ewen Harrison, Tom Drake, Riinu Ots
 Maintainer: Ewen Harrison <ewen.harrison@ed.ac.uk>
 Description: Generate regression results tables and plots in final 
@@ -14,12 +14,12 @@ BugReports: https://github.com/ewenharrison/finalfit/issues
 Imports:
     boot,
     broom,
+    dplyr,
     ggplot2,
     grid,
     gridExtra,
     Hmisc,
     lme4,
-    magrittr,
     mice,
     pROC,
     plyr,
@@ -30,7 +30,6 @@ Imports:
     survminer
 RoxygenNote: 6.0.1
 Suggests:
-    dplyr,
     knitr,
     rmarkdown,
     rstan

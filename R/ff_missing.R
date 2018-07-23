@@ -29,4 +29,5 @@ ff_missing = function(.data, dependent, explanatory){
 }
 
 #' @rdname ff_missing
+#' @export
 finalfit_missing = ff_missing
