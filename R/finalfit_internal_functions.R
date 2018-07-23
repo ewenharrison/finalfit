@@ -475,8 +475,9 @@ summary_formula = 'Hmisc' %:::% 'summary.formula'
 #'   Homepage: https://personality-project.org/r/psych
 #'   https://personality-project.org/r/psych-manual.pdf
 #'
-"ff_describe" <- function (.data, na.rm=TRUE, interp=FALSE, skew=TRUE, ranges=TRUE, trim=.1, type=3,
+ff_describe <- function (.data, na.rm=TRUE, interp=FALSE, skew=TRUE, ranges=TRUE, trim=.1, type=3,
                            check=TRUE, fast=NULL, quant=NULL, IQR=FALSE, omit=FALSE){
+  keep_names <- names(.data)
   cl <- match.call()
   #first, define a local function
   valid <- function(x) {sum(!is.na(x))}
@@ -488,7 +489,7 @@ summary_formula = 'Hmisc' %:::% 'summary.formula'
   }
   numstats <- 10 + length(quant)	+ IQR
   if ( NCOL(.data) < 2)  {if(is.data.frame(.data)) {      #
-    if( !is.numeric(.data[,1])) {warning ("You were trying to describe a non-numeric data.frame or vector which describe converted  to numeric.")
+    if( !is.numeric(.data[,1])) {warning ("You were trying to describe a non-numeric data.frame or vector which describe converted to numeric.")
       .data[,1] <- as.numeric(.data[,])
     }
 
@@ -514,7 +515,7 @@ summary_formula = 'Hmisc' %:::% 'summary.formula'
     Iqr <- Quart[,2] -Quart[,1]
     stats[1,11] <- Iqr
     }
-    rownames(stats) <- "X1"
+    rownames(stats) <- keep_names[1]
   } else {
     nvar <- ncol(.data)
     stats = matrix(rep(NA,nvar*numstats),ncol=numstats)    #create a temporary array

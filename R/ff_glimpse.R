@@ -98,9 +98,9 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
   }
 
   cat("Numerics\n")
-  print(df.numeric.out)
+  print(df.numeric.out, row.names = TRUE)
   cat("Factors\n")
-  print(df.factors.out)
+  print(df.factors.out, row.names = TRUE)
 
   return(invisible(
     list(
