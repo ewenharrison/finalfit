@@ -2,9 +2,24 @@
 % Please edit documentation in R/finalfit.R
 \name{finalfit}
 \alias{finalfit}
+\alias{finalfit.lm}
+\alias{finalfit.glm}
+\alias{finalfit.coxph}
 \title{Final output tables for common regression models}
 \usage{
 finalfit(.data, dependent, explanatory, explanatory_multi = NULL,
+  random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "", ...)
+
+finalfit.lm(.data, dependent, explanatory, explanatory_multi = NULL,
+  random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "", ...)
+
+finalfit.glm(.data, dependent, explanatory, explanatory_multi = NULL,
+  random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "", ...)
+
+finalfit.coxph(.data, dependent, explanatory, explanatory_multi = NULL,
   random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE,
   dependent_label_prefix = "Dependent: ", dependent_label_suffix = "", ...)
 }
@@ -48,6 +63,12 @@ of explanatory variable names (continuous or categorical variables) to
 produce a final table for publication including summary statistics. The
 appropriate model is selected on the basis of dependent variable and whether
 a random effect is specified.
+
+\code{finalfit.lm} method (not called directly)
+
+\code{finalfit.glm} method (not called directly)
+
+\code{finalfit.coxph} method (not called directly)
 }
 \examples{
 library(finalfit)
@@ -137,8 +158,4 @@ example.summary \%>\%
 	dependent_label(colon_s, dependent) -> example.final
 example.final
 
-}
-\seealso{
-Other \code{finalfit} all-in-one functions: \code{\link{finalfit.coxph}},
-  \code{\link{finalfit.glm}}, \code{\link{finalfit.lm}}
 }

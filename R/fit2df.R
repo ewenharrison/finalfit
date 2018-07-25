@@ -100,3 +100,540 @@ fit2df <- function(.data, condense, metrics, remove_intercept,
                    digits, confint_sep, ...){
   UseMethod("fit2df")
 }
+
+
+
+#' Extract \code{glm::lm} model fit results to dataframe: \code{finalfit} model extracters
+#'
+#' \code{fit2df.lm} is the model extract method for \code{\link[stats]{lm}}.
+#'
+#' @rdname fit2df
+#' @method fit2df lm
+#' @export
+#'
+
+fit2df.lm <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+                      explanatory_name = "explanatory",
+                      estimate_name = "Coefficient",
+                      estimate_suffix = "",
+                      p_name = "p",
+                      digits=c(2,2,3), confint_sep = " to ", ...){
+
+  if (metrics==TRUE && length(.data)>1){
+    stop("Metrics only generated for single models: multiple models supplied to function")
+  }
+
+  df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+                       estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                       p_name=p_name, digits=digits)
+
+  if (condense==TRUE){
+    df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
+
+  if (remove_intercept==TRUE){
+    df.out = remove_intercept(df.out)
+  }
+
+  # Extract model metrics
+  if (metrics==TRUE){
+    x = .data[[1]]
+    n_model = dim(x$model)[1]
+    n_missing = length(summary(x)$na.action)
+    n_data = n_model+n_missing
+    n_model = dim(x$model)[1]
+    loglik = round(logLik(x), 2)
+    r.squared = signif(summary(x)$r.squared, 2)
+    adj.r.squared = signif(summary(x)$adj.r.squared, 2)
+    metrics.out = paste0(
+      "Number in dataframe = ", n_data,
+      ", Number in model = ", n_model,
+      ", Missing = ", n_missing,
+      ", Log-likelihood = ", loglik,
+      ", R-squared = ", r.squared,
+      ", Adjusted r-squared = ", adj.r.squared)
+  }
+
+  if (metrics==TRUE){
+    return(list(df.out, metrics.out))
+  } else {
+    return(df.out)
+  }
+}
+
+
+
+#' Extract \code{lmuni} and \code{lmmulti} model fit results to dataframe:
+#' \code{finalfit} model extracters
+#'
+#' \code{fit2df.lmlist} is the model extract method for \code{lmuni} and
+#' \code{lmmulti}.
+#'
+#' @rdname fit2df
+#' @method fit2df lmlist
+#' @export
+
+fit2df.lmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+                          explanatory_name = "explanatory",
+                          estimate_name = "Coefficient",
+                          estimate_suffix = "",
+                          p_name = "p",
+                          digits=c(2,2,3), confint_sep = " to ", ...){
+
+  if (metrics==TRUE && length(.data)>1){
+    stop("Metrics only generated for single models: multiple models supplied to function")
+  }
+
+  df.out = plyr::ldply(.data, .id = NULL, extract_fit, explanatory_name=explanatory_name,
+                       estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                       p_name=p_name, digits=digits)
+
+  if (condense==TRUE){
+    df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
+
+  if (remove_intercept==TRUE){
+    df.out = remove_intercept(df.out)
+  }
+
+  # Extract model metrics
+  if (metrics==TRUE){
+    x = .data[[1]]
+    n_model = dim(x$model)[1]
+    n_missing = length(summary(x)$na.action)
+    n_data = n_model+n_missing
+    n_model = dim(x$model)[1]
+    loglik = round(logLik(x), 2)
+    r.squared = signif(summary(x)$r.squared, 2)
+    adj.r.squared = signif(summary(x)$adj.r.squared, 2)
+    metrics.out = paste0(
+      "Number in dataframe = ", n_data,
+      ", Number in model = ", n_model,
+      ", Missing = ", n_missing,
+      ", Log-likelihood = ", loglik,
+      ", R-squared = ", r.squared,
+      ", Adjusted r-squared = ", adj.r.squared)
+  }
+
+  if (metrics==TRUE){
+    return(list(df.out, metrics.out))
+  } else {
+    return(df.out)
+  }
+}
+
+
+
+
+
+#' Extract \code{glm} model fit results to dataframe: \code{finalfit} model
+#' extracters
+#'
+#' \code{fit2df.glm} is the model extract method for standard
+#' \code{\link[stats]{glm}} models, which have not used \code{finalfit} model
+#' wrappers.
+#'
+#' @rdname fit2df
+#' @method fit2df glm
+#' @export
+#'
+fit2df.glm <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+                       explanatory_name = "explanatory",
+                       estimate_name = "OR",
+                       estimate_suffix = "",
+                       p_name = "p",
+                       digits=c(2,2,3), confint_sep = "-", ...){
+
+  df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+                       estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                       p_name=p_name, digits=digits)
+
+  if (condense==TRUE){
+    df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
+
+  if (remove_intercept==TRUE){
+    df.out = remove_intercept(df.out)
+  }
+
+  # Extract model metrics
+  if (metrics==TRUE){
+    x = .data
+    n_data = dim(x$data)[1]
+    n_model = dim(x$model)[1]
+    aic = round(x$aic, 1)
+    auc = round(pROC::roc(x$y, x$fitted)$auc[1], 3)
+    h_l = metrics_hoslem(x$y, x$fitted)
+    metrics.out = paste0(
+      "Number in dataframe = ", n_data,
+      ", Number in model = ", n_model,
+      ", Missing = ", n_data-n_model,
+      ", AIC = ", aic,
+      ", C-statistic = ", auc,
+      ", H&L = ", h_l)
+  }
+
+  if (metrics==TRUE){
+    return(list(df.out, metrics.out))
+  } else {
+    return(df.out)
+  }
+}
+
+
+
+
+#' Extract \code{glmboot} model fit results to dataframe: \code{finalfit} model extracters
+#'
+#' \code{fit2df.glmboot} is the model extract method for \code{\link{glmmulti_boot}} models.
+#'
+#' @rdname fit2df
+#' @method fit2df glmboot
+#' @export
+
+fit2df.glmboot = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+                          explanatory_name = "explanatory",
+                          estimate_name = "OR",
+                          estimate_suffix = "",
+                          p_name = "p",
+                          digits=c(2,2,3), confint_sep = "-", ...){
+  if(metrics == TRUE) warning("Metrics not currently available for this model")
+
+  x = .data
+  d.estimate = digits[1]
+  d.confint = digits[2]
+  d.p = digits[3]
+
+  R = dim(x$t)[1]
+
+  df.out = data.frame(
+    explanatory = names(x$t0),
+    estimate = exp(x$t0))
+  for (i in 1:dim(df.out)[1]){
+    df.out$L95[i] = exp(sort(x$t[,i]))[floor(R*0.025)]
+    df.out$U95[i] = exp(sort(x$t[,i]))[floor((R*0.975)+1)]
+    df.out$p[i] = ifelse(x$t0[i] >= 0, mean(x$t[,i]<0)*2, mean(x$t[,i]>0)*2)
+  }
+  df.out$estimate = round(df.out$estimate, d.estimate)
+  df.out$L95 = round(df.out$L95, d.confint)
+  df.out$U95 = round(df.out$U95, d.confint)
+  df.out$p = round(df.out$p, d.p)
+  colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+
+  if (condense==TRUE){
+    df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
+
+  if (remove_intercept==TRUE){
+    df.out = remove_intercept(df.out)
+  }
+
+  return(df.out)
+}
+
+
+
+
+#' Extract \code{glmuni} and \code{glmmulti} model fit results to dataframe: \code{finalfit} model extracters
+#'
+#' \code{fit2df.glmlist} is the model extract method for \code{glmuni} and \code{glmmulti}.
+#'
+#' @rdname fit2df
+#' @method fit2df glmlist
+#' @export
+
+fit2df.glmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+                           explanatory_name = "explanatory",
+                           estimate_name = "OR",
+                           estimate_suffix = "",
+                           p_name = "p",
+                           digits=c(2,2,3), confint_sep = "-", ...){
+
+  if (metrics==TRUE && length(.data)>1){
+    stop("Metrics only generated for single models: multiple models supplied to function")
+  }
+
+  df.out = plyr::ldply(.data, .id = NULL, extract_fit, explanatory_name=explanatory_name,
+                       estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                       p_name=p_name, digits=digits)
+
+  if (condense==TRUE){
+    df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
+
+  if (remove_intercept==TRUE){
+    df.out = remove_intercept(df.out)
+  }
+
+  # Extract model metrics
+  if (metrics==TRUE){
+    x = .data[[1]]
+    n_data = dim(x$data)[1]
+    n_model = dim(x$model)[1]
+    aic = round(x$aic, 1)
+    auc = round(pROC::roc(x$y, x$fitted)$auc[1], 3)
+    h_l = metrics_hoslem(x$y, x$fitted)
+    metrics.out = paste0(
+      "Number in dataframe = ", n_data,
+      ", Number in model = ", n_model,
+      ", Missing = ", n_data-n_model,
+      ", AIC = ", aic,
+      ", C-statistic = ", auc,
+      ", H&L = ", h_l)
+  }
+
+  if (metrics==TRUE){
+    return(list(df.out, metrics.out))
+  } else {
+    return(df.out)
+  }
+}
+
+
+
+
+#' Extract \code{lmerMod} model fit results to dataframe: \code{finalfit} model
+#' extracters
+#'
+#' \code{fit2df.lmerMod} is the model extract method for standard
+#' \code{lme4::\link[lme4]{lmer}} models and for the
+#' \code{finalfit::\link{lmmixed}} model wrapper.
+#'
+#' @rdname fit2df
+#' @method fit2df lmerMod
+#' @export
+
+fit2df.lmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+                          explanatory_name = "explanatory",
+                          estimate_name = "OR",
+                          estimate_suffix = "",
+                          p_name = "p",
+                          digits=c(2,2,3), confint_sep = "-", ...){
+
+  df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+                       estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                       p_name=p_name, digits=digits)
+
+  if (condense==TRUE){
+    df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
+
+  if (remove_intercept==TRUE){
+    df.out = remove_intercept(df.out)
+  }
+
+  # Extract model metrics
+  if (metrics==TRUE){
+    x = .data
+    n_model = length(x@resp$mu)
+    n_groups = summary(x)$ngrps
+    loglik = round(summary(x)$logLik, 2)
+    aic = round(summary(x)$AICtab[[1]], 1)
+    metrics.out = paste0(
+      "Number in model = ", n_model,
+      ", Number of groups = ", paste(n_groups, collapse="/"),
+      ", Log likelihood = ", loglik,
+      ", REML criterion = ", aic)
+  }
+
+  if (metrics==TRUE){
+    return(list(df.out, metrics.out))
+  } else {
+    return(df.out)
+  }
+}
+
+
+
+
+#' Extract \code{glmerMod} model fit results to dataframe: \code{finalfit} model
+#' extracters
+#'
+#' \code{fit2df.glmerMod} is the model extract method for standard
+#' \code{lme4::\link[lme4]{glmer}} models and for the
+#' \code{finalfit::\link{glmmixed}} model wrapper.
+#'
+#' @rdname fit2df
+#' @method fit2df glmerMod
+#' @export
+
+fit2df.glmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+                           explanatory_name = "explanatory",
+                           estimate_name = "OR",
+                           estimate_suffix = "",
+                           p_name = "p",
+                           digits=c(2,2,3), confint_sep = "-", ...){
+
+  df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+                       estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                       p_name=p_name, digits=digits)
+
+  if (condense==TRUE){
+    df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
+
+  if (remove_intercept==TRUE){
+    df.out = remove_intercept(df.out)
+  }
+
+
+  # Extract model metrics
+  if (metrics==TRUE){
+    x = .data
+    n_model = length(x@resp$mu)
+    n_groups = summary(x)$ngrps
+    aic = round(summary(x)$AICtab[[1]], 1)
+    auc = round(pROC::roc(x@resp$y, x@resp$mu)$auc[1], 3)
+    metrics.out = paste0(
+      "Number in model = ", n_model,
+      ", Number of groups = ", paste(n_groups, collapse="/"),
+      ", AIC = ", aic,
+      ", C-statistic = ", auc)
+  }
+
+  if (metrics==TRUE){
+    return(list(df.out, metrics.out))
+  } else {
+    return(df.out)
+  }
+}
+
+
+
+
+#' Extract \code{survival::coxph} model fit results to dataframe: \code{finalfit} model extracters
+#'
+#' \code{fit2df.coxph} is the model extract method for \code{survival::\link[survival]{coxph}}.
+#'
+#' @rdname fit2df
+#' @method fit2df coxph
+#' @export
+#'
+fit2df.coxph <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+                         explanatory_name = "explanatory",
+                         estimate_name = "HR",
+                         estimate_suffix = "",
+                         p_name = "p",
+                         digits=c(2,2,3), confint_sep = "-", ...){
+  if(metrics==TRUE) warning("Metrics not currently available for this model")
+
+  df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+                       estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                       p_name=p_name, digits=digits)
+
+  if (condense==TRUE){
+    df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
+  return(df.out)
+}
+
+
+
+
+#' Extract \code{coxphuni} and \code{coxphmulti} model fit results to dataframe: \code{finalfit} model extracters
+#'
+#' \code{fit2df.coxphlist} is the model extract method for \code{coxphuni} and \code{coxphmulti}.
+#'
+#' @rdname fit2df
+#' @method fit2df coxphlist
+#' @export
+
+fit2df.coxphlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+                             explanatory_name = "explanatory",
+                             estimate_name = "HR",
+                             estimate_suffix = "",
+                             p_name = "p",
+                             digits=c(2,2,3), confint_sep = "-", ...){
+  if(metrics==TRUE) warning("Metrics not currently available for this model")
+
+  df.out = plyr::ldply(.data, .id = NULL, extract_fit, explanatory_name=explanatory_name,
+                       estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                       p_name=p_name, digits=digits)
+
+  if (condense==TRUE){
+    df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
+  return(df.out)
+}
+
+
+
+
+#' Extract \code{stanfit} model fit results to dataframe: \code{finalfit} model
+#' extracters
+#'
+#' \code{fit2df.stanfit} is the model extract method for our standard Bayesian
+#' hierarchical binomial logistic regression models. These models will be fully
+#' documented separately. However this should work for a single or multilevel
+#' Bayesian logistic regression done in Stan, as long as the fixed effects are
+#' specified in the parameters block as a vector named \code{beta}, of length
+#' \code{P}, where \code{P} is the number of fixed effect parameters. e.g.
+#' parameters{ vector[P] beta; }
+#'
+#' @rdname fit2df
+#' @method fit2df stanfit
+#' @export
+#'
+fit2df.stanfit = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+                          explanatory_name = "explanatory",
+                          estimate_name = "OR",
+                          estimate_suffix = "",
+                          p_name = "p",
+                          digits=c(2,2,3), confint_sep = "-", ...){
+  args = list(...)
+
+  if(is.null(args$X)) stop("Must include design matrix from Stan procedure, e.g. X=X")
+
+  df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+                       estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                       p_name=p_name, digits=digits, X=args$X)
+
+  if (condense==TRUE){
+    df.out = condense_fit(df.out, explanatory_name=explanatory_name,
+                          estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+                          p_name=p_name, digits=digits, confint_sep=confint_sep)
+  }
+
+  if (remove_intercept==TRUE){
+    df.out = remove_intercept(df.out)
+  }
+
+  # Extract model metrics
+  if (metrics==TRUE){
+    # n_data = dim(x$data)[1] # no equivalent here
+    n_model = dim(args$X)[1]
+    # aic = round(x$aic, 1) # add WAIC later?
+    # auc = round(roc(x$y, x$fitted)$auc[1], 3) # Add predicted mu later?
+    metrics.out = paste0(
+      #	"Number in dataframe = ", n_data,
+      ", Number in model = ", n_model)
+    #	", Missing = ", n_data-n_model,
+    #	", AIC = ", aic,
+    #	", C-statistic = ", auc)
+  }
+
+  if (metrics==TRUE){
+    return(list(df.out, metrics.out))
+  } else {
+    return(df.out)
+  }
+  return(df.out)
+}

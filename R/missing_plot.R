@@ -29,16 +29,16 @@ missing_plot <- function(.data, dependent=NULL, explanatory=NULL,
   }
 
   # Replace missings with 1s
-  .data %>%
+  df.in %>%
     dplyr::mutate_all(.fun = function(x){
       ifelse(is.na(x), 1, 0)
-    }) -> .data
+    }) -> df.in
 
   # Take dataframe rownames for x-axis
-  .data$.id = rownames(.data) %>% as.numeric()
+  df.in$.id = rownames(df.in) %>% as.numeric()
 
   # Gather to key and values for plot
-  .data %>%
+  df.in %>%
     tidyr::gather("var", "value", -.id, factor_key = TRUE) -> plot_df
 
   # Plot title
