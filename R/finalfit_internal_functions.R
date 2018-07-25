@@ -400,7 +400,7 @@ dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suf
 #' Not called directly.
 #'
 #' @param .data Dataframe.
-#' @param dependent Character vector of length 1:  quoted name of depdendent
+#' @param dependent Character vector of length 1: quoted name of dependent
 #'   variable. Can be continuous, a binary factor, or a survival object of form
 #'   \code{Surv(time, status)}
 #' @param prefix Prefix for dependent label
@@ -424,7 +424,7 @@ plot_title = function(.data, dependent, dependent_label, prefix = "", suffix="")
 }
 
 # Specify global variables
-globalVariables(c("L95", "U95", "fit_id", "Total", "OR", "HR", "."))
+globalVariables(c("L95", "U95", "fit_id", "Total", "OR", "HR", ".", ".id", "var", "value"))
 
 
 
@@ -721,11 +721,11 @@ interp.median  <-  function(x,w=1,na.rm=TRUE) {
 #'   https://personality-project.org/r/psych-manual.pdf
 interp.quantiles  <-   function(x,q=.5,w=1,na.rm=TRUE) {
     if (!(q>0) | !(q<1) ) {stop("quantiles most be greater than 0 and less than 1 q = ",q)}
-    if(is.vector(x)) {im <- interp.q(x,q,w,na.rm=na.rm) } else {
+    if(is.vector(x)) {im <- interp.quantiles(x,q,w,na.rm=na.rm) } else {
       if((is.matrix(x) | is.data.frame(x)) ){
         n <- dim(x)[2]
         im <- matrix(NA,ncol=n)
-        for (i in 1:n) {im[i] <- interp.q(x[,i],q,w=w,na.rm=na.rm)}
+        for (i in 1:n) {im[i] <- interp.quantiles(x[,i],q,w=w,na.rm=na.rm)}
         colnames(im) <- colnames(x)
       } else {stop('The data must be either a vector, a matrix, or a data.frame')}
       return(im)

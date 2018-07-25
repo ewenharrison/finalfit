@@ -22,10 +22,14 @@
 #' colon_s %>%
 #' 	finalfit_missing(dependent, explanatory)
 #'
-ff_missing = function(.data, dependent, explanatory){
-  keep = names(.data) %in% c(dependent, explanatory)
-  df.out = .data[keep]
-  mice::md.pattern(df.out)
+ff_missing = function(.data, dependent=NULL, explanatory=NULL){
+  if(is.null(dependent) && is.null(explanatory)){
+    df.in = .data
+  }else{
+    keep = names(.data) %in% c(dependent, explanatory)
+    df.in = .data[keep]
+  }
+  mice::md.pattern(df.in)
 }
 
 #' @rdname ff_missing

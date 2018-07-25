@@ -15,6 +15,7 @@ Imports:
     boot,
     broom,
     dplyr,
+    forcats,
     ggplot2,
     grid,
     gridExtra,
@@ -27,7 +28,8 @@ Imports:
     stats,
     stringr,
     survival,
-    survminer
+    survminer,
+    tidyr
 RoxygenNote: 6.0.1
 Suggests:
     knitr,

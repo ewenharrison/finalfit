@@ -9,7 +9,7 @@ plot_title(.data, dependent, dependent_label, prefix = "", suffix = "")
 \arguments{
 \item{.data}{Dataframe.}
 
-\item{dependent}{Character vector of length 1:  quoted name of depdendent
+\item{dependent}{Character vector of length 1: quoted name of dependent
 variable. Can be continuous, a binary factor, or a survival object of form
 \code{Surv(time, status)}}
 

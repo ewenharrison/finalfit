@@ -27,8 +27,8 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
   if(is.null(dependent) && is.null(explanatory)){
     df.in = .data
   }else{
-    .data %>%
-      dplyr::select(dependent, explanatory) -> df.in
+    keep = names(.data) %in% c(dependent, explanatory)
+    df.in = .data[keep]
   }
 
   # Continuous
@@ -49,8 +49,7 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
     }) %>%
     do.call(rbind, .) -> df.numeric.out2
 
-  df.numeric.out = data.frame(df.numeric.out1, df.numeric.out2)
-  df.numeric.out = df.numeric.out[,c(1,8, 2:7)]
+  df.numeric.out = data.frame(df.numeric.out2, df.numeric.out1)
 
   }else{
     df.numeric.out = df.numeric
@@ -81,17 +80,12 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
                                 format(digits = 2) %>%
                                 paste(collapse=", "),
                               "-")
-      list(label=label, levels=levels, level_n=levels_n, n=n,
+      list(label=label, n=n, level_n=levels_n, levels=levels,
            levels_count=levels_count, levels_percent = levels_percent)
     }
     ) %>%
     do.call(rbind, .) %>%
     data.frame() -> df.factors.out
-
-  # df.factors.out$column = rownames(df.factors.out)
-  # rownames(df.factors.out) <- c()
-  # df.factors.out = df.factors.out[,c(7, 1:6)]
-  df.factors.out = df.factors.out[,1:6]
 
   }else{
     df.factors.out = df.factors
@@ -99,7 +93,7 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
 
   cat("Numerics\n")
   print(df.numeric.out, row.names = TRUE)
-  cat("Factors\n")
+  cat("\nFactors\n")
   print(df.factors.out, row.names = TRUE)
 
   return(invisible(

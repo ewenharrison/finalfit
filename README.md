@@ -29,7 +29,7 @@ install.packages("dplyr")
 Vignettes
 ---------
 
-[Finalfit basics](https://cran.r-project.org/web/packages/finalfit/vignettes/finalfit_basics.html)
+[Finalfit basics](https://CRAN.R-project.org/package=finalfit/vignettes/finalfit_basics.html)
 
 [Bootstrapping for model prediction](http://www.datasurg.net/2018/07/12/finalfit-now-includes-bootstrap-simulation-for-model-prediction/)
 

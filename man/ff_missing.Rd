@@ -5,9 +5,9 @@
 \alias{finalfit_missing}
 \title{Characterise missing data for \code{finalfit} models}
 \usage{
-ff_missing(.data, dependent, explanatory)
+ff_missing(.data, dependent = NULL, explanatory = NULL)
 
-finalfit_missing(.data, dependent, explanatory)
+finalfit_missing(.data, dependent = NULL, explanatory = NULL)
 }
 \arguments{
 \item{.data}{Dataframe. Missing values must be coded \code{NA}.}
