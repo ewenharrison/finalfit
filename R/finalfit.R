@@ -128,11 +128,15 @@ finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, rando
   if(is.null(explanatory)) stop("No explanatory variable(s) provided")
   if(is.null(dependent)) stop("No dependent variable provided")
 
-  args = list(.data=.data, dependent=dependent, explanatory=explanatory, explanatory_multi=explanatory_multi,
+  args = list(.data=.data, dependent=dependent, explanatory=explanatory,
+              explanatory_multi=explanatory_multi,
               random_effect=random_effect, metrics=metrics,
               add_dependent_label = add_dependent_label,
               dependent_label_prefix=dependent_label_prefix,
               dependent_label_suffix=dependent_label_suffix, ...=...)
+
+  # Fix tibble issue
+  if(any(class(.data) %in% c("tbl_df", "tbl")))  .data = data.frame(.data)
 
   # What is dependent variable
   d_variable = .data[,names(.data) %in% dependent]
