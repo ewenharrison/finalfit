@@ -63,6 +63,8 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
    df.factors %>%
     lapply(function(x){
       n = which(!is.na(x)) %>% length()
+      missing_n = which(is.na(x)) %>% length()
+      missing_percent = format(missing_n*100/n, digits = 2)
       label = attr(x, "label")
       levels_n = length(levels(x))
       levels = ifelse(is.factor(x),
@@ -80,7 +82,8 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1){
                                 format(digits = 2) %>%
                                 paste(collapse=", "),
                               "-")
-      list(label=label, n=n, level_n=levels_n, levels=levels,
+      list(label=label, n=n, missing_n = missing_n, missing_percent = missing_percent,
+           level_n=levels_n, levels=levels,
            levels_count=levels_count, levels_percent = levels_percent)
     }
     ) %>%

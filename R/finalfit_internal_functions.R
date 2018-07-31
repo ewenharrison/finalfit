@@ -475,67 +475,70 @@ summary_formula = 'Hmisc' %:::% 'summary.formula'
 #'   Homepage: https://personality-project.org/r/psych
 #'   https://personality-project.org/r/psych-manual.pdf
 #'
+
+# From psych, needs a bit of a clean-up.
 ff_describe <- function (.data, na.rm=TRUE, interp=FALSE, skew=TRUE, ranges=TRUE, trim=.1, type=3,
-                           check=TRUE, fast=NULL, quant=NULL, IQR=FALSE, omit=FALSE){
-  keep_names <- names(.data)
+                         check=TRUE, fast=NULL, quant=NULL, IQR=FALSE, omit=FALSE){
+  x = .data
+  keep_names <- names(x)
   cl <- match.call()
   #first, define a local function
   valid <- function(x) {sum(!is.na(x))}
-  if(!na.rm) x <- na.omit(x)   #just complete cases
+  if(!na.rm) x <- na.omit(x)   #this is original, but seem wrong way round to me
 
   if(is.null(fast)) {
-    if (prod(dim(.data)) > 10^7) {fast <- TRUE } else {fast <- FALSE}}  #the default is to use fast for large data sets
+    if (prod(dim(x)) > 10^7) {fast <- TRUE } else {fast <- FALSE}}  #the default is to use fast for large data sets
   if(fast) {skew <- FALSE
   }
   numstats <- 10 + length(quant)	+ IQR
-  if ( NCOL(.data) < 2)  {if(is.data.frame(.data)) {      #
-    if( !is.numeric(.data[,1])) {warning ("You were trying to describe a non-numeric data.frame or vector which describe converted to numeric.")
-      .data[,1] <- as.numeric(.data[,])
+  if ( NCOL(x) < 2)  {if(is.data.frame(x)) {      #
+    if( !is.numeric(x[,1])) {warning ("You were trying to describe a non-numeric data.frame or vector which describe converted to numeric.")
+      x[,1] <- as.numeric(x[,])
     }
 
-    .data <- .data[,1] }   #getting around the problem of single column data frames
+    x <- x[,1] }   #getting around the problem of single column data frames
     #do it for vectors or
     len  <- 1
     nvar <- 1
     stats = matrix(rep(NA,numstats),ncol=numstats)    #create a temporary array
-    stats[1, 1] <-  valid(.data )
-    stats[1, 2] <-  mean(.data, na.rm=na.rm )
-    stats[1, 10] <- sd(.data,na.rm=na.rm)
-    if(interp) {stats[1, 3] <- interp.median(.data,na.rm=na.rm  ) }  else {stats[1,3] <- median(.data,na.rm=na.rm) }
-    stats[1,9] <- mean(.data,na.rm=na.rm, trim=trim)
-    stats[1, 4] <-  min(.data, na.rm=na.rm )
-    stats[1, 5] <-  max(.data, na.rm=na.rm )
-    stats[1, 6] <-  skew(.data,na.rm=na.rm,type=type  )
-    stats[1, 7] <-  mad(.data,na.rm=na.rm)
-    stats[1, 8] <-  kurtosi(.data,na.rm=na.rm,type=type)
+    stats[1, 1] <-  valid(x )
+    stats[1, 2] <-  mean(x, na.rm=na.rm )
+    stats[1, 10] <- sd(x,na.rm=na.rm)
+    if(interp) {stats[1, 3] <- interp.median(x,na.rm=na.rm  ) }  else {stats[1,3] <- median(x,na.rm=na.rm) }
+    stats[1, 9] <- mean(x,na.rm=na.rm, trim=trim)
+    stats[1, 4] <-  min(x, na.rm=na.rm )
+    stats[1, 5] <-  max(x, na.rm=na.rm )
+    stats[1, 6] <-  skew(x,na.rm=na.rm,type=type  )
+    stats[1, 7] <-  mad(x,na.rm=na.rm)
+    stats[1, 8] <-  kurtosi(x,na.rm=na.rm,type=type)
     vars <- 1
-    if(!is.null(quant)) { Qnt <- quantile(.data,prob=quant,na.rm=TRUE)
+    if(!is.null(quant)) { Qnt <- quantile(x,prob=quant,na.rm=TRUE)
     stats[1,(IQR+11):numstats] <- t(Qnt)}
-    if(IQR) {Quart <- t(quantile(.data,prob=c(.25,.75),na.rm=TRUE))
+    if(IQR) {Quart <- t(quantile(x,prob=c(.25,.75),na.rm=TRUE))
     Iqr <- Quart[,2] -Quart[,1]
     stats[1,11] <- Iqr
     }
     rownames(stats) <- keep_names[1]
   } else {
-    nvar <- ncol(.data)
+    nvar <- ncol(x)
     stats = matrix(rep(NA,nvar*numstats),ncol=numstats)    #create a temporary array
 
-    if(is.null(colnames(.data))) colnames(.data) <- paste0("X",1:ncol(.data))
-    rownames(stats) <- colnames(.data)
-    stats[,1] <- apply(.data,2,valid)
+    if(is.null(colnames(x))) colnames(x) <- paste0("X",1:ncol(x))
+    rownames(stats) <- colnames(x)
+    stats[,1] <- apply(x,2,valid)
     vars <- c(1:nvar)
     ##adapted from the pairs function to convert logical or categorical to numeric
     select <- 1:nvar
 
-    if(!is.matrix(.data) && check) {  #does not work for matrices
+    if(!is.matrix(x) && check) {  #does not work for matrices
       for(i in 1:nvar) {
-        if(!is.numeric(.data[[i]] ))  {
-          if(fast)  {.data[[i]] <- NA} else {
+        if(!is.numeric(x[[i]] ))  {
+          if(fast)  {x[[i]] <- NA} else {
             if(omit) {select[i] <- NA}
-            if(is.factor(unlist(.data[[i]])) | is.character(unlist(.data[[i]]))) {  .data[[i]] <- as.numeric(.data[[i]])
+            if(is.factor(unlist(x[[i]])) | is.character(unlist(x[[i]]))) {  x[[i]] <- as.numeric(x[[i]])
             rownames(stats)[i] <- paste(rownames(stats)[i],"*",sep="")
 
-            } else {.data[[i]] <- NA}
+            } else {x[[i]] <- NA}
 
           }
         }
@@ -545,38 +548,38 @@ ff_describe <- function (.data, na.rm=TRUE, interp=FALSE, skew=TRUE, ranges=TRUE
 
     select <- select[!is.na(select)]
 
-    .data <- as.matrix(.data[,select])
+    x <- as.matrix(x[,select])
     vars <- vars[select]
 
     stats <- stats[select,]
-    if(!is.numeric(.data)) {message("Converted non-numeric matrix input to numeric.  Are you sure you wanted to do this. Please check your data")
-      .data <- matrix(as.numeric(.data),ncol=nvar)
+    if(!is.numeric(x)) {message("Converted non-numeric matrix input to numeric.  Are you sure you wanted to do this. Please check your data")
+      x <- matrix(as.numeric(x),ncol=nvar)
       rownames(stats) <- paste0(rownames(stats),"*")}
 
-    stats[,2] <- apply(.data, 2,mean,na.rm=na.rm )
-    stats[,10] <- apply(.data,2,sd,na.rm=na.rm)
+    stats[,2] <- apply(x, 2,mean,na.rm=na.rm )
+    stats[,10] <- apply(x,2,sd,na.rm=na.rm)
 
 
-    if (skew) {stats[, 6] <-  skew(.data,na.rm=na.rm,type=type  )
-    stats[,8] <- kurtosi(.data,na.rm=na.rm,type=type)}
+    if (skew) {stats[, 6] <-  skew(x,na.rm=na.rm,type=type  )
+    stats[,8] <- kurtosi(x,na.rm=na.rm,type=type)}
 
 
     if(ranges) {
       if(fast) {
-        stats[,4] <- apply(.data,2,min,na.rm=na.rm)
-        stats[,5] <- apply(.data,2,max,na.rm = na.rm)
+        stats[, 4] <- apply(x,2,min,na.rm=na.rm)
+        stats[, 5] <- apply(x,2,max,na.rm = na.rm)
       } else {
-        stats[, 4] <-  apply(.data,2,min, na.rm=na.rm )
-        stats[, 5] <-  apply(.data,2,max, na.rm=na.rm )
-        stats[,7] <-   apply(.data,2,mad, na.rm=na.rm)
-        stats[,9]  <- apply(.data,2, mean,na.rm=na.rm,trim=trim)
-        if(interp) {stats[, 3] <- apply(.data,2,interp.median,na.rm=na.rm  ) }  else {stats[,3] <- apply(.data,2,median,na.rm=na.rm) }
+        stats[, 4] <-  apply(x,2,min, na.rm=na.rm )
+        stats[, 5] <-  apply(x,2,max, na.rm=na.rm )
+        stats[, 7] <-   apply(x,2,mad, na.rm=na.rm)
+        stats[, 9]  <- apply(x,2, mean,na.rm=na.rm,trim=trim)
+        if(interp) {stats[, 3] <- apply(x,2,interp.median,na.rm=na.rm  ) }  else {stats[,3] <- apply(x,2,median,na.rm=na.rm) }
       }}
 
-    if(!is.null(quant)) { Qnt <- apply(.data,2,quantile,prob=quant,na.rm=TRUE)
+    if(!is.null(quant)) { Qnt <- apply(x,2,quantile,prob=quant,na.rm=TRUE)
     stats[,(IQR+11):numstats] <- t(Qnt)}
 
-    if(IQR) {Quart <- t(apply(.data,2,quantile,prob=c(.25,.75),na.rm=TRUE))
+    if(IQR) {Quart <- t(apply(x,2,quantile,prob=c(.25,.75),na.rm=TRUE))
     Iqr <- Quart[,2] - Quart[,1]
     stats[,11] <- Iqr
     }
@@ -587,16 +590,33 @@ ff_describe <- function (.data, na.rm=TRUE, interp=FALSE, skew=TRUE, ranges=TRUE
 
   #the following output was cleaned up on June 22, 2016 added the quantile information.
 
+
+  # Hate to do this in the way, but need to add in missing data info
+  ## This all needs stripped down
+  observations_n = dim(.data)[1]
+  missing_n = observations_n - stats[, 1]
+  missing_percent = format(
+    missing_n*100/observations_n,
+    digits = 2)
+
+
+
   #the various options are ranges, skew, fast, numstats > 10
   if(fast) { answer <-  data.frame(vars=vars,n = stats[,1],mean=stats[,2], sd = stats[,10],se=stats[,10]/sqrt(stats[,1])) }  #minimal case
 
   #if((!skew) && ranges) {answer <-  data.frame(vars=vars,n = stats[,1],mean=stats[,2], sd = stats[,10],min= stats[,4],max=stats[,5], range=stats[,5]-stats[,4],se=stats[,10]/sqrt(stats[,1])) }
   if(skew) {
-    if(ranges) { answer  <-  data.frame(vars=vars,n = stats[,1],mean=stats[,2], sd = stats[,10], median = stats[, 3],trimmed =stats[,9], mad = stats[,7], min= stats[,4],max=stats[,5],
-                                        range=stats[,5]-stats[,4],skew = stats[, 6], kurtosis = stats[,8],se=stats[,10]/sqrt(stats[,1])) } else {
-                                          answer  <-  data.frame(vars=vars,n = stats[,1],mean=stats[,2], sd = stats[,10],skew = stats[, 6], kurtosis = stats[,8],se=stats[,10]/sqrt(stats[,1])) }
-  } else {if(ranges) {answer <-  data.frame(vars=vars,n = stats[,1],mean=stats[,2], sd = stats[,10],min= stats[,4],max=stats[,5], range=stats[,5]-stats[,4],se=stats[,10]/sqrt(stats[,1])) } else {
-    answer  <-  data.frame(vars=vars,n = stats[,1],mean=stats[,2], sd = stats[,10],se=stats[,10]/sqrt(stats[,1]))   }
+    if(ranges) { answer  <-
+      data.frame(vars=vars,n = stats[,1],mean=stats[,2], sd = stats[,10], median = stats[, 3],trimmed =stats[,9], mad = stats[,7], min= stats[,4],max=stats[,5],
+                 range=stats[,5]-stats[,4],skew = stats[, 6], kurtosis = stats[,8],se=stats[,10]/sqrt(stats[,1])) } else {
+                   answer  <-  data.frame(vars=vars,n = stats[,1],mean=stats[,2], sd = stats[,10],skew = stats[, 6], kurtosis = stats[,8],se=stats[,10]/sqrt(stats[,1])) }
+  } else {if(ranges) {answer <-
+    data.frame(vars=vars,n = stats[,1],
+               missing_n = missing_n,
+               missing_percent = missing_percent,
+               mean=stats[,2],
+               sd = stats[,10],min= stats[,4],max=stats[,5], range=stats[,5]-stats[,4],se=stats[,10]/sqrt(stats[,1])) } else {
+      answer  <-  data.frame(vars=vars,n = stats[,1],mean=stats[,2], sd = stats[,10],se=stats[,10]/sqrt(stats[,1]))   }
   }
   if(IQR) answer <- data.frame(answer,IQR=stats[,11])
 
@@ -606,12 +626,15 @@ ff_describe <- function (.data, na.rm=TRUE, interp=FALSE, skew=TRUE, ranges=TRUE
     answer <- data.frame(answer, t(stats[,(IQR+11):numstats])) }
   }
 
+
+
+
+
   class(answer) <- c("psych","describe","data.frame")
   return(answer)
 }
 
 
-#' Skew from psych
 #'
 #' Internal only
 #'
@@ -621,34 +644,34 @@ ff_describe <- function (.data, na.rm=TRUE, interp=FALSE, skew=TRUE, ranges=TRUE
 #'
 #' @keywords internal
 skew <-  function (x, na.rm = TRUE,type=3)
-  {
-    if (length(dim(x)) == 0) {
-      if (na.rm) {
-        x <- x[!is.na(x)]
-      }
-      sdx <- sd(x,na.rm=na.rm)
-      mx <- mean(x)
-      n <- length(x[!is.na(x)])
-      switch(type,
-             {skewer <- sqrt(n) *( sum((x - mx)^3,  na.rm = na.rm)/( sum((x - mx)^2,na.rm = na.rm)^(3/2)))}, #case 1
-             {skewer <- n *sqrt(n-1) *( sum((x - mx)^3,  na.rm = na.rm)/((n-2) * sum((x - mx)^2,na.rm = na.rm)^(3/2)))}, #case 2
-             {skewer <- sum((x - mx)^3)/(n * sd(x)^3) })  #case 3
-    } else {
-
-      skewer <- rep(NA,dim(x)[2])
-      if (is.matrix(x)) {mx <- colMeans(x,na.rm=na.rm)} else {mx <- apply(x,2,mean,na.rm=na.rm)}
-      sdx <- apply(x,2,sd,na.rm=na.rm)
-      for (i in 1:dim(x)[2]) {
-        n <- length(x[!is.na(x[,i]),i])
-        switch(type,
-               {skewer[i] <-sqrt(n) *( sum((x[,i] - mx[i])^3,  na.rm = na.rm)/( sum((x[,i] - mx[i])^2,na.rm = na.rm)^(3/2)))}, #type 1
-               {skewer[i] <- n *sqrt(n-1) *( sum((x[,i] - mx[i])^3,  na.rm = na.rm)/((n-2) * sum((x[,i] - mx[i])^2,na.rm = na.rm)^(3/2)))},#type 2
-               {skewer[i] <- sum((x[,i] - mx[i])^3,  na.rm = na.rm)/(n * sdx[i]^3)} #type 3
-        ) #end switch
-      } #end loop
+{
+  if (length(dim(x)) == 0) {
+    if (na.rm) {
+      x <- x[!is.na(x)]
     }
-    return(skewer)
+    sdx <- sd(x,na.rm=na.rm)
+    mx <- mean(x)
+    n <- length(x[!is.na(x)])
+    switch(type,
+           {skewer <- sqrt(n) *( sum((x - mx)^3,  na.rm = na.rm)/( sum((x - mx)^2,na.rm = na.rm)^(3/2)))}, #case 1
+           {skewer <- n *sqrt(n-1) *( sum((x - mx)^3,  na.rm = na.rm)/((n-2) * sum((x - mx)^2,na.rm = na.rm)^(3/2)))}, #case 2
+           {skewer <- sum((x - mx)^3)/(n * sd(x)^3) })  #case 3
+  } else {
+
+    skewer <- rep(NA,dim(x)[2])
+    if (is.matrix(x)) {mx <- colMeans(x,na.rm=na.rm)} else {mx <- apply(x,2,mean,na.rm=na.rm)}
+    sdx <- apply(x,2,sd,na.rm=na.rm)
+    for (i in 1:dim(x)[2]) {
+      n <- length(x[!is.na(x[,i]),i])
+      switch(type,
+             {skewer[i] <-sqrt(n) *( sum((x[,i] - mx[i])^3,  na.rm = na.rm)/( sum((x[,i] - mx[i])^2,na.rm = na.rm)^(3/2)))}, #type 1
+             {skewer[i] <- n *sqrt(n-1) *( sum((x[,i] - mx[i])^3,  na.rm = na.rm)/((n-2) * sum((x[,i] - mx[i])^2,na.rm = na.rm)^(3/2)))},#type 2
+             {skewer[i] <- sum((x[,i] - mx[i])^3,  na.rm = na.rm)/(n * sdx[i]^3)} #type 3
+      ) #end switch
+    } #end loop
   }
+  return(skewer)
+}
 
 
 
@@ -661,41 +684,41 @@ skew <-  function (x, na.rm = TRUE,type=3)
 #'   Homepage: https://personality-project.org/r/psych
 #'   https://personality-project.org/r/psych-manual.pdf
 kurtosi <-  function (x, na.rm = TRUE,type=3)
-  {
-    if (length(dim(x)) == 0) {
-      if (na.rm) {
-        x <- x[!is.na(x)]
-      }
-      if (is.matrix(x) ) { mx <- colMeans(x,na.rm=na.rm)} else {mx <- mean(x,na.rm=na.rm)}
-      sdx <- sd(x,na.rm=na.rm)
-      n <- length(x[!is.na(x)])
+{
+  if (length(dim(x)) == 0) {
+    if (na.rm) {
+      x <- x[!is.na(x)]
+    }
+    if (is.matrix(x) ) { mx <- colMeans(x,na.rm=na.rm)} else {mx <- mean(x,na.rm=na.rm)}
+    sdx <- sd(x,na.rm=na.rm)
+    n <- length(x[!is.na(x)])
+    switch(type,
+           {kurt <- sum((x - mx)^4,  na.rm = na.rm)*n /(sum((x - mx)^2,na.rm = na.rm)^2)  -3},  #type 1
+           {
+             kurt <- n*(n + 1)*sum((x - mx)^4,  na.rm = na.rm)/( (n - 1)*(n - 2)*(n - 3)*(sum((x - mx)^2,na.rm = na.rm)/(n - 1))^2)  -3 *(n- 1)^2 /((n - 2)*(n - 3)) }, # type 2
+           {kurt <- sum((x - mx)^4)/(n *sdx^4)  -3} )  #	type 3
+  } else {
+
+    kurt <- rep(NA,dim(x)[2])
+    #  mx <- mean(x,na.rm=na.rm)
+    mx <-apply(x,2 ,mean,na.rm=na.rm)
+    if(type==3)  sdx <- apply(x,2,sd,na.rm=na.rm)
+
+    for (i in 1:dim(x)[2]) {
+      n <- length(x[!is.na(x[,i]),i])
       switch(type,
-             {kurt <- sum((x - mx)^4,  na.rm = na.rm)*n /(sum((x - mx)^2,na.rm = na.rm)^2)  -3},  #type 1
+             { kurt[i] <- sum((x[,i] - mx[i])^4,  na.rm = na.rm)*length(x[,i]) /(sum((x[,i] - mx[i])^2,na.rm = na.rm)^2)  -3},  #type 1
              {
-               kurt <- n*(n + 1)*sum((x - mx)^4,  na.rm = na.rm)/( (n - 1)*(n - 2)*(n - 3)*(sum((x - mx)^2,na.rm = na.rm)/(n - 1))^2)  -3 *(n- 1)^2 /((n - 2)*(n - 3)) }, # type 2
-             {kurt <- sum((x - mx)^4)/(n *sdx^4)  -3} )  #	type 3
-    } else {
-
-      kurt <- rep(NA,dim(x)[2])
-      #  mx <- mean(x,na.rm=na.rm)
-      mx <-apply(x,2 ,mean,na.rm=na.rm)
-      if(type==3)  sdx <- apply(x,2,sd,na.rm=na.rm)
-
-      for (i in 1:dim(x)[2]) {
-        n <- length(x[!is.na(x[,i]),i])
-        switch(type,
-               { kurt[i] <- sum((x[,i] - mx[i])^4,  na.rm = na.rm)*length(x[,i]) /(sum((x[,i] - mx[i])^2,na.rm = na.rm)^2)  -3},  #type 1
-               {
-                 xi <- x[,i]-mx[i]
-                 kurt[i] <- n*(n + 1)*sum((x[,i] - mx[i])^4,  na.rm = na.rm)/( (n - 1)*(n - 2)*(n - 3)*(sum((x[,i] - mx[i])^2,na.rm = na.rm)/(n - 1))^2)  -3 *(n- 1)^2 /((n - 2)*(n - 3)) }  #type 2
-               ,
-               {
-                 kurt[i] <- sum((x[,i] - mx[i])^4,  na.rm = na.rm)/((length(x[,i]) - sum(is.na(x[,i]))) * sdx[i]^4)  -3},  #type 3
-               {NULL})
-        names(kurt) <- colnames(x)
-      }}
-    return(kurt)
-  }
+               xi <- x[,i]-mx[i]
+               kurt[i] <- n*(n + 1)*sum((x[,i] - mx[i])^4,  na.rm = na.rm)/( (n - 1)*(n - 2)*(n - 3)*(sum((x[,i] - mx[i])^2,na.rm = na.rm)/(n - 1))^2)  -3 *(n- 1)^2 /((n - 2)*(n - 3)) }  #type 2
+             ,
+             {
+               kurt[i] <- sum((x[,i] - mx[i])^4,  na.rm = na.rm)/((length(x[,i]) - sum(is.na(x[,i]))) * sdx[i]^4)  -3},  #type 3
+             {NULL})
+      names(kurt) <- colnames(x)
+    }}
+  return(kurt)
+}
 
 
 
@@ -708,8 +731,8 @@ kurtosi <-  function (x, na.rm = TRUE,type=3)
 #'   Homepage: https://personality-project.org/r/psych
 #'   https://personality-project.org/r/psych-manual.pdf
 interp.median  <-  function(x,w=1,na.rm=TRUE) {
-    im <- interp.quantiles(x,q=.5,w,na.rm=na.rm)
-    return(im)}
+  im <- interp.quantiles(x,q=.5,w,na.rm=na.rm)
+  return(im)}
 
 
 #' Interpolate quantiles from psych
@@ -720,13 +743,13 @@ interp.median  <-  function(x,w=1,na.rm=TRUE) {
 #'   Homepage: https://personality-project.org/r/psych
 #'   https://personality-project.org/r/psych-manual.pdf
 interp.quantiles  <-   function(x,q=.5,w=1,na.rm=TRUE) {
-    if (!(q>0) | !(q<1) ) {stop("quantiles most be greater than 0 and less than 1 q = ",q)}
-    if(is.vector(x)) {im <- interp.quantiles(x,q,w,na.rm=na.rm) } else {
-      if((is.matrix(x) | is.data.frame(x)) ){
-        n <- dim(x)[2]
-        im <- matrix(NA,ncol=n)
-        for (i in 1:n) {im[i] <- interp.quantiles(x[,i],q,w=w,na.rm=na.rm)}
-        colnames(im) <- colnames(x)
-      } else {stop('The data must be either a vector, a matrix, or a data.frame')}
-      return(im)
-    }}
+  if (!(q>0) | !(q<1) ) {stop("quantiles most be greater than 0 and less than 1 q = ",q)}
+  if(is.vector(x)) {im <- interp.quantiles(x,q,w,na.rm=na.rm) } else {
+    if((is.matrix(x) | is.data.frame(x)) ){
+      n <- dim(x)[2]
+      im <- matrix(NA,ncol=n)
+      for (i in 1:n) {im[i] <- interp.quantiles(x[,i],q,w=w,na.rm=na.rm)}
+      colnames(im) <- colnames(x)
+    } else {stop('The data must be either a vector, a matrix, or a data.frame')}
+    return(im)
+  }}

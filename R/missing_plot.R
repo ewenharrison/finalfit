@@ -46,13 +46,11 @@ missing_plot <- function(.data, dependent=NULL, explanatory=NULL,
 
 
   ggplot(plot_df, aes(x = .id, y = forcats::fct_rev(var), fill = value))+
-    geom_tile()+
-    xlab("Dataframe row")+
+    geom_raster()+
+    xlab("Observation")+
     ylab("")+
     theme_minimal()+
     theme(legend.position="none")+
     ggtitle(title)+
     plot_opts
-
-
 }
