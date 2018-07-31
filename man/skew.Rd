@@ -2,7 +2,7 @@
 % Please edit documentation in R/finalfit_internal_functions.R
 \name{skew}
 \alias{skew}
-\title{Skew from psych}
+\title{Internal only}
 \usage{
 skew(x, na.rm = TRUE, type = 3)
 }

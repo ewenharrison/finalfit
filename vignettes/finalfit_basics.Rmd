@@ -274,7 +274,7 @@ Note wrapper `summary_missing()` is also useful. Wraps `mice::md.pattern`.
 
 ```{r, warning=FALSE, message=FALSE}
 colon_s %>%
-  finalfit_missing(dependent, explanatory)
+  missing_pattern(dependent, explanatory)
 ```
 
 Development will be on-going, but any input appreciated. 

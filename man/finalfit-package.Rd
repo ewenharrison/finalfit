@@ -63,8 +63,8 @@ Methods (not called directly):
 \section{\code{finalfit} helper functions}{
 
 
-\link{finalfit_merge},
-\link{finalfit_missing}.
+\link{ff_merge},
+\link{ff_glimpse},
 }
 
 \section{\code{finalfit} prediction functions}{
@@ -75,5 +75,13 @@ Methods (not called directly):
 
 Methods (not called directly):
 \link{boot_compare}.
+}
+
+\section{\code{finalfit} missing data functions}{
+
+
+\link{missing_pattern},
+\link{missing_compare},
+\link{missing_plot}.
 }
 
