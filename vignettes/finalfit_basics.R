@@ -134,5 +134,5 @@ knitr::kable(t8, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r", "r"))
 
 ## ---- warning=FALSE, message=FALSE---------------------------------------
 colon_s %>%
-  finalfit_missing(dependent, explanatory)
+  missing_pattern(dependent, explanatory)
 

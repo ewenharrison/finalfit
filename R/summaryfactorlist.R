@@ -143,7 +143,7 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont="mean", p=F
                                 dependent_label_prefix="Dependent: ", dependent_label_suffix=""){
 
   s = summary_formula(as.formula(paste(dependent, "~", paste(explanatory, collapse="+"))), data = .data,
-                      overall=FALSE, method="response", na.include=na_include, continuous=5,
+                      overall=FALSE, method="response", na.include=na_include, continuous=5, g=1,
                       fun=function(x) {
                         mean = mean(x)
                         sd = sd(x)

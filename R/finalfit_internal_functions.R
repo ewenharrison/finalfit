@@ -423,6 +423,35 @@ plot_title = function(.data, dependent, dependent_label, prefix = "", suffix="")
   return(out)
 }
 
+
+
+#' Generate formula as character string
+#'
+#' Internal not called directly
+#'
+#' @param dependent Optional character vector: name(s) of depdendent
+#'   variable(s).
+#' @param explanatory Optional character vector: name(s) of explanatory
+#'   variable(s).
+#'
+#' @return Character vector
+#' @export
+#' @keywords internal
+#'
+#' @examples
+#' explanatory = c("age", "nodes", "sex.factor", "obstruct.factor", "perfor.factor")
+#' dependent = "mort_5yr"
+#' ff_formula(dependent, explanatory)
+
+ff_formula = function(dependent, explanatory){
+  paste(dependent, "~", paste(explanatory, collapse = "+")
+  )
+}
+#' @rdname ff_formula
+#' @export
+finalfit_formula <- ff_formula
+
+
 # Specify global variables
 globalVariables(c("L95", "U95", "fit_id", "Total", "OR", "HR", ".", ".id", "var", "value"))
 
