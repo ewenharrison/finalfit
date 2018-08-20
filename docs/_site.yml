@@ -7,3 +7,9 @@ navbar:
     - text: "About"
       href: about.html
 output_dir: "."
+output:
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
