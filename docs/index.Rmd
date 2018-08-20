@@ -1,5 +1,11 @@
 ---
-  title: "My Website"
+title: "R Markdown Websites"
+output: 
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
 ---
 
-  Hello, Website!
+## Hello
