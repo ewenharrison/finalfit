@@ -1,11 +1,6 @@
-name: "my-website"
+name: "Finalfit"
 navbar:
-  title: "My Website"
-  left:
-    - text: "Home"
-      href: index.html
-    - text: "About"
-      href: about.html
+  title: "Finalfit"
 output_dir: "."
 output:
   html_document:
