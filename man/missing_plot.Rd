@@ -2,27 +2,32 @@
 % Please edit documentation in R/missing_plot.R
 \name{missing_plot}
 \alias{missing_plot}
-\title{Missing values heatmap}
+\title{Missing values occurence plot}
 \usage{
-missing_plot(.data, dependent = NULL, explanatory = NULL, title = NULL,
-  plot_opts = NULL)
+missing_plot(.data, dependent = NULL, explanatory = NULL,
+  use_labels = TRUE, title = NULL, plot_opts = NULL)
 }
 \arguments{
 \item{.data}{Data frame.}
 
 \item{dependent}{Character vector. Optional name of dependent variable.}
 
-\item{explanatory}{Character vector. Optional name(s) of explanatory variables.}
+\item{explanatory}{Character vector. Optional name(s) of explanatory
+variables.}
+
+\item{use_labels}{Use variable label names in plot labelling.}
 
 \item{title}{Character vector. Optional title for plot}
 
-\item{plot_opts}{A list of arguments to be appended to the ggplot call by "+".}
+\item{plot_opts}{A list of arguments to be appended to the ggplot call by
+"+".}
 }
 \value{
 Heat map of missing values in dataset.
 }
 \description{
-Missing values heatmap
+Create a plot of missing values by observations on the x-axis and variable on
+the y-axis. \code{Dependent} and \code{explanatory} are for convenience and are optional.
 }
 \examples{
 

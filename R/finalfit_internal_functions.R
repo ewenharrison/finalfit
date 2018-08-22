@@ -300,7 +300,6 @@ p_tidy = function(x, digits, prefix="="){
 #'
 #' @keywords internal
 #' @export
-
 # Tried to do this with dplyr programming and failed miserably.
 # quo() enquo() !! all a bit of a nightmare
 # So let's square bracket away!
@@ -424,6 +423,49 @@ plot_title = function(.data, dependent, dependent_label, prefix = "", suffix="")
 }
 
 
+#' Extract variable labels and names
+#'
+#' @param .data Data frame.
+#'
+#' @return A data frame with three columns: first (vname), variabe names; second
+#'   (vlabel), variables labels; third (vfill), variable labels and when null
+#'   variable names.
+#' @export
+#' @keywords internal
+#'
+#' @examples
+#' colon_s %>%
+#'   extract_labels()
+extract_labels = function(.data){
+  # Struggled to make this work and look elegant!
+  # Works but surely there is a better way.
+  df.out = lapply(.data, function(x) {
+    vlabel = attr(x, "label")
+    list(vlabel = vlabel)}) %>%
+    do.call(rbind, .)
+  df.out = data.frame(vname = rownames(df.out), vlabel = unlist(as.character(df.out)),
+                      stringsAsFactors = FALSE)
+  df.out$vfill = df.out$vlabel
+  df.out$vfill[df.out$vlabel == "NULL"] = df.out$vname[df.out$vlabel=="NULL"]
+  return(df.out)
+}
+
+#' Remove variable labels.
+#'
+#' @param .data Data frame
+#'
+#' @return The original data frame with variable label attributes removed.
+#' @export
+#' @keywords internal
+#'
+#' @examples
+#' colon_s %>%
+#'   remove_labels()
+remove_labels = function(.data){
+  for (i in 1:dim(.data)[2]){
+    attr(.data[,i], "label") = NULL
+  }
+}
 
 #' Generate formula as character string
 #'
