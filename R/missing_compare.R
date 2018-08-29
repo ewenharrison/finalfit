@@ -7,7 +7,8 @@
 #'   level.
 #'
 #' @return A dataframe comparing missing data in the dependent variable across
-#'   explanatory variables.
+#'   explanatory variables. Continuous data are compared with a Kruskal Wallis
+#'   test. Discrete data are compared with a chi-squared test.
 #' @export
 #'
 #' @examples

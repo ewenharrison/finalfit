@@ -88,3 +88,4 @@ colon_s \%>\%
 \seealso{
 \code{\link{fit2df}}
 }
+\concept{finalfit wrappers}

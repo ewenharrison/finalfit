@@ -10,8 +10,8 @@
 \alias{extract_fit.stanfit}
 \title{Extract model output to dataframe}
 \usage{
-extract_fit(.data, explanatory_name, estimate_name, estimate_suffix, p_name,
-  digits, ...)
+extract_fit(.data, explanatory_name, estimate_name, estimate_suffix,
+  p_name, digits, ...)
 
 \method{extract_fit}{glm}(.data, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",

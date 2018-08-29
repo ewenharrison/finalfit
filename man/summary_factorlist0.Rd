@@ -4,8 +4,8 @@
 \alias{summary_factorlist0}
 \title{Summarise a set of factors by a dependent variable}
 \usage{
-summary_factorlist0(.data, dependent, explanatory, cont = "mean", p = FALSE,
-  na_include = FALSE, column = FALSE, total_col = FALSE,
+summary_factorlist0(.data, dependent, explanatory, cont = "mean",
+  p = FALSE, na_include = FALSE, column = FALSE, total_col = FALSE,
   orderbytotal = FALSE, fit_id = FALSE, na_to_missing = TRUE,
   add_dependent_label = FALSE, dependent_label_prefix = "Dependent: ",
   dependent_label_suffix = "")

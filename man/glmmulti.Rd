@@ -51,3 +51,4 @@ Other \code{finalfit} model wrappers: \code{\link{coxphmulti}},
   \code{\link{lmmixed}}, \code{\link{lmmulti}},
   \code{\link{lmuni}}
 }
+\concept{\code{finalfit} model wrappers}

@@ -205,3 +205,4 @@ fit = coxph(Surv(time, status) ~ age.factor + sex.factor + obstruct.factor + per
 fit \%>\%
 	fit2df(estimate_suffix=" (multivariable)")
 }
+\concept{\code{finalfit} model extractors}

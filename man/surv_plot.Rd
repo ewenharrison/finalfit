@@ -38,3 +38,4 @@ colon_s \%>\%
 Other finalfit plot functions: \code{\link{hr_plot}},
   \code{\link{or_plot}}
 }
+\concept{finalfit plot functions}

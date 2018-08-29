@@ -4,13 +4,14 @@
 \alias{summary_formula}
 \title{Call to Hmisc:::summary.formula}
 \usage{
-summary_formula(formula, data = NULL, subset = NULL, na.action = NULL,
-  fun = NULL, method = c("response", "reverse", "cross"), overall = method
-  == "response" | method == "cross", continuous = 10, na.rm = TRUE,
-  na.include = method != "reverse", g = 4, quant = c(0.025, 0.05, 0.125,
-  0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 0.95, 0.975), nmin = if (method ==
-  "reverse") 100 else 0, test = FALSE, conTest = conTestkw,
-  catTest = catTestchisq, ordTest = ordTestpo, ...)
+summary_formula(formula, data = NULL, subset = NULL,
+  na.action = NULL, fun = NULL, method = c("response", "reverse",
+  "cross"), overall = method == "response" | method == "cross",
+  continuous = 10, na.rm = TRUE, na.include = method != "reverse",
+  g = 4, quant = c(0.025, 0.05, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75,
+  0.875, 0.95, 0.975), nmin = if (method == "reverse") 100 else 0,
+  test = FALSE, conTest = conTestkw, catTest = catTestchisq,
+  ordTest = ordTestpo, ...)
 }
 \description{
 Not called directly.

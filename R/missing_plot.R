@@ -8,7 +8,7 @@
 #' @param explanatory Character vector. Optional name(s) of explanatory
 #'   variables.
 #' @param use_labels Use variable label names in plot labelling.
-#' @param title Character vector. Optional title for plot
+#' @param title Character vector. Optional title for plot.
 #' @param plot_opts A list of arguments to be appended to the ggplot call by
 #'   "+".
 #'
@@ -115,6 +115,7 @@ missing_df = function(.data, dependent=NULL, explanatory=NULL){
 #' @param explanatory Character vector. Optional name(s) of explanatory
 #'   variables.
 #' @param use_labels Use variable label names in plot labelling.
+#' @param title Character vector. Optional title for plot.
 #' @param position For discrete variables, choose "stack" or "fill" to show
 #'   counts or proportions.
 #' @param showXAxisPlotLabels Show x-axis plot labels.
@@ -125,13 +126,17 @@ missing_df = function(.data, dependent=NULL, explanatory=NULL){
 #' @export
 #' @importFrom purrr pmap
 #' @examples
+#' \dontrun{
 #' explanatory = c("age", "nodes", "age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' dependent = 'mort_5yr'
 #' colon_s %>%
 #'   missing_pairs(dependent, explanatory)
+#' }
 missing_pairs = function(.data, dependent = NULL, explanatory = NULL,
-                         use_labels = TRUE, position = "stack",
-                         showXAxisPlotLabels = FALSE,
+                         use_labels = TRUE,
+												 title=NULL,
+												 position = "stack",
+                         showXAxisPlotLabels = TRUE,
                          showYAxisPlotLabels = FALSE){
   if (is.null(dependent) && is.null(explanatory)) {
     df.in = .data
@@ -151,6 +156,9 @@ missing_pairs = function(.data, dependent = NULL, explanatory = NULL,
     labels = extract_labels(df.in)$vname
   }
 
+  # Plot title
+  if(is.null(title)) title = paste0("Missing data matrix")
+
   # Everything below can be made into functions
   obs_discrete = sapply(df.in, function(x){
     any(is.factor(x),
@@ -159,7 +167,7 @@ missing_pairs = function(.data, dependent = NULL, explanatory = NULL,
   })
   obs_discrete_vector = rep(obs_discrete, vars_n)
 
-  # Make colours permanently
+  # Make colours permanent
   palColours = c("lightblue", "gray50")
   names(palColours) = c("Obs", "Miss")
   colScale = scale_fill_manual(values=palColours)
@@ -188,7 +196,7 @@ missing_pairs = function(.data, dependent = NULL, explanatory = NULL,
                    yAxisLabels = paste(labels, "(miss)"),
                    showXAxisPlotLabels = showXAxisPlotLabels,
                    showYAxisPlotLabels = showYAxisPlotLabels,
-                   title = "Missing data matrix")+
+                   title = title)+
 
     theme_classic()
 }

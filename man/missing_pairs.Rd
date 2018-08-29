@@ -5,8 +5,8 @@
 \title{Missing values pairs plot}
 \usage{
 missing_pairs(.data, dependent = NULL, explanatory = NULL,
-  use_labels = TRUE, position = "stack", showXAxisPlotLabels = FALSE,
-  showYAxisPlotLabels = FALSE)
+  use_labels = TRUE, title = NULL, position = "stack",
+  showXAxisPlotLabels = TRUE, showYAxisPlotLabels = FALSE)
 }
 \arguments{
 \item{.data}{Data frame.}
@@ -17,6 +17,8 @@ missing_pairs(.data, dependent = NULL, explanatory = NULL,
 variables.}
 
 \item{use_labels}{Use variable label names in plot labelling.}
+
+\item{title}{Character vector. Optional title for plot.}
 
 \item{position}{For discrete variables, choose "stack" or "fill" to show
 counts or proportions.}
@@ -36,8 +38,10 @@ Suggest limit the number of variables to a maximum of around six.
 selection, are optional, and have no other specific function.
 }
 \examples{
+\dontrun{
 explanatory = c("age", "nodes", "age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = 'mort_5yr'
 colon_s \%>\%
   missing_pairs(dependent, explanatory)
+}
 }
