@@ -7,7 +7,8 @@
 \usage{
 ff_glimpse(.data, dependent = NULL, explanatory = NULL, digits = 1)
 
-finalfit_glimpse(.data, dependent = NULL, explanatory = NULL, digits = 1)
+finalfit_glimpse(.data, dependent = NULL, explanatory = NULL,
+  digits = 1)
 }
 \arguments{
 \item{.data}{Dataframe.}

@@ -17,7 +17,7 @@ variables.}
 
 \item{use_labels}{Use variable label names in plot labelling.}
 
-\item{title}{Character vector. Optional title for plot}
+\item{title}{Character vector. Optional title for plot.}
 
 \item{plot_opts}{A list of arguments to be appended to the ggplot call by
 "+".}

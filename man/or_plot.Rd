@@ -4,9 +4,10 @@
 \alias{or_plot}
 \title{Produce an odds ratio table and plot}
 \usage{
-or_plot(.data, dependent, explanatory, factorlist = NULL, glmfit = NULL,
-  breaks = NULL, column_space = c(-0.5, 0, 0.5), dependent_label = NULL,
-  prefix = "", suffix = ": (OR, 95\% CI, p-value)", table_text_size = 5,
+or_plot(.data, dependent, explanatory, factorlist = NULL,
+  glmfit = NULL, breaks = NULL, column_space = c(-0.5, 0, 0.5),
+  dependent_label = NULL, prefix = "",
+  suffix = ": (OR, 95\% CI, p-value)", table_text_size = 5,
   title_text_size = 18, plot_opts = NULL, table_opts = NULL, ...)
 }
 \arguments{
@@ -72,3 +73,4 @@ colon_s \%>\%
 Other finalfit plot functions: \code{\link{hr_plot}},
   \code{\link{surv_plot}}
 }
+\concept{finalfit plot functions}

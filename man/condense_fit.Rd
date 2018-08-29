@@ -4,9 +4,9 @@
 \alias{condense_fit}
 \title{Condense model output dataframe for final tables}
 \usage{
-condense_fit(.data, explanatory_name = "explanatory", estimate_name = "OR",
-  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
-  confint_sep = "-")
+condense_fit(.data, explanatory_name = "explanatory",
+  estimate_name = "OR", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), confint_sep = "-")
 }
 \arguments{
 \item{.data}{Dataframe of five columns, must be this order, (1) explanatory

@@ -9,19 +9,23 @@
 \usage{
 finalfit(.data, dependent, explanatory, explanatory_multi = NULL,
   random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE,
-  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "", ...)
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
+  ...)
 
 finalfit.lm(.data, dependent, explanatory, explanatory_multi = NULL,
   random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE,
-  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "", ...)
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
+  ...)
 
 finalfit.glm(.data, dependent, explanatory, explanatory_multi = NULL,
   random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE,
-  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "", ...)
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
+  ...)
 
 finalfit.coxph(.data, dependent, explanatory, explanatory_multi = NULL,
   random_effect = NULL, metrics = FALSE, add_dependent_label = TRUE,
-  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "", ...)
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
+  ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -159,3 +163,4 @@ example.summary \%>\%
 example.final
 
 }
+\concept{\code{finalfit} all-in-one functions}
