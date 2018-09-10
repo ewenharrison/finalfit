@@ -2,7 +2,10 @@ Package: finalfit
 Type: Package
 Title: Quickly Create Elegant Regression Results Tables and Plots when Modelling
 Version: 0.8.6
-Author: Ewen Harrison, Tom Drake, Riinu Ots
+Authors@R: c(
+  person("Ewen", "M.", "Harrison", role = c("aut", "cre"), email = "ewen.harrison@ed.ac.uk"),
+  person("Tom", "Drake", role = c("aut")),
+  person("Riinu", "Ots", role = c("aut")))
 Maintainer: Ewen Harrison <ewen.harrison@ed.ac.uk>
 Description: Generate regression results tables and plots in final 
     format for publication. Explore models and export directly to PDF 
@@ -11,6 +14,7 @@ License: MIT + file LICENCE
 Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/ewenharrison/finalfit/issues
+URL: URL: https://github.com/eharrison/finalfit
 Imports:
     boot,
     broom,

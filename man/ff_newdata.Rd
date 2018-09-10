@@ -10,9 +10,6 @@ ff_newdata(.data, dependent = NULL, explanatory = NULL,
 
 finalfit_newdata(.data, dependent = NULL, explanatory = NULL,
   rowwise = TRUE, newdata)
-
-finalfit_newdata(.data, dependent = NULL, explanatory = NULL,
-  rowwise = TRUE, newdata)
 }
 \arguments{
 \item{.data}{Dataframe.}

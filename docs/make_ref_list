@@ -1,0 +1,68 @@
+# use
+pkgdown::templte_reference()
+
+reference:
+  - title: "Connecting to Spark"
+    desc: >
+
+reference:
+  - title: "All-in-one functions"
+    desc: "Single functions to generate final output tables"
+    contents:
+    - '`finalfit`'
+    - '`summary_factorlist`'
+  - title: "Model wrappers"
+    desc: "Wrappers for common statistical models"
+    contents:
+    - '`lmuni`'
+    - '`lmmulti`'
+    - '`lmmixed`'
+    - '`glmuni`'
+    - '`glmmulti`'
+    - '`glmmulti_boot`'
+    - '`glmmixed`'
+    - '`coxphuni`'
+    - '`coxphmulti`'
+  - title: "Bootstrap functions""
+    desc: "Bootstrap simulation for model prediction"
+    contents:
+    - '`boot_predict`'
+    - '`boot_compare`'
+  - title: "Helper functions"
+    desc: ~
+    contents:
+    - '`fit2df`'
+    - '`ff_glimpse`'
+    - '`ff_merge`'
+    - '`ff_newdata`'
+    - '`dependent_label`'
+  - title: "Plotting"
+    desc: ~
+    contents:
+    - '`or_plot`'
+    - '`hr_plot`'
+    - '`surv_plot`'
+    - '`missing_plot`'
+  - title: "Missing data functions"
+    desc: ~
+    contents:
+    - '`missing_pattern`'
+    - '`missing_compare`'
+    - '`missing_pairs`'
+    - '`missing_df`'
+    - '`missing_plot`'
+    - '`missing_predictorMatrix`'
+  - title: "Metrics"
+    desc: ~
+    contents:
+    - '`metrics_hoslem`'
+  - title: "Data"
+    desc: "Sample data for examples and testing"
+    contents:
+    - '`colon_s`'
+  - title: "Misc"
+    desc: ~
+    contents:
+    - '`finalfit-package`'
+
+

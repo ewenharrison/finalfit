@@ -68,9 +68,5 @@ ff_newdata = function(.data, dependent=NULL, explanatory=NULL,  rowwise=TRUE, ne
 }
 
 #' @rdname ff_newdata
-finalfit_newdata = ff_newdata
-
-
-#' @rdname ff_newdata
 #' @export
 finalfit_newdata = ff_newdata
