@@ -13,7 +13,7 @@ Its design follows Hadley Wickham's [tidy tool manifesto](http://tidyverse.tidyv
 
 In addition, it provides functions for identifying and handling missing data, together with a number of functions to bootstrap simulate regression model results. 
 
-## Installation and Documentation
+## Installation
 
 You can install `finalfit` from CRAN:
 
@@ -26,3 +26,7 @@ It is recommended that this package is used together with `dplyr` which can be i
 ``` r
 install.packages("dplyr")
 ```
+
+## Documentation
+
+The package documentation is maintained independently at [finalfit.org](http://finalfit.org/). 
