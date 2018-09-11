@@ -1,10 +1,9 @@
 ---
 title: "finalfit: Getting started"
 author: "Ewen Harrison"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{finalfit: Getting started}
+  %\VignetteIndexEntry{Getting started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -79,7 +78,6 @@ colon_s %>%
 knitr::kable(t2, row.names=FALSE, align=c("l", "l", "r", "r", "r"))
 ```
 
-When exported to PDF:
 <a href="http://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg" alt="" width="600" class="aligncenter" /></a>
 
 Tables can be knitted to PDF, Word or html documents. We do this in RStudio from a .Rmd document.
