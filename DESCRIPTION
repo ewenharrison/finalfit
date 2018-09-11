@@ -3,9 +3,9 @@ Type: Package
 Title: Quickly Create Elegant Regression Results Tables and Plots when Modelling
 Version: 0.8.6
 Authors@R: c(
-  person("Ewen", "M.", "Harrison", role = c("aut", "cre"), email = "ewen.harrison@ed.ac.uk"),
-  person("Tom", "Drake", role = c("aut")),
-  person("Riinu", "Ots", role = c("aut")))
+  person(given = "Ewen", family = "Harrison", role = c("aut", "cre"), email = "ewen.harrison@ed.ac.uk"),
+  person(given = "Tom", family = "Drake", role = c("aut")),
+  person(given = "Riinu", family = "Ots", role = c("aut")))
 Maintainer: Ewen Harrison <ewen.harrison@ed.ac.uk>
 Description: Generate regression results tables and plots in final 
     format for publication. Explore models and export directly to PDF 

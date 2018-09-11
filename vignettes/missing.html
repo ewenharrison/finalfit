@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Ewen Harrison" />
+
+
+<title>finalfit: Missing data</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">finalfit: Missing data</h1>
+<h4 class="author"><em>Ewen Harrison</em></h4>
+
+
+
+<p>As a journal editor, I often receive studies in which the investigators fail to describe, analyse, or even acknowledge missing data. This is frustrating, as it is often of the utmost importance. Conclusions may (and do) change when missing data is accounted for. A few seem to not even appreciate that in conventional regression, only rows with complete data are included.</p>
+<p>These are the five steps to ensuring missing data are correctly identified and appropriately dealt with:</p>
+<ol style="list-style-type: decimal">
+<li>Ensure your data are coded correctly.</li>
+<li>Identify missing values within each variable.</li>
+<li>Look for patterns of missingness.</li>
+<li>Check for associations between missing and observed data.</li>
+<li>Decide how to handle missing data.</li>
+</ol>
+<p><code>finalfit</code> includes a number of functions to help with this.</p>
+<div id="some-confusing-terminology" class="section level2">
+<h2>Some confusing terminology</h2>
+<p>But first there are some terms which easy to mix up. These are important as they describe the mechanism of missingness and this determines how you can handle the missing data.</p>
+<div id="missing-completely-at-random-mcar" class="section level3">
+<h3>Missing completely at random (MCAR)</h3>
+<p>As it says, values are randomly missing from your dataset. Missing data values do not relate to any other data in the dataset and there is no pattern to the actual values of the missing data themselves.</p>
+<p>For instance, when smoking status is not recorded in a random subset of patients.</p>
+<p>This is easy to handle, but unfortunately, data are almost never missing completely at random.</p>
+</div>
+<div id="missing-at-random-mar" class="section level3">
+<h3>Missing at random (MAR)</h3>
+<p>This is confusing and would be better stated as missing conditionally at random. Here, missing data do have a relationship with other variables in the dataset. However, the actual values that are missing are random.</p>
+<p>For example, smoking status is not documented in female patients because the doctor was too shy to ask. Yes ok, not that realistic!</p>
+</div>
+<div id="missing-not-at-random-mnar" class="section level3">
+<h3>Missing not at random (MNAR)</h3>
+<p>The pattern of missingness is related to other variables in the dataset, but in addition, the values of the missing data are not random.</p>
+<p>For example, when smoking status is not recorded in patients admitted as an emergency, who are also more likely to have worse outcomes from surgery.</p>
+<p>Missing not at random data are important, can alter your conclusions, and are the most difficult to diagnose and handle. They can only be detected by collecting and examining some of the missing data. This is often difficult or impossible to do.</p>
+<p>How you deal with missing data is dependent on the type of missingness. Once you know this, then you can sort it.</p>
+<p>More on this below.</p>
+</div>
+</div>
+<div id="ensure-your-data-are-coded-correctly-ff_glimpse" class="section level2">
+<h2>1. Ensure your data are coded correctly: <code>ff_glimpse</code></h2>
+<p>While clearly obvious, this step is often ignored in the rush to get results. The first step in any analysis is robust data cleaning and coding. Lots of packages have a glimpse-type function and <code>finalfit</code> is no different. This function has three specific goals:</p>
+<ol style="list-style-type: decimal">
+<li>Ensure all factors and numerics are correctly assigned. That is the commonest reason to get an error with a finalfit function. You think you’re using a factor variable, but in fact it is incorrectly coded as a continuous numeric.</li>
+<li>Ensure you know which variables have missing data. This presumes missing values are correctly assigned NA. See here for more details if you are unsure.</li>
+<li>Ensure factor levels and variable labels are assigned correctly.</li>
+</ol>
+<div id="example-scenario" class="section level3">
+<h3>Example scenario</h3>
+<p>Using the <code>colon_s</code> cancer dataset that comes with <code>finalfit</code>, we are interested in exploring the association between a cancer obstructing the bowel and 5-year survival, accounting for other patient and disease characteristics.</p>
+<p>For demonstration purposes, we will create random MCAR and MAR smoking variables to the dataset.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Make sure finalfit is up-to-date </span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&quot;finalfit&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(finalfit) </a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># Create some extra missing data</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">## Smoking missing completely at random</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">colon_s<span class="op">$</span>smoking_mcar =<span class="st"> </span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Smoker&quot;</span>, <span class="st">&quot;Non-smoker&quot;</span>, <span class="ot">NA</span>), </a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="kw">dim</span>(colon_s)[<span class="dv">1</span>], <span class="dt">replace=</span><span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="st">  </span><span class="kw">factor</span>()</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">Hmisc<span class="op">::</span><span class="kw">label</span>(colon_s<span class="op">$</span>smoking_mcar) =<span class="st"> &quot;Smoking (MCAR)&quot;</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">## Smoking missing conditional on patient sex</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">colon_s<span class="op">$</span>smoking_mar[colon_s<span class="op">$</span>sex.factor <span class="op">==</span><span class="st"> &quot;Female&quot;</span>] =<span class="st"> </span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="st">  </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Smoker&quot;</span>, <span class="st">&quot;Non-smoker&quot;</span>, <span class="ot">NA</span>), </a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">    <span class="kw">sum</span>(colon_s<span class="op">$</span>sex.factor <span class="op">==</span><span class="st"> &quot;Female&quot;</span>), </a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">    <span class="dt">replace =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">    <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.4</span>))</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">colon_s<span class="op">$</span>smoking_mar[colon_s<span class="op">$</span>sex.factor <span class="op">==</span><span class="st"> &quot;Male&quot;</span>] =<span class="st"> </span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="st">  </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Smoker&quot;</span>, <span class="st">&quot;Non-smoker&quot;</span>, <span class="ot">NA</span>), </a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">    <span class="kw">sum</span>(colon_s<span class="op">$</span>sex.factor <span class="op">==</span><span class="st"> &quot;Male&quot;</span>), </a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">    <span class="dt">replace=</span><span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.75</span>, <span class="fl">0.1</span>))</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">colon_s<span class="op">$</span>smoking_mar =<span class="st"> </span><span class="kw">factor</span>(colon_s<span class="op">$</span>smoking_mar)</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">Hmisc<span class="op">::</span><span class="kw">label</span>(colon_s<span class="op">$</span>smoking_mar) =<span class="st"> &quot;Smoking (MAR)&quot;</span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co"># Examine with ff_glimpse</span></a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex.factor&quot;</span>, </a>
+<a class="sourceLine" id="cb2-29" data-line-number="29">  <span class="st">&quot;nodes&quot;</span>, <span class="st">&quot;obstruct.factor&quot;</span>,  </a>
+<a class="sourceLine" id="cb2-30" data-line-number="30">  <span class="st">&quot;smoking_mcar&quot;</span>, <span class="st">&quot;smoking_mar&quot;</span>)</a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">dependent =<span class="st"> &quot;mort_5yr&quot;</span></a>
+<a class="sourceLine" id="cb2-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb2-33" data-line-number="33">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="st">  </span><span class="kw">ff_glimpse</span>(dependent, explanatory)</a>
+<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="co">#&gt; Numerics</span></a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">#&gt;             label   n missing_n missing_percent mean sd min max range  se</span></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="co">#&gt; age   Age (years) 929         0             0.0   60 12  18  85    67 0.4</span></a>
+<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="co">#&gt; nodes        NULL 911        18             1.9    4  4   0  33    33 0.1</span></a>
+<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="co">#&gt; Factors</span></a>
+<a class="sourceLine" id="cb2-41" data-line-number="41"><span class="co">#&gt;                            label   n missing_n missing_percent level_n</span></a>
+<a class="sourceLine" id="cb2-42" data-line-number="42"><span class="co">#&gt; sex.factor                   Sex 929         0               0       2</span></a>
+<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="co">#&gt; obstruct.factor      Obstruction 908        21             2.3       2</span></a>
+<a class="sourceLine" id="cb2-44" data-line-number="44"><span class="co">#&gt; mort_5yr        Mortality 5 year 915        14             1.5       2</span></a>
+<a class="sourceLine" id="cb2-45" data-line-number="45"><span class="co">#&gt; smoking_mcar      Smoking (MCAR) 828       101              11       2</span></a>
+<a class="sourceLine" id="cb2-46" data-line-number="46"><span class="co">#&gt; smoking_mar        Smoking (MAR) 719       210              23       2</span></a>
+<a class="sourceLine" id="cb2-47" data-line-number="47"><span class="co">#&gt;                                 levels  levels_count   levels_percent</span></a>
+<a class="sourceLine" id="cb2-48" data-line-number="48"><span class="co">#&gt; sex.factor            &quot;Female&quot;, &quot;Male&quot;      445, 484           48, 52</span></a>
+<a class="sourceLine" id="cb2-49" data-line-number="49"><span class="co">#&gt; obstruct.factor            &quot;No&quot;, &quot;Yes&quot;  732, 176, 21 78.8, 18.9,  2.3</span></a>
+<a class="sourceLine" id="cb2-50" data-line-number="50"><span class="co">#&gt; mort_5yr               &quot;Alive&quot;, &quot;Died&quot;  511, 404, 14 55.0, 43.5,  1.5</span></a>
+<a class="sourceLine" id="cb2-51" data-line-number="51"><span class="co">#&gt; smoking_mcar    &quot;Non-smoker&quot;, &quot;Smoker&quot; 645, 183, 101       69, 20, 11</span></a>
+<a class="sourceLine" id="cb2-52" data-line-number="52"><span class="co">#&gt; smoking_mar     &quot;Non-smoker&quot;, &quot;Smoker&quot; 591, 128, 210       64, 14, 23</span></a></code></pre></div>
+<p>The function summarises a data frame or tibble by numeric (continuous) variables and factor (discrete) variables. The dependent and explanatory are for convenience. Pass either or neither e.g. to summarise data frame or tibble:</p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

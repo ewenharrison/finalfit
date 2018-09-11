@@ -1,0 +1,332 @@
+---
+title: "Exporting tables and plots"
+author: "Ewen Harrison"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Exporting tables and plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+`finalfit` makes it easy to export final results tables and plots from RStudio to Microsoft Word and PDF. 
+
+Make sure you are on the most up-to-date version of finalfit.
+
+```{r, eval=FALSE}
+install.packages("finalfit")
+```
+
+What follows is for demonstration purposes and is not meant to illustrate model building. We will ask, does a particular characteristic of a tumour (differentiation) predict 5-year survival?
+
+## Explore data
+
+First explore variable of interest (exposure) by making it the dependent.
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+library(dplyr)
+
+dependent = "differ.factor"
+
+# Specify explanatory variables of interest
+explanatory = c("age", "sex.factor", 
+  "extent.factor", "obstruct.factor", 
+  "nodes")
+```
+
+Note this useful alternative way of specifying explanatory variable lists:
+
+```{r, warning=FALSE, message=FALSE}
+colon_s %>% 
+  select(age, sex.factor, extent.factor, obstruct.factor, nodes) %>% 
+  names() -> explanatory
+```
+
+Check data.
+
+```{r, warning=FALSE, message=FALSE}
+colon_s %>% 
+  ff_glimpse(dependent, explanatory)
+```
+
+## Demographics table
+
+Look at associations between our exposure and other explanatory variables. Include missing data.
+
+```{r, eval=FALSE}
+colon_s %>% 
+  summary_factorlist(dependent, explanatory, 
+  p=TRUE, na_include=TRUE)
+```
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+colon_s %>% 
+  summary_factorlist(dependent, explanatory, 
+  p=TRUE, na_include=TRUE) %>% 
+  knitr::kable(row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
+```
+
+Note missing data in `obstruct.factor`. See a full description of options in the forthcoming missing data vignette. 
+
+We will drop this variable for now. Also see that nodes has not been labelled. There are small numbers in some variables generating chisq.test warnings (predicted less than 5 in any cell). Generate final table.
+
+```{r, eval=FALSE}
+Hmisc::label(colon_s$nodes) = "Lymph nodes involved"
+explanatory = c("age", "sex.factor", 
+  "extent.factor", "nodes")
+
+colon_s %>% 
+  summary_factorlist(dependent, explanatory, 
+  p=TRUE, na_include=TRUE, 
+  add_dependent_label=TRUE) -> table1
+table1
+```
+
+```{r, warning=FALSE, message=FALSE, cache=TRUE, echo=FALSE}
+Hmisc::label(colon_s$nodes) = "Lymph nodes involved"
+explanatory = c("age", "sex.factor", 
+  "extent.factor", "nodes")
+
+colon_s %>% 
+  summary_factorlist(dependent, explanatory, 
+  p=TRUE, na_include=TRUE, 
+  add_dependent_label=TRUE) %>% 
+	knitr::kable(row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
+```
+
+## Logistic regression table
+
+Now examine explanatory variables against outcome. Check plot runs ok.
+
+```{r, eval=FALSE}
+explanatory = c("age", "sex.factor", 
+  "extent.factor", "nodes", "differ.factor")
+dependent = "mort_5yr"
+colon_s %>% 
+  finalfit(dependent, explanatory, 
+  dependent_label_prefix = "") -> table2
+table2
+```
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+explanatory = c("age", "sex.factor", 
+  "extent.factor", "nodes", "differ.factor")
+dependent = "mort_5yr"
+colon_s %>% 
+  finalfit(dependent, explanatory, 
+  dependent_label_prefix = "") %>% 
+	knitr::kable(row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
+```
+
+## Odds ratio plot
+
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
+colon_s %>% 
+  or_plot(dependent, explanatory, 
+  breaks = c(0.5, 1, 5, 10, 20, 30))
+```
+
+<a href="http://www.datasurg.net/wp-content/uploads/2018/05/example_or_plot.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/example_or_plot.png" alt="" width="600" class="aligncenter" /></a>
+
+## MS Word via knitr/R Markdown
+
+Important. In most R Markdown set-ups, environment objects require to be saved and loaded to R Markdown document.
+
+```{r, eval=FALSE}
+# Save objects for knitr/markdown
+save(table1, table2, dependent, explanatory, file = "out.rda")
+```
+
+We use RStudio Server Pro set-up on Ubuntu. But these instructions should work fine for most/all RStudio/Markdown default set-ups.
+
+In RStudio, select File > New File > R Markdown.
+
+A useful template file is produced by default. Try hitting knit to Word on the knitr button at the top of the .Rmd script window.
+
+Now paste this into the file:
+
+<pre>
+---
+title: "Example knitr/R Markdown document"
+author: "Ewen Harrison"
+date: "22/5/2018"
+output:
+  word_document: default
+---
+</pre>
+<pre>```{r setup, include=FALSE}
+# Load data into global environment. 
+library(finalfit)
+library(dplyr)
+library(knitr)
+load("out.rda")
+```
+
+## Table 1 - Demographics
+</pre>
+<pre>```{r table1, echo = FALSE, results='asis'}
+kable(table1, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
+```
+
+## Table 2 - Association between tumour factors and 5 year mortality
+</pre>
+<pre>```{r table2, echo = FALSE, results='asis'}
+kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
+```
+
+## Figure 1 - Association between tumour factors and 5 year mortality
+</pre>
+<pre>```{r figure1, echo = FALSE}
+colon_s %>% 
+  or_plot(dependent, explanatory)
+</pre>
+
+[The result is ok, but not great.](http://www.datasurg.net/wp-content/uploads/2018/05/example.docx) 
+
+
+## Create Word template file
+
+Now, edit your Word file to create a new template. Click on a table. The style should be `compact`. Right click > Modify... > font size = 9. Alter heading and text styles in the same way as desired. Save this as `template.docx`. Upload the file to your project folder. Add this reference to the .Rmd YAML heading, as below. Make sure you get the spacing correct.
+
+The plot also doesn’t look quite right and it prints with warning messages. Experiment with fig.width to get it looking right.
+
+Now paste this into your .Rmd file and run:
+
+
+<pre>
+---
+title: "Example knitr/R Markdown document"
+author: "Ewen Harrison"
+date: "21/5/2018"
+output:
+  word_document:
+    reference_docx: template.docx  
+---
+</pre>
+
+<pre>```{r setup, include=FALSE}
+# Load data into global environment. 
+library(finalfit)
+library(dplyr)
+library(knitr)
+load("out.rda")
+```
+
+## Table 1 - Demographics
+</pre>
+<pre>```{r table1, echo = FALSE, results='asis'}
+kable(table1, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
+```
+
+## Table 2 - Association between tumour factors and 5 year mortality
+</pre>
+<pre>```{r table2, echo = FALSE, results='asis'}
+kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
+```
+
+## Figure 1 - Association between tumour factors and 5 year mortality
+</pre>
+<pre>```{r figure1, echo = FALSE, warning=FALSE, message=FALSE, fig.width=10}
+colon_s %>% 
+  or_plot(dependent, explanatory)
+```
+</pre>
+
+[This is now looking good, and further tweaks can be made if you wish.](http://www.datasurg.net/wp-content/uploads/2018/05/example2.docx)
+
+## PDF via knitr/R Markdown
+
+Default settings for PDF:
+
+<pre>
+---
+title: "Example knitr/R Markdown document"
+author: "Ewen Harrison"
+date: "21/5/2018"
+output:
+  pdf_document: default
+---
+</pre>
+<pre>```{r setup, include=FALSE}
+# Load data into global environment. 
+library(finalfit)
+library(dplyr)
+library(knitr)
+load("out.rda")
+```
+
+## Table 1 - Demographics
+</pre>
+<pre>```{r table1, echo = FALSE, results='asis'}
+kable(table1, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
+```
+
+## Table 2 - Association between tumour factors and 5 year mortality
+</pre>
+<pre>```{r table2, echo = FALSE, results='asis'}
+kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
+```
+
+## Figure 1 - Association between tumour factors and 5 year mortality
+</pre>
+<pre>```{r figure1, echo = FALSE}
+colon_s %>% 
+  or_plot(dependent, explanatory)
+```
+</pre>
+
+[Again, this is not bad, but has issues.](http://www.datasurg.net/wp-content/uploads/2018/05/example.pdf)
+
+We can fix the plot in exactly the same way. But the table is off the side of the page. For this we use the 'kableExtra` package. Install this in the normal manner. You may also want to alter the margins of your page using geometry in the preamble.
+
+<pre>
+---
+title: "Example knitr/R Markdown document"
+author: "Ewen Harrison"
+date: "21/5/2018"
+output:
+  pdf_document: default
+geometry: margin=0.75in
+---
+</pre>
+<pre>```{r setup, include=FALSE}
+# Load data into global environment. 
+library(finalfit)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+load("out.rda")
+```
+
+## Table 1 - Demographics
+</pre>
+<pre>```{r table1, echo = FALSE, results='asis'}
+kable(table1, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+						booktabs=TRUE)
+```
+
+## Table 2 - Association between tumour factors and 5 year mortality
+</pre>
+<pre>```{r table2, echo = FALSE, results='asis'}
+kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+			booktabs=TRUE) %>% 
+	kable_styling(font_size=8)
+```
+
+## Figure 1 - Association between tumour factors and 5 year mortality
+</pre>
+<pre>```{r figure1, echo = FALSE, warning=FALSE, message=FALSE, fig.width=10}
+colon_s %>% 
+  or_plot(dependent, explanatory)
+</pre>
+
+[This is now looking pretty good for me as well.](http://www.datasurg.net/wp-content/uploads/2018/05/example2.pdf)
+
+There you have it. A pretty quick workflow to get final results into Word and a PDF.

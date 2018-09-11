@@ -15,12 +15,10 @@ In addition, it provides functions for identifying and handling missing data, to
 
 ## Installation and Documentation
 
-You can install `finalfit` from CRAN or github with:
+You can install `finalfit` from CRAN:
 
 ``` r
 install.packages("finalfit")
-# install.packages("devtools")
-devtools::install_github("ewenharrison/finalfit")
 ```
 
 It is recommended that this package is used together with `dplyr` which can be installed via:
@@ -28,11 +26,3 @@ It is recommended that this package is used together with `dplyr` which can be i
 ``` r
 install.packages("dplyr")
 ```
-
-## Vignettes
-
-[Finalfit basics](https://CRAN.R-project.org/package=finalfit/vignettes/finalfit_basics.html)
-
-[Bootstrapping for model prediction](http://www.datasurg.net/2018/07/12/finalfit-now-includes-bootstrap-simulation-for-model-prediction/)
-
-[Exporting results to Word, PDF and html with R Markdown](http://www.datasurg.net/2018/05/22/finalfit-knitr-and-r-markdown-for-quick-results/)
