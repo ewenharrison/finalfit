@@ -349,6 +349,7 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 #'
 #' @return Returns the label for the dependent variable, if specified.
 #' @export
+#' @keywords internal
 #' @examples
 #' library(dplyr)
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")

@@ -58,3 +58,4 @@ example.summary \%>\%
 	 dependent_label(colon_s, dependent) -> example.final
   example.final
 }
+\keyword{internal}

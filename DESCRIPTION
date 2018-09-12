@@ -14,7 +14,7 @@ License: MIT + file LICENCE
 Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/ewenharrison/finalfit/issues
-URL: URL: https://github.com/eharrison/finalfit
+URL: URL: https://github.com/ewenharrison/finalfit
 Imports:
     boot,
     broom,
