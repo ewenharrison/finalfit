@@ -1,5 +1,11 @@
 # finalfit 0.8.6
 
+* New vignettes
+* pkgdown website support
+* `missing_predictorMatrix()` added for use with `mice`
+
+# finalfit 0.8.6
+
 * Bug fix
 
 # finalfit 0.8.5
