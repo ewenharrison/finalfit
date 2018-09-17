@@ -1,4 +1,4 @@
-# finalfit 0.8.6
+# finalfit 0.8.7
 
 * New vignettes
 * pkgdown website support

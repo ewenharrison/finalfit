@@ -21,7 +21,7 @@ For example, say I have run a logistic regression model for predicted 5 year sur
 
 I’ve tried this various ways. I used [Zelig](https://zeligproject.org/) for a while including [here](https://www.bmj.com/content/344/bmj.e3330), but it started trying to do too much and was always broken (I updated it the other day in the hope that things were better, but was met with a string of errors again).
 
-I also used [rms](https://cran.r-project.org/web/packages/rms/index.html), including [here](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148782) (checkout the nice plots!). I like it and respect the package. But I don’t use it as standard and so need to convert all the models first, e.g. to lrm. Again, for my needs it tries to do too much and I find datadist awkward.
+I also used [rms](https://CRAN.R-project.org/package=rms), including [here](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148782) (checkout the nice plots!). I like it and respect the package. But I don’t use it as standard and so need to convert all the models first, e.g. to lrm. Again, for my needs it tries to do too much and I find datadist awkward.
 
 Thirdly, I love [Stan](http://mc-stan.org/users/interfaces/rstan) for this, e.g. used in this [paper](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(18)30101-4/fulltext). The generated quantities block allows great flexibility to simulate whatever you wish from the posterior. I’m a Bayesian at heart will always come back to this. But for some applications it’s a bit much, and takes some time to get running as I want.
 

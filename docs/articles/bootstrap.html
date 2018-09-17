@@ -103,7 +103,7 @@
 <p>I’ve always been a fan of converting model outputs to real-life quantities of interest. For example, I like to supplement a logistic regression model table with predicted probabilities for a given set of explanatory variable levels. This can be more intuitive than odds ratios, particularly for a lay audience.</p>
 <p>For example, say I have run a logistic regression model for predicted 5 year survival after colon cancer. What is the actual probability of death for a patient under 40 with a small cancer that has not perforated? How does that probability differ for a patient over 40?</p>
 <p>I’ve tried this various ways. I used <a href="https://zeligproject.org/">Zelig</a> for a while including <a href="https://www.bmj.com/content/344/bmj.e3330">here</a>, but it started trying to do too much and was always broken (I updated it the other day in the hope that things were better, but was met with a string of errors again).</p>
-<p>I also used <a href="https://cran.r-project.org/web/packages/rms/index.html">rms</a>, including <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148782">here</a> (checkout the nice plots!). I like it and respect the package. But I don’t use it as standard and so need to convert all the models first, e.g. to lrm. Again, for my needs it tries to do too much and I find datadist awkward.</p>
+<p>I also used <a href="https://CRAN.R-project.org/package=rms">rms</a>, including <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148782">here</a> (checkout the nice plots!). I like it and respect the package. But I don’t use it as standard and so need to convert all the models first, e.g. to lrm. Again, for my needs it tries to do too much and I find datadist awkward.</p>
 <p>Thirdly, I love <a href="http://mc-stan.org/users/interfaces/rstan">Stan</a> for this, e.g. used in this <a href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(18)30101-4/fulltext">paper</a>. The generated quantities block allows great flexibility to simulate whatever you wish from the posterior. I’m a Bayesian at heart will always come back to this. But for some applications it’s a bit much, and takes some time to get running as I want.</p>
 <p>I often simply want to predict y-hat from lm and glm with bootstrapped intervals and ideally a comparison of explanatory levels sets. Just like <code>sim</code> does in <code>Zelig</code>. But I want it in a format I can immediately use in a publication.</p>
 <p>Well now I can with <code>finalfit</code></p>
@@ -142,10 +142,10 @@
 <a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">boot_compare =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">digits =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.09 to 0.59)</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.06 to 0.70)</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.53 to 0.84)</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.38 to 0.91)</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.00 to 0.53)</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.00 to 0.62)</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.50 to 0.85)</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.41 to 0.88)</span></a></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for demonstration purposes. You should expect to use 1000 to 10000 to ensure you have stable estimates.</p>
 </div>
 <div id="output-to-word-pdf-and-html-via-rmarkdown" class="section level2">
@@ -167,15 +167,15 @@
 <a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="dt">compare_name =</span> <span class="st">"Absolute risk difference"</span>,</a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">digits =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.00 to 0.54)</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.00 to 0.61)</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.46 to 0.87)</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.29 to 0.89)</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;         Absolute risk difference</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 1                              -</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2 -0.00 (-0.15 to 0.19, p=0.940)</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3   0.45 (0.21 to 0.70, p&lt;0.001)</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4   0.42 (0.10 to 0.71, p&lt;0.001)</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.08 to 0.53)</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.08 to 0.59)</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.47 to 0.86)</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.36 to 0.91)</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;        Absolute risk difference</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 1                             -</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2 0.01 (-0.19 to 0.18, p=0.880)</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3  0.42 (0.16 to 0.64, p&lt;0.001)</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4  0.44 (0.03 to 0.67, p=0.040)</span></a></code></pre></div>
 </div>
 <div id="what-is-not-included" class="section level2">
 <h2 class="hasAnchor">
