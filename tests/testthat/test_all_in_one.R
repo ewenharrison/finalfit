@@ -20,27 +20,6 @@ test_that("finalfit.coxph gives dataframe", {
 	expect_is(finalfit(colon_s,  "Surv(time, status)", "age.factor"), "data.frame")
 })
 
-test_that("finalfit.glm gives dataframe", {
-	expect_is(finalfit(colon_s, "mort_5yr", "age.factor"), "data.frame")
-})
-
-test_that("finalfit.lm gives dataframe", {
-	expect_is(finalfit(colon_s, "nodes", "age.factor"), "data.frame")
-})
-
-test_that("finalfit.coxph gives dataframe", {
-	expect_is(finalfit(colon_s,  "Surv(time, status)", "age.factor"), "data.frame")
-})
-
-test_that("finalfit  mixed gives dataframe", {
-	expect_is(finalfit(colon_s,  "mort_5yr", "age.factor", random_effect="hospital"), "data.frame")
-})
-
-test_that("finalfit.glm with metrics gives list", {
-	expect_is(finalfit(colon_s, "mort_5yr", "age.factor", metrics=TRUE), "list")
-})
-
-
 context("summary_factorlist function")
 library(finalfit)
 
