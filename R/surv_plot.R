@@ -30,8 +30,8 @@ surv_plot = function(.data, dependent, explanatory, ...){
   }
 
   args = list(...)
-  args$fit = survival::survfit(
-    as.formula(paste0("survival::", dependent, "~", paste(explanatory, collapse="+"))), data=.data)
+  .formula = as.formula(paste0(dependent, "~", paste(explanatory, collapse="+")))
+  args$fit = substitute(survival::survfit(.formula, data=.data), list(.formula=.formula))
   args$data=.data
 
   # Defaults which can be modified via ...
