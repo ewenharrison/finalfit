@@ -119,10 +119,6 @@ fit2df.lm <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE
                       p_name = "p",
                       digits=c(2,2,3), confint_sep = " to ", ...){
 
-  if (metrics==TRUE && length(.data)>1){
-    stop("Metrics only generated for single models: multiple models supplied to function")
-  }
-
   df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
                        estimate_name=estimate_name, estimate_suffix=estimate_suffix,
                        p_name=p_name, digits=digits)
@@ -139,7 +135,7 @@ fit2df.lm <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE
 
   # Extract model metrics
   if (metrics==TRUE){
-    x = .data[[1]]
+    x = .data
     n_model = dim(x$model)[1]
     n_missing = length(summary(x)$na.action)
     n_data = n_model+n_missing
