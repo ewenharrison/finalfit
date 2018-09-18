@@ -48,7 +48,6 @@ test_that("coxphmulti gives coxphlist", {
 
 context("fit2df: glm")
 library(finalfit)
-
 test_that("fit2df(glm, metrics=TRUE) gives list", {
 	expect_is(glm(mort_5yr ~  age.factor, data=colon_s, family="binomial") %>%
 							fit2df(metrics=TRUE), "list")
@@ -85,7 +84,7 @@ test_that("fit2df(lmmulti, metrics=TRUE) gives list", {
 })
 
 test_that("fit2df(lmmixed, metrics=TRUE) gives list", {
-	expect_is(lmmixed(colon_s,  "nodes", "age.factor", "hospital") %>% fit2df(metrics=TRUE), "list")
+	expect_is(lmmixed(colon_s, "nodes", "age.factor", random_effect="hospital") %>% fit2df(metrics=TRUE), "list")
 })
 
 context("fit2df: coxph")
