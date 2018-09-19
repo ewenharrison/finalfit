@@ -28,3 +28,15 @@ test_that("ff_newdata gives dataframe", {
 													 compare_name = "Absolute risk difference", R=40, digits = c(2,3)),
 						"data.frame")
 })
+
+test_that("ff_newdata gives dataframe", {
+	expect_is(colon_s %>%
+							glmmulti("mort_5yr", c("age.factor", "extent.factor")) %>%
+							boot_predict(newdata = ff_newdata(colon_s, explanatory = c("age.factor", "extent.factor"),
+																								newdata = list(
+																									c("<40 years",  "Submucosa"),
+																									c("<40 years", "Submucosa"))),
+													 condense = FALSE,
+													 comparison  = "ratio", R=40, digits = c(2,3)),
+						"data.frame")
+})
