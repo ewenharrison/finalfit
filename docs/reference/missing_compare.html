@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.8.7</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.8.8</span>
       </span>
     </div>
 
@@ -168,20 +168,22 @@ level.</p></td>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='ff_glimpse.html'>ff_glimpse</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; Numerics
-#&gt;           label   n missing_n missing_percent mean sd min max range  se
-#&gt; age Age (years) 929         0               0   60 12  18  85    67 0.4
+#&gt;           label   n missing_n missing_percent mean   sd  min quartile_25 median
+#&gt; age Age (years) 929         0             0.0 59.8 11.9 18.0        53.0   61.0
+#&gt;     quartile_75  max
+#&gt; age        69.0 85.0
 #&gt; 
 #&gt; Factors
-#&gt;                          label   n missing_n missing_percent level_n
-#&gt; perfor.factor      Perforation 929         0               0       2
-#&gt; extent.factor Extent of spread 929         0               0       4
-#&gt; age.factor                 Age 929         0               0       3
-#&gt; mort_5yr      Mortality 5 year 915        14             1.5       2
+#&gt;                          label   n missing_n missing_percent levels_n
+#&gt; perfor.factor      Perforation 929         0             0.0        2
+#&gt; extent.factor Extent of spread 929         0             0.0        4
+#&gt; age.factor                 Age 929         0             0.0        3
+#&gt; mort_5yr      Mortality 5 year 915        14             1.5        2
 #&gt;                                                               levels
 #&gt; perfor.factor                                            "No", "Yes"
 #&gt; extent.factor "Submucosa", "Muscle", "Serosa", "Adjacent structures"
 #&gt; age.factor                   "&lt;40 years", "40-59 years", "60+ years"
-#&gt; mort_5yr                                             "Alive", "Died"
+#&gt; mort_5yr                                "Alive", "Died", "(Missing)"
 #&gt;                   levels_count         levels_percent
 #&gt; perfor.factor          902, 27             97.1,  2.9
 #&gt; extent.factor 21, 106, 759, 43  2.3, 11.4, 81.7,  4.6

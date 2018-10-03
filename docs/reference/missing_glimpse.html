@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Binomial logistic regression multivariable models: <code>finalfit</code> model
-wrapper — glmmulti • finalfit</title>
+<title>Summary of missing values — missing_glimpse • finalfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,12 +30,9 @@ wrapper — glmmulti • finalfit</title>
 
 
 
-<meta property="og:title" content="Binomial logistic regression multivariable models: <code>finalfit</code> model
-wrapper — glmmulti" />
+<meta property="og:title" content="Summary of missing values — missing_glimpse" />
 
-<meta property="og:description" content="Using finalfit conventions, produces multiple multivariable binomial
-logistic regression models for a set of explanatory variables against a
-binary dependent." />
+<meta property="og:description" content="Summary of missing values" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -122,78 +118,83 @@ binary dependent." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Binomial logistic regression multivariable models: <code>finalfit</code> model
-wrapper</h1>
+    <h1>Summary of missing values</h1>
     
-    <div class="hidden name"><code>glmmulti.Rd</code></div>
+    <div class="hidden name"><code>missing_glimpse.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Using <code>finalfit</code> conventions, produces multiple multivariable binomial
-logistic regression models for a set of explanatory variables against a
-binary dependent.</p>
+    <p>Summary of missing values</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>glmmulti</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>)</pre>
+    <pre class="usage"><span class='fu'>missing_glimpse</span>(<span class='no'>.data</span>, <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>explanatory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>Dataframe.</p></td>
+      <td><p>Data frame.</p></td>
     </tr>
     <tr>
       <th>dependent</th>
-      <td><p>Character vector usually of length 1, but can take more than
-1 dependent:  name of depdendent variable (must have 2 levels).</p></td>
+      <td><p>Optional character vector: name(s) of depdendent
+variable(s).</p></td>
     </tr>
     <tr>
       <th>explanatory</th>
-      <td><p>Character vector of any length: name(s) of explanatory
-variables.</p></td>
+      <td><p>Optional character vector: name(s) of explanatory
+variable(s).</p></td>
+    </tr>
+    <tr>
+      <th>digits</th>
+      <td><p>Number of decmial places to show for percentage missing.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of multivariable <code><a href='http://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></code> fitted model
-  outputs. Output is of class <code>glmlist</code>.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Uses <code><a href='http://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></code> with <code>finalfit</code> modelling conventions.
-Output can be passed to <code><a href='fit2df.html'>fit2df</a></code>. Note that this function can
-take multiple <code>dependent</code> variables as well, but performs multiple
-individual models, not a multivariate analysis.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='fit2df.html'>fit2df</a>, <a href='ff_merge.html'>finalfit_merge</a></code></p>
-<p>Other <code>finalfit</code> model wrappers: <code><a href='coxphmulti.html'>coxphmulti</a></code>,
-  <code><a href='coxphuni.html'>coxphuni</a></code>, <code><a href='glmmixed.html'>glmmixed</a></code>,
-  <code><a href='glmmulti_boot.html'>glmmulti_boot</a></code>, <code><a href='glmuni.html'>glmuni</a></code>,
-  <code><a href='lmmixed.html'>lmmixed</a></code>, <code><a href='lmmulti.html'>lmmulti</a></code>,
-  <code><a href='lmuni.html'>lmuni</a></code></p></div>
+    <p>Data frame.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>finalfit</span>)
-<span class='fu'>library</span>(<span class='no'>dplyr</span>)
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
-
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>glmmulti</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;             explanatory          OR (univariable)
-#&gt; 2 age.factor40-59 years 0.57 (0.34-0.98, p=0.041)
-#&gt; 3   age.factor60+ years 0.81 (0.48-1.36, p=0.426)
-#&gt; 4        sex.factorMale 0.98 (0.75-1.28, p=0.902)
-#&gt; 5    obstruct.factorYes 1.25 (0.90-1.76, p=0.186)
-#&gt; 6      perfor.factorYes 1.12 (0.51-2.44, p=0.770)</div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
+        <span class='fu'>missing_glimpse</span>()</div><div class='output co'>#&gt;                               label   n missing_n missing_percent
+#&gt; id                               id 929         0             0.0
+#&gt; rx                               rx 929         0             0.0
+#&gt; sex                             sex 929         0             0.0
+#&gt; age                     Age (years) 929         0             0.0
+#&gt; obstruct                   obstruct 908        21             2.3
+#&gt; perfor                       perfor 929         0             0.0
+#&gt; adhere                       adhere 929         0             0.0
+#&gt; nodes                         nodes 911        18             1.9
+#&gt; status                       status 929         0             0.0
+#&gt; differ                       differ 906        23             2.5
+#&gt; extent                       extent 929         0             0.0
+#&gt; surg                           surg 912        17             1.8
+#&gt; node4                         node4 929         0             0.0
+#&gt; time                           time 929         0             0.0
+#&gt; sex.factor                      Sex 929         0             0.0
+#&gt; rx.factor                 Treatment 929         0             0.0
+#&gt; obstruct.factor         Obstruction 908        21             2.3
+#&gt; perfor.factor           Perforation 929         0             0.0
+#&gt; adhere.factor             Adherence 929         0             0.0
+#&gt; differ.factor       Differentiation 906        23             2.5
+#&gt; extent.factor      Extent of spread 929         0             0.0
+#&gt; surg.factor       Time from surgery 912        17             1.8
+#&gt; node4.factor      &gt;4 positive nodes 929         0             0.0
+#&gt; status.factor                Status 929         0             0.0
+#&gt; age.factor                      Age 929         0             0.0
+#&gt; loccomp                     loccomp 909        20             2.2
+#&gt; loccomp.factor  Local complications 909        20             2.2
+#&gt; time.years             Time (years) 929         0             0.0
+#&gt; mort_5yr           Mortality 5 year 915        14             1.5
+#&gt; age.10                       age.10 929         0             0.0
+#&gt; mort_5yr.num           mort_5yr.num 915        14             1.5
+#&gt; hospital                   hospital 929         0             0.0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -201,10 +202,6 @@ individual models, not a multivariate analysis.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

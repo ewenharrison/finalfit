@@ -82,6 +82,7 @@ missing_plot <- function(.data, dependent=NULL, explanatory=NULL,
 #'
 #' @return Data frame of missing values for all variables.
 #' @export
+#' @keywords internal
 #'
 #' @examples
 #' colon_s %>%

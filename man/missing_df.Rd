@@ -26,3 +26,4 @@ optional.
 colon_s \%>\%
   missing_df()
 }
+\keyword{internal}

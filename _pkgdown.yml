@@ -38,10 +38,10 @@ reference:
   - title: "Missing data functions"
     desc: ~
     contents:
+    - '`missing_glimpse`'
     - '`missing_pattern`'
     - '`missing_compare`'
     - '`missing_pairs`'
-    - '`missing_df`'
     - '`missing_plot`'
     - '`missing_predictorMatrix`'
   - title: "Metrics"
