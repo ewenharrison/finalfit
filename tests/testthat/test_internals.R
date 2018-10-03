@@ -36,11 +36,10 @@ test_that("remove_label", {
 	expect_is(remove_labels(colon_s[,1:2]), "data.frame")
 })
 
-test_that("ff_describe", {
-	expect_is(ff_describe(colon_s), "data.frame")
+test_that("missing_glimpse", {
+	expect_is(missing_glimpse(colon_s, digits=2), "data.frame")
 })
 
-test_that("ff_describe", {
-	expect_is(ff_describe(colon_s, na.rm=FALSE, interp=TRUE, skew=FALSE, ranges=FALSE,
-												check=FALSE, IQR=TRUE, omit=TRUE), "data.frame")
+test_that("missing_glimpse", {
+	expect_is(missing_glimpse(colon_s, dependent="mort_5yr"), "data.frame")
 })
