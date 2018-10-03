@@ -1,6 +1,6 @@
 language: r
-sudo: required
-dist: precise
+r:
+  - 3.3
 
 cache: packages
 
