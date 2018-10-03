@@ -5,3 +5,5 @@ r_packages:
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
+
+r_check_args: "--force_suggests=FALSE"
