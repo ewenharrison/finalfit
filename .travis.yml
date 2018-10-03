@@ -1,4 +1,7 @@
 language: r
+  - oldrel
+
+cache: packages
 
 r_packages:
   - covr
