@@ -7,7 +7,6 @@
 \alias{extract_fit.lm}
 \alias{extract_fit.lmerMod}
 \alias{extract_fit.coxph}
-\alias{extract_fit.stanfit}
 \title{Extract model output to dataframe}
 \usage{
 extract_fit(.data, explanatory_name, estimate_name, estimate_suffix,
@@ -32,10 +31,6 @@ extract_fit(.data, explanatory_name, estimate_name, estimate_suffix,
 \method{extract_fit}{coxph}(.data, explanatory_name = "explanatory",
   estimate_name = "HR", estimate_suffix = "", p_name = "p",
   digits = c(2, 2, 3), ...)
-
-\method{extract_fit}{stanfit}(.data, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), X, ...)
 }
 \arguments{
 \item{.data}{Model output.}
@@ -52,12 +47,8 @@ extract_fit(.data, explanatory_name, estimate_name, estimate_suffix,
 interval limits, (3) p-value.}
 
 \item{...}{Other arguments.}
-
-\item{X}{Design matrix from Stan modelling procedure.}
 }
 \description{
-Internal function, not called directly.
-
 Internal function, not called directly.
 
 Internal function, not called directly.

@@ -144,45 +144,45 @@ extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_nam
 }
 
 
-#' Extract model output to dataframe
-#'
-#' Internal function, not called directly.
-#'
-#' @param X Design matrix from Stan modelling procedure.
-#'
-#' @keywords internal
-#' @rdname extract_fit
-#' @method extract_fit stanfit
-#' @export
-
-extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_name="OR",
-															 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), X, ...){
-	stanfit = .data
-	pars = "beta"
-	quantiles =  c(0.025, 0.50, 0.975)
-
-	explanatory = attr(X, "dimnames")[[2]]
-	results = rstan::summary(stanfit,
-													 pars = pars,
-													 probs = quantiles)$summary
-	estimate = exp(results[, 1])
-	confint_L = exp(results[, 4])
-	confint_U = exp(results[, 6])
-
-	# Determine a p-value based on two-sided examination of chains
-	chains = rstan::extract(stanfit, pars=pars, permuted = TRUE, inc_warmup = FALSE,
-													include = TRUE)
-	p1.out = apply(chains[[1]], 2, function(x)mean(x<0))
-	p2.out = apply(chains[[1]], 2, function(x)mean(x>0))
-	p1.out = p1.out*2
-	p2.out = p2.out*2
-	p.out = ifelse(p1.out < 1, p1.out, p2.out)
-	p = round(p.out, 3)
-
-	df.out = data.frame(explanatory, estimate, confint_L, confint_U, p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
-	return(df.out)
-}
+# #' Extract model output to dataframe
+# #'
+# #' Internal function, not called directly.
+# #'
+# #' @param X Design matrix from Stan modelling procedure.
+# #'
+# #' @keywords internal
+# #' @rdname extract_fit
+# #' @method extract_fit stanfit
+# #' @export
+#
+# extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_name="OR",
+# 															 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), X, ...){
+# 	stanfit = .data
+# 	pars = "beta"
+# 	quantiles =  c(0.025, 0.50, 0.975)
+#
+# 	explanatory = attr(X, "dimnames")[[2]]
+# 	results = rstan::summary(stanfit,
+# 													 pars = pars,
+# 													 probs = quantiles)$summary
+# 	estimate = exp(results[, 1])
+# 	confint_L = exp(results[, 4])
+# 	confint_U = exp(results[, 6])
+#
+# 	# Determine a p-value based on two-sided examination of chains
+# 	chains = rstan::extract(stanfit, pars=pars, permuted = TRUE, inc_warmup = FALSE,
+# 													include = TRUE)
+# 	p1.out = apply(chains[[1]], 2, function(x)mean(x<0))
+# 	p2.out = apply(chains[[1]], 2, function(x)mean(x>0))
+# 	p1.out = p1.out*2
+# 	p2.out = p2.out*2
+# 	p.out = ifelse(p1.out < 1, p1.out, p2.out)
+# 	p = round(p.out, 3)
+#
+# 	df.out = data.frame(explanatory, estimate, confint_L, confint_U, p)
+# 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+# 	return(df.out)
+#  }
 
 #' Extract variable labels from dataframe
 #'
