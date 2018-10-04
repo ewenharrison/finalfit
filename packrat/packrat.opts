@@ -3,7 +3,9 @@ use.cache: TRUE
 print.banner.on.startup: auto
 vcs.ignore.lib: FALSE
 vcs.ignore.src: FALSE
-external.packages: roxygen2
+external.packages:
+    roxygen2
+    packrat
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 
