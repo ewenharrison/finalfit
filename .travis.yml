@@ -1,11 +1,17 @@
 language: r
-r:
-  - 3.3
-
-cache: packages
 
 r_packages:
   - covr
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
+
+install:
+  - R -e "0" --args --bootstrap-packrat
+  - R -e "packrat::restore(restart = FALSE)"
+
+cache:
+  directories:
+    - $TRAVIS_BUILD_DIR/packrat/src
+    - $TRAVIS_BUILD_DIR/packrat/lib
+  packages: true
