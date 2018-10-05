@@ -498,7 +498,9 @@ finalfit_formula <- ff_formula
 
 
 # Specify global variables
-globalVariables(c("L95", "U95", "fit_id", "Total", "OR", "HR", ".", ".id", "var", "value"))
+globalVariables(c("L95", "U95", "fit_id", "Total",
+									"OR", "HR", ".", ".id", "var", "value",
+									":="))
 
 
 

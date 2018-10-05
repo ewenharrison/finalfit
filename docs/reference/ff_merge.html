@@ -210,9 +210,9 @@ Defaults to OR/HR/Coefficient</p></td>
         <span class='fu'>finalfit_merge</span>(<span class='no'>example.multilevel</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'>c</span>(<span class='no'>fit_id</span>, <span class='no'>index</span>)) <span class='kw'>-&gt;</span> <span class='no'>example.final</span>
 <span class='no'>example.final</span></div><div class='output co'>#&gt;         label      levels      Alive       Died          OR (univariable)
-#&gt; 2         Age   &lt;40 years  31 (46.3)  36 (53.7)                         -
+#&gt; 3         Age   &lt;40 years  31 (46.3)  36 (53.7)                         -
 #&gt; 1             40-59 years 208 (61.4) 131 (38.6) 0.54 (0.32-0.92, p=0.023)
-#&gt; 3               60+ years 272 (53.4) 237 (46.6) 0.75 (0.45-1.25, p=0.270)
+#&gt; 2               60+ years 272 (53.4) 237 (46.6) 0.75 (0.45-1.25, p=0.270)
 #&gt; 8         Sex      Female 243 (55.6) 194 (44.4)                         -
 #&gt; 9                    Male 268 (56.1) 210 (43.9) 0.98 (0.76-1.27, p=0.889)
 #&gt; 4 Obstruction          No 408 (56.7) 312 (43.3)                         -
@@ -220,9 +220,9 @@ Defaults to OR/HR/Coefficient</p></td>
 #&gt; 6 Perforation          No 497 (56.0) 391 (44.0)                         -
 #&gt; 7                     Yes  14 (51.9)  13 (48.1) 1.18 (0.54-2.55, p=0.672)
 #&gt;          OR (multivariable)            OR (multilevel
-#&gt; 2                         -                         -
+#&gt; 3                         -                         -
 #&gt; 1 0.57 (0.34-0.98, p=0.041) 0.75 (0.39-1.44, p=0.382)
-#&gt; 3 0.81 (0.48-1.36, p=0.426) 1.03 (0.55-1.96, p=0.916)
+#&gt; 2 0.81 (0.48-1.36, p=0.426) 1.03 (0.55-1.96, p=0.916)
 #&gt; 8                         -                         -
 #&gt; 9 0.98 (0.75-1.28, p=0.902) 0.80 (0.58-1.11, p=0.180)
 #&gt; 4                         -                         -
