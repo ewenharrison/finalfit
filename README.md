@@ -1,6 +1,7 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/finalfit)](https://cran.r-project.org/package=finalfit)
 [![CRAN_Status_Badge](https://cranlogs.r-pkg.org/badges/finalfit)](https://cran.r-project.org/package=finalfit)
 [![TravisCRAN_Status_Badge](https://travis-ci.com/ewenharrison/finalfit.svg?branch=master)](https://travis-ci.com/ewenharrison/finalfit)
+[![Build status](https://ci.appveyor.com/api/projects/status/3wpgw2rs6vn1lsrn?svg=true)](https://ci.appveyor.com/project/ewenharrison/finalfit)
 [![Coverage status](https://codecov.io/gh/ewenharrison/finalfit/branch/master/graph/badge.svg)](https://codecov.io/github/ewenharrison/finalfit?branch=master)
 
 finalfit <img src="man/figures/finalfit_130_150.png" align="right" />
