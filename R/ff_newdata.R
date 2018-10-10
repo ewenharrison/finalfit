@@ -49,23 +49,29 @@
 #' )) -> newdata
 #'
 
-ff_newdata = function(.data, dependent=NULL, explanatory=NULL,  rowwise=TRUE, newdata){
-  .data %>%
-    dplyr::select(dependent, explanatory) %>%
-    dplyr::slice(0) -> df.out
+ff_newdata <- function(.data, dependent=NULL, explanatory=NULL,  rowwise=TRUE, newdata){
+	if(is.null(dependent) && is.null(explanatory)){
+		df.out = .data %>% dplyr::slice(0)
+	}else{
+		.data %>%
+			dplyr::select(dependent, explanatory) %>%
+			dplyr::slice(0) -> df.out
+	}
 
-  is_numeric = sapply(df.out, is.numeric)
 
-  if(rowwise){
-    df.new = do.call(rbind.data.frame, newdata)
-    df.new[ ,is_numeric] = as.numeric(as.character(df.new[ ,is_numeric]))
-  }else{
-    df.new = do.call(data.frame, newdata)
-  }
+	is_numeric = sapply(df.out, is.numeric)
 
-  df.out[1:dim(df.new)[1],] = df.new
-  return(df.out)
+	if(rowwise){
+		df.new = do.call(rbind.data.frame, newdata)
+		df.new[ ,is_numeric] = as.numeric(as.character(df.new[ ,is_numeric]))
+	}else{
+		df.new = do.call(data.frame, newdata)
+	}
+
+	df.out[1:dim(df.new)[1],] = df.new
+	return(df.out)
 }
+
 
 #' @rdname ff_newdata
 #' @export
