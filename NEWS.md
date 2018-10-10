@@ -2,6 +2,8 @@
 
 * `ff_glimpse` re-written to remove `psych` dependency
 * `missing_glimpse` added: single data frame describing all variables and missing values
+* `ff_interaction` added: create variable for an interaction between two factors
+* `ff_label` added: easily add label to variable in dataframe. 
 
 # finalfit 0.8.7
 
