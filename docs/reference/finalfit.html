@@ -242,9 +242,9 @@ p_name, digits, confint_sep.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
         <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 3                         Age   &lt;40 years   31 (6.1)   36 (8.9)
+#&gt; 2                         Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt; 1                             40-59 years 208 (40.7) 131 (32.4)
-#&gt; 2                               60+ years 272 (53.2) 237 (58.7)
+#&gt; 3                               60+ years 272 (53.2) 237 (58.7)
 #&gt; 8                         Sex      Female 243 (47.6) 194 (48.0)
 #&gt; 9                                    Male 268 (52.4) 210 (52.0)
 #&gt; 4                 Obstruction          No 408 (82.1) 312 (78.6)
@@ -252,9 +252,9 @@ p_name, digits, confint_sep.</p></td>
 #&gt; 6                 Perforation          No 497 (97.3) 391 (96.8)
 #&gt; 7                                     Yes   14 (2.7)   13 (3.2)
 #&gt;            OR (univariable)        OR (multivariable)
-#&gt; 3                         -                         -
+#&gt; 2                         -                         -
 #&gt; 1 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
-#&gt; 2 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426)
+#&gt; 3 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426)
 #&gt; 8                         -                         -
 #&gt; 9 0.98 (0.76-1.27, p=0.889) 0.98 (0.75-1.28, p=0.902)
 #&gt; 4                         -                         -
@@ -268,9 +268,9 @@ p_name, digits, confint_sep.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
         <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 3                         Age   &lt;40 years   31 (6.1)   36 (8.9)
+#&gt; 2                         Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt; 1                             40-59 years 208 (40.7) 131 (32.4)
-#&gt; 2                               60+ years 272 (53.2) 237 (58.7)
+#&gt; 3                               60+ years 272 (53.2) 237 (58.7)
 #&gt; 8                         Sex      Female 243 (47.6) 194 (48.0)
 #&gt; 9                                    Male 268 (52.4) 210 (52.0)
 #&gt; 4                 Obstruction          No 408 (82.1) 312 (78.6)
@@ -278,9 +278,9 @@ p_name, digits, confint_sep.</p></td>
 #&gt; 6                 Perforation          No 497 (97.3) 391 (96.8)
 #&gt; 7                                     Yes   14 (2.7)   13 (3.2)
 #&gt;            OR (univariable)        OR (multivariable)
-#&gt; 3                         -                         -
+#&gt; 2                         -                         -
 #&gt; 1 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
-#&gt; 2 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.424)
+#&gt; 3 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.424)
 #&gt; 8                         -                         -
 #&gt; 9 0.98 (0.76-1.27, p=0.889)                         -
 #&gt; 4                         -                         -
@@ -296,9 +296,9 @@ p_name, digits, confint_sep.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
         <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>, <span class='no'>random_effect</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 3                         Age   &lt;40 years   31 (6.1)   36 (8.9)
+#&gt; 2                         Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt; 1                             40-59 years 208 (40.7) 131 (32.4)
-#&gt; 2                               60+ years 272 (53.2) 237 (58.7)
+#&gt; 3                               60+ years 272 (53.2) 237 (58.7)
 #&gt; 8                         Sex      Female 243 (47.6) 194 (48.0)
 #&gt; 9                                    Male 268 (52.4) 210 (52.0)
 #&gt; 4                 Obstruction          No 408 (82.1) 312 (78.6)
@@ -306,9 +306,9 @@ p_name, digits, confint_sep.</p></td>
 #&gt; 6                 Perforation          No 497 (97.3) 391 (96.8)
 #&gt; 7                                     Yes   14 (2.7)   13 (3.2)
 #&gt;            OR (univariable)           OR (multilevel)
-#&gt; 3                         -                         -
+#&gt; 2                         -                         -
 #&gt; 1 0.54 (0.32-0.92, p=0.023) 0.73 (0.38-1.40, p=0.342)
-#&gt; 2 0.75 (0.45-1.25, p=0.270) 1.01 (0.53-1.90, p=0.984)
+#&gt; 3 0.75 (0.45-1.25, p=0.270) 1.01 (0.53-1.90, p=0.984)
 #&gt; 8                         -                         -
 #&gt; 9 0.98 (0.76-1.27, p=0.889)                         -
 #&gt; 4                         -                         -
@@ -319,9 +319,9 @@ p_name, digits, confint_sep.</p></td>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
         <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>,  <span class='kw'>metrics</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; [[1]]
 #&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 3                         Age   &lt;40 years   31 (6.1)   36 (8.9)
+#&gt; 2                         Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt; 1                             40-59 years 208 (40.7) 131 (32.4)
-#&gt; 2                               60+ years 272 (53.2) 237 (58.7)
+#&gt; 3                               60+ years 272 (53.2) 237 (58.7)
 #&gt; 8                         Sex      Female 243 (47.6) 194 (48.0)
 #&gt; 9                                    Male 268 (52.4) 210 (52.0)
 #&gt; 4                 Obstruction          No 408 (82.1) 312 (78.6)
@@ -329,9 +329,9 @@ p_name, digits, confint_sep.</p></td>
 #&gt; 6                 Perforation          No 497 (97.3) 391 (96.8)
 #&gt; 7                                     Yes   14 (2.7)   13 (3.2)
 #&gt;            OR (univariable)        OR (multivariable)
-#&gt; 3                         -                         -
+#&gt; 2                         -                         -
 #&gt; 1 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
-#&gt; 2 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.424)
+#&gt; 3 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.424)
 #&gt; 8                         -                         -
 #&gt; 9 0.98 (0.76-1.27, p=0.889)                         -
 #&gt; 4                         -                         -
@@ -350,9 +350,9 @@ p_name, digits, confint_sep.</p></td>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
         <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt;   Dependent: Surv(time, status)                      HR (univariable)
-#&gt; 3                           Age   &lt;40 years                         -
+#&gt; 2                           Age   &lt;40 years                         -
 #&gt; 1                               40-59 years 0.76 (0.53-1.09, p=0.132)
-#&gt; 2                                 60+ years 0.93 (0.66-1.31, p=0.668)
+#&gt; 3                                 60+ years 0.93 (0.66-1.31, p=0.668)
 #&gt; 8                           Sex      Female                         -
 #&gt; 9                                      Male 1.01 (0.84-1.22, p=0.888)
 #&gt; 4                   Obstruction          No                         -
@@ -360,9 +360,9 @@ p_name, digits, confint_sep.</p></td>
 #&gt; 6                   Perforation          No                         -
 #&gt; 7                                       Yes 1.17 (0.70-1.95, p=0.556)
 #&gt;          HR (multivariable)
-#&gt; 3                         -
+#&gt; 2                         -
 #&gt; 1 0.79 (0.55-1.13, p=0.196)
-#&gt; 2 0.98 (0.69-1.40, p=0.926)
+#&gt; 3 0.98 (0.69-1.40, p=0.926)
 #&gt; 8                         -
 #&gt; 9 1.02 (0.85-1.23, p=0.812)
 #&gt; 4                         -
@@ -381,9 +381,9 @@ p_name, digits, confint_sep.</p></td>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>metrics</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; [[1]]
 #&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 3                         Age   &lt;40 years   31 (6.1)   36 (8.9)
+#&gt; 2                         Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt; 1                             40-59 years 208 (40.7) 131 (32.4)
-#&gt; 2                               60+ years 272 (53.2) 237 (58.7)
+#&gt; 3                               60+ years 272 (53.2) 237 (58.7)
 #&gt; 8                         Sex      Female 243 (47.6) 194 (48.0)
 #&gt; 9                                    Male 268 (52.4) 210 (52.0)
 #&gt; 4                 Obstruction          No 408 (82.1) 312 (78.6)
@@ -391,9 +391,9 @@ p_name, digits, confint_sep.</p></td>
 #&gt; 6                 Perforation          No 497 (97.3) 391 (96.8)
 #&gt; 7                                     Yes   14 (2.7)   13 (3.2)
 #&gt;            OR (univariable)        OR (multivariable)
-#&gt; 3                         -                         -
+#&gt; 2                         -                         -
 #&gt; 1 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
-#&gt; 2 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426)
+#&gt; 3 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426)
 #&gt; 8                         -                         -
 #&gt; 9 0.98 (0.76-1.27, p=0.889) 0.98 (0.75-1.28, p=0.902)
 #&gt; 4                         -                         -
@@ -431,9 +431,9 @@ p_name, digits, confint_sep.</p></td>
         <span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'>c</span>(<span class='no'>fit_id</span>, <span class='no'>index</span>)) <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>) <span class='kw'>-&gt;</span> <span class='no'>example.final</span>
 <span class='no'>example.final</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 3                         Age   &lt;40 years  31 (46.3)  36 (53.7)
+#&gt; 2                         Age   &lt;40 years  31 (46.3)  36 (53.7)
 #&gt; 1                             40-59 years 208 (61.4) 131 (38.6)
-#&gt; 2                               60+ years 272 (53.4) 237 (46.6)
+#&gt; 3                               60+ years 272 (53.4) 237 (46.6)
 #&gt; 8                         Sex      Female 243 (55.6) 194 (44.4)
 #&gt; 9                                    Male 268 (56.1) 210 (43.9)
 #&gt; 4                 Obstruction          No 408 (56.7) 312 (43.3)
@@ -441,9 +441,9 @@ p_name, digits, confint_sep.</p></td>
 #&gt; 6                 Perforation          No 497 (56.0) 391 (44.0)
 #&gt; 7                                     Yes  14 (51.9)  13 (48.1)
 #&gt;            OR (univariable)        OR (multivariable)            OR (multilevel
-#&gt; 3                         -                         -                         -
+#&gt; 2                         -                         -                         -
 #&gt; 1 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041) 0.75 (0.39-1.44, p=0.382)
-#&gt; 2 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426) 1.03 (0.55-1.96, p=0.916)
+#&gt; 3 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426) 1.03 (0.55-1.96, p=0.916)
 #&gt; 8                         -                         -                         -
 #&gt; 9 0.98 (0.76-1.27, p=0.889) 0.98 (0.75-1.28, p=0.902) 0.80 (0.58-1.11, p=0.180)
 #&gt; 4                         -                         -                         -

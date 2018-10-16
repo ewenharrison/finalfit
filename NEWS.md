@@ -1,9 +1,10 @@
 # finalfit 0.8.8
 
-* `ff_glimpse` re-written to remove `psych` dependency
-* `missing_glimpse` added: single data frame describing all variables and missing values
-* `ff_interaction` added: create variable for an interaction between two factors
-* `ff_label` added: easily add label to variable in dataframe. 
+* `ff_glimpse()` re-written to remove `psych` dependency
+* `missing_glimpse()` added: single data frame describing all variables and missing values
+* `ff_interaction()` added: create variable for an interaction between two factors
+* `ff_label()` added: easily add label to variable in dataframe
+* `ff_newdata()` modified to take dataframe without requirement for dependent and explanatory arguments
 
 # finalfit 0.8.7
 
@@ -35,7 +36,7 @@
 
 ## Bug fixes
 
-* `lmuni()`, `lmmulti()`, `lmmixed()`, `glmuni()`, `glmmulti()`, `glmmixed()`, `coxuni()`, `coxmulti()`
+* `lmuni()`, `lmmulti()`, `lmmixed()`, `glmuni()`, `glmmulti()`, `glmmixed()`, `coxphuni()`, `coxphmulti()`
 
 ## New functions
 
