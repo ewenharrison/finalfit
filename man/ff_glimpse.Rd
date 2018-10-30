@@ -32,13 +32,12 @@ Dataframe on summary data.
 \description{
 Everyone has a funcion like this, str, glimpse, glance etc. This one is
 specifically designed for use with \code{finalfit} language. It is different
-in dividing variables by numeric vs factor, the former using
-\code{link[psych]{describe}}.
+in dividing variables by numeric vs factor.
 }
 \examples{
 library(finalfit)
 dependent = 'mort_5yr'
-explanatory = c("age.factor", "extent.factor", "perfor.factor")
+explanatory = c("age", "nodes", "age.factor", "extent.factor", "perfor.factor")
 colon_s \%>\%
   finalfit_glimpse(dependent, explanatory)
 }
