@@ -5,6 +5,8 @@
 * `ff_interaction()` added: create variable for an interaction between two factors
 * `ff_label()` added: easily add label to variable in dataframe
 * `ff_newdata()` modified to take dataframe without requirement for dependent and explanatory arguments
+* `summary_factorlist()` modified to allow user to change number of unique factor levels at which a variable a continuous variable is converted to a factor (`cont_cut`). #9 
+* `fit2df()` and its internal function `extract_fit` modified to take `confint_type` and `confint_level`. 
 
 # finalfit 0.8.7
 

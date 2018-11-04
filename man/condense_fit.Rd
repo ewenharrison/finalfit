@@ -5,13 +5,13 @@
 \title{Condense model output dataframe for final tables}
 \usage{
 condense_fit(.data, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
+  estimate_name = NA, estimate_suffix = "", p_name = "p",
   digits = c(2, 2, 3), confint_sep = "-")
 }
 \arguments{
-\item{.data}{Dataframe of five columns, must be this order, (1) explanatory
+\item{.data}{Dataframe of four or five columns, must be this order, (1) explanatory
 variable names, (2) estimate, (3) confidence interval lower limit, (4)
-confidence interval upper limit, (5) p-value.}
+confidence interval upper limit, (5) p-value (optional).}
 
 \item{explanatory_name}{Name for this column in output}
 

@@ -1,29 +1,26 @@
-# Functions used in fit2df() ----
-
 #' Extract model output to dataframe
 #'
-#' Internal function, not called directly.
+#' Internal function, not usually called directly.
 #'
 #' @param .data Model output.
 #' @param explanatory_name Name for this column in output.
 #' @param estimate_name Name for this column in output.
 #' @param estimate_suffix Appeneded to estimate name.
 #' @param p_name Name given to p-value estimate
-#' @param digits Number of digits to round to (1) estimate, (2) confidence
-#'   interval limits, (3) p-value.
+#' @param confint_type One of \code{c("profile", "default")} for GLM
+#'   models or \code{c("profile", "Wald", "boot")} for \code{glmer/lmer} models.
+#'   Not implemented for \code{lm, coxph or coxphlist}.
+#' @param confint_level The confidence level required.
 #' @param ... Other arguments.
 #'
 #' @keywords internal
 #' @export
 
-extract_fit = function(.data, explanatory_name, estimate_name,
-											 estimate_suffix,  p_name, digits, ...){
+extract_fit = function(...){
 	UseMethod("extract_fit")
 }
 
 #' Extract model output to dataframe
-#'
-#' Internal function, not called directly.
 #'
 #' @keywords internal
 #' @rdname extract_fit
@@ -31,22 +28,30 @@ extract_fit = function(.data, explanatory_name, estimate_name,
 #' @export
 
 extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name="OR",
-													 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
+													 estimate_suffix = "",  p_name = "p",
+													 confint_type = "profile", confint_level = 0.95, ...){
 	x=.data
-
 	explanatory = names(coef(x))
 	estimate = exp(coef(x))
-	confint = exp(confint(x))
+	if (confint_type == "profile"){
+		confint = exp(confint(x, level = confint_level))
+	}else if (confint_type == "default"){
+		confint = exp(confint.default(x, level = confint_level))
+	}
 	p = summary(x)$coef[,"Pr(>|z|)"]
+	L_confint_name = paste0("L", confint_level*100)
+	U_confint_name = paste0("U", confint_level*100)
 
 	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
+											 L_confint_name, U_confint_name, p_name)
+	if(confint_level != 0.95){
+		df.out = df.out %>% dplyr::select(-p_name)
+	}
 	return(df.out)
 }
 
 #' Extract model output to dataframe
-#'
-#' Internal function, not called directly.
 #'
 #' @keywords internal
 #' @rdname extract_fit
@@ -54,25 +59,30 @@ extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name=
 #' @export
 
 extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_name="OR",
-																estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
+																estimate_suffix = "",  p_name = "p",
+																confint_type = "Wald", confint_level = 0.95, ...){
 	x=.data
 
 	explanatory = names(lme4::fixef(x))
 	estimate = exp(lme4::fixef(x))
-	confint = exp(lme4::confint.merMod(x, method='Wald'))
+	confint = exp(lme4::confint.merMod(x, level = confint_level, method = confint_type))
 	confint = confint[-grep("sig", rownames(confint)),]
 	p = summary(x)$coef[,"Pr(>|z|)"]
+	L_confint_name = paste0("L", confint_level*100)
+	U_confint_name = paste0("U", confint_level*100)
 
 	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
-	return(df.out)
+	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
+											 L_confint_name, U_confint_name, p_name)
 
+	if(confint_level != 0.95){
+		df.out = df.out %>% dplyr::select(-p_name)
+	}
+	return(df.out)
 }
 
 
 #' Extract model output to dataframe
-#'
-#' Internal function, not called directly.
 #'
 #' @keywords internal
 #' @rdname extract_fit
@@ -80,22 +90,26 @@ extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_
 #' @export
 
 extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="Coefficient",
-													estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
+													estimate_suffix = "",  p_name = "p",
+													confint_level = 0.95, ...){
 	x=.data
-
 	explanatory = names(coef(x))
 	estimate = coef(x)
 	confint = confint(x)
 	p = summary(x)$coef[,"Pr(>|t|)"]
+	L_confint_name = paste0("L", confint_level*100)
+	U_confint_name = paste0("U", confint_level*100)
 
 	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
+											 L_confint_name, U_confint_name, p_name)
+	if(confint_level != 0.95){
+		df.out = df.out %>% dplyr::select(-p_name)
+	}
 	return(df.out)
 }
 
 #' Extract model output to dataframe
-#'
-#' Internal function, not called directly.
 #'
 #' @keywords internal
 #' @rdname extract_fit
@@ -103,18 +117,26 @@ extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="
 #' @export
 
 extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_name="OR",
-															 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
+															 estimate_suffix = "",  p_name = "p",
+															 confint_type = "profile", confint_level = 0.95, ...){
 	x=.data
 
 	explanatory = names(lme4::fixef(x))
 	estimate = exp(lme4::fixef(x))
-	confint = exp(lme4::confint.merMod(x, method='Wald'))
+	confint = exp(lme4::confint.merMod(x, method = confint_type))
 	confint = confint[-grep("sig", rownames(confint)),]
 	p = 1-pnorm(abs(summary(x)$coefficients[,3]))
 	warning("P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.")
 
+	L_confint_name = paste0("L", confint_level*100)
+	U_confint_name = paste0("U", confint_level*100)
+
 	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
+											 L_confint_name, U_confint_name, p_name)
+	if(confint_level != 0.95){
+		df.out = df.out %>% dplyr::select(-p_name)
+	}
 	return(df.out)
 }
 
@@ -128,7 +150,8 @@ extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_n
 #' @export
 
 extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_name="HR",
-														 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), ...){
+														 estimate_suffix = "",
+														 p_name = "p", ...){
 	x=.data
 
 	results = summary(x)$conf.int
@@ -145,8 +168,6 @@ extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_nam
 
 
 # #' Extract model output to dataframe
-# #'
-# #' Internal function, not called directly.
 # #'
 # #' @param X Design matrix from Stan modelling procedure.
 # #'
@@ -205,9 +226,9 @@ extract_variable_label = function(.data){
 #' Internal function, not called directly. Can only be used in conjunction with
 #'   extract_fit
 #'
-#' @param .data Dataframe of five columns, must be this order, (1) explanatory
+#' @param .data Dataframe of four or five columns, must be this order, (1) explanatory
 #'   variable names, (2) estimate, (3) confidence interval lower limit, (4)
-#'   confidence interval upper limit, (5) p-value.
+#'   confidence interval upper limit, (5) p-value (optional).
 #' @param explanatory_name Name for this column in output
 #' @param estimate_name Name for this column in output
 #' @param estimate_suffix Appeneded to estimate name
@@ -220,28 +241,39 @@ extract_variable_label = function(.data){
 #' @keywords internal
 #' @export
 
-condense_fit = function(.data, explanatory_name="explanatory", estimate_name="OR",
+condense_fit = function(.data, explanatory_name="explanatory", estimate_name=NA,
 												estimate_suffix = "", p_name = "p",
 												digits=c(2,2,3), confint_sep = "-"){
 	x = .data
 	d.estimate = digits[1]
 	d.confint = digits[2]
 	d.p = digits[3]
+	if(is.na(estimate_name)){
+		estimate_name = names(x)[2]
+	}
 
 	explanatory = x[,1]
 	estimate = round_tidy(x[,2], d.estimate)
-	confint_low = round_tidy(x[,3], d.confint)
-	confint_high = round_tidy(x[,4], d.confint)
-	p = p_tidy(x[,5], d.p)
+	L_confint = round_tidy(x[,3], d.confint)
+	U_confint = round_tidy(x[,4], d.confint)
+	if(dim(x)[2] == 5){  #p-value not included when CI != 95%
+		p = p_tidy(x[,5], d.p)
 
 	df.out = data.frame(
 		explanatory,
 		paste0(
 			estimate, " (",
-			confint_low, confint_sep,
-			confint_high, ", ",
+			L_confint, confint_sep,
+			U_confint, ", ",
 			p_name, p, ")"))
-
+	}else{
+		df.out = data.frame(
+			explanatory,
+			paste0(
+				estimate, " (",
+				L_confint, confint_sep,
+				U_confint, ")"))
+	}
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix)
 	)
 	return(df.out)

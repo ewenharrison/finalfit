@@ -36,8 +36,7 @@ Methods (not called directly):
 \link{fit2df.glmerMod},
 \link{fit2df.lmerMod},
 \link{fit2df.coxph},
-\link{fit2df.coxphlist},
-\link{fit2df.stanfit}.
+\link{fit2df.coxphlist}.
 }
 
 \section{\code{finalfit} all-in-one function}{

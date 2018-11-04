@@ -9,30 +9,30 @@
 \alias{extract_fit.coxph}
 \title{Extract model output to dataframe}
 \usage{
-extract_fit(.data, explanatory_name, estimate_name, estimate_suffix,
-  p_name, digits, ...)
+extract_fit(...)
 
 \method{extract_fit}{glm}(.data, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), ...)
+  confint_type = "profile", confint_level = 0.95, ...)
 
 \method{extract_fit}{glmerMod}(.data, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), ...)
+  confint_type = "Wald", confint_level = 0.95, ...)
 
 \method{extract_fit}{lm}(.data, explanatory_name = "explanatory",
   estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), ...)
+  confint_level = 0.95, ...)
 
 \method{extract_fit}{lmerMod}(.data, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), ...)
+  confint_type = "profile", confint_level = 0.95, ...)
 
 \method{extract_fit}{coxph}(.data, explanatory_name = "explanatory",
-  estimate_name = "HR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), ...)
+  estimate_name = "HR", estimate_suffix = "", p_name = "p", ...)
 }
 \arguments{
+\item{...}{Other arguments.}
+
 \item{.data}{Model output.}
 
 \item{explanatory_name}{Name for this column in output.}
@@ -43,21 +43,14 @@ extract_fit(.data, explanatory_name, estimate_name, estimate_suffix,
 
 \item{p_name}{Name given to p-value estimate}
 
-\item{digits}{Number of digits to round to (1) estimate, (2) confidence
-interval limits, (3) p-value.}
+\item{confint_type}{One of \code{c("profile", "default")} for GLM
+models or \code{c("profile", "Wald", "boot")} for \code{glmer/lmer} models.
+Not implemented for \code{lm, coxph or coxphlist}.}
 
-\item{...}{Other arguments.}
+\item{confint_level}{The confidence level required.}
 }
 \description{
-Internal function, not called directly.
-
-Internal function, not called directly.
-
-Internal function, not called directly.
-
-Internal function, not called directly.
-
-Internal function, not called directly.
+Internal function, not usually called directly.
 
 Internal function, not called directly.
 }

@@ -137,7 +137,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>condense_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
   <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -145,9 +145,9 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>Dataframe of five columns, must be this order, (1) explanatory
+      <td><p>Dataframe of four or five columns, must be this order, (1) explanatory
 variable names, (2) estimate, (3) confidence interval lower limit, (4)
-confidence interval upper limit, (5) p-value.</p></td>
+confidence interval upper limit, (5) p-value (optional).</p></td>
     </tr>
     <tr>
       <th>explanatory_name</th>

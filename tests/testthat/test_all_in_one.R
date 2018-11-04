@@ -120,4 +120,17 @@ test_that("summary_factorlist warnings", {
 })
 
 
+context("summary_factorlist cont_cut")
+library(finalfit)
 
+test_that("summary_factorlist convert factor", {
+	expect_equal(summary_factorlist(colon_s, "mort_5yr", "sex") %>%
+									dim() %>%
+									sum(), 6)
+})
+
+test_that("summary_factorlist don't convert factor", {
+	expect_equal(summary_factorlist(colon_s, "mort_5yr", "sex", cont_cut=0) %>%
+									dim() %>%
+									sum(), 5)
+})

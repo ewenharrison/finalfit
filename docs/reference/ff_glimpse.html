@@ -34,8 +34,7 @@
 
 <meta property="og:description" content="Everyone has a funcion like this, str, glimpse, glance etc. This one is
 specifically designed for use with finalfit language. It is different
-in dividing variables by numeric vs factor, the former using
-link[psych]{describe}." />
+in dividing variables by numeric vs factor." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -135,8 +134,7 @@ link[psych]{describe}." />
     
     <p>Everyone has a funcion like this, str, glimpse, glance etc. This one is
 specifically designed for use with <code>finalfit</code> language. It is different
-in dividing variables by numeric vs factor, the former using
-<code>link[psych]{describe}</code>.</p>
+in dividing variables by numeric vs factor.</p>
     
     </div>
 
@@ -183,10 +181,15 @@ factors).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>finalfit</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"extent.factor"</span>, <span class='st'>"perfor.factor"</span>)
+<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age"</span>, <span class='st'>"nodes"</span>, <span class='st'>"age.factor"</span>, <span class='st'>"extent.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>finalfit_glimpse</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; Numerics
-#&gt; data frame with 0 columns and 929 rows
+#&gt;             label   n missing_n missing_percent mean   sd  min quartile_25
+#&gt; age   Age (years) 929         0             0.0 59.8 11.9 18.0        53.0
+#&gt; nodes       nodes 911        18             1.9  3.7  3.6  0.0         1.0
+#&gt;       median quartile_75  max
+#&gt; age     61.0        69.0 85.0
+#&gt; nodes    2.0         5.0 33.0
 #&gt; 
 #&gt; Factors
 #&gt;                          label   n missing_n missing_percent levels_n

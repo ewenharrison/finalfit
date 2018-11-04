@@ -142,10 +142,10 @@
 <a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">boot_compare =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">digits =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.07 to 0.56)</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.06 to 0.65)</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.52 to 0.89)</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.41 to 0.91)</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.07 to 0.47)</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.07 to 0.66)</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.54 to 0.87)</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.45 to 0.92)</span></a></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for demonstration purposes. You should expect to use 1000 to 10000 to ensure you have stable estimates.</p>
 </div>
 <div id="output-to-word-pdf-and-html-via-rmarkdown" class="section level2">
@@ -167,15 +167,15 @@
 <a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="dt">compare_name =</span> <span class="st">"Absolute risk difference"</span>,</a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">digits =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.04 to 0.58)</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.02 to 0.61)</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.47 to 0.85)</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.45 to 0.87)</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;        Absolute risk difference</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 1                             -</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2 0.01 (-0.10 to 0.14, p=0.820)</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3  0.43 (0.14 to 0.69, p&lt;0.001)</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4  0.45 (0.13 to 0.72, p&lt;0.001)</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.03 to 0.51)</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.03 to 0.65)</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.53 to 0.87)</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.49 to 0.89)</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;         Absolute risk difference</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 1                              -</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2 -0.00 (-0.15 to 0.15, p=0.920)</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3   0.45 (0.20 to 0.71, p&lt;0.001)</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4   0.46 (0.19 to 0.70, p&lt;0.001)</span></a></code></pre></div>
 </div>
 <div id="what-is-not-included" class="section level2">
 <h2 class="hasAnchor">
@@ -188,7 +188,7 @@
 <p>Finally, as with all finalfit functions, results can be produced as individual variables using <code>condense == FALSE</code>. This is particularly useful for plotting.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme_get">theme_set</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>())</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span>(<span class="kw"><a href="ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>())</a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"nodes"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
 <a class="sourceLine" id="cb6-6" data-line-number="6">dependent =<span class="st"> 'mort_5yr'</span></a>
@@ -206,15 +206,15 @@
 <a class="sourceLine" id="cb6-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb6-19" data-line-number="19"><span class="st">  </span><span class="kw"><a href="../reference/boot_predict.html">boot_predict</a></span>(newdata, <span class="dt">boot_compare =</span> <span class="ot">FALSE</span>, </a>
 <a class="sourceLine" id="cb6-20" data-line-number="20">  <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">condense=</span><span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> nodes, <span class="dt">y =</span> estimate, <span class="dt">ymin =</span> estimate_conf.low,</a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> nodes, <span class="dt">y =</span> estimate, <span class="dt">ymin =</span> estimate_conf.low,</a>
 <a class="sourceLine" id="cb6-22" data-line-number="22">      <span class="dt">ymax =</span> estimate_conf.high, <span class="dt">fill=</span>extent.factor))<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_line</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">colour =</span> extent.factor))<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_ribbon">geom_ribbon</a></span>(<span class="dt">alpha=</span><span class="fl">0.1</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_grid">facet_grid</a></span>(.<span class="op">~</span>perfor.factor)<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Number of postive lymph nodes"</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Probability of death"</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">fill =</span> <span class="st">"Extent of tumour"</span>, <span class="dt">colour =</span> <span class="st">"Extent of tumour"</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(<span class="st">"Probability of death by lymph node count"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="st">    </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">colour =</span> extent.factor))<span class="op">+</span></a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="st">    </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span>(<span class="dt">alpha=</span><span class="fl">0.1</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="st">    </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span>(.<span class="op">~</span>perfor.factor)<span class="op">+</span></a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="st">    </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Number of postive lymph nodes"</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="st">    </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Probability of death"</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="st">    </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill =</span> <span class="st">"Extent of tumour"</span>, <span class="dt">colour =</span> <span class="st">"Extent of tumour"</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="st">    </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Probability of death by lymph node count"</span>)</a></code></pre></div>
 <p><a href="http://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png" alt="" width="600" class="aligncenter"></a></p>
 <p>So there you have it. Straightforward bootstrapped simulations of model predictions, together with comparisons and easy plotting.</p>
 </div>

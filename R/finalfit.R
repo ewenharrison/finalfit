@@ -24,8 +24,8 @@
 #'   left of table
 #' @param dependent_label_prefix Add text before dependent label
 #' @param dependent_label_suffix Add text after dependent label
-#' @param ... Other arguments to pass to \code{\link{fit2df}}: estimate_name,
-#'   p_name, digits, confint_sep.
+#' @param ... Other arguments to pass to \code{\link{fit2df}}: \code{estimate_name,
+#'   p_name, digits, confint_type, confint_level, confint_sep}.
 
 #' @return Returns a dataframe with the final model table.
 #'
@@ -169,14 +169,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 
   # Defaults which can be modified via ...
   if (is.null(args$estimate_name)) args$estimate_name = "Coefficient"
-  if (is.null(args$p_name)) args$p_name="p"
-  if (is.null(args$digits)) 	args$digits=c(2,2,3)
   if (is.null(args$confint_sep)) args$confint_sep = " to "
-
-  args = list(estimate_name = args$estimate_name,
-              p_name = args$p_name,
-              digits = args$digits,
-              confint_sep = args$confint_sep)
 
   # Linear regression model ------------------------------------------
   # Summary table
@@ -249,8 +242,6 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 
 
 
-
-
 #' Final output tables for common regression models: glm method
 #'
 #' \code{finalfit.glm} method (not called directly)
@@ -265,14 +256,6 @@ dependent_label_prefix="Dependent: ", dependent_label_suffix="", ...){
 
   # Defaults which can be modified via ...
   if (is.null(args$estimate_name)) args$estimate_name = "OR"
-  if (is.null(args$p_name)) args$p_name="p"
-  if (is.null(args$digits)) 	args$digits=c(2,2,3)
-  if (is.null(args$confint_sep)) args$confint_sep = "-"
-
-  args = list(estimate_name = args$estimate_name,
-              p_name = args$p_name,
-              digits = args$digits,
-              confint_sep = args$confint_sep)
 
   # Logistic regression ----
   # Summary table
@@ -359,15 +342,6 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 
   # Defaults which can be modified via ...
   if (is.null(args$estimate_name)) args$estimate_name = "HR"
-  if (is.null(args$p_name)) args$p_name="p"
-  if (is.null(args$digits)) 	args$digits=c(2,2,3)
-  if (is.null(args$confint_sep)) args$confint_sep = "-"
-
-  args = list(estimate_name = args$estimate_name,
-              p_name = args$p_name,
-              digits = args$digits,
-              confint_sep = args$confint_sep)
-
 
   # Cox proprotional hazards model -----------------------------------------------------------
   # Summary table
@@ -397,6 +371,7 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
   df.out = finalfit_merge(df.out, coxphmulti_df, estimate_name = args$estimate_name)
 
   # # Multi
+  ## Add frailty later
   # if (metrics == FALSE){
   # 	df.out = finalfit_merge(df.out, glmmulti_df)
   # } else {
@@ -425,11 +400,10 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
                              prefix=dependent_label_prefix, suffix = dependent_label_suffix)
   }
 
-  return(df.out)
   # Add metrics
-  # if (metrics == TRUE){
-  # 	return(list(df.out, glmmulti_df[[2]]))
-  # } else {
-  # 	return(df.out)
-  # }
+  if (metrics == TRUE){
+  	return(list(df.out, coxphmulti_df[[2]]))
+  } else {
+  	return(df.out)
+  }
 }
