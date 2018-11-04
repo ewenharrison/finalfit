@@ -67,7 +67,7 @@
 #' @docType package
 #' @name finalfit-package
 #'
-#' @importFrom stats as.formula coef confint glm lm logLik pnorm
+#' @importFrom stats as.formula coef confint confint.default glm lm logLik pnorm
 #'   quantile setNames
 #' @importFrom survival Surv coxph
 # @exportPattern ^[[:alpha:]]+

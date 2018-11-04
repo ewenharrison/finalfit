@@ -55,8 +55,8 @@ left of table}
 
 \item{dependent_label_suffix}{Add text after dependent label}
 
-\item{...}{Other arguments to pass to \code{\link{fit2df}}: estimate_name,
-p_name, digits, confint_sep.}
+\item{...}{Other arguments to pass to \code{\link{fit2df}}: \code{estimate_name,
+p_name, digits, confint_type, confint_level, confint_sep}.}
 }
 \value{
 Returns a dataframe with the final model table.

@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract model fit results to dataframe (generic): <code>finalfit</code> model extractors — fit2df • finalfit</title>
+<title>Extract model fit results to dataframe (generic): <code>finalfit</code> model
+extractors — fit2df • finalfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +31,8 @@
 
 
 
-<meta property="og:title" content="Extract model fit results to dataframe (generic): <code>finalfit</code> model extractors — fit2df" />
+<meta property="og:title" content="Extract model fit results to dataframe (generic): <code>finalfit</code> model
+extractors — fit2df" />
 
 <meta property="og:description" content="Takes output from finalfit model wrappers and extracts to a dataframe,
 convenient for further processing in preparation for final results table.
@@ -147,7 +149,8 @@ parameters vector[P] beta;" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract model fit results to dataframe (generic): <code>finalfit</code> model extractors</h1>
+    <h1>Extract model fit results to dataframe (generic): <code>finalfit</code> model
+extractors</h1>
     <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/fit2df.R'><code>R/fit2df.R</code></a></small>
     <div class="hidden name"><code>fit2df.Rd</code></div>
     </div>
@@ -182,26 +185,28 @@ parameters vector[P] beta;</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='no'>condense</span>, <span class='no'>metrics</span>, <span class='no'>remove_intercept</span>, <span class='no'>explanatory_name</span>,
-  <span class='no'>estimate_name</span>, <span class='no'>estimate_suffix</span>, <span class='no'>p_name</span>, <span class='no'>digits</span>, <span class='no'>confint_sep</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>fit2df</span>(<span class='no'>...</span>)
 
 <span class='co'># S3 method for lm</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>" to "</span>, <span class='no'>...</span>)
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>" to "</span>,
+  <span class='no'>...</span>)
 
 <span class='co'># S3 method for lmlist</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>" to "</span>, <span class='no'>...</span>)
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>" to "</span>,
+  <span class='no'>...</span>)
 
 <span class='co'># S3 method for glm</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for glmboot</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -213,19 +218,22 @@ parameters vector[P] beta;</p>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for lmerMod</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for glmerMod</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for coxph</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -249,13 +257,18 @@ parameters vector[P] beta;</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>...</th>
+      <td><p>Other arguments: <code>X</code>: Design matrix from stanfit modelling.
+Details documented else where.</p></td>
+    </tr>
+    <tr>
       <th>.data</th>
       <td><p>Output from <code>finalfit</code> model wrappers.</p></td>
     </tr>
     <tr>
       <th>condense</th>
-      <td><p>Logical: when true, effect estimates, confidence intervals and p-values
-are pasted conveniently together in single cell.</p></td>
+      <td><p>Logical: when true, effect estimates, confidence intervals
+and p-values are pasted conveniently together in single cell.</p></td>
     </tr>
     <tr>
       <th>metrics</th>
@@ -287,21 +300,28 @@ are pasted conveniently together in single cell.</p></td>
 interval limits, (3) p-value.</p></td>
     </tr>
     <tr>
+      <th>confint_level</th>
+      <td><p>The confidence level required.</p></td>
+    </tr>
+    <tr>
       <th>confint_sep</th>
       <td><p>String to separate confidence intervals, typically "-" or
 " to ".</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Other arguments: `X` Design matrix from stanfit modelling. Details
-documented else where.</p></td>
+      <th>confint_type</th>
+      <td><p>One of <code>c("profile", "default")</code> for GLM models
+(<code><a href='http://www.rdocumentation.org/packages/MASS/topics/confint'>confint.glm</a></code>) or <code>c("profile", "Wald", "boot")</code>
+for <code>glmer/lmer</code> models (<code><a href='http://www.rdocumentation.org/packages/lme4/topics/confint.merMod'>confint.merMod</a></code>.). Not
+implemented for <code>lm, coxph or coxphlist</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A dataframe of model parameters. When <code>metrics=TRUE</code> output is a list of two dataframes,
-  one is model parameters, one is model metrics. length two</p>
+    <p>A dataframe of model parameters. When <code>metrics=TRUE</code> output is a
+  list of two dataframes, one is model parameters, one is model metrics.
+  length two</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 

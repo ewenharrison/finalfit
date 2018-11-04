@@ -11,26 +11,28 @@
 \alias{fit2df.glmerMod}
 \alias{fit2df.coxph}
 \alias{fit2df.coxphlist}
-\alias{fit2df.stanfit}
-\title{Extract model fit results to dataframe (generic): \code{finalfit} model extractors}
+\title{Extract model fit results to dataframe (generic): \code{finalfit} model
+extractors}
 \usage{
-fit2df(.data, condense, metrics, remove_intercept, explanatory_name,
-  estimate_name, estimate_suffix, p_name, digits, confint_sep, ...)
+fit2df(...)
 
 \method{fit2df}{lm}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = " to ", ...)
+  digits = c(2, 2, 3), confint_level = 0.95, confint_sep = " to ",
+  ...)
 
 \method{fit2df}{lmlist}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = " to ", ...)
+  digits = c(2, 2, 3), confint_level = 0.95, confint_sep = " to ",
+  ...)
 
 \method{fit2df}{glm}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = "-", ...)
+  digits = c(2, 2, 3), confint_type = "profile",
+  confint_level = 0.95, confint_sep = "-", ...)
 
 \method{fit2df}{glmboot}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
@@ -40,17 +42,20 @@ fit2df(.data, condense, metrics, remove_intercept, explanatory_name,
 \method{fit2df}{glmlist}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = "-", ...)
+  digits = c(2, 2, 3), confint_type = "profile",
+  confint_level = 0.95, confint_sep = "-", ...)
 
 \method{fit2df}{lmerMod}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = "-", ...)
+  digits = c(2, 2, 3), confint_type = "Wald", confint_level = 0.95,
+  confint_sep = "-", ...)
 
 \method{fit2df}{glmerMod}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = "-", ...)
+  digits = c(2, 2, 3), confint_type = "Wald", confint_level = 0.95,
+  confint_sep = "-", ...)
 
 \method{fit2df}{coxph}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
@@ -61,17 +66,15 @@ fit2df(.data, condense, metrics, remove_intercept, explanatory_name,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "HR", estimate_suffix = "", p_name = "p",
   digits = c(2, 2, 3), confint_sep = "-", ...)
-
-\method{fit2df}{stanfit}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = "-", ...)
 }
 \arguments{
+\item{...}{Other arguments: \code{X}: Design matrix from stanfit modelling.
+Details documented else where.}
+
 \item{.data}{Output from \code{finalfit} model wrappers.}
 
-\item{condense}{Logical: when true, effect estimates, confidence intervals and p-values
-are pasted conveniently together in single cell.}
+\item{condense}{Logical: when true, effect estimates, confidence intervals
+and p-values are pasted conveniently together in single cell.}
 
 \item{metrics}{Logical: when true, useful model metrics are extracted.}
 
@@ -88,15 +91,20 @@ are pasted conveniently together in single cell.}
 \item{digits}{Number of digits to round to (1) estimate, (2) confidence
 interval limits, (3) p-value.}
 
+\item{confint_level}{The confidence level required.}
+
 \item{confint_sep}{String to separate confidence intervals, typically "-" or
 " to ".}
 
-\item{...}{Other arguments: `X` Design matrix from stanfit modelling. Details
-documented else where.}
+\item{confint_type}{One of \code{c("profile", "default")} for GLM models
+(\code{\link[MASS]{confint.glm}}) or \code{c("profile", "Wald", "boot")}
+for \code{glmer/lmer} models (\code{\link[lme4]{confint.merMod}}.). Not
+implemented for \code{lm, coxph or coxphlist}.}
 }
 \value{
-A dataframe of model parameters. When \code{metrics=TRUE} output is a list of two dataframes,
-  one is model parameters, one is model metrics. length two
+A dataframe of model parameters. When \code{metrics=TRUE} output is a
+  list of two dataframes, one is model parameters, one is model metrics.
+  length two
 }
 \description{
 Takes output from \code{finalfit} model wrappers and extracts to a dataframe,
@@ -126,14 +134,6 @@ wrappers.
 \code{fit2df.coxph} is the model extract method for \code{survival::\link[survival]{coxph}}.
 
 \code{fit2df.coxphlist} is the model extract method for \code{coxphuni} and \code{coxphmulti}.
-
-\code{fit2df.stanfit} is the model extract method for our standard Bayesian
-hierarchical binomial logistic regression models. These models will be fully
-documented separately. However this should work for a single or multilevel
-Bayesian logistic regression done in Stan, as long as the fixed effects are
-specified in the parameters block as a vector named \code{beta}, of length
-\code{P}, where \code{P} is the number of fixed effect parameters. e.g.
-parameters{ vector[P] beta; }
 }
 \details{
 \code{fit2df} is a generic (S3) function for model extract.

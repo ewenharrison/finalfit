@@ -32,11 +32,7 @@
 
 <meta property="og:title" content="Extract model output to dataframe — extract_fit" />
 
-<meta property="og:description" content="Internal function, not called directly.
-Internal function, not called directly.
-Internal function, not called directly.
-Internal function, not called directly.
-Internal function, not called directly.
+<meta property="og:description" content="Internal function, not usually called directly.
 Internal function, not called directly." />
 
 <meta property="og:image" content="/logo.png" />
@@ -135,46 +131,44 @@ Internal function, not called directly." />
 
     <div class="ref-description">
     
-    <p>Internal function, not called directly.</p>
-<p>Internal function, not called directly.</p>
-<p>Internal function, not called directly.</p>
-<p>Internal function, not called directly.</p>
-<p>Internal function, not called directly.</p>
+    <p>Internal function, not usually called directly.</p>
 <p>Internal function, not called directly.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='no'>explanatory_name</span>, <span class='no'>estimate_name</span>, <span class='no'>estimate_suffix</span>,
-  <span class='no'>p_name</span>, <span class='no'>digits</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>extract_fit</span>(<span class='no'>...</span>)
 
 <span class='co'># S3 method for glm</span>
 <span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='no'>...</span>)
+  <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>, <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for glmerMod</span>
 <span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='no'>...</span>)
+  <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for lm</span>
 <span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='no'>...</span>)
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for lmerMod</span>
 <span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='no'>...</span>)
+  <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>, <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for coxph</span>
 <span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='no'>...</span>)</pre>
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments.</p></td>
+    </tr>
     <tr>
       <th>.data</th>
       <td><p>Model output.</p></td>
@@ -196,13 +190,14 @@ Internal function, not called directly." />
       <td><p>Name given to p-value estimate</p></td>
     </tr>
     <tr>
-      <th>digits</th>
-      <td><p>Number of digits to round to (1) estimate, (2) confidence
-interval limits, (3) p-value.</p></td>
+      <th>confint_type</th>
+      <td><p>One of <code>c("profile", "default")</code> for GLM
+models or <code>c("profile", "Wald", "boot")</code> for <code>glmer/lmer</code> models.
+Not implemented for <code>lm, coxph or coxphlist</code>.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Other arguments.</p></td>
+      <th>confint_level</th>
+      <td><p>The confidence level required.</p></td>
     </tr>
     </table>
     

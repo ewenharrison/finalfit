@@ -275,17 +275,17 @@ bootstrapped predictions under 1.0, multiplied by two so is two-sided.</p>
   <span class='fu'>boot_predict</span>(<span class='no'>newdata</span>, <span class='kw'>boot_compare</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>100</span>, <span class='kw'>condense</span><span class='kw'>=</span><span class='fl'>FALSE</span>) <span class='kw'>-&gt;</span> <span class='no'>plot</span>
 
   <span class='fu'>library</span>(<span class='no'>ggplot2</span>)
-  <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/theme_get'>theme_set</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme'>theme_bw</a></span>())
+  <span class='fu'><a href='ggplot2.tidyverse.org/reference/theme_get.html'>theme_set</a></span>(<span class='fu'><a href='ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span>())
   <span class='no'>plot</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>nodes</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>estimate</span>, <span class='kw'>ymin</span> <span class='kw'>=</span> <span class='no'>estimate_conf.low</span>,
+    <span class='fu'><a href='ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>nodes</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>estimate</span>, <span class='kw'>ymin</span> <span class='kw'>=</span> <span class='no'>estimate_conf.low</span>,
         <span class='kw'>ymax</span> <span class='kw'>=</span> <span class='no'>estimate_conf.high</span>, <span class='kw'>fill</span><span class='kw'>=</span><span class='no'>extent.factor</span>))+
-      <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_path'>geom_line</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>colour</span> <span class='kw'>=</span> <span class='no'>extent.factor</span>))+
-      <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_ribbon'>geom_ribbon</a></span>(<span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.1</span>)+
-      <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/facet_grid'>facet_grid</a></span>(<span class='no'>.</span>~<span class='no'>perfor.factor</span>)+
-      <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>xlab</a></span>(<span class='st'>"Number of postive lymph nodes"</span>)+
-      <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>ylab</a></span>(<span class='st'>"Probability of death"</span>)+
-      <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"Extent of tumour"</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='st'>"Extent of tumour"</span>)+
-      <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Probability of death by lymph node count"</span>)</div><div class='img'><img src='boot_predict-1.png' alt='' width='700' height='433' /></div></pre>
+      <span class='fu'><a href='ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>(<span class='fu'><a href='ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>colour</span> <span class='kw'>=</span> <span class='no'>extent.factor</span>))+
+      <span class='fu'><a href='ggplot2.tidyverse.org/reference/geom_ribbon.html'>geom_ribbon</a></span>(<span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.1</span>)+
+      <span class='fu'><a href='ggplot2.tidyverse.org/reference/facet_grid.html'>facet_grid</a></span>(<span class='no'>.</span>~<span class='no'>perfor.factor</span>)+
+      <span class='fu'><a href='ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span>(<span class='st'>"Number of postive lymph nodes"</span>)+
+      <span class='fu'><a href='ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span>(<span class='st'>"Probability of death"</span>)+
+      <span class='fu'><a href='ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"Extent of tumour"</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='st'>"Extent of tumour"</span>)+
+      <span class='fu'><a href='ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"Probability of death by lymph node count"</span>)</div><div class='img'><img src='boot_predict-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

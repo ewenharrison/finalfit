@@ -28,6 +28,9 @@ reference:
     - '`ff_glimpse`'
     - '`ff_merge`'
     - '`ff_newdata`'
+    - '`ff_label`'
+    - '`ff_newdata`'
+    - '`ff_interaction`'
   - title: "Plotting"
     desc: ~
     contents:
