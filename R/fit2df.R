@@ -500,6 +500,7 @@ fit2df.coxphlist <- function(.data, condense=TRUE, metrics=FALSE, remove_interce
 	}
 }
 
+
 # #' Extract \code{stanfit} model fit results to dataframe: \code{finalfit} model
 # #' extracters
 # #'
