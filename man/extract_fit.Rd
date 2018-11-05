@@ -25,7 +25,7 @@ extract_fit(...)
 
 \method{extract_fit}{lmerMod}(.data, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  confint_type = "profile", confint_level = 0.95, ...)
+  confint_type = "Wald", confint_level = 0.95, ...)
 
 \method{extract_fit}{coxph}(.data, explanatory_name = "explanatory",
   estimate_name = "HR", estimate_suffix = "", p_name = "p", ...)
