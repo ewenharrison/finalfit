@@ -62,7 +62,7 @@ extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_
 																estimate_suffix = "",  p_name = "p",
 																confint_type = "Wald", confint_level = 0.95, ...){
 	x=.data
-
+	if(confint_type = "default") confint_type = "Wald"
 	explanatory = names(lme4::fixef(x))
 	estimate = exp(lme4::fixef(x))
 	confint = exp(lme4::confint.merMod(x, level = confint_level, method = confint_type))
@@ -118,9 +118,9 @@ extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="
 
 extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_name="OR",
 															 estimate_suffix = "",  p_name = "p",
-															 confint_type = "profile", confint_level = 0.95, ...){
+															 confint_type = "Wald", confint_level = 0.95, ...){
 	x=.data
-
+	if(confint_type = "default") confint_type = "Wald"
 	explanatory = names(lme4::fixef(x))
 	estimate = exp(lme4::fixef(x))
 	confint = exp(lme4::confint.merMod(x, method = confint_type))
@@ -153,7 +153,6 @@ extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_nam
 														 estimate_suffix = "",
 														 p_name = "p", ...){
 	x=.data
-
 	results = summary(x)$conf.int
 	explanatory = row.names(results)
 	estimate = results[,1]
