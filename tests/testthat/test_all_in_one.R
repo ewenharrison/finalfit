@@ -1,4 +1,74 @@
-context("finalfit function")
+context("finalfit function no metrics no keep")
+library(finalfit)
+test_that("finalfit.lm with metrics gives data.frame", {
+	expect_is(finalfit(colon_s, "nodes", "age.factor"), "data.frame")
+})
+
+test_that("finalfit.lmer with metrics gives data.frame", {
+	expect_is(finalfit(colon_s, "nodes", "age.factor", random_effect="hospital"), "data.frame")
+})
+
+test_that("finalfit.glm with metrics gives data.frame", {
+	expect_is(finalfit(colon_s, "mort_5yr", "age.factor"), "data.frame")
+})
+
+test_that("finalfit mixed with metrics gives data.frame", {
+	expect_is(finalfit(colon_s,  "mort_5yr", "age.factor", random_effect="hospital"), "data.frame")
+})
+
+test_that("finalfit.coxph gives dataframe", {
+	expect_is(finalfit(colon_s,  "Surv(time, status)", "age.factor"), "data.frame")
+})
+
+
+
+
+context("finalfit function no metrics keep models")
+library(finalfit)
+test_that("finalfit.lm with metrics gives data.frame", {
+	expect_is(finalfit(colon_s, "nodes", "age.factor", keep_models=TRUE), "data.frame")
+})
+
+test_that("finalfit.lm with metrics gives data.frame", {
+	expect_is(finalfit(colon_s, "nodes", "age.factor", "age.factor", keep_models=TRUE), "data.frame")
+})
+
+test_that("finalfit.lmer with metrics gives data.frame", {
+	expect_is(finalfit(colon_s, "nodes", "age.factor", random_effect="hospital", keep_models=TRUE), "data.frame")
+})
+test_that("finalfit.lmer with metrics gives data.frame", {
+	expect_is(finalfit(colon_s, "nodes", "age.factor", "age.factor", random_effect="hospital", keep_models=TRUE), "data.frame")
+})
+
+test_that("finalfit.glm with metrics gives data.frame", {
+	expect_is(finalfit(colon_s, "mort_5yr", "age.factor", keep_models=TRUE), "data.frame")
+})
+
+test_that("finalfit mixed with metrics gives data.frame", {
+	expect_is(finalfit(colon_s,  "mort_5yr", "age.factor", random_effect="hospital", keep_models=TRUE), "data.frame")
+})
+
+test_that("finalfit.glm with metrics gives data.frame", {
+	expect_is(finalfit(colon_s, "mort_5yr", "age.factor", "age.factor", keep_models=TRUE), "data.frame")
+})
+
+test_that("finalfit mixed with metrics gives data.frame", {
+	expect_is(finalfit(colon_s,  "mort_5yr", "age.factor", "age.factor", random_effect="hospital", keep_models=TRUE), "data.frame")
+})
+
+test_that("finalfit.coxph gives dataframe", {
+	expect_is(finalfit(colon_s,  "Surv(time, status)", "age.factor", keep_models=TRUE), "data.frame")
+})
+
+test_that("finalfit.coxph gives dataframe", {
+	expect_is(finalfit(colon_s,  "Surv(time, status)", "age.factor", "age.factor", keep_models=TRUE), "data.frame")
+})
+
+
+
+
+
+context("finalfit function no metrics no keep")
 library(finalfit)
 test_that("finalfit.lm with metrics gives list", {
 	expect_is(finalfit(colon_s, "nodes", "age.factor", metrics=TRUE), "list")
@@ -17,8 +87,34 @@ test_that("finalfit mixed with metrics gives list", {
 })
 
 test_that("finalfit.coxph gives dataframe", {
-	expect_is(finalfit(colon_s,  "Surv(time, status)", "age.factor"), "data.frame")
+	expect_is(finalfit(colon_s,  "Surv(time, status)", "age.factor", metrics=TRUE), "list")
 })
+
+
+
+
+context("finalfit function metrics keep models")
+library(finalfit)
+test_that("finalfit.lm with metrics gives list", {
+	expect_is(finalfit(colon_s, "nodes", "age.factor", keep_models=TRUE, metrics=TRUE), "list")
+})
+
+test_that("finalfit.lmer with metrics gives list", {
+	expect_is(finalfit(colon_s, "nodes", "age.factor", random_effect="hospital", keep_models=TRUE, metrics=TRUE), "list")
+})
+
+test_that("finalfit.glm with metrics gives list", {
+	expect_is(finalfit(colon_s, "mort_5yr", "age.factor", keep_models=TRUE, metrics=TRUE), "list")
+})
+
+test_that("finalfit mixed with metrics gives list", {
+	expect_is(finalfit(colon_s,  "mort_5yr", "age.factor", random_effect="hospital", keep_models=TRUE, metrics=TRUE), "list")
+})
+
+test_that("finalfit.coxph gives dataframe", {
+	expect_is(finalfit(colon_s,  "Surv(time, status)", "age.factor", keep_models=TRUE, metrics=TRUE), "list")
+})
+
 
 
 
