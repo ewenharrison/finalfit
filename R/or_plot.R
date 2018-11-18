@@ -12,15 +12,23 @@
 #'   \code{\link{summary_factorlist}()}.
 #' @param glmfit Option to provide output directly from \code{\link{glmmulti}()}
 #'   and \code{\link{glmmixed}()}.
+#' @param confint_type One of \code{c("profile", "default")} for GLM models or
+#'   \code{c("default", "Wald", "profile", "boot")} for \code{glmer/lmer}
+#'   models. Note "default" == "Wald". Not implemented for \code{lm, coxph or
+#'   coxphlist}.
 #' @param breaks Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.
 #' @param column_space Adjust table column spacing.
 #' @param dependent_label Main label for plot.
-#' @param prefix Plots are titled by default with the dependent variable. This adds text before that label.
-#' @param suffix Plots are titled with the dependent variable. This adds text after that label.
+#' @param prefix Plots are titled by default with the dependent variable. This
+#'   adds text before that label.
+#' @param suffix Plots are titled with the dependent variable. This adds text
+#'   after that label.
 #' @param table_text_size Alter font size of table text.
 #' @param title_text_size Alter font size of title text.
-#' @param plot_opts A list of arguments to be appended to the ggplot call by "+".
-#' @param table_opts A list of arguments to be appended to the ggplot table call by "+".
+#' @param plot_opts A list of arguments to be appended to the ggplot call by
+#'   "+".
+#' @param table_opts A list of arguments to be appended to the ggplot table call
+#'   by "+".
 #' @param ... Other parameters.
 #' @return Returns a table and plot produced in \code{ggplot2}.
 #'
@@ -46,6 +54,7 @@
 #' @import ggplot2
 
 or_plot = function(.data, dependent, explanatory, factorlist=NULL, glmfit=NULL,
+									 confint_type = "profile",
                    breaks=NULL, column_space=c(-0.5, 0, 0.5),
                    dependent_label = NULL,
                    prefix = "", suffix = ": OR (95% CI, p-value)",
@@ -69,8 +78,8 @@ or_plot = function(.data, dependent, explanatory, factorlist=NULL, glmfit=NULL,
   if(is.null(glmfit)){
     glmfit = glmmulti(.data, dependent, explanatory)
   }
-  glmfit_df_c = fit2df(glmfit, condense = TRUE, ...)
-  glmfit_df = fit2df(glmfit, condense = FALSE, ...)
+  glmfit_df_c = fit2df(glmfit, condense = TRUE, confint_type = confint_type, ...)
+  glmfit_df = fit2df(glmfit, condense = FALSE, confint_type = confint_type,  ...)
 
   if(is.null(breaks)){
     breaks = scales::pretty_breaks()
