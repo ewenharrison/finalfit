@@ -14,9 +14,8 @@
 #' @param glmfit Option to provide output directly from \code{\link{glmmulti}()}
 #'   and \code{\link{glmmixed}()}.
 #' @param confint_type One of \code{c("profile", "default")} for GLM models or
-#'   \code{c("default", "Wald", "profile", "boot")} for \code{glmer/lmer}
-#'   models. Note "default" == "Wald". Not implemented for \code{lm, coxph or
-#'   coxphlist}.
+#'   \code{c("default", "Wald", "profile", "boot")} for \code{glmer}
+#'   models. Note "default" == "Wald".
 #' @param breaks Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.
 #' @param column_space Adjust table column spacing.
 #' @param dependent_label Main label for plot.
@@ -56,7 +55,7 @@
 
 or_plot = function(.data, dependent, explanatory, random_effect=NULL, 
 									 factorlist=NULL, glmfit=NULL,
-									 confint_type = "profile",
+									 confint_type = NULL,
 									 breaks=NULL, column_space=c(-0.5, 0, 0.5),
 									 dependent_label = NULL,
 									 prefix = "", suffix = ": OR (95% CI, p-value)",
@@ -80,6 +79,13 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 		breaks = scales::pretty_breaks()
 	}
 	
+	# Confidence intervals, default to "profile" for glm and "Wald" for glmer
+	if(is.null(confint_type) && is.null(random_effect)){
+		confint_type = "profile"
+	} else if(is.null(confint_type) && !is.null(random_effect)){
+		confint_type == "default"
+	}
+		
 	# Generate or format glm
 	if(is.null(glmfit) && is.null(random_effect)){
 		glmfit = glmmulti(.data, dependent, explanatory)
@@ -101,7 +107,6 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	df.out$Total[is.na(df.out$Total)] = dim(.data)[1]
 	
 	# Remove unwanted lines, where there are more variables in model than wish to display.
-	# Note merge function in summarizer merge is now `all` rather than `all.x` as wish to preserve interactions
 	# These not named in factorlist, creating this problem. Interactions don't show on plot.
 	if (any(
 		is.na(df.out$label)

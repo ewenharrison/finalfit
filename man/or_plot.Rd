@@ -5,7 +5,7 @@
 \title{Produce an odds ratio table and plot}
 \usage{
 or_plot(.data, dependent, explanatory, random_effect = NULL,
-  factorlist = NULL, glmfit = NULL, confint_type = "profile",
+  factorlist = NULL, glmfit = NULL, confint_type = NULL,
   breaks = NULL, column_space = c(-0.5, 0, 0.5),
   dependent_label = NULL, prefix = "",
   suffix = ": OR (95\% CI, p-value)", table_text_size = 5,
@@ -29,9 +29,8 @@ variables.}
 and \code{\link{glmmixed}()}.}
 
 \item{confint_type}{One of \code{c("profile", "default")} for GLM models or
-\code{c("default", "Wald", "profile", "boot")} for \code{glmer/lmer}
-models. Note "default" == "Wald". Not implemented for \code{lm, coxph or
-coxphlist}.}
+\code{c("default", "Wald", "profile", "boot")} for \code{glmer}
+models. Note "default" == "Wald".}
 
 \item{breaks}{Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.}
 

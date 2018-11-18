@@ -353,7 +353,7 @@ fit2df.glmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept
 
 fit2df.lmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
 													explanatory_name = "explanatory",
-													estimate_name = "OR",
+													estimate_name = "Coefficient",
 													estimate_suffix = "",
 													p_name = "p",
 													digits=c(2,2,3),
