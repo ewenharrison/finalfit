@@ -26,6 +26,7 @@ Imports:
     gridExtra,
     Hmisc,
     lme4,
+    magrittr,
     mice,
     pROC,
     plyr,

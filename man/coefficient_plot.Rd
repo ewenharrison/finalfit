@@ -4,8 +4,9 @@
 \alias{coefficient_plot}
 \title{Produce a coefficient table and plot}
 \usage{
-coefficient_plot(.data, dependent, explanatory, factorlist = NULL,
-  lmfit = NULL, breaks = NULL, column_space = c(-0.5, -0.1, 0.5),
+coefficient_plot(.data, dependent, explanatory, random_effect = NULL,
+  factorlist = NULL, lmfit = NULL, confint_type = "default",
+  breaks = NULL, column_space = c(-0.5, -0.1, 0.5),
   dependent_label = NULL, prefix = "",
   suffix = ": Coefficient, 95\% CI, p-value)", table_text_size = 5,
   title_text_size = 18, plot_opts = NULL, table_opts = NULL, ...)
@@ -19,11 +20,17 @@ coefficient_plot(.data, dependent, explanatory, factorlist = NULL,
 \item{explanatory}{Character vector of any length: name(s) of explanatory
 variables.}
 
+\item{random_effect}{Character vector of length 1, name of random effect
+variable.}
+
 \item{factorlist}{Option to provide output directly from
 \code{\link{summary_factorlist}()}.}
 
 \item{lmfit}{Option to provide output directly from \code{\link{lmmulti}()}
 and \code{\link{lmmixed}()}.}
+
+\item{confint_type}{For for \code{lmer} models, one of \code{c("default",
+"Wald", "profile", "boot")} Note "default" == "Wald".}
 
 \item{breaks}{Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.}
 
@@ -31,17 +38,21 @@ and \code{\link{lmmixed}()}.}
 
 \item{dependent_label}{Main label for plot.}
 
-\item{prefix}{Plots are titled by default with the dependent variable. This adds text before that label.}
+\item{prefix}{Plots are titled by default with the dependent variable. This
+adds text before that label.}
 
-\item{suffix}{Plots are titled with the dependent variable. This adds text after that label.}
+\item{suffix}{Plots are titled with the dependent variable. This adds text
+after that label.}
 
 \item{table_text_size}{Alter font size of table text.}
 
 \item{title_text_size}{Alter font size of title text.}
 
-\item{plot_opts}{A list of arguments to be appended to the ggplot call by "+".}
+\item{plot_opts}{A list of arguments to be appended to the ggplot call by
+"+".}
 
-\item{table_opts}{A list of arguments to be appended to the ggplot table call by "+".}
+\item{table_opts}{A list of arguments to be appended to the ggplot table call
+by "+".}
 
 \item{...}{Other parameters.}
 }

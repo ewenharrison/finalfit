@@ -5,8 +5,12 @@
 \title{Pipe operator}
 \usage{
 lhs \%>\% rhs
+
+lhs \%<>\% rhs
 }
 \description{
 Pipe operator
+
+magrittr compound assignment pipe-operator
 }
 \keyword{internal}

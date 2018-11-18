@@ -47,7 +47,7 @@ fit2df(...)
 
 \method{fit2df}{lmerMod}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
+  estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
   digits = c(2, 2, 3), confint_type = "Wald", confint_level = 0.95,
   confint_sep = "-", ...)
 
