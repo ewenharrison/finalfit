@@ -21,7 +21,18 @@ test_that("missing_plot gives plot", {
 	expect_is(missing_plot(colon_s[,1:2]), "ggplot")
 })
 
-dependent = "Surv(time,status)"
-explanatory="age.factor"
-surv_plot(colon_s, dependent, explanatory)
-surv_plot(colon_s, dependent="Surv(time,status)", explanatory="age.factor")
+test_that("missing_plot gives plot", {
+	expect_is(missing_plot(colon_s[,1:2]), "ggplot")
+})
+
+test_that("ff_plot gives grob", {
+	expect_is(ff_plot(colon_s, "nodes", "age.factor"), "grob")
+})
+
+test_that("ff_plot gives grob", {
+	expect_is(ff_plot(colon_s, "mort_5yr", "age.factor"), "grob")
+})
+
+test_that("ff_plot gives grob", {
+	expect_is(ff_plot(colon_s, "Surv(time, status)", "age.factor"), "grob")
+})

@@ -27,6 +27,7 @@ reference:
     - '`fit2df`'
     - '`ff_glimpse`'
     - '`ff_merge`'
+    - '`ff_metrics`'
     - '`ff_newdata`'
     - '`ff_label`'
     - '`ff_newdata`'
@@ -36,6 +37,8 @@ reference:
     contents:
     - '`or_plot`'
     - '`hr_plot`'
+    - '`coefficient_plot`'
+    - '`ff_plot`'
     - '`surv_plot`'
     - '`missing_plot`'
   - title: "Missing data functions"

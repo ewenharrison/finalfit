@@ -44,8 +44,8 @@
 
 hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
                    breaks=NULL, column_space=c(-0.5, 0, 0.5),
-                   dependent_label = "Survival",
-                   prefix = "", suffix = ": (HR, 95% CI, p-value)",
+                   dependent_label = "Survival", 
+                   prefix = "", suffix = ": HR (95% CI, p-value)",
                    table_text_size = 5,
                    title_text_size = 18,
                    plot_opts = NULL, table_opts = NULL, ...){

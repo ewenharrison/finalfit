@@ -7,7 +7,7 @@
 or_plot(.data, dependent, explanatory, factorlist = NULL,
   glmfit = NULL, breaks = NULL, column_space = c(-0.5, 0, 0.5),
   dependent_label = NULL, prefix = "",
-  suffix = ": (OR, 95\% CI, p-value)", table_text_size = 5,
+  suffix = ": OR (95\% CI, p-value)", table_text_size = 5,
   title_text_size = 18, plot_opts = NULL, table_opts = NULL, ...)
 }
 \arguments{
@@ -70,7 +70,8 @@ colon_s \%>\%
 
 }
 \seealso{
-Other finalfit plot functions: \code{\link{hr_plot}},
+Other finalfit plot functions: \code{\link{coefficient_plot}},
+  \code{\link{ff_plot}}, \code{\link{hr_plot}},
   \code{\link{surv_plot}}
 }
 \concept{finalfit plot functions}

@@ -1,3 +1,10 @@
+# finalfit 0.8.9
+
+* `ff_plot()` added
+* `coefficient_plot()` added
+* `variable_type()` added
+* Compatibility for future `shinyfit` started. 
+
 # finalfit 0.8.8
 
 * `ff_glimpse()` re-written to remove `psych` dependency

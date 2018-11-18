@@ -1,4 +1,4 @@
-context("Intervals")
+context("Internals")
 library(finalfit)
 test_that("ff_merge fit_id==NULL", {
 	expect_error(ff_merge(summary_factorlist(colon_s, "mort_5yr", "age.factor")))
@@ -42,4 +42,32 @@ test_that("missing_glimpse", {
 
 test_that("missing_glimpse", {
 	expect_is(missing_glimpse(colon_s, dependent="mort_5yr"), "data.frame")
+})
+
+test_that("variable type works", {
+	expect_match(variable_type(as.Date("12.03.18", "%d.%m.%y")), "date")
+})
+
+test_that("variable type works", {
+	expect_match(variable_type(factor(c("yes", "no"))), "factor")
+})
+
+test_that("variable type works", {
+	expect_match(variable_type(c("yes", "no")), "character")
+})
+
+test_that("variable type works", {
+	expect_match(variable_type(1:10), "numeric")
+})
+
+test_that("variable type works", {
+	expect_match(variable_type(as.logical(c("true", "false"))), "logical")
+})
+
+test_that("is.factor", {
+	expect_true(is.survival("Surv(mort, time)"))
+})
+
+test_that("is.factor", {
+	expect_false(is.survival("Sur(mort, time)"))
 })

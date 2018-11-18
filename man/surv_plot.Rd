@@ -35,7 +35,8 @@ colon_s \%>\%
 
 }
 \seealso{
-Other finalfit plot functions: \code{\link{hr_plot}},
+Other finalfit plot functions: \code{\link{coefficient_plot}},
+  \code{\link{ff_plot}}, \code{\link{hr_plot}},
   \code{\link{or_plot}}
 }
 \concept{finalfit plot functions}

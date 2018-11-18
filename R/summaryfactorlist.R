@@ -193,6 +193,11 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", c
 	}
 
 	df.out = cbind(df.out, result.out)
+	
+	if (total_col){
+		total.out = matrix(s[,1])
+		df.out = cbind(df.out, "Total" = total.out)
+	}
 
 	# Add dependent name label
 	if(add_dependent_label){

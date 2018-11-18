@@ -70,7 +70,7 @@ finalfit.coxph method (not called directly)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.8.8</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.8.9</span>
       </span>
     </div>
 
@@ -189,14 +189,20 @@ explanatory variables.</p></td>
     <tr>
       <th>explanatory_multi</th>
       <td><p>Character vector of any length: quoted name(s) of a
-subset of explanatory variables for multivariable analysis only (must only
-contain variables contained in <code>explanatory</code>)</p></td>
+subset of explanatory variables to generate reduced multivariable model
+(must only contain variables contained in <code>explanatory</code>).</p></td>
     </tr>
     <tr>
       <th>random_effect</th>
       <td><p>Character vector of length 1: quoted name of random
 effects variable. When included mixed effects model generated
 (<code>lme4::glmer lme4::lmer</code>).</p></td>
+    </tr>
+    <tr>
+      <th>keep_models</th>
+      <td><p>Logical: include full multivariable model in output when
+working with reduced multivariable model (<code>explanatory_multi</code>) and/or
+mixed effect models (<code>random_effect</code>).</p></td>
     </tr>
     <tr>
       <th>metrics</th>
@@ -206,20 +212,21 @@ publication format.</p></td>
     <tr>
       <th>add_dependent_label</th>
       <td><p>Add the name of the dependent label to the top
-left of table</p></td>
+left of table.</p></td>
     </tr>
     <tr>
       <th>dependent_label_prefix</th>
-      <td><p>Add text before dependent label</p></td>
+      <td><p>Add text before dependent label.</p></td>
     </tr>
     <tr>
       <th>dependent_label_suffix</th>
-      <td><p>Add text after dependent label</p></td>
+      <td><p>Add text after dependent label.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments to pass to <code><a href='fit2df.html'>fit2df</a></code>: <code>estimate_name,
-p_name, digits, confint_type, confint_level, confint_sep</code>.</p></td>
+      <td><p>Other arguments to pass to <code><a href='fit2df.html'>fit2df</a></code>:
+<code>estimate_name, p_name, digits, confint_type, confint_level,
+confint_sep</code>.</p></td>
     </tr>
     </table>
     
