@@ -90,7 +90,7 @@ NULL
 #' magrittr compound assignment pipe-operator
 #'
 #' @name %<>%
-#' @rdname pipe
+#' @rdname compoundpipe
 #' @keywords internal
 #' @importFrom magrittr %<>%
 #' @usage lhs \%<>\% rhs
