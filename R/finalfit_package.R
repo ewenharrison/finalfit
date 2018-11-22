@@ -89,7 +89,7 @@ NULL
 
 #' magrittr compound assignment pipe-operator
 #'
-#' @name %>%
+#' @name %<>%
 #' @rdname pipe
 #' @keywords internal
 #' @importFrom magrittr %<>%
