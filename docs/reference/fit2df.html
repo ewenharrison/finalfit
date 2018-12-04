@@ -210,7 +210,7 @@ wrappers.</p>
 <span class='co'># S3 method for lmerMod</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
   <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
@@ -374,7 +374,7 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='lmmixed.html'>lmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.</span></div><div class='output co'>#&gt;             explanatory            OR (multilevel
+         <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.</span></div><div class='output co'>#&gt;             explanatory   Coefficient (multilevel
 #&gt; 2 age.factor40-59 years 0.45 (0.19-1.07, p=0.035)
 #&gt; 3   age.factor60+ years 0.38 (0.16-0.87, p=0.011)
 #&gt; 4        sex.factorMale 0.83 (0.54-1.27, p=0.195)

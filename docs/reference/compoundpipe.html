@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract variable labels from dataframe — extract_variable_label • finalfit</title>
+<title>magrittr compound assignment pipe-operator — %&lt;&gt;% • finalfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,12 +30,9 @@
 
 
 
-<meta property="og:title" content="Extract variable labels from dataframe — extract_variable_label" />
+<meta property="og:title" content="magrittr compound assignment pipe-operator — %&lt;&gt;%" />
 
-<meta property="og:description" content="Variable labels can be created using ff_label. Some functions
-strip variable labels (variable attributes), e.g. forcats::fct_recode.
-Use this function to create a vector of variable labels from a data frame.
-Then use ff_relabel to relabel variables in data frame." />
+<meta property="og:description" content="magrittr compound assignment pipe-operator" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -126,64 +123,25 @@ Then use ff_relabel to relabel variables in data frame." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract variable labels from dataframe</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/ff_label.R'><code>R/ff_label.R</code></a></small>
-    <div class="hidden name"><code>extract_variable_label.Rd</code></div>
+    <h1>magrittr compound assignment pipe-operator</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/finalfit_package.R'><code>R/finalfit_package.R</code></a></small>
+    <div class="hidden name"><code>compoundpipe.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Variable labels can be created using <code><a href='ff_label.html'>ff_label</a></code>. Some functions
-strip variable labels (variable attributes), e.g. <code><a href='http://www.rdocumentation.org/packages/forcats/topics/fct_recode'>forcats::fct_recode</a></code>.
-Use this function to create a vector of variable labels from a data frame.
-Then use <code><a href='ff_relabel.html'>ff_relabel</a></code> to relabel variables in data frame.</p>
+    <p>magrittr compound assignment pipe-operator</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>extract_variable_label</span>(<span class='no'>.data</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>.data</th>
-      <td><p>Dataframe containing labelled variables.</p></td>
-    </tr>
-    </table>
-    
+    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&lt;&gt;%</span> <span class='no'>rhs</span></pre>
+        
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='no'>extract_variable_label</span></div><div class='output co'>#&gt;                    id                    rx                   sex 
-#&gt;                  "id"                  "rx"                 "sex" 
-#&gt;                   age              obstruct                perfor 
-#&gt;         "Age (years)"            "obstruct"              "perfor" 
-#&gt;                adhere                 nodes                status 
-#&gt;              "adhere"               "nodes"              "status" 
-#&gt;                differ                extent                  surg 
-#&gt;              "differ"              "extent"                "surg" 
-#&gt;                 node4                  time            sex.factor 
-#&gt;               "node4"                "time"                 "Sex" 
-#&gt;             rx.factor       obstruct.factor         perfor.factor 
-#&gt;           "Treatment"         "Obstruction"         "Perforation" 
-#&gt;         adhere.factor         differ.factor         extent.factor 
-#&gt;           "Adherence"     "Differentiation"    "Extent of spread" 
-#&gt;           surg.factor          node4.factor         status.factor 
-#&gt;   "Time from surgery"   "&gt;4 positive nodes"              "Status" 
-#&gt;            age.factor               loccomp        loccomp.factor 
-#&gt;                 "Age"             "loccomp" "Local complications" 
-#&gt;            time.years              mort_5yr                age.10 
-#&gt;        "Time (years)"    "Mortality 5 year"              "age.10" 
-#&gt;          mort_5yr.num              hospital 
-#&gt;        "mort_5yr.num"            "hospital" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>

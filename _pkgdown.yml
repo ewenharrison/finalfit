@@ -30,6 +30,8 @@ reference:
     - '`ff_metrics`'
     - '`ff_newdata`'
     - '`ff_label`'
+    - '`ff_relabel`'
+    - '`extract_variable_label`'
     - '`ff_newdata`'
     - '`ff_interaction`'
   - title: "Plotting"

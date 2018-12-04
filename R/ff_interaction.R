@@ -40,19 +40,6 @@ ff_interaction = function(.data, ..., levels_sep = ":", var_sep = "__", label_se
 	return(df.out)
 }
 
-#' Label a variable
-#'
-#' @param .var Quoted variable name
-#' @param variable_label Quoted variable label
-#'
-#' @return Labelled variable
+#' @rdname ff_interaction
 #' @export
-#' @keywords internal
-#' @examples
-#' colon_s$sex.factor %>%
-#'   ff_label("Sex") %>%
-#'   str()
-ff_label <- function(.var, variable_label){
-	Hmisc::label(.var) = variable_label
-	return(.var)
-}
+finalfit_interaction <- ff_interaction

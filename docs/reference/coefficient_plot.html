@@ -134,8 +134,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>coefficient_plot</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>factorlist</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lmfit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>column_space</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>0.5</span>, -<span class='fl'>0.1</span>, <span class='fl'>0.5</span>),
+    <pre class="usage"><span class='fu'>coefficient_plot</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>factorlist</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lmfit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
+  <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>column_space</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>0.5</span>, -<span class='fl'>0.1</span>, <span class='fl'>0.5</span>),
   <span class='kw'>dependent_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>,
   <span class='kw'>suffix</span> <span class='kw'>=</span> <span class='st'>": Coefficient, 95% CI, p-value)"</span>, <span class='kw'>table_text_size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>title_text_size</span> <span class='kw'>=</span> <span class='fl'>18</span>, <span class='kw'>plot_opts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>table_opts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
@@ -158,6 +159,11 @@
 variables.</p></td>
     </tr>
     <tr>
+      <th>random_effect</th>
+      <td><p>Character vector of length 1, name of random effect
+variable.</p></td>
+    </tr>
+    <tr>
       <th>factorlist</th>
       <td><p>Option to provide output directly from
 <code><a href='summary_factorlist.html'>summary_factorlist</a>()</code>.</p></td>
@@ -166,6 +172,11 @@ variables.</p></td>
       <th>lmfit</th>
       <td><p>Option to provide output directly from <code><a href='lmmulti.html'>lmmulti</a>()</code>
 and <code><a href='lmmixed.html'>lmmixed</a>()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>confint_type</th>
+      <td><p>For for <code>lmer</code> models, one of <code>c("default",
+"Wald", "profile", "boot")</code> Note "default" == "Wald".</p></td>
     </tr>
     <tr>
       <th>breaks</th>
@@ -181,11 +192,13 @@ and <code><a href='lmmixed.html'>lmmixed</a>()</code>.</p></td>
     </tr>
     <tr>
       <th>prefix</th>
-      <td><p>Plots are titled by default with the dependent variable. This adds text before that label.</p></td>
+      <td><p>Plots are titled by default with the dependent variable. This
+adds text before that label.</p></td>
     </tr>
     <tr>
       <th>suffix</th>
-      <td><p>Plots are titled with the dependent variable. This adds text after that label.</p></td>
+      <td><p>Plots are titled with the dependent variable. This adds text
+after that label.</p></td>
     </tr>
     <tr>
       <th>table_text_size</th>
@@ -197,11 +210,13 @@ and <code><a href='lmmixed.html'>lmmixed</a>()</code>.</p></td>
     </tr>
     <tr>
       <th>plot_opts</th>
-      <td><p>A list of arguments to be appended to the ggplot call by "+".</p></td>
+      <td><p>A list of arguments to be appended to the ggplot call by
+"+".</p></td>
     </tr>
     <tr>
       <th>table_opts</th>
-      <td><p>A list of arguments to be appended to the ggplot table call by "+".</p></td>
+      <td><p>A list of arguments to be appended to the ggplot table call
+by "+".</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -231,7 +246,7 @@ and <code><a href='lmmixed.html'>lmmixed</a>()</code>.</p></td>
          <span class='fu'>coefficient_plot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dependent is not a factor and will be treated as a continuous variable</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='coefficient_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>coefficient_plot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>table_text_size</span><span class='kw'>=</span><span class='fl'>4</span>, <span class='kw'>title_text_size</span><span class='kw'>=</span><span class='fl'>14</span>,
-    <span class='kw'>plot_opts</span><span class='kw'>=</span><span class='fu'>list</span>(<span class='fu'><a href='ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span>(<span class='st'>"Beta, 95% CI"</span>), <span class='fu'><a href='ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>axis.title</span> <span class='kw'>=</span> <span class='fu'><a href='ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>size</span><span class='kw'>=</span><span class='fl'>12</span>))))</div><div class='output co'>#&gt; <span class='warning'>Warning: Dependent is not a factor and will be treated as a continuous variable</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='coefficient_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
+    <span class='kw'>plot_opts</span><span class='kw'>=</span><span class='fu'>list</span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span>(<span class='st'>"Beta, 95% CI"</span>), <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>axis.title</span> <span class='kw'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>size</span><span class='kw'>=</span><span class='fl'>12</span>))))</div><div class='output co'>#&gt; <span class='warning'>Warning: Dependent is not a factor and will be treated as a continuous variable</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='coefficient_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

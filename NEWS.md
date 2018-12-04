@@ -4,6 +4,7 @@
 * `coefficient_plot()` added
 * `variable_type()` added
 * Compatibility for future `shinyfit` started. 
+* `ff_relabel` added.
 
 # finalfit 0.8.8
 

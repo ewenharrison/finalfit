@@ -2,9 +2,13 @@
 % Please edit documentation in R/ff_interaction.R
 \name{ff_interaction}
 \alias{ff_interaction}
+\alias{finalfit_interaction}
 \title{Make an interaction variable and add to dataframe}
 \usage{
 ff_interaction(.data, ..., levels_sep = ":", var_sep = "__",
+  label_sep = ":")
+
+finalfit_interaction(.data, ..., levels_sep = ":", var_sep = "__",
   label_sep = ":")
 }
 \arguments{
