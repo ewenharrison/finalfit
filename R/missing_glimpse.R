@@ -9,6 +9,8 @@
 #'
 #' @return Data frame.
 #' @export
+#' 
+#' @importFrom pillar new_pillar_type
 #'
 #' @examples
 #' colon_s %>%
@@ -23,11 +25,12 @@ missing_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1)
 
 	df.in %>%
 		purrr::map_df(function(x){
+			var_type = pillar::new_pillar_type(x) %>% paste0("<", ., ">")
 			obs = length(x)
 			missing_n = sum(is.na(x))
 			n = obs-missing_n
 			missing_percent = round_tidy(100*missing_n/obs, digits=digits)
-			dplyr::data_frame(n, missing_n, missing_percent)
+			dplyr::data_frame(var_type, n, missing_n, missing_percent)
 		}) -> df.out1
 
 	df.in %>%

@@ -584,3 +584,20 @@ globalVariables(c("L95", "U95", "fit_id", "Total",
 #' @keywords internal
 #' @import Hmisc
 summary_formula = 'Hmisc' %:::% 'summary.formula'
+
+
+
+#' Errors: colon in factor levels
+#'
+#' @param .data Data frame.
+#'
+#' @return Logical
+#' @keywords internal
+error_colon_fct_levels <- function(.data){
+	.data %>% 
+		purrr::map(~ levels(.x)) %>%
+		purrr::map(~ grepl(":", .x)) %>% 
+		purrr::map(~ any(.x)) %>% 
+		unlist() %>% 
+		any()
+}

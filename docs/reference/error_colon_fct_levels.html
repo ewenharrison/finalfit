@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Descriptive statistics for dataframe — ff_glimpse • finalfit</title>
+<title>Errors: colon in factor levels — error_colon_fct_levels • finalfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,9 @@
 
 
 
-<meta property="og:title" content="Descriptive statistics for dataframe — ff_glimpse" />
+<meta property="og:title" content="Errors: colon in factor levels — error_colon_fct_levels" />
 
-<meta property="og:description" content="Everyone has a funcion like this, str, glimpse, glance etc. This one is
-specifically designed for use with finalfit language. It is different
-in dividing variables by numeric vs factor." />
+<meta property="og:description" content="Errors: colon in factor levels" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -125,88 +123,33 @@ in dividing variables by numeric vs factor." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Descriptive statistics for dataframe</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/ff_glimpse.R'><code>R/ff_glimpse.R</code></a></small>
-    <div class="hidden name"><code>ff_glimpse.Rd</code></div>
+    <h1>Errors: colon in factor levels</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/finalfit_internal_functions.R'><code>R/finalfit_internal_functions.R</code></a></small>
+    <div class="hidden name"><code>error_colon_fct_levels.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Everyone has a funcion like this, str, glimpse, glance etc. This one is
-specifically designed for use with <code>finalfit</code> language. It is different
-in dividing variables by numeric vs factor.</p>
+    <p>Errors: colon in factor levels</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ff_glimpse</span>(<span class='no'>.data</span>, <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>explanatory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>levels_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-
-<span class='fu'>finalfit_glimpse</span>(<span class='no'>.data</span>, <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>explanatory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>levels_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>)</pre>
+    <pre class="usage"><span class='fu'>error_colon_fct_levels</span>(<span class='no'>.data</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>Dataframe.</p></td>
-    </tr>
-    <tr>
-      <th>dependent</th>
-      <td><p>Optional character vector: name(s) of depdendent
-variable(s).</p></td>
-    </tr>
-    <tr>
-      <th>explanatory</th>
-      <td><p>Optional character vector: name(s) of explanatory
-variable(s).</p></td>
-    </tr>
-    <tr>
-      <th>digits</th>
-      <td><p>Significant digits for continuous variable summaries</p></td>
-    </tr>
-    <tr>
-      <th>levels_cut</th>
-      <td><p>Max number of factor levels to include in factor levels
-summary (in order to avoid the long printing of variables with many
-factors).</p></td>
+      <td><p>Data frame.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Dataframe on summary data.</p>
+    <p>Logical</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>finalfit</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age"</span>, <span class='st'>"nodes"</span>, <span class='st'>"age.factor"</span>, <span class='st'>"extent.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit_glimpse</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; Numerics
-#&gt;             label       var_type   n missing_n missing_percent mean   sd  min
-#&gt; age   Age (years) &lt;S3: labelled&gt; 929         0             0.0 59.8 11.9 18.0
-#&gt; nodes       nodes          &lt;dbl&gt; 911        18             1.9  3.7  3.6  0.0
-#&gt;       quartile_25 median quartile_75  max
-#&gt; age          53.0   61.0        69.0 85.0
-#&gt; nodes         1.0    2.0         5.0 33.0
-#&gt; 
-#&gt; Factors
-#&gt;                          label var_type   n missing_n missing_percent levels_n
-#&gt; perfor.factor      Perforation    &lt;fct&gt; 929         0             0.0        2
-#&gt; extent.factor Extent of spread    &lt;fct&gt; 929         0             0.0        4
-#&gt; age.factor                 Age    &lt;fct&gt; 929         0             0.0        3
-#&gt; mort_5yr      Mortality 5 year    &lt;fct&gt; 915        14             1.5        2
-#&gt;                                                               levels
-#&gt; perfor.factor                                            "No", "Yes"
-#&gt; extent.factor "Submucosa", "Muscle", "Serosa", "Adjacent structures"
-#&gt; age.factor                   "&lt;40 years", "40-59 years", "60+ years"
-#&gt; mort_5yr                                "Alive", "Died", "(Missing)"
-#&gt;                   levels_count         levels_percent
-#&gt; perfor.factor          902, 27             97.1,  2.9
-#&gt; extent.factor 21, 106, 759, 43  2.3, 11.4, 81.7,  4.6
-#&gt; age.factor        70, 344, 515        7.5, 37.0, 55.4
-#&gt; mort_5yr          511, 404, 14       55.0, 43.5,  1.5</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -214,9 +157,7 @@ factors).</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

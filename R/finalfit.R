@@ -131,6 +131,9 @@ finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, rando
 	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
 	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
 	if(is.null(dependent)) stop("No dependent variable provided")
+	if(.data[ ,names(.data) %in% explanatory] %>% error_colon_fct_levels()){
+		stop("Colons (:) not allowed in factor-level names. Check with ff_glimpse(.data). Recode: forcats::fct_recode()")
+	}
 
 	args = list(.data=.data, dependent=dependent, explanatory=explanatory,
 							explanatory_multi=explanatory_multi,

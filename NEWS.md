@@ -4,7 +4,8 @@
 * `coefficient_plot()` added
 * `variable_type()` added
 * Compatibility for future `shinyfit` started. 
-* `ff_relabel` added.
+* `ff_relabel()` added.
+* Error added to `finalfit()` for not-allowed colons (:) in factor levels. #10
 
 # finalfit 0.8.8
 
