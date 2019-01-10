@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.8.9</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.0</span>
       </span>
     </div>
 
@@ -106,9 +106,8 @@
 <h2 class="hasAnchor">
 <a href="#installation-and-documentation" class="anchor"></a>Installation and Documentation</h2>
 <p>Development lives on <a href="https://github.com/ewenharrison/finalfit">GitHub</a>.</p>
-<p>You can install the <code>finalfit</code> development version from github with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ewenharrison/finalfit"</span>, <span class="dt">ref =</span> <span class="st">"development"</span>)</a></code></pre></div>
+<p>You can install the <code>finalfit</code> development version from CRAN with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"finalfit"</span>)</a></code></pre></div>
 <p>It is recommended that this package is used together with <code>dplyr</code>, which is a dependent.</p>
 <p>Some of the functions require <code>rstan</code> and <code>boot</code>. These have been left as <code>Suggests</code> rather than <code>Depends</code> to avoid unnecessary installation. If needed, they can be installed in the normal way:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"rstan"</span>)</a>
@@ -781,7 +780,7 @@
 <a class="sourceLine" id="cb11-25" data-line-number="25"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">finalfit_merge</a></span>(example.univariable) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb11-26" data-line-number="26"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">finalfit_merge</a></span>(example.multivariable) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb11-27" data-line-number="27"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">finalfit_merge</a></span>(example.multilevel) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-28" data-line-number="28"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw">c</span>(fit_id, index)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># remove unnecessary columns</span></a>
+<a class="sourceLine" id="cb11-28" data-line-number="28"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw">c</span>(fit_id, index)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># remove unnecessary columns</span></a>
 <a class="sourceLine" id="cb11-29" data-line-number="29"><span class="st">  </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(colon_s, dependent, <span class="dt">prefix=</span><span class="st">""</span>) -&gt;<span class="st"> </span>t8 <span class="co"># place dependent variable label</span></a>
 <a class="sourceLine" id="cb11-30" data-line-number="30">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(t8, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw">c</span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a></code></pre></div>
 <table class="table">

@@ -1,3 +1,7 @@
+# finalfit 0.9.0
+
+* `or_plot()` bug fix
+
 # finalfit 0.8.9
 
 * `ff_plot()` added

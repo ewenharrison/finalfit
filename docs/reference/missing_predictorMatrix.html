@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.8.9</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.0</span>
       </span>
     </div>
 
@@ -175,7 +175,7 @@ algorithm.</p></td>
 <span class='co'>## Smoking missing completely at random</span>
 <span class='fu'>set.seed</span>(<span class='fl'>1</span>)
 <span class='no'>colon_s</span>$<span class='no'>smoking_mcar</span> <span class='kw'>=</span>
-  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'>c</span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'>c</span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
   <span class='fu'>dim</span>(<span class='no'>colon_s</span>)[<span class='fl'>1</span>], <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
   <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.2</span>, <span class='fl'>0.7</span>, <span class='fl'>0.1</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>factor</span>()
@@ -183,12 +183,12 @@ algorithm.</p></td>
 
 <span class='co'>## Make smoking missing conditional on patient sex</span>
 <span class='no'>colon_s</span>$<span class='no'>smoking_mar</span>[<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>==</span> <span class='st'>"Female"</span>] <span class='kw'>=</span>
-  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'>c</span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'>c</span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
          <span class='fu'>sum</span>(<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>==</span> <span class='st'>"Female"</span>),
          <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.1</span>, <span class='fl'>0.5</span>, <span class='fl'>0.4</span>))
 
 <span class='no'>colon_s</span>$<span class='no'>smoking_mar</span>[<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>==</span> <span class='st'>"Male"</span>] <span class='kw'>=</span>
-  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'>c</span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'>c</span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
          <span class='fu'>sum</span>(<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>==</span> <span class='st'>"Male"</span>),
          <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.15</span>, <span class='fl'>0.75</span>, <span class='fl'>0.1</span>))
 <span class='no'>colon_s</span>$<span class='no'>smoking_mar</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>colon_s</span>$<span class='no'>smoking_mar</span>)
@@ -199,12 +199,12 @@ algorithm.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-<span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>missing_predictorMatrix</span>(<span class='kw'>drop_from_imputed</span> <span class='kw'>=</span>
     <span class='fu'>c</span>(<span class='st'>"obstruct.factor"</span>, <span class='st'>"mort_5yr"</span>)) <span class='kw'>-&gt;</span> <span class='no'>predM</span>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='http://stefvanbuuren.github.io/mice/reference/mice.html'>mice</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>predictorMatrix</span> <span class='kw'>=</span> <span class='no'>predM</span>) <span class='kw'>%&gt;%</span> <span class='co'># e.g. m=10 when for real</span>
         <span class='co'># Run logistic regression on each imputed set</span>
         <span class='fu'>with</span>(<span class='fu'>glm</span>(<span class='fu'>formula</span>(<span class='fu'><a href='ff_formula.html'>ff_formula</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)),
@@ -212,8 +212,8 @@ algorithm.</p></td>
         <span class='fu'><a href='http://stefvanbuuren.github.io/mice/reference/pool.html'>pool</a></span>() <span class='kw'>%&gt;%</span>
         <span class='fu'>summary</span>(<span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
         <span class='co'># Jiggle into finalfit format</span>
-        <span class='fu'><a href='http://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='fu'>rownames</span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>explanatory_name</span>, <span class='no'>estimate</span>, <span class='no'>`2.5 %`</span>, <span class='no'>`97.5 %`</span>, <span class='no'>p.value</span>) <span class='kw'>%&gt;%</span>
+        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='fu'>rownames</span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
+        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>explanatory_name</span>, <span class='no'>estimate</span>, <span class='no'>`2.5 %`</span>, <span class='no'>`97.5 %`</span>, <span class='no'>p.value</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='condense_fit.html'>condense_fit</a></span>(<span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>" (multiple imputation)"</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='remove_intercept.html'>remove_intercept</a></span>() <span class='kw'>-&gt;</span> <span class='no'>fit_imputed</span></div><div class='output co'>#&gt; 
 #&gt;  iter imp variable

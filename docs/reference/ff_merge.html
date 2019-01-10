@@ -68,7 +68,7 @@ produced with a model wrapper followed by the fit2df() function
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.8.9</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.0</span>
       </span>
     </div>
 
@@ -213,7 +213,7 @@ Defaults to OR/HR/Coefficient</p></td>
         <span class='fu'>finalfit_merge</span>(<span class='no'>example.univariable</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'>finalfit_merge</span>(<span class='no'>example.multivariable</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'>finalfit_merge</span>(<span class='no'>example.multilevel</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'>c</span>(<span class='no'>fit_id</span>, <span class='no'>index</span>)) <span class='kw'>-&gt;</span> <span class='no'>example.final</span>
+        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'>c</span>(<span class='no'>fit_id</span>, <span class='no'>index</span>)) <span class='kw'>-&gt;</span> <span class='no'>example.final</span>
 <span class='no'>example.final</span></div><div class='output co'>#&gt;         label      levels      Alive       Died          OR (univariable)
 #&gt; 2         Age   &lt;40 years  31 (46.3)  36 (53.7)                         -
 #&gt; 1             40-59 years 208 (61.4) 131 (38.6) 0.54 (0.32-0.92, p=0.023)

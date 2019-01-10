@@ -66,7 +66,7 @@ Then use ff_relabel to relabel variables in data frame." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.8.9</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.0</span>
       </span>
     </div>
 
@@ -134,7 +134,7 @@ Then use ff_relabel to relabel variables in data frame." />
     <div class="ref-description">
     
     <p>Variable labels can be created using <code><a href='ff_label.html'>ff_label</a></code>. Some functions
-strip variable labels (variable attributes), e.g. <code><a href='http://www.rdocumentation.org/packages/forcats/topics/fct_recode'>forcats::fct_recode</a></code>.
+strip variable labels (variable attributes), e.g. <code><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>forcats::fct_recode</a></code>.
 Use this function to create a vector of variable labels from a data frame.
 Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
     
@@ -167,7 +167,7 @@ Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
 #&gt;  - attr(*, "label")= chr "Sex"</div><div class='input'>
 <span class='co'># Make factor level "Unknown" NA</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/summarise_all.html'>mutate_if</a></span>(<span class='no'>is.factor</span>, <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/forcats/topics/fct_recode'>fct_recode</a></span>,
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise_all.html'>mutate_if</a></span>(<span class='no'>is.factor</span>, <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='no'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span>,
   <span class='kw'>NULL</span> <span class='kw'>=</span> <span class='st'>"Unknown"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>str</span>()</div><div class='output co'>#&gt; 'data.frame':	929 obs. of  32 variables:
 #&gt;  $ id             : num  1 2 3 4 5 6 7 8 9 10 ...
@@ -212,7 +212,7 @@ Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
 
 <span class='co'># Run function where labels are lost</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/summarise_all.html'>mutate_if</a></span>(<span class='no'>is.factor</span>, <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/forcats/topics/fct_recode'>fct_recode</a></span>,
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise_all.html'>mutate_if</a></span>(<span class='no'>is.factor</span>, <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='no'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span>,
   <span class='kw'>NULL</span> <span class='kw'>=</span> <span class='st'>"Unknown"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>str</span>()</div><div class='output co'>#&gt; 'data.frame':	929 obs. of  32 variables:
 #&gt;  $ id             : num  1 2 3 4 5 6 7 8 9 10 ...

@@ -24,10 +24,9 @@ I spent many years repeatedly manually copying results from R analyses and built
 
 Development lives on <a href="https://github.com/ewenharrison/finalfit">GitHub</a>.
 
-You can install the `finalfit` development version from github with:
+You can install the `finalfit` development version from CRAN with:
 ```{r eval=FALSE}
-# install.packages("devtools")
-devtools::install_github("ewenharrison/finalfit", ref = "development")
+install.packages("finalfit")
 ```
 It is recommended that this package is used together with <code>dplyr</code>, which is a dependent.
 

@@ -96,6 +96,13 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 		glmfit_df_c = fit2df(glmfit, condense = TRUE, estimate_suffix = " (multilevel)",
 												 confint_type = confint_type, ...)
 	}
+	if(!is.null(glmfit) && is.null(random_effect)){
+		glmfit_df_c = fit2df(glmfit, condense = TRUE, estimate_suffix = " (multivariable)",
+												 confint_type = confint_type, ...)
+	} else if(!is.null(glmfit) && !is.null(random_effect)){
+		glmfit_df_c = fit2df(glmfit, condense = TRUE, estimate_suffix = " (multilevel)",
+												 confint_type = confint_type, ...)
+	}
 
 	glmfit_df = fit2df(glmfit, condense = FALSE, confint_type = confint_type,  ...)
 	
