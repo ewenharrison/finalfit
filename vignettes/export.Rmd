@@ -133,7 +133,7 @@ colon_s %>%
   breaks = c(0.5, 1, 5, 10, 20, 30))
 ```
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/example_or_plot.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/example_or_plot.png" alt="" width="600" class="aligncenter" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/example_or_plot.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/example_or_plot.png" alt="" width="600" class="aligncenter" /></a>
 
 ## MS Word via knitr/R Markdown
 
@@ -188,7 +188,7 @@ colon_s %>%
   or_plot(dependent, explanatory)
 </pre>
 
-[The result is ok, but not great.](http://www.datasurg.net/wp-content/uploads/2018/05/example.docx) 
+[The result is ok, but not great.](https://www.datasurg.net/wp-content/uploads/2018/05/example.docx) 
 
 
 ## Create Word template file
@@ -239,7 +239,7 @@ colon_s %>%
 ```
 </pre>
 
-[This is now looking good, and further tweaks can be made if you wish.](http://www.datasurg.net/wp-content/uploads/2018/05/example2.docx)
+[This is now looking good, and further tweaks can be made if you wish.](https://www.datasurg.net/wp-content/uploads/2018/05/example2.docx)
 
 ## PDF via knitr/R Markdown
 
@@ -282,7 +282,7 @@ colon_s %>%
 ```
 </pre>
 
-[Again, this is not bad, but has issues.](http://www.datasurg.net/wp-content/uploads/2018/05/example.pdf)
+[Again, this is not bad, but has issues.](https://www.datasurg.net/wp-content/uploads/2018/05/example.pdf)
 
 We can fix the plot in exactly the same way. But the table is off the side of the page. For this we use the 'kableExtra` package. Install this in the normal manner. You may also want to alter the margins of your page using geometry in the preamble.
 
@@ -327,6 +327,6 @@ colon_s %>%
   or_plot(dependent, explanatory)
 </pre>
 
-[This is now looking pretty good for me as well.](http://www.datasurg.net/wp-content/uploads/2018/05/example2.pdf)
+[This is now looking pretty good for me as well.](https://www.datasurg.net/wp-content/uploads/2018/05/example2.pdf)
 
 There you have it. A pretty quick workflow to get final results into Word and a PDF.

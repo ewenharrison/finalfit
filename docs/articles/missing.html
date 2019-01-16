@@ -233,7 +233,7 @@
 <p>In detecting patterns of missingness, this plot is useful. Row number is on the x-axis and all included variables are on the y-axis. Associations between missingness and observations can be easily seen, as can relationships of missingness between variables.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">colon_s <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/missing_plot.html">missing_plot</a></span>()</a></code></pre></div>
-<p><a href="http://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png" alt="" width="700"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png" alt="" width="700"></a></p>
 <p>It was only when writing this post that I discovered the amazing package, <a href="http://naniar.njtierney.com/">naniar</a>. This package is recommended and provides lots of great visualisations for missing data.</p>
 </div>
 <div id="look-for-patterns-of-missingness-missing_pattern" class="section level2">
@@ -305,12 +305,12 @@
 <a class="sourceLine" id="cb9-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
 <a class="sourceLine" id="cb9-5" data-line-number="5">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="../reference/missing_pairs.html">missing_pairs</a></span>(dependent, explanatory)</a></code></pre></div>
-<p><a href="http://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs1-1024x775.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs1-1024x775.png" alt="" width="700"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs1-1024x775.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs1-1024x775.png" alt="" width="700"></a></p>
 <p>For continuous variables (age and nodes), the distributions of observed and missing data can be visually compared. Is there a difference between age and mortality above?</p>
 <p>For discrete, data, counts are presented by default. It is often easier to compare proportions:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/missing_pairs.html">missing_pairs</a></span>(dependent, explanatory, <span class="dt">position =</span> <span class="st">"fill"</span>, )</a></code></pre></div>
-<p><a href="http://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs2-1-1024x733.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs2-1-1024x733.png" alt="" width="700"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs2-1-1024x733.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs2-1-1024x733.png" alt="" width="700"></a></p>
 <p>It should be obvious that missingness in Smoking (MCAR) does not relate to sex (row 6, column 3). But missingness in Smoking (MAR) does differ by sex (last row, column 3) as was designed above when the missing data were created.</p>
 <p>We can confirm this using <code>missing_compare</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </a>

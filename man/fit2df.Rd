@@ -161,7 +161,7 @@ random_effect = "hospital"
 dependent = "mort_5yr"
 colon_s \%>\%
   glmmixed(dependent, explanatory, random_effect) \%>\%
-	 fit2df(estimate_suffix=" (multilevel")
+	 fit2df(estimate_suffix=" (multilevel)")
 
 # glmboot
 ## Note number of draws set to 100 just for speed in this example

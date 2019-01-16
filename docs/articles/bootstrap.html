@@ -142,10 +142,10 @@
 <a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">boot_compare =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">digits =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.07 to 0.57)</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.06 to 0.63)</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.53 to 0.84)</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.45 to 0.90)</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.07 to 0.54)</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.07 to 0.59)</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.50 to 0.84)</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.46 to 0.88)</span></a></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for demonstration purposes. You should expect to use 1000 to 10000 to ensure you have stable estimates.</p>
 </div>
 <div id="output-to-word-pdf-and-html-via-rmarkdown" class="section level2">
@@ -154,7 +154,7 @@
 <p>Simulations are produced using bootstrapping and everything is tidily outputted in a table/dataframe, which can be passed to <code><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">knitr::kable</a></code>.</p>
 <p>Place this chunk in an .Rmd file:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(table, <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">align =</span> <span class="kw">c</span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>))</a></code></pre></div>
-<p><a href="http://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png" alt="" width="600" class="aligncenter"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png" alt="" width="600" class="aligncenter"></a></p>
 </div>
 <div id="make-comparisons" class="section level2">
 <h2 class="hasAnchor">
@@ -167,15 +167,15 @@
 <a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="dt">compare_name =</span> <span class="st">"Absolute risk difference"</span>,</a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">digits =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.00 to 0.53)</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.00 to 0.59)</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.58 to 0.89)</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.55 to 0.91)</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.07 to 0.52)</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.08 to 0.65)</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.54 to 0.86)</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.41 to 0.89)</span></a>
 <a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;        Absolute risk difference</span></a>
 <a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 1                             -</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2 0.01 (-0.11 to 0.15, p=0.880)</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3  0.44 (0.19 to 0.70, p&lt;0.001)</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4  0.42 (0.21 to 0.72, p=0.020)</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2 0.00 (-0.12 to 0.21, p=0.980)</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3  0.43 (0.19 to 0.67, p&lt;0.001)</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4  0.42 (0.11 to 0.73, p=0.020)</span></a></code></pre></div>
 </div>
 <div id="what-is-not-included" class="section level2">
 <h2 class="hasAnchor">
@@ -215,7 +215,7 @@
 <a class="sourceLine" id="cb6-27" data-line-number="27"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Probability of death"</span>)<span class="op">+</span></a>
 <a class="sourceLine" id="cb6-28" data-line-number="28"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill =</span> <span class="st">"Extent of tumour"</span>, <span class="dt">colour =</span> <span class="st">"Extent of tumour"</span>)<span class="op">+</span></a>
 <a class="sourceLine" id="cb6-29" data-line-number="29"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Probability of death by lymph node count"</span>)</a></code></pre></div>
-<p><a href="http://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png" alt="" width="600" class="aligncenter"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png" alt="" width="600" class="aligncenter"></a></p>
 <p>So there you have it. Straightforward bootstrapped simulations of model predictions, together with comparisons and easy plotting.</p>
 </div>
   </div>

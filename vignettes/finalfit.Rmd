@@ -37,7 +37,7 @@ install.packages("rstan")
 install.packages("boot")
 ```
 
-To <a href="http://www.datasurg.net/2018/05/05/install-github-package-on-safe-haven-server/">install off-line (or in a Safe Haven)</a>, download the zip file and use `devtools::install_local()`.
+To <a href="https://www.datasurg.net/2018/05/05/install-github-package-on-safe-haven-server/">install off-line (or in a Safe Haven)</a>, download the zip file and use `devtools::install_local()`.
 
 ## Main Features
 ### 1. Summarise variables/factors by a categorical variable
@@ -61,7 +61,7 @@ knitr::kable(t1, row.names=FALSE, align=c("l", "l", "r", "r", "r"))
 
 When exported to PDF:
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg" alt="" width="600"  class="aligncenter" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg" alt="" width="600"  class="aligncenter" /></a>
 
 See other options relating to inclusion of missing data, mean vs. median for continuous variables, column vs. row proportions, include a total column etc. 
 
@@ -77,7 +77,7 @@ colon_s %>%
 knitr::kable(t2, row.names=FALSE, align=c("l", "l", "r", "r", "r"))
 ```
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg" alt="" width="600" class="aligncenter" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg" alt="" width="600" class="aligncenter" /></a>
 
 Tables can be knitted to PDF, Word or html documents. We do this in RStudio from a .Rmd document.
 
@@ -100,7 +100,7 @@ knitr::kable(t3, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
 ```
 
 When exported to PDF:
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/table3.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/table3.jpg" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/table3.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table3.jpg" alt="" width="700" /></a>
 
 #### Logistic regression with reduced model: glm()
 
@@ -115,7 +115,7 @@ knitr::kable(t4, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
 ```
 
 When exported to PDF:
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/table4.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/table4.jpg" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/table4.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table4.jpg" alt="" width="700" /></a>
 
 #### Mixed effects logistic regression: lme4::glmer()
 Of the form: `lme4::glmer(dependent ~ explanatory + (1 | random_effect), family="binomial")`
@@ -133,7 +133,7 @@ knitr::kable(t5, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
 ```
 
 When exported to PDF:
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/table5.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/table5.jpg" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/table5.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table5.jpg" alt="" width="700" /></a>
 
 #### Cox proportional hazards: survival::coxph()
 
@@ -148,7 +148,7 @@ knitr::kable(t6, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
 ```
 
 When exported to PDF:
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/table6.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/table6.jpg" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/table6.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table6.jpg" alt="" width="700" /></a>
 
 #### Add common model metrics to output
 
@@ -165,9 +165,9 @@ knitr::kable(t7[[2]], row.names=FALSE, col.names="")
 ```
 
 When exported to PDF:
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg" alt="" width="700" /></a>
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg" alt="" width="700"/></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg" alt="" width="700"/></a>
 
 #### Combine multiple models into single table
 
@@ -209,11 +209,11 @@ knitr::kable(t8, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r", "r"))
 ```
 
 When exported to PDF:
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/table8.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/table8.jpg" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/table8.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table8.jpg" alt="" width="700" /></a>
 
 #### Bayesian logistic regression: with `stan`
 
-Our own particular `rstan` models are supported and will be documented in the future. Broadly, if you are running (hierarchical) logistic regression models in [Stan](http://mc-stan.org/users/interfaces/rstan) with coefficients specified as a vector labelled `beta`, then `fit2df()` will work directly on the `stanfit` object in a similar manner to if it was a `glm` or `glmerMod` object.
+Our own particular `rstan` models are supported and will be documented in the future. Broadly, if you are running (hierarchical) logistic regression models in [Stan](https://mc-stan.org/users/interfaces/rstan) with coefficients specified as a vector labelled `beta`, then `fit2df()` will work directly on the `stanfit` object in a similar manner to if it was a `glm` or `glmerMod` object.
 
 ### 3. Summarise regression model results in plot
 
@@ -229,7 +229,7 @@ colon_s %>%
 # Previously fitted models (`glmmulti()` or # `glmmixed()`) can be provided directly to `glmfit`
 ```
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg" alt="" width="700" /></a>
 
 #### HR plot
 
@@ -241,7 +241,7 @@ colon_s %>%
 # Previously fitted models (`coxphmulti`) can be provided directly using `coxfit`
 ```
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/plot2.jpg"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/plot2.jpg" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/plot2.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/plot2.jpg" alt="" width="700" /></a>
 
 #### Kaplan-Meier survival plots
 
@@ -255,7 +255,7 @@ colon_s %>%
   xlab="Time (days)", pval=TRUE, legend="none")
 ```
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/05/Rplot.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/05/Rplot.png" alt="" width="500" height="500" class="aligncenter size-full wp-image-964" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/05/Rplot.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/Rplot.png" alt="" width="500" height="500" class="aligncenter size-full wp-image-964" /></a>
 
 ## Notes
 

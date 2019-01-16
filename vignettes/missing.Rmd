@@ -140,7 +140,7 @@ colon_s %>%
   missing_plot()
 ```
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png" alt="" width="700" /></a>
 
 It was only when writing this post that I discovered the amazing package, [naniar](http://naniar.njtierney.com/). This package is recommended and provides lots of great visualisations for missing data.
 
@@ -197,7 +197,7 @@ colon_s %>%
   missing_pairs(dependent, explanatory)
 ```
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs1-1024x775.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs1-1024x775.png" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs1-1024x775.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs1-1024x775.png" alt="" width="700" /></a>
 
 For continuous variables (age and nodes), the distributions of observed and missing data can be visually compared. Is there a difference between age and mortality above?
 
@@ -208,7 +208,7 @@ colon_s %>%
   missing_pairs(dependent, explanatory, position = "fill", )
 ```
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs2-1-1024x733.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs2-1-1024x733.png" alt="" width="700" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs2-1-1024x733.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs2-1-1024x733.png" alt="" width="700" /></a>
 
 It should be obvious that missingness in Smoking (MCAR) does not relate to sex (row 6, column 3). But missingness  in Smoking (MAR) does differ by sex (last row, column 3) as was designed above when the missing data were created.
 

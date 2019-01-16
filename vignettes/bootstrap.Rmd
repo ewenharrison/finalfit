@@ -80,7 +80,7 @@ Place this chunk in an .Rmd file:
 knitr::kable(table, row.names = FALSE, align = c("l", "l", "l", "r"))
 ```
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png" alt="" width="600"  class="aligncenter" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png" alt="" width="600"  class="aligncenter" /></a>
 
 ## Make comparisons
 
@@ -135,6 +135,6 @@ colon_s %>%
     ggtitle("Probability of death by lymph node count")
 ```
 
-<a href="http://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png"><img src="http://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png" alt="" width="600"  class="aligncenter" /></a>
+<a href="https://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png" alt="" width="600"  class="aligncenter" /></a>
 
 So there you have it. Straightforward bootstrapped simulations of model predictions, together with comparisons and easy plotting.
