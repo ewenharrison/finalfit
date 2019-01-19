@@ -58,11 +58,11 @@
 ff_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL){
   if(is.null(factorlist$fit_id)) stop("Include fit_id=TRUE in summary_factorlist()")
   explanatory_name = names(fit2df_df)[1]
-  or_col_id = ifelse(is.null(estimate_name), "Coefficient|OR|HR", paste0(estimate_name, "|Coefficient|OR|HR"))
-  or_col = grep(or_col_id, names(fit2df_df), value=TRUE)
+  estimate_col_id = ifelse(is.null(estimate_name), "Coefficient|OR|HR", paste0(estimate_name, "|Coefficient|OR|HR"))
+  estimate_col = grep(estimate_col_id, names(fit2df_df), value=TRUE)
   df.out = merge(factorlist, fit2df_df, by.x = "fit_id", by.y = explanatory_name, all = TRUE)
-  df.out[,or_col] = as.character(df.out[,or_col])
-  df.out[is.na(df.out[,or_col]),or_col] = ref_symbol
+  df.out[,estimate_col] = as.character(df.out[,estimate_col])
+  df.out[is.na(df.out[,estimate_col]),estimate_col] = ref_symbol
   df.out = df.out[order(df.out$index),]
   return(df.out)
 }

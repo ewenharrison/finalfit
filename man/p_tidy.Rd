@@ -23,4 +23,3 @@ Internal function, not called directly
 e.g. for 3 decimal places I want 0.100, not 0.1. Note this function with
 convert 0.000 to <0.001. All other values are prefixed with "=" by default
 }
-\keyword{internal}

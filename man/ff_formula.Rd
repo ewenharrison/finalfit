@@ -20,11 +20,11 @@ variable(s).}
 Character vector
 }
 \description{
-Internal not called directly
+Useful when passing finalfit dependent and explanatory lists to base R
+functions
 }
 \examples{
 explanatory = c("age", "nodes", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 ff_formula(dependent, explanatory)
 }
-\keyword{internal}

@@ -1,6 +1,7 @@
 # finalfit 0.9.0
 
 * `or_plot()` bug fix
+* `ff_remove_ref()` added. #12
 
 # finalfit 0.8.9
 
