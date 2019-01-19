@@ -264,16 +264,16 @@ condense_fit = function(.data, explanatory_name="explanatory", estimate_name=NA,
 
 #' Round values but keep trailing zeros
 #'
-#' Internal function, not called directly
-#'
 #' e.g. for 3 decimal places I want 1.200, not 1.2.
 #'
 #' @param x Numeric vector of values to round
 #' @param digits Integer of length one: value to round to.
 #' @return Vector of strings.
 #'
-#' @keywords internal
 #' @export
+#' 
+#' @examples
+#' round_tidy(0.01023, 3)
 
 round_tidy = function(x, digits){
 	sprintf.arg = paste0("%.", digits, "f")
@@ -293,7 +293,6 @@ round_tidy = function(x, digits){
 #' @param prefix Appended in front of values for use with \code{condense_fit}.
 #' @return Vector of strings.
 #'
-#' @keywords internal
 #' @export
 
 p_tidy = function(x, digits, prefix="="){
@@ -352,7 +351,7 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 
 #' Make a label for the dependent variable
 #'
-#' Not usually called directly. Can be used to label final results dataframe.
+#' Can be add dependent label to final results dataframe.
 #'
 #' @param df.out Dataframe (results table) to be altered.
 #' @param .data Original dataframe.
@@ -364,7 +363,6 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 #'
 #' @return Returns the label for the dependent variable, if specified.
 #' @export
-#' @keywords internal
 #' @examples
 #' library(dplyr)
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
@@ -404,8 +402,8 @@ dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suf
 	} else {
 		d_label = d_label
 	}
-	names(df.out)[1] = paste0(prefix, d_label, suffix)
-	names(df.out)[2] = ""
+	names(df.out)[which(names(df.out) == "label")] = paste0(prefix, d_label, suffix)
+	names(df.out)[which(names(df.out) == "levels")] = ""
 
 	return(df.out)
 }
@@ -487,7 +485,8 @@ remove_labels = function(.data){
 
 #' Generate formula as character string
 #'
-#' Internal not called directly
+#' Useful when passing finalfit dependent and explanatory lists to base R
+#' functions
 #'
 #' @param dependent Optional character vector: name(s) of depdendent
 #'   variable(s).
@@ -496,7 +495,6 @@ remove_labels = function(.data){
 #'
 #' @return Character vector
 #' @export
-#' @keywords internal
 #'
 #' @examples
 #' explanatory = c("age", "nodes", "sex.factor", "obstruct.factor", "perfor.factor")

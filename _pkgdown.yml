@@ -25,15 +25,19 @@ reference:
     desc: ~
     contents:
     - '`fit2df`'
+    - '`ff_formula`'
     - '`ff_glimpse`'
+    - '`ff_interaction`'
+    - '`ff_label`'
     - '`ff_merge`'
     - '`ff_metrics`'
     - '`ff_newdata`'
-    - '`ff_label`'
     - '`ff_relabel`'
+    - '`ff_remove_ref`'
+    - '`dependent_label`'
     - '`extract_variable_label`'
-    - '`ff_newdata`'
-    - '`ff_interaction`'
+    - '`round_tidy`'
+    - '`p_tidy`'
   - title: "Plotting"
     desc: ~
     contents:

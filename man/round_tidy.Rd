@@ -15,9 +15,8 @@ round_tidy(x, digits)
 Vector of strings.
 }
 \description{
-Internal function, not called directly
-}
-\details{
 e.g. for 3 decimal places I want 1.200, not 1.2.
 }
-\keyword{internal}
+\examples{
+round_tidy(0.01023, 3)
+}

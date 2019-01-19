@@ -24,7 +24,7 @@ variable. Can be continuous, a binary factor, or a survival object of form
 Returns the label for the dependent variable, if specified.
 }
 \description{
-Not usually called directly. Can be used to label final results dataframe.
+Can be add dependent label to final results dataframe.
 }
 \examples{
 library(dplyr)
@@ -58,4 +58,3 @@ example.summary \%>\%
 	 dependent_label(colon_s, dependent) -> example.final
   example.final
 }
-\keyword{internal}
