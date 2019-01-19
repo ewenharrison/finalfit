@@ -172,7 +172,8 @@ fit2df.lmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 		stop("Metrics only generated for single models: multiple models supplied to function")
 	}
 
-	df.out = plyr::ldply(.data, .id = NULL, extract_fit, explanatory_name=explanatory_name,
+	df.out = .data %>% 
+		purrr::map_dfr(extract_fit, explanatory_name=explanatory_name,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name,  confint_level=confint_level)
 
@@ -315,7 +316,8 @@ fit2df.glmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept
 		stop("Metrics only generated for single models: multiple models supplied to function")
 	}
 
-	df.out = plyr::ldply(.data, .id = NULL, extract_fit, explanatory_name=explanatory_name,
+	df.out = .data %>% 
+		purrr::map_dfr(extract_fit, explanatory_name=explanatory_name,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name, confint_type = confint_type,
 											 confint_level = confint_level,
@@ -481,7 +483,8 @@ fit2df.coxphlist <- function(.data, condense=TRUE, metrics=FALSE, remove_interce
 														 confint_sep = "-", ...){
 	#if(metrics==TRUE) warning("Metrics not currently available for this model")
 
-	df.out = plyr::ldply(.data, .id = NULL, extract_fit, explanatory_name=explanatory_name,
+	df.out = .data %>% 
+		purrr::map_dfr(extract_fit, explanatory_name=explanatory_name,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name, digits=digits)
 

@@ -51,7 +51,7 @@
 #' explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 #' dependent = "perfor.factor"
 #' colon_s %>%
-#' 	summary_factorlist(dependent, explanatory, p=TRUE)
+#'   summary_factorlist(dependent, explanatory, p=TRUE)
 #'
 #' # summary.factorlist() is also commonly used to summarise any number of
 #' # variables by an outcome variable (say dead yes/no).
@@ -60,7 +60,7 @@
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' dependent = "mort_5yr"
 #' colon_s %>%
-#' 	summary_factorlist(dependent, explanatory)
+#'   summary_factorlist(dependent, explanatory)
 
 summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mean", cont_cut = 5,
 															 p = FALSE, na_include = FALSE,

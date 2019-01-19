@@ -42,12 +42,13 @@ extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name=
 	L_confint_name = paste0("L", confint_level*100)
 	U_confint_name = paste0("U", confint_level*100)
 
-	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
+	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
 											 L_confint_name, U_confint_name, p_name)
 	if(confint_level != 0.95){
 		df.out = df.out %>% dplyr::select(-p_name)
 	}
+	df.out = data.frame(df.out)
 	return(df.out)
 }
 
@@ -71,13 +72,14 @@ extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_
 	L_confint_name = paste0("L", confint_level*100)
 	U_confint_name = paste0("U", confint_level*100)
 
-	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
+	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
 											 L_confint_name, U_confint_name, p_name)
 
 	if(confint_level != 0.95){
 		df.out = df.out %>% dplyr::select(-p_name)
 	}
+	df.out = data.frame(df.out)
 	return(df.out)
 }
 
@@ -100,12 +102,13 @@ extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="
 	L_confint_name = paste0("L", confint_level*100)
 	U_confint_name = paste0("U", confint_level*100)
 
-	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
+	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
 											 L_confint_name, U_confint_name, p_name)
 	if(confint_level != 0.95){
 		df.out = df.out %>% dplyr::select(-p_name)
 	}
+	df.out = data.frame(df.out)
 	return(df.out)
 }
 
@@ -131,12 +134,13 @@ extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_n
 	L_confint_name = paste0("L", confint_level*100)
 	U_confint_name = paste0("U", confint_level*100)
 
-	df.out = data.frame(explanatory, estimate, confint[,1], confint[,2], p)
+	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
 											 L_confint_name, U_confint_name, p_name)
 	if(confint_level != 0.95){
 		df.out = df.out %>% dplyr::select(-p_name)
 	}
+	df.out = data.frame(df.out)
 	return(df.out)
 }
 
@@ -160,8 +164,9 @@ extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_nam
 	confint_U = results[,4]
 	p = summary(x)$coefficients[explanatory,
 															max(dim(summary(x)$coefficients)[2])] # Hack to get p fe and re
-	df.out = data.frame(explanatory, estimate, confint_L, confint_U, p)
+	df.out = dplyr::tibble(explanatory, estimate, confint_L, confint_U, p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+	df.out = data.frame(df.out)
 	return(df.out)
 }
 

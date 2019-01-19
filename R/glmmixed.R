@@ -29,7 +29,7 @@
 #'
 #' colon_s %>%
 #'   glmmixed(dependent, explanatory, random_effect) %>%
-#' 	 fit2df(estimate_suffix=" (multilevel")
+#' 	 fit2df(estimate_suffix=" (multilevel)")
 
 glmmixed <- function(.data, dependent, explanatory, random_effect){
   lme4::glmer(paste0(dependent, "~", paste(explanatory, collapse="+"), " + (1|", random_effect, ")"),
