@@ -497,6 +497,8 @@ remove_labels = function(.data){
 #'   variable(s).
 #' @param explanatory Optional character vector: name(s) of explanatory
 #'   variable(s).
+#' @param random_effect Optional character vector: name(s) of random effect
+#'   variable(s).
 #'
 #' @return Character vector
 #' @export
@@ -505,11 +507,16 @@ remove_labels = function(.data){
 #' explanatory = c("age", "nodes", "sex.factor", "obstruct.factor", "perfor.factor")
 #' dependent = "mort_5yr"
 #' ff_formula(dependent, explanatory)
+#' 
+#' explanatory = c("age", "nodes", "sex.factor", "obstruct.factor", "perfor.factor")
+#' dependent = "mort_5yr"
+#' random_effect = "(age.factor | hospital)"
+#' ff_formula(dependent, explanatory)
 
 ff_formula = function(dependent, explanatory, random_effect = NULL){
 	if(!is.null(random_effect)){
-	if(!grepl("\\|", random_effect)) random_effect = paste0("(1 | ", random_effect, ")")
-	out = paste0(dependent, "~", paste(explanatory, collapse="+"), " + ", random_effect)
+		if(!grepl("\\|", random_effect)) random_effect = paste0("(1 | ", random_effect, ")")
+		out = paste0(dependent, "~", paste(explanatory, collapse="+"), " + ", random_effect)
 	} else {
 		out = paste(dependent, "~", paste(explanatory, collapse = "+"))	
 	}

@@ -5,15 +5,18 @@
 \alias{finalfit_formula}
 \title{Generate formula as character string}
 \usage{
-ff_formula(dependent, explanatory)
+ff_formula(dependent, explanatory, random_effect = NULL)
 
-finalfit_formula(dependent, explanatory)
+finalfit_formula(dependent, explanatory, random_effect = NULL)
 }
 \arguments{
 \item{dependent}{Optional character vector: name(s) of depdendent
 variable(s).}
 
 \item{explanatory}{Optional character vector: name(s) of explanatory
+variable(s).}
+
+\item{random_effect}{Optional character vector: name(s) of random effect
 variable(s).}
 }
 \value{
@@ -26,5 +29,10 @@ functions
 \examples{
 explanatory = c("age", "nodes", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
+ff_formula(dependent, explanatory)
+
+explanatory = c("age", "nodes", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+random_effect = "(age.factor | hospital)"
 ff_formula(dependent, explanatory)
 }

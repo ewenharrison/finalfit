@@ -98,6 +98,9 @@ functions" />
     <li>
       <a href="../articles/missing.html">Missing data</a>
     </li>
+    <li>
+      <a href="../articles/tables_gallery.html">Tables gallery</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -136,9 +139,9 @@ functions</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ff_formula</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)
+    <pre class="usage"><span class='fu'>ff_formula</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>finalfit_formula</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</pre>
+<span class='fu'>finalfit_formula</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,6 +156,11 @@ variable(s).</p></td>
       <td><p>Optional character vector: name(s) of explanatory
 variable(s).</p></td>
     </tr>
+    <tr>
+      <th>random_effect</th>
+      <td><p>Optional character vector: name(s) of random effect
+variable(s).</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -163,6 +171,10 @@ variable(s).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age"</span>, <span class='st'>"nodes"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
+<span class='fu'>ff_formula</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; [1] "mort_5yr ~ age+nodes+sex.factor+obstruct.factor+perfor.factor"</div><div class='input'>
+<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age"</span>, <span class='st'>"nodes"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
+<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
+<span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"(age.factor | hospital)"</span>
 <span class='fu'>ff_formula</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; [1] "mort_5yr ~ age+nodes+sex.factor+obstruct.factor+perfor.factor"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

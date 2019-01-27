@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Mixed effects linear regression models: <code>finalfit</code> model wrapper — lmmixed" />
 
-<meta property="og:description" content="Using finalfit conventions, produces mixed effects linear
-  regression models for a set of explanatory variables against a continuous dependent." />
+<meta property="og:description" content="Using finalfit conventions, produces mixed effects linear regression
+models for a set of explanatory variables against a continuous dependent." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -98,6 +98,9 @@
     <li>
       <a href="../articles/missing.html">Missing data</a>
     </li>
+    <li>
+      <a href="../articles/tables_gallery.html">Tables gallery</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -131,8 +134,8 @@
 
     <div class="ref-description">
     
-    <p>Using <code>finalfit</code> conventions, produces mixed effects linear
-  regression models for a set of explanatory variables against a continuous dependent.</p>
+    <p>Using <code>finalfit</code> conventions, produces mixed effects linear regression
+models for a set of explanatory variables against a continuous dependent.</p>
     
     </div>
 
@@ -147,29 +150,35 @@
     </tr>
     <tr>
       <th>dependent</th>
-      <td><p>Character vector of length 1, name of depdendent variable (must be continuous vector).</p></td>
+      <td><p>Character vector of length 1, name of depdendent variable
+(must be continuous vector).</p></td>
     </tr>
     <tr>
       <th>explanatory</th>
-      <td><p>Character vector of any length: name(s) of explanatory variables.</p></td>
+      <td><p>Character vector of any length: name(s) of explanatory
+variables.</p></td>
     </tr>
     <tr>
       <th>random_effect</th>
-      <td><p>Character vector of length 1, name of random effect variable.</p></td>
+      <td><p>Character vector of length 1, either, (1) name of random
+intercept variable, e.g. "var1", (automatically convered to "(1 | var1)");
+or, (2) the full <code>lme4</code> specification, e.g. "(var1 | var2)". Note
+parenthesis MUST be included in (2)2 but NOT included in (1).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of multivariable <code>lme4::<a href='http://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></code> fitted model outputs.
-  Output is of class <code>lmerMod</code>.</p>
+    <p>A list of multivariable <code>lme4::<a href='http://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></code> fitted model
+  outputs. Output is of class <code>lmerMod</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Uses <code>lme4::<a href='http://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></code> with <code>finalfit</code> modelling conventions. Output can be
-  passed to <code><a href='fit2df.html'>fit2df</a></code>. This is only currently set-up to take a single random effect
-  as a random intercept. Can be updated in future to allow multiple random intercepts,
-  random gradients and interactions on random effects if there is a need.</p>
+    <p>Uses <code>lme4::<a href='http://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></code> with <code>finalfit</code> modelling
+conventions. Output can be passed to <code><a href='fit2df.html'>fit2df</a></code>. This is only
+currently set-up to take a single random effect as a random intercept. Can be
+updated in future to allow multiple random intercepts, random gradients and
+interactions on random effects if there is a need.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

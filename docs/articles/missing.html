@@ -64,6 +64,9 @@
     <li>
       <a href="../articles/missing.html">Missing data</a>
     </li>
+    <li>
+      <a href="../articles/tables_gallery.html">Tables gallery</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -189,26 +192,26 @@
 <a class="sourceLine" id="cb2-33" data-line-number="33">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb2-34" data-line-number="34"><span class="st">  </span><span class="kw"><a href="../reference/ff_glimpse.html">ff_glimpse</a></span>(dependent, explanatory)</a>
 <a class="sourceLine" id="cb2-35" data-line-number="35"><span class="co">#&gt; Numerics</span></a>
-<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">#&gt;             label   n missing_n missing_percent mean   sd  min quartile_25</span></a>
-<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="co">#&gt; age   Age (years) 929         0             0.0 59.8 11.9 18.0        53.0</span></a>
-<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="co">#&gt; nodes       nodes 911        18             1.9  3.7  3.6  0.0         1.0</span></a>
-<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">#&gt;       median quartile_75  max</span></a>
-<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="co">#&gt; age     61.0        69.0 85.0</span></a>
-<a class="sourceLine" id="cb2-41" data-line-number="41"><span class="co">#&gt; nodes    2.0         5.0 33.0</span></a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">#&gt;             label       var_type   n missing_n missing_percent mean   sd</span></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="co">#&gt; age   Age (years) &lt;S3: labelled&gt; 929         0             0.0 59.8 11.9</span></a>
+<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="co">#&gt; nodes       nodes          &lt;dbl&gt; 911        18             1.9  3.7  3.6</span></a>
+<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">#&gt;        min quartile_25 median quartile_75  max</span></a>
+<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="co">#&gt; age   18.0        53.0   61.0        69.0 85.0</span></a>
+<a class="sourceLine" id="cb2-41" data-line-number="41"><span class="co">#&gt; nodes  0.0         1.0    2.0         5.0 33.0</span></a>
 <a class="sourceLine" id="cb2-42" data-line-number="42"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb2-43" data-line-number="43"><span class="co">#&gt; Factors</span></a>
-<a class="sourceLine" id="cb2-44" data-line-number="44"><span class="co">#&gt;                            label   n missing_n missing_percent levels_n</span></a>
-<a class="sourceLine" id="cb2-45" data-line-number="45"><span class="co">#&gt; sex.factor                   Sex 929         0             0.0        2</span></a>
-<a class="sourceLine" id="cb2-46" data-line-number="46"><span class="co">#&gt; obstruct.factor      Obstruction 908        21             2.3        2</span></a>
-<a class="sourceLine" id="cb2-47" data-line-number="47"><span class="co">#&gt; mort_5yr        Mortality 5 year 915        14             1.5        2</span></a>
-<a class="sourceLine" id="cb2-48" data-line-number="48"><span class="co">#&gt; smoking_mcar      Smoking (MCAR) 828       101            10.9        2</span></a>
-<a class="sourceLine" id="cb2-49" data-line-number="49"><span class="co">#&gt; smoking_mar        Smoking (MAR) 719       210            22.6        2</span></a>
-<a class="sourceLine" id="cb2-50" data-line-number="50"><span class="co">#&gt;                                              levels  levels_count</span></a>
-<a class="sourceLine" id="cb2-51" data-line-number="51"><span class="co">#&gt; sex.factor                         "Female", "Male"      445, 484</span></a>
-<a class="sourceLine" id="cb2-52" data-line-number="52"><span class="co">#&gt; obstruct.factor            "No", "Yes", "(Missing)"  732, 176, 21</span></a>
-<a class="sourceLine" id="cb2-53" data-line-number="53"><span class="co">#&gt; mort_5yr               "Alive", "Died", "(Missing)"  511, 404, 14</span></a>
-<a class="sourceLine" id="cb2-54" data-line-number="54"><span class="co">#&gt; smoking_mcar    "Non-smoker", "Smoker", "(Missing)" 645, 183, 101</span></a>
-<a class="sourceLine" id="cb2-55" data-line-number="55"><span class="co">#&gt; smoking_mar     "Non-smoker", "Smoker", "(Missing)" 591, 128, 210</span></a>
+<a class="sourceLine" id="cb2-44" data-line-number="44"><span class="co">#&gt;                            label var_type   n missing_n missing_percent</span></a>
+<a class="sourceLine" id="cb2-45" data-line-number="45"><span class="co">#&gt; sex.factor                   Sex    &lt;fct&gt; 929         0             0.0</span></a>
+<a class="sourceLine" id="cb2-46" data-line-number="46"><span class="co">#&gt; obstruct.factor      Obstruction    &lt;fct&gt; 908        21             2.3</span></a>
+<a class="sourceLine" id="cb2-47" data-line-number="47"><span class="co">#&gt; mort_5yr        Mortality 5 year    &lt;fct&gt; 915        14             1.5</span></a>
+<a class="sourceLine" id="cb2-48" data-line-number="48"><span class="co">#&gt; smoking_mcar      Smoking (MCAR)    &lt;fct&gt; 828       101            10.9</span></a>
+<a class="sourceLine" id="cb2-49" data-line-number="49"><span class="co">#&gt; smoking_mar        Smoking (MAR)    &lt;fct&gt; 719       210            22.6</span></a>
+<a class="sourceLine" id="cb2-50" data-line-number="50"><span class="co">#&gt;                 levels_n                              levels  levels_count</span></a>
+<a class="sourceLine" id="cb2-51" data-line-number="51"><span class="co">#&gt; sex.factor             2                    "Female", "Male"      445, 484</span></a>
+<a class="sourceLine" id="cb2-52" data-line-number="52"><span class="co">#&gt; obstruct.factor        2            "No", "Yes", "(Missing)"  732, 176, 21</span></a>
+<a class="sourceLine" id="cb2-53" data-line-number="53"><span class="co">#&gt; mort_5yr               2        "Alive", "Died", "(Missing)"  511, 404, 14</span></a>
+<a class="sourceLine" id="cb2-54" data-line-number="54"><span class="co">#&gt; smoking_mcar           2 "Non-smoker", "Smoker", "(Missing)" 645, 183, 101</span></a>
+<a class="sourceLine" id="cb2-55" data-line-number="55"><span class="co">#&gt; smoking_mar            2 "Non-smoker", "Smoker", "(Missing)" 591, 128, 210</span></a>
 <a class="sourceLine" id="cb2-56" data-line-number="56"><span class="co">#&gt;                   levels_percent</span></a>
 <a class="sourceLine" id="cb2-57" data-line-number="57"><span class="co">#&gt; sex.factor                48, 52</span></a>
 <a class="sourceLine" id="cb2-58" data-line-number="58"><span class="co">#&gt; obstruct.factor 78.8, 18.9,  2.3</span></a>

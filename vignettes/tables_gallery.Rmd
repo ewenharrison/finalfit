@@ -1,0 +1,547 @@
+---
+title: "Tables gallery"
+author: "Ewen Harrison"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tables gallery}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r, eval=FALSE}
+install.packages("finalfit")
+```
+
+## 1 Cross tables
+
+Two-way tables are used extensively in healthcare research, e.g. a 2x2 table comparing two factors with two levels each, or table 1 from a typical clinical study or trial.
+
+The main functions all take a `dependent` variable - the outcome (maximum of 5 levels) - and `explanatory` variables - predictors or exposures (any number categorical or continuous variables). 
+
+### 1.1 Default
+
+```{r}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+  summary_factorlist(dependent, explanatory) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r"))
+```
+
+Note, chi-squared warnings will be generated when the expected count in any cell is less than 5. Fisher's exact test has not been implemented, given it is so easy to go straight to a univariable logistic regression,
+e.g. `colon_s %>% finalfit(dependent, explanatory)
+
+### 1.2 P-value for hypothesis test
+
+Chi-squared for categorical, Kruskal-Wallis/Mann-Whitney for continuous
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
+```
+
+### 1.3 Median (interquartile range) instead of mean (standard deviation)
+
+... for continuous variables.
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
+```
+
+### 1.4 Missing values for the explanatory variables
+
+Always do this when describing your data.
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
+```
+
+### 1.5 Column proportions (rather than row)
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+  column = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
+```
+
+### 1.6 Total column
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+  column = TRUE, total_col = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
+```
+
+### 1.7 Order a variable by total
+
+This is intended for when there is only one `explanatory` variable.  
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("extent.factor")
+dependent = "perfor.factor"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+  column = TRUE, total_col = TRUE, orderbytotal = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
+```
+
+### 1.8 Label with `dependent` name
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+  column = TRUE, total_col = TRUE, add_dependent_label = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
+```
+
+The dependent name cannot be passed directly to the table intentionally. This is to avoid errors when code is copied and the name is not updated. Change the dependent label using the following. The prefix ("Dependent: ") and any suffix can be altered. 
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+	dplyr::mutate(
+		perfor.factor = ff_label(perfor.factor, "Perforated cancer")
+	) %>% 
+  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+  column = TRUE, total_col = TRUE, add_dependent_label = TRUE, dependent_label_prefix = "") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
+```
+
+### 1.9 Dependent variable with 0 to 5 factor levels supported
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "extent.factor"
+colon_s %>%
+	dplyr::mutate(
+		perfor.factor = ff_label(perfor.factor, "Perforated cancer")
+	) %>% 
+  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+  column = TRUE, total_col = TRUE, add_dependent_label = TRUE, dependent_label_prefix = "") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+## 2 Model tables with `finalfit()`
+
+### 2.01 Default
+
+Logistic regression first.
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  finalfit(dependent, explanatory) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+
+### 2.02 Model metrics
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  finalfit(dependent, explanatory, metrics = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t[[1]], row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+kable(t[[2]], row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"), col.names = "")
+```
+
+### 2.03 Reduced model
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+explanatory_multi = c("age.factor", "obstruct.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  finalfit(dependent, explanatory, explanatory_multi) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.04 Include all models
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+explanatory_multi = c("age.factor", "obstruct.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  finalfit(dependent, explanatory, explanatory_multi, metrics = TRUE, keep_models = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t[[1]], row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+kable(t[[2]], row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"), col.names = "")
+```
+
+### 2.05 Dependent name
+
+The dependent name cannot be specified directly intentionally. This is to prevent errors when copying code. Re-label using `ff_label()`. The dependent prefix and suffix can also be altered. 
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  dplyr::mutate(
+    mort_5yr = ff_label(mort_5yr, "5-year mortality")
+    ) %>% 
+  finalfit(dependent, explanatory, dependent_label_prefix = "",
+    dependent_label_suffix = " (full model)") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.06 Estimate name
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  finalfit(dependent, explanatory, estimate_name = "Odds ratio") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.07 Digits / decimal places
+
+Number of digits to round to regression results. (1) estimate, (2) confidence interval limits, (3) p-value. Default is c(2,2,3). Trailing zeros are preserved. Number of decimal places for counts and mean (sd) / median (IQR) not currently supported. Defaults are senisble :)
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  finalfit(dependent, explanatory, digits = c(3,3,4)) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.08 Confidence interval type
+
+One of `c("profile", "default")` for GLM models (`confint.glm()`). Note, a little awkwardly, the 'default' setting is `profile`, rather than `default`. Profile levels are probably a little more accurate. Only go to default if taking a significant length of time for profile, i.e. data is greater than hundreds of thousands of lines.
+
+For glmer/lmer models (`confint.merMod()`), `c("profile", "Wald", "boot")`. Not implemented for `lm()`, `coxph()` or `coxphlist`, which use default.
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  finalfit(dependent, explanatory, confint_type = "default") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.09 Confidence interval level
+
+Probably never change this :) Note, the p-value is intentionally not included for confidence levels other than 95% to avoid confusion.
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  finalfit(dependent, explanatory, confint_level = 0.90) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.10 Confidence interval separation
+
+Some like to avoid the hyphen so as not to confuse with minus sign. Obviously not an issue in logistic regression.   
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  finalfit(dependent, explanatory, confint_sep = " to ") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.11 Mixed effects random-intercept model
+
+At its simplest, a random-intercept model can be specified using a single quoted variable. In this example, it is the equivalent of quoting `random_effect = "(1 | hospital)"`. 
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+random_effect = "hospital"
+colon_s %>%
+  finalfit(dependent, explanatory, random_effect = random_effect,
+  				 dependent_label_suffix = " (random intercept)") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.11 Mixed effects random-slope model
+
+In the example below, allow the effect of age on outcome to vary by hospital. Note, this specification must have parentheses included.
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+random_effect = "(age.factor | hospital)"
+colon_s %>%
+  finalfit(dependent, explanatory, random_effect = random_effect,
+  				 dependent_label_suffix = " (random slope: age)") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.12 Mixed effects random-slope model directly from `lme4`
+
+Clearly, as models get more complex, parameters such as random effect group variances may require to be extracted directly from model outputs. 
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+random_effect = "(age.factor | hospital)"
+colon_s %>% 
+	lme4::glmer(mort_5yr ~ age.factor + (age.factor | hospital), family = "binomial", data = .) %>% 
+	broom::tidy() -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+## 2.13 Exclude all missing data in final model from univariable analyses 
+
+This can be useful if you want the numbers in the final table to match the final multivariable model. However, be careful to include a full explanation of this in the methods and the reason for exluding the missing data. 
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+	dplyr::select(explanatory, dependent) %>%
+	na.omit() %>%
+	finalfit(dependent, explanatory) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+## 2.14 Linear regression
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'nodes'
+colon_s %>%
+	finalfit(dependent, explanatory) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+## 2.15 Mixed effects random-intercept linear regression
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "nodes"
+random_effect = "hospital"
+colon_s %>%
+	finalfit(dependent, explanatory, random_effect = random_effect,
+					 dependent_label_suffix = " (random intercept)") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+## 2.15 Mixed effects random-slope linear regression
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "nodes"
+random_effect = "(age.factor | hospital)"
+colon_s %>%
+	finalfit(dependent, explanatory, random_effect = random_effect,
+					 dependent_label_suffix = " (random slope: age)") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+
+<!-- colon_s %>%  -->
+<!-- 	summary_factorlist(dependent, explanatory, fit_id=TRUE) %>%  -->
+<!-- 	ff_merge( -->
+<!-- 		glmuni(colon_s, dependent, explanatory) %>%  -->
+<!-- 			fit2df(estimate_suffix = " (univariable)") -->
+<!-- 	) %>%  -->
+<!-- 	ff_merge( -->
+<!-- 		glm(ff_formula(dependent, explanatory), data=colon_s,  -->
+<!-- 				family = "binomial", weights = NULL) %>%  -->
+<!-- 			fit2df(estimate_suffix = " (multivariable)") -->
+<!-- 	) %>%  -->
+<!-- 	dplyr::select(-fit_id, -index) %>%  -->
+<!-- 	dependent_label(colon_s, dependent) -->
+
+
+<!--  para %>% -->
+<!--   finalfit.glm(dependent, explanatory, digits = c(4,4,4)) -->
+
+
+
+
+
+
+
+<!-- 	library(finalfit) -->
+<!-- library(survey) -->
+<!-- # Specify variables -->
+<!-- explanatory = c("age.factor*sex.factor", "nodes", "obstruct.factor", "perfor.factor") -->
+<!-- dependent = 'mort_5yr' -->
+
+<!-- # Run model for term test -->
+<!-- model1 <- glm(ff_formula(dependent, explanatory), data=colon_s, family = binomial) -->
+<!-- term_test <- regTermTest(model1, "age.factor:sex.factor") -->
+
+<!-- # Run final table with results of term test -->
+<!-- colon_s %>% -->
+<!--     finalfit(dependent, explanatory) %>% -->
+<!--     rbind(c( -->
+<!--         "age.factor:sex.factor", -->
+<!--         "Interaction", -->
+<!--         "-", -->
+<!--         "-", -->
+<!--         "-", -->
+<!--         paste0("p", term_test$p %>% p_tidy(3)) -->
+<!--     )) -->

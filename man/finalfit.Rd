@@ -60,7 +60,7 @@ left of table.}
 \item{dependent_label_suffix}{Add text after dependent label.}
 
 \item{...}{Other arguments to pass to \code{\link{fit2df}}:
-\code{estimate_name, p_name, digits, confint_type, confint_level,
+\code{estimate_name, digits, confint_type, confint_level,
 confint_sep}.}
 }
 \value{
@@ -92,7 +92,7 @@ data(colon_s) # Modified from survival::colon
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = 'mort_5yr'
 colon_s \%>\%
-	finalfit(dependent, explanatory)
+  finalfit(dependent, explanatory)
 
 # Multivariable analysis with subset of explanatory
 #   variable set used in univariable analysis
@@ -100,7 +100,7 @@ explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 explanatory_multi = c("age.factor", "obstruct.factor")
 dependent = "mort_5yr"
 colon_s \%>\%
-	finalfit(dependent, explanatory, explanatory_multi)
+  finalfit(dependent, explanatory, explanatory_multi)
 
 # Summary, univariable and multivariable analyses of the form:
 # lme4::glmer(dependent ~ explanatory + (1 | random_effect), family="binomial")
@@ -110,11 +110,11 @@ explanatory_multi = c("age.factor", "obstruct.factor")
 random_effect = "hospital"
 dependent = "mort_5yr"
 colon_s \%>\%
-	finalfit(dependent, explanatory, explanatory_multi, random_effect)
+  finalfit(dependent, explanatory, explanatory_multi, random_effect)
 
 # Include model metrics:
 colon_s \%>\%
-	finalfit(dependent, explanatory, explanatory_multi,  metrics=TRUE)
+  finalfit(dependent, explanatory, explanatory_multi,  metrics=TRUE)
 
 # Summary, univariable and multivariable analyses of the form:
 # survival::coxph(dependent ~ explanatory)
@@ -123,7 +123,7 @@ explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "Surv(time, status)"
 
 colon_s \%>\%
-	finalfit(dependent, explanatory)
+  finalfit(dependent, explanatory)
 
 # Rather than going all-in-one, any number of subset models can
 # be manually added on to a summary_factorlist() table using finalfit.merge().
@@ -144,27 +144,27 @@ dependent = 'mort_5yr'
 
 # Separate tables
 colon_s \%>\%
-	summary_factorlist(dependent, explanatory, fit_id=TRUE) -> example.summary
+  summary_factorlist(dependent, explanatory, fit_id=TRUE) -> example.summary
 
 colon_s \%>\%
-	glmuni(dependent, explanatory) \%>\%
-	fit2df(estimate_suffix=" (univariable)") -> example.univariable
+  glmuni(dependent, explanatory) \%>\%
+  fit2df(estimate_suffix=" (univariable)") -> example.univariable
 
 colon_s \%>\%
-	glmmulti(dependent, explanatory) \%>\%
-	fit2df(estimate_suffix=" (multivariable)") -> example.multivariable
+  glmmulti(dependent, explanatory) \%>\%
+  fit2df(estimate_suffix=" (multivariable)") -> example.multivariable
 
 colon_s \%>\%
-	glmmixed(dependent, explanatory, random_effect) \%>\%
-	fit2df(estimate_suffix=" (multilevel") -> example.multilevel
+  glmmixed(dependent, explanatory, random_effect) \%>\%
+  fit2df(estimate_suffix=" (multilevel") -> example.multilevel
 
 # Pipe together
 example.summary \%>\%
-	finalfit_merge(example.univariable) \%>\%
-	finalfit_merge(example.multivariable) \%>\%
-	finalfit_merge(example.multilevel) \%>\%
-	select(-c(fit_id, index)) \%>\%
-	dependent_label(colon_s, dependent) -> example.final
+  finalfit_merge(example.univariable) \%>\%
+  finalfit_merge(example.multivariable) \%>\%
+  finalfit_merge(example.multilevel) \%>\%
+  select(-c(fit_id, index)) \%>\%
+  dependent_label(colon_s, dependent) -> example.final
 example.final
 
 }
