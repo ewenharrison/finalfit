@@ -104,6 +104,9 @@ finalfit.coxph method (not called directly)" />
     <li>
       <a href="../articles/missing.html">Missing data</a>
     </li>
+    <li>
+      <a href="../articles/tables_gallery.html">Tables gallery</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -225,7 +228,7 @@ left of table.</p></td>
     <tr>
       <th>...</th>
       <td><p>Other arguments to pass to <code><a href='fit2df.html'>fit2df</a></code>:
-<code>estimate_name, p_name, digits, confint_type, confint_level,
+<code>estimate_name, digits, confint_type, confint_level,
 confint_sep</code>.</p></td>
     </tr>
     </table>
@@ -248,7 +251,7 @@ confint_sep</code>.</p></td>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
 #&gt; 2                         Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt; 1                             40-59 years 208 (40.7) 131 (32.4)
 #&gt; 3                               60+ years 272 (53.2) 237 (58.7)
@@ -274,7 +277,7 @@ confint_sep</code>.</p></td>
 <span class='no'>explanatory_multi</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
 #&gt; 2                         Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt; 1                             40-59 years 208 (40.7) 131 (32.4)
 #&gt; 3                               60+ years 272 (53.2) 237 (58.7)
@@ -302,7 +305,7 @@ confint_sep</code>.</p></td>
 <span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>, <span class='no'>random_effect</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>, <span class='no'>random_effect</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
 #&gt; 2                         Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt; 1                             40-59 years 208 (40.7) 131 (32.4)
 #&gt; 3                               60+ years 272 (53.2) 237 (58.7)
@@ -324,7 +327,7 @@ confint_sep</code>.</p></td>
 #&gt; 7 1.18 (0.54-2.55, p=0.672)                         -</div><div class='input'>
 <span class='co'># Include model metrics:</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>,  <span class='kw'>metrics</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; [[1]]
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>,  <span class='kw'>metrics</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; [[1]]
 #&gt;   Dependent: Mortality 5 year                  Alive       Died
 #&gt; 2                         Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt; 1                             40-59 years 208 (40.7) 131 (32.4)
@@ -356,7 +359,7 @@ confint_sep</code>.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"Surv(time, status)"</span>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt;   Dependent: Surv(time, status)                      HR (univariable)
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt;   Dependent: Surv(time, status)                      HR (univariable)
 #&gt; 2                           Age   &lt;40 years                         -
 #&gt; 1                               40-59 years 0.76 (0.53-1.09, p=0.132)
 #&gt; 3                                 60+ years 0.93 (0.66-1.31, p=0.668)
@@ -418,25 +421,25 @@ confint_sep</code>.</p></td>
 
 <span class='co'># Separate tables</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>fit_id</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>example.summary</span>
+  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>fit_id</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>example.summary</span>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='glmuni.html'>glmuni</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.univariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
+  <span class='fu'><a href='glmuni.html'>glmuni</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.univariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.multivariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
+  <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.multivariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='glmmixed.html'>glmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.multilevel</span>
+  <span class='fu'><a href='glmmixed.html'>glmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.multilevel</span>
 
 <span class='co'># Pipe together</span>
 <span class='no'>example.summary</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='ff_merge.html'>finalfit_merge</a></span>(<span class='no'>example.univariable</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='ff_merge.html'>finalfit_merge</a></span>(<span class='no'>example.multivariable</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='ff_merge.html'>finalfit_merge</a></span>(<span class='no'>example.multilevel</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'>c</span>(<span class='no'>fit_id</span>, <span class='no'>index</span>)) <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>) <span class='kw'>-&gt;</span> <span class='no'>example.final</span>
+  <span class='fu'><a href='ff_merge.html'>finalfit_merge</a></span>(<span class='no'>example.univariable</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='ff_merge.html'>finalfit_merge</a></span>(<span class='no'>example.multivariable</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='ff_merge.html'>finalfit_merge</a></span>(<span class='no'>example.multilevel</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'>c</span>(<span class='no'>fit_id</span>, <span class='no'>index</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>) <span class='kw'>-&gt;</span> <span class='no'>example.final</span>
 <span class='no'>example.final</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
 #&gt; 2                         Age   &lt;40 years  31 (46.3)  36 (53.7)
 #&gt; 1                             40-59 years 208 (61.4) 131 (38.6)

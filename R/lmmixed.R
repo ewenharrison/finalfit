@@ -40,6 +40,6 @@
 lmmixed <- function(.data, dependent, explanatory, random_effect){
 	# If single term random effect, default to random intercept model
 	if(!grepl("\\|", random_effect)) random_effect = paste0("(1 | ", random_effect, ")")
-  lme4::lmer(paste0(dependent, "~", paste(explanatory, collapse="+"), " + (1|", random_effect, ")"),
+  lme4::lmer(paste0(dependent, "~", paste(explanatory, collapse="+"), " + ", random_effect),
              data=.data)
 }

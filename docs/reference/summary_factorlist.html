@@ -99,6 +99,9 @@ summary table." />
     <li>
       <a href="../articles/missing.html">Missing data</a>
     </li>
+    <li>
+      <a href="../articles/tables_gallery.html">Tables gallery</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -246,7 +249,7 @@ regression models.</p>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age"</span>, <span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"perfor.factor"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt;         label      levels          No         Yes     p
+  <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt;         label      levels          No         Yes     p
 #&gt; 1 Age (years)   Mean (SD) 59.8 (11.9) 58.4 (13.3) 0.578
 #&gt; 2         Age   &lt;40 years   68 (97.1)     2 (2.9) 1.000
 #&gt; 3             40-59 years  334 (97.1)    10 (2.9)      
@@ -262,7 +265,7 @@ regression models.</p>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt;         label      levels      Alive       Died
+  <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt;         label      levels      Alive       Died
 #&gt; 1         Age   &lt;40 years  31 (46.3)  36 (53.7)
 #&gt; 2             40-59 years 208 (61.4) 131 (38.6)
 #&gt; 3               60+ years 272 (53.4) 237 (46.6)

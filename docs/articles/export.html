@@ -64,6 +64,9 @@
     <li>
       <a href="../articles/missing.html">Missing data</a>
     </li>
+    <li>
+      <a href="../articles/tables_gallery.html">Tables gallery</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -125,29 +128,34 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/ff_glimpse.html">ff_glimpse</a></span>(dependent, explanatory)</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; Numerics</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;             label   n missing_n missing_percent mean   sd  min quartile_25</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; age   Age (years) 929         0             0.0 59.8 11.9 18.0        53.0</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; nodes       nodes 911        18             1.9  3.7  3.6  0.0         1.0</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt;       median quartile_75  max</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; age     61.0        69.0 85.0</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; nodes    2.0         5.0 33.0</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;             label       var_type   n missing_n missing_percent mean   sd</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; age   Age (years) &lt;S3: labelled&gt; 929         0             0.0 59.8 11.9</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; nodes       nodes          &lt;dbl&gt; 911        18             1.9  3.7  3.6</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt;        min quartile_25 median quartile_75  max</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; age   18.0        53.0   61.0        69.0 85.0</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; nodes  0.0         1.0    2.0         5.0 33.0</span></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; Factors</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;                            label   n missing_n missing_percent levels_n</span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; sex.factor                   Sex 929         0             0.0        2</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; obstruct.factor      Obstruction 908        21             2.3        2</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; differ.factor    Differentiation 906        23             2.5        3</span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; extent.factor   Extent of spread 929         0             0.0        4</span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;                                                                 levels</span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; sex.factor                                            "Female", "Male"</span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; obstruct.factor                               "No", "Yes", "(Missing)"</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; differ.factor                  "Well", "Moderate", "Poor", "(Missing)"</span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; extent.factor   "Submucosa", "Muscle", "Serosa", "Adjacent structures"</span></a>
-<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt;                     levels_count         levels_percent</span></a>
-<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; sex.factor              445, 484                 48, 52</span></a>
-<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt; obstruct.factor     732, 176, 21       78.8, 18.9,  2.3</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt; differ.factor   93, 663, 150, 23 10.0, 71.4, 16.1,  2.5</span></a>
-<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt; extent.factor   21, 106, 759, 43  2.3, 11.4, 81.7,  4.6</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;                            label var_type   n missing_n missing_percent</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; sex.factor                   Sex    &lt;fct&gt; 929         0             0.0</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; obstruct.factor      Obstruction    &lt;fct&gt; 908        21             2.3</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; differ.factor    Differentiation    &lt;fct&gt; 906        23             2.5</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; extent.factor   Extent of spread    &lt;fct&gt; 929         0             0.0</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;                 levels_n</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; sex.factor             2</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; obstruct.factor        2</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; differ.factor          3</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; extent.factor          4</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt;                                                                 levels</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; sex.factor                                            "Female", "Male"</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt; obstruct.factor                               "No", "Yes", "(Missing)"</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt; differ.factor                  "Well", "Moderate", "Poor", "(Missing)"</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt; extent.factor   "Submucosa", "Muscle", "Serosa", "Adjacent structures"</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt;                     levels_count         levels_percent</span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt; sex.factor              445, 484                 48, 52</span></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="co">#&gt; obstruct.factor     732, 176, 21       78.8, 18.9,  2.3</span></a>
+<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="co">#&gt; differ.factor   93, 663, 150, 23 10.0, 71.4, 16.1,  2.5</span></a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"><span class="co">#&gt; extent.factor   21, 106, 759, 43  2.3, 11.4, 81.7,  4.6</span></a></code></pre></div>
 </div>
 <div id="demographics-table" class="section level2">
 <h2 class="hasAnchor">

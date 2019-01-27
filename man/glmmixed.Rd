@@ -13,7 +13,10 @@ glmmixed(.data, dependent, explanatory, random_effect)
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory variables.}
 
-\item{random_effect}{Character vector of length 1, name of random effect variable.}
+\item{random_effect}{Character vector of length 1, either, (1) name of random
+intercept variable, e.g. "var1", (automatically convered to "(1 | var1)");
+or, (2) the full \code{lme4} specification, e.g. "(var1 | var2)". Note
+parenthesis MUST be included in (2)2 but NOT included in (1).}
 }
 \value{
 A list of multivariable \code{lme4::\link[lme4]{glmer}} fitted model outputs.
@@ -39,7 +42,7 @@ dependent = "mort_5yr"
 
 colon_s \%>\%
   glmmixed(dependent, explanatory, random_effect) \%>\%
-	 fit2df(estimate_suffix=" (multilevel")
+	 fit2df(estimate_suffix=" (multilevel)")
 }
 \seealso{
 \code{\link{fit2df}, \link{finalfit_merge}}

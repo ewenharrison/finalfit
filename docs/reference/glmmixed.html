@@ -98,6 +98,9 @@
     <li>
       <a href="../articles/missing.html">Missing data</a>
     </li>
+    <li>
+      <a href="../articles/tables_gallery.html">Tables gallery</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -155,7 +158,10 @@
     </tr>
     <tr>
       <th>random_effect</th>
-      <td><p>Character vector of length 1, name of random effect variable.</p></td>
+      <td><p>Character vector of length 1, either, (1) name of random
+intercept variable, e.g. "var1", (automatically convered to "(1 | var1)");
+or, (2) the full <code>lme4</code> specification, e.g. "(var1 | var2)". Note
+parenthesis MUST be included in (2)2 but NOT included in (1).</p></td>
     </tr>
     </table>
     
@@ -191,7 +197,7 @@
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>glmmixed</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>)</div><div class='output co'>#&gt;             explanatory            OR (multilevel
+         <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel)"</span>)</div><div class='output co'>#&gt;             explanatory           OR (multilevel)
 #&gt; 2 age.factor40-59 years 0.75 (0.39-1.44, p=0.382)
 #&gt; 3   age.factor60+ years 1.03 (0.55-1.96, p=0.916)
 #&gt; 4        sex.factorMale 0.80 (0.58-1.11, p=0.180)
