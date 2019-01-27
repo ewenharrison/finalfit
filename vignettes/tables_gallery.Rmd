@@ -393,7 +393,11 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
+<<<<<<< HEAD
 ### 2.12 Mixed effects random-slope model
+=======
+### 2.11 Mixed effects random-slope model
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 
 In the example below, allow the effect of age on outcome to vary by hospital. Note, this specification must have parentheses included.
 
@@ -412,7 +416,11 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
+<<<<<<< HEAD
 ### 2.13 Mixed effects random-slope model directly from `lme4`
+=======
+### 2.12 Mixed effects random-slope model directly from `lme4`
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 
 Clearly, as models get more complex, parameters such as random effect group variances may require to be extracted directly from model outputs. 
 
@@ -431,7 +439,11 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
+<<<<<<< HEAD
 ### 2.14 Exclude all missing data in final model from univariable analyses 
+=======
+## 2.13 Exclude all missing data in final model from univariable analyses 
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 
 This can be useful if you want the numbers in the final table to match the final multivariable model. However, be careful to include a full explanation of this in the methods and the reason for exluding the missing data. 
 
@@ -450,7 +462,11 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
+<<<<<<< HEAD
 ##4 2.15 Linear regression
+=======
+## 2.14 Linear regression
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -465,7 +481,11 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
+<<<<<<< HEAD
 ### 2.16 Mixed effects random-intercept linear regression
+=======
+## 2.15 Mixed effects random-intercept linear regression
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -482,7 +502,11 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
+<<<<<<< HEAD
 ### 2.17 Mixed effects random-slope linear regression
+=======
+## 2.15 Mixed effects random-slope linear regression
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -499,6 +523,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
+<<<<<<< HEAD
 ### 2.18 Cox proportional hazards model (survival / time to event)
 
 ```{r, warning=FALSE, message=FALSE}
@@ -535,6 +560,8 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 
 
 
+=======
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 
 <!-- colon_s %>%  -->
 <!-- 	summary_factorlist(dependent, explanatory, fit_id=TRUE) %>%  -->

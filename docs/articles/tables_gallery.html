@@ -2028,7 +2028,11 @@
 </div>
 <div id="mixed-effects-random-slope-model" class="section level3">
 <h3 class="hasAnchor">
+<<<<<<< HEAD
 <a href="#mixed-effects-random-slope-model" class="anchor"></a>2.12 Mixed effects random-slope model</h3>
+=======
+<a href="#mixed-effects-random-slope-model" class="anchor"></a>2.11 Mixed effects random-slope model</h3>
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 <p>In the example below, allow the effect of age on outcome to vary by hospital. Note, this specification must have parentheses included.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb23-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
@@ -2124,7 +2128,11 @@
 </div>
 <div id="mixed-effects-random-slope-model-directly-from-lme4" class="section level3">
 <h3 class="hasAnchor">
+<<<<<<< HEAD
 <a href="#mixed-effects-random-slope-model-directly-from-lme4" class="anchor"></a>2.13 Mixed effects random-slope model directly from <code>lme4</code>
+=======
+<a href="#mixed-effects-random-slope-model-directly-from-lme4" class="anchor"></a>2.12 Mixed effects random-slope model directly from <code>lme4</code>
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 </h3>
 <p>Clearly, as models get more complex, parameters such as random effect group variances may require to be extracted directly from model outputs.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
@@ -2219,9 +2227,16 @@
 </tbody>
 </table>
 </div>
+<<<<<<< HEAD
 <div id="exclude-all-missing-data-in-final-model-from-univariable-analyses" class="section level3">
 <h3 class="hasAnchor">
 <a href="#exclude-all-missing-data-in-final-model-from-univariable-analyses" class="anchor"></a>2.14 Exclude all missing data in final model from univariable analyses</h3>
+=======
+</div>
+<div id="exclude-all-missing-data-in-final-model-from-univariable-analyses" class="section level2">
+<h2 class="hasAnchor">
+<a href="#exclude-all-missing-data-in-final-model-from-univariable-analyses" class="anchor"></a>2.13 Exclude all missing data in final model from univariable analyses</h2>
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 <p>This can be useful if you want the numbers in the final table to match the final multivariable model. However, be careful to include a full explanation of this in the methods and the reason for exluding the missing data.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb25-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
@@ -2314,7 +2329,14 @@
 </tr>
 </tbody>
 </table>
+<<<<<<< HEAD
 <p>##4 2.15 Linear regression</p>
+=======
+</div>
+<div id="linear-regression" class="section level2">
+<h2 class="hasAnchor">
+<a href="#linear-regression" class="anchor"></a>2.14 Linear regression</h2>
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb26-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
 <a class="sourceLine" id="cb26-3" data-line-number="3">dependent =<span class="st"> 'nodes'</span></a>
@@ -2395,19 +2417,32 @@
 </tbody>
 </table>
 </div>
+<<<<<<< HEAD
 <div id="mixed-effects-random-intercept-linear-regression" class="section level3">
 <h3 class="hasAnchor">
 <a href="#mixed-effects-random-intercept-linear-regression" class="anchor"></a>2.16 Mixed effects random-intercept linear regression</h3>
+=======
+<div id="mixed-effects-linear-regression" class="section level2">
+<h2 class="hasAnchor">
+<a href="#mixed-effects-linear-regression" class="anchor"></a>2.15 Mixed effects linear regression</h2>
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb27-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
 <a class="sourceLine" id="cb27-3" data-line-number="3">dependent =<span class="st"> "nodes"</span></a>
 <a class="sourceLine" id="cb27-4" data-line-number="4">random_effect =<span class="st"> "hospital"</span></a>
 <a class="sourceLine" id="cb27-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
+<<<<<<< HEAD
 <a class="sourceLine" id="cb27-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">random_effect =</span> random_effect,</a>
 <a class="sourceLine" id="cb27-7" data-line-number="7">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (random intercept)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: nodes (random intercept)</th>
+=======
+<a class="sourceLine" id="cb27-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">random_effect =</span> random_effect) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Dependent: nodes</th>
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
 <th></th>
 <th align="right">Mean (sd)</th>
 <th align="right">Coefficient (univariable)</th>
@@ -2479,6 +2514,7 @@
 </tr>
 </tbody>
 </table>
+<<<<<<< HEAD
 </div>
 <div id="mixed-effects-random-slope-linear-regression" class="section level3">
 <h3 class="hasAnchor">
@@ -2716,6 +2752,10 @@
 <!-- colon_s %>%  --><!--    summary_factorlist(dependent, explanatory, fit_id=TRUE) %>%  --><!--    ff_merge( --><!--        glmuni(colon_s, dependent, explanatory) %>%  --><!--            fit2df(estimate_suffix = " (univariable)") --><!--    ) %>%  --><!--    ff_merge( --><!--        glm(ff_formula(dependent, explanatory), data=colon_s,  --><!--                family = "binomial", weights = NULL) %>%  --><!--            fit2df(estimate_suffix = " (multivariable)") --><!--    ) %>%  --><!--    dplyr::select(-fit_id, -index) %>%  --><!--    dependent_label(colon_s, dependent) --><!--  para %>% --><!--   finalfit.glm(dependent, explanatory, digits = c(4,4,4)) --><!--    library(finalfit) --><!-- library(survey) --><!-- # Specify variables --><!-- explanatory = c("age.factor*sex.factor", "nodes", "obstruct.factor", "perfor.factor") --><!-- dependent = 'mort_5yr' --><!-- # Run model for term test --><!-- model1 <- glm(ff_formula(dependent, explanatory), data=colon_s, family = binomial) --><!-- term_test <- regTermTest(model1, "age.factor:sex.factor") --><!-- # Run final table with results of term test --><!-- colon_s %>% --><!--     finalfit(dependent, explanatory) %>% --><!--     rbind(c( --><!--         "age.factor:sex.factor", --><!--         "Interaction", --><!--         "-", --><!--         "-", --><!--         "-", --><!--         paste0("p", term_test$p %>% p_tidy(3)) --><!--     )) -->
 </div>
 </div>
+=======
+<!-- colon_s %>%  --><!--    summary_factorlist(dependent, explanatory, fit_id=TRUE) %>%  --><!--    ff_merge( --><!--        glmuni(colon_s, dependent, explanatory) %>%  --><!--            fit2df(estimate_suffix = " (univariable)") --><!--    ) %>%  --><!--    ff_merge( --><!--        glm(ff_formula(dependent, explanatory), data=colon_s,  --><!--                family = "binomial", weights = NULL) %>%  --><!--            fit2df(estimate_suffix = " (multivariable)") --><!--    ) %>%  --><!--    dplyr::select(-fit_id, -index) %>%  --><!--    dependent_label(colon_s, dependent) --><!--  para %>% --><!--   finalfit.glm(dependent, explanatory, digits = c(4,4,4)) --><!--    library(finalfit) --><!-- library(survey) --><!-- # Specify variables --><!-- explanatory = c("age.factor*sex.factor", "nodes", "obstruct.factor", "perfor.factor") --><!-- dependent = 'mort_5yr' --><!-- # Run model for term test --><!-- model1 <- glm(ff_formula(dependent, explanatory), data=colon_s, family = binomial) --><!-- term_test <- regTermTest(model1, "age.factor:sex.factor") --><!-- # Run final table with results of term test --><!-- colon_s %>% --><!--     finalfit(dependent, explanatory) %>% --><!--     rbind(c( --><!--         "age.factor:sex.factor", --><!--         "Interaction", --><!--         "-", --><!--         "-", --><!--         "-", --><!--         paste0("p", term_test$p %>% p_tidy(3)) --><!--     )) -->
+</div>
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -2725,6 +2765,12 @@
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#cross-tables">1 Cross tables</a></li>
       <li><a href="#model-tables-with-finalfit">2 Model tables with <code><a href="--/reference/finalfit-html">finalfit()</a></code></a></li>
+<<<<<<< HEAD
+=======
+      <li><a href="#exclude-all-missing-data-in-final-model-from-univariable-analyses">2.13 Exclude all missing data in final model from univariable analyses</a></li>
+      <li><a href="#linear-regression">2.14 Linear regression</a></li>
+      <li><a href="#mixed-effects-linear-regression">2.15 Mixed effects linear regression</a></li>
+>>>>>>> 1727ad56b1fe031e44db269a7f69e76be39e67cc
       </ul>
 </div>
       </div>
