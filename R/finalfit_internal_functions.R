@@ -506,9 +506,14 @@ remove_labels = function(.data){
 #' dependent = "mort_5yr"
 #' ff_formula(dependent, explanatory)
 
-ff_formula = function(dependent, explanatory){
-	paste(dependent, "~", paste(explanatory, collapse = "+")
-	)
+ff_formula = function(dependent, explanatory, random_effect = NULL){
+	if(!is.null(random_effect)){
+	if(!grepl("\\|", random_effect)) random_effect = paste0("(1 | ", random_effect, ")")
+	out = paste0(dependent, "~", paste(explanatory, collapse="+"), " + ", random_effect)
+	} else {
+		out = paste(dependent, "~", paste(explanatory, collapse = "+"))	
+	}
+	return(out)
 }
 #' @rdname ff_formula
 #' @export
