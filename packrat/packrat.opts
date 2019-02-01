@@ -1,7 +1,7 @@
 auto.snapshot: TRUE
 use.cache: FALSE
 print.banner.on.startup: auto
-vcs.ignore.lib: FALSE
+vcs.ignore.lib: TRUE
 vcs.ignore.src: FALSE
 external.packages:
     roxygen2
