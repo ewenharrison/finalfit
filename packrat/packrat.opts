@@ -8,6 +8,7 @@ external.packages:
     pkgdown
     magick
     finalfit
+    survey
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 

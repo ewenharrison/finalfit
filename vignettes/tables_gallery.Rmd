@@ -10,19 +10,19 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+	collapse = TRUE,
+	comment = "#>"
 )
 ```
-
 
 ```{r, eval=FALSE}
 install.packages("finalfit")
 ```
 
+
 ## 1 Cross tables
 
-Two-way tables are used extensively in healthcare research, e.g. a 2x2 table comparing two factors with two levels each, or table 1 from a typical clinical study or trial.
+Two-way tables are used extensively in healthcare research, e.g. a 2x2 table comparing two factors with two levels each, or table 1 from a typical clinical study or trial
 
 The main functions all take a `dependent` variable - the outcome (maximum of 5 levels) - and `explanatory` variables - predictors or exposures (any number categorical or continuous variables). 
 
@@ -33,7 +33,7 @@ library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-  summary_factorlist(dependent, explanatory) -> t
+summary_factorlist(dependent, explanatory) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -42,7 +42,7 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r"))
 ```
 
 Note, chi-squared warnings will be generated when the expected count in any cell is less than 5. Fisher's exact test has not been implemented, given it is so easy to go straight to a univariable logistic regression,
-e.g. `colon_s %>% finalfit(dependent, explanatory)
+e.g. `colon_s %>% finalfit(dependent, explanatory)`
 
 ### 1.2 P-value for hypothesis test
 
@@ -53,7 +53,7 @@ library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-  summary_factorlist(dependent, explanatory, p = TRUE) -> t
+	summary_factorlist(dependent, explanatory, p = TRUE) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -70,7 +70,7 @@ library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median") -> t
+	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median") -> t
 ```
 
 ```{r, echo=FALSE}
@@ -87,7 +87,7 @@ library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE) -> t
+	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -102,8 +102,8 @@ library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
-  column = TRUE) -> t
+	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+										 column = TRUE) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -118,8 +118,8 @@ library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
-  column = TRUE, total_col = TRUE) -> t
+	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+										 column = TRUE, total_col = TRUE) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -136,8 +136,8 @@ library(finalfit)
 explanatory = c("extent.factor")
 dependent = "perfor.factor"
 colon_s %>%
-  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
-  column = TRUE, total_col = TRUE, orderbytotal = TRUE) -> t
+	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+										 column = TRUE, total_col = TRUE, orderbytotal = TRUE) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -152,8 +152,8 @@ library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-  summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
-  column = TRUE, total_col = TRUE, add_dependent_label = TRUE) -> t
+	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+										 column = TRUE, total_col = TRUE, add_dependent_label = TRUE) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -168,11 +168,11 @@ library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-	dplyr::mutate(
-		perfor.factor = ff_label(perfor.factor, "Perforated cancer")
+  dplyr::mutate(
+    perfor.factor = ff_label(perfor.factor, "Perforated cancer")
 	) %>% 
   summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
-  column = TRUE, total_col = TRUE, add_dependent_label = TRUE, dependent_label_prefix = "") -> t
+    column = TRUE, total_col = TRUE, add_dependent_label = TRUE, dependent_label_prefix = "") -> t
 ```
 
 ```{r, echo=FALSE}
@@ -187,11 +187,11 @@ library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "extent.factor"
 colon_s %>%
-	dplyr::mutate(
-		perfor.factor = ff_label(perfor.factor, "Perforated cancer")
-	) %>% 
+  dplyr::mutate(
+    perfor.factor = ff_label(perfor.factor, "Perforated cancer")
+  ) %>% 
   summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
-  column = TRUE, total_col = TRUE, add_dependent_label = TRUE, dependent_label_prefix = "") -> t
+    column = TRUE, total_col = TRUE, add_dependent_label = TRUE, dependent_label_prefix = "") -> t
 ```
 
 ```{r, echo=FALSE}
@@ -210,7 +210,7 @@ library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  finalfit(dependent, explanatory) -> t
+	finalfit(dependent, explanatory) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -226,7 +226,7 @@ library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  finalfit(dependent, explanatory, metrics = TRUE) -> t
+	finalfit(dependent, explanatory, metrics = TRUE) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -243,7 +243,7 @@ explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 explanatory_multi = c("age.factor", "obstruct.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  finalfit(dependent, explanatory, explanatory_multi) -> t
+	finalfit(dependent, explanatory, explanatory_multi) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -259,7 +259,7 @@ explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 explanatory_multi = c("age.factor", "obstruct.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  finalfit(dependent, explanatory, explanatory_multi, metrics = TRUE, keep_models = TRUE) -> t
+	finalfit(dependent, explanatory, explanatory_multi, metrics = TRUE, keep_models = TRUE) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -277,11 +277,11 @@ library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  dplyr::mutate(
-    mort_5yr = ff_label(mort_5yr, "5-year mortality")
-    ) %>% 
-  finalfit(dependent, explanatory, dependent_label_prefix = "",
-    dependent_label_suffix = " (full model)") -> t
+	dplyr::mutate(
+		mort_5yr = ff_label(mort_5yr, "5-year mortality")
+	) %>% 
+	finalfit(dependent, explanatory, dependent_label_prefix = "",
+					 dependent_label_suffix = " (full model)") -> t
 ```
 
 ```{r, echo=FALSE}
@@ -296,7 +296,7 @@ library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  finalfit(dependent, explanatory, estimate_name = "Odds ratio") -> t
+	finalfit(dependent, explanatory, estimate_name = "Odds ratio") -> t
 ```
 
 ```{r, echo=FALSE}
@@ -313,7 +313,7 @@ library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  finalfit(dependent, explanatory, digits = c(3,3,4)) -> t
+	finalfit(dependent, explanatory, digits = c(3,3,4)) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -332,7 +332,7 @@ library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  finalfit(dependent, explanatory, confint_type = "default") -> t
+	finalfit(dependent, explanatory, confint_type = "default") -> t
 ```
 
 ```{r, echo=FALSE}
@@ -349,7 +349,7 @@ library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  finalfit(dependent, explanatory, confint_level = 0.90) -> t
+	finalfit(dependent, explanatory, confint_level = 0.90) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -366,7 +366,7 @@ library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  finalfit(dependent, explanatory, confint_sep = " to ") -> t
+	finalfit(dependent, explanatory, confint_sep = " to ") -> t
 ```
 
 ```{r, echo=FALSE}
@@ -384,8 +384,8 @@ explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 random_effect = "hospital"
 colon_s %>%
-  finalfit(dependent, explanatory, random_effect = random_effect,
-  				 dependent_label_suffix = " (random intercept)") -> t
+	finalfit(dependent, explanatory, random_effect = random_effect,
+					 dependent_label_suffix = " (random intercept)") -> t
 ```
 
 ```{r, echo=FALSE}
@@ -403,8 +403,8 @@ explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 random_effect = "(age.factor | hospital)"
 colon_s %>%
-  finalfit(dependent, explanatory, random_effect = random_effect,
-  				 dependent_label_suffix = " (random slope: age)") -> t
+	finalfit(dependent, explanatory, random_effect = random_effect,
+					 dependent_label_suffix = " (random slope: age)") -> t
 ```
 
 ```{r, echo=FALSE}
@@ -506,7 +506,7 @@ library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "Surv(time, status)"
 colon_s %>%
-  finalfit(dependent, explanatory) -> t
+	finalfit(dependent, explanatory) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -533,48 +533,152 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-<!-- colon_s %>%  -->
-<!-- 	summary_factorlist(dependent, explanatory, fit_id=TRUE) %>%  -->
-<!-- 	ff_merge( -->
-<!-- 		glmuni(colon_s, dependent, explanatory) %>%  -->
-<!-- 			fit2df(estimate_suffix = " (univariable)") -->
-<!-- 	) %>%  -->
-<!-- 	ff_merge( -->
-<!-- 		glm(ff_formula(dependent, explanatory), data=colon_s,  -->
-<!-- 				family = "binomial", weights = NULL) %>%  -->
-<!-- 			fit2df(estimate_suffix = " (multivariable)") -->
-<!-- 	) %>%  -->
-<!-- 	dplyr::select(-fit_id, -index) %>%  -->
-<!-- 	dependent_label(colon_s, dependent) -->
+## 3 Model tables manually using `ff_merge()`
 
+### 3.1 Basic table
 
-<!--  para %>% -->
-<!--   finalfit.glm(dependent, explanatory, digits = c(4,4,4)) -->
+Note `summary_factorlist()` needs argument, `fit_id = TRUE`. 
 
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+library(dplyr)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
 
+## Crosstable
+colon_s %>%
+	summary_factorlist(dependent, explanatory, fit_id=TRUE) -> table_1
 
+## Univariable
+colon_s %>%
+	glmuni(dependent, explanatory) %>%
+	fit2df(estimate_suffix=" (univariable)") -> table_2
 
+## Merge
 
+table_1 %>% 
+	ff_merge(table_2) %>% 
+	select(-c(fit_id, index)) %>% 
+	dependent_label(colon_s, dependent)-> t
+```
 
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
 
-<!-- 	library(finalfit) -->
-<!-- library(survey) -->
-<!-- # Specify variables -->
-<!-- explanatory = c("age.factor*sex.factor", "nodes", "obstruct.factor", "perfor.factor") -->
-<!-- dependent = 'mort_5yr' -->
+### 3.2 Complex table (all in single pipe)
 
-<!-- # Run model for term test -->
-<!-- model1 <- glm(ff_formula(dependent, explanatory), data=colon_s, family = binomial) -->
-<!-- term_test <- regTermTest(model1, "age.factor:sex.factor") -->
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+library(dplyr)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+random_effect = "hospital"
+dependent = "mort_5yr"
 
-<!-- # Run final table with results of term test -->
-<!-- colon_s %>% -->
-<!--     finalfit(dependent, explanatory) %>% -->
-<!--     rbind(c( -->
-<!--         "age.factor:sex.factor", -->
-<!--         "Interaction", -->
-<!--         "-", -->
-<!--         "-", -->
-<!--         "-", -->
-<!--         paste0("p", term_test$p %>% p_tidy(3)) -->
-<!--     )) -->
+# All in one pipe
+
+colon_s %>%
+	## Crosstable
+	summary_factorlist(dependent, explanatory, fit_id=TRUE)  %>% 
+	
+	## Add univariable
+	ff_merge(
+		glmuni(colon_s, dependent, explanatory) %>%
+			fit2df(estimate_suffix=" (univariable)")
+	) %>% 
+	
+	## Add multivariable
+	ff_merge(
+		glmmulti(colon_s, dependent, explanatory) %>%
+			fit2df(estimate_suffix=" (multivariable)")
+	) %>% 
+	
+	## Add mixed effects
+	ff_merge(
+		glmmixed(colon_s, dependent, explanatory, random_effect) %>%
+			fit2df(estimate_suffix=" (multilevel)") 
+	) %>% 
+	select(-c(fit_id, index)) %>% 
+	dependent_label(colon_s, dependent) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 3.3 Using base R functions
+
+Note `ff_formula()` convenience function to make multivariable formula (`y ~ x1 + x2 + x3` etc.) from a `dependent` and `explanatory` vector of names. 
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+library(dplyr)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+
+# All in one pipe
+
+colon_s %>%
+	## Crosstable
+	summary_factorlist(dependent, explanatory, fit_id=TRUE)  %>% 
+	
+	## Add univariable
+	ff_merge(
+		glmuni(colon_s, dependent, explanatory) %>%
+			fit2df(estimate_suffix=" (univariable)")
+	) %>% 
+	
+	## Add multivariable
+	ff_merge(
+		glm(
+			ff_formula(dependent, explanatory), data = colon_s, family = "binomial", weights = NULL
+		) %>%
+			fit2df(estimate_suffix=" (multivariable)")
+	) %>% 
+	
+	select(-c(fit_id, index)) %>% 
+	dependent_label(colon_s, dependent) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 3.4 Edit table rows
+
+This can be done as any dataframe would be edited. 
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+library(dplyr)
+explanatory = c("age.factor*sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+
+# Run model for term test
+fit <- glm(
+	ff_formula(dependent, explanatory), 
+	data=colon_s, family = binomial
+)
+term_test <- survey::regTermTest(fit, "age.factor:sex.factor")
+
+# Run final table with results of term test
+colon_s %>%
+	finalfit(dependent, explanatory) %>%
+	rbind(c(
+		"age.factor:sex.factor (overall)",
+		"Interaction",
+		"-",
+		"-",
+		"-",
+		paste0("p", term_test$p %>% p_tidy(3))
+	))-> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
