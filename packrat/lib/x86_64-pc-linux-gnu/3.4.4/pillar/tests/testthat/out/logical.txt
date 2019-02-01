@@ -1,4 +1,0 @@
-[3m[90m<lgl>[39m[23m
-TRUE 
-FALSE
-[31mNA[39m   

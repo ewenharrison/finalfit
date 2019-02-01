@@ -1,4 +1,0 @@
-<lgl>
-TRUE 
-FALSE
-NA   

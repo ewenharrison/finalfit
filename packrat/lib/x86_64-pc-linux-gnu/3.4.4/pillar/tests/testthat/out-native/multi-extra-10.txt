@@ -1,4 +1,0 @@
-column_zero_one <dbl>
-col_02 <chr>
-col_03 <fct>
-col_04 <ord>

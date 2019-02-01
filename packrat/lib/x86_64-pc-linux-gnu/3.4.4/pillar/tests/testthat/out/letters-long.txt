@@ -1,3 +1,0 @@
-[3m[90m<chr>[39m[23m                     
-abcdefghijklmnopqrstuvwxyz
-[31mNA[39m                        

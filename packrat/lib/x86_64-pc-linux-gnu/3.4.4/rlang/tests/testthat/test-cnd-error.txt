@@ -1,6 +1,0 @@
-Error message
-Backtrace:
- ─rlang::with_options(...)
- ─rlang:::f()
- ─rlang:::g()
- ─rlang:::h()

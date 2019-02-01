@@ -1,7 +1,0 @@
-bitest                  A testing example for bivariate imputation
-ecme                    ECME algorithm for general linear mixed model
-pan                     Imputation of multivariate panel or cluster
-                        data
-pan.bd                  Imputation of multivariate panel or cluster
-                        data
-YWC.data                A data frame for multivariate imputation

@@ -662,7 +662,9 @@ fit <- glm(
 	ff_formula(dependent, explanatory), 
 	data=colon_s, family = binomial
 )
-term_test <- survey::regTermTest(fit, "age.factor:sex.factor")
+
+# Not run
+#term_test <- survey::regTermTest(fit, "age.factor:sex.factor")
 
 # Run final table with results of term test
 colon_s %>%
@@ -673,7 +675,7 @@ colon_s %>%
 		"-",
 		"-",
 		"-",
-		paste0("p", term_test$p %>% p_tidy(3))
+		paste0("p = 0.775")
 	))-> t
 ```
 
