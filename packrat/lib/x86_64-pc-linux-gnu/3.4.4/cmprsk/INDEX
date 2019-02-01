@@ -1,0 +1,11 @@
+[.cuminc                Subset method for lists of class cuminc
+crr                     Competing Risks Regression
+cuminc                  Cumulative Incidence Analysis
+plot.cuminc             Create Labeled Cumulative Incidence Plots
+plot.predict.crr        Plot estimated subdistribution functions
+predict.crr             Estimate subdistribution functions from crr
+                        output
+print.crr               prints summary of a crr object
+print.cuminc            Print cuminc objects
+summary.crr             Summary method for crr
+timepoints              Calculate Estimates at Specific Timepoints

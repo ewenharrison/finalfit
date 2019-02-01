@@ -1,0 +1,5 @@
+plot.new()
+plot(1:10)
+plot.new()
+plot(1:10)
+plot.new()

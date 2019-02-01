@@ -1,0 +1,43 @@
+
+>>> Default:
+
+The error message
+Call `rlang::last_error()` to see a backtrace
+
+
+>>> Reminder:
+
+The error message
+Call `rlang::last_error()` to see a backtrace
+
+
+>>> Reminder (not interactive):
+
+The error message
+
+
+>>> Branch:
+
+The error message
+Backtrace:
+ ─rlang::with_options(rlang__backtrace_on_error = "branch", msg())
+ ─rlang:::msg()
+ ─rlang:::f()
+ ─rlang:::g()
+ ─rlang:::h()
+
+
+>>> Collapsed:
+
+The error message
+Backtrace:
+█
+├─[ rlang::with_options(...) ]
+└─rlang:::msg()
+  ├─[ base::cat(...) ]
+  ├─[ base::conditionMessage(...) ]
+  ├─[ rlang::catch_cnd(...) ] with 5 more calls
+  └─rlang:::f()
+    ├─[ base::tryCatch(...) ] with 1 more call
+    └─rlang:::g()
+      └─rlang:::h()

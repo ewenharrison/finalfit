@@ -1,0 +1,60 @@
+Package: GGally
+Version: 1.4.0
+License: GPL (>= 2.0)
+Title: Extension to 'ggplot2'
+Type: Package
+LazyLoad: yes
+LazyData: true
+URL: https://ggobi.github.io/ggally, https://github.com/ggobi/ggally
+BugReports: https://github.com/ggobi/ggally/issues
+Authors@R: c( person("Barret", "Schloerke", role = c("aut", "cre"),
+    email = "schloerke@gmail.com", comment = "author for ggpairs,
+    ggduo, ggnostic, ggts, ggfacet, and ggally_*.  Contributor for all
+    functions."), person("Jason", "Crowley", role = "aut", email =
+    "crowley.jason.s@gmail.com", comment = "ggparcoord"), person("Di",
+    "Cook", role = c("aut", "ths"), email = "dicook@monash.edu",
+    comment = "ggscatmat, gglyph"), person("Heike", "Hofmann", role =
+    "ths", email = "hofmann@iastate.edu"), person("Hadley", "Wickham",
+    role = "ths", email = "h.wickham@gmail.com"), person("Francois",
+    "Briatte", role = "aut", email = "f.briatte@gmail.com", comment =
+    "ggcorr, ggnet, ggnet2"), person("Moritz", "Marbach", role = "aut",
+    email = "mmarbach@mail.uni-mannheim.de", comment = "ggnet,
+    ggnet2"), person("Edwin", "Thoen", role = "aut", email =
+    "edwinthoen@gmail.com", comment = "ggsurv"), person("Amos",
+    "Elberg", role = "aut", email = "amos.elberg@gmail.com", comment =
+    "ggnetworkmap"), person("Joseph", "Larmarange", role = "aut", email
+    = "joseph@larmarange.net", comment = "ggcoef"))
+Description: The R package 'ggplot2' is a plotting system based on the
+    grammar of graphics. 'GGally' extends 'ggplot2' by adding several
+    functions to reduce the complexity of combining geometric objects
+    with transformed data. Some of these functions include a pairwise
+    plot matrix, a two group pairwise plot matrix, a parallel
+    coordinates plot, a survival plot, and several functions to plot
+    networks.
+Depends: R (>= 3.1), ggplot2 (> 2.2.0)
+Imports: grDevices, grid, gtable (>= 0.2.0), plyr (>= 1.8.3), progress,
+    RColorBrewer, reshape (>= 0.8.5), utils, rlang
+Suggests: broom (>= 0.4.0), chemometrics, geosphere (>= 1.5-1), igraph
+    (>= 1.0.1), intergraph (>= 2.0-2), maps (>= 3.1.0), mapproj,
+    network (>= 1.12.0), scagnostics, scales (>= 0.4.0), sna (>=
+    2.3-2), survival, packagedocs (>= 0.4.0), rmarkdown, roxygen2,
+    testthat, crosstalk
+RoxygenNote: 6.0.1
+VignetteBuilder: packagedocs
+SystemRequirements: openssl
+NeedsCompilation: no
+Packaged: 2018-05-17 15:34:16 UTC; barret
+Author: Barret Schloerke [aut, cre] (author for ggpairs, ggduo,
+    ggnostic, ggts, ggfacet, and ggally_*.  Contributor for all
+    functions.), Jason Crowley [aut] (ggparcoord), Di Cook [aut, ths]
+    (ggscatmat, gglyph), Heike Hofmann [ths], Hadley Wickham [ths],
+    Francois Briatte [aut] (ggcorr, ggnet, ggnet2), Moritz Marbach
+    [aut] (ggnet, ggnet2), Edwin Thoen [aut] (ggsurv), Amos Elberg
+    [aut] (ggnetworkmap), Joseph Larmarange [aut] (ggcoef)
+Maintainer: Barret Schloerke <schloerke@gmail.com>
+Repository: CRAN
+Date/Publication: 2018-05-17 23:31:19 UTC
+Built: R 3.4.4; ; 2018-11-18 15:48:32 UTC; unix
+InstallAgent: packrat 0.4.9.14
+InstallSource: CRAN
+Hash: ddfba619da7507c82edd1ad963c8dc3f

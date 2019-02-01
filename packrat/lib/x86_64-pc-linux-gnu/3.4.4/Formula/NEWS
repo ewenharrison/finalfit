@@ -1,0 +1,136 @@
+Changes in Version 1.2-3
+
+  o Extended processing of formulas with one or more '.' on the
+    right-hand side: In addition to "separate" and "sequential" processing,
+    there is now dot="previous" which resolves the '.' relative to
+    the previous right-hand side part.
+
+  o model.part() failed in case of variables/terms with very long
+    names. Now deparse(..., width.cutoff = 500) is used to support
+    very long variable names as well.
+
+
+Changes in Version 1.2-2
+
+  o Enhance Formula() so that if a "Formula" is supplied it is simply
+    returned unchanged (rather than throwing a warning).
+
+  o Enhance update() method for "Formula" object so that also the "new"
+    formula can be a "Formula" object.
+
+
+Changes in Version 1.2-1
+
+  o Bug fix for formulas with transformed variables on the left-hand
+    side (e.g., cbind(), log(), or Surv()) and one ore more '.' on the
+    right-hand side. The terms() and hence the model.frame() now work
+    smoothly. When using model.part() the same Formula (plus 'dot'
+    argument) has to be supplied when preparing the model.frame() and
+    the model.part().
+  
+
+Changes in Version 1.2-0
+
+  o Extended processing of formulas with one or more '.' on the
+    right-hand side.
+  
+
+Changes in Version 1.1-2
+
+  o Added a str() method.
+  
+
+Changes in Version 1.1-1
+
+  o The CITATION was incorrect and is fixed now.
+
+
+Changes in Version 1.1-0
+
+  o All methods returning "formula" or "Formula" objects now preserve the
+    environment of the originally supplied object by default.
+
+  o The default and formula methods of as.Formula() methods now also take
+    an env argument.
+
+
+Changes in Version 1.0-1
+
+  o Added a terms = FALSE argument to model.part() method for "Formula"
+    objects. This can be leveraged when processing multiple offsets.
+    For example for y ~ x + offset(o1) | z + offset(o2). See ?model.part
+    for a worked example.
+
+
+Changes in Version 1.0-0
+
+  o package now published in Journal of Statistical Software,
+    see http://www.jstatsoft.org/v34/i01/
+    and citation("Formula") within R. 
+
+  o added an all.equal() method for "Formula" objects that produces
+    more intelligible output in case the result is not TRUE.
+
+  o fixed an error of the update() method for "Formula" objects
+    without LHS.
+
+
+Changes in Version 0.2-0
+
+  o Major revision (not fully backward compatible) to enable support
+    for multiple responses and multiple parts on the right-hand side
+    such as
+      y1 | y2 ~ x
+      y1 + y2 ~ x1 + x2 | z1
+      y ~ u1 + u2 | v1 | x1 + x2
+    and combinations of these.
+        
+  o Formula objects now consist of the original formula plus two
+    attributes "lhs" and "rhs" that contain the parts of the decomposed
+    left- and right-hand side, respectively.
+
+  o Most methods take arguments "lhs" and "rhs" which allow selection
+    of the desired parts on the left- and right-hand side respectively,
+    e.g., in a model.frame() or model.matrix().
+    
+  o The previous arguments response = TRUE/FALSE and
+    part = "first"/"second"/"both" were not flexible enough anymore
+    and have been deprecated. Use the streamlined lhs/rhs arguments
+    instead.
+
+  o vignette("Formula", package = "Formula") illustrates usage of
+    the tools provided by the package and explains the ideas underlying
+    its implementation.
+
+
+Changes in Version 0.1-3
+
+  o added CITATION file.
+
+  o added a has.intercept function with methods for formula and
+    Formula objects.
+
+  o change the default value for model.frame.Formula: "both" for a
+    two-part formula and "first" otherwise.
+
+
+Changes in Version 0.1-2
+
+  o Bug fix: as.Formula() failed for very long formulas.
+  
+
+Changes in Version 0.1-1
+
+  o First CRAN release of package "Formula" for extended
+    formula processing. This package is still under development
+    and the interface might change in future versions.
+  
+  o Currently, this enables processing of formulas such as
+      y ~ x1 + x2 | z1 + z2 + z3
+    with two parts on the right hand side.
+    
+  o Generalization to further formulas are planned (i.e.,
+    not implemented yet), e.g.,
+      y1 + y2 ~ x1 + x2 + x3
+      y ~ x1 + x2 | u1 | v1 + v2 + v3 | ...
+    i.e., multiple responses and multi-part formulas.

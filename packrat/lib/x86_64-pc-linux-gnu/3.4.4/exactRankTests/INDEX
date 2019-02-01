@@ -1,0 +1,17 @@
+ASAT                    Toxicological Study on Female Wistar Rats
+ansari.exact            Ansari-Bradley Test
+bloodp                  Diastolic Blood Pressure
+cscores                 Computation of Scores
+dperm                   Distribution of One and Two Sample Permutation
+                        Tests
+ears                    Survival of Ventilating Tubes
+glioma                  Malignant Glioma Pilot Study
+globulin                Differences in Globulin Fraction in Two Groups
+irank                   Integer Ranks
+lungcancer              Lung Cancer Clinical Trial
+neuropathy              Acute Painful Diabetic Neuropathy
+ocarcinoma              Ovarian Carcinoma
+perm.test               One and Two Sample Permutation Test
+rotarod                 Rotating Rats Data
+sal                     Serum Antigen Level
+wilcox.exact            Wilcoxon Rank Sum and Signed Rank Tests

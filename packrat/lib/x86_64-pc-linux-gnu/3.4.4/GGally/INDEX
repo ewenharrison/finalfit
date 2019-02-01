@@ -1,0 +1,103 @@
++.gg                    Modify a ggmatrix object by adding an ggplot2
+                        object to all plots
+add_ref_boxes           Add reference boxes around each cell of the
+                        glyphmap.
+add_ref_lines           Add reference lines for each cell of the
+                        glyphmap.
+australia_PISA2012      Programme for International Student Assesment
+                        (PISA) 2012 Data for Australia
+brew_colors             RColorBrewer Set1 colors
+broomify                Broomify a model
+eval_data_col           Evaluate data column
+find_plot_type          Find Plot Types
+flea                    Historical data used for classification
+                        examples.
+fn_switch               Function switch
+getPlot                 getPlot
+ggally_barDiag          Plots the Bar Plots by Using Diagonal
+ggally_blank            Blank
+ggally_box              Plots the Box Plot
+ggally_cor              Correlation from the Scatter Plot
+ggally_density          Plots the Scatter Density Plot
+ggally_densityDiag      Plots the Density Plots by Using Diagonal
+ggally_denstrip         Plots a tile plot with facets
+ggally_diagAxis         Internal Axis Labeling Plot for ggpairs
+ggally_dot              Plots the Box Plot with Dot
+ggally_dot_and_box      Plots either Box Plot or Dot Plots
+ggally_facetbar         Plots the Bar Plots Faceted by Conditional
+                        Variable
+ggally_facetdensity     Plots the density plots by faceting
+ggally_facetdensitystrip
+                        Plots a density plot with facets or a tile plot
+                        with facets
+ggally_facethist        Plots the Histograms by Faceting
+ggally_na               NA plot
+ggally_nostic_cooksd    ggnostic - Cook's distance
+ggally_nostic_hat       ggnostic - leverage points
+ggally_nostic_line      ggnostic -background line with geom
+ggally_nostic_resid     ggnostic - residuals
+ggally_nostic_se_fit    ggnostic - fitted value standard error
+ggally_nostic_sigma     ggnostic - leave one out model sigma
+ggally_nostic_std_resid
+                        ggnostic - standardized residuals
+ggally_points           Plots the Scatter Plot
+ggally_ratio            Plots a mosaic plot
+ggally_smooth           Plots the Scatter Plot with Smoothing
+ggally_text             Text Plot
+ggcoef                  ggcoef - Plot Model Coefficients with broom and
+                        ggplot2
+ggcorr                  ggcorr - Plot a correlation matrix with ggplot2
+ggduo                   ggduo - A ggplot2 generalized pairs plot for
+                        two columns sets of a data.frame
+ggfacet                 ggfacet - single ggplot2 plot matrix with
+                        facet_grid
+gglegend                Plot only legend of plot function
+ggmatrix                ggmatrix - A ggplot2 Matrix
+ggmatrix_gtable         Print ggmatrix object
+ggmatrix_progress       ggmatrix default progress bar
+ggnet                   ggnet - Plot a network with ggplot2
+ggnet2                  ggnet2 - Plot a network with ggplot2
+ggnetworkmap            ggnetworkmap - Plot a network with ggplot2
+                        suitable for overlay on a ggmap:: map ggplot,
+                        or other ggplot
+ggnostic                ggnostic - Plot matrix of statistical model
+                        diagnostics
+ggpairs                 ggpairs - A ggplot2 generalized pairs plot
+ggparcoord              ggparcoord - A ggplot2 Parallel Coordinate Plot
+ggscatmat               ggscatmat - a traditional scatterplot matrix
+                        for purely quantitative variables
+ggsurv                  Survival curves with ggplot2
+ggts                    Multiple Time Series
+glyphplot               Glyph plot class
+glyphs                  Create the data needed to generate a glyph
+                        plot.
+grab_legend             Grab the legend and print it as a plot
+happy                   Data related to happiness from the General
+                        Social Survey, 1972-2006.
+is_horizontal           Check if plot is horizontal
+lowertriangle           lowertriangle - rearrange dataset as the
+                        preparation of ggscatmat function
+mapping_string          Aes name
+mapping_swap_x_y        Swap x and y mapping
+model_response_variables
+                        Model term names
+nasa                    Data from the Data Expo JSM 2006.
+pigs                    United Kingdom Pig Production
+print.ggmatrix          Print ggmatrix object
+print_if_interactive    Print if not CRAN
+psychademic             UCLA canonical correlation analysis data
+putPlot                 Put Plot
+rescale01               Rescaling functions
+scag_order              Find order of variables
+scatmat                 scatmat - plot the lowertriangle plots and
+                        density plots of the scatter plot matrix.
+singleClassOrder        Order axis variables
+skewness                Sample skewness
+str.ggmatrix            ggmatrix structure
+twitter_spambots        Twitter spambots
+uppertriangle           uppertriangle - rearrange dataset as the
+                        preparation of ggscatmat function
+v1_ggmatrix_theme       Modify a ggmatrix object by adding an ggplot2
+                        object to all plots
+wrap_fn_with_param_arg
+                        Wrap a function with different parameter values

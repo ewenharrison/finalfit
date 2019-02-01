@@ -1,0 +1,23 @@
+COV                     *cov*ariance matrix for survival data
+asWide                  Convert an object to "wide" or "long" form.
+autoplotTableAndPlot    Arrange a survival plot with corresponding
+                        table and legend.
+autoplotTen             Generate a 'ggplot' for a 'survfit' or 'ten'
+                        object
+ci                      *c*onfidence *i*ntervals for survival curves.
+comp                    compare survival curves
+cutp                    *cut p*oint for a continuous variable in a
+                        model fit with 'coxph' or 'survfit'.
+gastric                 gastric cancer trial data
+gof                     *g*oodness *o*f *f*it test for a 'coxph' object
+nc                      Add *n*umber *c*ensored.
+predict                 predicted events
+print                   'print' methods
+profLik                 Profile likelihood for coefficients in a
+                        'coxph' model
+rsq                     r^2 measures for a a 'coxph' or 'survfit' model
+sf                      *s*urvival (or hazard) *f*unction based on e
+                        and n.
+survMisc_package        Miscellaneous Functions for Survival Analysis
+ten                     *t*ime, *e*vent(s) and *n*umber at risk.
+xtable                  'xtable' methods

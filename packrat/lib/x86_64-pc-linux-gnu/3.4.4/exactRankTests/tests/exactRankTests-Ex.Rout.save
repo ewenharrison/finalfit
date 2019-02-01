@@ -1,0 +1,921 @@
+
+R Under development (unstable) (2012-10-07 r60893) -- "Unsuffered Consequences"
+Copyright (C) 2012 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: i686-pc-linux-gnu (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ### * <HEADER>
+> ###
+> attach(NULL, name = "CheckExEnv")
+> assign(".CheckExEnv", as.environment(2), pos = length(search())) # base
+> ## This plot.new() patch has no effect yet for persp();
+> ## layout() & filled.contour() are now ok
+> assign("plot.new",
++        function() {
++ 	   .Internal(plot.new())
++ 	   pp <- par(c("mfg","mfcol","oma","mar"))
++ 	   if(all(pp$mfg[1:2] == c(1, pp$mfcol[2]))) {
++                outer <- (oma4 <- pp$oma[4]) > 0; mar4 <- pp$mar[4]
++                mtext(paste("help(", ..nameEx, ")"), side = 4,
++                      line = if(outer)max(1, oma4 - 1) else min(1, mar4 - 1),
++                      outer = outer, adj = 1, cex = .8, col = "orchid")
++ 	   }
++        },
++        env = .CheckExEnv)
+> assign("cleanEx",
++        function(env = .GlobalEnv) {
++ 	   rm(list = ls(envir = env, all.names = TRUE), envir = env)
++            assign(".Random.seed", as.integer(c(0, rep(7654, 3))), envir=.GlobalEnv)
++        },
++        env = .CheckExEnv)
+> assign("..nameEx", "__{must remake R-ex/*.R}__", env = .CheckExEnv) # for now
+> assign("ptime", proc.time(), env = .CheckExEnv)
+> postscript("exactRankTests-Examples.ps")
+> assign("par.postscript", par(no.readonly = TRUE), env = .CheckExEnv)
+> options(contrasts = c(unordered = "contr.treatment", ordered = "contr.poly"))
+> library('exactRankTests')
+Loading required package: survival
+Loading required package: splines
+ Package 'exactRankTests' is no longer under development.
+ Please consider using package 'coin' instead.
+
+> 
+> cleanEx(); ..nameEx <- "ASAT"
+> 
+> ### * ASAT
+> 
+> ### Name: ASAT
+> ### Title: Toxicological Study on Female Wistar Rats
+> ### Aliases: ASAT
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> 
+> data(ASAT)
+> # does not really look symmetric
+> 
+> plot(asat ~ group, data=ASAT)
+> 
+> # proof-of-safety based on ration of medians
+> pos <- wilcox.exact(I(log(asat)) ~ group, data = ASAT, alternative = "less", 
++              conf.int=TRUE)
+> 
+> # one-sided confidence set. Safety cannot be concluded since the effect of
+> # the compound exceeds 20% of the control median
+> exp(pos$conf.int)
+[1] 0.000000 1.337778
+attr(,"conf.level")
+[1] 0.95
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "ansari.exact"
+> 
+> ### * ansari.exact
+> 
+> ### Name: ansari.exact
+> ### Title: Ansari-Bradley Test
+> ### Aliases: ansari.exact ansari.exact.default ansari.exact.formula
+> ### Keywords: htest
+> 
+> ### ** Examples
+> 
+> ## Hollander & Wolfe (1973, p. 86f):
+> ## Serum iron determination using Hyland control sera
+> ramsay <- c(111, 107, 100, 99, 102, 106, 109, 108, 104, 99,
++             101, 96, 97, 102, 107, 113, 116, 113, 110, 98)
+> jung.parekh <- c(107, 108, 106, 98, 105, 103, 110, 105, 104,
++             100, 96, 108, 103, 104, 114, 114, 113, 108, 106, 99)
+> ansari.test(ramsay, jung.parekh)
+
+	Ansari-Bradley test
+
+data:  ramsay and jung.parekh 
+AB = 185.5, p-value = 0.1815
+alternative hypothesis: true ratio of scales is not equal to 1 
+
+Warning message:
+In ansari.test.default(ramsay, jung.parekh) :
+  cannot compute exact p-value with ties
+> ansari.exact(ramsay, jung.parekh)
+
+	Ansari-Bradley test
+
+data:  ramsay and jung.parekh 
+AB = 185.5, p-value = 0.1881
+alternative hypothesis: true ratio of scales is not equal to 1 
+
+> 
+> ansari.exact(rnorm(20), rnorm(20, 0, 2), conf.int = TRUE)
+
+	Ansari-Bradley test
+
+data:  rnorm(20) and rnorm(20, 0, 2) 
+AB = 249, p-value = 0.03605
+alternative hypothesis: true ratio of scales is not equal to 1 
+95 percent confidence interval:
+ 0.2701446 0.9526227 
+sample estimates:
+ratio of scales 
+      0.5544411 
+
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "bloodp"
+> 
+> ### * bloodp
+> 
+> ### Name: bloodp
+> ### Title: Diastolic Blood Pressure
+> ### Aliases: bloodp
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(bloodp)
+> 
+> # Permutation test
+> 
+> perm.test(bp ~ group, data=bloodp)
+
+	2-sample Permutation Test
+
+data:  bp by group 
+T = 402, p-value = 0.104
+alternative hypothesis: true mu is not equal to 0 
+
+> perm.test(bp ~ group, data=bloodp, alternative="greater")
+
+	2-sample Permutation Test
+
+data:  bp by group 
+T = 402, p-value = 0.05641
+alternative hypothesis: true mu is greater than 0 
+
+> perm.test(bp ~ group, data=bloodp, exact=FALSE)
+
+	Asymptotic 2-sample Permutation Test
+
+data:  bp by group 
+T = 402, p-value = 0.107
+alternative hypothesis: true mu is not equal to 0 
+
+> 
+> # Wilcoxon-Mann-Whitney test
+> 
+> wilcox.exact(bp ~ group, data=bloodp, conf.int=TRUE, alternative="l")
+
+	Exact Wilcoxon rank sum test
+
+data:  bp by group 
+W = 35, p-value = 0.9648
+alternative hypothesis: true mu is less than 0 
+95 percent confidence interval:
+ -Inf   20 
+sample estimates:
+difference in location 
+                   9.5 
+
+> wilcox.exact(bp ~ group, data=bloodp, conf.int=TRUE)
+
+	Exact Wilcoxon rank sum test
+
+data:  bp by group 
+W = 35, p-value = 0.0989
+alternative hypothesis: true mu is not equal to 0 
+95 percent confidence interval:
+ -4 22 
+sample estimates:
+difference in location 
+                   9.5 
+
+> 
+> # compute the v.d. Waerden test
+> 
+> sc <- cscores(bloodp$bp, type="NormalQuantile")
+> X <- sum(sc[bloodp$group == "group2"])
+> round(pperm(X, sc, 11), 4) 
+[1] 0.0462
+> round(pperm(X, sc, 11, simulate=TRUE), 4)
+[1] 0.0376
+> round(pperm(X, sc, 11, alternative="two.sided"), 4) 
+[1] 0.0799
+> round(pperm(X, sc, 11, alternative="two.sided", simulate=TRUE), 4)
+[1] 0.0705
+> 
+> # use scores mapped into integers (cf. dperm)
+> 
+> sc <- cscores(bloodp$bp, type="NormalQuantile", int=TRUE)
+> X <- sum(sc[bloodp$group == "group2"])
+> round(pperm(X, sc, 11), 4)      
+[1] 0.0462
+> round(pperm(X, sc, 11, alternative="two.sided"), 4)
+[1] 0.0799
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "cscores"
+> 
+> ### * cscores
+> 
+> ### Name: cscores
+> ### Title: Computation of Scores
+> ### Aliases: cscores cscores.default cscores.Surv cscores.factor
+> ### Keywords: misc
+> 
+> ### ** Examples
+> 
+> 
+> y <- rnorm(50)
+> # v.d. Waerden scores
+> nq <- cscores(y, type="Normal", int=TRUE)
+> # quantile for m=20 observations in the first group
+> qperm(0.1, nq, 20)
+[1] -102
+> 
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "dperm"
+> 
+> ### * dperm
+> 
+> ### Name: dperm
+> ### Title: Distribution of One and Two Sample Permutation Tests
+> ### Aliases: dperm pperm qperm rperm
+> ### Keywords: distribution
+> 
+> ### ** Examples
+> 
+> 
+> # exact one-sided p-value of the Wilcoxon test for a tied sample
+> 
+> x <- c(0.5, 0.5, 0.6, 0.6, 0.7, 0.8, 0.9)
+> y <- c(0.5, 1.0, 1.2, 1.2, 1.4, 1.5, 1.9, 2.0)
+> r <- cscores(c(x,y), type="Wilcoxon")
+> pperm(sum(r[seq(along=x)]), r, 7)
+[1] 0.004351204
+> 
+> # Compare the exact algorithm as implemented in ctest and the
+> # Shift-Algorithm by Streitberg & Roehmel for untied samples
+>  
+> # Wilcoxon:
+> 
+> n <- 10
+> x <- rnorm(n, 2)
+> y <- rnorm(n, 3)
+> r <- cscores(c(x,y), type="Wilcoxon")
+> 
+> # exact distribution using the Shift-Algorithm
+> 
+> dwexac <- dperm((n*(n+1)/2):(n^2 + n*(n+1)/2), r, n)
+> sum(dwexac)           # should be something near 1 :-)
+[1] 1
+> 
+> # exact distribution using dwilcox
+> 
+> dw <- dwilcox(0:(n^2), n, n)
+> 
+> # compare the two distributions:
+> 
+> plot(dw, dwexac, main="Wilcoxon", xlab="dwilcox", ylab="dperm")      
+> # should give a "perfect" line
+> 
+> # Wilcoxon signed rank test
+> 
+> n <- 10
+> x <- rnorm(n, 5)
+> y <- rnorm(n, 5)
+> r <- cscores(abs(x - y), type="Wilcoxon")
+> pperm(sum(r[x - y > 0]), r, length(r))
+[1] 0.1875
+> wilcox.test(x,y, paired=TRUE, alternative="less")
+
+	Wilcoxon signed rank test
+
+data:  x and y 
+V = 18, p-value = 0.1875
+alternative hypothesis: true location shift is less than 0 
+
+> psignrank(sum(r[x - y > 0]), length(r))
+[1] 0.1875
+> 
+> # Ansari-Bradley
+> 
+> n <- 10
+> x <- rnorm(n, 2, 1)
+> y <- rnorm(n, 2, 2)
+> 
+> # exact distribution using the Shift-Algorithm
+> 
+> sc <- cscores(c(x,y), type="Ansari")
+> dabexac <- dperm(0:(n*(2*n+1)/2), sc, n)
+> sum(dabexac)
+[1] 1
+> 
+> # real scores are allowed (but only result in an approximation)
+> # e.g. v.d. Waerden test
+> 
+> n <- 10
+> x <- rnorm(n)
+> y <- rnorm(n)
+> scores <- cscores(c(x,y), type="NormalQuantile")
+> X <- sum(scores[seq(along=x)])  # <- v.d. Waerden normal quantile statistic
+> 
+> # critical value, two-sided test
+> 
+> abs(qperm(0.025, scores, length(x)))
+[1] 3.871345
+Warning message:
+In findfact(scores - min(scores) + 1, m, tol) :
+  cannot hold tol, tolerance: 0.010292
+> 
+> # p-values
+> 
+> p1 <- pperm(X, scores, length(x), alternative="two.sided")
+Warning message:
+In findfact(scores - min(scores) + 1, m, tol) :
+  cannot hold tol, tolerance: 0.010292
+> 
+> # generate integer valued scores with the same shape as normal quantile
+> # scores, this no longer v.d.Waerden, but something very similar
+> 
+> scores <- cscores(c(x,y), type="NormalQuantile", int=TRUE)
+> 
+> X <- sum(scores[seq(along=x)])
+> p2 <- pperm(X, scores, length(x), alternative="two.sided")
+> 
+> # compare p1 and p2
+> 
+> p1 - p2
+[1] 0.009796705
+> 
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "ears"
+> 
+> ### * ears
+> 
+> ### Name: ears
+> ### Title: Survival of Ventilating Tubes
+> ### Aliases: ears
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(ears)
+> if (require(survival, quietly=TRUE)) {
++   ls <- cscores(Surv(ears$left, ears$lcens), int=TRUE)
++   perm.test(ls ~ group, data=ears)
++ }
+
+	2-sample Permutation Test
+
+data:  ls by group 
+T = 748, p-value = 0.01222
+alternative hypothesis: true mu is not equal to 0 
+
+> 
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "glioma"
+> 
+> ### * glioma
+> 
+> ### Name: glioma
+> ### Title: Malignant Glioma Pilot Study
+> ### Aliases: glioma
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(glioma)
+> 
+> if(require(survival, quietly = TRUE)) {
++ 
++   par(mfrow=c(1,2))
++ 
++   # Grade III glioma
++   g3 <- glioma[glioma$Histology == "Grade3",]
++ 
++   # Plot Kaplan-Meier curves
++   plot(survfit(Surv(Survival, Cens) ~ Group, data=g3), 
++        main="Grade III Glioma", lty=c(2,1), 
++        legend.text=c("Control", "Treated"),
++        legend.bty=1, ylab="Probability", 
++        xlab="Survival Time in Month")
++ 
++   # log-rank test
++   survdiff(Surv(Survival, Cens) ~ Group, data=g3)
++ 
++   # permutation test with integer valued log-rank scores
++   lsc <- cscores(Surv(g3$Survival, g3$Cens), int=TRUE) 
++   perm.test(lsc ~ Group, data=g3) 
++ 
++   # permutation test with real valued log-rank scores
++   lsc <- cscores(Surv(g3$Survival, g3$Cens), int=FALSE)
++   tr <- (g3$Group == "RIT")
++   T <- sum(lsc[tr])
++   pperm(T, lsc, sum(tr), alternative="tw")
++   pperm(T, lsc, sum(tr), alternative="tw", simulate=TRUE)
++ 
++   # Grade IV glioma
++   gbm <- glioma[glioma$Histology == "GBM",] 
++ 
++   # Plot Kaplan-Meier curves
++   plot(survfit(Surv(Survival, Cens) ~ Group, data=gbm), 
++        main="Grade IV Glioma", lty=c(2,1), 
++        legend.text=c("Control", "Treated"),
++        legend.bty=1, legend.pos=1, ylab="Probability", 
++        xlab="Survival Time in Month")
++    
++   # log-rank test
++   survdiff(Surv(Survival, Cens) ~ Group, data=gbm)
++ 
++   # permutation test with integer valued log-rank scores
++   lsc <- cscores(Surv(gbm$Survival, gbm$Cens), int=TRUE)
++   perm.test(lsc ~ Group, data=gbm)
++ 
++   # permutation test with real valued log-rank scores 
++   lsc <- cscores(Surv(gbm$Survival, gbm$Cens), int=FALSE) 
++   tr <- (gbm$Group == "RIT")
++   T <- sum(lsc[tr])
++   pperm(T, lsc, sum(tr), alternative="tw")
++   pperm(T, lsc, sum(tr), alternative="tw", simulate=TRUE)
++ }
+[1] 1e-04
+There were 32 warnings (use warnings() to see them)
+> 
+> 
+> 
+> par(get("par.postscript", env = .CheckExEnv))
+> cleanEx(); ..nameEx <- "globulin"
+> 
+> ### * globulin
+> 
+> ### Name: globulin
+> ### Title: Differences in Globulin Fraction in Two Groups
+> ### Aliases: globulin
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(globulin)
+> perm.test(gfrac ~ group, data=globulin, conf.int=TRUE)
+
+	2-sample Permutation Test
+
+data:  gfrac by group 
+T = 331, p-value = 0.1475
+alternative hypothesis: true mu is not equal to 0 
+95 percent confidence interval:
+ -8.50  1.25 
+
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "irank"
+> 
+> ### * irank
+> 
+> ### Name: irank
+> ### Title: Integer Ranks
+> ### Aliases: irank
+> ### Keywords: univar
+> 
+> ### ** Examples
+> 
+> x <- rnorm(10)
+> irank(x)
+ [1]  5  2  6 10  9  1  4  8  3  7
+> rank(x)
+ [1]  5  2  6 10  9  1  4  8  3  7
+> x <- c(1,2,3,3,0)
+> irank(x)
+[1] 2 3 5 5 1
+> rank(x)
+[1] 2.0 3.0 4.5 4.5 1.0
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "lungcancer"
+> 
+> ### * lungcancer
+> 
+> ### Name: lungcancer
+> ### Title: Lung Cancer Clinical Trial
+> ### Aliases: lungcancer
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(lungcancer)
+> attach(lungcancer)
+> 
+> # round logrank scores
+> scores <- cscores.Surv(cbind(time, cens))
+> T <- sum(scores[group=="newdrug"])
+> mobs <- sum(group=="newdrug")
+> prob <- pperm(T, scores, m=mobs, al="le")
+> prob
+[1] 0.000999001
+> pperm(T, scores, m=mobs, al="tw")
+[1] 0.000999001
+> pperm(T, scores, m=mobs, al="tw", simulate=TRUE)
+[1] 0.001
+> 
+> # map into integers, faster
+> scores <- cscores.Surv(cbind(time, cens), int=TRUE)
+> T <- sum(scores[group=="newdrug"])
+> mobs <- sum(group=="newdrug")
+> prob <- pperm(T, scores, m=mobs, al="le")
+> prob
+[1] 0.000999001
+> pperm(T, scores, m=mobs, al="tw")
+[1] 0.000999001
+> pperm(T, scores, m=mobs, al="tw", simulate=TRUE)
+[1] 9e-04
+> 
+> detach(lungcancer)
+> 
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "neuropathy"
+> 
+> ### * neuropathy
+> 
+> ### Name: neuropathy
+> ### Title: Acute Painful Diabetic Neuropathy
+> ### Aliases: neuropathy
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(neuropathy)
+> # compare with Table 2 of Conover & Salsburg (1988)
+> wilcox.exact(pain ~ group, data=neuropathy, alternative="less")
+
+	Exact Wilcoxon rank sum test
+
+data:  pain by group 
+W = 357, p-value = 0.1654
+alternative hypothesis: true mu is less than 0 
+
+> css <- cscores(neuropathy$pain, type="ConSal")
+> pperm(sum(css[neuropathy$group=="control"]),css,
++       m=sum(neuropathy$group=="control"))
+[1] 0.0307573
+Warning message:
+In findfact(scores - min(scores) + 1, m, tol) :
+  cannot hold tol, tolerance: 0.047123
+> 
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "ocarcinoma"
+> 
+> ### * ocarcinoma
+> 
+> ### Name: ocarcinoma
+> ### Title: Ovarian Carcinoma
+> ### Aliases: ocarcinoma
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> 
+> data(ocarcinoma)
+> attach(ocarcinoma)
+> # compute integer valued logrank scores
+> logrsc <- cscores.Surv(cbind(time, cens), int=TRUE)
+> # the test statistic
+> lgT <- sum(logrsc[stadium == "II"])
+> # p-value
+> round(pperm(lgT, logrsc, m=sum(stadium=="II"), al="tw"), 4)
+[1] 0.0191
+> 
+> # compute logrank scores and simulate p-value
+> logrsc <- cscores.Surv(cbind(time, cens), int=FALSE)
+> # the test statistic
+> lgT <- sum(logrsc[stadium == "II"])
+> # p-value
+> round(pperm(lgT, logrsc, m=sum(stadium=="II"), al="tw", simulate=TRUE), 4)
+[1] 0.0179
+> 
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "perm.test"
+> 
+> ### * perm.test
+> 
+> ### Name: perm.test
+> ### Title: One and Two Sample Permutation Test
+> ### Aliases: perm.test perm.test.default perm.test.formula
+> ### Keywords: htest
+> 
+> ### ** Examples
+> 
+> 
+> # Example from Gardner & Altman (1989), p. 30
+> # two treatments A and B, 1 means improvement, 0 means no improvement
+> # confidence sets cf. R\"ohmel (1996)
+> 
+> A <- c(rep(1, 61), rep(0, 19))
+> B <- c(rep(1, 45), rep(0, 35))
+> perm.test(A, B, conf.int=TRUE, exact=TRUE)
+
+	2-sample Permutation Test
+
+data:  A and B 
+T = 61, p-value = 0.0118
+alternative hypothesis: true mu is not equal to 0 
+95 percent confidence interval:
+ 0.05263158 0.34285714 
+
+> 
+> # one-sample AIDS data (differences only), Methta and Patel (2001),
+> # Table 8.1 page 181
+> 
+> data(sal)
+> attach(sal)
+> ppdiff <- pre - post
+> detach(sal)
+> 
+> # p-values in StatXact == 0.0011 one-sided, 0.0021 two.sided, page 183
+> 
+> perm.test(ppdiff)
+
+	1-sample Permutation Test
+
+data:  ppdiff 
+T = 4831, p-value = 0.002136
+alternative hypothesis: true mu is not equal to 0 
+
+> perm.test(ppdiff, alternative="less")
+
+	1-sample Permutation Test
+
+data:  ppdiff 
+T = 4831, p-value = 0.999
+alternative hypothesis: true mu is less than 0 
+
+> perm.test(ppdiff, exact=FALSE)
+
+	Asymptotic 1-sample Permutation Test
+
+data:  ppdiff 
+T = 4831, p-value = 0.08779
+alternative hypothesis: true mu is not equal to 0 
+
+> 
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "rotarod"
+> 
+> ### * rotarod
+> 
+> ### Name: rotarod
+> ### Title: Rotating Rats Data
+> ### Aliases: rotarod
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(rotarod)
+> wilcox.exact(time ~ group, data=rotarod, alternative="g")
+
+	Exact Wilcoxon rank sum test
+
+data:  time by group 
+W = 102, p-value = 0.01863
+alternative hypothesis: true mu is greater than 0 
+
+> wilcox.exact(time ~ group, data=rotarod, conf.int=TRUE)
+
+	Exact Wilcoxon rank sum test
+
+data:  time by group 
+W = 102, p-value = 0.03727
+alternative hypothesis: true mu is not equal to 0 
+95 percent confidence interval:
+   0 137 
+sample estimates:
+difference in location 
+                  14.5 
+
+> wilcox.exact(time ~ group, data=rotarod, exact=FALSE)
+
+	Asymptotic Wilcoxon rank sum test
+
+data:  time by group 
+W = 102, p-value = 0.01473
+alternative hypothesis: true mu is not equal to 0 
+
+> # the permutation test
+> perm.test(time ~ group, data=rotarod)
+
+	2-sample Permutation Test
+
+data:  time by group 
+T = 3600, p-value = 0.03727
+alternative hypothesis: true mu is not equal to 0 
+
+> perm.test(time ~ group, data=rotarod, exact=FALSE)
+
+	Asymptotic 2-sample Permutation Test
+
+data:  time by group 
+T = 3600, p-value = 0.0324
+alternative hypothesis: true mu is not equal to 0 
+
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "sal"
+> 
+> ### * sal
+> 
+> ### Name: sal
+> ### Title: Serum Antigen Level
+> ### Aliases: sal
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(sal)
+> attach(sal)
+> 
+> wilcox.exact(pre, post, paired=TRUE, conf.int=TRUE)
+
+	Exact Wilcoxon signed rank test
+
+data:  pre and post 
+V = 124, p-value = 0.002136
+alternative hypothesis: true mu is not equal to 0 
+95 percent confidence interval:
+  54 292 
+sample estimates:
+(pseudo)median 
+        137.75 
+
+> wilcox.exact(pre,post, paired=TRUE, conf.int=TRUE, exact=FALSE)
+
+	Asymptotic Wilcoxon signed rank test
+
+data:  pre and post 
+V = 124, p-value = 0.003783
+alternative hypothesis: true mu is not equal to 0 
+95 percent confidence interval:
+  54.49998 281.50005 
+sample estimates:
+(pseudo)median 
+      137.2646 
+
+> 
+> detach(sal)
+> 
+> 
+> 
+> 
+> cleanEx(); ..nameEx <- "wilcox.exact"
+> 
+> ### * wilcox.exact
+> 
+> ### Name: wilcox.exact
+> ### Title: Wilcoxon Rank Sum and Signed Rank Tests
+> ### Aliases: wilcox.exact wilcox.exact.default wilcox.exact.formula
+> ### Keywords: htest
+> 
+> ### ** Examples
+> 
+> ## One-sample test.
+> ## Hollander & Wolfe (1973), 29f.
+> ## Hamilton depression scale factor measurements in 9 patients with
+> ##  mixed anxiety and depression, taken at the first (x) and second
+> ##  (y) visit after initiation of a therapy (administration of a
+> ##  tranquilizer).
+> x <- c(1.83,  0.50,  1.62,  2.48, 1.68, 1.88, 1.55, 3.06, 1.30)
+> y <- c(0.878, 0.647, 0.598, 2.05, 1.06, 1.29, 1.06, 3.14, 1.29)
+> wilcox.exact(x, y, paired = TRUE, alternative = "greater")
+
+	Exact Wilcoxon signed rank test
+
+data:  x and y 
+V = 40, p-value = 0.01953
+alternative hypothesis: true mu is greater than 0 
+
+> wilcox.exact(y - x, alternative = "less")    # The same.
+
+	Exact Wilcoxon signed rank test
+
+data:  y - x 
+V = 5, p-value = 0.01953
+alternative hypothesis: true mu is less than 0 
+
+> 
+> ## Two-sample test.
+> ## Hollander & Wolfe (1973), 69f.
+> ## Permeability constants of the human chorioamnion (a placental
+> ##  membrane) at term (x) and between 12 to 26 weeks gestational
+> ##  age (y).  The alternative of interest is greater permeability
+> ##  of the human chorioamnion for the term pregnancy.
+> x <- c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
+> y <- c(1.15, 0.88, 0.90, 0.74, 1.21)
+> wilcox.exact(x, y, alternative = "g")        # greater
+
+	Exact Wilcoxon rank sum test
+
+data:  x and y 
+W = 35, p-value = 0.1272
+alternative hypothesis: true mu is greater than 0 
+
+> 
+> ## Formula interface.
+> data(airquality)
+> boxplot(Ozone ~ Month, data = airquality)
+> wilcox.exact(Ozone ~ Month, data = airquality,
++             subset = Month %in% c(5, 8))
+
+	Exact Wilcoxon rank sum test
+
+data:  Ozone by Month 
+W = 127.5, p-value = 6.109e-05
+alternative hypothesis: true mu is not equal to 0 
+
+> 
+> # Hollander & Wolfe, p. 39, results p. 40 and p. 53
+> 
+> x <- c(1.83, 0.50, 1.62, 2.48, 1.68, 1.88, 1.55, 3.06, 1.30)
+> y <- c(0.878, 0.647, 0.598, 2.05, 1.06, 1.29, 1.06, 3.14, 1.29)
+> 
+> wilcox.exact(y,x, paired=TRUE, conf.int=TRUE)
+
+	Exact Wilcoxon signed rank test
+
+data:  y and x 
+V = 5, p-value = 0.03906
+alternative hypothesis: true mu is not equal to 0 
+95 percent confidence interval:
+ -0.786 -0.010 
+sample estimates:
+(pseudo)median 
+         -0.46 
+
+> 
+> # Hollander & Wolfe, p. 110, results p. 111 and p. 126
+> 
+> x <- c(0.8, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
+> y <- c(1.15, 0.88, 0.90, 0.74, 1.21)
+> 
+> wilcox.exact(y,x, conf.int=TRUE)
+
+	Exact Wilcoxon rank sum test
+
+data:  y and x 
+W = 15, p-value = 0.2544
+alternative hypothesis: true mu is not equal to 0 
+95 percent confidence interval:
+ -0.76  0.15 
+sample estimates:
+difference in location 
+                -0.305 
+
+> 
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cat("Time elapsed: ", proc.time() - get("ptime", env = .CheckExEnv),"\n")
+Time elapsed:  2.028 0.184 2.213 0 0 
+> dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')
+> proc.time()
+   user  system elapsed 
+  2.228   0.208   2.431 

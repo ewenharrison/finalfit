@@ -1,0 +1,11 @@
+DLBCL                   Diffuse large B-cell lymphoma
+corrmsrs                Correlation Matrix
+hohnloser               Left ventricular ejection fraction of patients
+                        with malignant ventricular tachyarrhythmias.
+maxstat.test            Maximally Selected Rank and Statistics
+pLausen92               Approximating Maximally Selected Statistics
+pLausen94               Approximating Maximally Selected Statistics
+pexactgauss             Computing Maximally Selected Gauss Statistics
+plot.maxtest            Print and Plot Standardized Statistics
+pmaxstat                Approximating Maximally Selected Statistics
+treepipit               Tree Pipit Data

@@ -1,0 +1,207 @@
+# $Id: NEWS 419 2017-03-01 13:57:28Z hothorn $
+
+	0.7-25 (01.03.2017)
+
+	register C routines
+
+	0.7-24 (06.04.2016)
+
+	maxstatpermdist.c must not overwrite R objects
+
+	0.7-23 (01.07.2015)
+
+        correct digits in print.htest
+
+        documentation updates
+
+	0.7-22 (20.02.2015)
+
+        register maxstat.test.data.frame and default
+
+	0.7-21 (19.01.2015)
+
+        avoid two meaningless cases; fix by Marvin Wright <wright@imbs.uni-luebeck.de>
+
+	0.7-20 (07.02.2014)
+
+	fix memory problem in maxstatpermdist.c
+
+	0.7-19 (02.09.2013)
+
+	mv sphase data to TH.data; fix NAMESPACE issues
+
+        0.7-18 (18.04.2013)
+
+        ???
+
+	0.7-16 (22.03.2013)
+
+        convert data/*txt to data/*rda
+
+	0.7-15 (11.10.2012)
+
+	use R function exactRankTests:::cpermdist2
+
+	0.7-14 (23.08.2011)
+
+        GPL (>= 2) only
+
+	0.7-13 (09.09.2009)
+
+        documentation fixes
+
+	0.7-12 (29.08.2008)
+
+        fix old style random seed assignments
+
+	0.7-11 (08.10.2007)
+
+        documentation fix
+
+	0.7-9 (16.03.2005)
+
+	`delay' is deprecated in R-2.1.0
+
+	0.7-8 (24.01.2005)
+
+	documentation fixes
+
+	0.7-7 (18.11.2004)
+
+	use #!/bin/sh
+
+	0.7-6 (16.12.2003)
+
+	R-1.9.0 fixes: plot.new redefinition in preamble for tests
+
+	0.7-5 (28.10.2003)
+
+	`treepipit' data added
+
+	0.7-3 (30.08.2003)
+
+	use canonical header files
+
+	0.7-2 (18.07.2003)
+
+	optional weights argument addded
+
+	0.7-1 (15.06.2003)
+
+	maxstat.test(..., pmethod = "condMC", B = 999) can be used to
+        compute the p-values via conditional Monte-Carlo. 
+
+	0.6-8 (23.04.2003)
+
+	updates for exactRankTests-0.8-0
+	the package is now in a NAMESPACE
+	
+	0.6-7 (18.12.2002)
+
+	R CMD build problems
+
+	0.6-6 (23.11.2002)
+
+	depends mvtnorm >= 0.5-7 and test output adapted
+
+	0.6-5 (22.11.2002)
+
+	PACKAGE argument to Call in corrmsrs
+
+	0.6-4 (21.11.2002)
+
+	new `corrmsrs' is faster than `cmatrix' in some cases and has a 
+	cleaner	implementation and handling of minprop/maxprop
+
+	objects of class mmax now also return the correlation matrix `cm'
+        and the univariate p.values `univp.values'
+
+	new interface to pexactgauss
+
+	the package has a vignette now
+
+	0.6-3 (09.10.2002)
+
+	url updated
+
+	0.6-1 (01.10.2002)
+
+	make -pedantic happy
+
+	0.6-0 (30.09.2002)
+
+	`data' is now required (we dispatch on `data')
+	added functionality for more than one covariable
+	some internal reorganizations
+
+	0.5-9 (03.07.2002)
+
+	use .C(..., PACKAGE="maxstat")
+
+	0.5-7 (22.05.2002)
+
+	the cutpoints are in indices (which(!ties) - 1) -> Fixed
+
+	0.5-6 (24.11.2002)
+
+	iscores argument added (use integer valued scores or not)
+
+	0.5-5 (11.04.2002)
+
+	replace optim by optimize, passes R-1.5.0pre checks
+
+	0.5-4 (06.03.2002)
+
+	link preprint
+
+	0.5-3 (14.12.2001)
+
+	fixed bug in pLausen94: take tied predictors into account
+
+	0.5-1 (11.12.2001)
+
+	check the return value of require in zzz.R
+
+	0.5-0 (10.12.2001)
+
+	release for R-1.4.0
+
+	0.4-6 (08.12.2001)
+
+	cosmetrics, \dontrun{ postscript() } in DLBCL.Rd
+
+	0.4-5 (04.12.2001)
+
+	interface changes in mvtnorm, 
+	Depends: exactRankTests(>= 0.5-8),mvtnorm(>= 0.4-1)
+
+
+	0.4-4 (03.12.2001)
+
+	survival interface now as in package survival
+	pmaxstat returns a double, not a list
+	man-pages updated
+
+	0.4-3 (01.12.2001)
+
+	clean interface (for survival problems too)
+	no longer depends on survival
+
+	0.4-2 (01.12.2001)
+
+	maxstat.test generic passed R CMD check
+	plot.maxtest and print.maxtest implemented
+
+	0.4-1 (29.11.2001)
+
+	maxstat.test is now generic. 
+	To-Do:
+	the interface is not clean for survival
+	problems (formula for cens???, `Surv' isn't nice for that).
+
+	take off `plot' and use `retT' to get the empirical process plotted
+	(including p-values as in strucchange :-)
+
+	for the examples: check, if `survival' is there and don't Depend on
+	it
+

@@ -1,0 +1,38 @@
+Full:
+█
+└─rlang:::f()
+  └─rlang:::g() testthat/test-trace.R:45:20
+    ├─base::tryCatch(h(), foo = identity, bar = identity) testthat/test-trace.R:46:20
+    │ └─base:::tryCatchList(expr, classes, parentenv, handlers)
+    │   ├─base:::tryCatchOne(...)
+    │   │ └─base:::doTryCatch(return(expr), name, parentenv, handler)
+    │   └─base:::tryCatchList(expr, names[-nh], parentenv, handlers[-nh])
+    │     └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    │       └─base:::doTryCatch(return(expr), name, parentenv, handler)
+    └─rlang:::h()
+      ├─base::tryCatch(i(), baz = identity) testthat/test-trace.R:47:20
+      │ └─base:::tryCatchList(expr, classes, parentenv, handlers)
+      │   └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
+      │     └─base:::doTryCatch(return(expr), name, parentenv, handler)
+      └─rlang:::i()
+        ├─base::tryCatch(trace_back(e, bottom = 0)) testthat/test-trace.R:48:20
+        │ └─base:::tryCatchList(expr, classes, parentenv, handlers)
+        └─rlang::trace_back(e, bottom = 0)
+
+Collapsed:
+█
+└─rlang:::f()
+  └─rlang:::g() testthat/test-trace.R:45:20
+    ├─[ base::tryCatch(...) ] with 6 more calls testthat/test-trace.R:46:20
+    └─rlang:::h()
+      ├─[ base::tryCatch(...) ] with 3 more calls testthat/test-trace.R:47:20
+      └─rlang:::i()
+        ├─[ base::tryCatch(...) ] with 1 more call testthat/test-trace.R:48:20
+        └─rlang::trace_back(e, bottom = 0)
+
+Branch:
+ ─rlang:::f()
+ ─rlang:::g() testthat/test-trace.R:45:20
+ ─rlang:::h()
+ ─rlang:::i()
+ ─rlang::trace_back(e, bottom = 0)

@@ -1,0 +1,21 @@
+useDynLib(exactRankTests, .registration = TRUE)
+import(utils)
+import(stats)
+
+exportPattern("\\.exact$")
+exportPattern("\\.exact.default$")
+exportPattern("\\.exact.formula$")
+
+export(dperm, qperm, pperm, rperm, perm.test, perm.test.default,
+perm.test.formula, cscores, cscores.default, cscores.factor, 
+cscores.Surv, irank)
+
+S3method(ansari.exact, default) 
+S3method(ansari.exact, formula)
+S3method(cscores, Surv)
+S3method(cscores, default)
+S3method(cscores, factor)
+S3method(perm.test, default)
+S3method(perm.test, formula)
+S3method(wilcox.exact, default)
+S3method(wilcox.exact, formula)

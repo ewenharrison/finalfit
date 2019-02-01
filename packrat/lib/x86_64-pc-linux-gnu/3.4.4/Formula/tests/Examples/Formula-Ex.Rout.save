@@ -1,0 +1,348 @@
+
+R version 3.4.4 (2018-03-15) -- "Someone to Lean On"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "Formula"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('Formula')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("Formula")
+> ### * Formula
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: Formula
+> ### Title: Extended Formulas: Multiple Responses and Multiple Regressor
+> ###   Parts
+> ### Aliases: Formula formula.Formula as.Formula as.Formula.default
+> ###   as.Formula.formula as.Formula.Formula is.Formula print.Formula
+> ###   update.Formula length.Formula all.equal.Formula str.Formula
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> ## create a simple Formula with one response and two regressor parts
+> f1 <- y ~ x1 + x2 | z1 + z2 + z3
+> F1 <- Formula(f1)
+> class(F1)
+[1] "Formula" "formula"
+> length(F1)
+[1] 1 2
+> 
+> ## switch back to original formula
+> formula(F1)
+y ~ x1 + x2 | z1 + z2 + z3
+> 
+> ## create formula with various transformations
+> formula(F1, rhs = 1)
+y ~ x1 + x2
+> formula(F1, collapse = TRUE)
+y ~ x1 + x2 + (z1 + z2 + z3)
+> formula(F1, lhs = 0, rhs = 2)
+~z1 + z2 + z3
+> 
+> ## put it together from its parts
+> as.Formula(y ~ x1 + x2, ~ z1 + z2 + z3)
+y ~ x1 + x2 | z1 + z2 + z3
+> 
+> ## update the formula
+> update(F1, . ~ . + I(x1^2) | . - z2 - z3)
+y ~ x1 + x2 + I(x1^2) | z1
+> update(F1, . | y2 + y3 ~ .)
+y | y2 + y3 ~ x1 + x2 | z1 + z2 + z3
+> 
+> # create a multi-response multi-part formula
+> f2 <- y1 | y2 + y3 ~ x1 + I(x2^2) | 0 + log(x1) | x3 / x4
+> F2 <- Formula(f2)
+> length(F2)
+[1] 2 3
+> 
+> ## obtain various subsets using standard indexing
+> ## no lhs, first/seconde rhs
+> formula(F2, lhs = 0, rhs = 1:2)
+~x1 + I(x2^2) | 0 + log(x1)
+> formula(F2, lhs = 0, rhs = -3)
+~x1 + I(x2^2) | 0 + log(x1)
+> formula(F2, lhs = 0, rhs = c(TRUE, TRUE, FALSE))
+~x1 + I(x2^2) | 0 + log(x1)
+> ## first lhs, third rhs
+> formula(F2, lhs = c(TRUE, FALSE), rhs = 3)
+y1 ~ x3/x4
+> 
+> 
+> 
+> cleanEx()
+> nameEx("model.frame.Formula")
+> ### * model.frame.Formula
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: model.frame.Formula
+> ### Title: Model Frame/Matrix/Response Construction for Extended Formulas
+> ### Aliases: terms.Formula model.matrix.Formula model.frame.Formula
+> ###   model.part model.part.formula model.part.Formula
+> ### Keywords: models
+> 
+> ### ** Examples
+> 
+> ## artificial example data
+> set.seed(1090)
+> dat <- as.data.frame(matrix(round(runif(21), digits = 2), ncol = 7))
+> colnames(dat) <- c("y1", "y2", "y3", "x1", "x2", "x3", "x4")
+> for(i in c(2, 6:7)) dat[[i]] <- factor(dat[[i]] > 0.5, labels = c("a", "b"))
+> dat$y2[1] <- NA
+> dat
+    y1   y2   y3   x1   x2 x3 x4
+1 0.82 <NA> 0.27 0.09 0.22  b  a
+2 0.70    b 0.17 0.26 0.46  a  a
+3 0.65    a 0.28 0.03 0.37  b  b
+> 
+> ######################################
+> ## single response and two-part RHS ##
+> ######################################
+> 
+> ## single response with two-part RHS
+> F1 <- Formula(log(y1) ~ x1 + x2 | I(x1^2))
+> length(F1)
+[1] 1 2
+> 
+> ## set up model frame
+> mf1 <- model.frame(F1, data = dat)
+> mf1
+     log(y1)   x1   x2 I(x1^2)
+1 -0.1984509 0.09 0.22  0.0081
+2 -0.3566749 0.26 0.46  0.0676
+3 -0.4307829 0.03 0.37   9e-04
+> 
+> ## extract single response
+> model.part(F1, data = mf1, lhs = 1, drop = TRUE)
+         1          2          3 
+-0.1984509 -0.3566749 -0.4307829 
+> model.response(mf1)
+         1          2          3 
+-0.1984509 -0.3566749 -0.4307829 
+> ## model.response() works as usual
+> 
+> ## extract model matrices
+> model.matrix(F1, data = mf1, rhs = 1)
+  (Intercept)   x1   x2
+1           1 0.09 0.22
+2           1 0.26 0.46
+3           1 0.03 0.37
+attr(,"assign")
+[1] 0 1 2
+> model.matrix(F1, data = mf1, rhs = 2)
+  (Intercept) I(x1^2)
+1           1  0.0081
+2           1  0.0676
+3           1  0.0009
+attr(,"assign")
+[1] 0 1
+> 
+> #########################################
+> ## multiple responses and multiple RHS ##
+> #########################################
+> 
+> ## set up Formula
+> F2 <- Formula(y1 + y2 | log(y3) ~ x1 + I(x2^2) | 0 + log(x1) | x3 / x4)
+> length(F2)
+[1] 2 3
+> 
+> ## set up full model frame
+> mf2 <- model.frame(F2, data = dat)
+> mf2
+    y1 y2   log(y3)   x1 I(x2^2)   log(x1) x3 x4
+2 0.70  b -1.771957 0.26  0.2116 -1.347074  a  a
+3 0.65  a -1.272966 0.03  0.1369 -3.506558  b  b
+> 
+> ## extract responses
+> model.part(F2, data = mf2, lhs = 1)
+    y1 y2
+2 0.70  b
+3 0.65  a
+> model.part(F2, data = mf2, lhs = 2)
+    log(y3)
+2 -1.771957
+3 -1.272966
+> ## model.response(mf2) does not give correct results!
+> 
+> ## extract model matrices
+> model.matrix(F2, data = mf2, rhs = 1)
+  (Intercept)   x1 I(x2^2)
+2           1 0.26  0.2116
+3           1 0.03  0.1369
+attr(,"assign")
+[1] 0 1 2
+> model.matrix(F2, data = mf2, rhs = 2)
+    log(x1)
+2 -1.347074
+3 -3.506558
+attr(,"assign")
+[1] 1
+> model.matrix(F2, data = mf2, rhs = 3)
+  (Intercept) x3b x3a:x4b x3b:x4b
+2           1   0       0       0
+3           1   1       0       1
+attr(,"assign")
+[1] 0 1 2 2
+attr(,"contrasts")
+attr(,"contrasts")$x3
+[1] "contr.treatment"
+
+attr(,"contrasts")$x4
+[1] "contr.treatment"
+
+> 
+> #######################
+> ## Formulas with '.' ##
+> #######################
+> 
+> ## set up Formula with a single '.'
+> F3 <- Formula(y1 | y2 ~ .)
+> mf3 <- model.frame(F3, data = dat)
+> ## without y1 or y2
+> model.matrix(F3, data = mf3)
+  (Intercept)   y3   x1   x2 x3b x4b
+2           1 0.17 0.26 0.46   0   0
+3           1 0.28 0.03 0.37   1   1
+attr(,"assign")
+[1] 0 1 2 3 4 5
+attr(,"contrasts")
+attr(,"contrasts")$x3
+[1] "contr.treatment"
+
+attr(,"contrasts")$x4
+[1] "contr.treatment"
+
+> ## without y1 but with y2
+> model.matrix(F3, data = mf3, lhs = 1)
+  (Intercept) y2b   y3   x1   x2 x3b x4b
+2           1   1 0.17 0.26 0.46   0   0
+3           1   0 0.28 0.03 0.37   1   1
+attr(,"assign")
+[1] 0 1 2 3 4 5 6
+attr(,"contrasts")
+attr(,"contrasts")$y2
+[1] "contr.treatment"
+
+attr(,"contrasts")$x3
+[1] "contr.treatment"
+
+attr(,"contrasts")$x4
+[1] "contr.treatment"
+
+> ## without y2 but with y1
+> model.matrix(F3, data = mf3, lhs = 2)
+  (Intercept)   y1   y3   x1   x2 x3b x4b
+2           1 0.70 0.17 0.26 0.46   0   0
+3           1 0.65 0.28 0.03 0.37   1   1
+attr(,"assign")
+[1] 0 1 2 3 4 5 6
+attr(,"contrasts")
+attr(,"contrasts")$x3
+[1] "contr.treatment"
+
+attr(,"contrasts")$x4
+[1] "contr.treatment"
+
+> 
+> ## set up Formula with multiple '.'
+> F3 <- Formula(y1 | y2 | log(y3) ~ . - x3 - x4 | .)
+> ## process both '.' separately (default)
+> mf3 <- model.frame(F3, data = dat, dot = "separate")
+> ## only x1-x2
+> model.part(F3, data = mf3, rhs = 1)
+    x1   x2
+2 0.26 0.46
+3 0.03 0.37
+> ## all x1-x4
+> model.part(F3, data = mf3, rhs = 2)
+    x1   x2 x3 x4
+2 0.26 0.46  a  a
+3 0.03 0.37  b  b
+> 
+> ## process the '.' sequentially, i.e., the second RHS conditional on the first
+> mf3 <- model.frame(F3, data = dat, dot = "sequential")
+> ## only x1-x2
+> model.part(F3, data = mf3, rhs = 1)
+    x1   x2
+2 0.26 0.46
+3 0.03 0.37
+> ## only x3-x4
+> model.part(F3, data = mf3, rhs = 2)
+  x3 x4
+2  a  a
+3  b  b
+> 
+> ## process the second '.' using the previous RHS element
+> mf3 <- model.frame(F3, data = dat, dot = "previous")
+> ## only x1-x2
+> model.part(F3, data = mf3, rhs = 1)
+    x1   x2
+2 0.26 0.46
+3 0.03 0.37
+> ## x1-x2 again
+> model.part(F3, data = mf3, rhs = 2)
+    x1   x2
+2 0.26 0.46
+3 0.03 0.37
+> 
+> ##############################
+> ## Process multiple offsets ##
+> ##############################
+> 
+> ## set up Formula
+> F4 <- Formula(y1 ~ x3 + offset(x1) | x4 + offset(log(x2)))
+> mf4 <- model.frame(F4, data = dat)
+> ## model.part can be applied as above and includes offset!
+> model.part(F4, data = mf4, rhs = 1)
+  x3 offset(x1)
+1  b       0.09
+2  a       0.26
+3  b       0.03
+> ## additionally, the corresponding corresponding terms can be included
+> model.part(F4, data = mf4, rhs = 1, terms = TRUE)
+  x3 offset(x1)
+1  b       0.09
+2  a       0.26
+3  b       0.03
+> ## hence model.offset() can be applied to extract offsets
+> model.offset(model.part(F4, data = mf4, rhs = 1, terms = TRUE))
+[1] 0.09 0.26 0.03
+> model.offset(model.part(F4, data = mf4, rhs = 2, terms = TRUE))
+[1] -1.5141277 -0.7765288 -0.9942523
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.238 0.012 0.249 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

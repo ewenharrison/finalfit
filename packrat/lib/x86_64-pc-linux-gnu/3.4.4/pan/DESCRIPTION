@@ -1,0 +1,25 @@
+Package: pan
+Version: 1.6
+Date: 2018-06-29
+Title: Multiple Imputation for Multivariate Panel or Clustered Data
+Author: Original by Joseph L. Schafer
+Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
+Suggests: mitools, lme4
+LazyData: Yes
+LazyLoad: Yes
+Description: It provides functions and examples for maximum likelihood
+    estimation for generalized linear mixed models and Gibbs sampler
+    for multivariate linear mixed models with incomplete data, as
+    described in Schafer JL (1997) "Imputation of missing covariates
+    under a multivariate linear mixed model". Technical report 97-04,
+    Dept. of Statistics, The Pennsylvania State University.
+License: GPL-3
+NeedsCompilation: yes
+Packaged: 2018-06-29 10:01:17 UTC; jhz22
+License_restricts_use: no
+Repository: CRAN
+Date/Publication: 2018-06-29 14:12:56 UTC
+Built: R 3.4.4; x86_64-pc-linux-gnu; 2018-11-18 15:40:16 UTC; unix
+InstallAgent: packrat 0.4.9.14
+InstallSource: CRAN
+Hash: 7f3100dc1e9ee36561dcd376a096df81

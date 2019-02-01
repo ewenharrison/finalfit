@@ -1,0 +1,182 @@
+---
+title: "Introduction"
+output:
+  rmarkdown::html_vignette:
+    css: "css/vignette.css"
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEncoding{UTF-8}
+---
+
+---
+
+```{r setup, include=FALSE, cache=FALSE}
+library(knitr)
+set.seed(123)
+options(width=87)
+opts_chunk$set(background="#ffffff", comment="#", collapse=FALSE,
+               fig.width=9, fig.height=9, warning=FALSE,
+               message=FALSE)
+```
+
+This vignette is intended to provide a first introduction to the R package `mitml` for generating and analyzing multiple imputations for multilevel missing data.
+A usual application of the package may consist of the following steps.
+
+1. Imputation
+2. Assessment of convergence
+3. Completion of the data
+4. Analysis
+5. Pooling
+
+The `mitml` package offers a set of tools to facilitate each of these steps.
+This vignette is intended as a step-by-step illustration of the basic features of `mitml`.
+Further information can be found in the other [vignettes](https://github.com/simongrund1/mitml/wiki) and the package [documentation](https://cran.r-project.org/package=mitml/mitml.pdf).
+
+## Example data
+
+For the purposes of this vignette, we employ a simple example that makes use of the `studentratings` data set, which is provided with `mitml`.
+To use it, the `mitml` package and the data set must be loaded as follows.
+
+```{r}
+library(mitml)
+data(studentratings)
+```
+
+More information about the variables in the data set can be obtained from its `summary`.
+
+```{r}
+summary(studentratings)
+```
+
+In addition, the correlations between variables (based on pairwise observations) may be useful for identifying possible sources of information that may be used during the treatment of missing data.
+
+```{r, echo=FALSE}
+round(cor(studentratings[,-(1:3)], use="pairwise"),3)
+```
+
+This illustrates that (a) most variables in the data set are affected by missing data, but also (b) that substantial relations exist between variables.
+For simplicity, we focus on only a subset of these variables.
+
+## Model of interest
+
+For the present example, we focus on the two variables `ReadDis` (disciplinary problems in reading class) and `ReadAchiev` (reading achievement).
+
+Assume we are interested in the relation between these variables.
+Specifically, we may be interested in the following analysis model
+
+$$
+\mathit{ReadAchiev}_{ij} = \gamma_{00} + \gamma_{10} \mathit{ReadDis}_{ij} + u_{0j} + e_{ij}
+$$
+
+On the basis of the syntax used in the R package `lme4`, this model may be written as follows.
+
+```{r, results="hide"}
+ReadAchiev ~ 1 + ReadDis + (1|ID)
+```
+
+In this model, the relation between `ReadDis` and `ReadAchiev` is represented by a single fixed effect of `ReadDis`, and a random intercept is included to account for the clustered structure of the data and the group-level variance in `ReadAchiev` that is not explained by `ReadDis`.
+
+## Generating imputations
+
+The `mitml` package includes wrapper functions for the R packages `pan` (`panImpute`) and `jomo` (`jomoImpute`).
+Here, we will use the first option.
+To generate imputations with `panImpute`, the user must specify (at least):
+
+1. an imputation model
+2. the number of iterations and imputations
+
+The easiest way of specifying the imputation model is to use the `formula` argument of `panImpute`.
+Generally speaking, the imputation model should include all variables that are either (a) part of the model of interest, (b) related to the variables in the model, or (c) related to whether the variables in the model are missing.
+
+In this simple example, we include only `ReadDis` and `ReadAchiev` as the main target variables and `SchClimate` as an auxiliary variable.
+
+```{r}
+fml <- ReadAchiev + ReadDis + SchClimate ~ 1 + (1|ID)
+```
+
+Note that, in this specification of the imputation model. all variables are included on the left-hand side of the model, whereas the right-hand side is left "empty".
+This model allows for all relations between variables at Level 1 and 2 and is thus suitable for most applications of the multilevel random intercept model (for further discussion, see also Grund, Lüdtke, & Robitzsch, 2016, in press).
+
+The imputation procedure is then run for 5,000 iterations (burn-in), after which 100 imputations are drawn every 100 iterations.
+
+```{r, results="hide"}
+imp <- panImpute(studentratings, formula=fml, n.burn=5000, n.iter=100, m=100)
+```
+
+This step may take a few seconds.
+Once the process is completed, the imputations are saved in the `imp` object.
+
+## Assessing convergence
+
+In `mitml`, there are two options for assessing the convergence of the imputation procedure.
+First, the `summary` calculates the "potential scale reduction factor" ($\hat{R}$) for each parameter in the imputation model.
+If this value is noticeably larger than 1 for some parameters (say $>1.05$), a longer burn-in period may be required.
+
+```{r}
+summary(imp)
+```
+
+Second, diagnostic plots can be requested with the `plot` function.
+These plots consist of a trace plot, an autocorrelation plot, and some additional information about the posterior distribution.
+Convergence can be assumed if the trace plot is stationary (i.e., does not "drift"), and the autocorrelation is within reasonable bounds for the chosen number of iterations between imputations.
+
+For this example, we examine only the plot for the parameter `Beta[1,2]` (i.e., the intercept of `ReadDis`).
+
+```{r conv, echo=FALSE}
+plot(imp, trace="all", print="beta", pos=c(1,2), export="png", dev.args=list(width=720, height=380, pointsize=16))
+```
+```{r, eval=FALSE}
+plot(imp, trace="all", print="beta", pos=c(1,2))
+```
+
+![](mitmlPlots/BETA_ReadDis_ON_Intercept.png)
+
+Taken together, both $\hat{R}$ and the diagnostic plots indicate that the imputation model converged, setting the basis for the analysis of the imputed data sets.
+
+## Completing the data
+
+In order to work with and analyze the imputed data sets, the data sets must be completed with the imputations generated in the previous steps.
+To do so, `mitml` provides the function `mitmlComplete`.
+
+```{r}
+implist <- mitmlComplete(imp, "all")
+```
+
+This resulting object is a list that contains the 100 completed data sets.
+
+
+## Analysis and pooling
+
+In order to obtain estimates for the model of interest, the model must be fit separately to each of the completed data sets, and the results must be pooled into a final set of estimates and inferences.
+The `mitml` package offers the `with` function to fit various statistical models to a list of completed data sets.
+
+In this example, we use the `lmer` function from the R package `lme4` to fit the model of interest.
+
+```{r, message=FALSE}
+library(lme4)
+fit <- with(implist, lmer(ReadAchiev ~ 1 + ReadDis + (1|ID)))
+```
+
+The resulting object is a list containing the 100 fitted models.
+To pool the results of these models into a set of final estimates and inferences, `mitml` offers the `testEstimates` function.
+
+```{r}
+testEstimates(fit, var.comp=TRUE)
+```
+
+The estimates can be interpreted in a manner similar to the estimates from the corresponding complete-data procedure.
+In addition, the output includes diagnostic quantities such as the fraction of missing information (FMI), which can be helpful for interpreting the results and understanding problems with the imputation procedure.
+
+###### References
+
+Grund, S., Lüdtke, O., & Robitzsch, A. (2016). Multiple imputation of multilevel missing data: An introduction to the R package pan. *SAGE Open*, *6*(4), 1–17. doi: 10.1177/2158244016668220 ([Link](https://doi.org/10.1177/2158244016668220))
+
+Grund, S., Lüdtke, O., & Robitzsch, A. (in press). Multiple imputation of missing data for multilevel models: Simulations and recommendations. *Organizational Research Methods*. doi: 10.1177/1094428117703686 ([Link](https://doi.org/10.1177/1094428117703686))
+
+---
+
+```{r, echo=F}
+cat("Author: Simon Grund (grund@ipn.uni-kiel.de)\nDate:  ", as.character(Sys.Date()))
+```
+

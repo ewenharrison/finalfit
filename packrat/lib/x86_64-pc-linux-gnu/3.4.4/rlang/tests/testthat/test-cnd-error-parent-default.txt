@@ -1,0 +1,16 @@
+<error>
+message: High-level message
+class:   `rlang_error`
+backtrace:
+ ─rlang::catch_cnd(a())
+ ─rlang:::a()
+ ─rlang:::b()
+ ─rlang:::c()
+<error: parent>
+message: Low-level message
+class:   `rlang_error`
+backtrace:
+ ─rlang:::f()
+ ─rlang:::g()
+ ─rlang:::h()
+Call `summary(rlang::last_error())` to see the full backtrace

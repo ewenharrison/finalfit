@@ -1,0 +1,30 @@
+Package: survMisc
+Type: Package
+Version: 0.5.5
+Date: 2018-07-03
+Depends: survival
+Imports: graphics, grDevices, stats, utils, knitr, KMsurv, ggplot2,
+    data.table, zoo, grid, gridExtra, km.ci, xtable
+Author: Chris Dardis
+Maintainer: Chris Dardis <christopherdardis@gmail.com>
+License: GPL-2
+Title: Miscellaneous Functions for Survival Data
+Description: A collection of functions to help in the analysis of
+    right-censored survival data. These extend the methods available in
+    package:survival.
+BugReports: https://github.com/dardisco/survMisc/issues
+LazyData: true
+VignetteBuilder: knitr
+Collate: 'ten.R' 'nc.R' 'sf.R' 'ci.R' 'autoplotTAP.R' 'autoplotTen.R'
+    'print.R' 'asWide.R' 'COV.R' 'predict.R' 'comp.R' 'cutp.R'
+    'gastric.R' 'gof.R' 'onAttach.R' 'profLik.R' 'rsq.R'
+    'survMisc_package.R' 'xtable.R'
+NeedsCompilation: no
+RoxygenNote: 6.0.1
+Packaged: 2018-07-04 04:09:30 UTC; d
+Repository: CRAN
+Date/Publication: 2018-07-05 04:30:03 UTC
+Built: R 3.4.4; ; 2018-11-18 15:49:01 UTC; unix
+InstallAgent: packrat 0.4.9.14
+InstallSource: CRAN
+Hash: 98fb8ea6e0b7f3de10d09c0add6f70dd

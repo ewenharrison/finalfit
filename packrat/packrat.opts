@@ -1,13 +1,14 @@
-auto.snapshot: FALSE
+auto.snapshot: TRUE
 use.cache: FALSE
 print.banner.on.startup: auto
-vcs.ignore.lib: TRUE
+vcs.ignore.lib: FALSE
 vcs.ignore.src: FALSE
 external.packages:
     roxygen2
     pkgdown
     magick
     finalfit
+    survey
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 

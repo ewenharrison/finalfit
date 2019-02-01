@@ -1,0 +1,56 @@
+Type: Package
+Package: htmldeps
+Version: 0.1.1
+Title: Provides HTML Dependencies for Several Packages
+Description: This package provides several `html_dependency_...()`
+    functions to support the following shiny, rmarkdown, flexdashboard,
+    htmlwidgets, and leaflet packages.
+Authors@R: c( person("Richard", "Iannone", , "rich@rstudio.com",
+    c("aut", "cre"), comment = c(ORCID = "0000-0003-3925-190X")),
+    person("RStudio, Inc.", role = c("cph", "fnd")), person(family =
+    "jQuery Foundation", role = "cph", comment = "jQuery library"),
+    person(family = "jQuery contributors", role = c("ctb", "cph"),
+    comment = "jQuery library; authors listed in
+    inst/rmd/h/jquery-AUTHORS.txt"), person(family = "jQuery UI
+    contributors", role = c("ctb", "cph"), comment = "jQuery UI
+    library; authors listed in inst/rmd/h/jqueryui-AUTHORS.txt"),
+    person("Mark", "Otto", role = "ctb", comment = "Bootstrap
+    library"), person("Jacob", "Thornton", role = "ctb", comment =
+    "Bootstrap library"), person(family = "Bootstrap contributors",
+    role = "ctb", comment = "Bootstrap library"), person(family =
+    "Twitter, Inc", role = "cph", comment = "Bootstrap library"),
+    person("Alexander", "Farkas", role = c("ctb", "cph"), comment =
+    "html5shiv library"), person("Scott", "Jehl", role = c("ctb",
+    "cph"), comment = "respond.js library"), person("Greg", "Franko",
+    role = c("ctb", "cph"), comment = "tocify library"), person("Dave",
+    "Gandy", role = c("ctb", "cph"), comment = "Font-Awesome"),
+    person("Ben", "Sperry", role = "ctb", comment = "Ionicons"),
+    person(family = "Drifty", role = "cph", comment = "Ionicons") )
+License: MIT + file LICENSE
+URL: https://github.com/rstudio/htmldeps
+BugReports: https://github.com/rstudio/htmldeps/issues
+Encoding: UTF-8
+LazyData: true
+Imports: htmltools (>= 0.3.6)
+RoxygenNote: 6.0.1
+GithubRepo: htmldeps
+GithubUsername: rstudio
+GithubRef: master
+GithubSHA1: c1023e09e2ec457dea0ba96e4c7711574be80591
+Author: Richard Iannone [aut, cre] (0000-0003-3925-190X), RStudio, Inc.
+    [cph, fnd], jQuery Foundation [cph] (jQuery library), jQuery
+    contributors [ctb, cph] (jQuery library; authors listed in
+    inst/rmd/h/jquery-AUTHORS.txt), jQuery UI contributors [ctb, cph]
+    (jQuery UI library; authors listed in
+    inst/rmd/h/jqueryui-AUTHORS.txt), Mark Otto [ctb] (Bootstrap
+    library), Jacob Thornton [ctb] (Bootstrap library), Bootstrap
+    contributors [ctb] (Bootstrap library), Twitter, Inc [cph]
+    (Bootstrap library), Alexander Farkas [ctb, cph] (html5shiv
+    library), Scott Jehl [ctb, cph] (respond.js library), Greg Franko
+    [ctb, cph] (tocify library), Dave Gandy [ctb, cph] (Font-Awesome),
+    Ben Sperry [ctb] (Ionicons), Drifty [cph] (Ionicons)
+Maintainer: Richard Iannone <rich@rstudio.com>
+Built: R 3.4.4; ; 2018-12-04 17:03:51 UTC; unix
+InstallAgent: packrat 0.4.9.14
+InstallSource: github
+Hash: 14f19541b94f18ee9f7e7ee32ecd225a

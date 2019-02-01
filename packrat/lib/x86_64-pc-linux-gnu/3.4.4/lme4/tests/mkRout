@@ -1,0 +1,1 @@
+R CMD BATCH --vanilla $1.R; mv $1.Rout $1.Rout.save

@@ -1,0 +1,4 @@
+<lgl>
+TRUE 
+FALSE
+NA   

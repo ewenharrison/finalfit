@@ -1,0 +1,17 @@
+   [1mchars[22m          [1mdesc[22m              
+   [3m[90m<chr>[39m[23m          [3m[90m<chr>[39m[23m             
+[90m 1[39m [90m"[39m\u0001\u001f[90m"[39m C0 control code   
+[90m 2[39m [90m"[39m\a\b\f\n\r\t[90m"[39m Named control code
+[90m 3[39m abcdefuvwxyz   ASCII             
+[90m 4[39m [90m"[39m\u0080\u009f[90m"[39m C1 control code   
+[90m 5[39m  ¡¢£¤¥úûüýþÿ   Latin-1           
+[90m 6[39m ĀāĂăĄąĆćĈĉĊċ   Unicode           
+[90m 7[39m ！＂＃＄％＆   Unicode wide      
+[90m 8[39m [90m"[39m\u0e00\u2029[90m"[39m Unicode control   
+[90m 9[39m x­x​x‌x‍x‎x‏x͏x﻿x󠀁x󠀠x󠇯x   Unicode ignorable 
+[90m10[39m àáâãāa̅ăȧäảåa̋   Unicode mark      
+[90m11[39m 😀😁😂😃😄💃   Emoji             
+[90m12[39m [90m"[39mx\U0010ffffx[90m"[39m Unassigned        
+[90m13[39m [90m"[39m\xfd\xfe\xff[90m"[39m Invalid           
+[90m14[39m [90m"[39m\\[90m"[39m           Backslash         
+[90m15[39m [90m"[39m\"[90m"[39m           Quote             

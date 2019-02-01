@@ -1,0 +1,79 @@
+
+R version 3.4.4 (2018-03-15) -- "Someone to Lean On"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library("zoo")
+
+Attaching package: 'zoo'
+
+The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+> 
+> target <- c(100, 1, 200, 2, 300)
+> current <- na.fill0(c(NA, 1, NA, 2, NA), c(100, 200, 300))
+> identical(target, current)
+[1] TRUE
+> 
+> target <- structure(c(100, 1, 200, 2), na.action = 5L)
+> current <- na.fill0(c(NA, 1, NA, 2, NA), list(100, 200, NULL))
+> identical(target, current)
+[1] TRUE
+> 
+> target <- structure(c(1, 1, 200, 2), na.action = 5L)
+> current <- na.fill0(c(NA, 1, NA, 2, NA), list("extend", 200, NULL))
+> identical(target, current)
+[1] TRUE
+> 
+> target <- c(1, 1, 200, 2, 2)
+> current <- na.fill0(c(NA, 1, NA, 2, NA), list("extend", 200, "extend"))
+> identical(target, current)
+[1] TRUE
+> 
+> target <- structure(c(1, 2), na.action = c(1L, 3L, 5L))
+> current <- na.fill0(c(NA, 1, NA, 2, NA), list())
+> identical(target, current)
+[1] TRUE
+> 
+> target <- NULL
+> current <- na.fill0(NULL, list(1))
+> identical(target, current)
+[1] TRUE
+> 
+> target <- 1
+> current <- na.fill0(1, list(1))
+> identical(target, current)
+[1] TRUE
+> 
+> target <- 1
+> current <- na.fill0(1, 2)
+> identical(target, current)
+[1] TRUE
+> 
+> target <- structure(c(17650, 17650, 0, 17651, 17651), class = "Date")
+> current <- na.fill0(as.Date("2018-04-28") + c(NA, 1, NA, 2, NA), list("extend", as.Date(0)))
+> identical(target, current)
+[1] TRUE
+> 
+> target <- structure(c(0, 17650, 0, 17651, 0), class = "Date")
+> current <- na.fill0(as.Date("2018-04-28") + c(NA, 1, NA, 2, NA), as.Date(0))
+> identical(target, current)
+[1] TRUE
+> 
+> proc.time()
+   user  system elapsed 
+  0.199   0.036   0.224 

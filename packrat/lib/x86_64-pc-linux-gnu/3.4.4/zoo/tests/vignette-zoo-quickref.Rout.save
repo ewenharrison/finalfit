@@ -1,0 +1,440 @@
+
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ###################################################
+> ### chunk number 1: preliminaries
+> ###################################################
+> library("zoo")
+
+Attaching package: 'zoo'
+
+The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+> library("tseries")
+> online <- FALSE ## if set to FALSE the local copy of
+>                 ## is used instead of get.hist.quote()
+> options(prompt = "R> ")
+R> Sys.setenv(TZ = "GMT")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 2: read.zoo
+R> ###################################################
+R> inrusd <- read.zoo(system.file("doc", "demo1.txt", package = "zoo"), sep = "|", format="%d %b %Y")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 3: read.table
+R> ###################################################
+R> tmp <- read.table(system.file("doc", "demo2.txt", package = "zoo"), sep = ",")
+R> z <- zoo(tmp[, 3:4], as.Date(as.character(tmp[, 2]), format="%d %b %Y"))
+R> colnames(z) <- c("Nifty", "Junior")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 4: extract dates
+R> ###################################################
+R> time(z)
+ [1] "2005-02-10" "2005-02-11" "2005-02-14" "2005-02-15" "2005-02-17"
+ [6] "2005-02-18" "2005-02-21" "2005-02-22" "2005-02-23" "2005-02-24"
+[11] "2005-02-25" "2005-02-28" "2005-03-01" "2005-03-02" "2005-03-03"
+[16] "2005-03-04" "2005-03-07" "2005-03-08" "2005-03-09" "2005-03-10"
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 5: start and end
+R> ###################################################
+R> start(z)
+[1] "2005-02-10"
+R> end(inrusd)
+[1] "2005-03-10"
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 6: convert to plain matrix
+R> ###################################################
+R> plain <- coredata(z)
+R> str(plain)
+ num [1:20, 1:2] 2063 2082 2098 2090 2062 ...
+ - attr(*, "dimnames")=List of 2
+  ..$ : NULL
+  ..$ : chr [1:2] "Nifty" "Junior"
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 7: intersection
+R> ###################################################
+R> m <- merge(inrusd, z, all = FALSE)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 8: union
+R> ###################################################
+R> m <- merge(inrusd, z)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 9: merge with lag
+R> ###################################################
+R> merge(inrusd, lag(inrusd, -1))
+           inrusd lag(inrusd, -1)
+2005-02-10  43.78              NA
+2005-02-11  43.79           43.78
+2005-02-14  43.72           43.79
+2005-02-15  43.76           43.72
+2005-02-16  43.82           43.76
+2005-02-17  43.74           43.82
+2005-02-18  43.84           43.74
+2005-02-21  43.82           43.84
+2005-02-22  43.72           43.82
+2005-02-23  43.72           43.72
+2005-02-24  43.70           43.72
+2005-02-25  43.69           43.70
+2005-02-28  43.64           43.69
+2005-03-01  43.72           43.64
+2005-03-02  43.70           43.72
+2005-03-03  43.65           43.70
+2005-03-04  43.71           43.65
+2005-03-07  43.69           43.71
+2005-03-09  43.67           43.69
+2005-03-10  43.58           43.67
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 10: plotting1
+R> ###################################################
+R> plot(m)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 11: plotting2
+R> ###################################################
+R> plot(m[, 2:3], plot.type = "single", col = c("red", "blue"), lwd = 2)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 12: select range of dates
+R> ###################################################
+R> window(z, start = as.Date("2005-02-15"), end = as.Date("2005-02-28"))
+             Nifty  Junior
+2005-02-15 2089.95 4367.25
+2005-02-17 2061.90 4320.15
+2005-02-18 2055.55 4318.15
+2005-02-21 2043.20 4262.25
+2005-02-22 2058.40 4326.10
+2005-02-23 2057.10 4346.00
+2005-02-24 2055.30 4337.00
+2005-02-25 2060.90 4305.75
+2005-02-28 2103.25 4388.20
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 13: select one date
+R> ###################################################
+R> m[as.Date("2005-03-10")]
+           inrusd  Nifty  Junior
+2005-03-10  43.58 2167.4 4648.05
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 14: impute NAs by interpolation
+R> ###################################################
+R> interpolated <- na.approx(m)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 15: impute NAs by LOCF
+R> ###################################################
+R> m <- na.locf(m)
+R> m
+           inrusd   Nifty  Junior
+2005-02-10  43.78 2063.35 4379.20
+2005-02-11  43.79 2082.05 4382.90
+2005-02-14  43.72 2098.25 4391.15
+2005-02-15  43.76 2089.95 4367.25
+2005-02-16  43.82 2089.95 4367.25
+2005-02-17  43.74 2061.90 4320.15
+2005-02-18  43.84 2055.55 4318.15
+2005-02-21  43.82 2043.20 4262.25
+2005-02-22  43.72 2058.40 4326.10
+2005-02-23  43.72 2057.10 4346.00
+2005-02-24  43.70 2055.30 4337.00
+2005-02-25  43.69 2060.90 4305.75
+2005-02-28  43.64 2103.25 4388.20
+2005-03-01  43.72 2084.40 4382.25
+2005-03-02  43.70 2093.25 4470.00
+2005-03-03  43.65 2128.85 4515.80
+2005-03-04  43.71 2148.15 4549.55
+2005-03-07  43.69 2160.10 4618.05
+2005-03-08  43.69 2168.95 4666.70
+2005-03-09  43.67 2160.80 4623.85
+2005-03-10  43.58 2167.40 4648.05
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 16: compute returns
+R> ###################################################
+R> prices2returns <- function(x) 100*diff(log(x))
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 17: column-wise returns
+R> ###################################################
+R> r <- prices2returns(m)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 18: rolling standard deviations
+R> ###################################################
+R> rollapply(r, 10, sd)
+               inrusd     Nifty    Junior
+2005-02-17 0.14599121 0.6993355 0.7878843
+2005-02-18 0.14527421 0.6300543 0.8083622
+2005-02-21 0.14115862 0.8949318 1.0412806
+2005-02-22 0.15166883 0.9345299 1.0256508
+2005-02-23 0.14285470 0.9454103 1.1957959
+2005-02-24 0.13607992 0.9453855 1.1210963
+2005-02-25 0.11962991 0.9334899 1.1105966
+2005-02-28 0.11963193 0.8585071 0.9388661
+2005-03-01 0.09716262 0.8569891 0.9131822
+2005-03-02 0.09787943 0.8860388 1.0566389
+2005-03-03 0.11568119 0.8659890 1.0176645
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 19: last day of month
+R> ###################################################
+R> prices2returns(aggregate(m, as.yearmon, tail, 1))
+             inrusd    Nifty   Junior
+Mar 2005 -0.1375831 3.004453 5.752866
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 20: last day of week
+R> ###################################################
+R> nextfri <- function(x) 7 * ceiling(as.numeric(x-5+4) / 7) + as.Date(5-4)
+R> prices2returns(aggregate(na.locf(m), nextfri, tail, 1))
+                inrusd      Nifty     Junior
+2005-02-18  0.11411618 -1.2809533 -1.4883536
+2005-02-25 -0.34273997  0.2599329 -0.2875731
+2005-03-04  0.04576659  4.1464226  5.5076988
+2005-03-11 -0.29785794  0.8921286  2.1419450
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 21: four second mark
+R> ###################################################
+R> zsec <- structure(1:10, index = structure(c(1234760403.968, 1234760403.969, 
++ 1234760403.969, 1234760405.029, 1234760405.029, 1234760405.03, 
++ 1234760405.03, 1234760405.072, 1234760405.073, 1234760405.073
++ ), class = c("POSIXt", "POSIXct"), tzone = ""), class = "zoo")
+R> 
+R> to4sec <- function(x) as.POSIXct(4*ceiling(as.numeric(x)/4), origin = "1970-01-01")
+R> aggregate(zsec, to4sec, tail, 1)
+2009-02-16 05:00:04 2009-02-16 05:00:08 
+                  3                  10 
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 22: one second grid
+R> ###################################################
+R> # tmp is zsec with time discretized into one second bins
+R> tmp <- zsec
+R> st <- start(tmp)
+R> Epoch <- st - as.numeric(st)
+R> time(tmp) <- as.integer(time(tmp) + 1e-7) + Epoch
+R> 
+R> # find index of last value in each one second interval
+R> ix <- !duplicated(time(tmp), fromLast = TRUE)
+R> 
+R> # merge with grid 
+R> merge(tmp[ix], zoo(, seq(start(tmp), end(tmp), "sec")))
+2009-02-16 05:00:03 2009-02-16 05:00:04 2009-02-16 05:00:05 
+                  3                  NA                  10 
+R> 
+R> # Here is a function which generalizes the above:
+R> 
+R> intraday.discretise <- function(b, Nsec) {
++  st <- start(b)
++  time(b) <- Nsec * as.integer(time(b)+1e-7) %/% Nsec + st -
++  as.numeric(st)
++  ix <- !duplicated(time(b), fromLast = TRUE)
++  merge(b[ix], zoo(, seq(start(b), end(b), paste(Nsec, "sec"))))
++ }
+R> 
+R> intraday.discretise(zsec, 1)
+2009-02-16 05:00:03 2009-02-16 05:00:04 2009-02-16 05:00:05 
+                  3                  NA                  10 
+R> 
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 23: tseries
+R> ###################################################
+R> library("tseries")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 24: data handling if offline
+R> ###################################################
+R> if(online) {
++   sunw <- get.hist.quote(instrument = "SUNW", start = "2004-01-01", end = "2004-12-31")
++   sunw2 <- get.hist.quote(instrument = "SUNW", start = "2004-01-01", end = "2004-12-31",
++     compression = "m", quote = "Close")
++   eur.usd <- get.hist.quote(instrument = "EUR/USD", provider = "oanda", start = "2004-01-01", end = "2004-12-31")
++   save(sunw, sunw2, eur.usd, file = "sunw.rda")
++ } else {
++   load(system.file("doc", "sunw.rda", package = "zoo"))
++ }
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 25: get.hist.quote daily series eval=FALSE
+R> ###################################################
+R> ## sunw <- get.hist.quote(instrument = "SUNW", start = "2004-01-01", end = "2004-12-31")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 26: get.hist.quote monthly series eval=FALSE
+R> ###################################################
+R> ## sunw2 <- get.hist.quote(instrument = "SUNW", start = "2004-01-01", end = "2004-12-31",
+R> ##   compression = "m", quote = "Close")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 27: change index to yearmon
+R> ###################################################
+R> time(sunw2) <- as.yearmon(time(sunw2))
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 28: compute same series via aggregate
+R> ###################################################
+R> sunw3 <- aggregate(sunw[, "Close"], as.yearmon, tail, 1)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 29: compute returns
+R> ###################################################
+R> r <- prices2returns(sunw3)
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 30: get.hist.quote oanda eval=FALSE
+R> ###################################################
+R> ## eur.usd <- get.hist.quote(instrument = "EUR/USD", provider = "oanda", start = "2004-01-01", end = "2004-12-31")
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 31: is.weekend convenience function
+R> ###################################################
+R> is.weekend <- function(x) ((as.numeric(x)-2) %% 7) < 2
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 32: omit weekends
+R> ###################################################
+R> eur.usd <- eur.usd[!is.weekend(time(eur.usd))]
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 33: is.weekend based on POSIXlt
+R> ###################################################
+R> is.weekend <- function(x) {
++   x <- as.POSIXlt(x)
++   x$wday > 5 | x$wday < 1
++ }
+R> 
+R> 
+R> ###################################################
+R> ### chunk number 34: summaries
+R> ###################################################
+R> date1 <- seq(as.Date("2001-01-01"), as.Date("2002-12-1"), by = "day")
+R> len1 <- length(date1)
+R> set.seed(1) # to make it reproducible
+R> data1 <- zoo(rnorm(len1), date1)
+R> 
+R> # quarterly summary
+R> 
+R> data1q.mean <- aggregate(data1, as.yearqtr, mean)
+R> data1q.sd <- aggregate(data1, as.yearqtr, sd)
+R> head(cbind(mean = data1q.mean, sd = data1q.sd), main = "Quarterly")
+                mean        sd
+2001 Q1  0.108503596 0.8861821
+2001 Q2 -0.006836172 0.9800027
+2001 Q3 -0.042260559 0.9954100
+2001 Q4  0.096188411 1.0336234
+2002 Q1 -0.092684201 1.0337850
+2002 Q2  0.049217429 1.0860119
+R> 
+R> # weekly summary - week ends on tuesday
+R> 
+R> # Given a date find the next Tuesday.
+R> # Based on formula in Prices and Returns section.
+R> nexttue <- function(x) 7 * ceiling(as.numeric(x - 2 + 4)/7) + as.Date(2 - 4)
+R> 
+R> data1w <- cbind(
++        mean = aggregate(data1, nexttue, mean),
++        sd = aggregate(data1, nexttue, sd)
++ )
+R> head(data1w)
+                  mean        sd
+2001-01-02 -0.22140524 0.5728252
+2001-01-09  0.29574667 0.8686111
+2001-01-16 -0.02281531 1.2305420
+2001-01-23  0.58834959 0.3993624
+2001-01-30 -0.44463015 0.9619139
+2001-02-06 -0.08522653 0.8349544
+R> 
+R> ### ALTERNATIVE ###
+R> 
+R> # Create function ag like aggregate but takes vector of
+R> # function names.
+R> 
+R> FUNs <- c(mean, sd)
+R> ag <- function(z, by, FUNs) {
++        f <- function(f) aggregate(z, by, f)
++        do.call(cbind, sapply(FUNs, f, simplify = FALSE))
++ }
+R> 
+R> data1q <- ag(data1, as.yearqtr, c("mean", "sd"))
+R> data1w <- ag(data1, nexttue, c("mean", "sd"))
+R> 
+R> head(data1q)
+                mean        sd
+2001 Q1  0.108503596 0.8861821
+2001 Q2 -0.006836172 0.9800027
+2001 Q3 -0.042260559 0.9954100
+2001 Q4  0.096188411 1.0336234
+2002 Q1 -0.092684201 1.0337850
+2002 Q2  0.049217429 1.0860119
+R> head(data1w)
+                  mean        sd
+2001-01-02 -0.22140524 0.5728252
+2001-01-09  0.29574667 0.8686111
+2001-01-16 -0.02281531 1.2305420
+2001-01-23  0.58834959 0.3993624
+2001-01-30 -0.44463015 0.9619139
+2001-02-06 -0.08522653 0.8349544
+R> 
+R> 
+R> 
+> proc.time()
+   user  system elapsed 
+  1.140   0.060   1.195 

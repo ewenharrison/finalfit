@@ -1,0 +1,5 @@
+  column_zero_one col_02
+            <dbl> <chr> 
+1            1.23 a     
+2            2.23 b     
+3            3.23 c     

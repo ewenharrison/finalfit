@@ -1,0 +1,15 @@
+      a     b c    
+  <dbl> <int> <lgl>
+1   1       1 TRUE 
+2   2.5     2 FALSE
+3  NA      NA NA   
+  d     e    
+  <chr> <fct>
+1 a     a    
+2 b     b    
+3 <NA>  <NA> 
+  f         
+  <date>    
+1 2015-12-10
+2 2015-12-11
+3 NA        

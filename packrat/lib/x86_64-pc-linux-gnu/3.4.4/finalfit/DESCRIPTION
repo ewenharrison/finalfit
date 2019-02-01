@@ -1,0 +1,28 @@
+Package: finalfit
+Type: Package
+Title: Quickly Create Elegant Regression Results Tables and Plots when
+        Modelling
+Version: 0.9.0
+Authors@R: c(
+  person(given = "Ewen", family = "Harrison", role = c("aut", "cre"), email = "ewen.harrison@ed.ac.uk"),
+  person(given = "Tom", family = "Drake", role = c("aut")),
+  person(given = "Riinu", family = "Ots", role = c("aut")))
+Maintainer: Ewen Harrison <ewen.harrison@ed.ac.uk>
+Description: Generate regression results tables and plots in final 
+    format for publication. Explore models and export directly to PDF 
+    and 'Word' using 'RMarkdown'. 
+License: MIT + file LICENCE
+Encoding: UTF-8
+LazyData: true
+BugReports: https://github.com/ewenharrison/finalfit/issues
+URL: https://github.com/ewenharrison/finalfit
+Imports: boot, broom, dplyr, forcats, GGally, ggplot2, grid, gridExtra,
+        Hmisc, lme4, magrittr, mice, pillar, plyr, pROC, purrr, scales,
+        stats, stringr, survival, survminer, tidyr
+RoxygenNote: 6.1.0
+Suggests: knitr, rlang, rmarkdown, covr, testthat
+VignetteBuilder: knitr
+Author: Ewen Harrison [aut, cre],
+  Tom Drake [aut],
+  Riinu Ots [aut]
+Built: R 3.4.4; ; 2019-02-01 19:44:23 UTC; unix

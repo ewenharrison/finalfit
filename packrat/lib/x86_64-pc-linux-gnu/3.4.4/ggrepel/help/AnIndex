@@ -1,0 +1,6 @@
+ggrepel-package	ggrepel
+GeomLabelRepel	ggplot2-ggproto
+GeomTextRepel	ggplot2-ggproto
+geom_label_repel	geom_text_repel
+geom_text_repel	geom_text_repel
+ggrepel	ggrepel

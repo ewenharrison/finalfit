@@ -1,0 +1,10 @@
+      a     b c     d     e     f          g                  
+  <dbl> <int> <lgl> <chr> <fct> <date>     <dttm>             
+1   1       1 TRUE  a     a     2015-12-10 2015-12-09 10:51:35
+2   2.5     2 FALSE b     b     2015-12-11 2015-12-09 10:51:36
+3  NA      NA NA    <NA>  <NA>  NA         NA                 
+  h         i         
+  <list>    <list>    
+1 <int [1]> <list [2]>
+2 <int [1]> <list [1]>
+3 <int [1]> <list [1]>

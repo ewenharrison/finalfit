@@ -1,0 +1,91 @@
+
+R Under development (unstable) (2013-12-06 r64406) -- "Unsuffered Consequences"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: i686-pc-linux-gnu (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(lme4)
+Loading required package: Matrix
+> 
+> allEQ <- function(x,y, tolerance = 4e-4, ...)
++     all.equal.numeric(x,y, tolerance=tolerance, ...)
+> 
+> (nm1 <- nlmer(circumference ~ SSlogis(age, Asym, xmid, scal) ~ (Asym|Tree),
++               Orange, start = c(Asym = 200, xmid = 725, scal = 350)))
+Nonlinear mixed model fit by maximum likelihood ['nlmerMod']
+Formula: circumference ~ SSlogis(age, Asym, xmid, scal) ~ (Asym | Tree) 
+   Data: Orange 
+      AIC       BIC    logLik  deviance  df.resid 
+ 273.1438  280.9205 -131.5719  263.1438        30 
+Random effects:
+ Groups   Name Std.Dev.
+ Tree     Asym 31.646  
+ Residual       7.843  
+Number of obs: 35, groups: Tree, 5
+Fixed Effects:
+ Asym   xmid   scal  
+192.1  727.9  348.1  
+> fixef(nm1)
+    Asym     xmid     scal 
+192.0528 727.9045 348.0721 
+> 
+> if (lme4:::testLevel() > 2) {
++     ## 'Theoph' Data modeling
++     Th.start <- c(lKe = -2.5, lKa = 0.5, lCl = -3)
++ 
++ system.time(nm2 <- nlmer(conc ~ SSfol(Dose, Time,lKe, lKa, lCl) ~
++                          (lKe+lKa+lCl|Subject),
++                          Theoph, start = Th.start, tolPwrss=1e-8))
++ print(nm2, corr=FALSE)
++ 
++ system.time(nm3 <- nlmer(conc ~ SSfol(Dose, Time,lKe, lKa, lCl) ~
++                          (lKe|Subject) + (lKa|Subject) + (lCl|Subject),
++                          Theoph, start = Th.start))
++ print(nm3, corr=FALSE)
++ 
++ ## dropping   lKe  from random effects:
++ system.time(nm4 <- nlmer(conc ~ SSfol(Dose, Time,lKe, lKa, lCl) ~ (lKa+lCl|Subject),
++                          Theoph, start = Th.start, tolPwrss=1e-8))
++ print(nm4, corr=FALSE)
++ 
++ system.time(nm5 <- nlmer(conc ~ SSfol(Dose, Time,lKe, lKa, lCl) ~
++                          (lKa|Subject) + (lCl|Subject),
++                          Theoph,
++                          start = Th.start, tolPwrss=1e-8))
++ print(nm5, corr=FALSE)
++ 
++     if (require("PKPDmodels")) {
++         oral1cptSdlkalVlCl <-
++             PKmod("oral", "sd", list(ka ~ exp(lka), Cl ~ exp(lCl), V ~ exp(lV)))
++         if (FALSE) {
++             ## FIXME: Error in get(nm, envir = nlenv) : object 'k' not found
++             ##  probably with environments/call stack etc.?
++             ## 'pnames' is c("lV","lka","k") -- not ("lV","lka","lCl")
++             ##  nlmer -> nlformula -> MkRespMod
++             ##  pnames are OK in nlformula, but in MkRespMod we try to recover
++             ##   them from the column names of the gradient attribute of the
++             ##   model evaluated in nlenv -- which are wrong.
++             system.time(nm2a <- nlmer(conc ~ oral1cptSdlkalVlCl(Dose, Time, lV, lka, lCl) ~
++                                       (lV+lka+lCl|Subject),
++                                       Theoph, start = c(lV=-1, lka=-0.5, lCl=-3), tolPwrss=1e-8))
++             print(nm2a, corr=FALSE)
++         }
++     }
++ }  ## testLevel > 2
+> 
+> proc.time()
+   user  system elapsed 
+  3.984   2.708   6.840 

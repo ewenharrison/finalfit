@@ -1,0 +1,14 @@
+PackratFormat: 1.3
+PackratVersion: 0.2.0.108
+RVersion: 3.2.0
+Repos: CRAN=https://cran.rstudio.org,
+  BioCsoft=https://bioconductor.org/packages/3.0/bioc,
+  BioCann=https://bioconductor.org/packages/3.0/data/annotation,
+  BioCexp=https://bioconductor.org/packages/3.0/data/experiment,
+  BioCextra=https://bioconductor.org/packages/3.0/extra
+
+
+Package: packrat
+Source: source
+Version: 0.2.0.108
+SourcePath: /Users/kevin/git/packrat

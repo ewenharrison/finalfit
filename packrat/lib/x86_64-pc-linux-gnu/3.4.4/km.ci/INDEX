@@ -1,0 +1,15 @@
+critical.value.hall.90
+                        Critical Values
+critical.value.hall.95
+                        Critical Values
+critical.value.hall.99
+                        Critical Values
+critical.value.nair.90
+                        Critical Values
+critical.value.nair.95
+                        Critical Values
+critical.value.nair.99
+                        Critical Values
+km.ci                   Confidence intervals for the Kaplan-Meier
+                        estimator.
+rectum.dat              Rectum carcinoma data set.

@@ -1,0 +1,38 @@
+BMT                     Bone Marrow Transplant
+BRCAOV.survInfo         Breast and Ovarian Cancers Survival Information
+add_ggsurvplot          Add Components to a ggsurvplot
+arrange_ggsurvplots     Arranging Multiple ggsurvplots
+ggadjustedcurves        Adjusted Survival Curves for Cox Proportional
+                        Hazards Model
+ggcompetingrisks        Cumulative Incidence Curves for Competing Risks
+ggcoxdiagnostics        Diagnostic Plots for Cox Proportional Hazards
+                        Model with ggplot2
+ggcoxfunctional         Functional Form of Continuous Variable in Cox
+                        Proportional Hazards Model
+ggcoxzph                Graphical Test of Proportional Hazards with
+                        ggplot2
+ggflexsurvplot          Ggplots of Fitted Flexible Survival Models
+ggforest                Forest Plot for Cox Proportional Hazards Model
+ggrisktable             Plot Survival Tables
+ggsurvevents            Distribution of Events' Times
+ggsurvplot              Drawing Survival Curves Using ggplot2
+ggsurvplot_add_all      Add Survival Curves of Pooled Patients onto the
+                        Main Plot
+ggsurvplot_arguments    ggsurvplot Argument Descriptions
+ggsurvplot_combine      Combine a List of Survfit Objects on the Same
+                        Plot
+ggsurvplot_df           Plot Survival Curves from Survival Summary Data
+                        Frame
+ggsurvplot_facet        Facet Survival Curves into Multiple Panels
+ggsurvplot_group_by     Survival Curves of Grouped Data sets
+ggsurvplot_list         Plot a List of Survfit Objects
+myeloma                 Multiple Myeloma Data
+pairwise_survdiff       Multiple Comparisons of Survival Curves
+surv_cutpoint           Determine the Optimal Cutpoint for Continuous
+                        Variables
+surv_fit                Create Survival Curves
+surv_group_by           Create a Grouped Dataset for Survival Analysis
+surv_median             Median of Survival Curves
+surv_pvalue             Compute P-value Comparing Survival Curves
+surv_summary            Nice Summary of a Survival Curve
+theme_survminer         Theme for Survminer Plots

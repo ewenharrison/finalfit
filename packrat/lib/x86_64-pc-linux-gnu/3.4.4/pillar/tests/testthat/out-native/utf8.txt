@@ -1,0 +1,17 @@
+   chars                                                          desc         
+   <chr>                                                          <chr>        
+ 1 "\u0001\u001f"                                                 C0 control c~
+ 2 "\a\b\f\n\r\t"                                                 Named contro~
+ 3 abcdefuvwxyz                                                   ASCII        
+ 4 "\u0080\u009f"                                                 C1 control c~
+ 5  ¡¢£¤¥úûüýþÿ                                                   Latin-1      
+ 6 AaAaAaCcCcCc                                                   Unicode      
+ 7 !"#$%&                                                   Unicode wide 
+ 8 "\u0e00\u2029"                                                 Unicode cont~
+ 9 "x­x<U+200B>x<U+200C>x<U+200D>x<U+200E>x<U+200F>x<U+034F>x<U+FEFF>x\U000e0001x\U000e0020x\U000e01efx"                   Unicode igno~
+10 a`a´a^a~a¯a¯a<U+0306>a<U+0307>a¨a<U+0309>a°a<U+030B>                                                   Unicode mark 
+11 "\U0001f600\U0001f601\U0001f602\U0001f603\U0001f604\U0001f483" Emoji        
+12 "x\U0010ffffx"                                                 Unassigned   
+13 "\xfd\xfe\xff"                                                 Invalid      
+14 "\\"                                                           Backslash    
+15 "\""                                                           Quote        

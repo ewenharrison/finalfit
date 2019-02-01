@@ -1,0 +1,124 @@
+
+R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library("zoo")
+
+Attaching package: 'zoo'
+
+The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+> 
+> x <- cbind(
++   c(1, NA, 2, NA, NA, NA, NA, 3),
++   c(NA, 1, NA, 2, NA, NA, NA, 3)
++ )
+> na.locf(x)
+     [,1] [,2]
+[1,]    1   NA
+[2,]    1    1
+[3,]    2    1
+[4,]    2    2
+[5,]    2    2
+[6,]    2    2
+[7,]    2    2
+[8,]    3    3
+> na.locf(x, fromLast = TRUE)
+     [,1] [,2]
+[1,]    1    1
+[2,]    2    1
+[3,]    2    2
+[4,]    3    2
+[5,]    3    3
+[6,]    3    3
+[7,]    3    3
+[8,]    3    3
+> na.locf(x, maxgap = 3)
+     [,1] [,2]
+[1,]    1   NA
+[2,]    1    1
+[3,]    2    1
+[4,]   NA    2
+[5,]   NA    2
+[6,]   NA    2
+[7,]   NA    2
+[8,]    3    3
+> na.locf(x[,2])
+[1] 1 1 2 2 2 2 3
+> na.locf(x[,2], na.rm = FALSE)
+[1] NA  1  1  2  2  2  2  3
+> 
+> z <- zoo(x, as.Date("2000-01-01") + 0:8)
+> na.locf(z)
+               
+2000-01-01 1 NA
+2000-01-02 1  1
+2000-01-03 2  1
+2000-01-04 2  2
+2000-01-05 2  2
+2000-01-06 2  2
+2000-01-07 2  2
+2000-01-08 3  3
+2000-01-09 1  3
+> na.locf(z, fromLast = TRUE)
+               
+2000-01-01 1  1
+2000-01-02 2  1
+2000-01-03 2  2
+2000-01-04 3  2
+2000-01-05 3  3
+2000-01-06 3  3
+2000-01-07 3  3
+2000-01-08 3  3
+2000-01-09 1 NA
+> na.locf(z, maxgap = 3)
+                
+2000-01-01  1 NA
+2000-01-02  1  1
+2000-01-03  2  1
+2000-01-04 NA  2
+2000-01-05 NA  2
+2000-01-06 NA  2
+2000-01-07 NA  2
+2000-01-08  3  3
+2000-01-09  1  3
+> na.locf(z[,2])
+2000-01-02 2000-01-03 2000-01-04 2000-01-05 2000-01-06 2000-01-07 2000-01-08 
+         1          1          2          2          2          2          3 
+2000-01-09 
+         3 
+> na.locf(z[,2], na.rm = FALSE)
+2000-01-01 2000-01-02 2000-01-03 2000-01-04 2000-01-05 2000-01-06 2000-01-07 
+        NA          1          1          2          2          2          2 
+2000-01-08 2000-01-09 
+         3          3 
+> 
+> d <- as.Date("2000-01-01") + c(0, NA, 2, NA, NA, NA, NA, 7)
+> na.locf(d)
+[1] "2000-01-01" "2000-01-01" "2000-01-03" "2000-01-03" "2000-01-03"
+[6] "2000-01-03" "2000-01-03" "2000-01-08"
+> na.locf(d, fromLast = TRUE)
+[1] "2000-01-01" "2000-01-03" "2000-01-03" "2000-01-08" "2000-01-08"
+[6] "2000-01-08" "2000-01-08" "2000-01-08"
+> na.locf(d, maxgap = 3)
+[1] "2000-01-01" "2000-01-01" "2000-01-03" NA           NA          
+[6] NA           NA           "2000-01-08"
+> 
+> proc.time()
+   user  system elapsed 
+  0.196   0.024   0.216 

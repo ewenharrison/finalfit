@@ -1,0 +1,236 @@
+------------------------------------------------------------------------
+r412 | dsarkar@fhcrc.org | 2008-05-12 14:07:54 -0700 (Mon, 12 May 2008) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/DESCRIPTION
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   M /public/Rpacks/trunk/latticeExtra/R/mapplot.R
+   A /public/Rpacks/trunk/latticeExtra/R/segplot.R
+   M /public/Rpacks/trunk/latticeExtra/man/mapplot.Rd
+   A /public/Rpacks/trunk/latticeExtra/man/panel.segplot.Rd
+   A /public/Rpacks/trunk/latticeExtra/man/segplot.Rd
+
+added segplot, plus misc fixes
+------------------------------------------------------------------------
+r315 | dsarkar@fhcrc.org | 2007-10-20 21:13:38 -0700 (Sat, 20 Oct 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/inst/Changes
+
+note
+------------------------------------------------------------------------
+r314 | dsarkar@fhcrc.org | 2007-10-20 21:12:31 -0700 (Sat, 20 Oct 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/DESCRIPTION
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   D /public/Rpacks/trunk/latticeExtra/R/brewer.theme.R
+   A /public/Rpacks/trunk/latticeExtra/R/custom.theme.R (from /public/Rpacks/trunk/latticeExtra/R/brewer.theme.R:293)
+   A /public/Rpacks/trunk/latticeExtra/man/SeatacWeather.Rd
+   M /public/Rpacks/trunk/latticeExtra/man/ancestry.Rd
+   A /public/Rpacks/trunk/latticeExtra/man/biocAccess.Rd
+   A /public/Rpacks/trunk/latticeExtra/man/custom.theme.Rd
+   A /public/Rpacks/trunk/latticeExtra/man/gvhd10.Rd
+   M /public/Rpacks/trunk/latticeExtra/man/mapplot.Rd
+   M /public/Rpacks/trunk/latticeExtra/man/panel.3dmisc.Rd
+   A /public/Rpacks/trunk/latticeExtra/man/postdoc.Rd
+   M /public/Rpacks/trunk/latticeExtra/man/useOuterStrips.Rd
+
+documented remaining objects
+------------------------------------------------------------------------
+r313 | dsarkar@fhcrc.org | 2007-10-20 19:50:58 -0700 (Sat, 20 Oct 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/DESCRIPTION
+   M /public/Rpacks/trunk/latticeExtra/R/dendrogramGrob.R
+   M /public/Rpacks/trunk/latticeExtra/data/ancestry.rda
+   A /public/Rpacks/trunk/latticeExtra/man/USCancerRates.Rd
+   A /public/Rpacks/trunk/latticeExtra/man/ancestry.Rd
+   M /public/Rpacks/trunk/latticeExtra/man/mapplot.Rd
+   M /public/Rpacks/trunk/latticeExtra/man/useOuterStrips.Rd
+
+some man pages added
+------------------------------------------------------------------------
+r298 | dsarkar@fhcrc.org | 2007-10-04 19:03:01 -0700 (Thu, 04 Oct 2007) | 1 line
+Changed paths:
+   A /public/Rpacks/trunk/latticeExtra/inst/scripts
+   A /public/Rpacks/trunk/latticeExtra/inst/scripts/README.USAge
+   A /public/Rpacks/trunk/latticeExtra/man/USAge.Rd
+
+doc for USAge data
+------------------------------------------------------------------------
+r295 | dsarkar@fhcrc.org | 2007-10-04 15:32:04 -0700 (Thu, 04 Oct 2007) | 1 line
+Changed paths:
+   A /public/Rpacks/trunk/latticeExtra/data/biocAccess.rda
+   A /public/Rpacks/trunk/latticeExtra/data/gvhd10.rda
+
+added two more data sets
+------------------------------------------------------------------------
+r294 | dsarkar@fhcrc.org | 2007-10-04 15:30:46 -0700 (Thu, 04 Oct 2007) | 1 line
+Changed paths:
+   A /public/Rpacks/trunk/latticeExtra/data
+   A /public/Rpacks/trunk/latticeExtra/data/SeatacWeather.rda
+   A /public/Rpacks/trunk/latticeExtra/data/USAge.df.rda
+   A /public/Rpacks/trunk/latticeExtra/data/USAge.table.rda
+   A /public/Rpacks/trunk/latticeExtra/data/USCancerRates.rda
+   A /public/Rpacks/trunk/latticeExtra/data/ancestry.rda
+   A /public/Rpacks/trunk/latticeExtra/data/postdoc.rda
+
+added some data sets
+------------------------------------------------------------------------
+r293 | dsarkar@fhcrc.org | 2007-10-04 15:25:40 -0700 (Thu, 04 Oct 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   M /public/Rpacks/trunk/latticeExtra/R/panel.3dmisc.R
+   M /public/Rpacks/trunk/latticeExtra/man/panel.3dmisc.Rd
+
+added a panel.3dtext function
+------------------------------------------------------------------------
+r263 | dsarkar@fhcrc.org | 2007-09-21 18:59:10 -0700 (Fri, 21 Sep 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/DESCRIPTION
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   M /public/Rpacks/trunk/latticeExtra/R/brewer.theme.R
+
+some new stuff
+------------------------------------------------------------------------
+r240 | dsarkar@fhcrc.org | 2007-07-27 13:38:43 -0700 (Fri, 27 Jul 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/DESCRIPTION
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   A /public/Rpacks/trunk/latticeExtra/R/mapplot.R
+   A /public/Rpacks/trunk/latticeExtra/R/timeseries.R
+   M /public/Rpacks/trunk/latticeExtra/R/utilities.R
+   A /public/Rpacks/trunk/latticeExtra/man/mapplot.Rd
+
+added map functions and time series methods
+------------------------------------------------------------------------
+r231 | dsarkar@fhcrc.org | 2007-07-09 16:39:18 -0700 (Mon, 09 Jul 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   A /public/Rpacks/trunk/latticeExtra/R/brewer.theme.R
+   M /public/Rpacks/trunk/latticeExtra/R/utilities.R
+   M /public/Rpacks/trunk/latticeExtra/man/panel.3dmisc.Rd
+
+more utilities
+------------------------------------------------------------------------
+r224 | dsarkar@fhcrc.org | 2007-06-29 12:53:09 -0700 (Fri, 29 Jun 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/R/utilities.R
+   A /public/Rpacks/trunk/latticeExtra/man/useOuterStrips.Rd
+
+function to update trellis object to use outer strips only
+------------------------------------------------------------------------
+r209 | dsarkar@fhcrc.org | 2007-06-04 11:50:13 -0700 (Mon, 04 Jun 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/man/panel.3dmisc.Rd
+
+doc update
+------------------------------------------------------------------------
+r208 | dsarkar@fhcrc.org | 2007-05-30 15:29:52 -0700 (Wed, 30 May 2007) | 1 line
+Changed paths:
+   D /public/Rpacks/trunk/latticeExtra/R/panel.3dhist.R
+   A /public/Rpacks/trunk/latticeExtra/R/panel.3dmisc.R (from /public/Rpacks/trunk/latticeExtra/R/panel.3dhist.R:207)
+
+renamed file
+------------------------------------------------------------------------
+r207 | dsarkar@fhcrc.org | 2007-05-30 15:29:31 -0700 (Wed, 30 May 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/DESCRIPTION
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   M /public/Rpacks/trunk/latticeExtra/R/panel.3dhist.R
+   A /public/Rpacks/trunk/latticeExtra/man/panel.3dmisc.Rd
+
+updates related to 3-d panel functions
+------------------------------------------------------------------------
+r202 | dsarkar@fhcrc.org | 2007-05-17 13:20:42 -0700 (Thu, 17 May 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+
+exported panel.3dhist
+------------------------------------------------------------------------
+r198 | dsarkar@fhcrc.org | 2007-05-14 17:46:18 -0700 (Mon, 14 May 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/R/ecdfplot.R
+   M /public/Rpacks/trunk/latticeExtra/inst/Changes
+
+updated changelog
+------------------------------------------------------------------------
+r193 | dsarkar@fhcrc.org | 2007-05-14 17:33:28 -0700 (Mon, 14 May 2007) | 1 line
+Changed paths:
+   A /public/Rpacks/trunk/latticeExtra/R/panel.3dhist.R
+
+added a panel function for '3-D' histograms and barcharts
+------------------------------------------------------------------------
+r190 | dsarkar@fhcrc.org | 2007-04-26 19:07:01 -0700 (Thu, 26 Apr 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/DESCRIPTION
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   M /public/Rpacks/trunk/latticeExtra/R/ecdfplot.R
+   A /public/Rpacks/trunk/latticeExtra/man/dendrogramGrob.Rd
+
+added man page for dendrogramGrob, plus updates
+------------------------------------------------------------------------
+r189 | dsarkar@fhcrc.org | 2007-04-26 16:58:05 -0700 (Thu, 26 Apr 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/DESCRIPTION
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   A /public/Rpacks/trunk/latticeExtra/R/ecdfplot.R
+   D /public/Rpacks/trunk/latticeExtra/data
+   A /public/Rpacks/trunk/latticeExtra/man/ecdfplot.Rd
+
+added an ecdfplot generic, and removed empty data directory
+------------------------------------------------------------------------
+r184 | dsarkar@fhcrc.org | 2007-04-23 12:55:53 -0700 (Mon, 23 Apr 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   A /public/Rpacks/trunk/latticeExtra/R/dendrogramGrob.R
+
+added code to support dendrogram plots
+------------------------------------------------------------------------
+r168 | dsarkar@fhcrc.org | 2007-04-11 15:54:43 -0700 (Wed, 11 Apr 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/DESCRIPTION
+   M /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   M /public/Rpacks/trunk/latticeExtra/R/utilities.R
+   M /public/Rpacks/trunk/latticeExtra/R/zzz.R
+   M /public/Rpacks/trunk/latticeExtra/man/rootogram.Rd
+
+added rootogram, fixed warnings
+------------------------------------------------------------------------
+r135 | dsarkar@fhcrc.org | 2007-03-09 04:15:31 -0800 (Fri, 09 Mar 2007) | 1 line
+Changed paths:
+   M /public/Rpacks/trunk/latticeExtra/man/rootogram.Rd
+
+misc
+------------------------------------------------------------------------
+r103 | dsarkar@fhcrc.org | 2006-12-15 17:17:46 -0800 (Fri, 15 Dec 2006) | 1 line
+Changed paths:
+   D /public/Rpacks/trunk/latticeExtra/data/benchmark.R
+
+removed spurious file
+------------------------------------------------------------------------
+r3 | dsarkar@fhcrc.org | 2006-09-18 17:00:16 -0700 (Mon, 18 Sep 2006) | 1 line
+Changed paths:
+   A /public
+   A /public/Rpacks
+   A /public/Rpacks/trunk
+   A /public/Rpacks/trunk/latticeExtra
+   A /public/Rpacks/trunk/latticeExtra/DESCRIPTION
+   A /public/Rpacks/trunk/latticeExtra/NAMESPACE
+   A /public/Rpacks/trunk/latticeExtra/R
+   A /public/Rpacks/trunk/latticeExtra/R/data.frame.R
+   A /public/Rpacks/trunk/latticeExtra/R/gplot.R
+   A /public/Rpacks/trunk/latticeExtra/R/rootogram.R
+   A /public/Rpacks/trunk/latticeExtra/R/utilities.R
+   A /public/Rpacks/trunk/latticeExtra/R/zzz.R
+   A /public/Rpacks/trunk/latticeExtra/data
+   A /public/Rpacks/trunk/latticeExtra/data/benchmark.R
+   A /public/Rpacks/trunk/latticeExtra/inst
+   A /public/Rpacks/trunk/latticeExtra/inst/Changes
+   A /public/Rpacks/trunk/latticeExtra/man
+   A /public/Rpacks/trunk/latticeExtra/man/gplot.Rd
+   A /public/Rpacks/trunk/latticeExtra/man/gplotArgs.data.frame.Rd
+   A /public/Rpacks/trunk/latticeExtra/man/rootogram.Rd
+   A /public/Rpacks/trunk/latticeExtra/tmp
+   A /public/Rpacks/trunk/latticeExtra/tmp/hexbinplot.R
+   A /public/Rpacks/trunk/latticeExtra/tmp/hexbinplot.Rd
+
+initial import of personal R packages
+------------------------------------------------------------------------

@@ -1,0 +1,33 @@
+Package: acepack
+Maintainer: Shawn Garbett <shawn.garbett@vanderbilt.edu>
+Version: 1.4.1
+Author: Phil Spector, Jerome Friedman, Robert Tibshirani, Thomas
+    Lumley, Shawn Garbett, Jonathan Baron
+Description: Two nonparametric methods for multiple regression
+    transform selection are provided. The first, Alternative
+    Conditional Expectations (ACE), is an algorithm to find the fixed
+    point of maximal correlation, i.e. it finds a set of transformed
+    response variables that maximizes R^2 using smoothing functions
+    [see Breiman, L., and J.H. Friedman. 1985. "Estimating Optimal
+    Transformations for Multiple Regression and Correlation". Journal
+    of the American Statistical Association. 80:580-598.
+    <doi:10.1080/01621459.1985.10478157>]. Also included is the
+    Additivity Variance Stabilization (AVAS) method which works better
+    than ACE when correlation is low [see Tibshirani, R.. 1986.
+    "Estimating Transformations for Regression via Additivity and
+    Variance Stabilization". Journal of the American Statistical
+    Association. 83:394-405. <doi:10.1080/01621459.1988.10478610>]. A
+    good introduction to these two methods is in chapter 16 of Frank
+    Harrel's "Regression Modeling Strategies" in the Springer Series in
+    Statistics.
+Title: ACE and AVAS for Selecting Multiple Regression Transformations
+License: MIT + file LICENSE
+Suggests: testthat
+Packaged: 2016-10-28 15:38:59 UTC; garbetsp
+Repository: CRAN
+Date/Publication: 2016-10-29 00:11:52
+NeedsCompilation: yes
+Built: R 3.4.4; x86_64-pc-linux-gnu; 2018-11-18 15:38:13 UTC; unix
+InstallAgent: packrat 0.4.9.14
+InstallSource: CRAN
+Hash: 5ed3b04bc1fa1a934188fc6022d3ba7c

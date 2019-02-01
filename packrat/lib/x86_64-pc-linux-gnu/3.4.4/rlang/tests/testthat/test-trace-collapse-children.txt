@@ -1,0 +1,17 @@
+Full:
+█
+└─rlang:::f()
+  └─base::eval(quote(g()), env())
+    └─base::eval(quote(g()), env())
+      └─rlang:::g()
+
+Collapsed:
+█
+└─rlang:::f()
+  └─[ base::eval(...) ] with 1 more call
+    └─rlang:::g()
+
+Branch:
+ ─rlang:::f()
+ ─[ base::eval(...) ] with 1 more call
+ ─rlang:::g()

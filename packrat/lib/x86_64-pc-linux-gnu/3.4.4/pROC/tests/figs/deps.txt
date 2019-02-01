@@ -1,0 +1,2 @@
+vdiffr: 0.1.1
+svglite: 1.2.0

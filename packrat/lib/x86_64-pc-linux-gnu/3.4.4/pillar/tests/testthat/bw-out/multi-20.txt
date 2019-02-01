@@ -1,0 +1,5 @@
+  column_zero_one
+            <dbl>
+1            1.23
+2            2.23
+3            3.23

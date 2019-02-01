@@ -1,0 +1,20 @@
+
+import(stats)
+import(graphics)
+
+useDynLib(maxstat, .registration = TRUE)
+
+export(maxstat.test, maxstat.test.data.frame, maxstat.test.default, 
+       pLausen92, qLausen92, pLausen94, qLausen94, pexactgauss, qexactgauss, 
+       pmaxstat, qmaxstat, maxstat, corrmsrs)
+
+S3method(print, maxtest)
+S3method(plot, maxtest)
+S3method(print, mmaxtest)
+S3method(plot, mmaxtest)
+S3method(maxstat.test, data.frame)
+S3method(maxstat.test, default)
+
+import(exactRankTests)
+import(mvtnorm)
+

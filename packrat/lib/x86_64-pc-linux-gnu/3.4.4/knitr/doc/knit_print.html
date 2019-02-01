@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Yihui Xie" />
+
+<meta name="date" content="2018-02-19" />
+
+<title>Custom Print Methods</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20800px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%2020px%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%200%3B%0Apadding%3A%204px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%3Anot%28%5Bclass%5D%29%20%7B%0Amargin%3A%20auto%3B%0Amin%2Dwidth%3A%2040%25%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%5Bsummary%3D%22R%20argblock%22%5D%20%7B%0Awidth%3A%20100%25%3B%0Aborder%3A%20none%3B%0A%7D%0Atable%3Anot%28%5Bclass%5D%29%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%3Anot%28%5Bclass%5D%29%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%3Anot%28%5Bclass%5D%29%2C%20table%3Anot%28%5Bclass%5D%29%20th%2C%20table%3Anot%28%5Bclass%5D%29%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%3Anot%28%5Bclass%5D%29%20tr%2Eodd%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%2013px%3B%0Apadding%2Dbottom%3A%201px%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0A%7D%0Apre%20%7B%0Aoverflow%2Dx%3A%20auto%3B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200%2010px%200%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20white%3B%0Aborder%3A%20%23f5f5f5%201px%20solid%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20code%20%7B%0Acolor%3A%20%23444%3B%0Abackground%2Dcolor%3A%20white%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20monospace%3B%0Afont%2Dsize%3A%2090%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%204px%3B%0Acolor%3A%20%23d14%3B%0Aborder%3A%201px%20solid%20%23e1e1e8%3B%0Awhite%2Dspace%3A%20inherit%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Atable%20%3E%20caption%2C%20div%2Efigure%20p%2Ecaption%20%7B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0Atable%20%3E%20caption%20span%2C%20div%2Efigure%20p%2Ecaption%20span%20%7B%0Afont%2Dstyle%3A%20normal%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%200%2010px%3B%0A%7D%0Atable%3Anot%28%5Bclass%5D%29%20%7B%0Amargin%3A%20auto%20auto%2010px%20auto%3B%0A%7D%0Aimg%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0Amax%2Dwidth%3A%20100%25%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f5f5f5%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f5f5f5%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f5f5f5%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Adiv%2Er%2Dhelp%2Dpage%20%7B%0Abackground%2Dcolor%3A%20%23f9f9f9%3B%0Aborder%2Dbottom%3A%20%23ddd%201px%20solid%3B%0Amargin%2Dbottom%3A%2010px%3B%0Apadding%3A%2010px%3B%0A%7D%0Adiv%2Er%2Dhelp%2Dpage%3Ahover%20%7B%0Abackground%2Dcolor%3A%20%23f4f4f4%3B%0A%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Custom Print Methods</h1>
+<h4 class="author"><em>Yihui Xie</em></h4>
+<h4 class="date"><em>2018-02-19</em></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#customize-printing">Customize Printing</a></li>
+<li><a href="#a-low-level-explanation">A Low-level Explanation</a><ul>
+<li><a href="#the-render-option">The <code>render</code> option</a></li>
+<li><a href="#metadata">Metadata</a></li>
+<li><a href="#for-package-authors">For package authors</a></li>
+</ul></li>
+</ul>
+</div>
+
+<p>Before <strong>knitr</strong> v1.6, printing objects in R code chunks basically emulates the R console. For example, a data frame is printed like this<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(mtcars)</code></pre></div>
+<pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>The text representation of the data frame above may look very familiar with most R users, but for reporting purposes, it may not be satisfactory – often times we want to see a table representation instead. That is the problem that the chunk option <code>render</code> and the S3 generic function <code>knit_print()</code> try to solve.</p>
+<div id="customize-printing" class="section level2">
+<h2>Customize Printing</h2>
+<p>After we evaluate each R expression in a code chunk, there is an object returned. For example, <code>1 + 1</code> returns <code>2</code>. This object is passed to the chunk option <code>render</code>, which is a function with two arguments, <code>x</code> and <code>options</code>, or <code>x</code> and <code>...</code>. The default value for the <code>render</code> option is <code>knit_print</code>, an S3 function in <strong>knitr</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
+knit_print  <span class="co"># an S3 generic function</span></code></pre></div>
+<pre><code>## function (x, ...) 
+## {
+##     if (need_screenshot(x, ...)) {
+##         html_screenshot(x)
+##     }
+##     else {
+##         UseMethod(&quot;knit_print&quot;)
+##     }
+## }
+## &lt;environment: namespace:knitr&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(knit_print)</code></pre></div>
+<pre><code>##  [1] knit_print.data.frame*     knit_print.default*       
+##  [3] knit_print.grouped_df*     knit_print.html*          
+##  [5] knit_print.knit_asis*      knit_print.knitr_kable*   
+##  [7] knit_print.rowwise_df*     knit_print.shiny.tag*     
+##  [9] knit_print.shiny.tag.list* knit_print.tbl_sql*       
+## see '?methods' for accessing help and source code</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getS3method</span>(<span class="st">&quot;knit_print&quot;</span>, <span class="st">&quot;default&quot;</span>)  <span class="co"># the default method</span></code></pre></div>
+<pre><code>## function (x, ..., inline = FALSE) 
+## {
+##     if (inline) 
+##         x
+##     else normal_print(x)
+## }
+## &lt;environment: namespace:knitr&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">normal_print</code></pre></div>
+<pre><code>## function (x, ...) 
+## if (isS4(x)) methods::show(x) else print(x)
+## &lt;environment: namespace:evaluate&gt;</code></pre>
+<p>As we can see, <code>knit_print()</code> has a <code>default</code> method, which is basically <code>print()</code> or <code>show()</code>, depending on whether the object is an S4 object. This means it does nothing special when printing R objects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">knit_print</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+##  [1]  1  2  3  4  5  6  7  8  9 10
+<span class="kw">knit_print</span>(<span class="kw">head</span>(mtcars))
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre></div>
+<p>S3 generic functions are extensible in the sense that we can define custom methods for them. A method <code>knit_print.foo()</code> will be applied to the object that has the class <code>foo</code>. Here is quick example of how we can print data frames as tables:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
+<span class="co"># define a method for objects of the class data.frame</span>
+knit_print.data.frame =<span class="st"> </span><span class="cf">function</span>(x, ...) {
+    res =<span class="st"> </span><span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">kable</span>(x)), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">asis_output</span>(res)
+}</code></pre></div>
+<p>We expect the print method to return a character vector, or an object that can be coerced into a character vector. In the example above, the <code>kable()</code> function returns a character vector, which we pass to the <code>asis_output()</code> function so that later <strong>knitr</strong> knows that this result needs no special treatment (just write it as is), otherwise it depends on the chunk option <code>results</code> (<code>= 'asis'</code> / <code>'markup'</code> / <code>'hide'</code>) how a normal character vector should be written. The function <code>asis_output()</code> has the same effect as <code>results = 'asis'</code>, but saves us the effort to provide this chunk option explicitly. Now we check how the printing behavior is changed. We print a number, a character vector, a list, a data frame, and write a character value using <code>cat()</code> in the chunk below:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(letters)</code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">9</span><span class="op">:</span><span class="dv">4</span>)</code></pre></div>
+<pre><code>## $a
+## [1] 1
+## 
+## $b
+## [1] 9 8 7 6 5 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(mtcars)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">mpg</th>
+<th align="right">cyl</th>
+<th align="right">disp</th>
+<th align="right">hp</th>
+<th align="right">drat</th>
+<th align="right">wt</th>
+<th align="right">qsec</th>
+<th align="right">vs</th>
+<th align="right">am</th>
+<th align="right">gear</th>
+<th align="right">carb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mazda RX4</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.620</td>
+<td align="right">16.46</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td>Mazda RX4 Wag</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.875</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td>Datsun 710</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">108</td>
+<td align="right">93</td>
+<td align="right">3.85</td>
+<td align="right">2.320</td>
+<td align="right">18.61</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>Hornet 4 Drive</td>
+<td align="right">21.4</td>
+<td align="right">6</td>
+<td align="right">258</td>
+<td align="right">110</td>
+<td align="right">3.08</td>
+<td align="right">3.215</td>
+<td align="right">19.44</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Hornet Sportabout</td>
+<td align="right">18.7</td>
+<td align="right">8</td>
+<td align="right">360</td>
+<td align="right">175</td>
+<td align="right">3.15</td>
+<td align="right">3.440</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td>Valiant</td>
+<td align="right">18.1</td>
+<td align="right">6</td>
+<td align="right">225</td>
+<td align="right">105</td>
+<td align="right">2.76</td>
+<td align="right">3.460</td>
+<td align="right">20.22</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;This is cool.&quot;</span>)</code></pre></div>
+<pre><code>## This is cool.</code></pre>
+<p>We see all objects except the data frame were printed “normally”<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>. The data frame was printed as a real table. Note you do not have to use <code>kable()</code> to create tables – there are many other options such as <strong>xtable</strong>. Just make sure the print method returns a character string.</p>
+<p>In the future, I may provide a companion package with <strong>knitr</strong> that includes appropriate printing methods so that users only need to load this package to get attractive printed results. A major factor to consider when defining a printing method is the output format. For example, the table syntax can be entirely different when the output is LaTeX vs when it is Markdown.</p>
+<p>It is strongly recommended that your S3 method has a <code>...</code> argument, so that your method can safely ignore arguments that are passed to <code>knit_print()</code> but not defined in your method. At the moment, a <code>knit_print()</code> method can have two optional arguments:</p>
+<ul>
+<li>the <code>options</code> argument takes a list of the current chunk options;</li>
+<li>the <code>inline</code> argument indicates if the method is called in code chunks or inline R code;</li>
+</ul>
+<p>Depending on your application, you may optionally use these arguments. Here are some examples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knit_print.classA =<span class="st"> </span><span class="cf">function</span>(x, ...) {
+  <span class="co"># ignore options and inline</span>
+}
+knit_print.classB =<span class="st"> </span><span class="cf">function</span>(x, options, ...) {
+  <span class="co"># use the chunk option out.height</span>
+  <span class="kw">asis_output</span>(<span class="kw">paste</span>(
+    <span class="st">'&lt;iframe src=&quot;https://yihui.name&quot; height=&quot;'</span>, options<span class="op">$</span>out.height, <span class="st">'&quot;&gt;&lt;/iframe&gt;'</span>,
+  ))
+}
+knit_print.classC =<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">inline =</span> <span class="ot">FALSE</span>, ...) {
+  <span class="co"># different output according to inline=TRUE/FALSE</span>
+  <span class="cf">if</span> (inline) {
+    <span class="st">'inline output for classC'</span>
+  } <span class="cf">else</span> {
+    <span class="st">'chunk output for classC'</span>
+  }
+}
+knit_print.classD =<span class="st"> </span><span class="cf">function</span>(x, options, <span class="dt">inline =</span> <span class="ot">FALSE</span>, ...) {
+  <span class="co"># use both options and inline</span>
+}</code></pre></div>
+</div>
+<div id="a-low-level-explanation" class="section level2">
+<h2>A Low-level Explanation</h2>
+<p>You can skip this section if you do not care about the low-level implementation details.</p>
+<div id="the-render-option" class="section level3">
+<h3>The <code>render</code> option</h3>
+<p>As mentioned before, the chunk option <code>render</code> is a function that defaults to <code>knit_print()</code>. We can certainly use other render functions. For example, we create a dummy function that always says “I do not know what to print” no matter what objects it receives:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dummy_print =<span class="st"> </span><span class="cf">function</span>(x, ...) {
+    <span class="kw">cat</span>(<span class="st">&quot;I do not know what to print!&quot;</span>)
+    <span class="co"># this function implicitly returns an invisible NULL</span>
+}</code></pre></div>
+<p>Now we use the chunk option <code>render = dummy_print</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+## I do not know what to print!
+<span class="kw">head</span>(letters)
+## I do not know what to print!
+<span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">9</span><span class="op">:</span><span class="dv">4</span>)
+## I do not know what to print!
+<span class="kw">head</span>(mtcars)
+## I do not know what to print!
+<span class="kw">cat</span>(<span class="st">&quot;This is cool.&quot;</span>)
+## This is cool.</code></pre></div>
+<p>Note the <code>render</code> function is only applied to visible objects. There are cases in which the objects returned are invisible, e.g. those wrapped in <code>invisible()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">invisible</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)
+<span class="kw">invisible</span>(<span class="kw">head</span>(mtcars))
+x =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>  <span class="co"># invisibly returns 1:10</span></code></pre></div>
+</div>
+<div id="metadata" class="section level3">
+<h3>Metadata</h3>
+<p>The print function can have a side effect of passing “metadata” about objects to <strong>knitr</strong>, and <strong>knitr</strong> will collect this information as it prints objects. The motivation of collecting metadata is to store external dependencies of the objects to be printed. Normally we print an object only to obtain a text representation, but there are cases that can be more complicated. For example, a <a href="http://ggvis.rstudio.com/"><strong>ggvis</strong></a> graph requires external JavaScript and CSS dependencies such as <code>ggvis.js</code>. The graph itself is basically a fragment of JavaScript code, which will not work unless the required libraries are loaded (in the HTML header). Therefore we need to collect the dependencies of an object beside printing the object itself.</p>
+<p>One way to specify the dependencies is through the <code>meta</code> argument of <code>asis_output()</code>. Here is a pseudo example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># pseudo code</span>
+knit_print.ggvis =<span class="st"> </span><span class="cf">function</span>(x, ...) {
+  res =<span class="st"> </span>ggvis<span class="op">::</span><span class="kw">print_this_object</span>(x)
+  knitr<span class="op">::</span><span class="kw">asis_output</span>(res, <span class="dt">meta =</span> <span class="kw">list</span>(
+    <span class="dt">ggvis =</span> <span class="kw">list</span>(
+      <span class="dt">version =</span> <span class="st">'0.1.0'</span>,
+      <span class="dt">js  =</span> <span class="kw">system.file</span>(<span class="st">'www'</span>, <span class="st">'js'</span>,  <span class="st">'ggvis.js'</span>,  <span class="dt">package =</span> <span class="st">'ggvis'</span>),
+      <span class="dt">css =</span> <span class="kw">system.file</span>(<span class="st">'www'</span>, <span class="st">'www'</span>, <span class="st">'ggvis.css'</span>, <span class="dt">package =</span> <span class="st">'ggvis'</span>)
+    )
+  ))
+}</code></pre></div>
+<p>Then when <strong>knitr</strong> prints a <strong>ggvis</strong> object, the <code>meta</code> information will be collected and stored. After knitting is done, we can obtain a list of all the dependencies via <code>knit_meta()</code>. It is very likely that there are duplicate entries in the list, and it is up to the package authors to clean them up, and process the metadata list in their own way (e.g. write the dependencies into the HTML header). We give a few more quick and dirty examples below to see how <code>knit_meta()</code> works.</p>
+<p>Now we define a print method for <code>foo</code> objects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
+knit_print.foo =<span class="st"> </span><span class="cf">function</span>(x, ...) {
+  res =<span class="st"> </span><span class="kw">paste</span>(<span class="st">'**This is a `foo` object**:'</span>, x)
+  <span class="kw">asis_output</span>(res, <span class="dt">meta =</span> <span class="kw">list</span>(
+    <span class="dt">js  =</span> <span class="kw">system.file</span>(<span class="st">'www'</span>, <span class="st">'shared'</span>, <span class="st">'shiny.js'</span>,  <span class="dt">package =</span> <span class="st">'shiny'</span>),
+    <span class="dt">css =</span> <span class="kw">system.file</span>(<span class="st">'www'</span>, <span class="st">'shared'</span>, <span class="st">'shiny.css'</span>, <span class="dt">package =</span> <span class="st">'shiny'</span>)
+  ))
+}</code></pre></div>
+<p>See what happens when we print <code>foo</code> objects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_foo =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">structure</span>(x, <span class="dt">class =</span> <span class="st">&quot;foo&quot;</span>)
+<span class="kw">new_foo</span>(<span class="st">&quot;hello&quot;</span>)</code></pre></div>
+<p><strong>This is a <code>foo</code> object</strong>: hello</p>
+<p>Check the metadata now:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">knit_meta</span>(<span class="dt">clean =</span> <span class="ot">FALSE</span>))</code></pre></div>
+<pre><code>## List of 2
+##  $ js : chr &quot;/Users/yihui/R/shiny/www/shared/shiny.js&quot;
+##  $ css: chr &quot;/Users/yihui/R/shiny/www/shared/shiny.css&quot;
+##  - attr(*, &quot;knit_meta_id&quot;)= chr [1:2] &quot;unnamed-chunk-9&quot; &quot;unnamed-chunk-9&quot;</code></pre>
+<p>Another <code>foo</code> object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">new_foo</span>(<span class="st">&quot;world&quot;</span>)</code></pre></div>
+<p><strong>This is a <code>foo</code> object</strong>: world</p>
+<p>Similarly for <code>bar</code> objects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knit_print.bar =<span class="st"> </span><span class="cf">function</span>(x, ...) {
+    <span class="kw">asis_output</span>(x, <span class="dt">meta =</span> <span class="kw">list</span>(<span class="dt">head =</span> <span class="st">&quot;&lt;script&gt;console.log(</span><span class="ch">\&quot;</span><span class="st">bar!</span><span class="ch">\&quot;</span><span class="st">)&lt;/script&gt;&quot;</span>))
+}
+new_bar =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">structure</span>(x, <span class="dt">class =</span> <span class="st">&quot;bar&quot;</span>)
+<span class="kw">new_bar</span>(<span class="st">&quot;**hello** world!&quot;</span>)</code></pre></div>
+<p><strong>hello</strong> world!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">new_bar</span>(<span class="st">&quot;hello **world**!&quot;</span>)</code></pre></div>
+<p>hello <strong>world</strong>!</p>
+<p>The final version of the metadata, and clean it up:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">knit_meta</span>())</code></pre></div>
+<pre><code>## List of 6
+##  $ js  : chr &quot;/Users/yihui/R/shiny/www/shared/shiny.js&quot;
+##  $ css : chr &quot;/Users/yihui/R/shiny/www/shared/shiny.css&quot;
+##  $ js  : chr &quot;/Users/yihui/R/shiny/www/shared/shiny.js&quot;
+##  $ css : chr &quot;/Users/yihui/R/shiny/www/shared/shiny.css&quot;
+##  $ head: chr &quot;&lt;script&gt;console.log(\&quot;bar!\&quot;)&lt;/script&gt;&quot;
+##  $ head: chr &quot;&lt;script&gt;console.log(\&quot;bar!\&quot;)&lt;/script&gt;&quot;
+##  - attr(*, &quot;knit_meta_id&quot;)= chr [1:6] &quot;unnamed-chunk-9&quot; &quot;unnamed-chunk-9&quot; &quot;unnamed-chunk-11&quot; &quot;unnamed-chunk-11&quot; ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">knit_meta</span>())  <span class="co"># empty now, because clean = TRUE by default</span></code></pre></div>
+<pre><code>##  list()</code></pre>
+</div>
+<div id="for-package-authors" class="section level3">
+<h3>For package authors</h3>
+<p>If you are implementing a custom print method in your own package, here are two hints:</p>
+<ol style="list-style-type: decimal">
+<li><code>knit_print()</code> is an S3 generic function in <strong>knitr</strong>, so in theory you need to import it in your namespace via <code>importFrom(knitr, knit_print)</code>, but due to the “lack of rigor” of the S3 system, you can choose not to import <strong>knitr</strong>, and just do <code>export(knit_print.foo)</code> in the namespace, then R will find the S3 “method” after your package is attached via <code>library()</code>, because it is essentially a normal R function;</li>
+<li><p><code>asis_output()</code> is simply a function that marks an object with the class <code>knit_asis</code>, and you do not have to import this function to your package, either – just let your print method return <code>structure(x, class = 'knit_asis')</code>, and if there are additional metadata, just put it in the <code>knit_meta</code> attribute; here is the source code of this function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span>asis_output</code></pre></div>
+<pre><code>## function (x, meta = NULL, cacheable = NA) 
+## {
+##     structure(x, class = &quot;knit_asis&quot;, knit_meta = meta, knit_cacheable = cacheable)
+## }
+## &lt;environment: namespace:knitr&gt;</code></pre></li>
+</ol>
+<p>If you are worried about possible future changes in <code>asis_output()</code>, you can put <strong>knitr</strong> in the <code>Suggests</code> field in DESCRIPTION, and use <code>knitr::asis_output()</code>, so that you can avoid the “hard” dependency on <strong>knitr</strong>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Note R prints an object without an explicit <code>print()</code> call when it is <em>visible</em>; see <code>?invisible</code><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>The two hashes <code>##</code> were from the chunk option <code>comment</code>; you can turn them off by <code>comment = ''</code>.<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+
+<script type="text/javascript">
+window.onload = function() {
+  var i, fig = 1, caps = document.getElementsByClassName('caption');
+  for (i = 0; i < caps.length; i++) {
+    var cap = caps[i];
+    if (cap.parentElement.className !== 'figure' || cap.nodeName !== 'P')
+      continue;
+    cap.innerHTML = '<span>Figure ' + fig + ':</span> ' + cap.innerHTML;
+    fig++;
+  }
+  fig = 1;
+  caps = document.getElementsByTagName('caption');
+  for (i = 0; i < caps.length; i++) {
+    var cap = caps[i];
+    if (cap.parentElement.nodeName !== 'TABLE') continue;
+    cap.innerHTML = '<span>Table ' + fig + ':</span> ' + cap.innerHTML;
+    fig++;
+  }
+}
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

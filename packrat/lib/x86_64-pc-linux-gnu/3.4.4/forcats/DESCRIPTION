@@ -1,0 +1,29 @@
+Package: forcats
+Title: Tools for Working with Categorical Variables (Factors)
+Version: 0.3.0
+Authors@R: c( person("Hadley", "Wickham", , "hadley@rstudio.com", role
+    = c("aut", "cre")), person("RStudio", role = c("cph", "fnd")) )
+Description: Helpers for reordering factor levels (including moving
+    specified levels to front, ordering by first appearance, reversing,
+    and randomly shuffling), and tools for modifying factor levels
+    (including collapsing rare levels into other, 'anonymising', and
+    manually 'recoding').
+License: GPL-3
+URL: http://forcats.tidyverse.org, https://github.com/tidyverse/forcats
+BugReports: https://github.com/tidyverse/forcats/issues
+Depends: R (>= 3.1)
+Imports: magrittr, rlang, tibble
+Suggests: covr, ggplot2, testthat
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+NeedsCompilation: no
+Packaged: 2018-02-19 17:34:45 UTC; hadley
+Author: Hadley Wickham [aut, cre], RStudio [cph, fnd]
+Maintainer: Hadley Wickham <hadley@rstudio.com>
+Repository: CRAN
+Date/Publication: 2018-02-19 19:43:26 UTC
+Built: R 3.4.4; ; 2018-11-18 15:46:11 UTC; unix
+InstallAgent: packrat 0.4.9.14
+InstallSource: CRAN
+Hash: 770f3834b97a2c429bdecb7a5f27eb25

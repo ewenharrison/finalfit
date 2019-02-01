@@ -1,0 +1,8 @@
+htmldeps-package	htmldeps-package
+htmldeps	htmldeps-package
+html_dependency_bootstrap	html_dependency_bootstrap
+html_dependency_font_awesome	html_dependency_font_awesome
+html_dependency_ionicons	html_dependency_ionicons
+html_dependency_jquery	html_dependency_jquery
+html_dependency_jqueryui	html_dependency_jqueryui
+html_dependency_tocify	html_dependency_tocify
