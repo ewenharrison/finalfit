@@ -1,7 +1,0 @@
----
-output: 
-  html_document:
-    css: has-image.css
----
-
-# Hello, world.

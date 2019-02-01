@@ -1,4 +1,0 @@
-useDynLib(pan)
-export(ecme,
-       pan,
-       pan.bd)

@@ -1,8 +1,0 @@
-  [3m[90m<chr>[39m[23m                                              
-[90m1[39m a b c d e f g h i j k l m n o p q r s t u v w x y z
-  [3m[90m<chr>[39m[23m                                              
-[90m1[39m a b c d e f g h i j k l m n o p q r s t u v w x y z
-  [3m[90m<chr>[39m[23m                                              
-[90m1[39m a b c d e f g h i j k l m n o p q r s t u v w x y z
-  [3m[90m<chr>[39m[23m                                              
-[90m1[39m a b c d e f g h i j k l m n o p q r s t u v w x y z

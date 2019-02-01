@@ -1,9 +1,0 @@
-This package is based on public domain S and FORTRAN code for AVAS by 
-Tibshirani, and on FORTRAN code for ACE from Statlib, written by Spector
-and Friedman.
-
-The FORTRAN code has been edited to use double precision, for
-compatibility with R, and the R code and documentation for ace() have been
-added by Thomas Lumley, based on that for avas().
-
-

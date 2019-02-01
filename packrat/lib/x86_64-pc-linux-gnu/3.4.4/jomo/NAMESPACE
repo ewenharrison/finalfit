@@ -1,5 +1,0 @@
-export(jomo.smc, jomo.smc.MCMCchain, jomo.coxph.MCMCchain, jomo.coxph, jomo.glm.MCMCchain,jomo.glm,jomo.glmer.MCMCchain,jomo.glmer,jomo.lm.MCMCchain,jomo.lm,jomo.lmer.MCMCchain,jomo.lmer,jomo.MCMCchain,jomo,jomo1.MCMCchain, jomo1, jomo1cat.MCMCchain,jomo1con.MCMCchain,jomo1mix.MCMCchain, jomo1ran.MCMCchain, jomo1rancat.MCMCchain, jomo1rancathr.MCMCchain, jomo1rancathr, jomo1rancon.MCMCchain, jomo1ranconhr.MCMCchain, jomo1ranconhr, jomo1con,jomo1cat,jomo1mix,jomo1rancon,jomo1rancat,jomo1ranmix, jomo1ran, jomo1ranmixhr.MCMCchain, jomo1ranmixhr, jomo1ranmix.MCMCchain, jomo2.MCMCchain, jomo2, jomo2com.MCMCchain, jomo2com, jomo2hr.MCMCchain, jomo2hr)
-useDynLib(jomo, .registration = TRUE)
-import(stats)
-import(lme4)
-import(survival)
