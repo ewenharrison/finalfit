@@ -18,8 +18,8 @@
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' dependent = "mort_5yr"
 #' colon_s %>%
-#' 	 glmmulti(dependent, explanatory) %>%
-#' 	 ff_metrics()
+#'   glmmulti(dependent, explanatory) %>%
+#'   ff_metrics()
 #'
 #' # glmerMod
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
@@ -29,10 +29,9 @@
 #'   glmmixed(dependent, explanatory, random_effect) %>%
 #'   ff_metrics()
 #'
-#'
 #' # lm
 #' fit = lm(nodes ~  age.factor + sex.factor + obstruct.factor + perfor.factor,
-#' 				 data=colon_s)
+#'   data=colon_s)
 #' fit %>%
 #'   ff_metrics()
 #'
@@ -60,7 +59,7 @@
 #'   data = colon_s)
 #'
 #' fit %>%
-#' 	ff_metrics()
+#'   ff_metrics()
 
 ff_metrics <- function(.data){
 	 if (any(class(.data) %in% c("lmlist", "glmlist", "coxphlist")) && length(.data)>1){
@@ -69,8 +68,6 @@ ff_metrics <- function(.data){
 	UseMethod("ff_metrics")
 }
 
-#' Generate common metrics for `lm` objects
-#'
 #' @export
 #' @rdname ff_metrics
 #' @method ff_metrics lm
@@ -92,8 +89,6 @@ ff_metrics.lm <- function(.data){
 		", Adjusted r-squared = ", adj.r.squared)
 	return(metrics.out)
 }
-
-#' Generate common metrics for `lmlist` objects
 
 #' @export
 #' @rdname ff_metrics
@@ -117,8 +112,6 @@ ff_metrics.lmlist <- function(.data){
 	return(metrics.out)
 }
 
-#' Generate common metrics for `glm` objects
-#'
 #' @export
 #' @rdname ff_metrics
 #' @method ff_metrics glm
@@ -139,8 +132,6 @@ ff_metrics.glm <- function(.data){
 	return(metrics.out)
 }
 
-#' Generate common metrics for `glmlist` objects
-#'
 #' @export
 #' @rdname ff_metrics
 #' @method ff_metrics glmlist
@@ -161,8 +152,6 @@ ff_metrics.glmlist <- function(.data){
 	return(metrics.out)
 }
 
-#' Generate common metrics for `lmerMod` objects
-#'
 #' @export
 #' @rdname ff_metrics
 #' @method ff_metrics lmerMod
@@ -180,8 +169,6 @@ ff_metrics.lmerMod <- function(.data){
 	return(metrics.out)
 }
 
-#' Generate common metrics for `glmerMod` objects
-#'
 #' @export
 #' @rdname ff_metrics
 #' @method ff_metrics glmerMod
@@ -199,8 +186,6 @@ ff_metrics.glmerMod <- function(.data){
 	return(metrics.out)
 }
 
-#' Generate common metrics for `coxph` objects
-#'
 #' @export
 #' @rdname ff_metrics
 #' @method ff_metrics coxph
@@ -230,9 +215,6 @@ ff_metrics.coxph <- function(.data){
 	return(metrics.out)
 }
 
-
-#' Generate common metrics for `coxphlist` objects
-#'
 #' @export
 #' @rdname ff_metrics
 #' @method ff_metrics coxphlist

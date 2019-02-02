@@ -26,7 +26,7 @@ Two-way tables are used extensively in healthcare research, e.g. a 2x2 table com
 
 The main functions all take a `dependent` variable - the outcome (maximum of 5 levels) - and `explanatory` variables - predictors or exposures (any number categorical or continuous variables). 
 
-### 1.1 Default
+### 1.01 Default
 
 ```{r}
 library(finalfit)
@@ -44,7 +44,7 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r"))
 Note, chi-squared warnings will be generated when the expected count in any cell is less than 5. Fisher's exact test has not been implemented, given it is so easy to go straight to a univariable logistic regression,
 e.g. `colon_s %>% finalfit(dependent, explanatory)`
 
-### 1.2 P-value for hypothesis test
+### 1.02 P-value for hypothesis test
 
 Chi-squared for categorical, Kruskal-Wallis/Mann-Whitney for continuous
 
@@ -61,7 +61,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.3 Median (interquartile range) instead of mean (standard deviation)
+### 1.03 Median (interquartile range) instead of mean (standard deviation)
 
 ... for continuous variables.
 
@@ -78,7 +78,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.4 Missing values for the explanatory variables
+### 1.04 Missing values for the explanatory variables
 
 Always do this when describing your data.
 
@@ -95,7 +95,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.5 Column proportions (rather than row)
+### 1.05 Column proportions (rather than row)
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -111,7 +111,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.6 Total column
+### 1.06 Total column
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -127,7 +127,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.7 Order a variable by total
+### 1.07 Order a variable by total
 
 This is intended for when there is only one `explanatory` variable.  
 
@@ -145,7 +145,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.8 Label with `dependent` name
+### 1.08 Label with `dependent` name
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -180,7 +180,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.9 Dependent variable with 0 to 5 factor levels supported
+### 1.09 Dependent variable with 0 to 5 factor levels supported
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -192,6 +192,40 @@ colon_s %>%
   ) %>% 
   summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
     column = TRUE, total_col = TRUE, add_dependent_label = TRUE, dependent_label_prefix = "") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 1.10 Explanatory variable defaults to factor when ≤5 distinct values
+
+```{r, warning=FALSE}
+library(finalfit)
+
+# Here, `extent` is a continuous variable with 4 distinct values. 
+# Any continuous variable with 5 or fewer unique values is converted silently to factor 
+# e.g.
+explanatory = c("extent")
+dependent = "mort_5yr"
+colon_s %>%
+  summary_factorlist(dependent, explanatory) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 1.11 Keep as continous variable when ≤5 distinct values
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("extent")
+dependent = "mort_5yr"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, cont_cut = 3) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -218,8 +252,26 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
+### 2.02 Hide reference levels
 
-### 2.02 Model metrics
+Most appropriate when all explanatory variables are continuous or well-known binary variables, such as sex. 
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age", "sex.factor")
+dependent = "mort_5yr"
+colon_s %>%
+	finalfit(dependent, explanatory, add_dependent_label = FALSE) %>% 
+	ff_remove_ref() %>% 
+	dependent_label(colon_s, dependent)-> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.03 Model metrics
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -235,7 +287,20 @@ kable(t[[1]], row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r")
 kable(t[[2]], row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"), col.names = "")
 ```
 
-### 2.03 Reduced model
+### 2.04 Model metrics can be applied to all supported base models
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+glm(mort_5yr ~ age.factor + sex.factor + obstruct.factor + perfor.factor, data = colon_s, family = "binomial") %>% 
+	ff_metrics() -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"), col.names = "")
+```
+
+### 2.05 Reduced model
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -251,7 +316,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.04 Include all models
+### 2.06 Include all models
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -268,7 +333,41 @@ kable(t[[1]], row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r")
 kable(t[[2]], row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"), col.names = "")
 ```
 
-### 2.05 Dependent name
+### 2.06 Interactions
+
+Interactions can be specified in the normal way. Formatting the output is trickier. At the moment, we have left the default model output. This can be adjusted as necessary.
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor*sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+	finalfit(dependent, explanatory) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.07 Interactions: create interaction variable with two factors
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+#explanatory = c("age.factor*sex.factor", "obstruct.factor", "perfor.factor")
+explanatory = c("obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+	ff_interaction(age.factor, sex.factor) %>% 
+	finalfit(dependent, c(explanatory, "age.factor__sex.factor")) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.08 Dependent name
 
 The dependent name cannot be specified directly intentionally. This is to prevent errors when copying code. Re-label using `ff_label()`. The dependent prefix and suffix can also be altered. 
 
@@ -289,7 +388,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.06 Estimate name
+### 2.09 Estimate name
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -304,7 +403,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.07 Digits / decimal places
+### 2.10 Digits / decimal places
 
 Number of digits to round to regression results. (1) estimate, (2) confidence interval limits, (3) p-value. Default is c(2,2,3). Trailing zeros are preserved. Number of decimal places for counts and mean (sd) / median (IQR) not currently supported. Defaults are senisble :)
 
@@ -321,7 +420,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.08 Confidence interval type
+### 2.11 Confidence interval type
 
 One of `c("profile", "default")` for GLM models (`confint.glm()`). Note, a little awkwardly, the 'default' setting is `profile`, rather than `default`. Profile levels are probably a little more accurate. Only go to default if taking a significant length of time for profile, i.e. data is greater than hundreds of thousands of lines.
 
@@ -340,7 +439,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.09 Confidence interval level
+### 2.12 Confidence interval level
 
 Probably never change this :) Note, the p-value is intentionally not included for confidence levels other than 95% to avoid confusion.
 
@@ -357,7 +456,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.10 Confidence interval separation
+### 2.13 Confidence interval separation
 
 Some like to avoid the hyphen so as not to confuse with minus sign. Obviously not an issue in logistic regression.   
 
@@ -374,7 +473,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.11 Mixed effects random-intercept model
+### 2.14 Mixed effects random-intercept model
 
 At its simplest, a random-intercept model can be specified using a single quoted variable. In this example, it is the equivalent of quoting `random_effect = "(1 | hospital)"`. 
 
@@ -393,7 +492,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.12 Mixed effects random-slope model
+### 2.15 Mixed effects random-slope model
 
 In the example below, allow the effect of age on outcome to vary by hospital. Note, this specification must have parentheses included.
 
@@ -412,7 +511,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.13 Mixed effects random-slope model directly from `lme4`
+### 2.16 Mixed effects random-slope model directly from `lme4`
 
 Clearly, as models get more complex, parameters such as random effect group variances may require to be extracted directly from model outputs. 
 
@@ -431,7 +530,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-## 2.14 Exclude all missing data in final model from univariable analyses 
+## 2.17 Exclude all missing data in final model from univariable analyses 
 
 This can be useful if you want the numbers in the final table to match the final multivariable model. However, be careful to include a full explanation of this in the methods and the reason for exluding the missing data. 
 
@@ -450,7 +549,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.15 Linear regression
+### 2.18 Linear regression
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -465,7 +564,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.16 Mixed effects random-intercept linear regression
+### 2.19 Mixed effects random-intercept linear regression
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -482,7 +581,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.17 Mixed effects random-slope linear regression
+### 2.20 Mixed effects random-slope linear regression
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -499,7 +598,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.18 Cox proportional hazards model (survival / time to event)
+### 2.21 Cox proportional hazards model (survival / time to event)
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -514,7 +613,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.19 Cox proportional hazards model: change dependent label
+### 2.22 Cox proportional hazards model: change dependent label
 
 As above, the dependent label cannot be specfied directly in the model to avoid errors. However, in survival modelling the surivial object specification can be long or awkward. Therefore, here is the work around. 
 

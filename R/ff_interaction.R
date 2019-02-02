@@ -21,7 +21,7 @@
 #'   ff_interaction(sex.factor, perfor.factor) %>%
 #'     summary_factorlist("mort_5yr", "sex.factor__perfor.factor")
 
-ff_interaction = function(.data, ..., levels_sep = ":", var_sep = "__", label_sep=":"){
+ff_interaction = function(.data, ..., levels_sep = "|", var_sep = "__", label_sep=":"){
 	.f <- rlang::quos(...)
 	.f_len <- length(.f)
 	if(.f_len>2) stop("Currently only supports two factors.")

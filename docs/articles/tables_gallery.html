@@ -111,7 +111,7 @@
 <p>The main functions all take a <code>dependent</code> variable - the outcome (maximum of 5 levels) - and <code>explanatory</code> variables - predictors or exposures (any number categorical or continuous variables).</p>
 <div id="default" class="section level3">
 <h3 class="hasAnchor">
-<a href="#default" class="anchor"></a>1.1 Default</h3>
+<a href="#default" class="anchor"></a>1.01 Default</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">dependent =<span class="st"> "perfor.factor"</span></a>
@@ -181,7 +181,7 @@
 </div>
 <div id="p-value-for-hypothesis-test" class="section level3">
 <h3 class="hasAnchor">
-<a href="#p-value-for-hypothesis-test" class="anchor"></a>1.2 P-value for hypothesis test</h3>
+<a href="#p-value-for-hypothesis-test" class="anchor"></a>1.02 P-value for hypothesis test</h3>
 <p>Chi-squared for categorical, Kruskal-Wallis/Mann-Whitney for continuous</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
@@ -258,7 +258,7 @@
 </div>
 <div id="median-interquartile-range-instead-of-mean-standard-deviation" class="section level3">
 <h3 class="hasAnchor">
-<a href="#median-interquartile-range-instead-of-mean-standard-deviation" class="anchor"></a>1.3 Median (interquartile range) instead of mean (standard deviation)</h3>
+<a href="#median-interquartile-range-instead-of-mean-standard-deviation" class="anchor"></a>1.03 Median (interquartile range) instead of mean (standard deviation)</h3>
 <p>… for continuous variables.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
@@ -335,7 +335,7 @@
 </div>
 <div id="missing-values-for-the-explanatory-variables" class="section level3">
 <h3 class="hasAnchor">
-<a href="#missing-values-for-the-explanatory-variables" class="anchor"></a>1.4 Missing values for the explanatory variables</h3>
+<a href="#missing-values-for-the-explanatory-variables" class="anchor"></a>1.04 Missing values for the explanatory variables</h3>
 <p>Always do this when describing your data.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
@@ -419,7 +419,7 @@
 </div>
 <div id="column-proportions-rather-than-row" class="section level3">
 <h3 class="hasAnchor">
-<a href="#column-proportions-rather-than-row" class="anchor"></a>1.5 Column proportions (rather than row)</h3>
+<a href="#column-proportions-rather-than-row" class="anchor"></a>1.05 Column proportions (rather than row)</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3">dependent =<span class="st"> "perfor.factor"</span></a>
@@ -503,7 +503,7 @@
 </div>
 <div id="total-column" class="section level3">
 <h3 class="hasAnchor">
-<a href="#total-column" class="anchor"></a>1.6 Total column</h3>
+<a href="#total-column" class="anchor"></a>1.06 Total column</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">dependent =<span class="st"> "perfor.factor"</span></a>
@@ -597,7 +597,7 @@
 </div>
 <div id="order-a-variable-by-total" class="section level3">
 <h3 class="hasAnchor">
-<a href="#order-a-variable-by-total" class="anchor"></a>1.7 Order a variable by total</h3>
+<a href="#order-a-variable-by-total" class="anchor"></a>1.07 Order a variable by total</h3>
 <p>This is intended for when there is only one <code>explanatory</code> variable.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"extent.factor"</span>)</a>
@@ -652,7 +652,7 @@
 </div>
 <div id="label-with-dependent-name" class="section level3">
 <h3 class="hasAnchor">
-<a href="#label-with-dependent-name" class="anchor"></a>1.8 Label with <code>dependent</code> name</h3>
+<a href="#label-with-dependent-name" class="anchor"></a>1.08 Label with <code>dependent</code> name</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3">dependent =<span class="st"> "perfor.factor"</span></a>
@@ -748,11 +748,11 @@
 <a class="sourceLine" id="cb10-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">dependent =<span class="st"> "perfor.factor"</span></a>
 <a class="sourceLine" id="cb10-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">        <span class="dt">perfor.factor =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(perfor.factor, <span class="st">"Perforated cancer"</span>)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">    <span class="dt">perfor.factor =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(perfor.factor, <span class="st">"Perforated cancer"</span>)</a>
 <a class="sourceLine" id="cb10-7" data-line-number="7">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">p =</span> <span class="ot">TRUE</span>, <span class="dt">cont =</span> <span class="st">"median"</span>, <span class="dt">na_include =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb10-9" data-line-number="9">                                         <span class="dt">column =</span> <span class="ot">TRUE</span>, <span class="dt">total_col =</span> <span class="ot">TRUE</span>, <span class="dt">add_dependent_label =</span> <span class="ot">TRUE</span>, <span class="dt">dependent_label_prefix =</span> <span class="st">""</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">p =</span> <span class="ot">TRUE</span>, <span class="dt">cont =</span> <span class="st">"median"</span>, <span class="dt">na_include =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">    <span class="dt">column =</span> <span class="ot">TRUE</span>, <span class="dt">total_col =</span> <span class="ot">TRUE</span>, <span class="dt">add_dependent_label =</span> <span class="ot">TRUE</span>, <span class="dt">dependent_label_prefix =</span> <span class="st">""</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Perforated cancer</th>
@@ -840,16 +840,16 @@
 </div>
 <div id="dependent-variable-with-0-to-5-factor-levels-supported" class="section level3">
 <h3 class="hasAnchor">
-<a href="#dependent-variable-with-0-to-5-factor-levels-supported" class="anchor"></a>1.9 Dependent variable with 0 to 5 factor levels supported</h3>
+<a href="#dependent-variable-with-0-to-5-factor-levels-supported" class="anchor"></a>1.09 Dependent variable with 0 to 5 factor levels supported</h3>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
 <a class="sourceLine" id="cb11-3" data-line-number="3">dependent =<span class="st"> "extent.factor"</span></a>
 <a class="sourceLine" id="cb11-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6">        <span class="dt">perfor.factor =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(perfor.factor, <span class="st">"Perforated cancer"</span>)</a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">p =</span> <span class="ot">TRUE</span>, <span class="dt">cont =</span> <span class="st">"median"</span>, <span class="dt">na_include =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb11-9" data-line-number="9">                                         <span class="dt">column =</span> <span class="ot">TRUE</span>, <span class="dt">total_col =</span> <span class="ot">TRUE</span>, <span class="dt">add_dependent_label =</span> <span class="ot">TRUE</span>, <span class="dt">dependent_label_prefix =</span> <span class="st">""</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">    <span class="dt">perfor.factor =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(perfor.factor, <span class="st">"Perforated cancer"</span>)</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">p =</span> <span class="ot">TRUE</span>, <span class="dt">cont =</span> <span class="st">"median"</span>, <span class="dt">na_include =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">    <span class="dt">column =</span> <span class="ot">TRUE</span>, <span class="dt">total_col =</span> <span class="ot">TRUE</span>, <span class="dt">add_dependent_label =</span> <span class="ot">TRUE</span>, <span class="dt">dependent_label_prefix =</span> <span class="st">""</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Extent of spread</th>
@@ -955,6 +955,76 @@
 </tbody>
 </table>
 </div>
+<div id="explanatory-variable-defaults-to-factor-when-5-distinct-values" class="section level3">
+<h3 class="hasAnchor">
+<a href="#explanatory-variable-defaults-to-factor-when-5-distinct-values" class="anchor"></a>1.10 Explanatory variable defaults to factor when ≤5 distinct values</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co"># Here, `extent` is a continuous variable with 4 distinct values. </span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co"># Any continuous variable with 5 or fewer unique values is converted silently to factor </span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co"># e.g.</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"extent"</span>)</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">label</th>
+<th align="left">levels</th>
+<th align="right">Alive</th>
+<th align="right">Died</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">extent</td>
+<td align="left">1</td>
+<td align="right">16 (80.0)</td>
+<td align="right">4 (20.0)</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">2</td>
+<td align="right">78 (75.7)</td>
+<td align="right">25 (24.3)</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">3</td>
+<td align="right">401 (53.5)</td>
+<td align="right">349 (46.5)</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">4</td>
+<td align="right">16 (38.1)</td>
+<td align="right">26 (61.9)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="keep-as-continous-variable-when-5-distinct-values" class="section level3">
+<h3 class="hasAnchor">
+<a href="#keep-as-continous-variable-when-5-distinct-values" class="anchor"></a>1.11 Keep as continous variable when ≤5 distinct values</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"extent"</span>)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">cont_cut =</span> <span class="dv">3</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">label</th>
+<th align="left">levels</th>
+<th align="right">Alive</th>
+<th align="right">Died</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">extent</td>
+<td align="left">Mean (SD)</td>
+<td align="right">2.8 (0.5)</td>
+<td align="right">3 (0.4)</td>
+</tr></tbody>
+</table>
+</div>
 </div>
 <div id="model-tables-with-finalfit" class="section level2">
 <h2 class="hasAnchor">
@@ -964,11 +1034,11 @@
 <h3 class="hasAnchor">
 <a href="#default-1" class="anchor"></a>2.01 Default</h3>
 <p>Logistic regression first.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -1054,14 +1124,54 @@
 </tbody>
 </table>
 </div>
+<div id="hide-reference-levels" class="section level3">
+<h3 class="hasAnchor">
+<a href="#hide-reference-levels" class="anchor"></a>2.02 Hide reference levels</h3>
+<p>Most appropriate when all explanatory variables are continuous or well-known binary variables, such as sex.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">add_dependent_label =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/ff_remove_ref.html">ff_remove_ref</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="st">    </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(colon_s, dependent)-&gt;<span class="st"> </span>t</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Dependent: Mortality 5 year</th>
+<th></th>
+<th align="right">Alive</th>
+<th align="right">Died</th>
+<th align="right">OR (univariable)</th>
+<th align="right">OR (multivariable)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Age (years)</td>
+<td>Mean (SD)</td>
+<td align="right">59.8 (11.4)</td>
+<td align="right">59.9 (12.5)</td>
+<td align="right">1.00 (0.99-1.01, p=0.986)</td>
+<td align="right">1.00 (0.99-1.01, p=0.983)</td>
+</tr>
+<tr class="even">
+<td align="left">Sex</td>
+<td>Male</td>
+<td align="right">268 (52.4)</td>
+<td align="right">210 (52.0)</td>
+<td align="right">0.98 (0.76-1.27, p=0.889)</td>
+<td align="right">0.98 (0.76-1.27, p=0.888)</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="model-metrics" class="section level3">
 <h3 class="hasAnchor">
-<a href="#model-metrics" class="anchor"></a>2.02 Model metrics</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">metrics =</span> <span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a href="#model-metrics" class="anchor"></a>2.03 Model metrics</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">metrics =</span> <span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -1153,15 +1263,28 @@
 </tr></tbody>
 </table>
 </div>
+<div id="model-metrics-can-be-applied-to-all-supported-base-models" class="section level3">
+<h3 class="hasAnchor">
+<a href="#model-metrics-can-be-applied-to-all-supported-base-models" class="anchor"></a>2.04 Model metrics can be applied to all supported base models</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">glm</span>(mort_5yr <span class="op">~</span><span class="st"> </span>age.factor <span class="op">+</span><span class="st"> </span>sex.factor <span class="op">+</span><span class="st"> </span>obstruct.factor <span class="op">+</span><span class="st"> </span>perfor.factor, <span class="dt">data =</span> colon_s, <span class="dt">family =</span> <span class="st">"binomial"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="../reference/ff_metrics.html">ff_metrics</a></span>() -&gt;<span class="st"> </span>t</a></code></pre></div>
+<table class="table">
+<colgroup><col width="100%"></colgroup>
+<tbody><tr class="odd">
+<td align="left">Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)</td>
+</tr></tbody>
+</table>
+</div>
 <div id="reduced-model" class="section level3">
 <h3 class="hasAnchor">
-<a href="#reduced-model" class="anchor"></a>2.03 Reduced model</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">explanatory_multi =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, explanatory_multi) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a href="#reduced-model" class="anchor"></a>2.05 Reduced model</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">explanatory_multi =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, explanatory_multi) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -1249,13 +1372,13 @@
 </div>
 <div id="include-all-models" class="section level3">
 <h3 class="hasAnchor">
-<a href="#include-all-models" class="anchor"></a>2.04 Include all models</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">explanatory_multi =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, explanatory_multi, <span class="dt">metrics =</span> <span class="ot">TRUE</span>, <span class="dt">keep_models =</span> <span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a href="#include-all-models" class="anchor"></a>2.06 Include all models</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">explanatory_multi =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, explanatory_multi, <span class="dt">metrics =</span> <span class="ot">TRUE</span>, <span class="dt">keep_models =</span> <span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -1362,19 +1485,232 @@
 </tbody>
 </table>
 </div>
+<div id="interactions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#interactions" class="anchor"></a>2.06 Interactions</h3>
+<p>Interactions can be specified in the normal way. Formatting the output is trickier. At the moment, we have left the default model output. This can be adjusted as necessary.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor*sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Dependent: Mortality 5 year</th>
+<th></th>
+<th align="right">Alive</th>
+<th align="right">Died</th>
+<th align="right">OR (univariable)</th>
+<th align="right">OR (multivariable)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Age</td>
+<td>&lt;40 years</td>
+<td align="right">31 (6.1)</td>
+<td align="right">36 (8.9)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td>40-59 years</td>
+<td align="right">208 (40.7)</td>
+<td align="right">131 (32.4)</td>
+<td align="right">0.65 (0.32-1.34, p=0.241)</td>
+<td align="right">0.66 (0.32-1.36, p=0.258)</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>60+ years</td>
+<td align="right">272 (53.2)</td>
+<td align="right">237 (58.7)</td>
+<td align="right">0.80 (0.40-1.61, p=0.529)</td>
+<td align="right">0.85 (0.42-1.71, p=0.647)</td>
+</tr>
+<tr class="even">
+<td align="left">Sex</td>
+<td>Female</td>
+<td align="right">243 (47.6)</td>
+<td align="right">194 (48.0)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>Male</td>
+<td align="right">268 (52.4)</td>
+<td align="right">210 (52.0)</td>
+<td align="right">1.24 (0.47-3.30, p=0.665)</td>
+<td align="right">1.17 (0.44-3.15, p=0.752)</td>
+</tr>
+<tr class="even">
+<td align="left">Obstruction</td>
+<td>No</td>
+<td align="right">408 (82.1)</td>
+<td align="right">312 (78.6)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>Yes</td>
+<td align="right">89 (17.9)</td>
+<td align="right">85 (21.4)</td>
+<td align="right">1.25 (0.90-1.74, p=0.189)</td>
+<td align="right">1.26 (0.90-1.76, p=0.182)</td>
+</tr>
+<tr class="even">
+<td align="left">Perforation</td>
+<td>No</td>
+<td align="right">497 (97.3)</td>
+<td align="right">391 (96.8)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>Yes</td>
+<td align="right">14 (2.7)</td>
+<td align="right">13 (3.2)</td>
+<td align="right">1.18 (0.54-2.55, p=0.672)</td>
+<td align="right">1.11 (0.50-2.41, p=0.795)</td>
+</tr>
+<tr class="even">
+<td align="left">age.factor40-59 years:sex.factorMale</td>
+<td>Interaction</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">0.68 (0.23-1.97, p=0.479)</td>
+<td align="right">0.74 (0.25-2.18, p=0.588)</td>
+</tr>
+<tr class="odd">
+<td align="left">age.factor60+ years:sex.factorMale</td>
+<td>Interaction</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">0.86 (0.30-2.39, p=0.766)</td>
+<td align="right">0.89 (0.31-2.51, p=0.822)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="interactions-create-interaction-variable-with-two-factors" class="section level3">
+<h3 class="hasAnchor">
+<a href="#interactions-create-interaction-variable-with-two-factors" class="anchor"></a>2.07 Interactions: create interaction variable with two factors</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="co">#explanatory = c("age.factor*sex.factor", "obstruct.factor", "perfor.factor")</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/ff_interaction.html">ff_interaction</a></span>(age.factor, sex.factor) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, <span class="kw">c</span>(explanatory, <span class="st">"age.factor__sex.factor"</span>)) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Dependent: Mortality 5 year</th>
+<th></th>
+<th align="right">Alive</th>
+<th align="right">Died</th>
+<th align="right">OR (univariable)</th>
+<th align="right">OR (multivariable)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Obstruction</td>
+<td>No</td>
+<td align="right">408 (82.1)</td>
+<td align="right">312 (78.6)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td>Yes</td>
+<td align="right">89 (17.9)</td>
+<td align="right">85 (21.4)</td>
+<td align="right">1.25 (0.90-1.74, p=0.189)</td>
+<td align="right">1.26 (0.90-1.76, p=0.182)</td>
+</tr>
+<tr class="odd">
+<td align="left">Perforation</td>
+<td>No</td>
+<td align="right">497 (97.3)</td>
+<td align="right">391 (96.8)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td>Yes</td>
+<td align="right">14 (2.7)</td>
+<td align="right">13 (3.2)</td>
+<td align="right">1.18 (0.54-2.55, p=0.672)</td>
+<td align="right">1.11 (0.50-2.41, p=0.795)</td>
+</tr>
+<tr class="odd">
+<td align="left">Age:Sex</td>
+<td>&lt;40 years|Female</td>
+<td align="right">18 (3.5)</td>
+<td align="right">19 (4.7)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td>&lt;40 years|Male</td>
+<td align="right">13 (2.5)</td>
+<td align="right">17 (4.2)</td>
+<td align="right">1.24 (0.47-3.30, p=0.665)</td>
+<td align="right">1.17 (0.44-3.15, p=0.752)</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>40-59 years|Female</td>
+<td align="right">96 (18.8)</td>
+<td align="right">66 (16.3)</td>
+<td align="right">0.65 (0.32-1.34, p=0.241)</td>
+<td align="right">0.66 (0.32-1.36, p=0.258)</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td>40-59 years|Male</td>
+<td align="right">112 (21.9)</td>
+<td align="right">65 (16.1)</td>
+<td align="right">0.55 (0.27-1.12, p=0.100)</td>
+<td align="right">0.57 (0.28-1.18, p=0.129)</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>60+ years|Female</td>
+<td align="right">129 (25.2)</td>
+<td align="right">109 (27.0)</td>
+<td align="right">0.80 (0.40-1.61, p=0.529)</td>
+<td align="right">0.85 (0.42-1.71, p=0.647)</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td>60+ years|Male</td>
+<td align="right">143 (28.0)</td>
+<td align="right">128 (31.7)</td>
+<td align="right">0.85 (0.42-1.69, p=0.638)</td>
+<td align="right">0.88 (0.44-1.77, p=0.725)</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="dependent-name" class="section level3">
 <h3 class="hasAnchor">
-<a href="#dependent-name" class="anchor"></a>2.05 Dependent name</h3>
+<a href="#dependent-name" class="anchor"></a>2.08 Dependent name</h3>
 <p>The dependent name cannot be specified directly intentionally. This is to prevent errors when copying code. Re-label using <code><a href="../reference/ff_label.html">ff_label()</a></code>. The dependent prefix and suffix can also be altered.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
-<a class="sourceLine" id="cb16-6" data-line-number="6">        <span class="dt">mort_5yr =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(mort_5yr, <span class="st">"5-year mortality"</span>)</a>
-<a class="sourceLine" id="cb16-7" data-line-number="7">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">dependent_label_prefix =</span> <span class="st">""</span>,</a>
-<a class="sourceLine" id="cb16-9" data-line-number="9">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (full model)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
+<a class="sourceLine" id="cb22-6" data-line-number="6">        <span class="dt">mort_5yr =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(mort_5yr, <span class="st">"5-year mortality"</span>)</a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">dependent_label_prefix =</span> <span class="st">""</span>,</a>
+<a class="sourceLine" id="cb22-9" data-line-number="9">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (full model)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">5-year mortality (full model)</th>
@@ -1462,12 +1798,12 @@
 </div>
 <div id="estimate-name" class="section level3">
 <h3 class="hasAnchor">
-<a href="#estimate-name" class="anchor"></a>2.06 Estimate name</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">estimate_name =</span> <span class="st">"Odds ratio"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a href="#estimate-name" class="anchor"></a>2.09 Estimate name</h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">estimate_name =</span> <span class="st">"Odds ratio"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -1555,13 +1891,13 @@
 </div>
 <div id="digits-decimal-places" class="section level3">
 <h3 class="hasAnchor">
-<a href="#digits-decimal-places" class="anchor"></a>2.07 Digits / decimal places</h3>
+<a href="#digits-decimal-places" class="anchor"></a>2.10 Digits / decimal places</h3>
 <p>Number of digits to round to regression results. (1) estimate, (2) confidence interval limits, (3) p-value. Default is c(2,2,3). Trailing zeros are preserved. Number of decimal places for counts and mean (sd) / median (IQR) not currently supported. Defaults are senisble :)</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">digits =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>)) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">digits =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>)) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -1649,14 +1985,14 @@
 </div>
 <div id="confidence-interval-type" class="section level3">
 <h3 class="hasAnchor">
-<a href="#confidence-interval-type" class="anchor"></a>2.08 Confidence interval type</h3>
+<a href="#confidence-interval-type" class="anchor"></a>2.11 Confidence interval type</h3>
 <p>One of <code>c("profile", "default")</code> for GLM models (<code>confint.glm()</code>). Note, a little awkwardly, the ‘default’ setting is <code>profile</code>, rather than <code>default</code>. Profile levels are probably a little more accurate. Only go to default if taking a significant length of time for profile, i.e. data is greater than hundreds of thousands of lines.</p>
 <p>For glmer/lmer models (<code>confint.merMod()</code>), <code>c("profile", "Wald", "boot")</code>. Not implemented for <code>lm()</code>, <code>coxph()</code> or <code>coxphlist</code>, which use default.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">confint_type =</span> <span class="st">"default"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">confint_type =</span> <span class="st">"default"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -1744,13 +2080,13 @@
 </div>
 <div id="confidence-interval-level" class="section level3">
 <h3 class="hasAnchor">
-<a href="#confidence-interval-level" class="anchor"></a>2.09 Confidence interval level</h3>
+<a href="#confidence-interval-level" class="anchor"></a>2.12 Confidence interval level</h3>
 <p>Probably never change this :) Note, the p-value is intentionally not included for confidence levels other than 95% to avoid confusion.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb20-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">confint_level =</span> <span class="fl">0.90</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">confint_level =</span> <span class="fl">0.90</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -1838,13 +2174,13 @@
 </div>
 <div id="confidence-interval-separation" class="section level3">
 <h3 class="hasAnchor">
-<a href="#confidence-interval-separation" class="anchor"></a>2.10 Confidence interval separation</h3>
+<a href="#confidence-interval-separation" class="anchor"></a>2.13 Confidence interval separation</h3>
 <p>Some like to avoid the hyphen so as not to confuse with minus sign. Obviously not an issue in logistic regression.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">confint_sep =</span> <span class="st">" to "</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">confint_sep =</span> <span class="st">" to "</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -1932,15 +2268,15 @@
 </div>
 <div id="mixed-effects-random-intercept-model" class="section level3">
 <h3 class="hasAnchor">
-<a href="#mixed-effects-random-intercept-model" class="anchor"></a>2.11 Mixed effects random-intercept model</h3>
+<a href="#mixed-effects-random-intercept-model" class="anchor"></a>2.14 Mixed effects random-intercept model</h3>
 <p>At its simplest, a random-intercept model can be specified using a single quoted variable. In this example, it is the equivalent of quoting <code>random_effect = "(1 | hospital)"</code>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb22-4" data-line-number="4">random_effect =<span class="st"> "hospital"</span></a>
-<a class="sourceLine" id="cb22-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">random_effect =</span> random_effect,</a>
-<a class="sourceLine" id="cb22-7" data-line-number="7">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (random intercept)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">random_effect =<span class="st"> "hospital"</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">random_effect =</span> random_effect,</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (random intercept)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year (random intercept)</th>
@@ -2028,15 +2364,15 @@
 </div>
 <div id="mixed-effects-random-slope-model" class="section level3">
 <h3 class="hasAnchor">
-<a href="#mixed-effects-random-slope-model" class="anchor"></a>2.12 Mixed effects random-slope model</h3>
+<a href="#mixed-effects-random-slope-model" class="anchor"></a>2.15 Mixed effects random-slope model</h3>
 <p>In the example below, allow the effect of age on outcome to vary by hospital. Note, this specification must have parentheses included.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb23-4" data-line-number="4">random_effect =<span class="st"> "(age.factor | hospital)"</span></a>
-<a class="sourceLine" id="cb23-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">random_effect =</span> random_effect,</a>
-<a class="sourceLine" id="cb23-7" data-line-number="7">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (random slope: age)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">random_effect =<span class="st"> "(age.factor | hospital)"</span></a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">random_effect =</span> random_effect,</a>
+<a class="sourceLine" id="cb29-7" data-line-number="7">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (random slope: age)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year (random slope: age)</th>
@@ -2124,16 +2460,16 @@
 </div>
 <div id="mixed-effects-random-slope-model-directly-from-lme4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#mixed-effects-random-slope-model-directly-from-lme4" class="anchor"></a>2.13 Mixed effects random-slope model directly from <code>lme4</code>
+<a href="#mixed-effects-random-slope-model-directly-from-lme4" class="anchor"></a>2.16 Mixed effects random-slope model directly from <code>lme4</code>
 </h3>
 <p>Clearly, as models get more complex, parameters such as random effect group variances may require to be extracted directly from model outputs.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb24-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb24-4" data-line-number="4">random_effect =<span class="st"> "(age.factor | hospital)"</span></a>
-<a class="sourceLine" id="cb24-5" data-line-number="5">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="st">    </span>lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(mort_5yr <span class="op">~</span><span class="st"> </span>age.factor <span class="op">+</span><span class="st"> </span>(age.factor <span class="op">|</span><span class="st"> </span>hospital), <span class="dt">family =</span> <span class="st">"binomial"</span>, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb24-7" data-line-number="7"><span class="st">    </span>broom<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/broom/topics/tidy">tidy</a></span>() -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">random_effect =<span class="st"> "(age.factor | hospital)"</span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="st">    </span>lme4<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(mort_5yr <span class="op">~</span><span class="st"> </span>age.factor <span class="op">+</span><span class="st"> </span>(age.factor <span class="op">|</span><span class="st"> </span>hospital), <span class="dt">family =</span> <span class="st">"binomial"</span>, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="st">    </span>broom<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/broom/topics/reexports">tidy</a></span>() -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">term</th>
@@ -2222,15 +2558,15 @@
 </div>
 <div id="exclude-all-missing-data-in-final-model-from-univariable-analyses" class="section level2">
 <h2 class="hasAnchor">
-<a href="#exclude-all-missing-data-in-final-model-from-univariable-analyses" class="anchor"></a>2.14 Exclude all missing data in final model from univariable analyses</h2>
+<a href="#exclude-all-missing-data-in-final-model-from-univariable-analyses" class="anchor"></a>2.17 Exclude all missing data in final model from univariable analyses</h2>
 <p>This can be useful if you want the numbers in the final table to match the final multivariable model. However, be careful to include a full explanation of this in the methods and the reason for exluding the missing data.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(explanatory, dependent) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="st">    </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">dependent =<span class="st"> 'mort_5yr'</span></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(explanatory, dependent) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="st">    </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -2317,12 +2653,12 @@
 </table>
 <div id="linear-regression" class="section level3">
 <h3 class="hasAnchor">
-<a href="#linear-regression" class="anchor"></a>2.15 Linear regression</h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3">dependent =<span class="st"> 'nodes'</span></a>
-<a class="sourceLine" id="cb26-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a href="#linear-regression" class="anchor"></a>2.18 Linear regression</h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3">dependent =<span class="st"> 'nodes'</span></a>
+<a class="sourceLine" id="cb32-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: nodes</th>
@@ -2400,14 +2736,14 @@
 </div>
 <div id="mixed-effects-random-intercept-linear-regression" class="section level3">
 <h3 class="hasAnchor">
-<a href="#mixed-effects-random-intercept-linear-regression" class="anchor"></a>2.16 Mixed effects random-intercept linear regression</h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3">dependent =<span class="st"> "nodes"</span></a>
-<a class="sourceLine" id="cb27-4" data-line-number="4">random_effect =<span class="st"> "hospital"</span></a>
-<a class="sourceLine" id="cb27-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">random_effect =</span> random_effect,</a>
-<a class="sourceLine" id="cb27-7" data-line-number="7">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (random intercept)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a href="#mixed-effects-random-intercept-linear-regression" class="anchor"></a>2.19 Mixed effects random-intercept linear regression</h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">dependent =<span class="st"> "nodes"</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4">random_effect =<span class="st"> "hospital"</span></a>
+<a class="sourceLine" id="cb33-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">random_effect =</span> random_effect,</a>
+<a class="sourceLine" id="cb33-7" data-line-number="7">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (random intercept)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: nodes (random intercept)</th>
@@ -2485,14 +2821,14 @@
 </div>
 <div id="mixed-effects-random-slope-linear-regression" class="section level3">
 <h3 class="hasAnchor">
-<a href="#mixed-effects-random-slope-linear-regression" class="anchor"></a>2.17 Mixed effects random-slope linear regression</h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">dependent =<span class="st"> "nodes"</span></a>
-<a class="sourceLine" id="cb28-4" data-line-number="4">random_effect =<span class="st"> "(age.factor | hospital)"</span></a>
-<a class="sourceLine" id="cb28-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">random_effect =</span> random_effect,</a>
-<a class="sourceLine" id="cb28-7" data-line-number="7">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (random slope: age)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a href="#mixed-effects-random-slope-linear-regression" class="anchor"></a>2.20 Mixed effects random-slope linear regression</h3>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">dependent =<span class="st"> "nodes"</span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4">random_effect =<span class="st"> "(age.factor | hospital)"</span></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">random_effect =</span> random_effect,</a>
+<a class="sourceLine" id="cb34-7" data-line-number="7">                     <span class="dt">dependent_label_suffix =</span> <span class="st">" (random slope: age)"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: nodes (random slope: age)</th>
@@ -2570,12 +2906,12 @@
 </div>
 <div id="cox-proportional-hazards-model-survival-time-to-event" class="section level3">
 <h3 class="hasAnchor">
-<a href="#cox-proportional-hazards-model-survival-time-to-event" class="anchor"></a>2.18 Cox proportional hazards model (survival / time to event)</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3">dependent =<span class="st"> "Surv(time, status)"</span></a>
-<a class="sourceLine" id="cb29-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a href="#cox-proportional-hazards-model-survival-time-to-event" class="anchor"></a>2.21 Cox proportional hazards model (survival / time to event)</h3>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">dependent =<span class="st"> "Surv(time, status)"</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Surv(time, status)</th>
@@ -2643,15 +2979,15 @@
 </div>
 <div id="cox-proportional-hazards-model-change-dependent-label" class="section level3">
 <h3 class="hasAnchor">
-<a href="#cox-proportional-hazards-model-change-dependent-label" class="anchor"></a>2.19 Cox proportional hazards model: change dependent label</h3>
+<a href="#cox-proportional-hazards-model-change-dependent-label" class="anchor"></a>2.22 Cox proportional hazards model: change dependent label</h3>
 <p>As above, the dependent label cannot be specfied directly in the model to avoid errors. However, in survival modelling the surivial object specification can be long or awkward. Therefore, here is the work around.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb30-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3">dependent =<span class="st"> "Surv(time, status)"</span></a>
-<a class="sourceLine" id="cb30-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">add_dependent_label =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">"Overall survival"</span> =<span class="st"> </span>label) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">" "</span> =<span class="st"> </span>levels) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3">dependent =<span class="st"> "Surv(time, status)"</span></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">add_dependent_label =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">"Overall survival"</span> =<span class="st"> </span>label) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-7" data-line-number="7"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">" "</span> =<span class="st"> </span>levels) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Overall survival</th>
@@ -2726,26 +3062,26 @@
 <h3 class="hasAnchor">
 <a href="#basic-table" class="anchor"></a>3.1 Basic table</h3>
 <p>Note <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> needs argument, <code>fit_id = TRUE</code>.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb31-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb31-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb31-6" data-line-number="6">## Crosstable</a>
-<a class="sourceLine" id="cb31-7" data-line-number="7">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">fit_id=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>table_<span class="dv">1</span></a>
-<a class="sourceLine" id="cb31-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb31-10" data-line-number="10">## Univariable</a>
-<a class="sourceLine" id="cb31-11" data-line-number="11">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-12" data-line-number="12"><span class="st">    </span><span class="kw"><a href="../reference/glmuni.html">glmuni</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-13" data-line-number="13"><span class="st">    </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (univariable)"</span>) -&gt;<span class="st"> </span>table_<span class="dv">2</span></a>
-<a class="sourceLine" id="cb31-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb31-15" data-line-number="15">## Merge</a>
-<a class="sourceLine" id="cb31-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb31-17" data-line-number="17">table_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb31-18" data-line-number="18"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(table_<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb31-19" data-line-number="19"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw">c</span>(fit_id, index)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb31-20" data-line-number="20"><span class="st">    </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(colon_s, dependent)-&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb37-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6">## Crosstable</a>
+<a class="sourceLine" id="cb37-7" data-line-number="7">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">fit_id=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>table_<span class="dv">1</span></a>
+<a class="sourceLine" id="cb37-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb37-10" data-line-number="10">## Univariable</a>
+<a class="sourceLine" id="cb37-11" data-line-number="11">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-12" data-line-number="12"><span class="st">    </span><span class="kw"><a href="../reference/glmuni.html">glmuni</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-13" data-line-number="13"><span class="st">    </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (univariable)"</span>) -&gt;<span class="st"> </span>table_<span class="dv">2</span></a>
+<a class="sourceLine" id="cb37-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb37-15" data-line-number="15">## Merge</a>
+<a class="sourceLine" id="cb37-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb37-17" data-line-number="17">table_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-18" data-line-number="18"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(table_<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-19" data-line-number="19"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw">c</span>(fit_id, index)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-20" data-line-number="20"><span class="st">    </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(colon_s, dependent)-&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -2824,37 +3160,37 @@
 <div id="complex-table-all-in-single-pipe" class="section level3">
 <h3 class="hasAnchor">
 <a href="#complex-table-all-in-single-pipe" class="anchor"></a>3.2 Complex table (all in single pipe)</h3>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb32-3" data-line-number="3">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb32-4" data-line-number="4">random_effect =<span class="st"> "hospital"</span></a>
-<a class="sourceLine" id="cb32-5" data-line-number="5">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb32-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb32-7" data-line-number="7"><span class="co"># All in one pipe</span></a>
-<a class="sourceLine" id="cb32-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb32-9" data-line-number="9">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-10" data-line-number="10"><span class="st">    </span>## Crosstable</a>
-<a class="sourceLine" id="cb32-11" data-line-number="11"><span class="st">    </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">fit_id=</span><span class="ot">TRUE</span>)  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb32-12" data-line-number="12"><span class="st">    </span></a>
-<a class="sourceLine" id="cb32-13" data-line-number="13"><span class="st">    </span>## Add univariable</a>
-<a class="sourceLine" id="cb32-14" data-line-number="14"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb32-15" data-line-number="15">        <span class="kw"><a href="../reference/glmuni.html">glmuni</a></span>(colon_s, dependent, explanatory) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-16" data-line-number="16"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (univariable)"</span>)</a>
-<a class="sourceLine" id="cb32-17" data-line-number="17">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb32-18" data-line-number="18"><span class="st">    </span></a>
-<a class="sourceLine" id="cb32-19" data-line-number="19"><span class="st">    </span>## Add multivariable</a>
-<a class="sourceLine" id="cb32-20" data-line-number="20"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb32-21" data-line-number="21">        <span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(colon_s, dependent, explanatory) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-22" data-line-number="22"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (multivariable)"</span>)</a>
-<a class="sourceLine" id="cb32-23" data-line-number="23">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb32-24" data-line-number="24"><span class="st">    </span></a>
-<a class="sourceLine" id="cb32-25" data-line-number="25"><span class="st">    </span>## Add mixed effects</a>
-<a class="sourceLine" id="cb32-26" data-line-number="26"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb32-27" data-line-number="27">        <span class="kw"><a href="../reference/glmmixed.html">glmmixed</a></span>(colon_s, dependent, explanatory, random_effect) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-28" data-line-number="28"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (multilevel)"</span>) </a>
-<a class="sourceLine" id="cb32-29" data-line-number="29">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb32-30" data-line-number="30"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw">c</span>(fit_id, index)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb32-31" data-line-number="31"><span class="st">    </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(colon_s, dependent) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4">random_effect =<span class="st"> "hospital"</span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="co"># All in one pipe</span></a>
+<a class="sourceLine" id="cb38-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb38-9" data-line-number="9">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-10" data-line-number="10"><span class="st">    </span>## Crosstable</a>
+<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="st">    </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">fit_id=</span><span class="ot">TRUE</span>)  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-12" data-line-number="12"><span class="st">    </span></a>
+<a class="sourceLine" id="cb38-13" data-line-number="13"><span class="st">    </span>## Add univariable</a>
+<a class="sourceLine" id="cb38-14" data-line-number="14"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb38-15" data-line-number="15">        <span class="kw"><a href="../reference/glmuni.html">glmuni</a></span>(colon_s, dependent, explanatory) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-16" data-line-number="16"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (univariable)"</span>)</a>
+<a class="sourceLine" id="cb38-17" data-line-number="17">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-18" data-line-number="18"><span class="st">    </span></a>
+<a class="sourceLine" id="cb38-19" data-line-number="19"><span class="st">    </span>## Add multivariable</a>
+<a class="sourceLine" id="cb38-20" data-line-number="20"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb38-21" data-line-number="21">        <span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(colon_s, dependent, explanatory) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-22" data-line-number="22"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (multivariable)"</span>)</a>
+<a class="sourceLine" id="cb38-23" data-line-number="23">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-24" data-line-number="24"><span class="st">    </span></a>
+<a class="sourceLine" id="cb38-25" data-line-number="25"><span class="st">    </span>## Add mixed effects</a>
+<a class="sourceLine" id="cb38-26" data-line-number="26"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb38-27" data-line-number="27">        <span class="kw"><a href="../reference/glmmixed.html">glmmixed</a></span>(colon_s, dependent, explanatory, random_effect) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-28" data-line-number="28"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (multilevel)"</span>) </a>
+<a class="sourceLine" id="cb38-29" data-line-number="29">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-30" data-line-number="30"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw">c</span>(fit_id, index)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-31" data-line-number="31"><span class="st">    </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(colon_s, dependent) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -2954,33 +3290,33 @@
 <h3 class="hasAnchor">
 <a href="#using-base-r-functions" class="anchor"></a>3.3 Using base R functions</h3>
 <p>Note <code><a href="../reference/ff_formula.html">ff_formula()</a></code> convenience function to make multivariable formula (<code>y ~ x1 + x2 + x3</code> etc.) from a <code>dependent</code> and <code>explanatory</code> vector of names.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb33-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb33-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb33-6" data-line-number="6"><span class="co"># All in one pipe</span></a>
-<a class="sourceLine" id="cb33-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb33-8" data-line-number="8">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-9" data-line-number="9"><span class="st">    </span>## Crosstable</a>
-<a class="sourceLine" id="cb33-10" data-line-number="10"><span class="st">    </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">fit_id=</span><span class="ot">TRUE</span>)  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb33-11" data-line-number="11"><span class="st">    </span></a>
-<a class="sourceLine" id="cb33-12" data-line-number="12"><span class="st">    </span>## Add univariable</a>
-<a class="sourceLine" id="cb33-13" data-line-number="13"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb33-14" data-line-number="14">        <span class="kw"><a href="../reference/glmuni.html">glmuni</a></span>(colon_s, dependent, explanatory) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-15" data-line-number="15"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (univariable)"</span>)</a>
-<a class="sourceLine" id="cb33-16" data-line-number="16">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb33-17" data-line-number="17"><span class="st">    </span></a>
-<a class="sourceLine" id="cb33-18" data-line-number="18"><span class="st">    </span>## Add multivariable</a>
-<a class="sourceLine" id="cb33-19" data-line-number="19"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb33-20" data-line-number="20">        <span class="kw">glm</span>(</a>
-<a class="sourceLine" id="cb33-21" data-line-number="21">            <span class="kw"><a href="../reference/ff_formula.html">ff_formula</a></span>(dependent, explanatory), <span class="dt">data =</span> colon_s, <span class="dt">family =</span> <span class="st">"binomial"</span>, <span class="dt">weights =</span> <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb33-22" data-line-number="22">        ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-23" data-line-number="23"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (multivariable)"</span>)</a>
-<a class="sourceLine" id="cb33-24" data-line-number="24">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb33-25" data-line-number="25"><span class="st">    </span></a>
-<a class="sourceLine" id="cb33-26" data-line-number="26"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw">c</span>(fit_id, index)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb33-27" data-line-number="27"><span class="st">    </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(colon_s, dependent) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb39-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb39-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="co"># All in one pipe</span></a>
+<a class="sourceLine" id="cb39-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb39-8" data-line-number="8">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-9" data-line-number="9"><span class="st">    </span>## Crosstable</a>
+<a class="sourceLine" id="cb39-10" data-line-number="10"><span class="st">    </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">fit_id=</span><span class="ot">TRUE</span>)  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb39-11" data-line-number="11"><span class="st">    </span></a>
+<a class="sourceLine" id="cb39-12" data-line-number="12"><span class="st">    </span>## Add univariable</a>
+<a class="sourceLine" id="cb39-13" data-line-number="13"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb39-14" data-line-number="14">        <span class="kw"><a href="../reference/glmuni.html">glmuni</a></span>(colon_s, dependent, explanatory) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-15" data-line-number="15"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (univariable)"</span>)</a>
+<a class="sourceLine" id="cb39-16" data-line-number="16">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb39-17" data-line-number="17"><span class="st">    </span></a>
+<a class="sourceLine" id="cb39-18" data-line-number="18"><span class="st">    </span>## Add multivariable</a>
+<a class="sourceLine" id="cb39-19" data-line-number="19"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb39-20" data-line-number="20">        <span class="kw">glm</span>(</a>
+<a class="sourceLine" id="cb39-21" data-line-number="21">            <span class="kw"><a href="../reference/ff_formula.html">ff_formula</a></span>(dependent, explanatory), <span class="dt">data =</span> colon_s, <span class="dt">family =</span> <span class="st">"binomial"</span>, <span class="dt">weights =</span> <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb39-22" data-line-number="22">        ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-23" data-line-number="23"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (multivariable)"</span>)</a>
+<a class="sourceLine" id="cb39-24" data-line-number="24">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb39-25" data-line-number="25"><span class="st">    </span></a>
+<a class="sourceLine" id="cb39-26" data-line-number="26"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw">c</span>(fit_id, index)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb39-27" data-line-number="27"><span class="st">    </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(colon_s, dependent) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -3070,29 +3406,31 @@
 <h3 class="hasAnchor">
 <a href="#edit-table-rows" class="anchor"></a>3.4 Edit table rows</h3>
 <p>This can be done as any dataframe would be edited.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb34-3" data-line-number="3">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor*sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb34-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb34-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="co"># Run model for term test</span></a>
-<a class="sourceLine" id="cb34-7" data-line-number="7">fit &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
-<a class="sourceLine" id="cb34-8" data-line-number="8">    <span class="kw"><a href="../reference/ff_formula.html">ff_formula</a></span>(dependent, explanatory), </a>
-<a class="sourceLine" id="cb34-9" data-line-number="9">    <span class="dt">data=</span>colon_s, <span class="dt">family =</span> binomial</a>
-<a class="sourceLine" id="cb34-10" data-line-number="10">)</a>
-<a class="sourceLine" id="cb34-11" data-line-number="11">term_test &lt;-<span class="st"> </span>survey<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/survey/topics/regTermTest">regTermTest</a></span>(fit, <span class="st">"age.factor:sex.factor"</span>)</a>
-<a class="sourceLine" id="cb34-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb34-13" data-line-number="13"><span class="co"># Run final table with results of term test</span></a>
-<a class="sourceLine" id="cb34-14" data-line-number="14">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-15" data-line-number="15"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-16" data-line-number="16"><span class="st">    </span><span class="kw">rbind</span>(<span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb34-17" data-line-number="17">        <span class="st">"age.factor:sex.factor (overall)"</span>,</a>
-<a class="sourceLine" id="cb34-18" data-line-number="18">        <span class="st">"Interaction"</span>,</a>
-<a class="sourceLine" id="cb34-19" data-line-number="19">        <span class="st">"-"</span>,</a>
-<a class="sourceLine" id="cb34-20" data-line-number="20">        <span class="st">"-"</span>,</a>
-<a class="sourceLine" id="cb34-21" data-line-number="21">        <span class="st">"-"</span>,</a>
-<a class="sourceLine" id="cb34-22" data-line-number="22">        <span class="kw">paste0</span>(<span class="st">"p"</span>, term_test<span class="op">$</span>p <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/p_tidy.html">p_tidy</a></span>(<span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb34-23" data-line-number="23">    ))-&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor*sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb40-4" data-line-number="4">dependent =<span class="st"> "mort_5yr"</span></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"><span class="co"># Run model for term test</span></a>
+<a class="sourceLine" id="cb40-7" data-line-number="7">fit &lt;-<span class="st"> </span><span class="kw">glm</span>(</a>
+<a class="sourceLine" id="cb40-8" data-line-number="8">    <span class="kw"><a href="../reference/ff_formula.html">ff_formula</a></span>(dependent, explanatory), </a>
+<a class="sourceLine" id="cb40-9" data-line-number="9">    <span class="dt">data=</span>colon_s, <span class="dt">family =</span> binomial</a>
+<a class="sourceLine" id="cb40-10" data-line-number="10">)</a>
+<a class="sourceLine" id="cb40-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb40-12" data-line-number="12"><span class="co"># Not run</span></a>
+<a class="sourceLine" id="cb40-13" data-line-number="13"><span class="co">#term_test &lt;- survey::regTermTest(fit, "age.factor:sex.factor")</span></a>
+<a class="sourceLine" id="cb40-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb40-15" data-line-number="15"><span class="co"># Run final table with results of term test</span></a>
+<a class="sourceLine" id="cb40-16" data-line-number="16">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-17" data-line-number="17"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-18" data-line-number="18"><span class="st">    </span><span class="kw">rbind</span>(<span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb40-19" data-line-number="19">        <span class="st">"age.factor:sex.factor (overall)"</span>,</a>
+<a class="sourceLine" id="cb40-20" data-line-number="20">        <span class="st">"Interaction"</span>,</a>
+<a class="sourceLine" id="cb40-21" data-line-number="21">        <span class="st">"-"</span>,</a>
+<a class="sourceLine" id="cb40-22" data-line-number="22">        <span class="st">"-"</span>,</a>
+<a class="sourceLine" id="cb40-23" data-line-number="23">        <span class="st">"-"</span>,</a>
+<a class="sourceLine" id="cb40-24" data-line-number="24">        <span class="kw">paste0</span>(<span class="st">"p = 0.775"</span>)</a>
+<a class="sourceLine" id="cb40-25" data-line-number="25">    ))-&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -3197,7 +3535,7 @@
 <td align="right">-</td>
 <td align="right">-</td>
 <td align="right">-</td>
-<td align="right">p=0.775</td>
+<td align="right">p = 0.775</td>
 </tr>
 </tbody>
 </table>
@@ -3212,7 +3550,7 @@
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#cross-tables">1 Cross tables</a></li>
       <li><a href="#model-tables-with-finalfit">2 Model tables with <code><a href="--/reference/finalfit-html">finalfit()</a></code></a></li>
-      <li><a href="#exclude-all-missing-data-in-final-model-from-univariable-analyses">2.14 Exclude all missing data in final model from univariable analyses</a></li>
+      <li><a href="#exclude-all-missing-data-in-final-model-from-univariable-analyses">2.17 Exclude all missing data in final model from univariable analyses</a></li>
       <li><a href="#model-tables-manually-using-ff_merge">3 Model tables manually using <code><a href="--/reference/ff_merge-html">ff_merge()</a></code></a></li>
       </ul>
 </div>
