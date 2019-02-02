@@ -106,15 +106,15 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1,
 		df.factors.out = df.factors
 	}
 
-	cat("Numerics\n")
+	cat("Continuous\n")
 	print(df.numeric.out, row.names = TRUE)
-	cat("\nFactors\n")
+	cat("\nCategorical\n")
 	print(df.factors.out, row.names = TRUE)
 
 	return(invisible(
 		list(
-			numerics = df.numeric.out,
-			factors = df.factors.out))
+			continuous = df.numeric.out,
+			categorical = df.factors.out))
 	)
 }
 
