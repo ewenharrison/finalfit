@@ -38,22 +38,6 @@ Model metrics vector for output.
 }
 \description{
 Generate common metrics for regression model results
-
-Generate common metrics for `lm` objects
-
-Generate common metrics for `lmlist` objects
-
-Generate common metrics for `glm` objects
-
-Generate common metrics for `glmlist` objects
-
-Generate common metrics for `lmerMod` objects
-
-Generate common metrics for `glmerMod` objects
-
-Generate common metrics for `coxph` objects
-
-Generate common metrics for `coxphlist` objects
 }
 \examples{
 library(finalfit)
@@ -68,8 +52,8 @@ fit \%>\%
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s \%>\%
-	 glmmulti(dependent, explanatory) \%>\%
-	 ff_metrics()
+  glmmulti(dependent, explanatory) \%>\%
+  ff_metrics()
 
 # glmerMod
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
@@ -79,10 +63,9 @@ colon_s \%>\%
   glmmixed(dependent, explanatory, random_effect) \%>\%
   ff_metrics()
 
-
 # lm
 fit = lm(nodes ~  age.factor + sex.factor + obstruct.factor + perfor.factor,
-				 data=colon_s)
+  data=colon_s)
 fit \%>\%
   ff_metrics()
 
@@ -110,5 +93,5 @@ fit = survival::coxph(survival::Surv(time, status) ~ age.factor + sex.factor +
   data = colon_s)
 
 fit \%>\%
-	ff_metrics()
+  ff_metrics()
 }

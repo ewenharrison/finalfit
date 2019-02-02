@@ -5,10 +5,10 @@
 \alias{finalfit_interaction}
 \title{Make an interaction variable and add to dataframe}
 \usage{
-ff_interaction(.data, ..., levels_sep = ":", var_sep = "__",
+ff_interaction(.data, ..., levels_sep = "|", var_sep = "__",
   label_sep = ":")
 
-finalfit_interaction(.data, ..., levels_sep = ":", var_sep = "__",
+finalfit_interaction(.data, ..., levels_sep = "|", var_sep = "__",
   label_sep = ":")
 }
 \arguments{

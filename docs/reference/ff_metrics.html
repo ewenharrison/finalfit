@@ -32,15 +32,7 @@
 
 <meta property="og:title" content="Generate common metrics for regression model results — ff_metrics" />
 
-<meta property="og:description" content="Generate common metrics for regression model results
-Generate common metrics for `lm` objects
-Generate common metrics for `lmlist` objects
-Generate common metrics for `glm` objects
-Generate common metrics for `glmlist` objects
-Generate common metrics for `lmerMod` objects
-Generate common metrics for `glmerMod` objects
-Generate common metrics for `coxph` objects
-Generate common metrics for `coxphlist` objects" />
+<meta property="og:description" content="Generate common metrics for regression model results" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -142,14 +134,6 @@ Generate common metrics for `coxphlist` objects" />
     <div class="ref-description">
     
     <p>Generate common metrics for regression model results</p>
-<p>Generate common metrics for `lm` objects</p>
-<p>Generate common metrics for `lmlist` objects</p>
-<p>Generate common metrics for `glm` objects</p>
-<p>Generate common metrics for `glmlist` objects</p>
-<p>Generate common metrics for `lmerMod` objects</p>
-<p>Generate common metrics for `glmerMod` objects</p>
-<p>Generate common metrics for `coxph` objects</p>
-<p>Generate common metrics for `coxphlist` objects</p>
     
     </div>
 
@@ -205,8 +189,8 @@ Generate common metrics for `coxphlist` objects" />
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-         <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)"</div><div class='input'>
+  <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)"</div><div class='input'>
 <span class='co'># glmerMod</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>
@@ -214,10 +198,9 @@ Generate common metrics for `coxphlist` objects" />
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='glmmixed.html'>glmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in model = 894, Number of groups = 5, AIC = 933.8, C-statistic = 0.815"</div><div class='input'>
-
 <span class='co'># lm</span>
 <span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'>lm</span>(<span class='no'>nodes</span> ~  <span class='no'>age.factor</span> + <span class='no'>sex.factor</span> + <span class='no'>obstruct.factor</span> + <span class='no'>perfor.factor</span>,
-                                 <span class='kw'>data</span><span class='kw'>=</span><span class='no'>colon_s</span>)
+  <span class='kw'>data</span><span class='kw'>=</span><span class='no'>colon_s</span>)
 <span class='no'>fit</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 890, Missing = 39, Log-likelihood = -2394.25, R-squared = 0.0092, Adjusted r-squared = 0.0036"</div><div class='input'>
 <span class='co'># lmerMod</span>
@@ -242,7 +225,7 @@ Generate common metrics for `coxphlist` objects" />
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>colon_s</span>)
 
 <span class='no'>fit</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 908, Missing = 21, Number of events = 441, Concordance = 0.543 (SE = 0.014), R-squared = 0.011( Max possible = 0.998), Likelihood ratio test = 9.862 (df = 5, p = 0.079)"</div></pre>
+  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 908, Missing = 21, Number of events = 441, Concordance = 0.543 (SE = 0.014), R-squared = 0.011( Max possible = 0.998), Likelihood ratio test = 9.862 (df = 5, p = 0.079)"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

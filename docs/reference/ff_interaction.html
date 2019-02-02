@@ -145,10 +145,10 @@ labelled with a name derived from any pre-existing labels.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ff_interaction</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>levels_sep</span> <span class='kw'>=</span> <span class='st'>":"</span>, <span class='kw'>var_sep</span> <span class='kw'>=</span> <span class='st'>"__"</span>,
+    <pre class="usage"><span class='fu'>ff_interaction</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>levels_sep</span> <span class='kw'>=</span> <span class='st'>"|"</span>, <span class='kw'>var_sep</span> <span class='kw'>=</span> <span class='st'>"__"</span>,
   <span class='kw'>label_sep</span> <span class='kw'>=</span> <span class='st'>":"</span>)
 
-<span class='fu'>finalfit_interaction</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>levels_sep</span> <span class='kw'>=</span> <span class='st'>":"</span>, <span class='kw'>var_sep</span> <span class='kw'>=</span> <span class='st'>"__"</span>,
+<span class='fu'>finalfit_interaction</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>levels_sep</span> <span class='kw'>=</span> <span class='st'>"|"</span>, <span class='kw'>var_sep</span> <span class='kw'>=</span> <span class='st'>"__"</span>,
   <span class='kw'>label_sep</span> <span class='kw'>=</span> <span class='st'>":"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -186,10 +186,10 @@ labelled with a name derived from any pre-existing labels.</p>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>ff_interaction</span>(<span class='no'>sex.factor</span>, <span class='no'>perfor.factor</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='st'>"mort_5yr"</span>, <span class='st'>"sex.factor__perfor.factor"</span>)</div><div class='output co'>#&gt;             label     levels      Alive       Died
-#&gt; 1 Sex:Perforation  Female:No 238 (56.1) 186 (43.9)
-#&gt; 2                 Female:Yes   5 (38.5)   8 (61.5)
-#&gt; 3                    Male:No 259 (55.8) 205 (44.2)
-#&gt; 4                   Male:Yes   9 (64.3)   5 (35.7)</div></pre>
+#&gt; 1 Sex:Perforation  Female|No 238 (56.1) 186 (43.9)
+#&gt; 2                 Female|Yes   5 (38.5)   8 (61.5)
+#&gt; 3                    Male|No 259 (55.8) 205 (44.2)
+#&gt; 4                   Male|Yes   9 (64.3)   5 (35.7)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
