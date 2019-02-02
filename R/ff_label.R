@@ -33,6 +33,7 @@ finalfit_label <- ff_label
 #' colon_s %>%
 #'   extract_variable_label
 extract_variable_label = function(.data){
+	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
 	sapply(colnames(.data), function(x){
 		label = attr(.data[,x], "label")
 		ifelse(is.null(label), x, label)
