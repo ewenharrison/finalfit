@@ -35,7 +35,7 @@ surv_plot = function(.data, dependent, explanatory, ...){
   args$data=.data
 
   # Defaults which can be modified via ...
-  if (is.null(args$xlab)) args$ylab="Time"
+  if (is.null(args$xlab)) args$xlab="Time"
   if (is.null(args$ylab)) args$ylab="Probability"
   if (is.null(args$censor)) args$censor=FALSE
   if (is.null(args$conf.int)) args$conf.int=FALSE
