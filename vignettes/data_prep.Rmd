@@ -1,0 +1,92 @@
+---
+title: "Preparing data for finalfit"
+author: "Ewen Harrison"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Bootstrap simulation for model prediction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+	
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+	collapse = TRUE,
+	comment = "#>"
+)
+```
+
+This vignette shows you how to upload and prepare any dataset for use with finalfit. The demonstration will use the `boot::melanoma`. Use `?boot::melanoma` to see the help page with data description. I will use `library(tidyverse)` methods. First I'll `write_csv()` the data just to demonstrate reading it. 
+
+## Read data
+
+Note the various options in `read_csv()`, including providing column names, variable type, missing data identifier etc. 
+
+```{r}
+library(readr)
+
+# Save example
+write_csv(boot::melanoma, "boot.csv")
+
+# Read data
+melanoma = read_csv("boot.csv")
+```
+
+## Column types
+
+Note the output shows how the columns/variables have been parsed. For full details see `?readr::cols()`. 
+
+### Continuous data
+
+* Integer (whole numbers) - `col_integer()`
+* Double or numeric (real numbers; the name comes from "double-precision floating point") - `col_double()`
+
+### Categorical data
+
+* Factor (a fixed set of names/strings or numbers) - `col_factor()`
+* Character (sequences letters, numbers, and symbols) - `col_character()`
+* Logical (containing only TRUE or FALSE) - `col_logical()`
+
+### Dates and times
+
+* Date - `col_date()`
+* Time - `col_time()`
+* Date-time - `col_datetime()`
+
+## Check data
+
+`ff_glimpse()` provides a convenient overview of all data in a tibble or data frame. It is particularly important that factors are correctly specified. Hence, `ff_glimpse()` separates variables into continuous and categorcial. As expected, no factors are yet specified in the melanoma dataset. 
+
+```{r}
+library(finalfit)
+ff_glimpse(melanoma)
+```
+
+If you wish to see the variables in the order in which they appear in the data frame or tibble, `missing_glimpse()` or `tibble::glimpse()` are useful. 
+
+```{r}
+missing_glimpse(melanoma)
+```
+
+## Specify factors
+
+Use an original description of the data (often called a data dictionary) to correctly assign and label any factor variables. This can be done in a single pipe. 
+
+```{r}
+library(dplyr)
+melanoma %>% 
+  mutate(
+    status.factor = factor(status, levels = c(1, 2, 3), 
+      labels = c("Died from melanoma", "Alive", "Died from other causes")) %>% 
+    ff_label("Status"),
+    sex.factor = factor(sex, levels = c(1, 0),
+      labels = c("Male", "Female")) %>% 
+    ff_label("Sex"),
+    ulcer.factor = factor(ulcer, levels = c(1, 0),
+      labels = c("Present", "Absent")) %>% 
+    ff_label("Ulcer")
+  ) -> melanoma
+
+ff_glimpse(melanoma)
+```
+
+Everything looks good and you are ready to start analysis.  

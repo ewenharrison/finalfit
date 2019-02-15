@@ -2,7 +2,8 @@
 
 * `or_plot()` bug fix
 * `ff_remove_ref()` added. #12
-* `glmmixed()` and `lmmixed()` now support random gradient models, and all complex `lme4` specifications.  
+* `glmmixed()` and `lmmixed()` now support random gradient models, and all complex `lme4` specifications. 
+* Data preparation vignette added.
 
 # finalfit 0.8.9
 
