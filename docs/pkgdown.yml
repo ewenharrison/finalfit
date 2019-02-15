@@ -3,6 +3,7 @@ pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
   bootstrap: bootstrap.html
+  data_prep: data_prep.html
   export: export.html
   finalfit: finalfit.html
   missing: missing.html

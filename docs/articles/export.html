@@ -59,6 +59,9 @@
       <a href="../articles/bootstrap.html">Bootstrap simulation for model prediction</a>
     </li>
     <li>
+      <a href="../articles/data_prep.html">Preparing data for finalfit</a>
+    </li>
+    <li>
       <a href="../articles/export.html">Exporting tables and plots</a>
     </li>
     <li>
@@ -127,7 +130,7 @@
 <p>Check data.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/ff_glimpse.html">ff_glimpse</a></span>(dependent, explanatory)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; Numerics</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; Continuous</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;             label       var_type   n missing_n missing_percent mean   sd</span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; age   Age (years) &lt;S3: labelled&gt; 929         0             0.0 59.8 11.9</span></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; nodes       nodes          &lt;dbl&gt; 911        18             1.9  3.7  3.6</span></a>
@@ -135,7 +138,7 @@
 <a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; age   18.0        53.0   61.0        69.0 85.0</span></a>
 <a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; nodes  0.0         1.0    2.0         5.0 33.0</span></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; Factors</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; Categorical</span></a>
 <a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;                            label var_type   n missing_n missing_percent</span></a>
 <a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; sex.factor                   Sex    &lt;fct&gt; 929         0             0.0</span></a>
 <a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; obstruct.factor      Obstruction    &lt;fct&gt; 908        21             2.3</span></a>

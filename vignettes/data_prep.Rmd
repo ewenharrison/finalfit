@@ -3,7 +3,7 @@ title: "Preparing data for finalfit"
 author: "Ewen Harrison"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Bootstrap simulation for model prediction}
+  %\VignetteIndexEntry{Preparing data for finalfit}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
