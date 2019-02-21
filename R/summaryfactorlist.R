@@ -75,17 +75,17 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 		dependent = "all"
 		.data$all = factor(1, labels="all")
 	}
-
+	
 	args = list(.data = .data, dependent = dependent, explanatory = explanatory,
 							cont = cont, cont_cut = cont_cut, p = p, na_include = na_include,
 							column = column, total_col = total_col, orderbytotal = orderbytotal, fit_id = fit_id,
 							na_to_missing = na_to_missing, add_dependent_label = add_dependent_label,
 							dependent_label_prefix = dependent_label_prefix,
 							dependent_label_suffix = dependent_label_suffix)
-
+	
 	# Survival object
 	d_is.surv = grepl("Surv[(].*[)]", dependent)
-
+	
 	if(d_is.surv){
 		warning("Dependent variable is a survival object")
 		.data$all = factor(1, labels="all")
@@ -93,21 +93,21 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 			do.call(summary_factorlist_groups, args=list(.data = .data, dependent = "all",  explanatory = explanatory, fit_id = fit_id))
 		)
 	} else {
-
+		
 		# Extract dependent variable
 		d_variable = .data[,names(.data) %in% dependent]
-
+		
 		if(length(d_variable) == 0){
 			stop("Dependent variable length is 0")
 		}
-
+		
 		# Logical is.factor
 		d_is.factor = is.factor(d_variable) |
 			is.character(d_variable)
-
+		
 		# Number of levels of dependent
 		d.len = length(levels(d_variable))
-
+		
 		# Non-factor case
 		if(!d_is.factor){
 			warning("Dependent is not a factor and will be treated as a continuous variable")
@@ -117,9 +117,6 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 		}
 	}
 }
-
-
-
 
 
 #' Summarise a set of factors by a dependent variable
@@ -132,7 +129,7 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", c
 																column = FALSE, total_col = FALSE, orderbytotal = FALSE, fit_id = FALSE,
 																na_to_missing = TRUE, add_dependent_label = FALSE,
 																dependent_label_prefix = "Dependent: ", dependent_label_suffix=""){
-
+	
 	s = summary_formula(as.formula(paste(dependent, "~", paste(explanatory, collapse="+"))), data = .data,
 											overall = FALSE, method = "response", na.include = na_include, continuous = cont_cut, g = 1,
 											fun=function(x) {
@@ -144,10 +141,10 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", c
 												return(data.frame(mean, sd, L, median, U))
 											}
 	)
-
+	
 	# Dataframe
 	df.out = data.frame(label=attr(s, "vlabel"), levels=attr(s, "dimnames")[[1]])
-
+	
 	# Add in lm level names, this needs hacked in given above methodology
 	if (fit_id){
 		vname = attr(s, "vname")
@@ -156,7 +153,7 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", c
 			if(vname_logical[i]) vname[i] = vname[i-1]
 		}
 		levels = as.character(df.out$levels)
-
+		
 		# Error with continuous vs continuous variables and fit_id, fix:
 		regex_sqbracket = "^(\\[).*(\\])$"
 		drop = grepl(regex_sqbracket, levels)
@@ -164,36 +161,36 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", c
 		df.out$fit_id = paste0(vname, levels)
 		df.out$index = 1:dim(df.out)[1]
 	}
-
+	
 	if (cont=="mean"){
-		mean.out = sprintf("%.1f", matrix(s[,2]))
-		sd.out = sprintf("%.1f", matrix(s[,3]))
+		mean.out = round_tidy(matrix(s[,2]), 1)
+		sd.out = round_tidy(matrix(s[,3]), 1)
 		result.out = data.frame(paste0(mean.out, " (", sd.out, ")"))
 		colnames(result.out) = "Mean (sd)"
 	}
-
+	
 	if (cont=="median"){
-		median.out = sprintf("%.1f", matrix(s[,5]))
-		L_IQR = sprintf("%.1f", matrix(s[,4]))
-		U_IQR = sprintf("%.1f", matrix(s[,6]))
+		median.out = round_tidy(matrix(s[,5]), 1)
+		L_IQR = round_tidy(matrix(s[,4]), 1)
+		U_IQR = round_tidy(matrix(s[,6]), 1)
 		result.out = data.frame(paste0(median.out, " (", L_IQR, " to ", U_IQR, ")"))
 		colnames(result.out) = "Median (IQR)"
 	}
-
+	
 	df.out = cbind(df.out, result.out)
-
+	
 	if (total_col){
 		total.out = matrix(s[,1])
 		df.out = cbind(df.out, "Total" = total.out)
 	}
-
+	
 	# Add dependent name label
 	if(add_dependent_label){
 		df.out = dependent_label(df.out=df.out, .data=.data, dependent,
 														 prefix=dependent_label_prefix, suffix = dependent_label_suffix)
 	}
-
-
+	
+	
 	return(df.out)
 }
 
@@ -203,38 +200,39 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", c
 #' Internal function, not called directly.
 #'
 #' @keywords internal
-summary_factorlist_groups <- function(.data, dependent, explanatory,  cont = "mean", cont_cut = 5, p = FALSE, na_include = FALSE,
-									  column = FALSE, total_col = FALSE, orderbytotal = FALSE, fit_id = FALSE,
-									  na_to_missing = TRUE, add_dependent_label = FALSE,
-									  dependent_label_prefix = "Dependent: ", dependent_label_suffix = ""){
-
+summary_factorlist_groups <- function(.data, dependent, explanatory,  cont = "mean", cont_cut = 5, 
+																			p = FALSE, na_include = FALSE,
+																			column = FALSE, total_col = FALSE, orderbytotal = FALSE, fit_id = FALSE,
+																			na_to_missing = TRUE, add_dependent_label = FALSE,
+																			dependent_label_prefix = "Dependent: ", dependent_label_suffix = ""){
+	
 	s <- summary_formula(as.formula(paste(dependent, "~", paste(explanatory, collapse = "+"))), data = .data,
-						 method = "reverse", overall = FALSE,
-						 test = TRUE,na.include = na_include, continuous = cont_cut)
+											 method = "reverse", overall = FALSE,
+											 test = TRUE,na.include = na_include, continuous = cont_cut)
 	df.out = plyr::ldply(1:length(s$stats), function(index) {
 		x = s$stats[[index]]
 		is_continuous = s$type[index] == 2
-
+		
 		if (is_continuous) {
-			df.out = summarize_continuous(x, cont = cont)
+			df.out = summarise_continuous(x, cont = cont)
 		} else {
 			# Factor variables
-			df.out = summarize_categorical(x, column = column, total_col = total_col)
+			df.out = summarise_categorical(x, column = column, total_col = total_col)
 		}
 		df.out[[".id"]] = names(s$stats)[index]
-
+		
 		return(df.out)
 	}, .id = NULL)
-
+	
 	# Keep original order
 	df.out$index = 1:dim(df.out)[1]
-
+	
 	if (p == TRUE){
-		a = plyr::ldply(s$testresults, function(x) sprintf("%.3f",round(x[[1]], 3)))
+		a = plyr::ldply(s$testresults, function(x) round_tidy(x[[1]], 3))
 		names(a) = c(".id", "p")
 		df.out = merge(df.out, a, by=".id")
 	}
-
+	
 	# Add back in actual labels
 	df.labels = data.frame(".id" = names(s$stats), "label" = s$labels)
 	df.out.labels = merge(df.out, df.labels, by = ".id")
@@ -243,12 +241,12 @@ summary_factorlist_groups <- function(.data, dependent, explanatory,  cont = "me
 	} else {
 		df.out.labels = df.out.labels[order(-df.out.labels$index_total),] # reorder columns
 	}
-
+	
 	# Reorder columns
 	label_index = which(names(df.out.labels) == "label")
 	not_label_index = which(names(df.out.labels) != "label")
 	df.out.labels = df.out.labels[,c(label_index,not_label_index)]
-
+	
 	# Add glm levels name
 	if (fit_id){
 		levels = as.character(df.out.labels$levels)
@@ -256,7 +254,7 @@ summary_factorlist_groups <- function(.data, dependent, explanatory,  cont = "me
 		levels[levels == "Median (IQR)"] = ""
 		df.out.labels$fit_id = paste0(df.out.labels$.id, levels)
 	}
-
+	
 	# Remove
 	if (!fit_id) {
 		index_index = which(names(df.out.labels) == "index")
@@ -266,16 +264,16 @@ summary_factorlist_groups <- function(.data, dependent, explanatory,  cont = "me
 	id_index = which(names(df.out.labels) == ".id")
 	index_total_index = which(names(df.out.labels) == "index_total")
 	df.out.labels = df.out.labels[,-c(id_index, index_total_index, index_index)]
-
+	
 	# Remove duplicate labels
 	df.out.labels = rm_duplicate_labels(df.out.labels, na_to_missing = na_to_missing)
-
+	
 	# Add dependent name label
 	if(add_dependent_label){
 		df.out.labels = dependent_label(df.out=df.out.labels, .data=.data, dependent,
-										prefix=dependent_label_prefix, suffix = dependent_label_suffix)
+																		prefix=dependent_label_prefix, suffix = dependent_label_suffix)
 	}
-
+	
 	return(df.out.labels)
 }
 
@@ -285,32 +283,27 @@ summary_factorlist_groups <- function(.data, dependent, explanatory,  cont = "me
 #' Internal function, not called directly.
 #'
 #' @keywords internal
-summarize_continuous = function(x, cont) {
-	# Workaround for CRAN checks: need to declare any variables that
-	#   will be used in dplyr non-standard evaluation
-	Mean = NULL; SD = NULL; Median = NULL; Q3 = NULL; Q1 = NULL;
-	IQR = NULL; Formatted = NULL;
-
+summarise_continuous = function(x, cont) {
 	if (cont == "mean") {
 		df_out = x %>%
 			as.data.frame() %>%
 			dplyr::mutate(
 				Label = rownames(.),
-				Formatted = paste0(round(Mean, 1), " (",
-								   round(SD, 1), ")"),
+				Formatted = paste0(round_tidy(Mean, 1), " (",
+													 round_tidy(SD, 1), ")"),
 				levels = "Mean (SD)"
 			)
 	} else if (cont == "median") {
 		df_out = x %>%
 			as.data.frame() %>%
 			dplyr::rename(Median = 6,
-						  Q3 = 8,
-						  Q1 = 4) %>%
+										Q3 = 8,
+										Q1 = 4) %>%
 			dplyr::mutate(
 				Label = rownames(.),
 				IQR = Q3 - Q1,
-				Formatted = paste0(round(Median, 1), " (",
-								   round(IQR, 1), ")"),
+				Formatted = paste0(round_tidy(Median, 1), " (",
+													 round_tidy(IQR, 1), ")"),
 				levels = "Median (IQR)"
 			)
 	}
@@ -325,47 +318,40 @@ summarize_continuous = function(x, cont) {
 #' Internal function, not called directly.
 #'
 #' @keywords internal
-summarize_categorical = function(x, column, total_col) {
+summarise_categorical = function(x, column, total_col) {
 	format_n_percent = function(n, percent) {
-		# sprintf to keep trailing zeros
-		percent = sprintf("%.1f", round(percent, 1))
+		percent = round_tidy(percent, 1)
 		paste0(n, " (", percent, ")")
 	}
-
-	# Workaround for CRAN checks: need to declare any variables that
-	#   will be used in dplyr non-standard evaluation
-	w = NULL; Freq = NULL; g = NULL; total_prop = NULL; Prop = NULL;
-	Formatted = NULL; index_total = NULL;
-
 	# Calculate totals
 	df = x %>%
 		as.data.frame() %>%
 		dplyr::group_by(w) %>%
 		dplyr::mutate(Total = sum(Freq),
-					  index_total = Total) %>%
+									index_total = Total) %>%
 		dplyr::group_by(g) %>%
 		dplyr::mutate(total_prop = Total / sum(Total) * 100)
-
-
+	
+	
 	# Calculate percentage: row-wise or column-wise
 	if (column) {
 		df = df %>%
 			dplyr::group_by(g) %>%
 			dplyr::mutate(Prop = Freq / sum(Freq) * 100,
-						  Total = format_n_percent(Total, total_prop))
+										Total = format_n_percent(Total, total_prop))
 	} else {
 		df = df %>%
 			dplyr::group_by(w) %>%
 			dplyr::mutate(Prop = Freq / sum(Freq) * 100)
 	}
-
+	
 	# Finalize and reshape
 	df = df %>%
 		dplyr::ungroup() %>%
 		dplyr::mutate(Formatted = format_n_percent(Freq, Prop)) %>%
 		dplyr::select(levels = w, g, Formatted, Total, index_total) %>%
 		tidyr::spread(g, Formatted)
-
+	
 	# Drop totals if not required
 	if (total_col) {
 		df = df %>%
@@ -375,6 +361,6 @@ summarize_categorical = function(x, column, total_col) {
 		df = df %>%
 			dplyr::select(-Total, -index_total)
 	}
-
+	
 	return(df)
 }
