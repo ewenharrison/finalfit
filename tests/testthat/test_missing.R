@@ -10,6 +10,10 @@ test_that("missing_pattern gives matrix", {
 	expect_is(missing_pattern(colon_s, "mort_5yr", c("age", "age.factor")), "matrix")
 })
 
+test_that("missing_pattern gives matrix", {
+	expect_is(missing_pattern(colon_s), "matrix")
+})
+
 test_that("missing_pairs gives plot", {
 	expect_is(missing_pairs(colon_s, explanatory = c("age", "age.factor")), "ggmatrix")
 })

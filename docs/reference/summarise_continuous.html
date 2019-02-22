@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Label plot title — plot_title • finalfit</title>
+<title>Helper function to generate the summary for a continuous variable — summarise_continuous • finalfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Label plot title — plot_title" />
+<meta property="og:title" content="Helper function to generate the summary for a continuous variable — summarise_continuous" />
 
-<meta property="og:description" content="Not called directly." />
+<meta property="og:description" content="Internal function, not called directly." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -129,48 +129,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Label plot title</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/finalfit_internal_functions.R'><code>R/finalfit_internal_functions.R</code></a></small>
-    <div class="hidden name"><code>plot_title.Rd</code></div>
+    <h1>Helper function to generate the summary for a continuous variable</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/summaryfactorlist.R'><code>R/summaryfactorlist.R</code></a></small>
+    <div class="hidden name"><code>summarise_continuous.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Not called directly.</p>
+    <p>Internal function, not called directly.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_title</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>dependent_label</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>suffix</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>.data</th>
-      <td><p>Dataframe.</p></td>
-    </tr>
-    <tr>
-      <th>dependent</th>
-      <td><p>Character vector of length 1: quoted name of dependent
-variable. Can be continuous, a binary factor, or a survival object of form
-<code>Surv(time, status)</code></p></td>
-    </tr>
-    <tr>
-      <th>prefix</th>
-      <td><p>Prefix for dependent label</p></td>
-    </tr>
-    <tr>
-      <th>suffix</th>
-      <td><p>Suffix for dependent label</p></td>
-    </tr>
-    </table>
-    
+    <pre class="usage"><span class='fu'>summarise_continuous</span>(<span class='no'>x</span>, <span class='no'>cont</span>)</pre>
+        
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
                 </ul>
 
   </div>

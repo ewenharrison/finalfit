@@ -580,9 +580,8 @@ is.survival <- function(.name){
 # Specify global variables
 globalVariables(c("L95", "U95", "fit_id", "Total",
 									"OR", "HR", "Coefficient", ".", ".id", "var", "value",
-									":="))
-
-
+									":=", "Mean", "SD", "Median", "Q3", "Q1", "IQR", "Formatted", 
+									"w", "Freq", "g", "total_prop", "Prop", "index_total"))
 
 
 # Workaround ::: as summary.formula not (yet) exported from Hmisc
