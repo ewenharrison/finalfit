@@ -20,7 +20,10 @@ test_that("finalfit.coxph gives dataframe", {
 	expect_is(finalfit(colon_s,  "Surv(time, status)", "age.factor"), "data.frame")
 })
 
-
+test_that("finalfit.glm with ff_remove_ref gives data.frame", {
+	expect_is(finalfit(colon_s, "mort_5yr", "age.factor", add_dependent_label = FALSE) %>% 
+							ff_remove_ref(), "data.frame")
+})
 
 
 context("finalfit function no metrics keep models")
