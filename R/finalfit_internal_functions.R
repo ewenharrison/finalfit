@@ -469,6 +469,44 @@ extract_labels = function(.data){
 	return(df.out)
 }
 
+#' Change column names to variable labels
+#'
+#' Written to support stratified tables to \code{\link{summary_factorlist}}. See
+#' example below for explantion.
+#'
+#' @param .data Data frame
+#' @param .cols Quoted character vector of columns to change
+#'
+#' @export
+#'
+#' @examples
+#' library(rlang)
+#' library(dplyr)
+#' explanatory = c("age.factor", "sex.factor")
+#' dependent = "perfor.factor"
+#'
+#' # Pick option below
+#' split = "rx.factor"
+#' split = c("rx.factor", "node4.factor")
+#'
+#' # Piped function to generate stratified crosstabs table
+#' colon_s %>%
+#'   group_by(!!! syms(split)) %>% #Looks awkward, but avoids unquoted var names
+#'   do(
+#'     summary_factorlist(., dependent, explanatory, total = TRUE, p = TRUE)
+#'   ) %>%
+#'   data.frame() %>%
+#'   dependent_label(colon_s, dependent, prefix = "") %>%
+#'   colname2label(split)
+#'   
+colname2label <- function(.data, .cols){
+	lookup = extract_labels(.data) %>% 
+		dplyr::filter(vname %in% .cols)
+	
+	.data %>%
+		dplyr::rename(!!! rlang::syms(with(lookup, setNames(vname, vfill))))
+}
+
 #' Remove variable labels.
 #'
 #' @param .data Data frame
@@ -581,7 +619,7 @@ is.survival <- function(.name){
 globalVariables(c("L95", "U95", "fit_id", "Total",
 									"OR", "HR", "Coefficient", ".", ".id", "var", "value",
 									":=", "Mean", "SD", "Median", "Q3", "Q1", "IQR", "Formatted", 
-									"w", "Freq", "g", "total_prop", "Prop", "index_total"))
+									"w", "Freq", "g", "total_prop", "Prop", "index_total", "vname"))
 
 
 # Workaround ::: as summary.formula not (yet) exported from Hmisc

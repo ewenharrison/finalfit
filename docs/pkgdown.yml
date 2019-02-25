@@ -2,10 +2,10 @@ pandoc: 2.2.1
 pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
+  all_tables_examples: all_tables_examples.html
   bootstrap: bootstrap.html
   data_prep: data_prep.html
   export: export.html
   finalfit: finalfit.html
   missing: missing.html
-  tables_gallery: tables_gallery.html
 
