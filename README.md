@@ -32,9 +32,9 @@ install.packages("dplyr")
 
 The package documentation is maintained independently at [finalfit.org](http://finalfit.org/). 
 
-## Example
+## Examples
 
-See getting started and the "All tables" vignette for extensive examples.  
+See `getting started` and the `All tables` vignettes for extensive examples.  
 
 ### Crosstable / table 1
 
