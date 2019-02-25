@@ -34,6 +34,7 @@ reference:
     - '`ff_newdata`'
     - '`ff_relabel`'
     - '`ff_remove_ref`'
+    - '`colname2label`'
     - '`dependent_label`'
     - '`extract_variable_label`'
     - '`round_tidy`'
