@@ -89,8 +89,10 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 	if(d_is.surv){
 		warning("Dependent variable is a survival object")
 		.data$all = factor(1, labels="all")
+		args$.data = .data
+		args$dependent = "all"
 		suppressWarnings(
-			do.call(summary_factorlist_groups, args=list(.data = .data, dependent = "all",  explanatory = explanatory, fit_id = fit_id))
+			do.call(summary_factorlist_groups, args)
 		)
 	} else {
 		

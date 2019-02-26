@@ -831,3 +831,70 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
+### 3.5 Base model + individual explanatory variables
+
+This was an email enquiry about how to build on a base model. The example request was in a survival context.
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+library(dplyr)
+
+mydata = colon_s
+base_explanatory = c("age.factor", "sex.factor")
+explanatory = c("obstruct.factor", "perfor.factor", "node4.factor")
+dependent = "Surv(time, status)"
+
+mydata %>%
+	# Counts
+	summary_factorlist(dependent, c(base_explanatory,
+																	explanatory),
+										 column = TRUE,
+										 fit_id = TRUE) %>% 
+	
+	# Univariable
+	ff_merge(
+		coxphuni(mydata, dependent, c(base_explanatory, explanatory)) %>% 
+			fit2df(estimate_suffix = " (Univariable)")
+	) %>% 
+	
+	# Base
+	ff_merge(
+		coxphmulti(mydata, dependent, base_explanatory) %>% 
+			fit2df(estimate_suffix = " (Base model)")
+	) %>% 
+	
+	# Model 1
+	ff_merge(
+		coxphmulti(mydata, dependent, c(base_explanatory, explanatory[1])) %>% 
+			fit2df(estimate_suffix = " (Model 1)")
+	) %>% 
+	
+	# Model 2
+	ff_merge(
+		coxphmulti(mydata, dependent, c(base_explanatory, explanatory[2])) %>% 
+			fit2df(estimate_suffix = " (Model 2)")
+	) %>% 
+	
+	# Model 3
+	ff_merge(
+		coxphmulti(mydata, dependent, c(base_explanatory, explanatory[3])) %>% 
+			fit2df(estimate_suffix = " (Model 3)")
+	) %>% 
+	
+	# Full
+	ff_merge(
+		coxphmulti(mydata, dependent, c(base_explanatory, explanatory)) %>% 
+			fit2df(estimate_suffix = " (Full)")
+	) %>% 
+	
+	# Tidy-up
+	select(-c(fit_id, index)) %>% 
+	rename("Overall survival" = label) %>% 
+	rename(" " = levels) %>% 
+	rename(`n (%)` = all) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r", "r"))
+```
