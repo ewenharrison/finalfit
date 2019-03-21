@@ -217,6 +217,13 @@ summary_factorlist_groups <- function(.data, dependent, explanatory,  cont = "me
 		
 		if (is_continuous) {
 			df.out = summarise_continuous(x, cont = cont)
+			if(total_col){
+				df.out$Total = s$n[index]
+				if(total_col & column){
+					Prop = df.out$Total / dim(.data)[1] * 100
+					df.out$Total = format_n_percent(df.out$Total, Prop)
+				}
+			}
 		} else {
 			# Factor variables
 			df.out = summarise_categorical(x, column = column, total_col = total_col)
@@ -321,10 +328,6 @@ summarise_continuous = function(x, cont) {
 #'
 #' @keywords internal
 summarise_categorical = function(x, column, total_col) {
-	format_n_percent = function(n, percent) {
-		percent = round_tidy(percent, 1)
-		paste0(n, " (", percent, ")")
-	}
 	# Calculate totals
 	df = x %>%
 		as.data.frame() %>%

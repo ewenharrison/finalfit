@@ -308,6 +308,21 @@ p_tidy = function(x, digits, prefix="="){
 	return(x.out)
 }
 
+
+#' Format n and percent as a character
+#'
+#' Internal, function, not called directly
+#'
+#' @param n Value
+#' @param percent Value
+#'
+#' @export
+#'
+format_n_percent = function(n, percent) {
+	percent = round_tidy(percent, 1)
+	paste0(n, " (", percent, ")")
+}
+
 #' Remove intercept from model output
 #'
 #' Internal function, not called directly
