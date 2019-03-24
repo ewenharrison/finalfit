@@ -4,14 +4,19 @@
 \alias{glmuni}
 \title{Binomial logistic regression univariable models: \code{finalfit} model wrapper}
 \usage{
-glmuni(.data, dependent, explanatory)
+glmuni(.data, dependent, explanatory, family = "binomial", ...)
 }
 \arguments{
-\item{.data}{Dataframe.}
+\item{.data}{Data frame.}
 
 \item{dependent}{Character vector of length 1:  name of depdendent variable (must have 2 levels).}
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory variables.}
+
+\item{family}{Character vector quoted or unquoted of the error distribution
+and link function to be used in the model, seem \code{\link[stats]{glm}}.}
+
+\item{...}{Other arguments to pass to \code{\link[stats]{glm}}.}
 }
 \value{
 A list of univariable \code{\link[stats]{glm}} fitted model outputs.

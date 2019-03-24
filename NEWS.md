@@ -1,5 +1,6 @@
 # finalfit 0.9.1
 
+* `glmuni()`, `glmmulti()`, `lmuni()`, `lmmulti()` now all take `weights` and any other `glm()` or `lm()` argument. #13
 * `summary_factorlist()` rework. Now supports any number of factor levels in dependent. #14 #15
 * `summary_factorlist()` now provides total value for continuous variable. #17
 

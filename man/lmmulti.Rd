@@ -4,7 +4,7 @@
 \alias{lmmulti}
 \title{Linear regression multivariable models: \code{finalfit} model wrapper}
 \usage{
-lmmulti(.data, dependent, explanatory)
+lmmulti(.data, dependent, explanatory, ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -13,6 +13,8 @@ lmmulti(.data, dependent, explanatory)
 dependent:  name of depdendent variable (must a continuous vector).}
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory variables.}
+
+\item{...}{Other arguments to pass to \code{\link[stats]{lm}}.}
 }
 \value{
 A list of multivariable \code{\link[stats]{lm}} fitted model outputs.

@@ -142,7 +142,7 @@ models for a set of explanatory variables against a continuous dependent.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>lmmixed</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>)</pre>
+    <pre class="usage"><span class='fu'>lmmixed</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,6 +167,10 @@ variables.</p></td>
 intercept variable, e.g. "var1", (automatically convered to "(1 | var1)");
 or, (2) the full <code>lme4</code> specification, e.g. "(var1 | var2)". Note
 parenthesis MUST be included in (2)2 but NOT included in (1).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments to pass to <code>lme4::<a href='http://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></code>.</p></td>
     </tr>
     </table>
     

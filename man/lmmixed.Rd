@@ -4,7 +4,7 @@
 \alias{lmmixed}
 \title{Mixed effects linear regression models: \code{finalfit} model wrapper}
 \usage{
-lmmixed(.data, dependent, explanatory, random_effect)
+lmmixed(.data, dependent, explanatory, random_effect, ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -19,6 +19,8 @@ variables.}
 intercept variable, e.g. "var1", (automatically convered to "(1 | var1)");
 or, (2) the full \code{lme4} specification, e.g. "(var1 | var2)". Note
 parenthesis MUST be included in (2)2 but NOT included in (1).}
+
+\item{...}{Other arguments to pass to \code{lme4::\link[lme4]{lmer}}.}
 }
 \value{
 A list of multivariable \code{lme4::\link[lme4]{lmer}} fitted model

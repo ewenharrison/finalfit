@@ -5,16 +5,21 @@
 \title{Binomial logistic regression multivariable models: \code{finalfit} model
 wrapper}
 \usage{
-glmmulti(.data, dependent, explanatory)
+glmmulti(.data, dependent, explanatory, family = "binomial", ...)
 }
 \arguments{
-\item{.data}{Dataframe.}
+\item{.data}{Data frame.}
 
 \item{dependent}{Character vector usually of length 1, but can take more than
 1 dependent:  name of depdendent variable (must have 2 levels).}
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory
 variables.}
+
+\item{family}{Character vector quoted or unquoted of the error distribution
+and link function to be used in the model, seem \code{\link[stats]{glm}}.}
+
+\item{...}{Other arguments to pass to \code{\link[stats]{glm}}.}
 }
 \value{
 A list of multivariable \code{\link[stats]{glm}} fitted model

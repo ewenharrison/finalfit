@@ -15,6 +15,7 @@
 #'   intercept variable, e.g. "var1", (automatically convered to "(1 | var1)");
 #'   or, (2) the full \code{lme4} specification, e.g. "(var1 | var2)". Note
 #'   parenthesis MUST be included in (2)2 but NOT included in (1).
+#' @param ... Other arguments to pass to \code{lme4::\link[lme4]{glmer}}.
 #' @return A list of multivariable \code{lme4::\link[lme4]{glmer}} fitted model outputs.
 #'   Output is of class \code{glmerMod}.
 #'
@@ -34,10 +35,10 @@
 #'   glmmixed(dependent, explanatory, random_effect) %>%
 #' 	 fit2df(estimate_suffix=" (multilevel)")
 
-glmmixed <- function(.data, dependent, explanatory, random_effect){
+glmmixed <- function(.data, dependent, explanatory, random_effect, ...){
 	# If single term random effect, default to random intercept model
 	if(!grepl("\\|", random_effect)) random_effect = paste0("(1 | ", random_effect, ")")
   lme4::glmer(paste0(dependent, "~", paste(explanatory, collapse="+"), " + ", random_effect),
               data=.data, family="binomial", control=lme4::glmerControl(optimizer="bobyqa",
-                                                                        optCtrl=list(maxfun=200000)))
+                                                                        optCtrl=list(maxfun=200000)), ...)
 }

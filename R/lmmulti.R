@@ -11,6 +11,7 @@
 #' @param dependent Character vector usually of length 1, but can take more than 1
 #'   dependent:  name of depdendent variable (must a continuous vector).
 #' @param explanatory Character vector of any length: name(s) of explanatory variables.
+#' @param ... Other arguments to pass to \code{\link[stats]{lm}}.
 #' @return A list of multivariable \code{\link[stats]{lm}} fitted model outputs.
 #'   Output is of class \code{lmlist}.
 #'
@@ -29,10 +30,12 @@
 #'   lmmulti(dependent, explanatory) %>%
 #'   fit2df()
 #'
-lmmulti <- function(.data, dependent, explanatory){
+lmmulti <- function(.data, dependent, explanatory, ...){
   result = list()
   for (i in 1:length(dependent)){
-    result[[i]] = lm(paste(dependent[i], "~", paste(explanatory, collapse="+")), data=.data)
+    result[[i]] = ff_eval(
+    	lm(paste(dependent[i], "~", paste(explanatory, collapse="+")), data = .data, ...)
+    )
   }
   result = setNames(result, dependent)
   class(result) = "lmlist"

@@ -6,9 +6,12 @@
 #' Uses \code{\link[stats]{glm}} with \code{finalfit} modelling conventions. Output can be
 #'   passed to \code{\link{fit2df}}.
 #'
-#' @param .data Dataframe.
+#' @param .data Data frame.
 #' @param dependent Character vector of length 1:  name of depdendent variable (must have 2 levels).
 #' @param explanatory Character vector of any length: name(s) of explanatory variables.
+#' @param family Character vector quoted or unquoted of the error distribution
+#'   and link function to be used in the model, seem \code{\link[stats]{glm}}.
+#' @param ... Other arguments to pass to \code{\link[stats]{glm}}. 
 #' @return A list of univariable \code{\link[stats]{glm}} fitted model outputs.
 #'   Output is of class \code{glmlist}.
 #'
@@ -27,11 +30,13 @@
 #' 	fit2df(estimate_suffix=" (univariable)")
 #'
 #'
-glmuni <- function(.data, dependent, explanatory){
-  result <- list()
-  for (i in 1:length(explanatory)){
-    result[[i]] <- glm(paste(dependent, "~", explanatory[i]), data=.data, family="binomial")
-  }
-  class(result) = "glmlist"
-  return(result)
+glmuni <- function(.data, dependent, explanatory, family = "binomial", ...){
+	result <- list()
+	for (i in 1:length(explanatory)){
+		result[[i]] <- ff_eval(
+			glm(paste(dependent, "~", explanatory[i]), data = .data, family = family, ...)
+		)
+	}
+	class(result) = "glmlist"
+	return(result)
 }

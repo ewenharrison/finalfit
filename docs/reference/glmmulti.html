@@ -147,14 +147,14 @@ binary dependent.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>glmmulti</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>)</pre>
+    <pre class="usage"><span class='fu'>glmmulti</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"binomial"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>Dataframe.</p></td>
+      <td><p>Data frame.</p></td>
     </tr>
     <tr>
       <th>dependent</th>
@@ -165,6 +165,15 @@ binary dependent.</p>
       <th>explanatory</th>
       <td><p>Character vector of any length: name(s) of explanatory
 variables.</p></td>
+    </tr>
+    <tr>
+      <th>family</th>
+      <td><p>Character vector quoted or unquoted of the error distribution
+and link function to be used in the model, seem <code><a href='http://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments to pass to <code><a href='http://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></code>.</p></td>
     </tr>
     </table>
     

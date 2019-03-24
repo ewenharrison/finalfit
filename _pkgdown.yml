@@ -39,6 +39,7 @@ reference:
     - '`extract_variable_label`'
     - '`round_tidy`'
     - '`p_tidy`'
+    - '`format_n_percent`'
   - title: "Plotting"
     desc: ~
     contents:

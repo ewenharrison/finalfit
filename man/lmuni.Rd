@@ -4,7 +4,7 @@
 \alias{lmuni}
 \title{Linear regression univariable models: \code{finalfit} model wrapper}
 \usage{
-lmuni(.data, dependent, explanatory)
+lmuni(.data, dependent, explanatory, ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -12,6 +12,8 @@ lmuni(.data, dependent, explanatory)
 \item{dependent}{Character vector of length 1, name of depdendent variable (must be continuous vector).}
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory variables.}
+
+\item{...}{Other arguments to pass to \code{\link[stats]{lm}}.}
 }
 \value{
 A list of multivariable \code{\link[stats]{lm}} fitted model outputs.

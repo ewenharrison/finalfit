@@ -1,3 +1,16 @@
+#' Eval for `lm` and `glm` model wrappers
+#'
+#' Internal function, not called directly. This is in reponse to a long running
+#' issue of the best way to pass `weights` to `lm()` and `glm()`. See here
+#' https://stackoverflow.com/questions/54383414/passing-weights-to-glm-using-rlang
+#'
+#' @param .
+#'
+#' @keywords internal
+ff_eval <- function(.) {
+	eval(rlang::enexpr(.), rlang::caller_env())
+}
+
 #' Extract model output to dataframe
 #'
 #' Internal function, not usually called directly.
