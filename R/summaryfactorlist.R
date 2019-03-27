@@ -209,21 +209,14 @@ summary_factorlist_groups <- function(.data, dependent, explanatory,  cont = "me
 																			dependent_label_prefix = "Dependent: ", dependent_label_suffix = ""){
 	
 	s <- summary_formula(as.formula(paste(dependent, "~", paste(explanatory, collapse = "+"))), data = .data,
-											 method = "reverse", overall = FALSE,
-											 test = TRUE,na.include = na_include, continuous = cont_cut)
+											 method = "reverse", overall = TRUE,
+											 test = TRUE, na.include = na_include, continuous = cont_cut)
 	df.out = plyr::ldply(1:length(s$stats), function(index) {
 		x = s$stats[[index]]
 		is_continuous = s$type[index] == 2
 		
 		if (is_continuous) {
-			df.out = summarise_continuous(x, cont = cont)
-			if(total_col){
-				df.out$Total = s$n[index]
-				if(total_col & column){
-					Prop = df.out$Total / dim(.data)[1] * 100
-					df.out$Total = format_n_percent(df.out$Total, Prop)
-				}
-			}
+			df.out = summarise_continuous(x, cont = cont, total_col = total_col)
 		} else {
 			# Factor variables
 			df.out = summarise_categorical(x, column = column, total_col = total_col)
@@ -292,7 +285,7 @@ summary_factorlist_groups <- function(.data, dependent, explanatory,  cont = "me
 #' Internal function, not called directly.
 #'
 #' @keywords internal
-summarise_continuous = function(x, cont) {
+summarise_continuous = function(x, cont, total_col) {
 	if (cont == "mean") {
 		df_out = x %>%
 			as.data.frame() %>%
@@ -316,11 +309,18 @@ summarise_continuous = function(x, cont) {
 				levels = "Median (IQR)"
 			)
 	}
-	df_out %>%
+	df_out = df_out %>%
 		dplyr::select(levels, Label, Formatted) %>%
-		tidyr::spread(Label, Formatted)
+		tidyr::spread(Label, Formatted) %>%
+		dplyr::select(-Combined, Total = Combined)
+	if(total_col){
+		return(df_out)
+	} else {
+		df_out = df_out %>% 
+			dplyr::select(-Total)
+		return(df_out)
+	}
 }
-
 
 #' Helper function to generate the summary for a categorical variable
 #'
@@ -331,13 +331,14 @@ summarise_categorical = function(x, column, total_col) {
 	# Calculate totals
 	df = x %>%
 		as.data.frame() %>%
-		dplyr::group_by(w) %>%
-		dplyr::mutate(Total = sum(Freq),
-									index_total = Total) %>%
+		tibble::rownames_to_column("w") %>%
+		dplyr::mutate(w = factor(w, levels = w)) %>% # Needed to keep order
+		tidyr::gather(g, Freq, -w, -Combined) %>% 
+		dplyr::mutate(g = factor(g, levels = unique(g))) %>% 
+		dplyr::rename(Total = Combined) %>% 
+		dplyr::mutate(index_total = Total) %>% 
 		dplyr::group_by(g) %>%
 		dplyr::mutate(total_prop = Total / sum(Total) * 100)
-	
-	
 	# Calculate percentage: row-wise or column-wise
 	if (column) {
 		df = df %>%
