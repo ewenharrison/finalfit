@@ -17,6 +17,8 @@
 #' @param p_name Name given to p-value estimate
 #' @param digits Number of digits to round to (1) estimate, (2) confidence
 #'   interval limits, (3) p-value.
+#' @param exp Currently GLM only. Exponentiate coefficients and confidence
+#'   intervals. Defaults to TRUE.
 #' @param confint_type One of \code{c("profile", "default")} for GLM models
 #'   (\code{\link[MASS]{confint.glm}}) or \code{c("profile", "Wald", "boot")}
 #'   for \code{glmer/lmer} models (\code{\link[lme4]{confint.merMod}}.). Not
@@ -126,21 +128,21 @@ fit2df.lm <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE
 											digits=c(2,2,3),
 											confint_level = 0.95,
 											confint_sep = " to ", ...){
-
+	
 	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name, digits=digits,)
-
+	
 	if (condense==TRUE){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
-
+	
 	if (remove_intercept==TRUE){
 		df.out = remove_intercept(df.out)
 	}
-
+	
 	# Extract model metrics
 	if (metrics==TRUE){
 		metrics.out = ff_metrics(.data)
@@ -167,26 +169,26 @@ fit2df.lmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 													p_name = "p", digits=c(2,2,3),
 													confint_level = 0.95,
 													confint_sep = " to ", ...){
-
+	
 	if (metrics==TRUE && length(.data)>1){
 		stop("Metrics only generated for single models: multiple models supplied to function")
 	}
-
+	
 	df.out = .data %>% 
 		purrr::map_dfr(extract_fit, explanatory_name=explanatory_name,
-											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
-											 p_name=p_name,  confint_level=confint_level)
-
+									 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+									 p_name=p_name,  confint_level=confint_level)
+	
 	if (condense==TRUE){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
-
+	
 	if (remove_intercept==TRUE){
 		df.out = remove_intercept(df.out)
 	}
-
+	
 	# Extract model metrics
 	if (metrics==TRUE){
 		metrics.out = ff_metrics(.data)
@@ -214,26 +216,28 @@ fit2df.glm <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRU
 											 estimate_suffix = "",
 											 p_name = "p",
 											 digits=c(2,2,3),
+											 exp = TRUE,
 											 confint_type = "profile",
 											 confint_level = 0.95,
 											 confint_sep = "-", ...){
-
-	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
-											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+	
+	df.out = extract_fit(.data = .data, explanatory_name = explanatory_name,
+											 estimate_name = estimate_name, estimate_suffix = estimate_suffix,
+											 exp = exp, 
 											 confint_type = confint_type,
 											 confint_level = confint_level,
 											 p_name=p_name)
-
+	
 	if (condense==TRUE){
-		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
-													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
-													p_name=p_name, digits=digits, confint_sep=confint_sep)
+		df.out = condense_fit(df.out, explanatory_name = explanatory_name,
+													estimate_name = estimate_name, estimate_suffix = estimate_suffix,
+													p_name = p_name, digits = digits, confint_sep = confint_sep)
 	}
-
+	
 	if (remove_intercept==TRUE){
 		df.out = remove_intercept(df.out)
 	}
-
+	
 	# Extract model metrics
 	if (metrics==TRUE){
 		metrics.out = ff_metrics(.data)
@@ -259,14 +263,14 @@ fit2df.glmboot = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 													digits=c(2,2,3),
 													confint_sep = "-", ...){
 	if(metrics == TRUE) warning("Metrics not currently available for this model")
-
+	
 	x = .data
 	d.estimate = digits[1]
 	d.confint = digits[2]
 	d.p = digits[3]
-
+	
 	R = dim(x$t)[1]
-
+	
 	df.out = data.frame(
 		explanatory = names(x$t0),
 		estimate = exp(x$t0))
@@ -280,17 +284,17 @@ fit2df.glmboot = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 	df.out$U95 = round(df.out$U95, d.confint)
 	df.out$p = round(df.out$p, d.p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
-
+	
 	if (condense==TRUE){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
-
+	
 	if (remove_intercept==TRUE){
 		df.out = remove_intercept(df.out)
 	}
-
+	
 	return(df.out)
 }
 
@@ -308,31 +312,33 @@ fit2df.glmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept
 													 estimate_suffix = "",
 													 p_name = "p",
 													 digits=c(2,2,3),
+													 exp = TRUE, 
 													 confint_type = "profile",
 													 confint_level = 0.95,
 													 confint_sep = "-", ...){
-
+	
 	if (metrics==TRUE && length(.data)>1){
 		stop("Metrics only generated for single models: multiple models supplied to function")
 	}
-
+	
 	df.out = .data %>% 
-		purrr::map_dfr(extract_fit, explanatory_name=explanatory_name,
-											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
-											 p_name=p_name, confint_type = confint_type,
-											 confint_level = confint_level,
-											 digits=digits)
-
+		purrr::map_dfr(extract_fit, explanatory_name = explanatory_name,
+									 estimate_name = estimate_name, estimate_suffix = estimate_suffix,
+									 p_name = p_name, exp = exp, 
+									 confint_type = confint_type,
+									 confint_level = confint_level,
+									 digits=digits)
+	
 	if (condense==TRUE){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
-
+	
 	if (remove_intercept==TRUE){
 		df.out = remove_intercept(df.out)
 	}
-
+	
 	# Extract model metrics
 	if (metrics==TRUE){
 		metrics.out = ff_metrics(.data)
@@ -362,21 +368,21 @@ fit2df.lmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 													confint_type = "Wald",
 													confint_level = 0.95,
 													confint_sep = "-", ...){
-
+	
 	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name, confint_type = confint_type, confint_level = confint_level)
-
+	
 	if (condense==TRUE){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
-
+	
 	if (remove_intercept==TRUE){
 		df.out = remove_intercept(df.out)
 	}
-
+	
 	# Extract model metrics
 	if (metrics==TRUE){
 		metrics.out = ff_metrics(.data)
@@ -406,23 +412,23 @@ fit2df.glmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept
 													 confint_type = "Wald",
 													 confint_level = 0.95,
 													 confint_sep = "-", ...){
-
+	
 	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name, confint_type = confint_type,
 											 confint_level = confint_level)
-
+	
 	if (condense==TRUE){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
-
+	
 	if (remove_intercept==TRUE){
 		df.out = remove_intercept(df.out)
 	}
-
-
+	
+	
 	# Extract model metrics
 	if (metrics==TRUE){
 		metrics.out = ff_metrics(.data)
@@ -447,11 +453,11 @@ fit2df.coxph <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=T
 												 p_name = "p",
 												 digits=c(2,2,3),
 												 confint_sep = "-", ...){
-
+	
 	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name)
-
+	
 	if (condense==TRUE){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
@@ -482,18 +488,18 @@ fit2df.coxphlist <- function(.data, condense=TRUE, metrics=FALSE, remove_interce
 														 digits=c(2,2,3),
 														 confint_sep = "-", ...){
 	#if(metrics==TRUE) warning("Metrics not currently available for this model")
-
+	
 	df.out = .data %>% 
 		purrr::map_dfr(extract_fit, explanatory_name=explanatory_name,
-											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
-											 p_name=p_name, digits=digits)
-
+									 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+									 p_name=p_name, digits=digits)
+	
 	if (condense==TRUE){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
-
+	
 	# Extract model metrics
 	if (metrics==TRUE){
 		metrics.out = ff_metrics(.data)

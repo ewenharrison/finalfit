@@ -41,23 +41,27 @@ extract_fit = function(...){
 #' @export
 
 extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name="OR",
-													 estimate_suffix = "",  p_name = "p",
+													 estimate_suffix = "",  p_name = "p", exp = TRUE,
 													 confint_type = "profile", confint_level = 0.95, ...){
 	x=.data
 	explanatory = names(coef(x))
-	estimate = exp(coef(x))
+	estimate = coef(x)
 	if (confint_type == "profile"){
-		confint = exp(confint(x, level = confint_level))
+		confint = confint(x, level = confint_level)
 	}else if (confint_type == "default"){
-		confint = exp(confint.default(x, level = confint_level))
+		confint = confint.default(x, level = confint_level)
 	}
-	p = summary(x)$coef[,"Pr(>|z|)"]
+	p_col = dimnames(summary(x)$coef)[[2]] %in% c("Pr(>|t|)", "Pr(>|z|)")
+	p = summary(x)$coef[ ,p_col]
 	L_confint_name = paste0("L", confint_level*100)
 	U_confint_name = paste0("U", confint_level*100)
 
 	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
 											 L_confint_name, U_confint_name, p_name)
+	if(exp){
+		df.out[, 2:4] = df.out[, 2:4] %>% exp() # mutate_at not working here
+	}
 	if(confint_level != 0.95){
 		df.out = df.out %>% dplyr::select(-p_name)
 	}
@@ -138,8 +142,8 @@ extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_n
 	x=.data
 	if(confint_type == "default") confint_type = "Wald"
 	explanatory = names(lme4::fixef(x))
-	estimate = exp(lme4::fixef(x))
-	confint = exp(lme4::confint.merMod(x, method = confint_type))
+	estimate = lme4::fixef(x)
+	confint = lme4::confint.merMod(x, method = confint_type)
 	confint = confint[-grep("sig", rownames(confint)),]
 	p = 1-pnorm(abs(summary(x)$coefficients[,3]))
 	warning("P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.")

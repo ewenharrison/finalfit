@@ -31,7 +31,7 @@ fit2df(...)
 \method{fit2df}{glm}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_type = "profile",
+  digits = c(2, 2, 3), exp = TRUE, confint_type = "profile",
   confint_level = 0.95, confint_sep = "-", ...)
 
 \method{fit2df}{glmboot}(.data, condense = TRUE, metrics = FALSE,
@@ -42,7 +42,7 @@ fit2df(...)
 \method{fit2df}{glmlist}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_type = "profile",
+  digits = c(2, 2, 3), exp = TRUE, confint_type = "profile",
   confint_level = 0.95, confint_sep = "-", ...)
 
 \method{fit2df}{lmerMod}(.data, condense = TRUE, metrics = FALSE,
@@ -95,6 +95,9 @@ interval limits, (3) p-value.}
 
 \item{confint_sep}{String to separate confidence intervals, typically "-" or
 " to ".}
+
+\item{exp}{Currently GLM only. Exponentiate coefficients and confidence
+intervals. Defaults to TRUE.}
 
 \item{confint_type}{One of \code{c("profile", "default")} for GLM models
 (\code{\link[MASS]{confint.glm}}) or \code{c("profile", "Wald", "boot")}
