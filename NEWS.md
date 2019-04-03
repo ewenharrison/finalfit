@@ -1,6 +1,7 @@
 # finalfit 0.9.2
 
 * `summary_factorlist()` total column now summaries continuous variables.  #17 #21
+* `svyglmuni()`, `svyglmmulti()` provide support for complex stratified sampling via `library(survey)`. #13
 
 # finalfit 0.9.1
 

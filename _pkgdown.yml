@@ -16,6 +16,8 @@ reference:
     - '`glmmixed`'
     - '`coxphuni`'
     - '`coxphmulti`'
+    - '`svyglmuni`'
+    - '`svyglmmulti`'
   - title: "Bootstrap functions"
     desc: "Bootstrap simulation for model prediction"
     contents:

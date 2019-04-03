@@ -31,48 +31,71 @@ design-based standard errors.
 
 library(survey)
 library(dplyr)
+
 data(api)
 dependent = "api00"
 explanatory = c("ell", "meals", "mobility")
 
-# Stratified design
-dstrat<-svydesign(id=~1,strata=~stype, weights=~pw, data=apistrat, fpc=~fpc)
+library(survey)
+library(dplyr)
+
+data(api)
+
+apistrat = apistrat \%>\% 
+  mutate(
+  api00 = ff_label(api00, "API in 2000 (api00)"),
+  ell = ff_label(ell, "English language learners (percent)(ell)"),
+  meals = ff_label(meals, "Meals eligible (percent)(meals)"),
+  mobility = ff_label(mobility, "First year at the school (percent)(mobility)"),
+  sch.wide = ff_label(sch.wide, "School-wide target met (sch.wide)")
+  )
 
 # Linear example
-## Note respects svgglm default settings, family=stats::gaussian()
-apistrat \%>\% 
-  summary_factorlist(dependent, explanatory, fit_id = TRUE) \%>\% 
-  ff_merge(
-    dstrat \%>\% 
-      svyglmuni(dependent, explanatory) \%>\% 
-      fit2df(estimate_suffix = " (univariable)")
-    ) \%>\% 
-  ff_merge(
-    dstrat \%>\% 
-      svyglmmulti(dependent, explanatory) \%>\% 
-      fit2df(estimate_suffix = " (multivariable)")
-    ) \%>\% 
-  select(-fit_id, -index) \%>\% 
+dependent = "api00"
+explanatory = c("ell", "meals", "mobility")
+
+# Stratified design
+dstrat = svydesign(id=~1,strata=~stype, weights=~pw, data=apistrat, fpc=~fpc)
+
+# Univariable fit
+fit_uni = dstrat \%>\%
+  svyglmuni(dependent, explanatory) \%>\%
+  fit2df(estimate_suffix = " (univariable)")
+
+# Multivariable fit
+fit_multi = dstrat \%>\%
+  svyglmmulti(dependent, explanatory) \%>\%
+  fit2df(estimate_suffix = " (multivariable)")
+
+# Pipe together
+apistrat \%>\%
+  summary_factorlist(dependent, explanatory, fit_id = TRUE) \%>\%
+  ff_merge(fit_uni) \%>\% 
+  ff_merge(fit_multi) \%>\% 
+  select(-fit_id, -index) \%>\%
   dependent_label(apistrat, dependent)
- 
+
 # Binomial example
-## Require to specify family = "quasibinomial" and (if desired)
-## to exponentiate result and name it Odds ratio
+## Note model family needs specified and exponentiation if desired
 
 dependent = "sch.wide"
+explanatory = c("ell", "meals", "mobility")
 
+# Univariable fit
+fit_uni = dstrat \%>\%
+  svyglmuni(dependent, explanatory, family = "quasibinomial") \%>\%
+  fit2df(exp = TRUE, estimate_name = "OR", estimate_suffix = " (univariable)")
+
+# Multivariable fit
+fit_multi = dstrat \%>\%
+  svyglmmulti(dependent, explanatory, family = "quasibinomial") \%>\%
+  fit2df(exp = TRUE, estimate_name = "OR", estimate_suffix = " (multivariable)")
+
+# Pipe together
 apistrat \%>\%
-summary_factorlist(dependent, explanatory, fit_id = TRUE) \%>\%
-  ff_merge(
-  dstrat \%>\%
-    svyglmuni(dependent, explanatory, family = "quasibinomial") \%>\%
-    fit2df(exp = TRUE, estimate_name = "OR", estimate_suffix = " (univariable)")
-    ) \%>\%
-    ff_merge(
-  dstrat \%>\%
-    svyglmmulti(dependent, explanatory, family = "quasibinomial") \%>\%
-    fit2df(exp = TRUE, estimate_name = "OR", estimate_suffix = " (multivariable)")
-    ) \%>\%
+  summary_factorlist(dependent, explanatory, fit_id = TRUE) \%>\%
+  ff_merge(fit_uni) \%>\% 
+  ff_merge(fit_multi) \%>\% 
   select(-fit_id, -index) \%>\%
   dependent_label(apistrat, dependent)
 }

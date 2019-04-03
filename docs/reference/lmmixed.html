@@ -64,7 +64,7 @@ models for a set of explanatory variables against a continuous dependent." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.2</span>
       </span>
     </div>
 
@@ -207,12 +207,12 @@ interactions on random effects if there is a need.</p>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>lmmixed</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.</span></div><div class='output co'>#&gt;             explanatory   Coefficient (multilevel
-#&gt; 2 age.factor40-59 years 0.45 (0.19-1.07, p=0.035)
-#&gt; 3   age.factor60+ years 0.38 (0.16-0.87, p=0.011)
-#&gt; 4        sex.factorMale 0.83 (0.54-1.27, p=0.195)
-#&gt; 5    obstruct.factorYes 0.69 (0.40-1.19, p=0.091)
-#&gt; 6      perfor.factorYes 1.26 (0.36-4.40, p=0.357)</div></pre>
+         <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.</span></div><div class='output co'>#&gt;             explanatory      Coefficient (multilevel
+#&gt; 1 age.factor40-59 years  -0.79 (-1.65-0.07, p=0.035)
+#&gt; 2   age.factor60+ years -0.98 (-1.81--0.14, p=0.011)
+#&gt; 3        sex.factorMale  -0.19 (-0.62-0.24, p=0.195)
+#&gt; 4    obstruct.factorYes  -0.37 (-0.92-0.17, p=0.091)
+#&gt; 5      perfor.factorYes   0.23 (-1.01-1.48, p=0.357)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

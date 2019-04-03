@@ -44,6 +44,7 @@ glm models, which have not used finalfit model
 wrappers.
 fit2df.glmboot is the model extract method for glmmulti_boot models.
 fit2df.glmlist is the model extract method for glmuni and glmmulti.
+fit2df.svyglmlist is the model extract method for svyglmuni and svyglmmulti.
 fit2df.lmerMod is the model extract method for standard
 lme4::lmer models and for the
 finalfit::lmmixed model wrapper.
@@ -82,7 +83,7 @@ fit2df.coxphlist is the model extract method for coxphuni and coxphmulti." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.2</span>
       </span>
     </div>
 
@@ -166,6 +167,7 @@ convenient for further processing in preparation for final results table.</p>
 wrappers.</p>
 <p><code>fit2df.glmboot</code> is the model extract method for <code><a href='glmmulti_boot.html'>glmmulti_boot</a></code> models.</p>
 <p><code>fit2df.glmlist</code> is the model extract method for <code>glmuni</code> and <code>glmmulti</code>.</p>
+<p><code>fit2df.svyglmlist</code> is the model extract method for <code>svyglmuni</code> and <code>svyglmmulti</code>.</p>
 <p><code>fit2df.lmerMod</code> is the model extract method for standard
 <code>lme4::<a href='http://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></code> models and for the
 <code>finalfit::<a href='lmmixed.html'>lmmixed</a></code> model wrapper.</p>
@@ -197,7 +199,7 @@ wrappers.</p>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
   <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for glmboot</span>
@@ -210,7 +212,14 @@ wrappers.</p>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for svyglmlist</span>
+<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
   <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for lmerMod</span>
@@ -295,6 +304,11 @@ interval limits, (3) p-value.</p></td>
 " to ".</p></td>
     </tr>
     <tr>
+      <th>exp</th>
+      <td><p>Currently GLM only. Exponentiate coefficients and confidence
+intervals. Defaults to TRUE.</p></td>
+    </tr>
+    <tr>
       <th>confint_type</th>
       <td><p>One of <code>c("profile", "default")</code> for GLM models
 (<code><a href='http://www.rdocumentation.org/packages/MASS/topics/confint'>confint.glm</a></code>) or <code>c("profile", "Wald", "boot")</code>
@@ -323,22 +337,22 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
   <span class='kw'>data</span><span class='kw'>=</span><span class='no'>colon_s</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"binomial"</span>)
 <span class='no'>fit</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;             explanatory        OR (multivariable)
-#&gt; 2 age.factor40-59 years 0.57 (0.34-0.98, p=0.041)
-#&gt; 3   age.factor60+ years 0.81 (0.48-1.36, p=0.426)
-#&gt; 4        sex.factorMale 0.98 (0.75-1.28, p=0.902)
-#&gt; 5    obstruct.factorYes 1.25 (0.90-1.76, p=0.186)
-#&gt; 6      perfor.factorYes 1.12 (0.51-2.44, p=0.770)</div><div class='input'>
+#&gt; 1 age.factor40-59 years 0.57 (0.34-0.98, p=0.041)
+#&gt; 2   age.factor60+ years 0.81 (0.48-1.36, p=0.426)
+#&gt; 3        sex.factorMale 0.98 (0.75-1.28, p=0.902)
+#&gt; 4    obstruct.factorYes 1.25 (0.90-1.76, p=0.186)
+#&gt; 5      perfor.factorYes 1.12 (0.51-2.44, p=0.770)</div><div class='input'>
 <span class='co'># glmlist</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;             explanatory          OR (univariable)
-#&gt; 2 age.factor40-59 years 0.57 (0.34-0.98, p=0.041)
-#&gt; 3   age.factor60+ years 0.81 (0.48-1.36, p=0.426)
-#&gt; 4        sex.factorMale 0.98 (0.75-1.28, p=0.902)
-#&gt; 5    obstruct.factorYes 1.25 (0.90-1.76, p=0.186)
-#&gt; 6      perfor.factorYes 1.12 (0.51-2.44, p=0.770)</div><div class='input'>
+#&gt; 1 age.factor40-59 years 0.57 (0.34-0.98, p=0.041)
+#&gt; 2   age.factor60+ years 0.81 (0.48-1.36, p=0.426)
+#&gt; 3        sex.factorMale 0.98 (0.75-1.28, p=0.902)
+#&gt; 4    obstruct.factorYes 1.25 (0.90-1.76, p=0.186)
+#&gt; 5      perfor.factorYes 1.12 (0.51-2.44, p=0.770)</div><div class='input'>
 <span class='co'># glmerMod</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>
@@ -346,11 +360,11 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='glmmixed.html'>glmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
          <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel)"</span>)</div><div class='output co'>#&gt;             explanatory           OR (multilevel)
-#&gt; 2 age.factor40-59 years 0.75 (0.39-1.44, p=0.382)
-#&gt; 3   age.factor60+ years 1.03 (0.55-1.96, p=0.916)
-#&gt; 4        sex.factorMale 0.80 (0.58-1.11, p=0.180)
-#&gt; 5    obstruct.factorYes 1.23 (0.82-1.83, p=0.320)
-#&gt; 6      perfor.factorYes 1.03 (0.43-2.51, p=0.940)</div><div class='input'>
+#&gt; 1 age.factor40-59 years 0.75 (0.39-1.44, p=0.382)
+#&gt; 2   age.factor60+ years 1.03 (0.55-1.96, p=0.916)
+#&gt; 3        sex.factorMale 0.80 (0.58-1.11, p=0.180)
+#&gt; 4    obstruct.factorYes 1.23 (0.82-1.83, p=0.320)
+#&gt; 5      perfor.factorYes 1.03 (0.43-2.51, p=0.940)</div><div class='input'>
 <span class='co'># glmboot</span>
 <span class='co'>## Note number of draws set to 100 just for speed in this example</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
@@ -358,21 +372,21 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='glmmulti_boot.html'>glmmulti_boot</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>,  <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable (BS CIs))"</span>)</div><div class='output co'>#&gt;             explanatory OR (multivariable (BS CIs))
-#&gt; 2 age.factor40-59 years   0.57 (0.29-0.92, p=0.020)
-#&gt; 3   age.factor60+ years   0.81 (0.38-1.38, p=0.480)
-#&gt; 4        sex.factorMale   0.98 (0.76-1.23, p=1.020)
-#&gt; 5    obstruct.factorYes   1.25 (0.92-1.72, p=0.220)
-#&gt; 6      perfor.factorYes   1.12 (0.37-2.44, p=0.840)</div><div class='input'>
+#&gt; 1 age.factor40-59 years   0.57 (0.29-0.92, p=0.020)
+#&gt; 2   age.factor60+ years   0.81 (0.38-1.38, p=0.480)
+#&gt; 3        sex.factorMale   0.98 (0.76-1.23, p=1.020)
+#&gt; 4    obstruct.factorYes   1.25 (0.92-1.72, p=0.220)
+#&gt; 5      perfor.factorYes   1.12 (0.37-2.44, p=0.840)</div><div class='input'>
 <span class='co'># lm</span>
 <span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'>lm</span>(<span class='no'>nodes</span> ~  <span class='no'>age.factor</span> + <span class='no'>sex.factor</span> + <span class='no'>obstruct.factor</span> + <span class='no'>perfor.factor</span>,
   <span class='kw'>data</span><span class='kw'>=</span><span class='no'>colon_s</span>)
 <span class='no'>fit</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>)</div><div class='output co'>#&gt;             explanatory     Coefficient (multivariable)
-#&gt; 2 age.factor40-59 years -1.21 (-2.16 to -0.26, p=0.012)
-#&gt; 3   age.factor60+ years -1.25 (-2.18 to -0.33, p=0.008)
-#&gt; 4        sex.factorMale  -0.07 (-0.54 to 0.40, p=0.779)
-#&gt; 5    obstruct.factorYes  -0.31 (-0.91 to 0.29, p=0.313)
-#&gt; 6      perfor.factorYes   0.28 (-1.09 to 1.66, p=0.686)</div><div class='input'>
+#&gt; 1 age.factor40-59 years -1.21 (-2.16 to -0.26, p=0.012)
+#&gt; 2   age.factor60+ years -1.25 (-2.18 to -0.33, p=0.008)
+#&gt; 3        sex.factorMale  -0.07 (-0.54 to 0.40, p=0.779)
+#&gt; 4    obstruct.factorYes  -0.31 (-0.91 to 0.29, p=0.313)
+#&gt; 5      perfor.factorYes   0.28 (-1.09 to 1.66, p=0.686)</div><div class='input'>
 <span class='co'># lmerMod</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>
@@ -380,12 +394,12 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='lmmixed.html'>lmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.</span></div><div class='output co'>#&gt;             explanatory   Coefficient (multilevel
-#&gt; 2 age.factor40-59 years 0.45 (0.19-1.07, p=0.035)
-#&gt; 3   age.factor60+ years 0.38 (0.16-0.87, p=0.011)
-#&gt; 4        sex.factorMale 0.83 (0.54-1.27, p=0.195)
-#&gt; 5    obstruct.factorYes 0.69 (0.40-1.19, p=0.091)
-#&gt; 6      perfor.factorYes 1.26 (0.36-4.40, p=0.357)</div><div class='input'>
+         <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.</span></div><div class='output co'>#&gt;             explanatory      Coefficient (multilevel
+#&gt; 1 age.factor40-59 years  -0.79 (-1.65-0.07, p=0.035)
+#&gt; 2   age.factor60+ years -0.98 (-1.81--0.14, p=0.011)
+#&gt; 3        sex.factorMale  -0.19 (-0.62-0.24, p=0.195)
+#&gt; 4    obstruct.factorYes  -0.37 (-0.92-0.17, p=0.091)
+#&gt; 5      perfor.factorYes   0.23 (-1.01-1.48, p=0.357)</div><div class='input'>
 <span class='co'># coxphlist</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"Surv(time, status)"</span>
