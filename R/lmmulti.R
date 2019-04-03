@@ -34,7 +34,7 @@ lmmulti <- function(.data, dependent, explanatory, ...){
   result = list()
   for (i in 1:length(dependent)){
     result[[i]] = ff_eval(
-    	lm(paste(dependent[i], "~", paste(explanatory, collapse="+")), data = .data, ...)
+    	lm(ff_formula(dependent[i], explanatory), data = .data, ...)
     )
   }
   result = setNames(result, dependent)

@@ -101,3 +101,19 @@ test_that("coxphmulti gives coxphlist", {
 	expect_is(coxphmulti(colon_s,  "Surv(time, status)", "age.factor") %>% fit2df(), "data.frame")
 })
 
+#---------------
+
+
+context("fit2df: svyglm")
+library(finalfit)
+library(survey)
+data(api)
+dstrat = svydesign(id=~1,strata=~stype, weights=~pw, data=apistrat, fpc=~fpc)
+
+test_that("fit2df(svyglmuni) gives data.frame", {
+	expect_is(svyglmuni(dstrat, "api00", "ell") %>% fit2df(), "data.frame")
+})
+
+test_that("fit2df(glmmulti) gives data.frame", {
+	expect_is(svyglmmulti(dstrat, "api00", "ell") %>% fit2df(), "data.frame")
+})

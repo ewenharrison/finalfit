@@ -46,5 +46,6 @@ Suggests:
     rlang,
     rmarkdown,
     covr,
+    survey,
     testthat
 VignetteBuilder: knitr
