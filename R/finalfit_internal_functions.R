@@ -355,8 +355,8 @@ format_n_percent = function(n, percent) {
 # quo() enquo() !! all a bit of a nightmare
 # So let's square bracket away!
 remove_intercept = function(.data, intercept_name = "(Intercept)"){
-	.data = .data[-which(.data[,1] == intercept_name),]
-	return(.data)
+	.data %>% 
+		dplyr::filter_at(.vars = 1, dplyr::any_vars(. != intercept_name))
 }
 
 #' Remove duplicate levels within \code{\link{summary_factorlist}}: \code{finalfit} helper function

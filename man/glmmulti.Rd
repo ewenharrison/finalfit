@@ -17,7 +17,7 @@ glmmulti(.data, dependent, explanatory, family = "binomial", ...)
 variables.}
 
 \item{family}{Character vector quoted or unquoted of the error distribution
-and link function to be used in the model, seem \code{\link[stats]{glm}}.}
+and link function to be used in the model, see \code{\link[stats]{glm}}.}
 
 \item{...}{Other arguments to pass to \code{\link[stats]{glm}}.}
 }

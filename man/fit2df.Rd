@@ -7,6 +7,7 @@
 \alias{fit2df.glm}
 \alias{fit2df.glmboot}
 \alias{fit2df.glmlist}
+\alias{fit2df.svyglmlist}
 \alias{fit2df.lmerMod}
 \alias{fit2df.glmerMod}
 \alias{fit2df.coxph}
@@ -43,6 +44,12 @@ fit2df(...)
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
   digits = c(2, 2, 3), exp = TRUE, confint_type = "profile",
+  confint_level = 0.95, confint_sep = "-", ...)
+
+\method{fit2df}{svyglmlist}(.data, condense = TRUE, metrics = FALSE,
+  remove_intercept = TRUE, explanatory_name = "explanatory",
+  estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), exp = FALSE, confint_type = "profile",
   confint_level = 0.95, confint_sep = "-", ...)
 
 \method{fit2df}{lmerMod}(.data, condense = TRUE, metrics = FALSE,
@@ -125,6 +132,8 @@ wrappers.
 \code{fit2df.glmboot} is the model extract method for \code{\link{glmmulti_boot}} models.
 
 \code{fit2df.glmlist} is the model extract method for \code{glmuni} and \code{glmmulti}.
+
+\code{fit2df.svyglmlist} is the model extract method for \code{svyglmuni} and \code{svyglmmulti}.
 
 \code{fit2df.lmerMod} is the model extract method for standard
 \code{lme4::\link[lme4]{lmer}} models and for the

@@ -16,7 +16,7 @@
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
 #' @param family Character vector quoted or unquoted of the error distribution
-#'   and link function to be used in the model, seem \code{\link[stats]{glm}}.
+#'   and link function to be used in the model, see \code{\link[stats]{glm}}.
 #' @param ... Other arguments to pass to \code{\link[stats]{glm}}.  
 #' @return A list of multivariable \code{\link[stats]{glm}} fitted model
 #'   outputs. Output is of class \code{glmlist}.
@@ -39,7 +39,7 @@ glmmulti <- function(.data, dependent, explanatory, family = "binomial", ...){
   result = list()
   for (i in 1:length(dependent)){
     result[[i]] = ff_eval(
-    	glm(paste(dependent[i], "~", paste(explanatory, collapse="+")),
+    	glm(ff_formula(dependent[i], explanatory),
                       data = .data, family = family, ...)
     )
   }

@@ -348,6 +348,58 @@ fit2df.glmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept
 	}
 }
 
+
+#' Extract \code{svyglmuni} and \code{svyglmmulti} model fit results to dataframe: \code{finalfit} model extracters
+#'
+#' \code{fit2df.svyglmlist} is the model extract method for \code{svyglmuni} and \code{svyglmmulti}.
+#'
+#' @rdname fit2df
+#' @method fit2df svyglmlist
+#' @export
+
+fit2df.svyglmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+													 explanatory_name = "explanatory",
+													 estimate_name = "Coefficient",
+													 estimate_suffix = "",
+													 p_name = "p",
+													 digits=c(2,2,3),
+													 exp = FALSE, 
+													 confint_type = "profile",
+													 confint_level = 0.95,
+													 confint_sep = "-", ...){
+	
+	if (metrics==TRUE && length(.data)>1){
+		stop("Metrics only generated for single models: multiple models supplied to function")
+	}
+	
+	df.out = .data %>% 
+		purrr::map_dfr(extract_fit, explanatory_name = explanatory_name,
+									 estimate_name = estimate_name, estimate_suffix = estimate_suffix,
+									 p_name = p_name, exp = exp, 
+									 confint_type = confint_type,
+									 confint_level = confint_level,
+									 digits=digits)
+	
+	if (condense==TRUE){
+		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
+													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+													p_name=p_name, digits=digits, confint_sep=confint_sep)
+	}
+	
+	if (remove_intercept==TRUE){
+		df.out = remove_intercept(df.out)
+	}
+	
+	# Extract model metrics
+	if (metrics==TRUE){
+		metrics.out = ff_metrics(.data)
+		return(list(df.out, metrics.out))
+	} else {
+		return(df.out)
+	}
+}
+
+
 #' Extract \code{lmerMod} model fit results to dataframe: \code{finalfit} model
 #' extracters
 #'

@@ -32,7 +32,7 @@ lmuni <- function(.data, dependent, explanatory, ...){
   result <- list()
   for (i in 1:length(explanatory)){
     result[[i]] <- ff_eval(
-    	lm(paste(dependent, "~", explanatory[i]), data = .data, ...)
+    	lm(ff_formula(dependent, explanatory[i]), data = .data, ...)
     )
   }
   class(result) = "lmlist"
