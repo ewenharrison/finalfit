@@ -7,6 +7,7 @@
 \alias{extract_fit.lm}
 \alias{extract_fit.lmerMod}
 \alias{extract_fit.coxph}
+\alias{extract_fit.crr}
 \title{Extract model output to dataframe}
 \usage{
 extract_fit(...)
@@ -28,6 +29,9 @@ extract_fit(...)
   confint_type = "Wald", confint_level = 0.95, ...)
 
 \method{extract_fit}{coxph}(.data, explanatory_name = "explanatory",
+  estimate_name = "HR", estimate_suffix = "", p_name = "p", ...)
+
+\method{extract_fit}{crr}(.data, explanatory_name = "explanatory",
   estimate_name = "HR", estimate_suffix = "", p_name = "p", ...)
 }
 \arguments{
@@ -51,6 +55,8 @@ Not implemented for \code{lm, coxph or coxphlist}.}
 }
 \description{
 Internal function, not usually called directly.
+
+Internal function, not called directly.
 
 Internal function, not called directly.
 }

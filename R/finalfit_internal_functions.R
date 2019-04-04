@@ -187,6 +187,31 @@ extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_nam
 	return(df.out)
 }
 
+#' Extract model output to dataframe
+#'
+#' Internal function, not called directly.
+#'
+#' @keywords internal
+#' @rdname extract_fit
+#' @method extract_fit crr
+#' @export
+
+extract_fit.crr = function(.data, explanatory_name="explanatory", estimate_name="HR",
+													 estimate_suffix = "",
+													 p_name = "p", ...){
+	x=.data
+	results = summary(x)$conf.int
+	explanatory = row.names(results)
+	estimate = results[,1]
+	confint_L = results[,3]
+	confint_U = results[,4]
+	p = summary(x)$coef[explanatory,
+											max(dim(summary(x)$coef)[2])] # Hack to get p fe and re
+	df.out = dplyr::tibble(explanatory, estimate, confint_L, confint_U, p)
+	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
+	df.out = data.frame(df.out)
+	return(df.out)
+}
 
 # #' Extract model output to dataframe
 # #'

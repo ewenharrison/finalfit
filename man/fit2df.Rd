@@ -11,6 +11,7 @@
 \alias{fit2df.lmerMod}
 \alias{fit2df.glmerMod}
 \alias{fit2df.coxph}
+\alias{fit2df.crr}
 \alias{fit2df.coxphlist}
 \title{Extract model fit results to dataframe (generic): \code{finalfit} model
 extractors}
@@ -65,14 +66,19 @@ fit2df(...)
   confint_sep = "-", ...)
 
 \method{fit2df}{coxph}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "HR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = "-", ...)
+  explanatory_name = "explanatory", estimate_name = "HR",
+  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
+  confint_sep = "-", ...)
+
+\method{fit2df}{crr}(.data, condense = TRUE, metrics = FALSE,
+  explanatory_name = "explanatory", estimate_name = "HR",
+  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
+  confint_sep = "-", ...)
 
 \method{fit2df}{coxphlist}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "HR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = "-", ...)
+  explanatory_name = "explanatory", estimate_name = "HR",
+  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
+  confint_sep = "-", ...)
 }
 \arguments{
 \item{...}{Other arguments: \code{X}: Design matrix from stanfit modelling.
@@ -144,6 +150,8 @@ wrappers.
 \code{finalfit::\link{glmmixed}} model wrapper.
 
 \code{fit2df.coxph} is the model extract method for \code{survival::\link[survival]{coxph}}.
+
+\code{fit2df.crr} is the model extract method for \code{cmprsk::\link[cmprsk]{crr}}.
 
 \code{fit2df.coxphlist} is the model extract method for \code{coxphuni} and \code{coxphmulti}.
 }
