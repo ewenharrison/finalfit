@@ -4,6 +4,7 @@ print.banner.on.startup: auto
 vcs.ignore.lib: TRUE
 vcs.ignore.src: TRUE
 external.packages:
+    bindrcpp
     boot
     broom
     dplyr
