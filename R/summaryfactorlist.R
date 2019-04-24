@@ -35,6 +35,7 @@
 #'   left of table
 #' @param dependent_label_prefix Add text before dependent label
 #' @param dependent_label_suffix Add text after dependent label
+#' @param ... Pass other arguments
 #' @return Returns a \code{factorlist} dataframe.
 #'
 #' @family finalfit wrappers

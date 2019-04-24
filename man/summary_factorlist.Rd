@@ -49,6 +49,8 @@ left of table}
 \item{dependent_label_prefix}{Add text before dependent label}
 
 \item{dependent_label_suffix}{Add text after dependent label}
+
+\item{...}{Pass other arguments}
 }
 \value{
 Returns a \code{factorlist} dataframe.
