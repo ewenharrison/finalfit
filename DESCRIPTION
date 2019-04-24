@@ -32,7 +32,6 @@ Imports:
     plyr,
     pROC,
     purrr,
-    readr,
     scales,
     stats,
     stringr,

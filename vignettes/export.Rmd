@@ -78,22 +78,22 @@ Note missing data in `obstruct.factor`. See a full description of options in the
 We will drop this variable for now. Also see that nodes has not been labelled. There are small numbers in some variables generating chisq.test warnings (predicted less than 5 in any cell). Generate final table.
 
 ```{r, eval=FALSE}
-Hmisc::label(colon_s$nodes) = "Lymph nodes involved"
+colon_s = colon_s %>% 
+	mutate(
+		nodes = ff_label(nodes, "Lymph nodes involved")
+	)
+		
 explanatory = c("age", "sex.factor", 
   "extent.factor", "nodes")
 
 colon_s %>% 
   summary_factorlist(dependent, explanatory, 
-  p=TRUE, na_include=TRUE, 
-  add_dependent_label=TRUE) -> table1
+    p=TRUE, na_include=TRUE, 
+    add_dependent_label=TRUE) -> table1
 table1
 ```
 
 ```{r, warning=FALSE, message=FALSE, cache=TRUE, echo=FALSE}
-Hmisc::label(colon_s$nodes) = "Lymph nodes involved"
-explanatory = c("age", "sex.factor", 
-  "extent.factor", "nodes")
-
 colon_s %>% 
   summary_factorlist(dependent, explanatory, 
   p=TRUE, na_include=TRUE, 
