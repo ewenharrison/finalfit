@@ -352,7 +352,7 @@ colon_s %>%
   # Jiggle into finalfit format
   mutate(explanatory_name = rownames(.)) %>%            
   select(explanatory_name, estimate, `2.5 %`, `97.5 %`, p.value) %>% 
-  condense_fit(estimate_suffix = " (multiple imputation)") %>% 
+  condense_fit(estimate_name = "OR (multiple imputation)") %>% 
   remove_intercept() -> fit_imputed
 
 # Use finalfit merge methods to create and compare results

@@ -8,7 +8,8 @@ summary_factorlist(.data, dependent = NULL, explanatory, cont = "mean",
   cont_cut = 5, p = FALSE, na_include = FALSE, column = FALSE,
   total_col = FALSE, orderbytotal = FALSE, fit_id = FALSE,
   na_to_missing = TRUE, add_dependent_label = FALSE,
-  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "")
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
+  ...)
 }
 \arguments{
 \item{.data}{Dataframe.}

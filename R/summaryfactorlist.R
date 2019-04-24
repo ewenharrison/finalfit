@@ -66,7 +66,7 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 															 p = FALSE, na_include = FALSE,
 															 column = FALSE, total_col = FALSE, orderbytotal = FALSE, fit_id = FALSE,
 															 na_to_missing = TRUE, add_dependent_label = FALSE,
-															 dependent_label_prefix = "Dependent: ", dependent_label_suffix = ""){
+															 dependent_label_prefix = "Dependent: ", dependent_label_suffix = "", ...){
 	if(is.data.frame(.data) == FALSE) stop(".data is not dataframe")
 	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data) # tbl work different, convert to data.frame
 	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
@@ -81,7 +81,7 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 							column = column, total_col = total_col, orderbytotal = orderbytotal, fit_id = fit_id,
 							na_to_missing = na_to_missing, add_dependent_label = add_dependent_label,
 							dependent_label_prefix = dependent_label_prefix,
-							dependent_label_suffix = dependent_label_suffix)
+							dependent_label_suffix = dependent_label_suffix, ...)
 	
 	# Survival object
 	d_is.surv = grepl("Surv[(].*[)]", dependent)
