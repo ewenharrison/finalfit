@@ -52,6 +52,7 @@ fit2df.glmerMod is the model extract method for standard
 lme4::glmer models and for the
 finalfit::glmmixed model wrapper.
 fit2df.coxph is the model extract method for survival::coxph.
+fit2df.crr is the model extract method for cmprsk::crr.
 fit2df.coxphlist is the model extract method for coxphuni and coxphmulti." />
 
 <meta property="og:image" content="/logo.png" />
@@ -175,6 +176,7 @@ wrappers.</p>
 <code>lme4::<a href='http://www.rdocumentation.org/packages/lme4/topics/glmer'>glmer</a></code> models and for the
 <code>finalfit::<a href='glmmixed.html'>glmmixed</a></code> model wrapper.</p>
 <p><code>fit2df.coxph</code> is the model extract method for <code>survival::<a href='http://www.rdocumentation.org/packages/survival/topics/coxph'>coxph</a></code>.</p>
+<p><code>fit2df.crr</code> is the model extract method for <code>cmprsk::<a href='http://www.rdocumentation.org/packages/cmprsk/topics/crr'>crr</a></code>.</p>
 <p><code>fit2df.coxphlist</code> is the model extract method for <code>coxphuni</code> and <code>coxphmulti</code>.</p>
     
     </div>
@@ -238,15 +240,21 @@ wrappers.</p>
 
 <span class='co'># S3 method for coxph</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for crr</span>
+<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for coxphlist</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

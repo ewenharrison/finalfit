@@ -269,87 +269,89 @@
 </table>
 <p>Note missing data in <code>obstruct.factor</code>. See a full description of options in the forthcoming missing data vignette.</p>
 <p>We will drop this variable for now. Also see that nodes has not been labelled. There are small numbers in some variables generating chisq.test warnings (predicted less than 5 in any cell). Generate final table.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">Hmisc<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/Hmisc/topics/label">label</a></span>(colon_s<span class="op">$</span>nodes) =<span class="st"> "Lymph nodes involved"</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="st">"extent.factor"</span>, <span class="st">"nodes"</span>)</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, </a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">na_include=</span><span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="dt">add_dependent_label=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>table1</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">table1</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="st">"extent.factor"</span>, <span class="st">"nodes"</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">        <span class="dt">nodes =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(nodes, <span class="st">"Lymph nodes involved"</span>)</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, </a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">na_include=</span><span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="dt">add_dependent_label=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>table <span class="dv">1</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">table1</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Differentiation</th>
 <th></th>
-<th align="right">Well</th>
 <th align="right">Moderate</th>
 <th align="right">Poor</th>
+<th align="right">Well</th>
 <th align="right">p</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">Age (years)</td>
 <td>Mean (SD)</td>
-<td align="right">60.2 (12.8)</td>
 <td align="right">59.9 (11.7)</td>
-<td align="right">59 (12.8)</td>
+<td align="right">59.0 (12.8)</td>
+<td align="right">60.2 (12.8)</td>
 <td align="right">0.788</td>
 </tr>
 <tr class="even">
 <td align="left">Sex</td>
 <td>Female</td>
-<td align="right">51 (11.6)</td>
 <td align="right">314 (71.7)</td>
 <td align="right">73 (16.7)</td>
+<td align="right">51 (11.6)</td>
 <td align="right">0.400</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td>Male</td>
-<td align="right">42 (9.0)</td>
 <td align="right">349 (74.6)</td>
 <td align="right">77 (16.5)</td>
+<td align="right">42 (9.0)</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">Extent of spread</td>
 <td>Submucosa</td>
-<td align="right">5 (25.0)</td>
 <td align="right">12 (60.0)</td>
 <td align="right">3 (15.0)</td>
+<td align="right">5 (25.0)</td>
 <td align="right">0.081</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td>Muscle</td>
-<td align="right">12 (11.8)</td>
 <td align="right">78 (76.5)</td>
+<td align="right">12 (11.8)</td>
 <td align="right">12 (11.8)</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td>Serosa</td>
-<td align="right">76 (10.2)</td>
 <td align="right">542 (72.8)</td>
 <td align="right">127 (17.0)</td>
+<td align="right">76 (10.2)</td>
 <td align="right"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td>Adjacent structures</td>
-<td align="right">0 (0.0)</td>
 <td align="right">31 (79.5)</td>
 <td align="right">8 (20.5)</td>
+<td align="right">0 (0.0)</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">Lymph nodes involved</td>
 <td>Mean (SD)</td>
-<td align="right">2.7 (2.2)</td>
 <td align="right">3.6 (3.4)</td>
 <td align="right">4.7 (4.4)</td>
+<td align="right">2.7 (2.2)</td>
 <td align="right">&lt;0.001</td>
 </tr>
 </tbody>
@@ -433,7 +435,7 @@
 <td align="right">6.04 (1.58-30.41, p=0.015)</td>
 </tr>
 <tr class="even">
-<td align="left">Lymph nodes involved</td>
+<td align="left">nodes</td>
 <td>Mean (SD)</td>
 <td align="right">2.7 (2.4)</td>
 <td align="right">4.9 (4.4)</td>

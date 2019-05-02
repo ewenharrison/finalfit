@@ -450,7 +450,7 @@
 <a class="sourceLine" id="cb13-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb13-7" data-line-number="7">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb13-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(explanatory) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="st">  </span>MissMech<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/MissMech/topics/TestMCARNormality">TestMCARNormality</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="st">  </span>MissMech<span class="op">::</span><span class="kw">TestMCARNormality</span>()</a></code></pre></div>
 </div>
 </div>
 <div id="decide-how-to-handle-missing-data" class="section level2">
@@ -628,7 +628,7 @@
 <a class="sourceLine" id="cb15-29" data-line-number="29"><span class="st">  </span><span class="co"># Jiggle into finalfit format</span></a>
 <a class="sourceLine" id="cb15-30" data-line-number="30"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">explanatory_name =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st">            </span></a>
 <a class="sourceLine" id="cb15-31" data-line-number="31"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(explanatory_name, estimate, <span class="st">`</span><span class="dt">2.5 %</span><span class="st">`</span>, <span class="st">`</span><span class="dt">97.5 %</span><span class="st">`</span>, p.value) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-32" data-line-number="32"><span class="st">  </span><span class="kw"><a href="../reference/condense_fit.html">condense_fit</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (multiple imputation)"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-32" data-line-number="32"><span class="st">  </span><span class="kw"><a href="../reference/condense_fit.html">condense_fit</a></span>(<span class="dt">estimate_name =</span> <span class="st">"OR (multiple imputation)"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb15-33" data-line-number="33"><span class="st">  </span><span class="kw"><a href="../reference/remove_intercept.html">remove_intercept</a></span>() -&gt;<span class="st"> </span>fit_imputed</a>
 <a class="sourceLine" id="cb15-34" data-line-number="34"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb15-35" data-line-number="35"><span class="co">#&gt;  iter imp variable</span></a>
@@ -688,7 +688,7 @@
 <th align="right">OR (univariable)</th>
 <th align="right">OR (multivariable)</th>
 <th align="right">OR (multivariable inc. smoking)</th>
-<th align="right">estimate (multiple imputation)</th>
+<th align="right">OR (multiple imputation)</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -709,7 +709,7 @@
 <td align="right">-</td>
 <td align="right">-</td>
 <td align="right">-</td>
-<td align="right">NA</td>
+<td align="right">-</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -739,7 +739,7 @@
 <td align="right">-</td>
 <td align="right">-</td>
 <td align="right">-</td>
-<td align="right">NA</td>
+<td align="right">-</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -759,7 +759,7 @@
 <td align="right">-</td>
 <td align="right">-</td>
 <td align="right">-</td>
-<td align="right">NA</td>
+<td align="right">-</td>
 </tr>
 <tr class="even">
 <td align="left"></td>

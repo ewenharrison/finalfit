@@ -4,7 +4,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/3wpgw2rs6vn1lsrn?svg=true)](https://ci.appveyor.com/project/ewenharrison/finalfit)
 [![Coverage status](https://codecov.io/gh/ewenharrison/finalfit/branch/master/graph/badge.svg)](https://codecov.io/github/ewenharrison/finalfit?branch=master)
 
-finalfit <img src="man/figures/finalfit_130_150.png" align="right" />
+finalfit <img src="man/figures/finalfit_hex.png" align="right" />
 ==============================
 
 

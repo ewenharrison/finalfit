@@ -26,6 +26,8 @@ external.packages:
     survival
     survminer
     roxygen2
+    pkgdown
+    magick
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 
