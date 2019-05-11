@@ -2,6 +2,8 @@
 
 * `summary_factorlist()` total column now summaries continuous variables.  #17 #21
 * `svyglmuni()`, `svyglmmulti()` provide support for complex stratified sampling via `library(survey)`. #13
+*  `catTestfisher()` added. 
+* `summary_factorlist()` can take any `Hmisc:::summary.formula` argument, such as `catTest = catTestfisher`. 
 
 # finalfit 0.9.1
 

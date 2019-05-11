@@ -148,6 +148,16 @@
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg" alt="" width="700"></a></p>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg" alt="" width="700"></a></p>
 </div>
+<div id="regression-plots" class="section level3">
+<h3 class="hasAnchor">
+<a href="#regression-plots" class="anchor"></a>Regression plots</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, </a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">dependent =<span class="st"> 'mort_5yr'</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="reference/or_plot.html">or_plot</a></span>(dependent, explanatory)</a></code></pre></div>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg" alt="" width="600" class="aligncenter"></a></p>
+</div>
 </div>
 </div>
 

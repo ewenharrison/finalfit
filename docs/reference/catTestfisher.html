@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summarise a set of factors by a dependent variable — summary_factorlist_groups • finalfit</title>
+<title>Fisher's exact test for use with <code><a href='summary_factorlist.html'>summary_factorlist</a></code> — catTestfisher • finalfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Summarise a set of factors by a dependent variable — summary_factorlist_groups" />
+<meta property="og:title" content="Fisher's exact test for use with <code><a href='summary_factorlist.html'>summary_factorlist</a></code> — catTestfisher" />
 
-<meta property="og:description" content="Internal function, not called directly." />
+<meta property="og:description" content="Fisher's exact test for use with summary_factorlist" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -129,30 +129,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summarise a set of factors by a dependent variable</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/summaryfactorlist.R'><code>R/summaryfactorlist.R</code></a></small>
-    <div class="hidden name"><code>summary_factorlist_groups.Rd</code></div>
+    <h1>Fisher's exact test for use with <code><a href='summary_factorlist.html'>summary_factorlist</a></code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/catTest.R'><code>R/catTest.R</code></a></small>
+    <div class="hidden name"><code>catTestfisher.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Internal function, not called directly.</p>
+    <p>Fisher's exact test for use with <code><a href='summary_factorlist.html'>summary_factorlist</a></code></p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>summary_factorlist_groups</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>cont</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-  <span class='kw'>cont_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>total_col</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>orderbytotal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>na_to_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>, <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='no'>...</span>)</pre>
-        
+    <pre class="usage"><span class='fu'>catTestfisher</span>(<span class='no'>tab</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>tab</th>
+      <td><p>A frequency table such as that created by <code>table()</code>.</p></td>
+    </tr>
+    </table>
+    
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>)
+<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
+<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>catTest</span> <span class='kw'>=</span> <span class='no'>catTestfisher</span>)</div><div class='output co'>#&gt;         label levels      Alive       Died     p
+#&gt; 3         Sex Female 243 (55.6) 194 (44.4) 0.894
+#&gt; 4               Male 268 (56.1) 210 (43.9)      
+#&gt; 1 Obstruction     No 408 (56.7) 312 (43.3) 0.203
+#&gt; 2                Yes  89 (51.1)  85 (48.9)      </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

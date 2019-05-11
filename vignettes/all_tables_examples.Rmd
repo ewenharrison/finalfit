@@ -41,8 +41,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r"))
 ```
 
-Note, chi-squared warnings will be generated when the expected count in any cell is less than 5. Fisher's exact test has not been implemented, given it is so easy to go straight to a univariable logistic regression,
-e.g. `colon_s %>% finalfit(dependent, explanatory)`
+Note, chi-squared warnings will be generated when the expected count in any cell is less than 5. Fisher's exact test can be used as below, or go straight to a univariable logistic regression, e.g. `colon_s %>% finalfit(dependent, explanatory)`
 
 ### 1.02 Add or edit variable labels
 
@@ -80,7 +79,22 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.04 Median (interquartile range) instead of mean (standard deviation)
+### 1.04 With Fisher's exact test
+
+```{r}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, catTest = catTestfisher) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r"))
+```
+
+### 1.05 Median (interquartile range) instead of mean (standard deviation)
 
 ... for continuous variables.
 
@@ -97,7 +111,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.05 Missing values for the explanatory variables
+### 1.06 Missing values for the explanatory variables
 
 Always do this when describing your data.
 
@@ -114,7 +128,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.06 Column proportions (rather than row)
+### 1.07 Column proportions (rather than row)
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -130,7 +144,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.07 Total column
+### 1.08 Total column
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -146,7 +160,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.08 Order a variable by total
+### 1.09 Order a variable by total
 
 This is intended for when there is only one `explanatory` variable.  
 
@@ -164,7 +178,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.09 Label with `dependent` name
+### 1.10 Label with `dependent` name
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -199,7 +213,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.10 Dependent variable with any number of factor levels supported
+### 1.11 Dependent variable with any number of factor levels supported
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -218,7 +232,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.11 Explanatory variable defaults to factor when ≤5 distinct values
+### 1.12 Explanatory variable defaults to factor when ≤5 distinct values
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -237,7 +251,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.12 Keep as continous variable when ≤5 distinct values
+### 1.13 Keep as continous variable when ≤5 distinct values
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -252,9 +266,9 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.13 Stratified crosstables
+### 1.14 Stratified crosstables
 
-I've been meaning to include support for table stratification for a while. I have delayed for a good reason. Perhaps the most straightforward way to implement stratificiation is with `dplyr::group_by()`. However, the non-standard evaluation required for multiple strata may confuse as it is not implemented else where in the package (doesn't work with `group_by_`). This translates to whether variable names are passed in quotes or not. Finally,. `dplyr::do()` is planned for deprecation, but there is not a good alternative at the moment. Anyway, here is a solution, which while not that pretty, is very effective. 
+I've been meaning to include support for table stratification for a while. I have delayed for a good reason. Perhaps the most straightforward way to implement stratificiation is with `dplyr::group_by()`. However, the non-standard evaluation required for multiple strata may confuse as it is not implemented else where in the package (doesn't work with `group_by_`). This translates to whether variable names are passed in quotes or not. Finally,. `dplyr::do()` is planned for deprecation, but there is no good alternative at the moment. Anyway, here is a solution, which while not that pretty, is very effective. 
 
 ```{r, warning=FALSE}
 library(dplyr)

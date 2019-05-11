@@ -36,12 +36,13 @@ reference:
     - '`ff_newdata`'
     - '`ff_relabel`'
     - '`ff_remove_ref`'
+    - '`catTestfisher`'
     - '`colname2label`'
     - '`dependent_label`'
     - '`extract_variable_label`'
-    - '`round_tidy`'
+    - '`format_n_percent`'    
     - '`p_tidy`'
-    - '`format_n_percent`'
+    - '`round_tidy`'
   - title: "Plotting"
     desc: ~
     contents:
