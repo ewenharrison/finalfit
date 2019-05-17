@@ -228,7 +228,7 @@ extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_n
 	pars = "beta"
 	quantiles =  c(0.025, 0.50, 0.975)
 
-	explanatory = attr(X, "dimnames")[[2]]
+	explanatory = dimnames(X)[[2]]
 	results = rstan::summary(stanfit,
 													 pars = pars,
 													 probs = quantiles)$summary
