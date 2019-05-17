@@ -13,6 +13,7 @@
 \alias{fit2df.coxph}
 \alias{fit2df.crr}
 \alias{fit2df.coxphlist}
+\alias{fit2df.stanfit}
 \title{Extract model fit results to dataframe (generic): \code{finalfit} model
 extractors}
 \usage{
@@ -79,6 +80,11 @@ fit2df(...)
   explanatory_name = "explanatory", estimate_name = "HR",
   estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
   confint_sep = "-", ...)
+
+\method{fit2df}{stanfit}(.data, condense = TRUE, metrics = FALSE,
+  remove_intercept = TRUE, explanatory_name = "explanatory",
+  estimate_name = "OR", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), confint_sep = "-", ...)
 }
 \arguments{
 \item{...}{Other arguments: \code{X}: Design matrix from stanfit modelling.
@@ -154,6 +160,14 @@ wrappers.
 \code{fit2df.crr} is the model extract method for \code{cmprsk::\link[cmprsk]{crr}}.
 
 \code{fit2df.coxphlist} is the model extract method for \code{coxphuni} and \code{coxphmulti}.
+
+\code{fit2df.stanfit} is the model extract method for our standard Bayesian
+hierarchical binomial logistic regression models. These models will be fully
+documented separately. However this should work for a single or multilevel
+Bayesian logistic regression done in Stan, as long as the fixed effects are
+specified in the parameters block as a vector named \code{beta}, of length
+\code{P}, where \code{P} is the number of fixed effect parameters. e.g.
+parameters{ vector[P] beta; }
 }
 \details{
 \code{fit2df} is a generic (S3) function for model extract.

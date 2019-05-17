@@ -45,6 +45,7 @@ Suggests:
     knitr,
     rlang,
     rmarkdown,
+    rstan,
     covr,
     survey,
     testthat

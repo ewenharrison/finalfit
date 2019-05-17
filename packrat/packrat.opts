@@ -21,6 +21,8 @@ external.packages:
     pROC
     purrr
     readr
+    rlang
+    rstan
     scales
     stringr
     survival

@@ -8,6 +8,7 @@
 \alias{extract_fit.lmerMod}
 \alias{extract_fit.coxph}
 \alias{extract_fit.crr}
+\alias{extract_fit.stanfit}
 \title{Extract model output to dataframe}
 \usage{
 extract_fit(...)
@@ -33,6 +34,10 @@ extract_fit(...)
 
 \method{extract_fit}{crr}(.data, explanatory_name = "explanatory",
   estimate_name = "HR", estimate_suffix = "", p_name = "p", ...)
+
+\method{extract_fit}{stanfit}(.data, explanatory_name = "explanatory",
+  estimate_name = "OR", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), X, ...)
 }
 \arguments{
 \item{...}{Other arguments.}
@@ -52,6 +57,8 @@ models or \code{c("profile", "Wald", "boot")} for \code{glmer/lmer} models.
 Not implemented for \code{lm, coxph or coxphlist}.}
 
 \item{confint_level}{The confidence level required.}
+
+\item{X}{Design matrix from Stan modelling procedure.}
 }
 \description{
 Internal function, not usually called directly.
