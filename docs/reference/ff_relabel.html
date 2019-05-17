@@ -173,7 +173,7 @@ Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
 #&gt;  - attr(*, "label")= chr "Sex"</div><div class='input'>
 <span class='co'># Make factor level "Unknown" NA</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise_all.html'>mutate_if</a></span>(<span class='no'>is.factor</span>, <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='no'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span>,
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_if</a></span>(<span class='no'>is.factor</span>, <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='no'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span>,
   <span class='kw'>NULL</span> <span class='kw'>=</span> <span class='st'>"Unknown"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>str</span>()</div><div class='output co'>#&gt; 'data.frame':	929 obs. of  32 variables:
 #&gt;  $ id             : num  1 2 3 4 5 6 7 8 9 10 ...
@@ -218,7 +218,7 @@ Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
 
 <span class='co'># Run function where labels are lost</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise_all.html'>mutate_if</a></span>(<span class='no'>is.factor</span>, <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='no'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span>,
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_if</a></span>(<span class='no'>is.factor</span>, <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='no'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span>,
   <span class='kw'>NULL</span> <span class='kw'>=</span> <span class='st'>"Unknown"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>str</span>()</div><div class='output co'>#&gt; 'data.frame':	929 obs. of  32 variables:
 #&gt;  $ id             : num  1 2 3 4 5 6 7 8 9 10 ...

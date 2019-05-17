@@ -172,7 +172,12 @@ Internal function, not called directly." />
 
 <span class='co'># S3 method for crr</span>
 <span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for stanfit</span>
+<span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='no'>X</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -210,6 +215,10 @@ Not implemented for <code>lm, coxph or coxphlist</code>.</p></td>
     <tr>
       <th>confint_level</th>
       <td><p>The confidence level required.</p></td>
+    </tr>
+    <tr>
+      <th>X</th>
+      <td><p>Design matrix from Stan modelling procedure.</p></td>
     </tr>
     </table>
     

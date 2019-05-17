@@ -42,11 +42,12 @@ Imports:
     tidyr
 RoxygenNote: 6.1.0
 Suggests:
+    covr,
+    cmprsk, 
     knitr,
     rlang,
     rmarkdown,
     rstan,
-    covr,
     survey,
     testthat
 VignetteBuilder: knitr
