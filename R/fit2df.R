@@ -106,20 +106,27 @@
 #'   fit2df(estimate_suffix=" (multivariable)")
 #' 	
 #' # crr: competing risks
-#' library(cmprsk)
-#' library(magrittr)
-#' 	
-#' # Simulated data from package 
-#' set.seed(10)
-#' ftime = rexp(200)
-#' fstatus = sample(0:2, 200, replace=TRUE)
-#' cov = matrix(runif(600), nrow=200)
-#' dimnames(cov)[[2]] = c('var1','var2','var3')
-#' df = data.frame(ftime, fstatus, cov)
-#' 	
-#' df %$% 
-#'   crr(ftime, fstatus, cov) %>%
-#'   fit2df()
+#' melanoma = boot::melanoma
+#' melanoma = melanoma %>% 
+#'   mutate(
+#'     status_crr = ifelse(status == 2, 0, # "still alive"
+#'       ifelse(status == 1, 1, # "died of melanoma"
+#'       2)), # "died of other causes" 
+#'     sex = factor(sex),
+#'     ulcer = factor(ulcer)
+#'   )
+#'
+#' dependent = c("Surv(time, status_crr)")
+#' explanatory = c("sex", "age", "ulcer")
+#' melanoma %>% 
+#'   summary_factorlist(dependent, explanatory, column = TRUE, fit_id = TRUE) %>% 
+#'   ff_merge(
+#'     melanoma %>% 
+#'       crrmulti(dependent, explanatory) %>% 
+#'       fit2df(estimate_suffix = " (competing risks)")
+#'   ) %>% 
+#' select(-fit_id, -index) %>% 
+#' dependent_label(melanoma, dependent)
 
 fit2df <- function(...){
 	UseMethod("fit2df")
@@ -345,18 +352,18 @@ fit2df.glmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept
 									 confint_level = confint_level,
 									 digits=digits)
 	
-	if (condense==TRUE){
+	if (condense == TRUE){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	
-	if (remove_intercept==TRUE){
+	if (remove_intercept == TRUE){
 		df.out = remove_intercept(df.out)
 	}
 	
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics == TRUE){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -540,40 +547,6 @@ fit2df.coxph <- function(.data, condense=TRUE, metrics=FALSE,
 	}
 }
 
-#' Extract \code{cmprsk::crr} model fit results to dataframe: \code{finalfit} model extracters
-#'
-#' \code{fit2df.crr} is the model extract method for \code{cmprsk::\link[cmprsk]{crr}}.
-#'
-#' @rdname fit2df
-#' @method fit2df crr
-#' @export
-#'
-fit2df.crr <- function(.data, condense=TRUE, metrics=FALSE,
-												 explanatory_name = "explanatory",
-												 estimate_name = "HR",
-												 estimate_suffix = "",
-												 p_name = "p",
-												 digits=c(2,2,3),
-												 confint_sep = "-", ...){
-	
-	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
-											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
-											 p_name=p_name)
-	
-	if (condense==TRUE){
-		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
-													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
-													p_name=p_name, digits=digits, confint_sep=confint_sep)
-	}
-	# Extract model metrics
-	if (metrics==TRUE){
-		metrics.out = ff_metrics(.data)
-		return(list(df.out, metrics.out))
-	} else {
-		return(df.out)
-	}
-}
-
 #' Extract \code{coxphuni} and \code{coxphmulti} model fit results to dataframe: \code{finalfit} model extracters
 #'
 #' \code{fit2df.coxphlist} is the model extract method for \code{coxphuni} and \code{coxphmulti}.
@@ -611,6 +584,78 @@ fit2df.coxphlist <- function(.data, condense=TRUE, metrics=FALSE,
 	}
 }
 
+
+#' Extract \code{cmprsk::crr} model fit results to dataframe: \code{finalfit} model extracters
+#'
+#' \code{fit2df.crr} is the model extract method for \code{cmprsk::\link[cmprsk]{crr}}.
+#'
+#' @rdname fit2df
+#' @method fit2df crr
+#' @export
+#'
+fit2df.crr <- function(.data, condense=TRUE, metrics=FALSE,
+												 explanatory_name = "explanatory",
+												 estimate_name = "HR",
+												 estimate_suffix = "",
+												 p_name = "p",
+												 digits=c(2,2,3),
+												 confint_sep = "-", ...){
+	
+	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+											 p_name=p_name)
+	
+	if (condense==TRUE){
+		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
+													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+													p_name=p_name, digits=digits, confint_sep=confint_sep)
+	}
+	# Extract model metrics
+	if (metrics==TRUE){
+		metrics.out = ff_metrics(.data)
+		return(list(df.out, metrics.out))
+	} else {
+		return(df.out)
+	}
+}
+
+#' Extract \code{crruni} and \code{crrmulti} model fit results to dataframe:
+#' \code{finalfit} model extracters
+#'
+#' \code{fit2df.crr} is the model extract method for
+#' \code{crruni} and \code{crrmulti}.
+#'
+#' @rdname fit2df
+#' @method fit2df crrlist
+#' @export
+#' 
+fit2df.crrlist <- function(.data, condense=TRUE, metrics=FALSE,
+											 explanatory_name = "explanatory",
+											 estimate_name = "HR",
+											 estimate_suffix = "",
+											 p_name = "p",
+											 digits=c(2,2,3),
+											 confint_sep = "-", ...){
+	
+	df.out = .data %>% 
+		purrr::map_dfr(extract_fit, explanatory_name=explanatory_name,
+									 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+									 p_name=p_name, digits=digits)
+
+	
+	if (condense==TRUE){
+		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
+													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+													p_name=p_name, digits=digits, confint_sep=confint_sep)
+	}
+	# Extract model metrics
+	if (metrics==TRUE){
+		metrics.out = ff_metrics(.data)
+		return(list(df.out, metrics.out))
+	} else {
+		return(df.out)
+	}
+}
 
 #' Extract \code{stanfit} model fit results to dataframe: \code{finalfit} model
 #' extracters

@@ -16,7 +16,7 @@ form \code{Surv(time, status)}.}
 variables.}
 }
 \value{
-A list of univariable \code{\link[survival]{coxph}} fitted model
+A list of multivariable \code{\link[survival]{coxph}} fitted model
   outputs. Output is of class \code{coxphlist}.
 }
 \description{
@@ -43,6 +43,7 @@ colon_s \%>\%
 \code{\link{fit2df}, \link{finalfit_merge}}
 
 Other \code{finalfit} model wrappers: \code{\link{coxphuni}},
+  \code{\link{crrmulti}}, \code{\link{crruni}},
   \code{\link{glmmixed}}, \code{\link{glmmulti_boot}},
   \code{\link{glmmulti}}, \code{\link{glmuni}},
   \code{\link{lmmixed}}, \code{\link{lmmulti}},

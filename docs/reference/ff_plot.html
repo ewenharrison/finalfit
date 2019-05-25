@@ -187,7 +187,7 @@ variables.</p></td>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"nodes"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>ff_plot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dependent is not a factor and will be treated as a continuous variable</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='ff_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+        <span class='fu'>ff_plot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Dependent is not a factor and will be treated as a continuous variable</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='ff_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Odds ratio plot</span>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
@@ -195,7 +195,7 @@ variables.</p></td>
         <span class='co'># Hazard ratio plot	</span>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"Surv(time, status)"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>ff_plot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>dependent_label</span> <span class='kw'>=</span> <span class='st'>"Survival"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Dependent variable is a survival object</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='ff_plot-3.png' alt='' width='700' height='433' /></div></pre>
+        <span class='fu'>ff_plot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>dependent_label</span> <span class='kw'>=</span> <span class='st'>"Survival"</span>)</div><div class='output co'>#&gt; <span class='message'>Dependent variable is a survival object</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='ff_plot-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

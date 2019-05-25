@@ -11,8 +11,9 @@
 \alias{fit2df.lmerMod}
 \alias{fit2df.glmerMod}
 \alias{fit2df.coxph}
-\alias{fit2df.crr}
 \alias{fit2df.coxphlist}
+\alias{fit2df.crr}
+\alias{fit2df.crrlist}
 \alias{fit2df.stanfit}
 \title{Extract model fit results to dataframe (generic): \code{finalfit} model
 extractors}
@@ -71,12 +72,17 @@ fit2df(...)
   estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
   confint_sep = "-", ...)
 
+\method{fit2df}{coxphlist}(.data, condense = TRUE, metrics = FALSE,
+  explanatory_name = "explanatory", estimate_name = "HR",
+  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
+  confint_sep = "-", ...)
+
 \method{fit2df}{crr}(.data, condense = TRUE, metrics = FALSE,
   explanatory_name = "explanatory", estimate_name = "HR",
   estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
   confint_sep = "-", ...)
 
-\method{fit2df}{coxphlist}(.data, condense = TRUE, metrics = FALSE,
+\method{fit2df}{crrlist}(.data, condense = TRUE, metrics = FALSE,
   explanatory_name = "explanatory", estimate_name = "HR",
   estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
   confint_sep = "-", ...)
@@ -157,9 +163,12 @@ wrappers.
 
 \code{fit2df.coxph} is the model extract method for \code{survival::\link[survival]{coxph}}.
 
+\code{fit2df.coxphlist} is the model extract method for \code{coxphuni} and \code{coxphmulti}.
+
 \code{fit2df.crr} is the model extract method for \code{cmprsk::\link[cmprsk]{crr}}.
 
-\code{fit2df.coxphlist} is the model extract method for \code{coxphuni} and \code{coxphmulti}.
+\code{fit2df.crr} is the model extract method for
+\code{crruni} and \code{crrmulti}.
 
 \code{fit2df.stanfit} is the model extract method for our standard Bayesian
 hierarchical binomial logistic regression models. These models will be fully
@@ -240,19 +249,26 @@ fit \%>\%
   fit2df(estimate_suffix=" (multivariable)")
 	
 # crr: competing risks
-library(cmprsk)
-library(magrittr)
-	
-# Simulated data from package 
-set.seed(10)
-ftime = rexp(200)
-fstatus = sample(0:2, 200, replace=TRUE)
-cov = matrix(runif(600), nrow=200)
-dimnames(cov)[[2]] = c('var1','var2','var3')
-df = data.frame(ftime, fstatus, cov)
-	
-df \%$\% 
-  crr(ftime, fstatus, cov) \%>\%
-  fit2df()
+melanoma = boot::melanoma
+melanoma = melanoma \%>\% 
+  mutate(
+    status_crr = ifelse(status == 2, 0, # "still alive"
+      ifelse(status == 1, 1, # "died of melanoma"
+      2)), # "died of other causes" 
+    sex = factor(sex),
+    ulcer = factor(ulcer)
+  )
+
+dependent = c("Surv(time, status_crr)")
+explanatory = c("sex", "age", "ulcer")
+melanoma \%>\% 
+  summary_factorlist(dependent, explanatory, column = TRUE, fit_id = TRUE) \%>\% 
+  ff_merge(
+    melanoma \%>\% 
+      crrmulti(dependent, explanatory) \%>\% 
+      fit2df(estimate_suffix = " (competing risks)")
+  ) \%>\% 
+select(-fit_id, -index) \%>\% 
+dependent_label(melanoma, dependent)
 }
 \concept{\code{finalfit} model extractors}

@@ -188,7 +188,8 @@ intervals on fixed effect model coefficients. Output can be passed to
 
     <div class='dont-index'><p><code><a href='fit2df.html'>fit2df</a>, <a href='ff_merge.html'>finalfit_merge</a></code></p>
 <p>Other <code>finalfit</code> model wrappers: <code><a href='coxphmulti.html'>coxphmulti</a></code>,
-  <code><a href='coxphuni.html'>coxphuni</a></code>, <code><a href='glmmixed.html'>glmmixed</a></code>,
+  <code><a href='coxphuni.html'>coxphuni</a></code>, <code><a href='crrmulti.html'>crrmulti</a></code>,
+  <code><a href='crruni.html'>crruni</a></code>, <code><a href='glmmixed.html'>glmmixed</a></code>,
   <code><a href='glmmulti.html'>glmmulti</a></code>, <code><a href='glmuni.html'>glmuni</a></code>,
   <code><a href='lmmixed.html'>lmmixed</a></code>, <code><a href='lmmulti.html'>lmmulti</a></code>,
   <code><a href='lmuni.html'>lmuni</a></code></p></div>
@@ -204,11 +205,11 @@ intervals on fixed effect model coefficients. Output can be passed to
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>glmmulti_boot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>100</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>"(multivariable (BS CIs))"</span>)</div><div class='output co'>#&gt;             explanatory OR(multivariable (BS CIs))
-#&gt; 1 age.factor40-59 years  0.57 (0.34-1.07, p=0.080)
-#&gt; 2   age.factor60+ years  0.81 (0.46-1.44, p=0.460)
-#&gt; 3        sex.factorMale  0.98 (0.74-1.22, p=0.880)
-#&gt; 4    obstruct.factorYes  1.25 (0.90-1.74, p=0.180)
-#&gt; 5      perfor.factorYes  1.12 (0.53-2.03, p=0.820)</div><div class='input'>
+#&gt; 1 age.factor40-59 years  0.57 (0.25-1.03, p=0.060)
+#&gt; 2   age.factor60+ years  0.81 (0.41-1.35, p=0.580)
+#&gt; 3        sex.factorMale  0.98 (0.73-1.17, p=0.580)
+#&gt; 4    obstruct.factorYes  1.25 (0.92-1.80, p=0.140)
+#&gt; 5      perfor.factorYes  1.12 (0.54-2.82, p=0.720)</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

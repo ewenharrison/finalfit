@@ -90,7 +90,7 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 	d_is.surv = grepl("Surv[(].*[)]", dependent)
 	
 	if(d_is.surv){
-		warning("Dependent variable is a survival object")
+		message("Dependent variable is a survival object")
 		.data$all = factor(1, labels="all")
 		args$.data = .data
 		args$dependent = "all"
@@ -115,7 +115,7 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 		
 		# Non-factor case
 		if(!d_is.factor){
-			warning("Dependent is not a factor and will be treated as a continuous variable")
+			message("Dependent is not a factor and will be treated as a continuous variable")
 			do.call(summary_factorlist0, args)
 		} else {
 			do.call(summary_factorlist_groups, args)

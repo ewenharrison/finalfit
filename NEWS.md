@@ -4,7 +4,7 @@
 * `svyglmuni()`, `svyglmmulti()` provide support for complex stratified sampling via `library(survey)`. #13
 *  `catTestfisher()` added. 
 * `summary_factorlist()` can take any `Hmisc:::summary.formula` argument, such as `catTest = catTestfisher`. 
-* `fit2df` now supports competing risks models, `cmprsk::crr()`
+* `fit2df()` now supports competing risks models, `cmprsk::crr()`
 
 # finalfit 0.9.1
 

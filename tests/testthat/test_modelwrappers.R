@@ -101,6 +101,15 @@ test_that("coxphmulti gives coxphlist", {
 	expect_is(coxphmulti(colon_s,  "Surv(time, status)", "age.factor") %>% fit2df(), "data.frame")
 })
 
+test_that("fit2df(coxphuni) gives data.frame", {
+	expect_is(crruni(colon_s,  "Surv(time, status)", "age.factor") %>% fit2df(), "data.frame")
+})
+
+test_that("coxphmulti gives coxphlist", {
+	expect_is(crrmulti(colon_s,  "Surv(time, status)", "age.factor") %>% fit2df(), "data.frame")
+})
+
+
 #---------------
 
 

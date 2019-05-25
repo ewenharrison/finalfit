@@ -4,6 +4,10 @@ test_that("ff_merge fit_id==NULL", {
 	expect_error(ff_merge(summary_factorlist(colon_s, "mort_5yr", "age.factor")))
 })
 
+test_that("ff_merge fit_id==NULL", {
+	expect_error(finalfit_merge(summary_factorlist(colon_s, "mort_5yr", "age.factor")))
+})
+
 test_that("extract_variable_label gives character", {
 	expect_is(extract_variable_label(colon_s[,1:2]), "character")
 })
@@ -70,4 +74,17 @@ test_that("is.factor", {
 
 test_that("is.factor", {
 	expect_false(is.survival("Sur(mort, time)"))
+})
+
+
+test_that("is.factor", {
+	expect_false(is.survival("Sur(mort, time)"))
+})
+
+test_that("ff_label", {
+	expect_is(colon_s$sex.factor %>% ff_label("Sex"), "factor")
+})
+
+test_that("finalfit_label", {
+	expect_is(colon_s$sex.factor %>% finalfit_label("Sex"), "factor")
 })

@@ -10,7 +10,9 @@
 #' \link{lmmulti},
 #' \link{lmmixed},
 #' \link{coxphuni},
-#' \link{coxphmulti}.
+#' \link{coxphmulti},
+#' \link{crruni},
+#' \link{crrmulti}.
 #'
 #' @section \code{finalfit} model extractor:
 #'
@@ -26,8 +28,10 @@
 #' \link{fit2df.glmerMod},
 #' \link{fit2df.lmerMod},
 #' \link{fit2df.coxph},
-#' \link{fit2df.coxphlist}.
-# #' \link{fit2df.stanfit}.
+#' \link{fit2df.coxphlist},
+#' \link{fit2df.crr},
+#' \link{fit2df.crrlist},
+#' \link{fit2df.stanfit}.
 #'
 #' @section \code{finalfit} all-in-one function:
 #'
@@ -41,15 +45,17 @@
 #'
 #' @section \code{finalfit} plotting functions:
 #'
+#' \link{coefficient_plot},
 #' \link{or_plot},
 #' \link{hr_plot},
-#' \link{surv_plot}.
+#' \link{surv_plot},
+#' \link{ff_plot}.
 #'
 #' @section \code{finalfit} helper functions:
 #'
 #' \link{ff_glimpse},
-#' \link{ff_merge},
 #' \link{ff_label},
+#' \link{ff_merge},
 #' \link{ff_interaction}.
 #'
 #' @section \code{finalfit} prediction functions:
@@ -72,7 +78,7 @@
 #' @name finalfit-package
 #'
 #' @importFrom stats as.formula coef confint confint.default glm lm logLik pnorm
-#'   quantile setNames
+#'   quantile setNames model.matrix
 #' @importFrom survival Surv coxph
 # @exportPattern ^[[:alpha:]]+
 NULL

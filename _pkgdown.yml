@@ -16,6 +16,8 @@ reference:
     - '`glmmixed`'
     - '`coxphuni`'
     - '`coxphmulti`'
+    - '`crruni`'
+    - '`crrmulti`'
     - '`svyglmuni`'
     - '`svyglmmulti`'
   - title: "Bootstrap functions"

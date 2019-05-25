@@ -52,8 +52,10 @@ fit2df.glmerMod is the model extract method for standard
 lme4::glmer models and for the
 finalfit::glmmixed model wrapper.
 fit2df.coxph is the model extract method for survival::coxph.
-fit2df.crr is the model extract method for cmprsk::crr.
 fit2df.coxphlist is the model extract method for coxphuni and coxphmulti.
+fit2df.crr is the model extract method for cmprsk::crr.
+fit2df.crr is the model extract method for
+crruni and crrmulti.
 fit2df.stanfit is the model extract method for our standard Bayesian
 hierarchical binomial logistic regression models. These models will be fully
 documented separately. However this should work for a single or multilevel
@@ -183,8 +185,10 @@ wrappers.</p>
 <code>lme4::<a href='http://www.rdocumentation.org/packages/lme4/topics/glmer'>glmer</a></code> models and for the
 <code>finalfit::<a href='glmmixed.html'>glmmixed</a></code> model wrapper.</p>
 <p><code>fit2df.coxph</code> is the model extract method for <code>survival::<a href='http://www.rdocumentation.org/packages/survival/topics/coxph'>coxph</a></code>.</p>
-<p><code>fit2df.crr</code> is the model extract method for <code>cmprsk::<a href='http://www.rdocumentation.org/packages/cmprsk/topics/crr'>crr</a></code>.</p>
 <p><code>fit2df.coxphlist</code> is the model extract method for <code>coxphuni</code> and <code>coxphmulti</code>.</p>
+<p><code>fit2df.crr</code> is the model extract method for <code>cmprsk::<a href='http://www.rdocumentation.org/packages/cmprsk/topics/crr'>crr</a></code>.</p>
+<p><code>fit2df.crr</code> is the model extract method for
+<code>crruni</code> and <code>crrmulti</code>.</p>
 <p><code>fit2df.stanfit</code> is the model extract method for our standard Bayesian
 hierarchical binomial logistic regression models. These models will be fully
 documented separately. However this should work for a single or multilevel
@@ -258,13 +262,19 @@ parameters vector[P] beta;</p>
   <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
   <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
+<span class='co'># S3 method for coxphlist</span>
+<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+
 <span class='co'># S3 method for crr</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
   <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
   <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
-<span class='co'># S3 method for coxphlist</span>
+<span class='co'># S3 method for crrlist</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
   <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
@@ -374,8 +384,8 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;             explanatory          OR (univariable)
+  <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;             explanatory          OR (univariable)
 #&gt; 1 age.factor40-59 years 0.57 (0.34-0.98, p=0.041)
 #&gt; 2   age.factor60+ years 0.81 (0.48-1.36, p=0.426)
 #&gt; 3        sex.factorMale 0.98 (0.75-1.28, p=0.902)
@@ -387,7 +397,7 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='glmmixed.html'>glmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel)"</span>)</div><div class='output co'>#&gt;             explanatory           OR (multilevel)
+  <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel)"</span>)</div><div class='output co'>#&gt;             explanatory           OR (multilevel)
 #&gt; 1 age.factor40-59 years 0.75 (0.39-1.44, p=0.382)
 #&gt; 2   age.factor60+ years 1.03 (0.55-1.96, p=0.916)
 #&gt; 3        sex.factorMale 0.80 (0.58-1.11, p=0.180)
@@ -398,8 +408,8 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='glmmulti_boot.html'>glmmulti_boot</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>,  <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable (BS CIs))"</span>)</div><div class='output co'>#&gt;             explanatory OR (multivariable (BS CIs))
+  <span class='fu'><a href='glmmulti_boot.html'>glmmulti_boot</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>,  <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable (BS CIs))"</span>)</div><div class='output co'>#&gt;             explanatory OR (multivariable (BS CIs))
 #&gt; 1 age.factor40-59 years   0.57 (0.29-0.92, p=0.020)
 #&gt; 2   age.factor60+ years   0.81 (0.38-1.38, p=0.480)
 #&gt; 3        sex.factorMale   0.98 (0.76-1.23, p=1.020)
@@ -422,7 +432,7 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='lmmixed.html'>lmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.</span></div><div class='output co'>#&gt;             explanatory      Coefficient (multilevel
+  <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.</span></div><div class='output co'>#&gt;             explanatory      Coefficient (multilevel
 #&gt; 1 age.factor40-59 years  -0.79 (-1.65-0.07, p=0.035)
 #&gt; 2   age.factor60+ years -0.98 (-1.81--0.14, p=0.011)
 #&gt; 3        sex.factorMale  -0.19 (-0.62-0.24, p=0.195)
@@ -433,16 +443,16 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"Surv(time, status)"</span>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='coxphuni.html'>coxphuni</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>)</div><div class='output co'>#&gt;             explanatory          HR (univariable)
+  <span class='fu'><a href='coxphuni.html'>coxphuni</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>)</div><div class='output co'>#&gt;             explanatory          HR (univariable)
 #&gt; 1 age.factor40-59 years 0.76 (0.53-1.09, p=0.132)
 #&gt; 2   age.factor60+ years 0.93 (0.66-1.31, p=0.668)
 #&gt; 3        sex.factorMale 1.01 (0.84-1.22, p=0.888)
 #&gt; 4    obstruct.factorYes 1.29 (1.03-1.62, p=0.028)
 #&gt; 5      perfor.factorYes 1.17 (0.70-1.95, p=0.556)</div><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'><a href='coxphmulti.html'>coxphmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>)</div><div class='output co'>#&gt;             explanatory        HR (multivariable)
+  <span class='fu'><a href='coxphmulti.html'>coxphmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>)</div><div class='output co'>#&gt;             explanatory        HR (multivariable)
 #&gt; 1 age.factor40-59 years 0.79 (0.55-1.13, p=0.196)
 #&gt; 2   age.factor60+ years 0.98 (0.69-1.40, p=0.926)
 #&gt; 3        sex.factorMale 1.02 (0.85-1.23, p=0.812)
@@ -453,32 +463,45 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></td>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>colon_s</span>)
 
 <span class='no'>fit</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>)</div><div class='output co'>#&gt;             explanatory        HR (multivariable)
+  <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>)</div><div class='output co'>#&gt;             explanatory        HR (multivariable)
 #&gt; 1 age.factor40-59 years 0.79 (0.55-1.13, p=0.196)
 #&gt; 2   age.factor60+ years 0.98 (0.69-1.40, p=0.926)
 #&gt; 3        sex.factorMale 1.02 (0.85-1.23, p=0.812)
 #&gt; 4    obstruct.factorYes 1.30 (1.03-1.64, p=0.026)
 #&gt; 5      perfor.factorYes 1.08 (0.64-1.81, p=0.785)</div><div class='input'>
-        <span class='co'># crr: competing risks</span>
-        <span class='fu'>library</span>(<span class='no'>cmprsk</span>)
-        <span class='fu'>library</span>(<span class='no'>magrittr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘magrittr’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:rlang’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    set_names</span></div><div class='input'>
-        <span class='co'># Simulated data from package </span>
-        <span class='fu'>set.seed</span>(<span class='fl'>10</span>)
-        <span class='no'>ftime</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='fl'>200</span>)
-        <span class='no'>fstatus</span> <span class='kw'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fl'>0</span>:<span class='fl'>2</span>, <span class='fl'>200</span>, <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-        <span class='no'>cov</span> <span class='kw'>=</span> <span class='fu'>matrix</span>(<span class='fu'>runif</span>(<span class='fl'>600</span>), <span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>200</span>)
-        <span class='fu'>dimnames</span>(<span class='no'>cov</span>)<span class='kw'>[[</span><span class='fl'>2</span>]] <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'var1'</span>,<span class='st'>'var2'</span>,<span class='st'>'var3'</span>)
-        <span class='no'>df</span> <span class='kw'>=</span> <span class='fu'>data.frame</span>(<span class='no'>ftime</span>, <span class='no'>fstatus</span>, <span class='no'>cov</span>)
+<span class='co'># crr: competing risks</span>
+<span class='no'>melanoma</span> <span class='kw'>=</span> <span class='kw pkg'>boot</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/boot/topics/melanoma'>melanoma</a></span>
+<span class='no'>melanoma</span> <span class='kw'>=</span> <span class='no'>melanoma</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
+    <span class='kw'>status_crr</span> <span class='kw'>=</span> <span class='fu'>ifelse</span>(<span class='no'>status</span> <span class='kw'>==</span> <span class='fl'>2</span>, <span class='fl'>0</span>, <span class='co'># "still alive"</span>
+      <span class='fu'>ifelse</span>(<span class='no'>status</span> <span class='kw'>==</span> <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='co'># "died of melanoma"</span>
+      <span class='fl'>2</span>)), <span class='co'># "died of other causes" </span>
+    <span class='kw'>sex</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>sex</span>),
+    <span class='kw'>ulcer</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>ulcer</span>)
+  )
 
-        <span class='no'>df</span> <span class='kw'>%$%</span>
-          <span class='fu'><a href='http://www.rdocumentation.org/packages/cmprsk/topics/crr'>crr</a></span>(<span class='no'>ftime</span>, <span class='no'>fstatus</span>, <span class='no'>cov</span>) <span class='kw'>%&gt;%</span>
-          <span class='fu'>fit2df</span>()</div><div class='output co'>#&gt;   explanatory                        HR
-#&gt; 1        var1 0.53 (0.24-1.18, p=0.120)
-#&gt; 2        var2 1.22 (0.58-2.57, p=0.590)
-#&gt; 3        var3 1.89 (0.85-4.23, p=0.120)</div></pre>
+<span class='no'>dependent</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Surv(time, status_crr)"</span>)
+<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"sex"</span>, <span class='st'>"age"</span>, <span class='st'>"ulcer"</span>)
+<span class='no'>melanoma</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='ff_merge.html'>ff_merge</a></span>(
+    <span class='no'>melanoma</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='crrmulti.html'>crrmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'>fit2df</span>(<span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>" (competing risks)"</span>)
+  ) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>fit_id</span>, -<span class='no'>index</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>melanoma</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt; <span class='message'>Dependent variable is a survival object</span></div><div class='output co'>#&gt;   Dependent: Surv(time, status_crr)                   all
+#&gt; 2                               sex         0  126 (61.5)
+#&gt; 3                                           1   79 (38.5)
+#&gt; 1                               age Mean (SD) 52.5 (16.7)
+#&gt; 4                             ulcer         0  115 (56.1)
+#&gt; 5                                           1   90 (43.9)
+#&gt;        HR (competing risks)
+#&gt; 2                         -
+#&gt; 3 1.61 (0.94-2.75, p=0.084)
+#&gt; 1 1.01 (0.99-1.03, p=0.370)
+#&gt; 4                         -
+#&gt; 5 3.81 (2.16-6.72, p&lt;0.001)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

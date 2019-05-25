@@ -12,7 +12,7 @@
 #'   form \code{Surv(time, status)}.
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
-#' @return A list of univariable \code{\link[survival]{coxph}} fitted model
+#' @return A list of multivariable \code{\link[survival]{coxph}} fitted model
 #'   outputs. Output is of class \code{coxphlist}.
 #'
 #' @seealso \code{\link{fit2df}, \link{finalfit_merge}}
