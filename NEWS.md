@@ -1,10 +1,10 @@
 # finalfit 0.9.2
 
-* `summary_factorlist()` total column now summaries continuous variables.  #17 #21
-* `svyglmuni()`, `svyglmmulti()` provide support for complex stratified sampling via `library(survey)`. #13
+* Competing risks time-to-event regression now supported via `cmprsk::crr()`: `crruni()`, `crrmulti()` and `fit2df()`.
+* Complex stratified sampling now supported via `library(survey)`: `svyglmuni()`, `svyglmmulti()` provide support for . #13
+* `summary_factorlist()` total column now summarises continuous variables.  #17 #21
+* `summary_factorlist()` can now take any `Hmisc:::summary.formula` argument, such as `catTest = catTestfisher`. 
 *  `catTestfisher()` added. 
-* `summary_factorlist()` can take any `Hmisc:::summary.formula` argument, such as `catTest = catTestfisher`. 
-* `fit2df()` now supports competing risks models, `cmprsk::crr()`
 
 # finalfit 0.9.1
 

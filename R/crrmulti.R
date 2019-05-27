@@ -7,8 +7,10 @@
 #' Output can be passed to \code{\link{fit2df}}.
 #'
 #' @param .data Data frame or tibble.
-#' @param dependent Character vector of length 1:  name of \code{ftime} and
-#'   \code{fstatus} in form \code{c("ftime", "fstatus")}.
+#' @param dependent Character vector of length 1: name of survival object in
+#'   form \code{Surv(time, status)}. \code{Status} default values should be 0
+#'   censored (e.g. alive), 1 event of interest (e.g. died of disease of
+#'   interest), 2 competing event (e.g. died of other cause).
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
 #' @param ... Other arguments to \code{\link[cmprsk]{crr}}
@@ -22,34 +24,39 @@
 #' @examples
 #' library(dplyr)
 #' melanoma = boot::melanoma
-#' melanoma = melanoma %>% 
+#' melanoma = melanoma %>%
 #'   mutate(
+#'     # Cox PH to determine cause-specific hazards
 #'     status_coxph = ifelse(status == 2, 0, # "still alive"
 #'       ifelse(status == 1, 1, # "died of melanoma"
-#'         0)), # "died of other causes is censored" 
+#'         0)), # "died of other causes is censored"
+#'         
+#'     # Fine and Gray to determine subdistribution hazards
 #'     status_crr = ifelse(status == 2, 0, # "still alive"
 #'       ifelse(status == 1, 1, # "died of melanoma"
-#'         2)), # "died of other causes" 
+#'         2)), # "died of other causes"
 #'     sex = factor(sex),
 #'     ulcer = factor(ulcer)
 #'   )
 #'
-#' dependent_coxph = c("Surv(time, status_coxph)")			
+#' dependent_coxph = c("Surv(time, status_coxph)")
 #' dependent_crr = c("Surv(time, status_crr)")
 #' explanatory = c("sex", "age", "ulcer")
-#' melanoma %>% 
-#'   summary_factorlist(dependent_crr, explanatory, column = TRUE, fit_id = TRUE) %>% 
+#' 
+#' # Create single well-formatted table
+#' melanoma %>%
+#'   summary_factorlist(dependent_crr, explanatory, column = TRUE, fit_id = TRUE) %>%
 #'   ff_merge(
-#'     melanoma %>% 
-#'       coxphmulti(dependent_coxph, explanatory) %>% 
+#'     melanoma %>%
+#'       coxphmulti(dependent_coxph, explanatory) %>%
 #'       fit2df(estimate_suffix = " (Cox PH multivariable)")
-#'     ) %>% 
+#'     ) %>%
 #'   ff_merge(
-#'     melanoma %>% 
-#'       crrmulti(dependent_crr, explanatory) %>% 
-#'       fit2df(estimate_suffix = " (competing risks)")
-#'     ) %>% 
-#'   select(-fit_id, -index) %>% 
+#'     melanoma %>%
+#'       crrmulti(dependent_crr, explanatory) %>%
+#'       fit2df(estimate_suffix = " (competing risks multivariable)")
+#'     ) %>%
+#'   select(-fit_id, -index) %>%
 #'   dependent_label(melanoma, dependent_crr)
 
 crrmulti <- function(.data, dependent, explanatory, ...){
