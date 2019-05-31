@@ -1,3 +1,7 @@
+# finalfit 0.9.3
+
+* Bug in `or_plot()` and `hr_plot()` introduced in 0.9.2 because of new total column specification. 
+
 # finalfit 0.9.2
 
 * Competing risks time-to-event regression now supported via `cmprsk::crr()`: `crruni()`, `crrmulti()` and `fit2df()`.

@@ -111,6 +111,10 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	df.out = finalfit_merge(df.out, glmfit_df, ref_symbol = "1.0")
 	
 	# Fill in total for continuous variables (NA by default)
+	## First line is a fix since change to total column for continuous variables
+	df.out$Total = suppressWarnings(
+		as.numeric(df.out$Total)
+	)
 	df.out$Total[is.na(df.out$Total)] = dim(.data)[1]
 	
 	# Remove unwanted lines, where there are more variables in model than wish to display.

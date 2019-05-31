@@ -82,6 +82,10 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
   df.out = finalfit_merge(df.out, coxfit_df, ref_symbol = "1.0")
 
   # Fill in total for continuous variables (NA by default)
+  ## First line is a fix since change to total column for continuous variables
+  df.out$Total = suppressWarnings(
+    as.numeric(df.out$Total)
+  )
   df.out$Total[df.out$levels == "Mean (SD)" | df.out$levels == "Median (IQR)"] = dim(.data)[1]
 
   # Remove unwanted lines, where there are more variables in model than wish to display.
