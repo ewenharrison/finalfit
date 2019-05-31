@@ -5,6 +5,7 @@
 * `summary_factorlist()` total column now summarises continuous variables.  #17 #21
 * `summary_factorlist()` can now take any `Hmisc:::summary.formula` argument, such as `catTest = catTestfisher`. 
 *  `catTestfisher()` added. 
+* `finalfit_permute()` added. 
 
 # finalfit 0.9.1
 

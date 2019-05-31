@@ -3,6 +3,7 @@ reference:
     desc: "Single functions to generate final output tables"
     contents:
     - '`finalfit`'
+    - '`finalfit_permute`'
     - '`summary_factorlist`'
   - title: "Model wrappers"
     desc: "Wrappers for common statistical models"

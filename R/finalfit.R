@@ -6,10 +6,10 @@
 #' appropriate model is selected on the basis of dependent variable and whether
 #' a random effect is specified.
 #'
-#' @param .data Dataframe.
-#' @param dependent Character vector of length 1:  quoted name of depdendent
+#' @param .data Data frame or tibble.
+#' @param dependent Character vector of length 1:  quoted name of dependent
 #'   variable. Can be continuous, a binary factor, or a survival object of form
-#'   \code{Surv(time, status)}
+#'   \code{Surv(time, status)}.
 #' @param explanatory Character vector of any length: quoted name(s) of
 #'   explanatory variables.
 #' @param explanatory_multi Character vector of any length: quoted name(s) of a
@@ -31,9 +31,9 @@
 #'   \code{estimate_name, digits, confint_type, confint_level,
 #'   confint_sep}.
 
-#' @return Returns a dataframe with the final model table.
+#' @return Returns a data frame with the final model table.
 #'
-#' @family \code{finalfit} all-in-one functions
+#' @family finalfit all-in-one functions
 #' @export
 #'
 #' @examples

@@ -12,7 +12,9 @@
 #' \link{coxphuni},
 #' \link{coxphmulti},
 #' \link{crruni},
-#' \link{crrmulti}.
+#' \link{crrmulti},
+#' \link{svyglmuni},
+#' \link{svyglmmulti}.
 #'
 #' @section \code{finalfit} model extractor:
 #'
@@ -37,6 +39,7 @@
 #'
 #' Generic:
 #' \link{finalfit}.
+#' \link{finalfit_permute}.
 #'
 #' Methods (not called directly):
 #' \link{finalfit.glm},

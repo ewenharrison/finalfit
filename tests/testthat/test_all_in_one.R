@@ -233,3 +233,16 @@ test_that("summary_factorlist don't convert factor", {
 									dim() %>%
 									sum(), 5)
 })
+
+
+context("finalfit_permute")
+library(finalfit)
+
+test_that("finalfit_permute gives a list", {
+	expect_is(ff_permute(
+		colon_s,
+		"nodes",
+		c("age.factor"),
+		c("obstruct.factor", "perfor.factor")
+	), "list")
+})

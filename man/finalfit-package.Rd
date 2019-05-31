@@ -20,7 +20,9 @@ finalfit: Quickly create elegant final results tables and plots when modelling.
 \link{coxphuni},
 \link{coxphmulti},
 \link{crruni},
-\link{crrmulti}.
+\link{crrmulti},
+\link{svyglmuni},
+\link{svyglmmulti}.
 }
 
 \section{\code{finalfit} model extractor}{
@@ -49,6 +51,7 @@ Methods (not called directly):
 
 Generic:
 \link{finalfit}.
+\link{finalfit_permute}.
 
 Methods (not called directly):
 \link{finalfit.glm},

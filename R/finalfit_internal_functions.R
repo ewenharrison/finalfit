@@ -146,7 +146,7 @@ extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_n
 	confint = lme4::confint.merMod(x, method = confint_type)
 	confint = confint[-grep("sig", rownames(confint)),]
 	p = 1-pnorm(abs(summary(x)$coefficients[,3]))
-	warning("P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.")
+	message("P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.")
 
 	L_confint_name = paste0("L", confint_level*100)
 	U_confint_name = paste0("U", confint_level*100)

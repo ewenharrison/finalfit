@@ -16,7 +16,7 @@
 #'   Output is of class \code{lmlist}.
 #'
 #' @seealso \code{\link{fit2df}}
-#' @family \code{finalfit} model wrappers
+#' @family finalfit model wrappers
 #' @export
 #'
 #' @examples

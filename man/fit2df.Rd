@@ -271,4 +271,4 @@ melanoma \%>\%
 select(-fit_id, -index) \%>\% 
 dependent_label(melanoma, dependent)
 }
-\concept{\code{finalfit} model extractors}
+\concept{finalfit model extractors}

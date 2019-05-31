@@ -23,7 +23,7 @@
 #'   outputs. Output is of class \code{lmerMod}.
 #'
 #' @seealso \code{\link{fit2df}}
-#' @family \code{finalfit} model wrappers
+#' @family finalfit model wrappers
 #' @export
 #'
 #' @examples

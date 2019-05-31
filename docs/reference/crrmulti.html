@@ -153,8 +153,10 @@ Regression models for a set of explanatory variables.</p>
     </tr>
     <tr>
       <th>dependent</th>
-      <td><p>Character vector of length 1:  name of <code>ftime</code> and
-<code>fstatus</code> in form <code>c("ftime", "fstatus")</code>.</p></td>
+      <td><p>Character vector of length 1: name of survival object in
+form <code>Surv(time, status)</code>. <code>Status</code> default values should be 0
+censored (e.g. alive), 1 event of interest (e.g. died of disease of
+interest), 2 competing event (e.g. died of other cause).</p></td>
     </tr>
     <tr>
       <th>explanatory</th>
@@ -180,12 +182,13 @@ Output can be passed to <code><a href='fit2df.html'>fit2df</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='fit2df.html'>fit2df</a>, <a href='ff_merge.html'>finalfit_merge</a></code></p>
-<p>Other <code>finalfit</code> model wrappers: <code><a href='coxphmulti.html'>coxphmulti</a></code>,
+<p>Other finalfit model wrappers: <code><a href='coxphmulti.html'>coxphmulti</a></code>,
   <code><a href='coxphuni.html'>coxphuni</a></code>, <code><a href='crruni.html'>crruni</a></code>,
   <code><a href='glmmixed.html'>glmmixed</a></code>, <code><a href='glmmulti_boot.html'>glmmulti_boot</a></code>,
   <code><a href='glmmulti.html'>glmmulti</a></code>, <code><a href='glmuni.html'>glmuni</a></code>,
   <code><a href='lmmixed.html'>lmmixed</a></code>, <code><a href='lmmulti.html'>lmmulti</a></code>,
-  <code><a href='lmuni.html'>lmuni</a></code></p></div>
+  <code><a href='lmuni.html'>lmuni</a></code>, <code><a href='svyglmmulti.html'>svyglmmulti</a></code>,
+  <code><a href='svyglmuni.html'>svyglmuni</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -193,12 +196,15 @@ Output can be passed to <code><a href='fit2df.html'>fit2df</a></code>.</p>
 <span class='no'>melanoma</span> <span class='kw'>=</span> <span class='kw pkg'>boot</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/boot/topics/melanoma'>melanoma</a></span>
 <span class='no'>melanoma</span> <span class='kw'>=</span> <span class='no'>melanoma</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
+    <span class='co'># Cox PH to determine cause-specific hazards</span>
     <span class='kw'>status_coxph</span> <span class='kw'>=</span> <span class='fu'>ifelse</span>(<span class='no'>status</span> <span class='kw'>==</span> <span class='fl'>2</span>, <span class='fl'>0</span>, <span class='co'># "still alive"</span>
       <span class='fu'>ifelse</span>(<span class='no'>status</span> <span class='kw'>==</span> <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='co'># "died of melanoma"</span>
-        <span class='fl'>0</span>)), <span class='co'># "died of other causes is censored" </span>
+        <span class='fl'>0</span>)), <span class='co'># "died of other causes is censored"</span>
+
+    <span class='co'># Fine and Gray to determine subdistribution hazards</span>
     <span class='kw'>status_crr</span> <span class='kw'>=</span> <span class='fu'>ifelse</span>(<span class='no'>status</span> <span class='kw'>==</span> <span class='fl'>2</span>, <span class='fl'>0</span>, <span class='co'># "still alive"</span>
       <span class='fu'>ifelse</span>(<span class='no'>status</span> <span class='kw'>==</span> <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='co'># "died of melanoma"</span>
-        <span class='fl'>2</span>)), <span class='co'># "died of other causes" </span>
+        <span class='fl'>2</span>)), <span class='co'># "died of other causes"</span>
     <span class='kw'>sex</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>sex</span>),
     <span class='kw'>ulcer</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>ulcer</span>)
   )
@@ -206,6 +212,8 @@ Output can be passed to <code><a href='fit2df.html'>fit2df</a></code>.</p>
 <span class='no'>dependent_coxph</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Surv(time, status_coxph)"</span>)
 <span class='no'>dependent_crr</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Surv(time, status_crr)"</span>)
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"sex"</span>, <span class='st'>"age"</span>, <span class='st'>"ulcer"</span>)
+
+<span class='co'># Create single well-formatted table</span>
 <span class='no'>melanoma</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent_crr</span>, <span class='no'>explanatory</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='ff_merge.html'>ff_merge</a></span>(
@@ -216,7 +224,7 @@ Output can be passed to <code><a href='fit2df.html'>fit2df</a></code>.</p>
   <span class='fu'><a href='ff_merge.html'>ff_merge</a></span>(
     <span class='no'>melanoma</span> <span class='kw'>%&gt;%</span>
       <span class='fu'>crrmulti</span>(<span class='no'>dependent_crr</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>" (competing risks)"</span>)
+      <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>" (competing risks multivariable)"</span>)
     ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>fit_id</span>, -<span class='no'>index</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>melanoma</span>, <span class='no'>dependent_crr</span>)</div><div class='output co'>#&gt; <span class='message'>Dependent variable is a survival object</span></div><div class='output co'>#&gt;   Dependent: Surv(time, status_crr)                   all
@@ -225,12 +233,12 @@ Output can be passed to <code><a href='fit2df.html'>fit2df</a></code>.</p>
 #&gt; 1                               age Mean (SD) 52.5 (16.7)
 #&gt; 4                             ulcer         0  115 (56.1)
 #&gt; 5                                           1   90 (43.9)
-#&gt;   HR (Cox PH multivariable)      HR (competing risks)
-#&gt; 2                         -                         -
-#&gt; 3 1.60 (0.95-2.71, p=0.080) 1.61 (0.94-2.75, p=0.084)
-#&gt; 1 1.01 (1.00-1.03, p=0.107) 1.01 (0.99-1.03, p=0.370)
-#&gt; 4                         -                         -
-#&gt; 5 4.02 (2.25-7.21, p&lt;0.001) 3.81 (2.16-6.72, p&lt;0.001)</div></pre>
+#&gt;   HR (Cox PH multivariable) HR (competing risks multivariable)
+#&gt; 2                         -                                  -
+#&gt; 3 1.60 (0.95-2.71, p=0.080)          1.61 (0.94-2.75, p=0.084)
+#&gt; 1 1.01 (1.00-1.03, p=0.107)          1.01 (0.99-1.03, p=0.370)
+#&gt; 4                         -                                  -
+#&gt; 5 4.02 (2.25-7.21, p&lt;0.001)          3.81 (2.16-6.72, p&lt;0.001)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

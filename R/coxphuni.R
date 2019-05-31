@@ -13,7 +13,7 @@
 #'   Output is of class \code{coxphlist}.
 #'
 #' @seealso \code{\link{fit2df}, \link{finalfit_merge}}
-#' @family \code{finalfit} model wrappers
+#' @family finalfit model wrappers
 #' @export
 #'
 #' @examples

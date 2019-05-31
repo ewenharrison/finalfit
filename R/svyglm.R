@@ -14,6 +14,9 @@
 #' @return A list of univariable fitted model outputs. Output is of class
 #'   \code{svyglmlist}.
 #' @export
+#' 
+#' @seealso \code{\link{fit2df}, \link{finalfit_merge}}
+#' @family finalfit model wrappers
 #'
 #' @examples
 #' # Examples taken from survey::svyglm() help page. 
@@ -117,6 +120,9 @@ svyglmuni <- function(design, dependent, explanatory, ...){
 #'   \code{svyglmlist}.
 #' @export
 #'
+#' @seealso \code{\link{fit2df}, \link{finalfit_merge}}
+#' @family finalfit model wrappers
+#' 
 #' @examples
 #' # Examples taken from survey::svyglm() help page. 
 #' 

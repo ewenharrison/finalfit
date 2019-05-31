@@ -33,7 +33,7 @@
 #'   list of two dataframes, one is model parameters, one is model metrics.
 #'   length two
 #'
-#' @family \code{finalfit} model extractors
+#' @family finalfit model extractors
 #'
 #' @export
 #'

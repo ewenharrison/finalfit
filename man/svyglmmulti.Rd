@@ -99,3 +99,15 @@ apistrat \%>\%
   select(-fit_id, -index) \%>\%
   dependent_label(apistrat, dependent)
 }
+\seealso{
+\code{\link{fit2df}, \link{finalfit_merge}}
+
+Other finalfit model wrappers: \code{\link{coxphmulti}},
+  \code{\link{coxphuni}}, \code{\link{crrmulti}},
+  \code{\link{crruni}}, \code{\link{glmmixed}},
+  \code{\link{glmmulti_boot}}, \code{\link{glmmulti}},
+  \code{\link{glmuni}}, \code{\link{lmmixed}},
+  \code{\link{lmmulti}}, \code{\link{lmuni}},
+  \code{\link{svyglmuni}}
+}
+\concept{finalfit model wrappers}
