@@ -1,3 +1,9 @@
+# finalfit 0.9.4
+
+* `coxphuni()` and `coxphmulti()` now take the other `library(survival)` functions `survival::strata()` and `survival::cluster()`. 
+* Fixed `hr_plot()` axis title edit option. 
+* Add option to remove reference level (`remove_ref = TRUE`) to `or_plot()`, `hr_plot()` and `coefficient_plot()`. 
+
 # finalfit 0.9.3
 
 * Bug in `or_plot()` and `hr_plot()` introduced in 0.9.2 because of new total column specification. 

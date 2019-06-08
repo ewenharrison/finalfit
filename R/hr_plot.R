@@ -7,6 +7,7 @@
 #' @param explanatory Character vector of any length: name(s) of explanatory variables.
 #' @param factorlist Option to provide output directly from \code{\link{summary_factorlist}()}.
 #' @param coxfit Option to provide output directly from \code{coxphmulti()}.
+#' @param remove_ref Logical. Remove reference level for factors.
 #' @param breaks Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.
 #' @param column_space Adjust table column spacing.
 #' @param dependent_label Main label for plot.
@@ -37,12 +38,13 @@
 #' colon_s %>%
 #'   hr_plot(dependent, explanatory, dependent_label = "Survival",
 #'     table_text_size=4, title_text_size=14,
-#'     plot_opts=list(xlab("OR, 95% CI"), theme(axis.title = element_text(size=12))))
+#'     plot_opts=list(xlab("HR, 95% CI"), theme(axis.title = element_text(size=12))))
 #'
 #' @import ggplot2
 #'
 
 hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
+                   remove_ref = FALSE,
                    breaks=NULL, column_space=c(-0.5, 0, 0.5),
                    dependent_label = "Survival", 
                    prefix = "", suffix = ": HR (95% CI, p-value)",
@@ -59,6 +61,15 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
 
   if(is.null(factorlist)){
     factorlist = summary_factorlist(.data, dependent, explanatory, fit_id=TRUE)
+  }
+  
+  if(remove_ref){
+    factorlist = factorlist %>%  
+      dplyr::mutate(label = ifelse(label == "", NA, label)) %>% 
+      tidyr::fill(label) %>% 
+      dplyr::group_by(label) %>%
+      dplyr::slice(2:dplyr::n()) %>% 
+      rm_duplicate_labels()
   }
 
   # Specify breaks if provided
@@ -111,7 +122,8 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
     geom_point(aes(size = Total), shape=22, fill="darkblue")+
     geom_errorbarh(height=0.2) +
     geom_vline(xintercept = 1, linetype = "longdash", colour = "black")+
-    scale_x_continuous(name="Hazard ratio (95% CI, log scale)", trans="log10", breaks= breaks)+
+    scale_x_continuous(trans="log10", breaks= breaks)+
+    xlab("Hazard ratio (95% CI, log scale)")+ 
     theme_classic(14)+
     theme(axis.title.x = element_text(),
           axis.title.y = element_blank(),

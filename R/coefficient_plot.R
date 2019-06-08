@@ -15,6 +15,7 @@
 #'   and \code{\link{lmmixed}()}.
 #' @param confint_type For for \code{lmer} models, one of \code{c("default",
 #'   "Wald", "profile", "boot")} Note "default" == "Wald".
+#' @param remove_ref Logical. Remove reference level for factors.
 #' @param breaks Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.
 #' @param column_space Adjust table column spacing.
 #' @param dependent_label Main label for plot.
@@ -33,6 +34,9 @@
 #'
 #' @family finalfit plot functions
 #' @export
+#' 
+#' @import ggplot2
+#' 
 #' @examples
 #' library(finalfit)
 #' library(ggplot2)
@@ -46,12 +50,10 @@
 #' colon_s %>%
 #'   coefficient_plot(dependent, explanatory, table_text_size=4, title_text_size=14,
 #'     plot_opts=list(xlab("Beta, 95% CI"), theme(axis.title = element_text(size=12))))
-#'
-#' @import ggplot2
 
 coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 														factorlist=NULL, lmfit=NULL,
-														confint_type = "default",
+														confint_type = "default", remove_ref = FALSE,
 														breaks=NULL, column_space=c(-0.5, -0.1, 0.5),
 														dependent_label = NULL,
 														prefix = "", suffix = ": Coefficient, 95% CI, p-value)",
@@ -69,6 +71,15 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 	
 	if(is.null(factorlist)){
 		factorlist = summary_factorlist(.data, dependent, explanatory, total_col=TRUE, fit_id=TRUE)
+	}
+	
+	if(remove_ref){
+		factorlist = factorlist %>%  
+			dplyr::mutate(label = ifelse(label == "", NA, label)) %>% 
+			tidyr::fill(label) %>% 
+			dplyr::group_by(label) %>%
+			dplyr::slice(2:dplyr::n()) %>% 
+			rm_duplicate_labels()
 	}
 	
 	if(is.null(breaks)){

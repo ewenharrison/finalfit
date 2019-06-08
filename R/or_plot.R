@@ -16,6 +16,7 @@
 #' @param confint_type One of \code{c("profile", "default")} for GLM models or
 #'   \code{c("default", "Wald", "profile", "boot")} for \code{glmer}
 #'   models. Note "default" == "Wald".
+#' @param remove_ref Logical. Remove reference level for factors.    
 #' @param breaks Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.
 #' @param column_space Adjust table column spacing.
 #' @param dependent_label Main label for plot.
@@ -35,6 +36,8 @@
 #' @family finalfit plot functions
 #' @export
 #' @importFrom utils globalVariables
+#' @import ggplot2
+#' 
 #' @examples
 #' library(finalfit)
 #' library(dplyr)
@@ -50,12 +53,11 @@
 #' colon_s %>%
 #'   or_plot(dependent, explanatory, table_text_size=4, title_text_size=14,
 #'     plot_opts=list(xlab("OR, 95% CI"), theme(axis.title = element_text(size=12))))
-#'
-#' @import ggplot2
+
 
 or_plot = function(.data, dependent, explanatory, random_effect=NULL, 
 									 factorlist=NULL, glmfit=NULL,
-									 confint_type = NULL,
+									 confint_type = NULL, remove_ref = FALSE,
 									 breaks=NULL, column_space=c(-0.5, 0, 0.5),
 									 dependent_label = NULL,
 									 prefix = "", suffix = ": OR (95% CI, p-value)",
@@ -73,6 +75,15 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	
 	if(is.null(factorlist)){
 		factorlist = summary_factorlist(.data, dependent, explanatory, total_col=TRUE, fit_id=TRUE)
+	}
+	
+	if(remove_ref){
+		factorlist = factorlist %>%  
+			dplyr::mutate(label = ifelse(label == "", NA, label)) %>% 
+			tidyr::fill(label) %>% 
+			dplyr::group_by(label) %>%
+			dplyr::slice(2:dplyr::n()) %>% 
+			rm_duplicate_labels()
 	}
 	
 	if(is.null(breaks)){

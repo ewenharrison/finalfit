@@ -148,7 +148,8 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", c
 	)
 	
 	# Dataframe
-	df.out = data.frame(label=attr(s, "vlabel"), levels=attr(s, "dimnames")[[1]])
+	df.out = data.frame(label=attr(s, "vlabel"), levels=attr(s, "dimnames")[[1]],
+											stringsAsFactors = FALSE)
 	
 	# Add in lm level names, this needs hacked in given above methodology
 	if (fit_id){
@@ -170,7 +171,8 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", c
 	if (cont=="mean"){
 		mean.out = round_tidy(matrix(s[,2]), 1)
 		sd.out = round_tidy(matrix(s[,3]), 1)
-		result.out = data.frame(paste0(mean.out, " (", sd.out, ")"))
+		result.out = data.frame(paste0(mean.out, " (", sd.out, ")"), 
+														stringsAsFactors = FALSE)
 		colnames(result.out) = "Mean (sd)"
 	}
 	
@@ -178,7 +180,8 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", c
 		median.out = round_tidy(matrix(s[,5]), 1)
 		L_IQR = round_tidy(matrix(s[,4]), 1)
 		U_IQR = round_tidy(matrix(s[,6]), 1)
-		result.out = data.frame(paste0(median.out, " (", L_IQR, " to ", U_IQR, ")"))
+		result.out = data.frame(paste0(median.out, " (", L_IQR, " to ", U_IQR, ")"), 
+														stringsAsFactors = FALSE)
 		colnames(result.out) = "Median (IQR)"
 	}
 	

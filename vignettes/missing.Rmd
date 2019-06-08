@@ -399,6 +399,8 @@ There is an alternative method to model the missing data for the categorical in 
 
 ```{r, warning=FALSE, message=FALSE, }
 library(dplyr)
+explanatory = c("age", "sex.factor", 
+  "nodes", "obstruct.factor", "smoking_mar")
 colon_s %>% 
   mutate(
     smoking_mar = forcats::fct_explicit_na(smoking_mar)
@@ -412,7 +414,7 @@ colon_s %>%
 
 Missing not at random data is tough in healthcare. To determine if data are MNAR for definite, we need to know their value in a subset of observations (patients).
 
-Using our example above. Say smoking status is poorly recorded in patients admitted to hospital as an emergency with an obstructing cancer. Obstructing bowel cancers may be larger or their position may make the prognosis worse. Smoking may relate to the aggressiveness of the cancer and may be an independent predictor of prognosis. The missing values for smoking may therefore not random. Smoking may be more common in the emergency patients and may be more common in those that die.
+Using our example above. Say smoking status is poorly recorded in patients admitted to hospital as an emergency with an obstructing cancer. Obstructing bowel cancers may be larger or their position may make the prognosis worse. Smoking may relate to the aggressiveness of the cancer and may be an independent predictor of prognosis. The missing values for smoking may therefore not be random. Smoking may be more common in the emergency patients and may be more common in those that die.
 
 There is no easy way to handle this. If at all possible, try to get the missing data. Otherwise, take care when drawing conclusions from analyses where data are thought to be missing not at random. 
 

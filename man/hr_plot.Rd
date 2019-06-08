@@ -5,10 +5,11 @@
 \title{Produce a hazard ratio table and plot}
 \usage{
 hr_plot(.data, dependent, explanatory, factorlist = NULL,
-  coxfit = NULL, breaks = NULL, column_space = c(-0.5, 0, 0.5),
-  dependent_label = "Survival", prefix = "",
-  suffix = ": HR (95\% CI, p-value)", table_text_size = 5,
-  title_text_size = 18, plot_opts = NULL, table_opts = NULL, ...)
+  coxfit = NULL, remove_ref = FALSE, breaks = NULL,
+  column_space = c(-0.5, 0, 0.5), dependent_label = "Survival",
+  prefix = "", suffix = ": HR (95\% CI, p-value)",
+  table_text_size = 5, title_text_size = 18, plot_opts = NULL,
+  table_opts = NULL, ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -20,6 +21,8 @@ hr_plot(.data, dependent, explanatory, factorlist = NULL,
 \item{factorlist}{Option to provide output directly from \code{\link{summary_factorlist}()}.}
 
 \item{coxfit}{Option to provide output directly from \code{coxphmulti()}.}
+
+\item{remove_ref}{Logical. Remove reference level for factors.}
 
 \item{breaks}{Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.}
 
@@ -62,7 +65,7 @@ colon_s \%>\%
 colon_s \%>\%
   hr_plot(dependent, explanatory, dependent_label = "Survival",
     table_text_size=4, title_text_size=14,
-    plot_opts=list(xlab("OR, 95\% CI"), theme(axis.title = element_text(size=12))))
+    plot_opts=list(xlab("HR, 95\% CI"), theme(axis.title = element_text(size=12))))
 
 }
 \seealso{

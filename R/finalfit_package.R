@@ -82,7 +82,6 @@
 #'
 #' @importFrom stats as.formula coef confint confint.default glm lm logLik pnorm
 #'   quantile setNames model.matrix
-#' @importFrom survival Surv coxph
 # @exportPattern ^[[:alpha:]]+
 NULL
 

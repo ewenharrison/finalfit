@@ -6,8 +6,8 @@
 \usage{
 coefficient_plot(.data, dependent, explanatory, random_effect = NULL,
   factorlist = NULL, lmfit = NULL, confint_type = "default",
-  breaks = NULL, column_space = c(-0.5, -0.1, 0.5),
-  dependent_label = NULL, prefix = "",
+  remove_ref = FALSE, breaks = NULL, column_space = c(-0.5, -0.1,
+  0.5), dependent_label = NULL, prefix = "",
   suffix = ": Coefficient, 95\% CI, p-value)", table_text_size = 5,
   title_text_size = 18, plot_opts = NULL, table_opts = NULL, ...)
 }
@@ -31,6 +31,8 @@ and \code{\link{lmmixed}()}.}
 
 \item{confint_type}{For for \code{lmer} models, one of \code{c("default",
 "Wald", "profile", "boot")} Note "default" == "Wald".}
+
+\item{remove_ref}{Logical. Remove reference level for factors.}
 
 \item{breaks}{Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.}
 
@@ -75,7 +77,6 @@ colon_s \%>\%
 colon_s \%>\%
   coefficient_plot(dependent, explanatory, table_text_size=4, title_text_size=14,
     plot_opts=list(xlab("Beta, 95\% CI"), theme(axis.title = element_text(size=12))))
-
 }
 \seealso{
 Other finalfit plot functions: \code{\link{ff_plot}},

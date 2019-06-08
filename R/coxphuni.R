@@ -15,6 +15,7 @@
 #' @seealso \code{\link{fit2df}, \link{finalfit_merge}}
 #' @family finalfit model wrappers
 #' @export
+#' @import survival
 #'
 #' @examples
 #' # Cox Proportional Hazards univariable analysis.
@@ -28,9 +29,10 @@
 #' 	fit2df()
 
 coxphuni <- function(.data, dependent, explanatory){
+  requireNamespace("survival")
   result <- list()
   for (i in 1:length(explanatory)){
-    result[[i]] <- survival::coxph(as.formula(paste0("survival::", dependent, "~", explanatory[i])), data=.data)
+    result[[i]] <- coxph(as.formula(paste0(dependent, "~", explanatory[i])), data=.data)
   }
   class(result) = "coxphlist"
   return(result)
