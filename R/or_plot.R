@@ -3,7 +3,7 @@
 #' Produce an odds ratio table and plot from a \code{glm()} or
 #' \code{lme4::glmer()} model.
 #'
-#' @param .data Dataframe.
+#' @param .data Data frame.
 #' @param dependent Character vector of length 1:  name of depdendent variable
 #'   (must have 2 levels).
 #' @param explanatory Character vector of any length: name(s) of explanatory
@@ -94,7 +94,7 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	if(is.null(confint_type) && is.null(random_effect)){
 		confint_type = "profile"
 	} else if(is.null(confint_type) && !is.null(random_effect)){
-		confint_type == "default"
+		confint_type = "default"
 	}
 		
 	# Generate or format glm
