@@ -457,6 +457,7 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 #' 	 dependent_label(colon_s, dependent) -> example.final
 #'   example.final
 dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suffix=""){
+	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
 	d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
 
 	if (is.null(d_label)){
