@@ -65,7 +65,7 @@ summary table." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.4</span>
       </span>
     </div>
 
@@ -145,11 +145,11 @@ summary table.</p>
     </div>
 
     <pre class="usage"><span class='fu'>summary_factorlist</span>(<span class='no'>.data</span>, <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>explanatory</span>, <span class='kw'>cont</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-  <span class='kw'>cont_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>total_col</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>orderbytotal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>na_to_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>, <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='no'>...</span>)</pre>
+  <span class='kw'>cont_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>),
+  <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>total_col</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>orderbytotal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>na_to_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
+  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -182,6 +182,11 @@ which to consider it a factor.</p></td>
       <th>p</th>
       <td><p>Logical: Include statistical test (see
 <code><a href='http://www.rdocumentation.org/packages/Hmisc/topics/summary.formula'>summary.formula</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>digits</th>
+      <td><p>Number of digits to round to (1) mean/median, (2) standard
+deviation / interquartile range, (3) p-value, (4) count percentage.</p></td>
     </tr>
     <tr>
       <th>na_include</th>

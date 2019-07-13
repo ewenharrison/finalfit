@@ -4,12 +4,14 @@
 \alias{format_n_percent}
 \title{Format n and percent as a character}
 \usage{
-format_n_percent(n, percent)
+format_n_percent(n, percent, digits)
 }
 \arguments{
 \item{n}{Value}
 
 \item{percent}{Value}
+
+\item{digits}{Value}
 }
 \description{
 Internal, function, not called directly

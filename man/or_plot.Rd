@@ -12,7 +12,7 @@ or_plot(.data, dependent, explanatory, random_effect = NULL,
   title_text_size = 18, plot_opts = NULL, table_opts = NULL, ...)
 }
 \arguments{
-\item{.data}{Dataframe.}
+\item{.data}{Data frame.}
 
 \item{dependent}{Character vector of length 1:  name of depdendent variable
 (must have 2 levels).}

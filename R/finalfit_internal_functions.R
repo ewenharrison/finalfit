@@ -357,11 +357,12 @@ p_tidy = function(x, digits, prefix="="){
 #'
 #' @param n Value
 #' @param percent Value
+#' @param digits Value
 #'
 #' @export
 #'
-format_n_percent = function(n, percent) {
-	percent = round_tidy(percent, 1)
+format_n_percent = function(n, percent, digits) {
+	percent = round_tidy(percent, digits)
 	paste0(n, " (", percent, ")")
 }
 

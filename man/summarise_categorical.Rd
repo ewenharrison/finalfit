@@ -4,7 +4,7 @@
 \alias{summarise_categorical}
 \title{Helper function to generate the summary for a categorical variable}
 \usage{
-summarise_categorical(x, column, total_col)
+summarise_categorical(x, column, total_col, digits)
 }
 \description{
 Internal function, not called directly.
