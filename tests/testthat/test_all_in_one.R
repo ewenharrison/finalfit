@@ -164,8 +164,13 @@ context("summary_factorlist function with geometric mean")
 library(finalfit)
 
 test_that("summary_factorlist gives dataframe", {
-	expect_is(summary_factorlist(colon_s, "extent.factor", c("age.factor", "nodes"),
-															 cont="geometric", add_dependent_label=TRUE, fit_id=TRUE), "data.frame")
+	expect_is(summary_factorlist(colon_s, "extent.factor", c("age.factor", "age"),
+															 cont="geometric"), "data.frame")
+})
+
+test_that("summary_factorlist gives error when variable contains zero and geometric mean called", {
+	expect_error(summary_factorlist(colon_s, "extent.factor", c("age.factor", "nodes"),
+															 cont="geometric"))
 })
 
 
