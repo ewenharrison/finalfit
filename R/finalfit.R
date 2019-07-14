@@ -520,10 +520,13 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 
 	# Cox proprotional hazards model -----------------------------------------------------------
 	# Summary table
-	summary.out = suppressWarnings(
-		summary_factorlist(.data, dependent=NULL, explanatory, fit_id=TRUE)
-	)
-	summary.out = summary.out[,-3] # Remove 'all' column with total counts
+	summary.out = suppressMessages(
+		suppressWarnings(
+			summary_factorlist(.data, dependent, explanatory, column = TRUE, fit_id=TRUE)
+		))
+	
+	# Previous removed, but now include.
+	# summary.out = summary.out[,-3] # Remove 'all' column with total counts
 
 	# Univariable
 	coxphuni_out = coxphuni(.data, dependent, explanatory)

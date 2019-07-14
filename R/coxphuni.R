@@ -30,6 +30,12 @@
 
 coxphuni <- function(.data, dependent, explanatory){
   requireNamespace("survival")
+  
+  # Remove cluster and strata terms
+  drop = grepl("cluster[(].*[)]", explanatory) |
+  	grepl("strata[(].*[)]", explanatory)
+  explanatory = explanatory[!drop]
+  
   result <- list()
   for (i in 1:length(explanatory)){
     result[[i]] <- coxph(as.formula(paste0(dependent, "~", explanatory[i])), data=.data)

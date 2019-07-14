@@ -5,6 +5,7 @@
 * Add option to remove reference level (`remove_ref = TRUE`) to `or_plot()`, `hr_plot()` and `coefficient_plot()`. 
 * `summary_factorlist()` digit rounding option added.
 * `summary_factorlist()` geometric mean option added. 
+* Level label removed for continous variables from `or_plot()`, `hr_plot()` and `coeffient_plot()`. 
 
 # finalfit 0.9.3
 

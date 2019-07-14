@@ -79,8 +79,16 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
 
   # Extract totals (this is CPH specific due to how summary_factorlist works)
   factorlist$Total = as.numeric(stringr::str_extract(as.character(factorlist$all), "^[:digit:]*"))
-  factorlist$all = NULL
 
+  # Fill in total for continuous variables
+  factorlist$Total[factorlist$levels == "Mean (SD)" | factorlist$levels == "Median (IQR)"] = dim(.data)[1]
+  
+  # For continuous variables, remove level label
+  drop = grepl("Mean \\(SD\\)|Median \\(IQR\\)", factorlist$levels)
+  factorlist$levels[drop] = "-"
+
+  factorlist$all = NULL
+  
   # Generate or format glm
   if(is.null(coxfit)){
     coxfit = coxphmulti(.data, dependent, explanatory)
@@ -91,14 +99,7 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
   # Merge
   df.out = finalfit_merge(factorlist, coxfit_df_c)
   df.out = finalfit_merge(df.out, coxfit_df, ref_symbol = "1.0")
-
-  # Fill in total for continuous variables (NA by default)
-  ## First line is a fix since change to total column for continuous variables
-  df.out$Total = suppressWarnings(
-    as.numeric(df.out$Total)
-  )
-  df.out$Total[df.out$levels == "Mean (SD)" | df.out$levels == "Median (IQR)"] = dim(.data)[1]
-
+  
   # Remove unwanted lines, where there are more variables in model than wish to display.
   # Note merge function in summarizer merge is now `all` rather than `all.x` as wish to preserve interactions
   # These not named in factorlist, creating this problem. Interactions don't show on plot.
