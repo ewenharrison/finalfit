@@ -516,7 +516,8 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 	if (is.null(args$estimate_name)) args$estimate_name = "HR"
 
 	# No frailty
-	if(!is.null(random_effect)) stop("Random effects / frailty not currently implemented for Coxph models")
+	if(!is.null(random_effect)) stop("Random effects / frailty from package::coxme not currently implemented.
+																	 Consider adding `cluster(var)` to explanatory list for GEE equivalent.")
 
 	# Cox proprotional hazards model -----------------------------------------------------------
 	# Summary table

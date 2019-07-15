@@ -105,6 +105,16 @@ NULL
 #' @export
 NULL
 
+#' magrittr exposition pipe-operator
+#'
+#' @name %$%
+#' @rdname expositionpipe
+#' @keywords internal
+#' @importFrom magrittr %$%
+#' @usage lhs \%$\% rhs
+#' @export
+NULL
+
 #' Chemotherapy for Stage B/C colon cancer
 #'
 #' This is a modified version of \code{survival::\link[survival]{colon}}.These

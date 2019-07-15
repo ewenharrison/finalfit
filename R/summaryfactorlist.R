@@ -82,12 +82,13 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 	}
 	if(cont == "geometric") { # For requested geometric mean function, log continuous variables for ease below
 		log_vars = sapply(.data, is.numeric) & names(.data) %in% explanatory
+		log_vars = names(log_vars)[log_vars]
 		col_zeros = sapply(.data[log_vars], function(x) any(x == 0))
 		col_names = names(which(col_zeros))
 		if(any(col_zeros)){
 			stop(paste0("Geometric mean called when variable(s) `", paste0(col_names, collapse = "` `"), "` contain(s) zero values"))
 		}
-		.data[log_vars] = sapply(.data[log_vars], log)
+		.data = .data %>% dplyr::mutate_at(log_vars, log)
 	}
 	
 	args = list(.data = .data, dependent = dependent, explanatory = explanatory,
@@ -106,6 +107,11 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 		.data$all = factor(1, labels="all")
 		args$.data = .data
 		args$dependent = "all"
+		
+		# Remove strata and cluster terms
+		drop = grepl("strata[(].*[)]|cluster[(].*[)]", explanatory)
+		explanatory = explanatory[!drop]
+		
 		suppressWarnings(
 			do.call(summary_factorlist_groups, args)
 		)
