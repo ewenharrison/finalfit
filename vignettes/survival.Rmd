@@ -1,0 +1,329 @@
+---
+title: "Time-to-event (Survival)"
+author: "Ewen Harrison"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Time-to-event (Survival)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Background
+In healthcare, we deal with a lot of binary outcomes. Death yes/no, disease recurrence yes/no, for instance. These outcomes are often easily analysed using binary logistic regression via `finalfit()`. 
+
+When the time taken for the outcome to occur is important, we need a different approach. For instance, in patients with cancer, the time taken until recurrence of the cancer is often just as important as the fact it has recurred. 
+
+Finalfit provides a number of functions to make these analyses easy to perform. 
+
+## Installation
+```{r, eval=FALSE}
+# Make sure finalfit is up-to-date 
+install.packages("finalfit")
+```
+
+```{r}
+# For this vignette only, pre-specify table output
+mykable = function(x){
+	knitr::kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"))
+}
+```
+
+## Dataset
+We will use the classic "Survival from Malignant Melanoma" dataset which is included in the `boot` package. The data consist of measurements made on patients with malignant melanoma. Each patient had their tumour removed by surgery at the Department of Plastic Surgery, University Hospital of Odense, Denmark during the period 1962 to 1977.
+
+We are interested in the association between tumour ulceration and survival after surgery. 
+
+## Get data and check
+```{r}
+library(finalfit)
+melanoma = boot::melanoma #F1 here for help page with data dictionary
+ff_glimpse(melanoma)
+```
+
+As can be seen, all variables are coded as numeric and some need recoding to factors. This is done below for for those we are interested in. 
+
+## Death status
+`status` is the the patients status at the end of the study. 
+
+* 1 indicates that they had died from melanoma;
+* 2 indicates that they were still alive and;
+* 3 indicates that they had died from causes unrelated to their melanoma.
+
+There are three options for coding this. 
+
+* Overall survival: considering all-cause mortality, comparing 2 (alive) with 1 (died melanoma)/3 (died other);
+* Cause-specific survival: considering disease-specific mortality comparing 2 (alive)/3 (died other) with 1 (died melanoma);
+* Competing risks: comparing 2 (alive) with 1 (died melanoma) accounting for 3 (died other); see more below. 
+
+## Time and censoring
+`time` is the number of days from surgery until either the occurrence of the event (death) or the last time the patient was known to be alive. For instance, if a patient had surgery and was seen to be well in a clinic 30 days later, but there had been no contact since, then the patient's status would be considered 30 days. This patient is censored from the analysis at day 30, an important feature of time-to-event analyses.    
+
+## Recode
+```{r}
+library(dplyr)
+library(forcats)
+melanoma = melanoma %>%
+  mutate(
+    # Overall survival
+    status_os = ifelse(status == 2, 0, # "still alive"
+    									 1), # "died of melanoma" or "died of other causes"
+    
+    # Diease-specific survival
+    status_dss = ifelse(status == 2, 0, # "still alive"
+      ifelse(status == 1, 1, # "died of melanoma"
+        0)), # "died of other causes is censored"
+
+    # Competing risks regression
+    status_crr = ifelse(status == 2, 0, # "still alive"
+      ifelse(status == 1, 1, # "died of melanoma"
+        2)), # "died of other causes"
+    
+    # Label and recode other variables
+    age = ff_label(age, "Age (years)"), # ff_label to make table friendly var labels
+    thickness = ff_label(thickness, "Tumour thickness (mm)"), # ff_label to make table friendly var labels
+    sex = factor(sex) %>% 
+    	fct_recode("Male" = "1", 
+    						 "Female" = "0") %>% 
+    	ff_label("Sex"),
+    ulcer = factor(ulcer) %>% 
+    	fct_recode("No" = "0",
+    						 "Yes" = "1") %>% 
+    	ff_label("Ulcerated tumour")
+  )
+```
+
+## Kaplan-Meier survival estimator
+We can use the excellent `survival` package to produce the Kaplan-Meier (KM) survival estimator. This is a non-parametric statistic used to estimate the survival function from time-to-event data.
+
+```{r}
+library(survival)
+
+survival_object = melanoma %$% 
+	Surv(time, status_os)
+
+# Explore:
+head(survival_object) # + marks censoring, in this case "Alive"
+
+# Expressing time in years
+survival_object = melanoma %$% 
+	Surv(time/365, status_os)
+```
+
+### KM analysis for whole cohort
+
+### Model
+
+The survival object is the first step to performing univariable and multivariable survival analyses. 
+
+If you want to plot survival stratified by a single grouping variable, you can substitute "survival_object ~ 1" by "survival_object ~ factor"
+
+```{r}
+# Overall survival in whole cohort
+my_survfit = survfit(survival_object ~ 1, data = melanoma)
+my_survfit # 205 patients, 71 events
+```
+
+### Life table
+
+A life table is the tabular form of a KM plot, which you may be familiar with. 
+It shows survival as a proportion, together with confidence limits. 
+The whole table is shown with, `summary(my_survfit)`.
+
+```{r}
+summary(my_survfit, times = c(0, 1, 2, 3, 4, 5))
+# 5 year overall survival is 73%
+```
+
+## Kaplan Meier plot
+
+We can plot survival curves using the finalfit wrapper for the package excellent package `survminer`. There are numerous options available on the help page. You should always include a number-at-risk table under these plots as it is essential for interpretation. 
+
+As can be seen, the probability of dying is much greater if the tumour was ulcerated, compared to those that were not ulcerated. 
+
+```{r, fig.width = 5, fig.height = 4}
+dependent_os = "Surv(time/365, status_os)"
+explanatory = c("ulcer")
+
+melanoma %>% 
+	surv_plot(dependent_os, explanatory, pval = TRUE)
+```
+
+## Cox-proportional hazards regression
+
+CPH regression can be performed using the all-in-one `finalfit()` function. It produces a table containing counts (proportions) for factors, mean (SD) for continuous variables and a univariable and multivariable CPH regression.
+
+### Univariable and multivariable models
+
+```{r}
+dependent_os = "Surv(time, status_os)"
+dependent_dss = "Surv(time, status_dss)"
+dependent_crr = "Surv(time, status_crr)"
+explanatory = c("age", "sex", "thickness", "ulcer")
+
+melanoma %>% 
+	finalfit(dependent_os, explanatory) %>% 
+	mykable() # for vignette only
+```
+
+The labelling of the final table can be easily adjusted as desired.
+
+```{r}
+melanoma %>% 
+	finalfit(dependent_os, explanatory, add_dependent_label = FALSE) %>% 
+	rename("Overall survival" = label) %>% 
+	rename(" " = levels) %>% 
+	rename(" " = all) %>% 
+	mykable()
+```
+
+### Reduced model
+
+If you are using a backwards selection approach or similar, a reduced model can be directly specified and compared. The full model can be kept or dropped. 
+
+```{r}
+explanatory_multi = c("age", "thickness", "ulcer")
+melanoma %>% 
+	finalfit(dependent_os, explanatory, explanatory_multi, keep_models = TRUE) %>% 
+	mykable()
+```
+
+### Testing for proportional hazards
+
+An assumption of CPH regression is that the hazard (think risk) associated with a particular variable does not change over time. For example, is the magnitude of the increase in risk of death associated with tumour ulceration the same in the early post-operative period as it is in later years? 
+
+The `cox.zph()` function from the survival package allows us to test this assumption for each variable. The plot of scaled Schoenfeld residuals should be a horizontal line. The included hypothesis test identifies whether the gradient differs from zero for each variable. No variable significantly differs from zero at the 5% significance level.  
+
+```{r, fig.width = 5, fig.height = 4}
+explanatory = c("age", "sex", "thickness", "ulcer", "year")
+melanoma %>% 
+	coxphmulti(dependent_os, explanatory) %>% 
+	cox.zph() %>% 
+	{zph_result <<- .} %>% 
+	plot(var=5)
+zph_result
+```
+
+### Stratified models
+
+One approach to dealing with a violation of the proportional hazards assumption is to stratify by that variable. Including a `strata()` term will result in a separate baseline hazard function being fit for each level in the stratification variable. It will be no longer possible to make direct inference on the effect associated with that variable. 
+
+This can be incorporated directly into the explanatory variable list. 
+
+```{r}
+explanatory= c("age", "sex", "ulcer", "thickness", "strata(year)")
+melanoma %>% 
+	finalfit(dependent_os, explanatory) %>% 
+	mykable()
+```
+
+### Correlated groups of observations
+
+As a general rule, you should always try to account for any higher structure in your data within the model. For instance, patients may be clustered within particular hospitals. 
+
+There are two broad approaches to dealing with correlated groups of observations.
+
+A `cluster()` term implies a generalised estimating equations (GEE) approach. Here, a standard CPH model is fitted but the standard errors of the estimated hazard ratios are adjusted to account for correlations. 
+
+A `frailty()` term implies a mixed effects model, where specific random effects term(s) are directly incorporated into the model. 
+
+Both approaches achieve the same goal in different ways. Volumes have been written on GEE vs mixed effects models. We favour the latter approach because of its flexibility and our preference for mixed effects modelling in generalised linear modelling. Note `cluster()` and `frailty()` terms cannot be combined in the same model.    
+
+```{r}
+# Simulate random hospital identifier
+melanoma = melanoma %>% 
+	mutate(hospital_id = c(rep(1:10, 20), rep(11, 5)))
+
+# Cluster model
+explanatory = c("age", "sex", "thickness", "ulcer", "cluster(hospital_id)")
+melanoma %>% 
+	finalfit(dependent_os, explanatory) %>% 
+	mykable()
+```
+
+```{r}
+# Frailty model
+explanatory = c("age", "sex", "thickness", "ulcer", "frailty(hospital_id)")
+melanoma %>% 
+	finalfit(dependent_os, explanatory) %>% 
+	mykable()
+```
+
+The `frailty()` method here is being superseded by the `coxme` package, and we look forward to incorporating this in the future. 
+
+### Hazard ratio plot
+
+A plot of any of the above models can be easily produced. 
+
+```{r eval=FALSE}
+melanoma %>% 
+	hr_plot(dependent_os, explanatory)
+```
+
+```{r echo=FALSE, fig.height=3, fig.width=7}
+library(ggplot2)
+melanoma %>% 
+	hr_plot(dependent_os, explanatory, table_text_size = 3.5,
+					 title_text_size = 16,
+					plot_opts=list(xlab("HR, 95% CI"), theme(axis.title = element_text(size=12))))
+```
+
+## Competing risks regression
+Competing-risks regression is an alternative to CPH regression. It can be useful if the outcome of interest may not be able to occur simply because something else (like death) has happened first. For instance, in our example it is obviously not possible for a patient to die from melanoma if they have died from another disease first. By simply looking at cause-specific mortality (deaths from melanoma) and considering other deaths as censored, bias may result in estimates of the influence of predictors. 
+
+The approach by Fine and Gray is one option for dealing with this. It is implemented in the package `cmprsk`. The `crr()` syntax differs from `survival::coxph()` but `finalfit` brings these together. 
+
+It uses the `finalfit::ff_merge()` function, which can join any number of models together. 
+
+```{r}
+explanatory = c("age", "sex", "thickness", "ulcer")
+dependent_dss = "Surv(time, status_dss)"
+dependent_crr = "Surv(time, status_crr)"
+
+melanoma %>%
+	
+	# Summary table
+  summary_factorlist(dependent_dss, explanatory, column = TRUE, fit_id = TRUE) %>%
+	
+	# CPH univariable
+	  ff_merge(
+    melanoma %>%
+      coxphmulti(dependent_dss, explanatory) %>%
+      fit2df(estimate_suffix = " (DSS CPH univariable)")
+    ) %>%
+	
+	# CPH multivariable
+  ff_merge(
+    melanoma %>%
+      coxphmulti(dependent_dss, explanatory) %>%
+      fit2df(estimate_suffix = " (DSS CPH multivariable)")
+    ) %>%
+	
+	# Fine and Gray competing risks regression
+  ff_merge(
+    melanoma %>%
+      crrmulti(dependent_crr, explanatory) %>%
+      fit2df(estimate_suffix = " (competing risks multivariable)")
+    ) %>%
+	
+
+  select(-fit_id, -index) %>%
+  dependent_label(melanoma, "Survival") %>% 
+	mykable()
+```
+
+## Summary
+So here we have various aspects of time-to-event analysis which is commonly used when looking at survival. There are many other applications, some which may not be obvious: for instance we use CPH for modelling length of stay in in hospital. 
+
+Stratification can be used to deal with non-proportional hazards in a particular variable.
+
+Hierarchical structure in your data can be accommodated with cluster or frailty (random effects) terms. 
+
+Competing risks regression may be useful if your outcome is in competition with another, such as all-cause death, but is currently limited in its ability to accommodate hierarchical structures. 
+

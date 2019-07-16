@@ -106,6 +106,9 @@ regression models" />
     <li>
       <a href="../articles/missing.html">Missing data</a>
     </li>
+    <li>
+      <a href="../articles/survival.html">Time-to-event (Survival)</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -247,59 +250,59 @@ explanatory variables to permute through models.</p></td>
 #&gt; </div><div class='input'>
 <span class='co'># Cox proportional hazards regression</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit_permute</span>(<span class='st'>"Surv(time, status)"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; <span class='message'>No dependent variable(s) provided; defaulting to single-level factor</span></div><div class='output co'>#&gt; <span class='message'>No dependent variable(s) provided; defaulting to single-level factor</span></div><div class='output co'>#&gt; <span class='message'>No dependent variable(s) provided; defaulting to single-level factor</span></div><div class='output co'>#&gt; [[1]]
-#&gt;   Dependent: Surv(time, status)                      HR (univariable)
-#&gt; 4                   Obstruction          No                         -
-#&gt; 5                                       Yes 1.29 (1.03-1.62, p=0.028)
-#&gt; 2                           Age   &lt;40 years                         -
-#&gt; 1                               40-59 years 0.76 (0.53-1.09, p=0.132)
-#&gt; 3                                 60+ years 0.93 (0.66-1.31, p=0.668)
-#&gt; 6                           Sex      Female                         -
-#&gt; 7                                      Male 1.01 (0.84-1.22, p=0.888)
-#&gt;          HR (multivariable)
-#&gt; 4                         -
-#&gt; 5 1.31 (1.04-1.64, p=0.022)
-#&gt; 2                         -
-#&gt; 1 0.79 (0.55-1.13, p=0.198)
-#&gt; 3 0.98 (0.69-1.40, p=0.931)
-#&gt; 6                         -
-#&gt; 7 1.02 (0.85-1.24, p=0.803)
+  <span class='fu'>finalfit_permute</span>(<span class='st'>"Surv(time, status)"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; [[1]]
+#&gt;   Dependent: Surv(time, status)                    all
+#&gt; 4                   Obstruction          No 732 (80.6)
+#&gt; 5                                       Yes 176 (19.4)
+#&gt; 2                           Age   &lt;40 years   70 (7.5)
+#&gt; 1                               40-59 years 344 (37.0)
+#&gt; 3                                 60+ years 515 (55.4)
+#&gt; 6                           Sex      Female 445 (47.9)
+#&gt; 7                                      Male 484 (52.1)
+#&gt;            HR (univariable)        HR (multivariable)
+#&gt; 4                         -                         -
+#&gt; 5 1.29 (1.03-1.62, p=0.028) 1.31 (1.04-1.64, p=0.022)
+#&gt; 2                         -                         -
+#&gt; 1 0.76 (0.53-1.09, p=0.132) 0.79 (0.55-1.13, p=0.198)
+#&gt; 3 0.93 (0.66-1.31, p=0.668) 0.98 (0.69-1.40, p=0.931)
+#&gt; 6                         -                         -
+#&gt; 7 1.01 (0.84-1.22, p=0.888) 1.02 (0.85-1.24, p=0.803)
 #&gt; 
 #&gt; [[2]]
-#&gt;   Dependent: Surv(time, status)                      HR (univariable)
-#&gt; 4                   Perforation          No                         -
-#&gt; 5                                       Yes 1.17 (0.70-1.95, p=0.556)
-#&gt; 2                           Age   &lt;40 years                         -
-#&gt; 1                               40-59 years 0.76 (0.53-1.09, p=0.132)
-#&gt; 3                                 60+ years 0.93 (0.66-1.31, p=0.668)
-#&gt; 6                           Sex      Female                         -
-#&gt; 7                                      Male 1.01 (0.84-1.22, p=0.888)
-#&gt;          HR (multivariable)
-#&gt; 4                         -
-#&gt; 5 1.18 (0.70-1.97, p=0.535)
-#&gt; 2                         -
-#&gt; 1 0.76 (0.53-1.08, p=0.127)
-#&gt; 3 0.92 (0.65-1.31, p=0.656)
-#&gt; 6                         -
-#&gt; 7 1.02 (0.85-1.22, p=0.854)
+#&gt;   Dependent: Surv(time, status)                    all
+#&gt; 4                   Perforation          No 902 (97.1)
+#&gt; 5                                       Yes   27 (2.9)
+#&gt; 2                           Age   &lt;40 years   70 (7.5)
+#&gt; 1                               40-59 years 344 (37.0)
+#&gt; 3                                 60+ years 515 (55.4)
+#&gt; 6                           Sex      Female 445 (47.9)
+#&gt; 7                                      Male 484 (52.1)
+#&gt;            HR (univariable)        HR (multivariable)
+#&gt; 4                         -                         -
+#&gt; 5 1.17 (0.70-1.95, p=0.556) 1.18 (0.70-1.97, p=0.535)
+#&gt; 2                         -                         -
+#&gt; 1 0.76 (0.53-1.09, p=0.132) 0.76 (0.53-1.08, p=0.127)
+#&gt; 3 0.93 (0.66-1.31, p=0.668) 0.92 (0.65-1.31, p=0.656)
+#&gt; 6                         -                         -
+#&gt; 7 1.01 (0.84-1.22, p=0.888) 1.02 (0.85-1.22, p=0.854)
 #&gt; 
 #&gt; [[3]]
-#&gt;   Dependent: Surv(time, status)                      HR (univariable)
-#&gt; 4             &gt;4 positive nodes          No                         -
-#&gt; 5                                       Yes 2.60 (2.15-3.14, p&lt;0.001)
-#&gt; 2                           Age   &lt;40 years                         -
-#&gt; 1                               40-59 years 0.76 (0.53-1.09, p=0.132)
-#&gt; 3                                 60+ years 0.93 (0.66-1.31, p=0.668)
-#&gt; 6                           Sex      Female                         -
-#&gt; 7                                      Male 1.01 (0.84-1.22, p=0.888)
-#&gt;          HR (multivariable)
-#&gt; 4                         -
-#&gt; 5 2.64 (2.18-3.19, p&lt;0.001)
-#&gt; 2                         -
-#&gt; 1 0.85 (0.59-1.22, p=0.379)
-#&gt; 3 1.09 (0.77-1.55, p=0.615)
-#&gt; 6                         -
-#&gt; 7 1.04 (0.87-1.26, p=0.647)
+#&gt;   Dependent: Surv(time, status)                    all
+#&gt; 4             &gt;4 positive nodes          No 674 (72.6)
+#&gt; 5                                       Yes 255 (27.4)
+#&gt; 2                           Age   &lt;40 years   70 (7.5)
+#&gt; 1                               40-59 years 344 (37.0)
+#&gt; 3                                 60+ years 515 (55.4)
+#&gt; 6                           Sex      Female 445 (47.9)
+#&gt; 7                                      Male 484 (52.1)
+#&gt;            HR (univariable)        HR (multivariable)
+#&gt; 4                         -                         -
+#&gt; 5 2.60 (2.15-3.14, p&lt;0.001) 2.64 (2.18-3.19, p&lt;0.001)
+#&gt; 2                         -                         -
+#&gt; 1 0.76 (0.53-1.09, p=0.132) 0.85 (0.59-1.22, p=0.379)
+#&gt; 3 0.93 (0.66-1.31, p=0.668) 1.09 (0.77-1.55, p=0.615)
+#&gt; 6                         -                         -
+#&gt; 7 1.01 (0.84-1.22, p=0.888) 1.04 (0.87-1.26, p=0.647)
 #&gt; </div><div class='input'>
 <span class='co'># Logistic regression</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>

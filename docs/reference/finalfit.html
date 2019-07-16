@@ -110,6 +110,9 @@ finalfit.coxph method (not called directly)" />
     <li>
       <a href="../articles/missing.html">Missing data</a>
     </li>
+    <li>
+      <a href="../articles/survival.html">Time-to-event (Survival)</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -362,26 +365,26 @@ confint_sep</code>.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"Surv(time, status)"</span>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>No dependent variable(s) provided; defaulting to single-level factor</span></div><div class='output co'>#&gt;   Dependent: Surv(time, status)                      HR (univariable)
-#&gt; 2                           Age   &lt;40 years                         -
-#&gt; 1                               40-59 years 0.76 (0.53-1.09, p=0.132)
-#&gt; 3                                 60+ years 0.93 (0.66-1.31, p=0.668)
-#&gt; 8                           Sex      Female                         -
-#&gt; 9                                      Male 1.01 (0.84-1.22, p=0.888)
-#&gt; 4                   Obstruction          No                         -
-#&gt; 5                                       Yes 1.29 (1.03-1.62, p=0.028)
-#&gt; 6                   Perforation          No                         -
-#&gt; 7                                       Yes 1.17 (0.70-1.95, p=0.556)
-#&gt;          HR (multivariable)
-#&gt; 2                         -
-#&gt; 1 0.79 (0.55-1.13, p=0.196)
-#&gt; 3 0.98 (0.69-1.40, p=0.926)
-#&gt; 8                         -
-#&gt; 9 1.02 (0.85-1.23, p=0.812)
-#&gt; 4                         -
-#&gt; 5 1.30 (1.03-1.64, p=0.026)
-#&gt; 6                         -
-#&gt; 7 1.08 (0.64-1.81, p=0.785)</div><div class='input'>
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt;   Dependent: Surv(time, status)                    all
+#&gt; 2                           Age   &lt;40 years   70 (7.5)
+#&gt; 1                               40-59 years 344 (37.0)
+#&gt; 3                                 60+ years 515 (55.4)
+#&gt; 8                           Sex      Female 445 (47.9)
+#&gt; 9                                      Male 484 (52.1)
+#&gt; 4                   Obstruction          No 732 (80.6)
+#&gt; 5                                       Yes 176 (19.4)
+#&gt; 6                   Perforation          No 902 (97.1)
+#&gt; 7                                       Yes   27 (2.9)
+#&gt;            HR (univariable)        HR (multivariable)
+#&gt; 2                         -                         -
+#&gt; 1 0.76 (0.53-1.09, p=0.132) 0.79 (0.55-1.13, p=0.196)
+#&gt; 3 0.93 (0.66-1.31, p=0.668) 0.98 (0.69-1.40, p=0.926)
+#&gt; 8                         -                         -
+#&gt; 9 1.01 (0.84-1.22, p=0.888) 1.02 (0.85-1.23, p=0.812)
+#&gt; 4                         -                         -
+#&gt; 5 1.29 (1.03-1.62, p=0.028) 1.30 (1.03-1.64, p=0.026)
+#&gt; 6                         -                         -
+#&gt; 7 1.17 (0.70-1.95, p=0.556) 1.08 (0.64-1.81, p=0.785)</div><div class='input'>
 <span class='co'># Rather than going all-in-one, any number of subset models can</span>
 <span class='co'># be manually added on to a summary_factorlist() table using finalfit.merge().</span>
 <span class='co'># This is particularly useful when models take a long-time to run or are complicated.</span>
