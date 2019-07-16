@@ -108,7 +108,9 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 		args$dependent = "all"
 		
 		# Remove strata and cluster terms
-		drop = grepl("strata[(].*[)]|cluster[(].*[)]", explanatory)
+		drop = grepl("cluster[(].*[)]", explanatory) |
+			grepl("strata[(].*[)]", explanatory) |
+			grepl("frailty[(].*[)]", explanatory)
 		args$explanatory = args$explanatory[!drop]
 		
 		suppressWarnings(

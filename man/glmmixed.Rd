@@ -16,7 +16,7 @@ glmmixed(.data, dependent, explanatory, random_effect, ...)
 \item{random_effect}{Character vector of length 1, either, (1) name of random
 intercept variable, e.g. "var1", (automatically convered to "(1 | var1)");
 or, (2) the full \code{lme4} specification, e.g. "(var1 | var2)". Note
-parenthesis MUST be included in (2)2 but NOT included in (1).}
+parenthesis MUST be included in (2) but NOT included in (1).}
 
 \item{...}{Other arguments to pass to \code{lme4::\link[lme4]{glmer}}.}
 }

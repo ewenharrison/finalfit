@@ -7,7 +7,7 @@
 coxphmulti(.data, dependent, explanatory)
 }
 \arguments{
-\item{.data}{Dataframe.}
+\item{.data}{Data frame.}
 
 \item{dependent}{Character vector of length 1:  name of survival object in
 form \code{Surv(time, status)}.}
@@ -16,11 +16,11 @@ form \code{Surv(time, status)}.}
 variables.}
 }
 \value{
-A list of multivariable \code{\link[survival]{coxph}} fitted model
-  outputs. Output is of class \code{coxphlist}.
+A multivariable \code{\link[survival]{coxph}} fitted model
+  output. Output is of class \code{coxph}.
 }
 \description{
-Using \code{finalfit} conventions, produces multiple multivariable Cox
+Using \code{finalfit} conventions, produces multivariable Cox
 Proportional Hazard regression models for a set of explanatory variables
 against a survival object.
 }

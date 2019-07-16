@@ -39,7 +39,7 @@ test_that("coxphuni gives coxphlist", {
 })
 
 test_that("coxphmulti gives coxphlist", {
-	expect_is(coxphmulti(colon_s,  "Surv(time, status)", "age.factor"), "coxphlist")
+	expect_is(coxphmulti(colon_s,  "Surv(time, status)", "age.factor"), "coxph")
 })
 
 

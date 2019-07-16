@@ -6,7 +6,7 @@
 #' Uses \code{\link[survival]{coxph}} with \code{finalfit} modelling conventions. Output can be
 #'   passed to \code{\link{fit2df}}.
 #'
-#' @param .data Dataframe.
+#' @param .data Data frame.
 #' @param dependent Character vector of length 1:  name of survival object in form \code{Surv(time, status)}.
 #' @param explanatory Character vector of any length: name(s) of explanatory variables.
 #' @return A list of univariable \code{\link[survival]{coxph}} fitted model outputs.
@@ -33,7 +33,8 @@ coxphuni <- function(.data, dependent, explanatory){
   
   # Remove cluster and strata terms
   drop = grepl("cluster[(].*[)]", explanatory) |
-  	grepl("strata[(].*[)]", explanatory)
+    grepl("strata[(].*[)]", explanatory) |
+    grepl("frailty[(].*[)]", explanatory)
   explanatory = explanatory[!drop]
   
   result <- list()

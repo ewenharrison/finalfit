@@ -7,7 +7,7 @@
 coxphuni(.data, dependent, explanatory)
 }
 \arguments{
-\item{.data}{Dataframe.}
+\item{.data}{Data frame.}
 
 \item{dependent}{Character vector of length 1:  name of survival object in form \code{Surv(time, status)}.}
 

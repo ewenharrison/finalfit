@@ -66,5 +66,29 @@ Internal function, not usually called directly.
 Internal function, not called directly.
 
 Internal function, not called directly.
+
+extract_fit.coxme = function(.data, explanatory_name="explanatory", estimate_name="HR",
+																estimate_suffix = "",  p_name = "p",
+																confint_level = 0.95, ...){
+	x=.data
+	if(confint_type == "default") confint_type = "Wald"
+	explanatory = names(coxme::fixef(x))
+	estimate = exp(coxme::fixef(x))
+	# confint = 
+	# p =
+	L_confint_name = paste0("L", confint_level*100)
+	U_confint_name = paste0("U", confint_level*100)
+	
+	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
+	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
+											 L_confint_name, U_confint_name, p_name)
+	
+	if(confint_level != 0.95){
+		df.out = df.out %>% dplyr::select(-p_name)
+	}
+	df.out = data.frame(df.out)
+	return(df.out)
+}
+Extract model output to dataframe
 }
 \keyword{internal}
