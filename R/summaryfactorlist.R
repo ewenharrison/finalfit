@@ -207,11 +207,18 @@ summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", c
 	}
 	
 	if (cont=="geometric"){
-		mean.out = round_tidy(exp(matrix(s[,2])), digits[1])
-		sd.out = round_tidy(exp(matrix(s[,3])), digits[2])
-		result.out = data.frame(paste0(mean.out, " (", sd.out, ")"), 
+		mean.out = exp(matrix(s[,2]))
+		sd.out = exp(matrix(s[,3]))
+		L_sd.out = mean.out / sd.out
+		U_sd.out = mean.out * sd.out
+		result.out = data.frame(paste0(round_tidy(mean.out, digits[1]),
+																	 " (", 
+																	 round_tidy(L_sd.out, digits[2]),
+																	 " to ",
+																	 round_tidy(U_sd.out, digits[2]),
+																	 ")"), 
 														stringsAsFactors = FALSE)
-		colnames(result.out) = "Geometric mean (sd)"
+		colnames(result.out) = "Geometric mean (+/-SD)"
 	}
 	
 	df.out = cbind(df.out, result.out)
@@ -349,8 +356,10 @@ summarise_continuous = function(x, cont, total_col, digits) {
 			dplyr::mutate(
 				Label = rownames(.),
 				Formatted = paste0(round_tidy(exp(Mean), digits[1]), " (",
-													 round_tidy(exp(SD), digits[2]), ")"),
-				levels = "Geometric mean (SD)"
+													 round_tidy(exp(Mean) / exp(SD), digits[2]), " to ",
+													 round_tidy(exp(Mean) * exp(SD), digits[2]), ")"),
+				
+				levels = "Geometric mean (+/-SD)"
 			)
 	}
 	df_out = df_out %>%
