@@ -4,6 +4,8 @@
 #'
 #' @return Model metrics vector for output.
 #' @export
+#' 
+#' @importFrom stats AIC
 #'
 #' @examples
 #' library(finalfit)
@@ -78,6 +80,7 @@ ff_metrics.lm <- function(.data){
 	n_data = n_model+n_missing
 	n_model = dim(x$model)[1]
 	loglik = round(logLik(x), 2)
+	aic = round(AIC(x), 1)
 	r.squared = signif(summary(x)$r.squared, 2)
 	adj.r.squared = signif(summary(x)$adj.r.squared, 2)
 	metrics.out = paste0(
@@ -85,6 +88,7 @@ ff_metrics.lm <- function(.data){
 		", Number in model = ", n_model,
 		", Missing = ", n_missing,
 		", Log-likelihood = ", loglik,
+		", AIC = ", aic,
 		", R-squared = ", r.squared,
 		", Adjusted r-squared = ", adj.r.squared)
 	return(metrics.out)
@@ -100,6 +104,7 @@ ff_metrics.lmlist <- function(.data){
 	n_data = n_model+n_missing
 	n_model = dim(x$model)[1]
 	loglik = round(logLik(x), 2)
+	aic = round(AIC(x), 1)
 	r.squared = signif(summary(x)$r.squared, 2)
 	adj.r.squared = signif(summary(x)$adj.r.squared, 2)
 	metrics.out = paste0(
@@ -107,6 +112,7 @@ ff_metrics.lmlist <- function(.data){
 		", Number in model = ", n_model,
 		", Missing = ", n_missing,
 		", Log-likelihood = ", loglik,
+		", AIC = ", aic,
 		", R-squared = ", r.squared,
 		", Adjusted r-squared = ", adj.r.squared)
 	return(metrics.out)
