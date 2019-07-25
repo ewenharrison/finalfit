@@ -1,11 +1,11 @@
 library(epitools)
 library(dplyr)
 library(forcats)
-library(finalfit)
 
 data(wcgs)
 save(wcgs, file = "data-raw/wcgs.rda")
 
+library(finalfit)
 wcgs = wcgs %>% 
 	rename(
 		age = age0,

@@ -11,7 +11,8 @@
 #'   ff_label("Sex") %>%
 #'   str()
 ff_label <- function(.var, variable_label){
-	Hmisc::label(.var) = variable_label
+	# Hmisc::label(.var) = variable_label
+	attr(.var, "label") = variable_label
 	return(.var)
 }
 
