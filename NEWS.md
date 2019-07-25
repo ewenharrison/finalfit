@@ -3,6 +3,7 @@
 * `data(wcgs)` added.
 * `summary_factorlist()` geometric sd added. 
 * AIC added to lm metrics,
+* `ff_label()` now does not add class "labelled"
 
 # finalfit 0.9.4
 

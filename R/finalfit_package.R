@@ -163,12 +163,12 @@ NULL
 #'   \item{\code{weight}}{ Weight: weight in pounds } \item{\code{sbp}}{
 #'   Systolic blood pressure: mmHg } \item{\code{dbp}}{ Diastolic blood
 #'   pressure: mmHg } \item{\code{chol}}{ Cholesterol: mg/100 ml }
-#'   \item{\code{behpat0}}{ Behavior pattern: behavior type which is a factor
-#'   with levels \code{A1}, \code{A2}, \code{B3}, \code{B4} }
-#'   \item{\code{dibpat0}}{ Dichotomous behavior pattern: \code{A} = aggressive;
-#'   \code{B} = passive }  \item{\code{ncigs0}}{ Smoking: Cigarettes/day }
-#'   \item{\code{smoking}}{ Smoking: \code{No}, \code{Yes} }
-#'   \item{\code{arcus0}}{ Corneal arcus: \code{No}, \code{Yes} }
+#'   \item{\code{personality}}{Personality type/Behavior pattern: a factor with
+#'   levels \code{A1}, \code{A2}, \code{B3}, \code{B4} }
+#'   \item{\code{personality_2L}}{ Dichotomous personality type / behavior
+#'   pattern: \code{A} = aggressive; \code{B} = passive }  \item{\code{ncigs0}}{
+#'   Smoking: Cigarettes/day } \item{\code{smoking}}{ Smoking: \code{No},
+#'   \code{Yes} } \item{\code{arcus0}}{ Corneal arcus: \code{No}, \code{Yes} }
 #'   \item{\code{chd}}{ Coronary heart disease event: \code{No} \code{Yes}}
 #'   \item{\code{typechd}}{ coronary heart disease is a factor with levels
 #'   \code{No}, \code{MI_SD} (MI or sudden death), \code{Silent_MI},

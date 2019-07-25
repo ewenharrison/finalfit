@@ -14,8 +14,8 @@ wcgs = wcgs %>%
 		sbp = sbp0,
 		dbp = dbp0,
 		chol = chol0,
-		behpat = behpat0,
-		dibpat = dibpat0,
+		personality = behpat0,
+		personality_2L = dibpat0,
 		ncigs = ncigs0,
 		chd = chd69,
 		timechd = time169,
@@ -24,16 +24,16 @@ wcgs = wcgs %>%
 	mutate(
 		smoking = if_else(ncigs == 0, "Non-smoker", "Smoker") %>% 
 			factor(),
-		behpat = factor(behpat) %>% 
+		personality = factor(personality) %>% 
 			fct_recode(
 				"A1" = "1",
 				"A2" = "2", 
 				"B3" = "3", 
 				"B4" = "4"),
-		dibpat = factor(dibpat) %>% 
+		personality_2L = factor(personality_2L) %>% 
 			fct_recode(
-				"A" = "0",
-				"B" = "1"
+				"A" = "1",
+				"B" = "0"
 			),
 		chd = factor(chd) %>% 
 			fct_recode(
@@ -60,8 +60,8 @@ wcgs = wcgs %>%
 		sbp = ff_label(sbp, "Systolic BP (mmHg)"),
 		dbp = ff_label(dbp, "Diastolic BP (mmHg)"),
 		chol = ff_label(chol, "Cholesterol (mg/100 ml)"),
-		behpat = ff_label(behpat, "Behaviour pattern"),
-		dibpat = ff_label(dibpat, "Behaviour pattern"),
+		personality = ff_label(personality, "Personality type"),
+		personality_2L = ff_label(personality_2L, "Personality type"),
 		ncigs = ff_label(ncigs, "Cigarettes/day"),
 		smoking = ff_label(smoking, "Smoking"),
 		arcus = ff_label(arcus, "Corneal arcus"),
@@ -74,7 +74,7 @@ wcgs = wcgs %>%
 		height, weight, 
 		sbp, dbp, 
 		chol, 
-		behpat, dibpat, 
+		personality, personality_2L, 
 		ncigs, smoking,
 		arcus,
 		chd, typechd, timechd)
