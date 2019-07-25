@@ -1,3 +1,9 @@
+# finalfit 0.9.5
+
+* `data(wcgs)` added.
+* `summary_factorlist()` geometric sd added. 
+* AIC added to lm metrics,
+
 # finalfit 0.9.4
 
 * `coxphuni()` and `coxphmulti()` now take the other `library(survival)` functions `survival::strata()` and `survival::cluster()`. 
