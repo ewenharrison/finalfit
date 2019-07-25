@@ -3,6 +3,8 @@ language: r
 r_packages:
   - covr
 
+warnings_are_errors: false
+
 before_install:
   - mkdir -p ~/.R
   - echo "CXX14FLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function  -Wno-macro-redefined" >> ~/.R/Makevars
