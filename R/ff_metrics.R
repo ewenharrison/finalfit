@@ -90,7 +90,7 @@ ff_metrics.lm <- function(.data){
 		", Log-likelihood = ", loglik,
 		", AIC = ", aic,
 		", R-squared = ", r.squared,
-		", Adjusted r-squared = ", adj.r.squared)
+		", Adjusted R-squared = ", adj.r.squared)
 	return(metrics.out)
 }
 
@@ -114,7 +114,7 @@ ff_metrics.lmlist <- function(.data){
 		", Log-likelihood = ", loglik,
 		", AIC = ", aic,
 		", R-squared = ", r.squared,
-		", Adjusted r-squared = ", adj.r.squared)
+		", Adjusted R-squared = ", adj.r.squared)
 	return(metrics.out)
 }
 

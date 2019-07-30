@@ -3,11 +3,15 @@
 #' Using \code{finalfit} conventions, produces a missing data matrix using
 #' \code{\link[mice]{md.pattern}}.
 #'
-#' @param .data Dataframe. Missing values must be coded \code{NA}.
+#' @param .data Data frame. Missing values must be coded \code{NA}.
 #' @param dependent Character vector usually of length 1, name of depdendent
 #'   variable.
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
+#' @param rotate.names Logical. Should the orientation of variable names on plot
+#'   should be vertical.
+#'
+#' @return A matrix with \code{ncol(x)+1} columns, in which each row corresponds
 #'   to a missing data pattern (1=observed, 0=missing). Rows and columns are
 #'   sorted in increasing amounts of missing information. The last column and
 #'   row contain row and column counts, respectively.
@@ -21,15 +25,16 @@
 #'
 #' colon_s %>%
 #' 	missing_pattern(dependent, explanatory)
-#'
-missing_pattern = function(.data, dependent=NULL, explanatory=NULL){
+#' 
+missing_pattern = function(.data, dependent=NULL, explanatory=NULL, 
+													 rotate.names = TRUE, ...){
   if(is.null(dependent) && is.null(explanatory)){
     df.in = .data
   }else{
     keep = names(.data) %in% c(dependent, explanatory)
     df.in = .data[keep]
   }
-  mice::md.pattern(df.in)
+  mice::md.pattern(df.in, rotate.names = rotate.names, ...)
 }
 
 

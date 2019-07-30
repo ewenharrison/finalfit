@@ -4,19 +4,26 @@
 \alias{missing_pattern}
 \title{Characterise missing data for \code{finalfit} models}
 \usage{
-missing_pattern(.data, dependent = NULL, explanatory = NULL)
+missing_pattern(.data, dependent = NULL, explanatory = NULL,
+  rotate.names = TRUE, ...)
 }
 \arguments{
-\item{.data}{Dataframe. Missing values must be coded \code{NA}.}
+\item{.data}{Data frame. Missing values must be coded \code{NA}.}
 
 \item{dependent}{Character vector usually of length 1, name of depdendent
 variable.}
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory
-variables.
-to a missing data pattern (1=observed, 0=missing). Rows and columns are
-sorted in increasing amounts of missing information. The last column and
-row contain row and column counts, respectively.}
+variables.}
+
+\item{rotate.names}{Logical. Should the orientation of variable names on plot
+should be vertical.}
+}
+\value{
+A matrix with \code{ncol(x)+1} columns, in which each row corresponds
+  to a missing data pattern (1=observed, 0=missing). Rows and columns are
+  sorted in increasing amounts of missing information. The last column and
+  row contain row and column counts, respectively.
 }
 \description{
 Using \code{finalfit} conventions, produces a missing data matrix using
