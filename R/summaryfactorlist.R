@@ -272,7 +272,7 @@ summary_factorlist_groups <- function(.data, dependent, explanatory,  cont = "me
 	df.out$index = 1:dim(df.out)[1]
 	
 	if (p == TRUE){
-		a = plyr::ldply(s$testresults, function(x) round_tidy(x[[1]], digits[3]))
+		a = plyr::ldply(s$testresults, function(x) p_tidy(x[[1]], digits[3], prefix=""))
 		names(a) = c(".id", "p")
 		df.out = merge(df.out, a, by=".id")
 	}
