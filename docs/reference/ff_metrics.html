@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.5</span>
       </span>
     </div>
 
@@ -208,7 +208,7 @@
 <span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'>lm</span>(<span class='no'>nodes</span> ~  <span class='no'>age.factor</span> + <span class='no'>sex.factor</span> + <span class='no'>obstruct.factor</span> + <span class='no'>perfor.factor</span>,
   <span class='kw'>data</span><span class='kw'>=</span><span class='no'>colon_s</span>)
 <span class='no'>fit</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 890, Missing = 39, Log-likelihood = -2394.25, R-squared = 0.0092, Adjusted r-squared = 0.0036"</div><div class='input'>
+  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 890, Missing = 39, Log-likelihood = -2394.25, AIC = 4802.5, R-squared = 0.0092, Adjusted R-squared = 0.0036"</div><div class='input'>
 <span class='co'># lmerMod</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>

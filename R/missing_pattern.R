@@ -10,6 +10,8 @@
 #'   variables.
 #' @param rotate.names Logical. Should the orientation of variable names on plot
 #'   should be vertical.
+#' @param ... pass other arguments such as \code{plot = TRUE} to
+#'   \code{\link[mice]{md.pattern}}.
 #'
 #' @return A matrix with \code{ncol(x)+1} columns, in which each row corresponds
 #'   to a missing data pattern (1=observed, 0=missing). Rows and columns are

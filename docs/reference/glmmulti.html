@@ -34,8 +34,8 @@ wrapper — glmmulti • finalfit</title>
 <meta property="og:title" content="Binomial logistic regression multivariable models: <code>finalfit</code> model
 wrapper — glmmulti" />
 
-<meta property="og:description" content="Using finalfit conventions, produces multiple multivariable binomial
-logistic regression models for a set of explanatory variables against a
+<meta property="og:description" content="Using finalfit conventions, produces a multivariable binomial
+logistic regression model for a set of explanatory variables against a
 binary dependent." />
 
 <meta property="og:image" content="/logo.png" />
@@ -67,7 +67,7 @@ binary dependent." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.5</span>
       </span>
     </div>
 
@@ -144,8 +144,8 @@ wrapper</h1>
 
     <div class="ref-description">
     
-    <p>Using <code>finalfit</code> conventions, produces multiple multivariable binomial
-logistic regression models for a set of explanatory variables against a
+    <p>Using <code>finalfit</code> conventions, produces a multivariable binomial
+logistic regression model for a set of explanatory variables against a
 binary dependent.</p>
     
     </div>
@@ -161,8 +161,8 @@ binary dependent.</p>
     </tr>
     <tr>
       <th>dependent</th>
-      <td><p>Character vector usually of length 1, but can take more than
-1 dependent:  name of depdendent variable (must have 2 levels).</p></td>
+      <td><p>Character vector of length 1: name of depdendent variable
+(must have 2 levels).</p></td>
     </tr>
     <tr>
       <th>explanatory</th>
@@ -182,15 +182,12 @@ and link function to be used in the model, see <code><a href='http://www.rdocume
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of multivariable <code><a href='http://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></code> fitted model
-  outputs. Output is of class <code>glmlist</code>.</p>
+    <p>A multivariable <code><a href='http://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></code> fitted model.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Uses <code><a href='http://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></code> with <code>finalfit</code> modelling conventions.
-Output can be passed to <code><a href='fit2df.html'>fit2df</a></code>. Note that this function can
-take multiple <code>dependent</code> variables as well, but performs multiple
-individual models, not a multivariate analysis.</p>
+Output can be passed to <code><a href='fit2df.html'>fit2df</a></code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

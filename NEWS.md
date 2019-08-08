@@ -2,8 +2,9 @@
 
 * `data(wcgs)` added.
 * `summary_factorlist()` geometric sd added. 
-* AIC added to lm metrics,
-* `ff_label()` now does not add class "labelled"
+* AIC added to lm metrics.
+* `ff_label()` now does not add class "labelled".
+* Removed capacity for `glmmulti()` and `lmmulti()` to run multiple models from multiple dependent variables. It wasn't used and the list generated was inconvenient for passing output to other functions such as `ggfortify::autoplot()`.
 
 # finalfit 0.9.4
 

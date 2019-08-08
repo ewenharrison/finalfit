@@ -72,6 +72,7 @@ reference:
     desc: "Sample data for examples and testing"
     contents:
     - '`colon_s`'
+    - '`wcgs`'
   - title: "Misc"
     desc: ~
     contents:

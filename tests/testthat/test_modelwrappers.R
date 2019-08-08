@@ -5,8 +5,8 @@ test_that("glmuni gives glmlist", {
 	expect_is(glmuni(colon_s, "mort_5yr", "age.factor"), "glmlist")
 })
 
-test_that("glmmulti gives glmlist", {
-	expect_is(glmmulti(colon_s, "mort_5yr", "age.factor"), "glmlist")
+test_that("glmmulti gives glm", {
+	expect_is(glmmulti(colon_s, "mort_5yr", "age.factor"), "glm")
 })
 
 test_that("glmmixed gives glmerMod", {
@@ -24,8 +24,8 @@ test_that("lmuni gives lmlist", {
 	expect_is(lmuni(colon_s, "nodes", "age.factor"), "lmlist")
 })
 
-test_that("lmmulti gives lmlist", {
-	expect_is(lmmulti(colon_s, "nodes", "age.factor"), "lmlist")
+test_that("lmmulti gives lm", {
+	expect_is(lmmulti(colon_s, "nodes", "age.factor"), "lm")
 })
 
 test_that("lmmixed gives lmerMod", {
@@ -38,7 +38,7 @@ test_that("coxphuni gives coxphlist", {
 	expect_is(coxphuni(colon_s,  "Surv(time, status)", "age.factor"), "coxphlist")
 })
 
-test_that("coxphmulti gives coxphlist", {
+test_that("coxphmulti gives coxph", {
 	expect_is(coxphmulti(colon_s,  "Surv(time, status)", "age.factor"), "coxph")
 })
 

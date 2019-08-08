@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Linear regression multivariable models: <code>finalfit</code> model wrapper — lmmulti" />
 
-<meta property="og:description" content="Using finalfit conventions, produces multiple multivariable linear
-  regression models for a set of explanatory variables against a continuous dependent." />
+<meta property="og:description" content="Using finalfit conventions, produces a multivariable linear regression
+model for a set of explanatory variables against a continuous dependent." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -64,7 +64,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.5</span>
       </span>
     </div>
 
@@ -140,8 +140,8 @@
 
     <div class="ref-description">
     
-    <p>Using <code>finalfit</code> conventions, produces multiple multivariable linear
-  regression models for a set of explanatory variables against a continuous dependent.</p>
+    <p>Using <code>finalfit</code> conventions, produces a multivariable linear regression
+model for a set of explanatory variables against a continuous dependent.</p>
     
     </div>
 
@@ -156,12 +156,13 @@
     </tr>
     <tr>
       <th>dependent</th>
-      <td><p>Character vector usually of length 1, but can take more than 1
-dependent:  name of depdendent variable (must a continuous vector).</p></td>
+      <td><p>Character vector of length 1: name of depdendent variable
+(must a continuous vector).</p></td>
     </tr>
     <tr>
       <th>explanatory</th>
-      <td><p>Character vector of any length: name(s) of explanatory variables.</p></td>
+      <td><p>Character vector of any length: name(s) of explanatory
+variables.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -171,14 +172,12 @@ dependent:  name of depdendent variable (must a continuous vector).</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of multivariable <code><a href='http://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></code> fitted model outputs.
-  Output is of class <code>lmlist</code>.</p>
+    <p>A multivariable <code><a href='http://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></code> fitted model.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Uses <code><a href='http://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></code> with <code>finalfit</code> modelling conventions. Output can be
-  passed to <code><a href='fit2df.html'>fit2df</a></code>. Note that this function can take multiple <code>dependent</code>
-  variables as well, but performs multiple individual models, not a multivariate analysis.</p>
+    <p>Uses <code><a href='http://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></code> with <code>finalfit</code> modelling conventions.
+Output can be passed to <code><a href='fit2df.html'>fit2df</a></code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

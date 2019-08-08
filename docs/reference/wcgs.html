@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Call to Hmisc:::summary.formula — summary_formula • finalfit</title>
+<title>Western Collaborative Group Study — wcgs • finalfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,12 @@
 
 
 
-<meta property="og:title" content="Call to Hmisc:::summary.formula — summary_formula" />
+<meta property="og:title" content="Western Collaborative Group Study — wcgs" />
 
-<meta property="og:description" content="Not called directly." />
+<meta property="og:description" content="3154 healthy young men aged 39-59 from the San Francisco area were assessed
+for their personality type. All were free from coronary heart disease at the
+start of the research. Eight and a half years later change in this situation
+was recorded." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -132,32 +135,94 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Call to Hmisc:::summary.formula</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/finalfit_internal_functions.R'><code>R/finalfit_internal_functions.R</code></a></small>
-    <div class="hidden name"><code>summary_formula.Rd</code></div>
+    <h1>Western Collaborative Group Study</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/finalfit_package.R'><code>R/finalfit_package.R</code></a></small>
+    <div class="hidden name"><code>wcgs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Not called directly.</p>
+    <p>3154 healthy young men aged 39-59 from the San Francisco area were assessed
+for their personality type. All were free from coronary heart disease at the
+start of the research. Eight and a half years later change in this situation
+was recorded.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>summary_formula</span>(<span class='no'>formula</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>na.action</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"response"</span>, <span class='st'>"reverse"</span>,
-  <span class='st'>"cross"</span>), <span class='kw'>overall</span> <span class='kw'>=</span> <span class='no'>method</span> <span class='kw'>==</span> <span class='st'>"response"</span> <span class='kw'>|</span> <span class='no'>method</span> <span class='kw'>==</span> <span class='st'>"cross"</span>,
-  <span class='kw'>continuous</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>na.include</span> <span class='kw'>=</span> <span class='no'>method</span> <span class='kw'>!=</span> <span class='st'>"reverse"</span>,
-  <span class='kw'>g</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>quant</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.025</span>, <span class='fl'>0.05</span>, <span class='fl'>0.125</span>, <span class='fl'>0.25</span>, <span class='fl'>0.375</span>, <span class='fl'>0.5</span>, <span class='fl'>0.625</span>, <span class='fl'>0.75</span>,
-  <span class='fl'>0.875</span>, <span class='fl'>0.95</span>, <span class='fl'>0.975</span>), <span class='kw'>nmin</span> <span class='kw'>=</span> <span class='kw'>if</span> (<span class='no'>method</span> <span class='kw'>==</span> <span class='st'>"reverse"</span>) <span class='fl'>100</span> <span class='kw'>else</span> <span class='fl'>0</span>,
-  <span class='kw'>test</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>conTest</span> <span class='kw'>=</span> <span class='no'>conTestkw</span>, <span class='kw'>catTest</span> <span class='kw'>=</span> <span class='no'>catTestchisq</span>,
-  <span class='kw'>ordTest</span> <span class='kw'>=</span> <span class='no'>ordTestpo</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>data</span>(<span class='no'>wcgs</span>)</pre>
         
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 3154 observations on the following 13 variables.</p><ul>
+<li><p><code>id</code> Subject ID</p></li>
+<li><p><code>age</code> Age: age in
+  years</p></li>
+<li><p><code>height</code> Height: height in inches</p></li>
+<li><p><code>weight</code> Weight: weight in pounds</p></li>
+<li><p><code>sbp</code>
+  Systolic blood pressure: mmHg</p></li>
+<li><p><code>dbp</code> Diastolic blood
+  pressure: mmHg</p></li>
+<li><p><code>chol</code> Cholesterol: mg/100 ml</p></li>
+<li><p><code>personality</code>Personality type/Behavior pattern: a factor with
+  levels <code>A1</code>, <code>A2</code>, <code>B3</code>, <code>B4</code></p></li>
+<li><p><code>personality_2L</code> Dichotomous personality type / behavior
+  pattern: <code>A</code> = aggressive; <code>B</code> = passive</p></li>
+<li><p><code>ncigs0</code>
+  Smoking: Cigarettes/day</p></li>
+<li><p><code>smoking</code> Smoking: <code>No</code>,
+  <code>Yes</code></p></li>
+<li><p><code>arcus0</code> Corneal arcus: <code>No</code>, <code>Yes</code></p></li>
+<li><p><code>chd</code> Coronary heart disease event: <code>No</code> <code>Yes</code></p></li>
+<li><p><code>typechd</code> coronary heart disease is a factor with levels
+  <code>No</code>, <code>MI_SD</code> (MI or sudden death), <code>Silent_MI</code>,
+  <code>Angina</code></p></li>
+<li><p><code>timechd</code> Observation (follow up) time: Days</p></li>
+</ul>
+    
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Statistics for Epidemiology by N. Jewell (2004)</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The WCGS began in 1960 with 3,524 male volunteers who were employed by 11
+California companies. Subjects were 39 to 59 years old and free of heart
+disease as determined by electrocardiogram. After the initial screening, the
+study population dropped to 3,154 and the number of companies to 10 because
+of various exclusions. The cohort comprised both blue- and white-collar
+employees. At baseline the following information was collected:
+socio-demographic including age, education, marital status, income,
+occupation; physical and physiological including height, weight, blood
+pressure, electrocardiogram, and corneal arcus; biochemical including
+cholesterol and lipoprotein fractions; medical and family history and use of
+medications; behavioral data including Type A interview, smoking, exercise,
+and alcohol use. Later surveys added data on anthropometry, triglycerides,
+Jenkins Activity Survey, and caffeine use. Average follow-up continued for
+8.5 years with repeat examinations</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Coronary Heart Disease in the Western Collaborative Group Study
+  Final Follow-up Experience of 8 1/2 Years Ray H. Rosenman, MD; Richard J.
+  Brand, PhD; C. David Jenkins, PhD; Meyer Friedman, MD; Reuben Straus, MD;
+  Moses Wurm, MD JAMA. 1975;233(8):872-877.
+  doi:10.1001/jama.1975.03260080034016.</p>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#source">Source</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
+          </ul>
 
   </div>
 </div>

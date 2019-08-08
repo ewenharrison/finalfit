@@ -18,6 +18,9 @@ variables.}
 
 \item{rotate.names}{Logical. Should the orientation of variable names on plot
 should be vertical.}
+
+\item{...}{pass other arguments such as \code{plot = TRUE} to
+\code{\link[mice]{md.pattern}}.}
 }
 \value{
 A matrix with \code{ncol(x)+1} columns, in which each row corresponds

@@ -9,25 +9,24 @@ lmmulti(.data, dependent, explanatory, ...)
 \arguments{
 \item{.data}{Dataframe.}
 
-\item{dependent}{Character vector usually of length 1, but can take more than 1
-dependent:  name of depdendent variable (must a continuous vector).}
+\item{dependent}{Character vector of length 1: name of depdendent variable
+(must a continuous vector).}
 
-\item{explanatory}{Character vector of any length: name(s) of explanatory variables.}
+\item{explanatory}{Character vector of any length: name(s) of explanatory
+variables.}
 
 \item{...}{Other arguments to pass to \code{\link[stats]{lm}}.}
 }
 \value{
-A list of multivariable \code{\link[stats]{lm}} fitted model outputs.
-  Output is of class \code{lmlist}.
+A multivariable \code{\link[stats]{lm}} fitted model.
 }
 \description{
-Using \code{finalfit} conventions, produces multiple multivariable linear
-  regression models for a set of explanatory variables against a continuous dependent.
+Using \code{finalfit} conventions, produces a multivariable linear regression
+model for a set of explanatory variables against a continuous dependent.
 }
 \details{
-Uses \code{\link[stats]{lm}} with \code{finalfit} modelling conventions. Output can be
-  passed to \code{\link{fit2df}}. Note that this function can take multiple \code{dependent}
-  variables as well, but performs multiple individual models, not a multivariate analysis.
+Uses \code{\link[stats]{lm}} with \code{finalfit} modelling conventions.
+Output can be passed to \code{\link{fit2df}}.
 }
 \examples{
 library(finalfit)

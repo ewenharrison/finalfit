@@ -1,19 +1,18 @@
 #' Linear regression multivariable models: \code{finalfit} model wrapper
 #'
-#' Using \code{finalfit} conventions, produces multiple multivariable linear
-#'   regression models for a set of explanatory variables against a continuous dependent.
+#' Using \code{finalfit} conventions, produces a multivariable linear regression
+#' model for a set of explanatory variables against a continuous dependent.
 #'
-#' Uses \code{\link[stats]{lm}} with \code{finalfit} modelling conventions. Output can be
-#'   passed to \code{\link{fit2df}}. Note that this function can take multiple \code{dependent}
-#'   variables as well, but performs multiple individual models, not a multivariate analysis.
+#' Uses \code{\link[stats]{lm}} with \code{finalfit} modelling conventions.
+#' Output can be passed to \code{\link{fit2df}}.
 #'
 #' @param .data Dataframe.
-#' @param dependent Character vector usually of length 1, but can take more than 1
-#'   dependent:  name of depdendent variable (must a continuous vector).
-#' @param explanatory Character vector of any length: name(s) of explanatory variables.
+#' @param dependent Character vector of length 1: name of depdendent variable
+#'   (must a continuous vector).
+#' @param explanatory Character vector of any length: name(s) of explanatory
+#'   variables.
 #' @param ... Other arguments to pass to \code{\link[stats]{lm}}.
-#' @return A list of multivariable \code{\link[stats]{lm}} fitted model outputs.
-#'   Output is of class \code{lmlist}.
+#' @return A multivariable \code{\link[stats]{lm}} fitted model.
 #'
 #' @seealso \code{\link{fit2df}}
 #' @family finalfit model wrappers
@@ -29,15 +28,9 @@
 #' colon_s %>%
 #'   lmmulti(dependent, explanatory) %>%
 #'   fit2df()
-#'
+#' 
 lmmulti <- function(.data, dependent, explanatory, ...){
-  result = list()
-  for (i in 1:length(dependent)){
-    result[[i]] = ff_eval(
-    	lm(ff_formula(dependent[i], explanatory), data = .data, ...)
-    )
-  }
-  result = setNames(result, dependent)
-  class(result) = "lmlist"
-  return(result)
+  ff_eval(
+    lm(ff_formula(dependent, explanatory), data = .data, ...)
+  )
 }
