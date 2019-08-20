@@ -3891,16 +3891,16 @@
 <td>40-59 years</td>
 <td align="right">208 (61.4)</td>
 <td align="right">131 (38.6)</td>
-<td align="right">0.45 (0.27-0.74, p=0.002)</td>
-<td align="right">0.46 (0.27-0.77, p=0.004)</td>
+<td align="right">0.39 (0.23-0.65, p&lt;0.001)</td>
+<td align="right">0.42 (0.25-0.71, p=0.001)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td>60+ years</td>
 <td align="right">272 (53.4)</td>
 <td align="right">237 (46.6)</td>
-<td align="right">0.68 (0.41-1.11, p=0.124)</td>
-<td align="right">0.71 (0.43-1.18, p=0.191)</td>
+<td align="right">0.51 (0.30-0.84, p=0.009)</td>
+<td align="right">0.56 (0.33-0.93, p=0.026)</td>
 </tr>
 <tr class="even">
 <td align="left">Sex</td>
@@ -3915,8 +3915,8 @@
 <td>Male</td>
 <td align="right">268 (56.1)</td>
 <td align="right">210 (43.9)</td>
-<td align="right">0.92 (0.71-1.19, p=0.532)</td>
-<td align="right">0.92 (0.71-1.21, p=0.554)</td>
+<td align="right">0.91 (0.70-1.18, p=0.486)</td>
+<td align="right">0.93 (0.71-1.21, p=0.586)</td>
 </tr>
 <tr class="even">
 <td align="left">Obstruction</td>
@@ -3931,8 +3931,8 @@
 <td>Yes</td>
 <td align="right">89 (51.1)</td>
 <td align="right">85 (48.9)</td>
-<td align="right">1.14 (0.82-1.59, p=0.425)</td>
-<td align="right">1.14 (0.81-1.59, p=0.462)</td>
+<td align="right">1.15 (0.82-1.61, p=0.429)</td>
+<td align="right">1.10 (0.78-1.56, p=0.585)</td>
 </tr>
 <tr class="even">
 <td align="left">Perforation</td>
@@ -3947,8 +3947,8 @@
 <td>Yes</td>
 <td align="right">14 (51.9)</td>
 <td align="right">13 (48.1)</td>
-<td align="right">1.24 (0.59-2.61, p=0.567)</td>
-<td align="right">1.23 (0.58-2.62, p=0.581)</td>
+<td align="right">0.91 (0.43-1.88, p=0.796)</td>
+<td align="right">0.89 (0.42-1.86, p=0.768)</td>
 </tr>
 </tbody>
 </table>
@@ -4211,62 +4211,214 @@
 <h3 class="hasAnchor">
 <a href="#base-model-individual-explanatory-variables" class="anchor"></a>3.7 Base model + individual explanatory variables</h3>
 <p>This was an email enquiry about how to build on a base model. The example request was in a survival context.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb47-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb47-4" data-line-number="4">mydata =<span class="st"> </span>colon_s</a>
-<a class="sourceLine" id="cb47-5" data-line-number="5">base_explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>)</a>
-<a class="sourceLine" id="cb47-6" data-line-number="6">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>, <span class="st">"node4.factor"</span>)</a>
-<a class="sourceLine" id="cb47-7" data-line-number="7">dependent =<span class="st"> "Surv(time, status)"</span></a>
-<a class="sourceLine" id="cb47-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb47-9" data-line-number="9">mydata <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-10" data-line-number="10"><span class="st">    </span><span class="co"># Counts</span></a>
-<a class="sourceLine" id="cb47-11" data-line-number="11"><span class="st">    </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, <span class="kw">c</span>(base_explanatory,</a>
-<a class="sourceLine" id="cb47-12" data-line-number="12">                                                                    explanatory),</a>
-<a class="sourceLine" id="cb47-13" data-line-number="13">                                         <span class="dt">column =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb47-14" data-line-number="14">                                         <span class="dt">fit_id =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-15" data-line-number="15"><span class="st">    </span></a>
-<a class="sourceLine" id="cb47-16" data-line-number="16"><span class="st">    </span><span class="co"># Univariable</span></a>
-<a class="sourceLine" id="cb47-17" data-line-number="17"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb47-18" data-line-number="18">        <span class="kw"><a href="../reference/coxphuni.html">coxphuni</a></span>(mydata, dependent, <span class="kw">c</span>(base_explanatory, explanatory)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-19" data-line-number="19"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Univariable)"</span>)</a>
-<a class="sourceLine" id="cb47-20" data-line-number="20">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-21" data-line-number="21"><span class="st">    </span></a>
-<a class="sourceLine" id="cb47-22" data-line-number="22"><span class="st">    </span><span class="co"># Base</span></a>
-<a class="sourceLine" id="cb47-23" data-line-number="23"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb47-24" data-line-number="24">        <span class="kw"><a href="../reference/coxphmulti.html">coxphmulti</a></span>(mydata, dependent, base_explanatory) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-25" data-line-number="25"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Base model)"</span>)</a>
-<a class="sourceLine" id="cb47-26" data-line-number="26">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-27" data-line-number="27"><span class="st">    </span></a>
-<a class="sourceLine" id="cb47-28" data-line-number="28"><span class="st">    </span><span class="co"># Model 1</span></a>
-<a class="sourceLine" id="cb47-29" data-line-number="29"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb47-30" data-line-number="30">        <span class="kw"><a href="../reference/coxphmulti.html">coxphmulti</a></span>(mydata, dependent, <span class="kw">c</span>(base_explanatory, explanatory[<span class="dv">1</span>])) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-31" data-line-number="31"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Model 1)"</span>)</a>
-<a class="sourceLine" id="cb47-32" data-line-number="32">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-33" data-line-number="33"><span class="st">    </span></a>
-<a class="sourceLine" id="cb47-34" data-line-number="34"><span class="st">    </span><span class="co"># Model 2</span></a>
-<a class="sourceLine" id="cb47-35" data-line-number="35"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb47-36" data-line-number="36">        <span class="kw"><a href="../reference/coxphmulti.html">coxphmulti</a></span>(mydata, dependent, <span class="kw">c</span>(base_explanatory, explanatory[<span class="dv">2</span>])) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-37" data-line-number="37"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Model 2)"</span>)</a>
-<a class="sourceLine" id="cb47-38" data-line-number="38">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-39" data-line-number="39"><span class="st">    </span></a>
-<a class="sourceLine" id="cb47-40" data-line-number="40"><span class="st">    </span><span class="co"># Model 3</span></a>
-<a class="sourceLine" id="cb47-41" data-line-number="41"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb47-42" data-line-number="42">        <span class="kw"><a href="../reference/coxphmulti.html">coxphmulti</a></span>(mydata, dependent, <span class="kw">c</span>(base_explanatory, explanatory[<span class="dv">3</span>])) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-43" data-line-number="43"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Model 3)"</span>)</a>
-<a class="sourceLine" id="cb47-44" data-line-number="44">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-45" data-line-number="45"><span class="st">    </span></a>
-<a class="sourceLine" id="cb47-46" data-line-number="46"><span class="st">    </span><span class="co"># Full</span></a>
-<a class="sourceLine" id="cb47-47" data-line-number="47"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
-<a class="sourceLine" id="cb47-48" data-line-number="48">        <span class="kw"><a href="../reference/coxphmulti.html">coxphmulti</a></span>(mydata, dependent, <span class="kw">c</span>(base_explanatory, explanatory)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-49" data-line-number="49"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Full)"</span>)</a>
-<a class="sourceLine" id="cb47-50" data-line-number="50">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-51" data-line-number="51"><span class="st">    </span></a>
-<a class="sourceLine" id="cb47-52" data-line-number="52"><span class="st">    </span><span class="co"># Tidy-up</span></a>
-<a class="sourceLine" id="cb47-53" data-line-number="53"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw">c</span>(fit_id, index)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-54" data-line-number="54"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">"Overall survival"</span> =<span class="st"> </span>label) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-55" data-line-number="55"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">" "</span> =<span class="st"> </span>levels) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-56" data-line-number="56"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">`</span><span class="dt">n (%)</span><span class="st">`</span> =<span class="st"> </span>all) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<p>This has been updated August 2019. We have left the original example of building the table from scratch as a comparison. See options on help page to</p>
+<ul>
+<li>include the base model and/or the full model,</li>
+<li>present the permuted variables at the top or bottom of the table,</li>
+<li>produce separate model tables, or the default which is a single table.</li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">mydata =<span class="st"> </span>colon_s</a>
+<a class="sourceLine" id="cb47-3" data-line-number="3">explanatory_base =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>)</a>
+<a class="sourceLine" id="cb47-4" data-line-number="4">explanatory_permute =<span class="st"> </span><span class="kw">c</span>(<span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>, <span class="st">"node4.factor"</span>)</a>
+<a class="sourceLine" id="cb47-5" data-line-number="5">dependent =<span class="st"> "Surv(time, status)"</span></a>
+<a class="sourceLine" id="cb47-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb47-7" data-line-number="7">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb47-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="../reference/ff_permute.html">ff_permute</a></span>(dependent, explanatory_base, explanatory_permute) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb47-9" data-line-number="9"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">"Overall survival"</span> =<span class="st"> `</span><span class="dt">Dependent: Surv(time, status)</span><span class="st">`</span>, <span class="co"># optional tidying</span></a>
+<a class="sourceLine" id="cb47-10" data-line-number="10">                 <span class="st">`</span><span class="dt">n (%)</span><span class="st">`</span> =<span class="st"> "all"</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Overall survival</th>
+<th></th>
+<th align="right">n (%)</th>
+<th align="right">HR (univariable)</th>
+<th align="right">HR (multivariable) 1</th>
+<th align="right">HR (multivariable) 2</th>
+<th align="right">HR (multivariable) 3</th>
+<th align="right">HR (multivariable) 4</th>
+<th align="right">HR (multivariable) 5</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Age</td>
+<td>&lt;40 years</td>
+<td align="right">70 (7.5)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td>40-59 years</td>
+<td align="right">344 (37.0)</td>
+<td align="right">0.76 (0.53-1.09, p=0.132)</td>
+<td align="right">0.76 (0.53-1.08, p=0.129)</td>
+<td align="right">0.79 (0.55-1.13, p=0.198)</td>
+<td align="right">0.76 (0.53-1.08, p=0.127)</td>
+<td align="right">0.85 (0.59-1.22, p=0.379)</td>
+<td align="right">0.90 (0.63-1.30, p=0.590)</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>60+ years</td>
+<td align="right">515 (55.4)</td>
+<td align="right">0.93 (0.66-1.31, p=0.668)</td>
+<td align="right">0.93 (0.66-1.31, p=0.660)</td>
+<td align="right">0.98 (0.69-1.40, p=0.931)</td>
+<td align="right">0.92 (0.65-1.31, p=0.656)</td>
+<td align="right">1.09 (0.77-1.55, p=0.615)</td>
+<td align="right">1.19 (0.83-1.69, p=0.346)</td>
+</tr>
+<tr class="even">
+<td align="left">Sex</td>
+<td>Female</td>
+<td align="right">445 (47.9)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>Male</td>
+<td align="right">484 (52.1)</td>
+<td align="right">1.01 (0.84-1.22, p=0.888)</td>
+<td align="right">1.02 (0.85-1.23, p=0.847)</td>
+<td align="right">1.02 (0.85-1.24, p=0.803)</td>
+<td align="right">1.02 (0.85-1.22, p=0.854)</td>
+<td align="right">1.04 (0.87-1.26, p=0.647)</td>
+<td align="right">1.05 (0.87-1.27, p=0.597)</td>
+</tr>
+<tr class="even">
+<td align="left">Obstruction</td>
+<td>No</td>
+<td align="right">732 (80.6)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>Yes</td>
+<td align="right">176 (19.4)</td>
+<td align="right">1.29 (1.03-1.62, p=0.028)</td>
+<td align="right">-</td>
+<td align="right">1.31 (1.04-1.64, p=0.022)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">1.35 (1.07-1.70, p=0.011)</td>
+</tr>
+<tr class="even">
+<td align="left">Perforation</td>
+<td>No</td>
+<td align="right">902 (97.1)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>Yes</td>
+<td align="right">27 (2.9)</td>
+<td align="right">1.17 (0.70-1.95, p=0.556)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">1.18 (0.70-1.97, p=0.535)</td>
+<td align="right">-</td>
+<td align="right">1.16 (0.69-1.94, p=0.581)</td>
+</tr>
+<tr class="even">
+<td align="left">&gt;4 positive nodes</td>
+<td>No</td>
+<td align="right">674 (72.6)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>Yes</td>
+<td align="right">255 (27.4)</td>
+<td align="right">2.60 (2.15-3.14, p&lt;0.001)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">2.64 (2.18-3.19, p&lt;0.001)</td>
+<td align="right">2.68 (2.21-3.26, p&lt;0.001)</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">library</span>(finalfit)</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4">mydata =<span class="st"> </span>colon_s</a>
+<a class="sourceLine" id="cb48-5" data-line-number="5">base_explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>)</a>
+<a class="sourceLine" id="cb48-6" data-line-number="6">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>, <span class="st">"node4.factor"</span>)</a>
+<a class="sourceLine" id="cb48-7" data-line-number="7">dependent =<span class="st"> "Surv(time, status)"</span></a>
+<a class="sourceLine" id="cb48-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb48-9" data-line-number="9">mydata <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-10" data-line-number="10"><span class="st">    </span><span class="co"># Counts</span></a>
+<a class="sourceLine" id="cb48-11" data-line-number="11"><span class="st">    </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, <span class="kw">c</span>(base_explanatory,</a>
+<a class="sourceLine" id="cb48-12" data-line-number="12">                                                                    explanatory),</a>
+<a class="sourceLine" id="cb48-13" data-line-number="13">                                         <span class="dt">column =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb48-14" data-line-number="14">                                         <span class="dt">fit_id =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-15" data-line-number="15"><span class="st">    </span></a>
+<a class="sourceLine" id="cb48-16" data-line-number="16"><span class="st">    </span><span class="co"># Univariable</span></a>
+<a class="sourceLine" id="cb48-17" data-line-number="17"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb48-18" data-line-number="18">        <span class="kw"><a href="../reference/coxphuni.html">coxphuni</a></span>(mydata, dependent, <span class="kw">c</span>(base_explanatory, explanatory)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-19" data-line-number="19"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Univariable)"</span>)</a>
+<a class="sourceLine" id="cb48-20" data-line-number="20">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-21" data-line-number="21"><span class="st">    </span></a>
+<a class="sourceLine" id="cb48-22" data-line-number="22"><span class="st">    </span><span class="co"># Base</span></a>
+<a class="sourceLine" id="cb48-23" data-line-number="23"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb48-24" data-line-number="24">        <span class="kw"><a href="../reference/coxphmulti.html">coxphmulti</a></span>(mydata, dependent, base_explanatory) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-25" data-line-number="25"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Base model)"</span>)</a>
+<a class="sourceLine" id="cb48-26" data-line-number="26">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-27" data-line-number="27"><span class="st">    </span></a>
+<a class="sourceLine" id="cb48-28" data-line-number="28"><span class="st">    </span><span class="co"># Model 1</span></a>
+<a class="sourceLine" id="cb48-29" data-line-number="29"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb48-30" data-line-number="30">        <span class="kw"><a href="../reference/coxphmulti.html">coxphmulti</a></span>(mydata, dependent, <span class="kw">c</span>(base_explanatory, explanatory[<span class="dv">1</span>])) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-31" data-line-number="31"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Model 1)"</span>)</a>
+<a class="sourceLine" id="cb48-32" data-line-number="32">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-33" data-line-number="33"><span class="st">    </span></a>
+<a class="sourceLine" id="cb48-34" data-line-number="34"><span class="st">    </span><span class="co"># Model 2</span></a>
+<a class="sourceLine" id="cb48-35" data-line-number="35"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb48-36" data-line-number="36">        <span class="kw"><a href="../reference/coxphmulti.html">coxphmulti</a></span>(mydata, dependent, <span class="kw">c</span>(base_explanatory, explanatory[<span class="dv">2</span>])) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-37" data-line-number="37"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Model 2)"</span>)</a>
+<a class="sourceLine" id="cb48-38" data-line-number="38">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-39" data-line-number="39"><span class="st">    </span></a>
+<a class="sourceLine" id="cb48-40" data-line-number="40"><span class="st">    </span><span class="co"># Model 3</span></a>
+<a class="sourceLine" id="cb48-41" data-line-number="41"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb48-42" data-line-number="42">        <span class="kw"><a href="../reference/coxphmulti.html">coxphmulti</a></span>(mydata, dependent, <span class="kw">c</span>(base_explanatory, explanatory[<span class="dv">3</span>])) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-43" data-line-number="43"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Model 3)"</span>)</a>
+<a class="sourceLine" id="cb48-44" data-line-number="44">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-45" data-line-number="45"><span class="st">    </span></a>
+<a class="sourceLine" id="cb48-46" data-line-number="46"><span class="st">    </span><span class="co"># Full</span></a>
+<a class="sourceLine" id="cb48-47" data-line-number="47"><span class="st">    </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(</a>
+<a class="sourceLine" id="cb48-48" data-line-number="48">        <span class="kw"><a href="../reference/coxphmulti.html">coxphmulti</a></span>(mydata, dependent, <span class="kw">c</span>(base_explanatory, explanatory)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-49" data-line-number="49"><span class="st">            </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (Full)"</span>)</a>
+<a class="sourceLine" id="cb48-50" data-line-number="50">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-51" data-line-number="51"><span class="st">    </span></a>
+<a class="sourceLine" id="cb48-52" data-line-number="52"><span class="st">    </span><span class="co"># Tidy-up</span></a>
+<a class="sourceLine" id="cb48-53" data-line-number="53"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw">c</span>(fit_id, index)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-54" data-line-number="54"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">"Overall survival"</span> =<span class="st"> </span>label) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-55" data-line-number="55"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">" "</span> =<span class="st"> </span>levels) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-56" data-line-number="56"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">`</span><span class="dt">n (%)</span><span class="st">`</span> =<span class="st"> </span>all) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Overall survival</th>
@@ -4413,47 +4565,47 @@
 <h3 class="hasAnchor">
 <a href="#linear-regression-1" class="anchor"></a>4.1 Linear regression</h3>
 <p>Examples taken from <code><a href="http://www.rdocumentation.org/packages/survey/topics/svyglm">survey::svyglm()</a></code> help page.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">library</span>(survey)</a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb48-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="kw">data</span>(api)</a>
-<a class="sourceLine" id="cb48-5" data-line-number="5">dependent =<span class="st"> "api00"</span></a>
-<a class="sourceLine" id="cb48-6" data-line-number="6">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"ell"</span>, <span class="st">"meals"</span>, <span class="st">"mobility"</span>)</a>
-<a class="sourceLine" id="cb48-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb48-8" data-line-number="8"><span class="co"># Label data frame</span></a>
-<a class="sourceLine" id="cb48-9" data-line-number="9">apistrat =<span class="st"> </span>apistrat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
-<a class="sourceLine" id="cb48-11" data-line-number="11">  <span class="dt">api00 =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(api00, <span class="st">"API in 2000 (api00)"</span>),</a>
-<a class="sourceLine" id="cb48-12" data-line-number="12">  <span class="dt">ell =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(ell, <span class="st">"English language learners (percent)(ell)"</span>),</a>
-<a class="sourceLine" id="cb48-13" data-line-number="13">  <span class="dt">meals =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(meals, <span class="st">"Meals eligible (percent)(meals)"</span>),</a>
-<a class="sourceLine" id="cb48-14" data-line-number="14">  <span class="dt">mobility =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(mobility, <span class="st">"First year at the school (percent)(mobility)"</span>),</a>
-<a class="sourceLine" id="cb48-15" data-line-number="15">  <span class="dt">sch.wide =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(sch.wide, <span class="st">"School-wide target met (sch.wide)"</span>)</a>
-<a class="sourceLine" id="cb48-16" data-line-number="16">  )</a>
-<a class="sourceLine" id="cb48-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb48-18" data-line-number="18"><span class="co"># Linear example</span></a>
-<a class="sourceLine" id="cb48-19" data-line-number="19">dependent =<span class="st"> "api00"</span></a>
-<a class="sourceLine" id="cb48-20" data-line-number="20">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"ell"</span>, <span class="st">"meals"</span>, <span class="st">"mobility"</span>)</a>
-<a class="sourceLine" id="cb48-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb48-22" data-line-number="22"><span class="co"># Stratified design</span></a>
-<a class="sourceLine" id="cb48-23" data-line-number="23">dstrat =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/survey/topics/svydesign">svydesign</a></span>(<span class="dt">id=</span><span class="op">~</span><span class="dv">1</span>,<span class="dt">strata=</span><span class="op">~</span>stype, <span class="dt">weights=</span><span class="op">~</span>pw, <span class="dt">data=</span>apistrat, <span class="dt">fpc=</span><span class="op">~</span>fpc)</a>
-<a class="sourceLine" id="cb48-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb48-25" data-line-number="25"><span class="co"># Univariable fit</span></a>
-<a class="sourceLine" id="cb48-26" data-line-number="26">fit_uni =<span class="st"> </span>dstrat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-27" data-line-number="27"><span class="st">  </span><span class="kw"><a href="../reference/svyglmuni.html">svyglmuni</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-28" data-line-number="28"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (univariable)"</span>)</a>
-<a class="sourceLine" id="cb48-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb48-30" data-line-number="30"><span class="co"># Multivariable fit</span></a>
-<a class="sourceLine" id="cb48-31" data-line-number="31">fit_multi =<span class="st"> </span>dstrat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-32" data-line-number="32"><span class="st">  </span><span class="kw"><a href="../reference/svyglmmulti.html">svyglmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-33" data-line-number="33"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (multivariable)"</span>)</a>
-<a class="sourceLine" id="cb48-34" data-line-number="34"></a>
-<a class="sourceLine" id="cb48-35" data-line-number="35"><span class="co"># Pipe together</span></a>
-<a class="sourceLine" id="cb48-36" data-line-number="36">apistrat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-37" data-line-number="37"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">fit_id =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-38" data-line-number="38"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(fit_uni) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-39" data-line-number="39"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(fit_multi) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-40" data-line-number="40"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>fit_id, <span class="op">-</span>index) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-41" data-line-number="41"><span class="st">  </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(apistrat, dependent) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">library</span>(survey)</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="kw">data</span>(api)</a>
+<a class="sourceLine" id="cb49-5" data-line-number="5">dependent =<span class="st"> "api00"</span></a>
+<a class="sourceLine" id="cb49-6" data-line-number="6">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"ell"</span>, <span class="st">"meals"</span>, <span class="st">"mobility"</span>)</a>
+<a class="sourceLine" id="cb49-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="co"># Label data frame</span></a>
+<a class="sourceLine" id="cb49-9" data-line-number="9">apistrat =<span class="st"> </span>apistrat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
+<a class="sourceLine" id="cb49-11" data-line-number="11">  <span class="dt">api00 =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(api00, <span class="st">"API in 2000 (api00)"</span>),</a>
+<a class="sourceLine" id="cb49-12" data-line-number="12">  <span class="dt">ell =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(ell, <span class="st">"English language learners (percent)(ell)"</span>),</a>
+<a class="sourceLine" id="cb49-13" data-line-number="13">  <span class="dt">meals =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(meals, <span class="st">"Meals eligible (percent)(meals)"</span>),</a>
+<a class="sourceLine" id="cb49-14" data-line-number="14">  <span class="dt">mobility =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(mobility, <span class="st">"First year at the school (percent)(mobility)"</span>),</a>
+<a class="sourceLine" id="cb49-15" data-line-number="15">  <span class="dt">sch.wide =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(sch.wide, <span class="st">"School-wide target met (sch.wide)"</span>)</a>
+<a class="sourceLine" id="cb49-16" data-line-number="16">  )</a>
+<a class="sourceLine" id="cb49-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb49-18" data-line-number="18"><span class="co"># Linear example</span></a>
+<a class="sourceLine" id="cb49-19" data-line-number="19">dependent =<span class="st"> "api00"</span></a>
+<a class="sourceLine" id="cb49-20" data-line-number="20">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"ell"</span>, <span class="st">"meals"</span>, <span class="st">"mobility"</span>)</a>
+<a class="sourceLine" id="cb49-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb49-22" data-line-number="22"><span class="co"># Stratified design</span></a>
+<a class="sourceLine" id="cb49-23" data-line-number="23">dstrat =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/survey/topics/svydesign">svydesign</a></span>(<span class="dt">id=</span><span class="op">~</span><span class="dv">1</span>,<span class="dt">strata=</span><span class="op">~</span>stype, <span class="dt">weights=</span><span class="op">~</span>pw, <span class="dt">data=</span>apistrat, <span class="dt">fpc=</span><span class="op">~</span>fpc)</a>
+<a class="sourceLine" id="cb49-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb49-25" data-line-number="25"><span class="co"># Univariable fit</span></a>
+<a class="sourceLine" id="cb49-26" data-line-number="26">fit_uni =<span class="st"> </span>dstrat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-27" data-line-number="27"><span class="st">  </span><span class="kw"><a href="../reference/svyglmuni.html">svyglmuni</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-28" data-line-number="28"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (univariable)"</span>)</a>
+<a class="sourceLine" id="cb49-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb49-30" data-line-number="30"><span class="co"># Multivariable fit</span></a>
+<a class="sourceLine" id="cb49-31" data-line-number="31">fit_multi =<span class="st"> </span>dstrat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-32" data-line-number="32"><span class="st">  </span><span class="kw"><a href="../reference/svyglmmulti.html">svyglmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-33" data-line-number="33"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix =</span> <span class="st">" (multivariable)"</span>)</a>
+<a class="sourceLine" id="cb49-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb49-35" data-line-number="35"><span class="co"># Pipe together</span></a>
+<a class="sourceLine" id="cb49-36" data-line-number="36">apistrat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-37" data-line-number="37"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">fit_id =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-38" data-line-number="38"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(fit_uni) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-39" data-line-number="39"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(fit_multi) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-40" data-line-number="40"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>fit_id, <span class="op">-</span>index) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-41" data-line-number="41"><span class="st">  </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(apistrat, dependent) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: API in 2000 (api00)</th>
@@ -4491,40 +4643,40 @@
 <h3 class="hasAnchor">
 <a href="#binomial-example" class="anchor"></a>4.2 Binomial example</h3>
 <p>Note model family needs specified and exponentiation set to <code>TRUE</code> if desired.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">library</span>(survey)</a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb49-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="kw">data</span>(api)</a>
-<a class="sourceLine" id="cb49-5" data-line-number="5">dependent =<span class="st"> "sch.wide"</span></a>
-<a class="sourceLine" id="cb49-6" data-line-number="6">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"ell"</span>, <span class="st">"meals"</span>, <span class="st">"mobility"</span>)</a>
-<a class="sourceLine" id="cb49-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="co"># Label data frame</span></a>
-<a class="sourceLine" id="cb49-9" data-line-number="9">apistrat =<span class="st"> </span>apistrat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
-<a class="sourceLine" id="cb49-11" data-line-number="11">  <span class="dt">api00 =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(api00, <span class="st">"API in 2000 (api00)"</span>),</a>
-<a class="sourceLine" id="cb49-12" data-line-number="12">  <span class="dt">ell =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(ell, <span class="st">"English language learners (percent)(ell)"</span>),</a>
-<a class="sourceLine" id="cb49-13" data-line-number="13">  <span class="dt">meals =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(meals, <span class="st">"Meals eligible (percent)(meals)"</span>),</a>
-<a class="sourceLine" id="cb49-14" data-line-number="14">  <span class="dt">mobility =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(mobility, <span class="st">"First year at the school (percent)(mobility)"</span>),</a>
-<a class="sourceLine" id="cb49-15" data-line-number="15">  <span class="dt">sch.wide =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(sch.wide, <span class="st">"School-wide target met (sch.wide)"</span>)</a>
-<a class="sourceLine" id="cb49-16" data-line-number="16">  )</a>
-<a class="sourceLine" id="cb49-17" data-line-number="17">  </a>
-<a class="sourceLine" id="cb49-18" data-line-number="18"><span class="co"># Univariable fit</span></a>
-<a class="sourceLine" id="cb49-19" data-line-number="19">fit_uni =<span class="st"> </span>dstrat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-20" data-line-number="20"><span class="st">  </span><span class="kw"><a href="../reference/svyglmuni.html">svyglmuni</a></span>(dependent, explanatory, <span class="dt">family =</span> <span class="st">"quasibinomial"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">exp =</span> <span class="ot">TRUE</span>, <span class="dt">estimate_name =</span> <span class="st">"OR"</span>, <span class="dt">estimate_suffix =</span> <span class="st">" (univariable)"</span>)</a>
-<a class="sourceLine" id="cb49-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb49-23" data-line-number="23"><span class="co"># Multivariable fit</span></a>
-<a class="sourceLine" id="cb49-24" data-line-number="24">fit_multi =<span class="st"> </span>dstrat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-25" data-line-number="25"><span class="st">  </span><span class="kw"><a href="../reference/svyglmmulti.html">svyglmmulti</a></span>(dependent, explanatory, <span class="dt">family =</span> <span class="st">"quasibinomial"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-26" data-line-number="26"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">exp =</span> <span class="ot">TRUE</span>, <span class="dt">estimate_name =</span> <span class="st">"OR"</span>, <span class="dt">estimate_suffix =</span> <span class="st">" (multivariable)"</span>)</a>
-<a class="sourceLine" id="cb49-27" data-line-number="27"></a>
-<a class="sourceLine" id="cb49-28" data-line-number="28"><span class="co"># Pipe together</span></a>
-<a class="sourceLine" id="cb49-29" data-line-number="29">apistrat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-30" data-line-number="30"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">fit_id =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-31" data-line-number="31"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(fit_uni) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-32" data-line-number="32"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(fit_multi) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-33" data-line-number="33"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>fit_id, <span class="op">-</span>index) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-34" data-line-number="34"><span class="st">  </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(apistrat, dependent) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">library</span>(survey)</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="kw">data</span>(api)</a>
+<a class="sourceLine" id="cb50-5" data-line-number="5">dependent =<span class="st"> "sch.wide"</span></a>
+<a class="sourceLine" id="cb50-6" data-line-number="6">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">"ell"</span>, <span class="st">"meals"</span>, <span class="st">"mobility"</span>)</a>
+<a class="sourceLine" id="cb50-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb50-8" data-line-number="8"><span class="co"># Label data frame</span></a>
+<a class="sourceLine" id="cb50-9" data-line-number="9">apistrat =<span class="st"> </span>apistrat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
+<a class="sourceLine" id="cb50-11" data-line-number="11">  <span class="dt">api00 =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(api00, <span class="st">"API in 2000 (api00)"</span>),</a>
+<a class="sourceLine" id="cb50-12" data-line-number="12">  <span class="dt">ell =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(ell, <span class="st">"English language learners (percent)(ell)"</span>),</a>
+<a class="sourceLine" id="cb50-13" data-line-number="13">  <span class="dt">meals =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(meals, <span class="st">"Meals eligible (percent)(meals)"</span>),</a>
+<a class="sourceLine" id="cb50-14" data-line-number="14">  <span class="dt">mobility =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(mobility, <span class="st">"First year at the school (percent)(mobility)"</span>),</a>
+<a class="sourceLine" id="cb50-15" data-line-number="15">  <span class="dt">sch.wide =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(sch.wide, <span class="st">"School-wide target met (sch.wide)"</span>)</a>
+<a class="sourceLine" id="cb50-16" data-line-number="16">  )</a>
+<a class="sourceLine" id="cb50-17" data-line-number="17">  </a>
+<a class="sourceLine" id="cb50-18" data-line-number="18"><span class="co"># Univariable fit</span></a>
+<a class="sourceLine" id="cb50-19" data-line-number="19">fit_uni =<span class="st"> </span>dstrat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-20" data-line-number="20"><span class="st">  </span><span class="kw"><a href="../reference/svyglmuni.html">svyglmuni</a></span>(dependent, explanatory, <span class="dt">family =</span> <span class="st">"quasibinomial"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">exp =</span> <span class="ot">TRUE</span>, <span class="dt">estimate_name =</span> <span class="st">"OR"</span>, <span class="dt">estimate_suffix =</span> <span class="st">" (univariable)"</span>)</a>
+<a class="sourceLine" id="cb50-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb50-23" data-line-number="23"><span class="co"># Multivariable fit</span></a>
+<a class="sourceLine" id="cb50-24" data-line-number="24">fit_multi =<span class="st"> </span>dstrat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-25" data-line-number="25"><span class="st">  </span><span class="kw"><a href="../reference/svyglmmulti.html">svyglmmulti</a></span>(dependent, explanatory, <span class="dt">family =</span> <span class="st">"quasibinomial"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-26" data-line-number="26"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">exp =</span> <span class="ot">TRUE</span>, <span class="dt">estimate_name =</span> <span class="st">"OR"</span>, <span class="dt">estimate_suffix =</span> <span class="st">" (multivariable)"</span>)</a>
+<a class="sourceLine" id="cb50-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb50-28" data-line-number="28"><span class="co"># Pipe together</span></a>
+<a class="sourceLine" id="cb50-29" data-line-number="29">apistrat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-30" data-line-number="30"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">fit_id =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-31" data-line-number="31"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(fit_uni) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-32" data-line-number="32"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">ff_merge</a></span>(fit_multi) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-33" data-line-number="33"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>fit_id, <span class="op">-</span>index) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-34" data-line-number="34"><span class="st">  </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(apistrat, dependent) -&gt;<span class="st"> </span>t</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: School-wide target met (sch.wide)</th>

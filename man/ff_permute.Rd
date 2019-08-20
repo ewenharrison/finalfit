@@ -7,10 +7,14 @@
 regression models}
 \usage{
 ff_permute(.data, dependent = NULL, explanatory_base = NULL,
-  explanatory_permute = NULL, ...)
+  explanatory_permute = NULL, multiple_tables = FALSE,
+  include_base_model = TRUE, include_full_model = TRUE,
+  base_on_top = TRUE, ...)
 
 finalfit_permute(.data, dependent = NULL, explanatory_base = NULL,
-  explanatory_permute = NULL, ...)
+  explanatory_permute = NULL, multiple_tables = FALSE,
+  include_base_model = TRUE, include_full_model = TRUE,
+  base_on_top = TRUE, ...)
 }
 \arguments{
 \item{.data}{Data frame or tibble.}
@@ -24,6 +28,18 @@ base model explanatory variables.}
 
 \item{explanatory_permute}{Character vector of any length: quoted name(s) of
 explanatory variables to permute through models.}
+
+\item{multiple_tables}{Logical. Multiple model tables as a list, or a single
+table including multiple models.}
+
+\item{include_base_model}{Logical. Include model using \code{explanatory_base}
+variables only.}
+
+\item{include_full_model}{Logical. Include model using all \code{explanatory_base}
+and \code{explanatory_permute} variables.}
+
+\item{base_on_top}{Logical. Base variables at top of table, or bottom of
+table.}
 
 \item{...}{Other arguments to \code{\link{finalfit}}}
 }
@@ -39,19 +55,19 @@ explanatory_base = c("age.factor", "sex.factor")
 explanatory_permute = c("obstruct.factor", "perfor.factor", "node4.factor")
 
 # Linear regression
-colon_s \%>\% 
+colon_s \%>\%
   finalfit_permute("nodes", explanatory_base, explanatory_permute)
 
 # Cox proportional hazards regression
-colon_s \%>\% 
+colon_s \%>\%
   finalfit_permute("Surv(time, status)", explanatory_base, explanatory_permute)
 
 # Logistic regression
-colon_s \%>\% 
+colon_s \%>\%
   finalfit_permute("mort_5yr", explanatory_base, explanatory_permute)
 
 # Logistic regression with random effect (glmer)
-colon_s \%>\% 
-  finalfit_permute("mort_5yr", explanatory_base, explanatory_permute, 
+colon_s \%>\%
+  finalfit_permute("mort_5yr", explanatory_base, explanatory_permute,
     random_effect = "hospital")
 }

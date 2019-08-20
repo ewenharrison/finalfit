@@ -160,22 +160,22 @@ a random effect is specified.</p>
     <pre class="usage"><span class='fu'>finalfit</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>explanatory_multi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>keep_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
-  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='no'>...</span>)
+  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>keep_fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
 
 <span class='fu'>finalfit.lm</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>explanatory_multi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>keep_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
-  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='no'>...</span>)
+  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>keep_fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
 
 <span class='fu'>finalfit.glm</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>explanatory_multi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>keep_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
-  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='no'>...</span>)
+  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>keep_fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
 
 <span class='fu'>finalfit.coxph</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>explanatory_multi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>keep_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
-  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>keep_fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -230,6 +230,10 @@ left of table.</p></td>
     <tr>
       <th>dependent_label_suffix</th>
       <td><p>Add text after dependent label.</p></td>
+    </tr>
+    <tr>
+      <th>keep_fit_id</th>
+      <td><p>Keep original model output coefficient label (internal).</p></td>
     </tr>
     <tr>
       <th>...</th>

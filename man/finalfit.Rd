@@ -10,22 +10,22 @@
 finalfit(.data, dependent, explanatory, explanatory_multi = NULL,
   random_effect = NULL, keep_models = FALSE, metrics = FALSE,
   add_dependent_label = TRUE, dependent_label_prefix = "Dependent: ",
-  dependent_label_suffix = "", ...)
+  dependent_label_suffix = "", keep_fit_id = FALSE, ...)
 
 finalfit.lm(.data, dependent, explanatory, explanatory_multi = NULL,
   random_effect = NULL, keep_models = FALSE, metrics = FALSE,
   add_dependent_label = TRUE, dependent_label_prefix = "Dependent: ",
-  dependent_label_suffix = "", ...)
+  dependent_label_suffix = "", keep_fit_id = FALSE, ...)
 
 finalfit.glm(.data, dependent, explanatory, explanatory_multi = NULL,
   random_effect = NULL, keep_models = FALSE, metrics = FALSE,
   add_dependent_label = TRUE, dependent_label_prefix = "Dependent: ",
-  dependent_label_suffix = "", ...)
+  dependent_label_suffix = "", keep_fit_id = FALSE, ...)
 
 finalfit.coxph(.data, dependent, explanatory, explanatory_multi = NULL,
   random_effect = NULL, keep_models = FALSE, metrics = FALSE,
   add_dependent_label = TRUE, dependent_label_prefix = "Dependent: ",
-  dependent_label_suffix = "", ...)
+  dependent_label_suffix = "", keep_fit_id = FALSE, ...)
 }
 \arguments{
 \item{.data}{Data frame or tibble.}
@@ -58,6 +58,8 @@ left of table.}
 \item{dependent_label_prefix}{Add text before dependent label.}
 
 \item{dependent_label_suffix}{Add text after dependent label.}
+
+\item{keep_fit_id}{Keep original model output coefficient label (internal).}
 
 \item{...}{Other arguments to pass to \code{\link{fit2df}}:
 \code{estimate_name, digits, confint_type, confint_level,

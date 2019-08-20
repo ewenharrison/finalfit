@@ -964,6 +964,30 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 
 This was an email enquiry about how to build on a base model. The example request was in a survival context.
 
+This has been updated August 2019. We have left the original example of building the table from scratch as a comparison. See options on help page to
+
+* include the base model and/or the full model,
+* present the permuted variables at the top or bottom of the table,
+* produce separate model tables, or the default which is a single table. 
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+mydata = colon_s
+explanatory_base = c("age.factor", "sex.factor")
+explanatory_permute = c("obstruct.factor", "perfor.factor", "node4.factor")
+dependent = "Surv(time, status)"
+
+mydata %>% 
+	ff_permute(dependent, explanatory_base, explanatory_permute) %>% 
+	rename("Overall survival" = `Dependent: Surv(time, status)`, # optional tidying
+				 `n (%)` = "all") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r", "r"))
+```
+
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
 library(dplyr)

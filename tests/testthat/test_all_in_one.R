@@ -255,6 +255,66 @@ test_that("finalfit_permute gives a list", {
 		colon_s,
 		"nodes",
 		c("age.factor"),
-		c("obstruct.factor", "perfor.factor")
+		c("obstruct.factor", "perfor.factor"),
+		multiple_tables = TRUE,
+		base_on_top = TRUE
 	), "list")
+})
+
+test_that("finalfit_permute gives a list", {
+	expect_is(ff_permute(
+		colon_s,
+		"nodes",
+		c("age.factor"),
+		c("obstruct.factor", "perfor.factor"),
+		multiple_tables = TRUE,
+		base_on_top = FALSE
+	), "list")
+})
+
+test_that("finalfit_permute gives a list", {
+	expect_is(ff_permute(
+		colon_s,
+		"nodes",
+		c("age.factor"),
+		c("obstruct.factor", "perfor.factor"),
+		multiple_tables = FALSE,
+		base_on_top = FALSE
+	), "data.frame")
+})
+
+test_that("finalfit_permute gives a list", {
+	expect_is(ff_permute(
+		colon_s,
+		"nodes",
+		c("age.factor"),
+		c("obstruct.factor", "perfor.factor"),
+		multiple_tables = FALSE,
+		base_on_top = TRUE
+	), "data.frame")
+})
+
+
+test_that("finalfit_permute gives a list", {
+	expect_is(ff_permute(
+		colon_s,
+		"nodes",
+		c("age.factor"),
+		c("obstruct.factor", "perfor.factor"),
+		multiple_tables = TRUE,
+		include_base_model = FALSE,
+		include_full_model = FALSE
+	), "list")
+})
+
+test_that("finalfit_permute gives a list", {
+	expect_is(ff_permute(
+		colon_s,
+		"nodes",
+		c("age.factor"),
+		c("obstruct.factor", "perfor.factor"),
+		multiple_tables = FALSE,
+		include_base_model = FALSE,
+		include_full_model = FALSE
+	), "data.frame")
 })
