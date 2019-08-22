@@ -48,6 +48,7 @@ ff_permute <- function(.data, dependent = NULL,
 											 include_base_model = TRUE,
 											 include_full_model = TRUE,
 											 base_on_top = TRUE, ...){
+	args = list(...)
 	
 	if(base_on_top){
 		explanatory = explanatory_permute %>% 
@@ -62,7 +63,8 @@ ff_permute <- function(.data, dependent = NULL,
 	}
 	
 	fits = explanatory %>% 
-		purrr::map(~ do.call(finalfit, list(.data, dependent, explanatory = .x, keep_fit_id = TRUE, ...)))
+		purrr::map(~ do.call(finalfit, c(list(.data, dependent, explanatory = .x, keep_fit_id = TRUE), 
+																		 args)))
 	
 	if(base_on_top){
 		explanatory = c(explanatory_base, explanatory_permute)
@@ -87,12 +89,12 @@ ff_permute <- function(.data, dependent = NULL,
 	
 	# Single table ----
 	uni = finalfit(.data, dependent, explanatory, keep_fit_id = TRUE, 
-								 add_dependent_label = FALSE) %>% 
-		dplyr::select(-6)
+								 add_dependent_label = FALSE, ...) %>% 
+		dplyr::select(-length(.)) # remove last column
 	
 	## multivariable only
 	fits = fits %>% 
-		purrr::map(dplyr::select, -c(2:5))
+		purrr::map(dplyr::select, c(1, length(.[[1]]))) # first and last columns
 	
 	## number of models
 	n_fits = 1:length(fits)

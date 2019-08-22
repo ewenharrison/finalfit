@@ -964,7 +964,9 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 
 This was an email enquiry about how to build on a base model. The example request was in a survival context.
 
-This has been updated August 2019. We have left the original example of building the table from scratch as a comparison. See options on help page to
+This has been updated August 2019. We have left the original example of building the table from scratch as a comparison.
+
+`ff_permute()` allows combinations of variables to be built on a base model. See options on help page to,
 
 * include the base model and/or the full model,
 * present the permuted variables at the top or bottom of the table,
