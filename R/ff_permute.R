@@ -39,9 +39,9 @@
 #'   finalfit_permute("mort_5yr", explanatory_base, explanatory_permute)
 #'
 #' # Logistic regression with random effect (glmer)
-#' colon_s %>%
-#'   finalfit_permute("mort_5yr", explanatory_base, explanatory_permute,
-#'     random_effect = "hospital")
+#' # colon_s %>%
+#' #   finalfit_permute("mort_5yr", explanatory_base, explanatory_permute,
+#' #     random_effect = "hospital")
 ff_permute <- function(.data, dependent = NULL, 
 											 explanatory_base = NULL, explanatory_permute = NULL,
 											 multiple_tables = FALSE, 
