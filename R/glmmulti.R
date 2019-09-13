@@ -33,7 +33,7 @@
 #' 	fit2df(estimate_suffix=" (univariable)")
 #' 
 glmmulti <- function(.data, dependent, explanatory, family = "binomial", ...){
-  result = ff_eval(
+  ff_eval(
     glm(ff_formula(dependent, explanatory),
         data = .data, family = family, ...)
   )

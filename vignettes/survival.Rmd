@@ -76,14 +76,16 @@ melanoma = melanoma %>%
     									 1), # "died of melanoma" or "died of other causes"
     
     # Diease-specific survival
-    status_dss = ifelse(status == 2, 0, # "still alive"
-      ifelse(status == 1, 1, # "died of melanoma"
-        0)), # "died of other causes is censored"
+    status_dss = case_when(
+    	status == 2 ~ 0, # "still alive"
+      status == 1 ~ 1, # "died of melanoma"
+      TRUE ~  0),     # "died of other causes is censored"
 
     # Competing risks regression
-    status_crr = ifelse(status == 2, 0, # "still alive"
-      ifelse(status == 1, 1, # "died of melanoma"
-        2)), # "died of other causes"
+    status_crr = case_when(
+    	status == 2 ~ 0, # "still alive"
+      status == 1 ~ 1, # "died of melanoma"
+      TRUE ~ 2),       # "died of other causes"
     
     # Label and recode other variables
     age = ff_label(age, "Age (years)"), # ff_label to make table friendly var labels
