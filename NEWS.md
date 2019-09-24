@@ -1,3 +1,7 @@
+# finalfit 0.9.6
+
+* Better support for multiple imputation. `fit2df()` function for `mipo` objects. See missing data vignette/article for examples.
+
 # finalfit 0.9.5
 
 * `data(wcgs)` added.

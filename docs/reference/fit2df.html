@@ -62,7 +62,9 @@ documented separately. However this should work for a single or multilevel
 Bayesian logistic regression done in Stan, as long as the fixed effects are
 specified in the parameters block as a vector named beta, of length
 P, where P is the number of fixed effect parameters. e.g.
-parameters vector[P] beta;" />
+parameters vector[P] beta;
+fit2df.stanfit is the model extract method for the mipo object
+created using mice::pool." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -93,7 +95,7 @@ parameters vector[P] beta;" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.6</span>
       </span>
     </div>
 
@@ -199,6 +201,8 @@ Bayesian logistic regression done in Stan, as long as the fixed effects are
 specified in the parameters block as a vector named <code>beta</code>, of length
 <code>P</code>, where <code>P</code> is the number of fixed effect parameters. e.g.
 parameters vector[P] beta;</p>
+<p><code>fit2df.stanfit</code> is the model extract method for the <code>mipo</code> object
+created using <code><a href='http://stefvanbuuren.github.io/mice/reference/pool.html'>mice::pool</a></code>.</p>
     
     </div>
 
@@ -256,8 +260,8 @@ parameters vector[P] beta;</p>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for coxph</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -287,7 +291,14 @@ parameters vector[P] beta;</p>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for mipo</span>
+<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

@@ -15,6 +15,7 @@
 \alias{fit2df.crr}
 \alias{fit2df.crrlist}
 \alias{fit2df.stanfit}
+\alias{fit2df.mipo}
 \title{Extract model fit results to dataframe (generic): \code{finalfit} model
 extractors}
 \usage{
@@ -64,8 +65,8 @@ fit2df(...)
 \method{fit2df}{glmerMod}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_type = "Wald", confint_level = 0.95,
-  confint_sep = "-", ...)
+  digits = c(2, 2, 3), exp = TRUE, confint_type = "Wald",
+  confint_level = 0.95, confint_sep = "-", ...)
 
 \method{fit2df}{coxph}(.data, condense = TRUE, metrics = FALSE,
   explanatory_name = "explanatory", estimate_name = "HR",
@@ -91,6 +92,12 @@ fit2df(...)
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
   digits = c(2, 2, 3), confint_sep = "-", ...)
+
+\method{fit2df}{mipo}(.data, condense = TRUE, metrics = FALSE,
+  remove_intercept = TRUE, explanatory_name = "explanatory",
+  estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
+  digits = c(2, 2, 3), exp = FALSE, confint_level = 0.95,
+  confint_sep = "-", ...)
 }
 \arguments{
 \item{...}{Other arguments: \code{X}: Design matrix from stanfit modelling.
@@ -177,6 +184,9 @@ Bayesian logistic regression done in Stan, as long as the fixed effects are
 specified in the parameters block as a vector named \code{beta}, of length
 \code{P}, where \code{P} is the number of fixed effect parameters. e.g.
 parameters{ vector[P] beta; }
+
+\code{fit2df.stanfit} is the model extract method for the \code{mipo} object
+created using \code{mice::pool}.
 }
 \details{
 \code{fit2df} is a generic (S3) function for model extract.

@@ -484,6 +484,7 @@ fit2df.glmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept
 													 estimate_suffix = "",
 													 p_name = "p",
 													 digits=c(2,2,3),
+													 exp = TRUE,
 													 confint_type = "Wald",
 													 confint_level = 0.95,
 													 confint_sep = "-", ...){
@@ -717,5 +718,54 @@ fit2df.stanfit = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 	} else {
 		return(df.out)
 	}
+	return(df.out)
+}
+
+#' Extract \code{mice} pooled fit results to dataframe: \code{finalfit} model
+#' extracters
+#'
+#' \code{fit2df.stanfit} is the model extract method for the \code{mipo} object
+#' created using \code{mice::pool}.
+#'
+#' @rdname fit2df
+#' @method fit2df mipo
+#' @export
+#' 
+fit2df.mipo <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE,
+												explanatory_name = "explanatory",
+												estimate_name = "Coefficient",
+												estimate_suffix = "",
+												p_name = "p",
+												digits=c(2,2,3),
+												exp = FALSE,
+												confint_level = 0.95,
+												confint_sep = "-", ...){
+	
+	df.out = summary_mipo(.data, conf.int = TRUE, 
+															 conf.level = confint_level, 
+															 exponentiate = exp) %>% 
+		dplyr::select(estimate, `2.5 %`, `97.5 %`, p.value) %>% 
+		dplyr::mutate(explanatory_name = rownames(.)) %>% 
+		dplyr::select(dplyr::last_col(), dplyr::everything())
+	colnames(df.out) = c(explanatory_name, estimate_name, "L95", "U95", "p")
+	
+	if (condense==TRUE){
+		df.out = condense_fit(df.out, explanatory_name = explanatory_name,
+													estimate_name = estimate_name, estimate_suffix = estimate_suffix,
+													p_name = p_name, digits = digits, confint_sep = confint_sep)
+	}
+	
+	if (remove_intercept==TRUE){
+		df.out = remove_intercept(df.out)
+	}
+	
+	# Extract model metrics
+	## Not implemented for mipo
+	# if (metrics==TRUE){
+	#   metrics.out = ff_metrics(.data)
+	#   return(list(df.out, metrics.out))
+	# } else {
+	#   return(df.out)
+	# }
 	return(df.out)
 }

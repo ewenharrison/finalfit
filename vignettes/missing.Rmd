@@ -320,7 +320,7 @@ Here is some code to run `mice`. The package is well documented, and there are a
 
 Note also `finalfit::missing_predictorMatrix()`. This provides an easy way to include or exclude variables to be imputed or to be used for imputation.
 
-```{r, warning=FALSE, message=FALSE}
+```{r fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
 # Multivariate Imputation by Chained Equations (mice)
 library(finalfit)
 library(dplyr)
@@ -339,21 +339,37 @@ colon_s %>%
 		drop_from_imputed = c("obstruct.factor", "mort_5yr")
 		) -> predM
 
-colon_s %>% 
+fits = colon_s %>% 
   select(dependent, explanatory) %>% 
   # Usually run imputation with 10 imputed sets, 4 here for demonstration
   mice(m = 4, predictorMatrix = predM) %>% 
   # Run logistic regression on each imputed set
   with(glm(formula(ff_formula(dependent, explanatory)), 
-    family="binomial")) %>%
-  # Pool and summarise results
-  pool() %>%                                            
-  summary(conf.int = TRUE, exponentiate = TRUE) %>%
-  # Jiggle into finalfit format
-  mutate(explanatory_name = rownames(.)) %>%            
-  select(explanatory_name, estimate, `2.5 %`, `97.5 %`, p.value) %>% 
-  condense_fit(estimate_name = "OR (multiple imputation)") %>% 
-  remove_intercept() -> fit_imputed
+    family="binomial"))
+
+# Examples of extracting metrics from fits
+## AICs
+fits %>% 
+	getfit() %>% 
+	purrr::map(AIC)
+
+# C-statistic
+fits %>% 
+	getfit() %>% 
+	purrr::map(~ pROC::roc(.x$y, .x$fitted)$auc)
+
+  
+# Pool  results
+fits_pool = fits %>% 
+  pool()
+
+## Can be passed to or_plot
+colon_s %>% 
+	or_plot(dependent, explanatory, glmfit = fits_pool, table_text_size=4)
+
+# Summarise and put in table
+fit_imputed = fits_pool %>%                                  
+	fit2df(estimate_name = "OR (multiple imputation)", exp = TRUE)
 
 # Use finalfit merge methods to create and compare results
 colon_s %>% 

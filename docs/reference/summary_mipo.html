@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate formula as character string — ff_formula • finalfit</title>
+<title>Call to mice:::summary.mipo — summary_mipo • finalfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Generate formula as character string — ff_formula" />
+<meta property="og:title" content="Call to mice:::summary.mipo — summary_mipo" />
 
-<meta property="og:description" content="Useful when passing finalfit dependent and explanatory lists to base R
-functions" />
+<meta property="og:description" content="Not called directly." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -133,65 +132,26 @@ functions" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate formula as character string</h1>
+    <h1>Call to mice:::summary.mipo</h1>
     <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/finalfit_internal_functions.R'><code>R/finalfit_internal_functions.R</code></a></small>
-    <div class="hidden name"><code>ff_formula.Rd</code></div>
+    <div class="hidden name"><code>summary_mipo.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Useful when passing finalfit dependent and explanatory lists to base R
-functions</p>
+    <p>Not called directly.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ff_formula</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>summary_mipo</span>(<span class='no'>object</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"tests"</span>, <span class='st'>"all"</span>), <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>exponentiate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+        
 
-<span class='fu'>finalfit_formula</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>dependent</th>
-      <td><p>Optional character vector: name(s) of depdendent
-variable(s).</p></td>
-    </tr>
-    <tr>
-      <th>explanatory</th>
-      <td><p>Optional character vector: name(s) of explanatory
-variable(s).</p></td>
-    </tr>
-    <tr>
-      <th>random_effect</th>
-      <td><p>Optional character vector: name(s) of random effect
-variable(s).</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Character vector</p>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age"</span>, <span class='st'>"nodes"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
-<span class='fu'>ff_formula</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; [1] "mort_5yr ~ age+nodes+sex.factor+obstruct.factor+perfor.factor"</div><div class='input'>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"age"</span>, <span class='st'>"nodes"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
-<span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"(age.factor | hospital)"</span>
-<span class='fu'>ff_formula</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; [1] "mort_5yr ~ age+nodes+sex.factor+obstruct.factor+perfor.factor"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>
