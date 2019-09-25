@@ -1,6 +1,7 @@
 # finalfit 0.9.6
 
 * Better support for multiple imputation. `fit2df()` function for `mipo` objects. See missing data vignette/article for examples.
+* Easier now to build on a `finalfit()` table by including `keep_fit_id = TRUE`. See `ff_merge()` documentation for details. 
 
 # finalfit 0.9.5
 

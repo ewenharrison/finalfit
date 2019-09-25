@@ -6,10 +6,11 @@
 \title{Merge a \code{\link{summary_factorlist}()} table with any number of model
 results tables.}
 \usage{
-ff_merge(factorlist, fit2df_df, ref_symbol = "-", estimate_name = NULL)
+ff_merge(factorlist, fit2df_df, ref_symbol = "-", estimate_name = NULL,
+  last_merge = FALSE)
 
 finalfit_merge(factorlist, fit2df_df, ref_symbol = "-",
-  estimate_name = NULL)
+  estimate_name = NULL, last_merge = FALSE)
 }
 \arguments{
 \item{factorlist}{Output from \code{\link{summary_factorlist}(...,
@@ -23,8 +24,11 @@ or "1.0".}
 
 \item{estimate_name}{If you have chosen a new `estimate name` (e.g. "Odds
 ratio") when running a model wrapper (e.g. `glmuni`), then you need to pass
-this new name to `finalfit_merge` to generate correct table.
-Defaults to OR/HR/Coefficient}
+this new name to `finalfit_merge` to generate correct table. Defaults to
+OR/HR/Coefficient}
+
+\item{last_merge}{Logical. Set to try for the final merge in a series to
+remove index and fit_id columns.}
 }
 \value{
 Returns a dataframe of combined tables.
@@ -65,9 +69,12 @@ colon_s \%>\%
 example.summary \%>\%
 	finalfit_merge(example.univariable) \%>\%
 	finalfit_merge(example.multivariable) \%>\%
-	finalfit_merge(example.multilevel) \%>\%
-	select(-c(fit_id, index)) -> example.final
-example.final
+	finalfit_merge(example.multilevel, last_merge = TRUE)
+
+	# Using finalfit()
+	colon_s \%>\%
+	  finalfit(dependent, explanatory, keep_fit_id = TRUE) \%>\%
+	  ff_merge(example.multilevel, last_merge = TRUE)
 }
 \seealso{
 \code{\link{summary_factorlist}} \code{\link{fit2df}}

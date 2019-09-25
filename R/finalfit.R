@@ -320,7 +320,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 	index_fit_id = which(names(df.out)=="fit_id")
 	index_index = which(names(df.out)=="index")
 	if(keep_fit_id){
-		df.out = df.out[,-c(index_index)]
+		df.out = df.out
 	} else {
 		df.out = df.out[,-c(index_fit_id, index_index)]
 	}
@@ -490,7 +490,7 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 	index_fit_id = which(names(df.out)=="fit_id")
 	index_index = which(names(df.out)=="index")
 	if(keep_fit_id){
-		df.out = df.out[,-c(index_index)]
+		df.out = df.out
 	} else {
 		df.out = df.out[,-c(index_fit_id, index_index)]
 	}
@@ -632,7 +632,7 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 	index_fit_id = which(names(df.out)=="fit_id")
 	index_index = which(names(df.out)=="index")
 	if(keep_fit_id){
-		df.out = df.out[,-c(index_index)]
+		df.out = df.out
 	} else {
 		df.out = df.out[,-c(index_fit_id, index_index)]
 	}

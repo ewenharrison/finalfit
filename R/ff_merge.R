@@ -14,8 +14,10 @@
 #'   or "1.0".
 #' @param estimate_name If you have chosen a new `estimate name` (e.g. "Odds
 #'   ratio") when running a model wrapper (e.g. `glmuni`), then you need to pass
-#'   this new name to `finalfit_merge` to generate correct table.
-#'   Defaults to OR/HR/Coefficient
+#'   this new name to `finalfit_merge` to generate correct table. Defaults to
+#'   OR/HR/Coefficient
+#' @param last_merge Logical. Set to try for the final merge in a series to
+#'   remove index and fit_id columns.
 #' @return Returns a dataframe of combined tables.
 #'
 #' @seealso \code{\link{summary_factorlist}} \code{\link{fit2df}}
@@ -51,11 +53,14 @@
 #' example.summary %>%
 #' 	finalfit_merge(example.univariable) %>%
 #' 	finalfit_merge(example.multivariable) %>%
-#' 	finalfit_merge(example.multilevel) %>%
-#' 	select(-c(fit_id, index)) -> example.final
-#' example.final
+#' 	finalfit_merge(example.multilevel, last_merge = TRUE)
+#'
+#' 	# Using finalfit()
+#' 	colon_s %>%
+#' 	  finalfit(dependent, explanatory, keep_fit_id = TRUE) %>%
+#' 	  ff_merge(example.multilevel, last_merge = TRUE)
 
-ff_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL){
+ff_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL, last_merge = FALSE){
   if(is.null(factorlist$fit_id)) stop("Include fit_id=TRUE in summary_factorlist()")
   explanatory_name = names(fit2df_df)[1]
   estimate_col_id = ifelse(is.null(estimate_name), "Coefficient|OR|HR", paste0(estimate_name, "|Coefficient|OR|HR"))
@@ -64,6 +69,10 @@ ff_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL)
   df.out[,estimate_col] = as.character(df.out[,estimate_col])
   df.out[is.na(df.out[,estimate_col]),estimate_col] = ref_symbol
   df.out = df.out[order(df.out$index),]
+  if(last_merge == TRUE){
+    df.out = df.out %>% 
+      dplyr::select(-fit_id, -index)
+  }
   return(df.out)
 }
 

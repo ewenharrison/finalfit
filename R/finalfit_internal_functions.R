@@ -507,7 +507,7 @@ dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suf
 		d_label = d_label
 	}
 	names(df.out)[which(names(df.out) == "label")] = paste0(prefix, d_label, suffix)
-	names(df.out)[which(names(df.out) == "levels")] = ""
+	names(df.out)[which(names(df.out) == "levels")] = " "
 
 	return(df.out)
 }
@@ -719,7 +719,7 @@ globalVariables(c("L95", "U95", "fit_id", "Total",
 									"OR", "HR", "Coefficient", ".", ".id", "var", "value",
 									":=", "Mean", "SD", "Median", "Q3", "Q1", "IQR", "Formatted", 
 									"w", "Freq", "g", "total_prop", "Prop", "index_total", "vname", "Combined",
-									"2.5 %", "97.5 %", "p.value", "estimate"))
+									"2.5 %", "97.5 %", "p.value", "estimate", "index"))
 
 
 # Workaround ::: as summary.formula not (yet) exported from Hmisc

@@ -110,7 +110,7 @@ ff_permute <- function(.data, dependent = NULL,
 		purrr::reduce(dplyr::full_join, by = "fit_id") %>% 
 		dplyr::left_join(uni, ., by = "fit_id") %>% 
 		dplyr::mutate_all(~ ifelse(is.na(.), "-", .)) %>% 
-		dplyr::select(-fit_id) %>% 
+		dplyr::select(-fit_id, -index) %>% 
 		dependent_label(.data = .data, dependent = dependent)
 	return(out)
 }
