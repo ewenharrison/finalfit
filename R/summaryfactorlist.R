@@ -364,7 +364,7 @@ summarise_continuous = function(x, cont, total_col, digits) {
 	}
 	df_out = df_out %>%
 		dplyr::select(levels, Label, Formatted) %>%
-		tidyr::spread(Label, Formatted) %>%
+		tidyr::pivot_wider(names_from = Label, values_from = Formatted) %>%
 		dplyr::select(-Combined, Total = Combined)
 	if(total_col){
 		return(df_out)
@@ -409,7 +409,7 @@ summarise_categorical = function(x, column, total_col, digits) {
 		dplyr::ungroup() %>%
 		dplyr::mutate(Formatted = format_n_percent(Freq, Prop, digits[4])) %>%
 		dplyr::select(levels = w, g, Formatted, Total, index_total) %>%
-		tidyr::spread(g, Formatted)
+		tidyr::pivot_wider(names_from = g, values_from = Formatted)
 	
 	# Drop totals if not required
 	if (total_col) {

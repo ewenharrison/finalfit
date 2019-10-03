@@ -24,9 +24,9 @@
 #' # See boot_predict.
 
 boot_compare = function(bs.out, confint_sep = " to ", comparison = "difference", condense=TRUE,
-                        compare_name = NA, digits = c(2, 3), ref_symbol = 1){
+                        compare_name = NULL, digits = c(2, 3), ref_symbol = 1){
 
-  if(is.na(compare_name)){
+  if(is.null(compare_name)){
     compare_name = paste0(toupper(substring(comparison, 1, 1)), substring(comparison, 2))
   }
 

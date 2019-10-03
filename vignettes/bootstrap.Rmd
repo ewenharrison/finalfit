@@ -84,14 +84,14 @@ knitr::kable(table, row.names = FALSE, align = c("l", "l", "l", "r"))
 
 ## Make comparisons
 
-Better still, by including `boot_compare==TRUE`, comparisons are made between the first row of newdata and each subsequent row. These can be first differences (e.g. absolute risk differences) or ratios (e.g. relative risk ratios). The comparisons are done on the individual bootstrap predictions and the distribution summarised as a mean with percentile confidence intervals (95% CI as default, e.g. 2.5 and 97.5 percentiles). A p-value is generated on the proportion of values on the other side of the null from the mean, e.g. for a ratio greater than 1.0, p is the number of bootstrapped predictions under 1.0. Multiplied by two so it is two-sided.
+Better still, by including `boot_compare=TRUE` (default), comparisons are made between the first row of newdata and each subsequent row. These can be first differences (e.g. absolute risk differences) or ratios (e.g. relative risk ratios). The comparisons are done on the individual bootstrap predictions and the distribution summarised as a mean with percentile confidence intervals (95% CI as default, e.g. 2.5 and 97.5 percentiles). A p-value is generated on the proportion of values on the other side of the null from the mean, e.g. for a ratio greater than 1.0, p is the number of bootstrapped predictions under 1.0. Multiplied by two so it is two-sided.
 
 ```{r}
 colon_s %>% 
   glmmulti(dependent, explanatory) %>% 
   boot_predict(newdata, 
     estimate_name = "Predicted probability of death",
-    compare_name = "Absolute risk difference",
+    #compare_name = "Absolute risk difference",
     R=100, digits = c(2,3))
 ```
 

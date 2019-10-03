@@ -94,9 +94,9 @@
 #'       ggtitle("Probability of death by lymph node count")
 
 boot_predict = function (fit, newdata, type = "response", R = 100,
-                         estimate_name = NA,
+                         estimate_name = NULL,
                          confint_sep = " to ", condense=TRUE, boot_compare = TRUE,
-                         compare_name = NA, comparison = "difference", ref_symbol = "-",
+                         compare_name = NULL, comparison = "difference", ref_symbol = "-",
                          digits = c(2, 3)){
   fit_class = attr(fit, "class")[1]
 
@@ -114,7 +114,7 @@ boot_predict = function (fit, newdata, type = "response", R = 100,
   # Stop if newdata not dataframe
   if(!is.data.frame(newdata)) stop("Must provide dataframe with new data, see examples")
 
-  if(is.na(estimate_name)) estimate_name = "estimate"
+  if(is.null(estimate_name)) estimate_name = "estimate"
 
   formula = fit$terms
   family = fit$family$family

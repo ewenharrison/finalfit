@@ -32,7 +32,6 @@ Imports:
     plyr,
     pROC,
     purrr,
-    readr,
     scales,
     stats,
     stringr,
@@ -40,11 +39,12 @@ Imports:
     survminer,
     tibble,
     tidyr
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests:
     covr,
     cmprsk, 
     knitr,
+    readr,
     rlang,
     rmarkdown,
     rstan,
