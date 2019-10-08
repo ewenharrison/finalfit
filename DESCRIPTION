@@ -38,7 +38,7 @@ Imports:
     survival,
     survminer,
     tibble,
-    tidyr
+    tidyr (>= 1.0.0)
 RoxygenNote: 6.1.1
 Suggests:
     covr,

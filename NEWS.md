@@ -1,7 +1,10 @@
 # finalfit 0.9.6
 
+* Built on R 3.6.1.
 * Better support for multiple imputation. `fit2df()` function for `mipo` objects. See missing data vignette/article for examples.
 * Easier now to build on a `finalfit()` table by including `keep_fit_id = TRUE`. See `ff_merge()` documentation for details. 
+* Issues with update of `tidyr::spread()` in `summary_factorlist()` so updated to `pivot_wider()`.
+* `ff_columns_totals()` added to be used in combination with `summary_factorlist()`. 
 
 # finalfit 0.9.5
 

@@ -88,3 +88,10 @@ test_that("ff_label", {
 test_that("finalfit_label", {
 	expect_is(colon_s$sex.factor %>% finalfit_label("Sex"), "factor")
 })
+
+
+test_that("finalfit_label", {
+	expect_is(colon_s %>% 
+							extract_variable_label() %>%
+							ff_relabel(colon_s, .), "data.frame")
+})
