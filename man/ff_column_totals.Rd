@@ -12,6 +12,8 @@ finalfit_column_totals(df.in, .data, dependent, label = "Total N",
   prefix = "N=")
 }
 \arguments{
+\item{df.in}{\code{summary_factorlist()} output.}
+
 \item{.data}{Data frame used to create \code{summary_factorlist()}.}
 
 \item{dependent}{Character. Name of dependent variable.}
@@ -19,8 +21,6 @@ finalfit_column_totals(df.in, .data, dependent, label = "Total N",
 \item{label}{Character. Label for total row.}
 
 \item{prefix}{Character. Prefix for column totals.}
-
-\item{df.out}{\code{summary_factorlist()} output.}
 }
 \value{
 Data frame.

@@ -46,6 +46,14 @@ ff_column_totals <- function(df.in, .data, dependent, label = "Total N", prefix 
 	
 	df.out = dplyr::bind_rows(totals, df.in)
 	df.out[1, is.na(df.out[1, ])] = "" # For neatness change NA to "" in top row
+	
+	if(any(names(df.out) == "Total")){
+	df.out[1, "Total"] = 
+		sapply(df.out[1, ], stringr::str_extract, pattern = "[1234567890]+") %>% 
+		as.numeric() %>% 
+		sum(na.rm = TRUE) %>% 
+		paste0(prefix, .)
+	}
 	return(df.out)
 }
 
