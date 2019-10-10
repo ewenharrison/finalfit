@@ -5,15 +5,13 @@
 \alias{finalfit_column_totals}
 \title{Add column totals to \code{summary_factorlist()} output}
 \usage{
-ff_column_totals(df.out, .data, dependent, label = "Total N",
+ff_column_totals(df.in, .data, dependent, label = "Total N",
   prefix = "N=")
 
-finalfit_column_totals(df.out, .data, dependent, label = "Total N",
+finalfit_column_totals(df.in, .data, dependent, label = "Total N",
   prefix = "N=")
 }
 \arguments{
-\item{df.out}{\code{summary_factorlist()} output.}
-
 \item{.data}{Data frame used to create \code{summary_factorlist()}.}
 
 \item{dependent}{Character. Name of dependent variable.}
@@ -21,6 +19,8 @@ finalfit_column_totals(df.out, .data, dependent, label = "Total N",
 \item{label}{Character. Label for total row.}
 
 \item{prefix}{Character. Prefix for column totals.}
+
+\item{df.out}{\code{summary_factorlist()} output.}
 }
 \value{
 Data frame.
@@ -37,10 +37,11 @@ colon_s \%>\%
  ff_column_totals(colon_s, dependent)
 
 # Ensure works with missing data in dependent
-colon_s \%>\% 
+colon_s = colon_s \%>\% 
  dplyr::mutate(
   mort_5yr = forcats::fct_explicit_na(mort_5yr)
- ) \%>\% 
+ )
+ colon_s \%>\% 
  summary_factorlist(dependent, explanatory) \%>\% 
  ff_column_totals(colon_s, dependent)
 }

@@ -13,7 +13,7 @@ finalfit_remove_ref(.data)
 \item{.data}{Output from \code{\link{finalfit}} or similar.}
 }
 \value{
-Dataframe.
+Data frame.
 }
 \description{
 This looks for a column with a name including "Coefficient", "OR", or "HR"

@@ -5,6 +5,8 @@
 * Easier now to build on a `finalfit()` table by including `keep_fit_id = TRUE`. See `ff_merge()` documentation for details. 
 * Issues with update of `tidyr::spread()` in `summary_factorlist()` so updated to `pivot_wider()`.
 * `ff_columns_totals()` added to be used in combination with `summary_factorlist()`. 
+* `ff_remove_p()` can be applied to any condensed finalfit output to reomve the p-value. #26
+* `finalfit()` now takes `column = FALSE` to provide row proportions. #26 
 
 # finalfit 0.9.5
 

@@ -155,19 +155,15 @@
     <p>Add column totals to <code><a href='summary_factorlist.html'>summary_factorlist()</a></code> output</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ff_column_totals</span>(<span class='no'>df.out</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
+    <pre class="usage"><span class='fu'>ff_column_totals</span>(<span class='no'>df.in</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
   <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"N="</span>)
 
-<span class='fu'>finalfit_column_totals</span>(<span class='no'>df.out</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
+<span class='fu'>finalfit_column_totals</span>(<span class='no'>df.in</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
   <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"N="</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>df.out</th>
-      <td><p><code><a href='summary_factorlist.html'>summary_factorlist()</a></code> output.</p></td>
-    </tr>
     <tr>
       <th>.data</th>
       <td><p>Data frame used to create <code><a href='summary_factorlist.html'>summary_factorlist()</a></code>.</p></td>
@@ -184,6 +180,10 @@
       <th>prefix</th>
       <td><p>Character. Prefix for column totals.</p></td>
     </tr>
+    <tr>
+      <th>df.out</th>
+      <td><p><code><a href='summary_factorlist.html'>summary_factorlist()</a></code> output.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -198,32 +198,33 @@
  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
  <span class='fu'>ff_column_totals</span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt; <span class='message'>Dependent includes missing data. This is dropped. Consider forcats::fct_explicit_na</span></div><div class='output co'>#&gt;          label      levels      Alive       Died
 #&gt; 1      Total N                  N=511      N=404
-#&gt; 2          Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt; 3              40-59 years 208 (61.4) 131 (38.6)
-#&gt; 4                60+ years 272 (53.4) 237 (46.6)
-#&gt; 5          Sex      Female 243 (55.6) 194 (44.4)
-#&gt; 6                     Male 268 (56.1) 210 (43.9)
-#&gt; 7  Obstruction          No 408 (56.7) 312 (43.3)
-#&gt; 8                      Yes  89 (51.1)  85 (48.9)
-#&gt; 9  Perforation          No 497 (56.0) 391 (44.0)
-#&gt; 10                     Yes  14 (51.9)  13 (48.1)</div><div class='input'>
+#&gt; 2          Age   &lt;40 years   31 (6.1)   36 (8.9)
+#&gt; 3              40-59 years 208 (40.7) 131 (32.4)
+#&gt; 4                60+ years 272 (53.2) 237 (58.7)
+#&gt; 5          Sex      Female 243 (47.6) 194 (48.0)
+#&gt; 6                     Male 268 (52.4) 210 (52.0)
+#&gt; 7  Obstruction          No 408 (82.1) 312 (78.6)
+#&gt; 8                      Yes  89 (17.9)  85 (21.4)
+#&gt; 9  Perforation          No 497 (97.3) 391 (96.8)
+#&gt; 10                     Yes   14 (2.7)   13 (3.2)</div><div class='input'>
 <span class='co'># Ensure works with missing data in dependent</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
+<span class='no'>colon_s</span> <span class='kw'>=</span> <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
   <span class='kw'>mort_5yr</span> <span class='kw'>=</span> <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_explicit_na.html'>fct_explicit_na</a></span>(<span class='no'>mort_5yr</span>)
- ) <span class='kw'>%&gt;%</span>
+ )
+ <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'>ff_column_totals</span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='message'>Dependent includes missing data. This is dropped. Consider forcats::fct_explicit_na</span></div><div class='output co'>#&gt;          label      levels      Alive       Died (Missing)
-#&gt; 1      Total N                  N=511      N=404      &lt;NA&gt;
-#&gt; 2          Age   &lt;40 years  31 (44.3)  36 (51.4)   3 (4.3)
-#&gt; 3              40-59 years 208 (60.5) 131 (38.1)   5 (1.5)
-#&gt; 4                60+ years 272 (52.8) 237 (46.0)   6 (1.2)
-#&gt; 5          Sex      Female 243 (54.6) 194 (43.6)   8 (1.8)
-#&gt; 6                     Male 268 (55.4) 210 (43.4)   6 (1.2)
-#&gt; 7  Obstruction          No 408 (55.7) 312 (42.6)  12 (1.6)
-#&gt; 8                      Yes  89 (50.6)  85 (48.3)   2 (1.1)
-#&gt; 9  Perforation          No 497 (55.1) 391 (43.3)  14 (1.6)
-#&gt; 10                     Yes  14 (51.9)  13 (48.1)   0 (0.0)</div></pre>
+ <span class='fu'>ff_column_totals</span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt;          label      levels      Alive       Died  (Missing)
+#&gt; 1      Total N                  N=511      N=404       N=14
+#&gt; 2          Age   &lt;40 years   31 (6.1)   36 (8.9)   3 (21.4)
+#&gt; 3              40-59 years 208 (40.7) 131 (32.4)   5 (35.7)
+#&gt; 4                60+ years 272 (53.2) 237 (58.7)   6 (42.9)
+#&gt; 5          Sex      Female 243 (47.6) 194 (48.0)   8 (57.1)
+#&gt; 6                     Male 268 (52.4) 210 (52.0)   6 (42.9)
+#&gt; 7  Obstruction          No 408 (82.1) 312 (78.6)  12 (85.7)
+#&gt; 8                      Yes  89 (17.9)  85 (21.4)   2 (14.3)
+#&gt; 9  Perforation          No 497 (97.3) 391 (96.8) 14 (100.0)
+#&gt; 10                     Yes   14 (2.7)   13 (3.2)    0 (0.0)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

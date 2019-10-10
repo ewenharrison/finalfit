@@ -218,15 +218,15 @@ variable. Can be continuous, a binary factor, or a survival object of form
          <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>fit_id</span>, <span class='no'>index</span>)) <span class='kw'>%&gt;%</span>
          <span class='fu'>dependent_label</span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>) <span class='kw'>-&gt;</span> <span class='no'>example.final</span>
   <span class='no'>example.final</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                         Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt; 2                             40-59 years 208 (61.4) 131 (38.6)
-#&gt; 3                               60+ years 272 (53.4) 237 (46.6)
-#&gt; 8                         Sex      Female 243 (55.6) 194 (44.4)
-#&gt; 9                                    Male 268 (56.1) 210 (43.9)
-#&gt; 4                 Obstruction          No 408 (56.7) 312 (43.3)
-#&gt; 5                                     Yes  89 (51.1)  85 (48.9)
-#&gt; 6                 Perforation          No 497 (56.0) 391 (44.0)
-#&gt; 7                                     Yes  14 (51.9)  13 (48.1)
+#&gt; 1                         Age   &lt;40 years   31 (6.1)   36 (8.9)
+#&gt; 2                             40-59 years 208 (40.7) 131 (32.4)
+#&gt; 3                               60+ years 272 (53.2) 237 (58.7)
+#&gt; 8                         Sex      Female 243 (47.6) 194 (48.0)
+#&gt; 9                                    Male 268 (52.4) 210 (52.0)
+#&gt; 4                 Obstruction          No 408 (82.1) 312 (78.6)
+#&gt; 5                                     Yes  89 (17.9)  85 (21.4)
+#&gt; 6                 Perforation          No 497 (97.3) 391 (96.8)
+#&gt; 7                                     Yes   14 (2.7)   13 (3.2)
 #&gt;            OR (univariable)        OR (multivariable)            OR (multilevel
 #&gt; 1                         -                         -                         -
 #&gt; 2 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041) 0.75 (0.39-1.44, p=0.382)

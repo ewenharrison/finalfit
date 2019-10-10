@@ -161,7 +161,7 @@ summary table.</p>
 
     <pre class="usage"><span class='fu'>summary_factorlist</span>(<span class='no'>.data</span>, <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>explanatory</span>, <span class='kw'>cont</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
   <span class='kw'>cont_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>),
-  <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>total_col</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>total_col</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>orderbytotal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>na_to_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
   <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='no'>...</span>)</pre>
@@ -278,13 +278,13 @@ regression models.</p>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt;         label      levels          No         Yes     p
 #&gt; 1 Age (years)   Mean (SD) 59.8 (11.9) 58.4 (13.3) 0.578
-#&gt; 2         Age   &lt;40 years   68 (97.1)     2 (2.9) 1.000
-#&gt; 3             40-59 years  334 (97.1)    10 (2.9)      
-#&gt; 4               60+ years  500 (97.1)    15 (2.9)      
-#&gt; 7         Sex      Female  432 (97.1)    13 (2.9) 0.979
-#&gt; 8                    Male  470 (97.1)    14 (2.9)      
-#&gt; 5 Obstruction          No  715 (97.7)    17 (2.3) 0.018
-#&gt; 6                     Yes  166 (94.3)    10 (5.7)      </div><div class='input'>
+#&gt; 2         Age   &lt;40 years    68 (7.5)     2 (7.4) 1.000
+#&gt; 3             40-59 years  334 (37.0)   10 (37.0)      
+#&gt; 4               60+ years  500 (55.4)   15 (55.6)      
+#&gt; 7         Sex      Female  432 (47.9)   13 (48.1) 0.979
+#&gt; 8                    Male  470 (52.1)   14 (51.9)      
+#&gt; 5 Obstruction          No  715 (81.2)   17 (63.0) 0.018
+#&gt; 6                     Yes  166 (18.8)   10 (37.0)      </div><div class='input'>
 <span class='co'># summary.factorlist() is also commonly used to summarise any number of</span>
 <span class='co'># variables by an outcome variable (say dead yes/no).</span>
 
@@ -293,15 +293,15 @@ regression models.</p>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt;         label      levels      Alive       Died
-#&gt; 1         Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt; 2             40-59 years 208 (61.4) 131 (38.6)
-#&gt; 3               60+ years 272 (53.4) 237 (46.6)
-#&gt; 8         Sex      Female 243 (55.6) 194 (44.4)
-#&gt; 9                    Male 268 (56.1) 210 (43.9)
-#&gt; 4 Obstruction          No 408 (56.7) 312 (43.3)
-#&gt; 5                     Yes  89 (51.1)  85 (48.9)
-#&gt; 6 Perforation          No 497 (56.0) 391 (44.0)
-#&gt; 7                     Yes  14 (51.9)  13 (48.1)</div></pre>
+#&gt; 1         Age   &lt;40 years   31 (6.1)   36 (8.9)
+#&gt; 2             40-59 years 208 (40.7) 131 (32.4)
+#&gt; 3               60+ years 272 (53.2) 237 (58.7)
+#&gt; 8         Sex      Female 243 (47.6) 194 (48.0)
+#&gt; 9                    Male 268 (52.4) 210 (52.0)
+#&gt; 4 Obstruction          No 408 (82.1) 312 (78.6)
+#&gt; 5                     Yes  89 (17.9)  85 (21.4)
+#&gt; 6 Perforation          No 497 (97.3) 391 (96.8)
+#&gt; 7                     Yes   14 (2.7)   13 (3.2)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

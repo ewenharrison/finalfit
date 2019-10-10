@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compare missing data — missing_compare • finalfit</title>
+<title>Remove p-value from output — ff_remove_p • finalfit</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,9 @@
 
 
 
-<meta property="og:title" content="Compare missing data — missing_compare" />
-<meta property="og:description" content="Compare missing data" />
+<meta property="og:title" content="Remove p-value from output — ff_remove_p" />
+<meta property="og:description" content="This will work with finalfit and any fit2df
+output." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -146,102 +147,58 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compare missing data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/missing_compare.R'><code>R/missing_compare.R</code></a></small>
-    <div class="hidden name"><code>missing_compare.Rd</code></div>
+    <h1>Remove p-value from output</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/ff_remove_ref.R'><code>R/ff_remove_ref.R</code></a></small>
+    <div class="hidden name"><code>ff_remove_p.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compare missing data</p>
+    <p>This will work with <code><a href='finalfit.html'>finalfit</a></code> and any <code><a href='fit2df.html'>fit2df</a></code>
+output.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>missing_compare</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>ff_remove_p</span>(<span class='no'>.data</span>)
+
+<span class='fu'>finalfit_remove_p</span>(<span class='no'>.data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>Dataframe.</p></td>
-    </tr>
-    <tr>
-      <th>dependent</th>
-      <td><p>Variable to test missingness against other variables with.</p></td>
-    </tr>
-    <tr>
-      <th>explanatory</th>
-      <td><p>Variables to have missingness tested against.</p></td>
-    </tr>
-    <tr>
-      <th>na_include</th>
-      <td><p>Include missing data in explanatory variables as a factor
-level.</p></td>
+      <td><p>Output from <code><a href='finalfit.html'>finalfit</a></code> or similar.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A dataframe comparing missing data in the dependent variable across
-  explanatory variables. Continuous data are compared with a Kruskal Wallis
-  test. Discrete data are compared with a chi-squared test.</p>
+    <p>Data frame.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>finalfit</span>)
-
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age"</span>, <span class='st'>"age.factor"</span>, <span class='st'>"extent.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
-
+    <pre class="examples"><div class='input'><span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
+<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ff_glimpse.html'>ff_glimpse</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; Continuous
-#&gt;           label var_type   n missing_n missing_percent mean   sd  min
-#&gt; age Age (years)    &lt;dbl&gt; 929         0             0.0 59.8 11.9 18.0
-#&gt;     quartile_25 median quartile_75  max
-#&gt; age        53.0   61.0        69.0 85.0
-#&gt; 
-#&gt; Categorical
-#&gt;                          label var_type   n missing_n missing_percent levels_n
-#&gt; perfor.factor      Perforation    &lt;fct&gt; 929         0             0.0        2
-#&gt; extent.factor Extent of spread    &lt;fct&gt; 929         0             0.0        4
-#&gt; age.factor                 Age    &lt;fct&gt; 929         0             0.0        3
-#&gt; mort_5yr      Mortality 5 year    &lt;fct&gt; 915        14             1.5        2
-#&gt;                                                               levels
-#&gt; perfor.factor                                            "No", "Yes"
-#&gt; extent.factor "Submucosa", "Muscle", "Serosa", "Adjacent structures"
-#&gt; age.factor                   "&lt;40 years", "40-59 years", "60+ years"
-#&gt; mort_5yr                                "Alive", "Died", "(Missing)"
-#&gt;                   levels_count         levels_percent
-#&gt; perfor.factor          902, 27             97.1,  2.9
-#&gt; extent.factor 21, 106, 759, 43  2.3, 11.4, 81.7,  4.6
-#&gt; age.factor        70, 344, 515        7.5, 37.0, 55.4
-#&gt; mort_5yr          511, 404, 14       55.0, 43.5,  1.5</div><div class='input'>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='missing_pattern.html'>missing_pattern</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='img'><img src='missing_compare-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;     age perfor.factor extent.factor age.factor mort_5yr   
-#&gt; 915   1             1             1          1        1  0
-#&gt; 14    1             1             1          1        0  1
-#&gt;       0             0             0          0       14 14</div><div class='input'>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>missing_compare</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt;    Missing data analysis: Mortality 5 year                     Not missing
-#&gt; 1                              Age (years)           Mean (SD) 59.8 (11.9)
-#&gt; 2                                      Age           &lt;40 years    67 (7.3)
-#&gt; 3                                                  40-59 years  339 (37.0)
-#&gt; 4                                                    60+ years  509 (55.6)
-#&gt; 5                         Extent of spread           Submucosa    20 (2.2)
-#&gt; 6                                                       Muscle  103 (11.3)
-#&gt; 7                                                       Serosa  750 (82.0)
-#&gt; 8                                          Adjacent structures    42 (4.6)
-#&gt; 9                              Perforation                  No  888 (97.0)
-#&gt; 10                                                         Yes    27 (3.0)
-#&gt;        Missing     p
-#&gt; 1  53.9 (12.7) 0.077
-#&gt; 2     3 (21.4) 0.132
-#&gt; 3     5 (35.7)      
-#&gt; 4     6 (42.9)      
-#&gt; 5      1 (7.1) 0.325
-#&gt; 6     3 (21.4)      
-#&gt; 7     9 (64.3)      
-#&gt; 8      1 (7.1)      
-#&gt; 9   14 (100.0) 0.514
-#&gt; 10     0 (0.0)      </div></pre>
+  <span class='fu'><a href='finalfit.html'>finalfit</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>ff_remove_p</span>()</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
+#&gt; 1                         Age   &lt;40 years  31 (46.3)  36 (53.7)
+#&gt; 2                             40-59 years 208 (61.4) 131 (38.6)
+#&gt; 3                               60+ years 272 (53.4) 237 (46.6)
+#&gt; 4                         Sex      Female 243 (55.6) 194 (44.4)
+#&gt; 5                                    Male 268 (56.1) 210 (43.9)
+#&gt; 6                 Obstruction          No 408 (56.7) 312 (43.3)
+#&gt; 7                                     Yes  89 (51.1)  85 (48.9)
+#&gt; 8                 Perforation          No 497 (56.0) 391 (44.0)
+#&gt; 9                                     Yes  14 (51.9)  13 (48.1)
+#&gt;   OR (univariable) OR (multivariable)
+#&gt; 1                -                  -
+#&gt; 2 0.54 (0.32-0.92)   0.57 (0.34-0.98)
+#&gt; 3 0.75 (0.45-1.25)   0.81 (0.48-1.36)
+#&gt; 4                -                  -
+#&gt; 5 0.98 (0.76-1.27)   0.98 (0.75-1.28)
+#&gt; 6                -                  -
+#&gt; 7 1.25 (0.90-1.74)   1.25 (0.90-1.76)
+#&gt; 8                -                  -
+#&gt; 9 1.18 (0.54-2.55)   1.12 (0.51-2.44)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

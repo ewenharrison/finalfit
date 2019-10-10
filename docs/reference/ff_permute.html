@@ -279,18 +279,18 @@ table.</p></td>
 #&gt; 11    6.19 (5.84 to 6.54, p&lt;0.001)</div><div class='input'>
 <span class='co'># Cox proportional hazards regression</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit_permute</span>(<span class='st'>"Surv(time, status)"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt;    Dependent: Surv(time, status)                    all
-#&gt; 1                            Age   &lt;40 years   70 (7.5)
-#&gt; 2                                40-59 years 344 (37.0)
-#&gt; 3                                  60+ years 515 (55.4)
-#&gt; 4                            Sex      Female 445 (47.9)
-#&gt; 5                                       Male 484 (52.1)
-#&gt; 6                    Obstruction          No 732 (80.6)
-#&gt; 7                                        Yes 176 (19.4)
-#&gt; 8                    Perforation          No 902 (97.1)
-#&gt; 9                                        Yes   27 (2.9)
-#&gt; 10             &gt;4 positive nodes          No 674 (72.6)
-#&gt; 11                                       Yes 255 (27.4)
+  <span class='fu'>finalfit_permute</span>(<span class='st'>"Surv(time, status)"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt;    Dependent: Surv(time, status)                     all
+#&gt; 1                            Age   &lt;40 years  70 (100.0)
+#&gt; 2                                40-59 years 344 (100.0)
+#&gt; 3                                  60+ years 515 (100.0)
+#&gt; 4                            Sex      Female 445 (100.0)
+#&gt; 5                                       Male 484 (100.0)
+#&gt; 6                    Obstruction          No 732 (100.0)
+#&gt; 7                                        Yes 176 (100.0)
+#&gt; 8                    Perforation          No 902 (100.0)
+#&gt; 9                                        Yes  27 (100.0)
+#&gt; 10             &gt;4 positive nodes          No 674 (100.0)
+#&gt; 11                                       Yes 255 (100.0)
 #&gt;             HR (univariable)      HR (multivariable) 1
 #&gt; 1                          -                         -
 #&gt; 2  0.76 (0.53-1.09, p=0.132) 0.76 (0.53-1.08, p=0.129)
@@ -330,17 +330,17 @@ table.</p></td>
 <span class='co'># Logistic regression</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>finalfit_permute</span>(<span class='st'>"mort_5yr"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;    Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                          Age   &lt;40 years   31 (6.1)   36 (8.9)
-#&gt; 2                              40-59 years 208 (40.7) 131 (32.4)
-#&gt; 3                                60+ years 272 (53.2) 237 (58.7)
-#&gt; 4                          Sex      Female 243 (47.6) 194 (48.0)
-#&gt; 5                                     Male 268 (52.4) 210 (52.0)
-#&gt; 6                  Obstruction          No 408 (82.1) 312 (78.6)
-#&gt; 7                                      Yes  89 (17.9)  85 (21.4)
-#&gt; 8                  Perforation          No 497 (97.3) 391 (96.8)
-#&gt; 9                                      Yes   14 (2.7)   13 (3.2)
-#&gt; 10           &gt;4 positive nodes          No 431 (84.3) 232 (57.4)
-#&gt; 11                                     Yes  80 (15.7) 172 (42.6)
+#&gt; 1                          Age   &lt;40 years  31 (46.3)  36 (53.7)
+#&gt; 2                              40-59 years 208 (61.4) 131 (38.6)
+#&gt; 3                                60+ years 272 (53.4) 237 (46.6)
+#&gt; 4                          Sex      Female 243 (55.6) 194 (44.4)
+#&gt; 5                                     Male 268 (56.1) 210 (43.9)
+#&gt; 6                  Obstruction          No 408 (56.7) 312 (43.3)
+#&gt; 7                                      Yes  89 (51.1)  85 (48.9)
+#&gt; 8                  Perforation          No 497 (56.0) 391 (44.0)
+#&gt; 9                                      Yes  14 (51.9)  13 (48.1)
+#&gt; 10           &gt;4 positive nodes          No 431 (65.0) 232 (35.0)
+#&gt; 11                                     Yes  80 (31.7) 172 (68.3)
 #&gt;             OR (univariable)      OR (multivariable) 1
 #&gt; 1                          -                         -
 #&gt; 2  0.54 (0.32-0.92, p=0.023) 0.54 (0.32-0.92, p=0.023)

@@ -128,7 +128,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.07 Column proportions (rather than row)
+### 1.07 Row proportions (rather than column)
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -136,7 +136,7 @@ explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
 	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
-										 column = TRUE) -> t
+										 column = FALSE) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -294,6 +294,23 @@ colon_s %>%
 library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "l", "l", "r", "r", "r"))
 ```
+
+### 1.15 Add column totals
+
+```{r, warning=FALSE}
+explanatory = c("age.factor", "sex.factor")
+dependent = "rx.factor"
+
+colon_s %>%
+	summary_factorlist(., dependent, explanatory, p = TRUE) %>% 
+	ff_column_totals(colon_s, dependent)	-> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "l", "l", "r", "r", "r"))
+```
+
 
 ## 2 Model tables with `finalfit()`
 
@@ -535,7 +552,23 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.14 Mixed effects random-intercept model
+### 2.14 Remove p-value
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+colon_s %>%
+	finalfit(dependent, explanatory) %>% 
+	ff_remove_p() -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 2.15 Mixed effects random-intercept model
 
 At its simplest, a random-intercept model can be specified using a single quoted variable. In this example, it is the equivalent of quoting `random_effect = "(1 | hospital)"`. 
 
@@ -554,7 +587,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.15 Mixed effects random-slope model
+### 2.16 Mixed effects random-slope model
 
 In the example below, allow the effect of age on outcome to vary by hospital. Note, this specification must have parentheses included.
 
@@ -573,7 +606,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.16 Mixed effects random-slope model directly from `lme4`
+### 2.17 Mixed effects random-slope model directly from `lme4`
 
 Clearly, as models get more complex, parameters such as random effect group variances may require to be extracted directly from model outputs. 
 
@@ -592,7 +625,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.17 Exclude all missing data in final model from univariable analyses 
+### 2.18 Exclude all missing data in final model from univariable analyses 
 
 This can be useful if you want the numbers in the final table to match the final multivariable model. However, be careful to include a full explanation of this in the methods and the reason for exluding the missing data. 
 
@@ -611,7 +644,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.18 Linear regression
+### 2.19 Linear regression
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -626,7 +659,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.19 Mixed effects random-intercept linear regression
+### 2.20 Mixed effects random-intercept linear regression
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -643,7 +676,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.20 Mixed effects random-slope linear regression
+### 2.21 Mixed effects random-slope linear regression
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -660,7 +693,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.21 Cox proportional hazards model (survival / time to event)
+### 2.22 Cox proportional hazards model (survival / time to event)
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -675,7 +708,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 2.22 Cox proportional hazards model: change dependent label
+### 2.23 Cox proportional hazards model: change dependent label
 
 As above, the dependent label cannot be specfied directly in the model to avoid errors. However, in survival modelling the surivial object specification can be long or awkward. Therefore, here is the work around. 
 
@@ -758,9 +791,9 @@ colon_s %>%
 	## Add mixed effects
 	ff_merge(
 		glmmixed(colon_s, dependent, explanatory, random_effect) %>%
-			fit2df(estimate_suffix=" (multilevel)") 
+			fit2df(estimate_suffix=" (multilevel)"),
+		last_merge = TRUE
 	) %>% 
-	select(-c(fit_id, index)) %>% 
 	dependent_label(colon_s, dependent) -> t
 ```
 
@@ -803,9 +836,8 @@ d.AD %>%
 	ff_merge(fit_uni, estimate_name = "Rate ratio") %>% 
 	
 	## Add multivariable
-	ff_merge(fit_multi, estimate_name = "Rate ratio") %>% 
-	
-	select(-c(fit_id, index)) %>% 
+	ff_merge(fit_multi, estimate_name = "Rate ratio",
+					 last_merge = TRUE) %>% 
 	dependent_label(d.AD, dependent) -> t
 ```
 
@@ -839,9 +871,7 @@ clotting %>%
 	summary_factorlist(dependent, explanatory, cont = "median", fit_id=TRUE)  %>% 
 	
 	## Add fit
-	ff_merge(fit_uni) %>% 
-	
-	select(-c(fit_id, index)) %>% 
+	ff_merge(fit_uni, last_merge = TRUE) %>% 
 	dependent_label(colon_s, dependent) -> t
 ```
 
@@ -873,9 +903,9 @@ colon_s %>%
 	## Add multivariable
 	ff_merge(
 		glmmulti(colon_s, dependent, explanatory, weights = weights, family = quasibinomial) %>%
-			fit2df(estimate_suffix=" (multivariable)")
+			fit2df(estimate_suffix=" (multivariable)"),
+		last_merge = TRUE
 	) %>% 
-	select(-c(fit_id, index)) %>% 
 	dependent_label(colon_s, dependent) -> t
 ```
 
@@ -911,10 +941,9 @@ colon_s %>%
 		glm(
 			ff_formula(dependent, explanatory), data = colon_s, family = "binomial", weights = NULL
 		) %>%
-			fit2df(estimate_suffix=" (multivariable)")
+			fit2df(estimate_suffix=" (multivariable)"),
+		last_merge = TRUE
 	) %>% 
-	
-	select(-c(fit_id, index)) %>% 
 	dependent_label(colon_s, dependent) -> t
 ```
 
@@ -1039,11 +1068,11 @@ mydata %>%
 	# Full
 	ff_merge(
 		coxphmulti(mydata, dependent, c(base_explanatory, explanatory)) %>% 
-			fit2df(estimate_suffix = " (Full)")
+			fit2df(estimate_suffix = " (Full)"),
+		last_merge = TRUE
 	) %>% 
 	
 	# Tidy-up
-	select(-c(fit_id, index)) %>% 
 	rename("Overall survival" = label) %>% 
 	rename(" " = levels) %>% 
 	rename(`n (%)` = all) -> t
@@ -1099,8 +1128,7 @@ fit_multi = dstrat %>%
 apistrat %>%
   summary_factorlist(dependent, explanatory, fit_id = TRUE) %>%
   ff_merge(fit_uni) %>%
-  ff_merge(fit_multi) %>%
-  select(-fit_id, -index) %>%
+  ff_merge(fit_multi, last_merge = TRUE) %>%
   dependent_label(apistrat, dependent) -> t
 ```
 
@@ -1145,8 +1173,7 @@ fit_multi = dstrat %>%
 apistrat %>%
   summary_factorlist(dependent, explanatory, fit_id = TRUE) %>%
   ff_merge(fit_uni) %>%
-  ff_merge(fit_multi) %>%
-  select(-fit_id, -index) %>%
+  ff_merge(fit_multi, last_merge = TRUE) %>%
   dependent_label(apistrat, dependent) -> t
 ```
 
@@ -1154,5 +1181,3 @@ apistrat %>%
 library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r", "r"))
 ```
-
-

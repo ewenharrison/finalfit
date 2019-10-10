@@ -18,6 +18,7 @@
 #' @param random_effect Character vector of length 1: quoted name of random
 #'   effects variable. When included mixed effects model generated
 #'   (\code{lme4::glmer lme4::lmer}).
+#' @param column Logical: Compute margins by column rather than row.
 #' @param keep_models Logical: include full multivariable model in output when
 #'   working with reduced multivariable model (\code{explanatory_multi}) and/or
 #'   mixed effect models (\code{random_effect}).
@@ -127,7 +128,7 @@
 #'
 
 finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-										keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
+										column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
 										dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 										keep_fit_id = FALSE, ...){
 	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
@@ -139,7 +140,8 @@ finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, rando
 
 	args = list(.data=.data, dependent=dependent, explanatory=explanatory,
 							explanatory_multi=explanatory_multi,
-							random_effect=random_effect, keep_models=keep_models,
+							random_effect=random_effect, column = column,
+							keep_models=keep_models,
 							metrics=metrics,
 							add_dependent_label = add_dependent_label,
 							dependent_label_prefix=dependent_label_prefix,
@@ -173,7 +175,7 @@ finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, rando
 #' @rdname finalfit
 #' @export
 finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-											 keep_models=FALSE, metrics=FALSE, add_dependent_label = TRUE,
+											 column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label = TRUE,
 											 dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 											 keep_fit_id=FALSE, ...){
 
@@ -187,7 +189,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 	# Summary table
 	summary.out = suppressWarnings(
 		summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
-											 column=TRUE, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE)
+											 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE)
 	)
 
 	# Univariable
@@ -348,7 +350,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 #' @rdname finalfit
 #' @export
 finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-												keep_models=FALSE, metrics=FALSE,  add_dependent_label=TRUE,
+												column = FALSE, keep_models=FALSE, metrics=FALSE,  add_dependent_label=TRUE,
 												dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 												keep_fit_id=FALSE, ...){
 
@@ -360,7 +362,7 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 	# Logistic regression ----
 	# Summary table
 	summary.out = summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
-																	 column=TRUE, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE)
+																	 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE)
 
 	# Univariable
 	glmuni.out = glmuni(.data, dependent, explanatory)
@@ -520,7 +522,7 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 #' @rdname finalfit
 #' @export
 finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-													keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
+													column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
 													dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 													keep_fit_id=FALSE, ...){
 
@@ -537,7 +539,7 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 	# Summary table
 	summary.out = suppressMessages(
 		suppressWarnings(
-			summary_factorlist(.data, dependent, explanatory, column = TRUE, fit_id=TRUE)
+			summary_factorlist(.data, dependent, explanatory, column = column, fit_id=TRUE)
 		))
 	
 	# Previous removed, but now include.

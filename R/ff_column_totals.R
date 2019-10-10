@@ -1,6 +1,6 @@
 #' Add column totals to \code{summary_factorlist()} output
 #'
-#' @param df.out \code{summary_factorlist()} output.
+#' @param df.in \code{summary_factorlist()} output.
 #' @param .data Data frame used to create \code{summary_factorlist()}.
 #' @param dependent Character. Name of dependent variable. 
 #' @param label Character. Label for total row. 
@@ -18,14 +18,15 @@
 #'  ff_column_totals(colon_s, dependent)
 #' 
 #' # Ensure works with missing data in dependent
-#' colon_s %>% 
+#' colon_s = colon_s %>% 
 #'  dplyr::mutate(
 #'   mort_5yr = forcats::fct_explicit_na(mort_5yr)
-#'  ) %>% 
+#'  )
+#'  colon_s %>% 
 #'  summary_factorlist(dependent, explanatory) %>% 
 #'  ff_column_totals(colon_s, dependent)
-ff_column_totals <- function(df.out, .data, dependent, label = "Total N", prefix = "N="){
-	if(!any(names(df.out) == "label")) stop("finalfit function must include: add_dependent_label = FALSE")
+ff_column_totals <- function(df.in, .data, dependent, label = "Total N", prefix = "N="){
+	if(!any(names(df.in) == "label")) stop("finalfit function must include: add_dependent_label = FALSE")
 	if(.data %>% 
 		 dplyr::pull(dependent) %>% 
 		 is.na() %>% 
@@ -43,8 +44,9 @@ ff_column_totals <- function(df.out, .data, dependent, label = "Total N", prefix
 		dplyr::select(label, levels, dplyr::everything()) 
 	
 	
-	df.out %>%  
-		dplyr::bind_rows(totals, .)
+	df.out = dplyr::bind_rows(totals, df.in)
+	df.out[1, is.na(df.out[1, ])] = "" # For neatness change NA to "" in top row
+	return(df.out)
 }
 
 #' @rdname ff_column_totals

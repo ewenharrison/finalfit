@@ -51,30 +51,30 @@ dependent = "mort_5yr"
 
 # Create separate tables
 colon_s \%>\%
-  summary_factorlist(dependent, explanatory, fit_id=TRUE) -> example.summary
+ summary_factorlist(dependent, explanatory, fit_id=TRUE) -> example.summary
 
 colon_s \%>\%
-	glmuni(dependent, explanatory) \%>\%
-	fit2df(estimate_suffix=" (univariable)") -> example.univariable
+ glmuni(dependent, explanatory) \%>\%
+ fit2df(estimate_suffix=" (univariable)") -> example.univariable
 
 colon_s \%>\%
-	glmmulti(dependent, explanatory) \%>\%
-	fit2df(estimate_suffix=" (multivariable)") -> example.multivariable
+ glmmulti(dependent, explanatory) \%>\%
+ fit2df(estimate_suffix=" (multivariable)") -> example.multivariable
 
 colon_s \%>\%
-	glmmixed(dependent, explanatory, random_effect) \%>\%
-	fit2df(estimate_suffix=" (multilevel") -> example.multilevel
+ glmmixed(dependent, explanatory, random_effect) \%>\%
+ fit2df(estimate_suffix=" (multilevel") -> example.multilevel
 
 # Pipe together
 example.summary \%>\%
-	finalfit_merge(example.univariable) \%>\%
-	finalfit_merge(example.multivariable) \%>\%
-	finalfit_merge(example.multilevel, last_merge = TRUE)
+ ff_merge(example.univariable) \%>\%
+ ff_merge(example.multivariable) \%>\%
+ ff_merge(example.multilevel, last_merge = TRUE)
 
-	# Using finalfit()
-	colon_s \%>\%
-	  finalfit(dependent, explanatory, keep_fit_id = TRUE) \%>\%
-	  ff_merge(example.multilevel, last_merge = TRUE)
+# Using finalfit()
+colon_s \%>\%
+ finalfit(dependent, explanatory, keep_fit_id = TRUE) \%>\%
+ ff_merge(example.multilevel, last_merge = TRUE)
 }
 \seealso{
 \code{\link{summary_factorlist}} \code{\link{fit2df}}

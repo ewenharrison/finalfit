@@ -30,6 +30,7 @@ reference:
     desc: ~
     contents:
     - '`fit2df`'
+    - '`ff_column_totals`'
     - '`ff_formula`'
     - '`ff_glimpse`'
     - '`ff_interaction`'
@@ -39,6 +40,7 @@ reference:
     - '`ff_newdata`'
     - '`ff_relabel`'
     - '`ff_remove_ref`'
+    - '`ff_remove_p`'
     - '`catTestfisher`'
     - '`colname2label`'
     - '`dependent_label`'

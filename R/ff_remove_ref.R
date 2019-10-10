@@ -7,7 +7,7 @@
 #'
 #' @param .data Output from \code{\link{finalfit}} or similar.
 #'
-#' @return Dataframe.
+#' @return Data frame.
 #' @export
 #'
 #' @examples
@@ -45,3 +45,30 @@ ff_remove_ref <- function(.data){
 #' @rdname ff_remove_ref
 #' @export
 finalfit_remove_ref = ff_remove_ref
+
+
+#' Remove p-value from output
+#'
+#' This will work with \code{\link{finalfit}} and any \code{\link{fit2df}}
+#' output.
+#'
+#' @param .data Output from \code{\link{finalfit}} or similar.
+#'
+#' @return Data frame.
+#' @export
+#'
+#' @examples
+#' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+#' dependent = 'mort_5yr'
+#' colon_s %>%
+#'   finalfit(dependent, explanatory) %>%
+#'   ff_remove_p()
+ff_remove_p <- function(.data){
+	.data %>% 
+		dplyr::mutate_all(~ gsub(", p[=<][0123456789.]*", "", .)) 
+}
+
+#' @rdname ff_remove_p
+#' @export
+finalfit_remove_p = ff_remove_p
+

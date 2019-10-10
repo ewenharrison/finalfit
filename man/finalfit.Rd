@@ -8,24 +8,28 @@
 \title{Final output tables for common regression models}
 \usage{
 finalfit(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, keep_models = FALSE, metrics = FALSE,
-  add_dependent_label = TRUE, dependent_label_prefix = "Dependent: ",
-  dependent_label_suffix = "", keep_fit_id = FALSE, ...)
+  random_effect = NULL, column = FALSE, keep_models = FALSE,
+  metrics = FALSE, add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
+  keep_fit_id = FALSE, ...)
 
 finalfit.lm(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, keep_models = FALSE, metrics = FALSE,
-  add_dependent_label = TRUE, dependent_label_prefix = "Dependent: ",
-  dependent_label_suffix = "", keep_fit_id = FALSE, ...)
+  random_effect = NULL, column = FALSE, keep_models = FALSE,
+  metrics = FALSE, add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
+  keep_fit_id = FALSE, ...)
 
 finalfit.glm(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, keep_models = FALSE, metrics = FALSE,
-  add_dependent_label = TRUE, dependent_label_prefix = "Dependent: ",
-  dependent_label_suffix = "", keep_fit_id = FALSE, ...)
+  random_effect = NULL, column = FALSE, keep_models = FALSE,
+  metrics = FALSE, add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
+  keep_fit_id = FALSE, ...)
 
 finalfit.coxph(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, keep_models = FALSE, metrics = FALSE,
-  add_dependent_label = TRUE, dependent_label_prefix = "Dependent: ",
-  dependent_label_suffix = "", keep_fit_id = FALSE, ...)
+  random_effect = NULL, column = FALSE, keep_models = FALSE,
+  metrics = FALSE, add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
+  keep_fit_id = FALSE, ...)
 }
 \arguments{
 \item{.data}{Data frame or tibble.}
@@ -44,6 +48,8 @@ subset of explanatory variables to generate reduced multivariable model
 \item{random_effect}{Character vector of length 1: quoted name of random
 effects variable. When included mixed effects model generated
 (\code{lme4::glmer lme4::lmer}).}
+
+\item{column}{Logical: Compute margins by column rather than row.}
 
 \item{keep_models}{Logical: include full multivariable model in output when
 working with reduced multivariable model (\code{explanatory_multi}) and/or

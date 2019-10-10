@@ -93,7 +93,7 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1,
 				levels_percent = ifelse(is.factor(x),
 																summary(x) %>%
 																	prop.table() %>%
-																	`*`(100) %>%
+																	{. * 100} %>%
 																	format(digits = 2) %>%
 																	paste(collapse=", "),
 																"-")
