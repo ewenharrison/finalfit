@@ -38,6 +38,7 @@ reference:
     - '`ff_merge`'
     - '`ff_metrics`'
     - '`ff_newdata`'
+    - '`ff_percent_only`'
     - '`ff_relabel`'
     - '`ff_remove_ref`'
     - '`ff_remove_p`'
