@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add column totals to <code>summary_factorlist()</code> output — ff_column_totals • finalfit</title>
+<title>Include only percentages for factors in <code><a href='summary_factorlist.html'>summary_factorlist</a></code> output — ff_percent_only • finalfit</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Add column totals to <code>summary_factorlist()</code> output — ff_column_totals" />
-<meta property="og:description" content="Add column totals to summary_factorlist() output" />
+<meta property="og:title" content="Include only percentages for factors in <code><a href='summary_factorlist.html'>summary_factorlist</a></code> output — ff_percent_only" />
+<meta property="og:description" content="Include only percentages for factors in summary_factorlist output" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -146,43 +146,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add column totals to <code>summary_factorlist()</code> output</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/ff_column_totals.R'><code>R/ff_column_totals.R</code></a></small>
-    <div class="hidden name"><code>ff_column_totals.Rd</code></div>
+    <h1>Include only percentages for factors in <code><a href='summary_factorlist.html'>summary_factorlist</a></code> output</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/ff_remove_ref.R'><code>R/ff_remove_ref.R</code></a></small>
+    <div class="hidden name"><code>ff_percent_only.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add column totals to <code><a href='summary_factorlist.html'>summary_factorlist()</a></code> output</p>
+    <p>Include only percentages for factors in <code><a href='summary_factorlist.html'>summary_factorlist</a></code> output</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ff_column_totals</span>(<span class='no'>df.in</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
-  <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"N="</span>)
+    <pre class="usage"><span class='fu'>ff_percent_only</span>(<span class='no'>.data</span>)
 
-<span class='fu'>finalfit_column_totals</span>(<span class='no'>df.in</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
-  <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"N="</span>)</pre>
+<span class='fu'>finalfit_percent_only</span>(<span class='no'>.data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>df.in</th>
-      <td><p><code><a href='summary_factorlist.html'>summary_factorlist()</a></code> output.</p></td>
-    </tr>
-    <tr>
       <th>.data</th>
-      <td><p>Data frame used to create <code><a href='summary_factorlist.html'>summary_factorlist()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>dependent</th>
-      <td><p>Character. Name of dependent variable.</p></td>
-    </tr>
-    <tr>
-      <th>label</th>
-      <td><p>Character. Label for total row.</p></td>
-    </tr>
-    <tr>
-      <th>prefix</th>
-      <td><p>Character. Prefix for column totals.</p></td>
+      <td><p>Output from <code><a href='finalfit.html'>finalfit</a></code> or similar.</p></td>
     </tr>
     </table>
 
@@ -191,40 +173,20 @@
     <p>Data frame.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>finalfit</span>)
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
+    <pre class="examples"><div class='input'><span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'>ff_column_totals</span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt; <span class='message'>Dependent includes missing data. This is dropped. Consider forcats::fct_explicit_na</span></div><div class='output co'>#&gt;          label      levels      Alive       Died
-#&gt; 1      Total N                  N=511      N=404
-#&gt; 2          Age   &lt;40 years   31 (6.1)   36 (8.9)
-#&gt; 3              40-59 years 208 (40.7) 131 (32.4)
-#&gt; 4                60+ years 272 (53.2) 237 (58.7)
-#&gt; 5          Sex      Female 243 (47.6) 194 (48.0)
-#&gt; 6                     Male 268 (52.4) 210 (52.0)
-#&gt; 7  Obstruction          No 408 (82.1) 312 (78.6)
-#&gt; 8                      Yes  89 (17.9)  85 (21.4)
-#&gt; 9  Perforation          No 497 (97.3) 391 (96.8)
-#&gt; 10                     Yes   14 (2.7)   13 (3.2)</div><div class='input'>
-<span class='co'># Ensure works with missing data in dependent</span>
-<span class='no'>colon_s</span> <span class='kw'>=</span> <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
- <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
-  <span class='kw'>mort_5yr</span> <span class='kw'>=</span> <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_explicit_na.html'>fct_explicit_na</a></span>(<span class='no'>mort_5yr</span>)
- )
- <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'>ff_column_totals</span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt;          label      levels      Alive       Died  (Missing)
-#&gt; 1      Total N                  N=511      N=404       N=14
-#&gt; 2          Age   &lt;40 years   31 (6.1)   36 (8.9)   3 (21.4)
-#&gt; 3              40-59 years 208 (40.7) 131 (32.4)   5 (35.7)
-#&gt; 4                60+ years 272 (53.2) 237 (58.7)   6 (42.9)
-#&gt; 5          Sex      Female 243 (47.6) 194 (48.0)   8 (57.1)
-#&gt; 6                     Male 268 (52.4) 210 (52.0)   6 (42.9)
-#&gt; 7  Obstruction          No 408 (82.1) 312 (78.6)  12 (85.7)
-#&gt; 8                      Yes  89 (17.9)  85 (21.4)   2 (14.3)
-#&gt; 9  Perforation          No 497 (97.3) 391 (96.8) 14 (100.0)
-#&gt; 10                     Yes   14 (2.7)   13 (3.2)    0 (0.0)</div></pre>
+  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>ff_percent_only</span>()</div><div class='output co'>#&gt;         label      levels Alive Died
+#&gt; 1         Age   &lt;40 years   6.1  8.9
+#&gt; 2             40-59 years  40.7 32.4
+#&gt; 3               60+ years  53.2 58.7
+#&gt; 4         Sex      Female  47.6 48.0
+#&gt; 5                    Male  52.4 52.0
+#&gt; 6 Obstruction          No  82.1 78.6
+#&gt; 7                     Yes  17.9 21.4
+#&gt; 8 Perforation          No  97.3 96.8
+#&gt; 9                     Yes   2.7  3.2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

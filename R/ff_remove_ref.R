@@ -34,11 +34,14 @@
 #'    or_plot(dependent, explanatory, factorlist = factorlist_plot)
 ff_remove_ref <- function(.data){
 	if(!any(names(.data) == "label")) stop("finalfit function must include: add_dependent_label = FALSE")
-	estimate_col = grep("Coefficient*|OR*|HR*", names(.data), value=TRUE)[1]
+	# estimate_col = grep("Coefficient*|OR*|HR*", names(.data), value=TRUE)[1]
 	.data %>% 
 		dplyr::mutate(label = ifelse(label == "", NA, label)) %>% 
 		tidyr::fill(label) %>% 
-		dplyr::filter_at(dplyr::vars(estimate_col), dplyr::any_vars(. != "-")) %>% 
+		dplyr::group_by(label) %>% 
+		# dplyr::filter_at(dplyr::vars(estimate_col), dplyr::any_vars(. != "-")) %>% 
+		dplyr::filter(levels %in% c("Mean (SD)", "Median (IQR)") | dplyr::row_number() != 1) %>% 
+		as.data.frame() %>% 
 		rm_duplicate_labels()
 }
 
@@ -72,3 +75,28 @@ ff_remove_p <- function(.data){
 #' @export
 finalfit_remove_p = ff_remove_p
 
+
+
+#' Include only percentages for factors in \code{\link{summary_factorlist}} output
+#'
+#' @param .data Output from \code{\link{finalfit}} or similar.
+#'
+#' @return Data frame.
+#' @export
+#'
+#' @examples
+#' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+#' dependent = 'mort_5yr'
+#' colon_s %>%
+#'   summary_factorlist(dependent, explanatory) %>%
+#'   ff_percent_only()
+ff_percent_only <- function(.data){
+	.data %>% 
+		dplyr::mutate_at(-c(1,2), ~ dplyr::case_when(!levels %in% c("Mean (SD)", "Median (IQR)") ~ 
+																						stringr::str_extract(., "(?<=\\().+?(?=\\))"), 
+																					TRUE ~ .))
+}
+
+#' @rdname ff_percent_only
+#' @export
+finalfit_percent_only = ff_percent_only

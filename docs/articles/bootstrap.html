@@ -160,10 +160,10 @@
 <a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">boot_compare =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">digits =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.09 to 0.56)</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.05 to 0.63)</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.45 to 0.87)</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.45 to 0.87)</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.06 to 0.51)</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.04 to 0.59)</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.51 to 0.88)</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.41 to 0.92)</span></a></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for demonstration purposes. You should expect to use 1000 to 10000 to ensure you have stable estimates.</p>
 </div>
 <div id="output-to-word-pdf-and-html-via-rmarkdown" class="section level2">
@@ -185,15 +185,15 @@
 <a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="co">#compare_name = "Absolute risk difference",</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">digits =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.04 to 0.57)</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.03 to 0.62)</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.54 to 0.88)</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.08 to 0.58)</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.07 to 0.66)</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.51 to 0.88)</span></a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.45 to 0.91)</span></a>
 <a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;                      Difference</span></a>
 <a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 1                             -</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2 0.00 (-0.13 to 0.23, p=0.940)</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3  0.42 (0.17 to 0.72, p&lt;0.001)</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4  0.43 (0.19 to 0.76, p&lt;0.001)</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2 0.02 (-0.12 to 0.19, p=0.760)</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3  0.43 (0.14 to 0.70, p&lt;0.001)</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4  0.45 (0.17 to 0.73, p&lt;0.001)</span></a></code></pre></div>
 </div>
 <div id="what-is-not-included" class="section level2">
 <h2 class="hasAnchor">
