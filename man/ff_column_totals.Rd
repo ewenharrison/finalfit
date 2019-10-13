@@ -5,11 +5,11 @@
 \alias{finalfit_column_totals}
 \title{Add column totals to \code{summary_factorlist()} output}
 \usage{
-ff_column_totals(df.in, .data, dependent, label = "Total N",
-  prefix = "N=")
+ff_column_totals(df.in, .data, dependent, percent = TRUE, digits = 1,
+  label = "Total N", prefix = "N=")
 
-finalfit_column_totals(df.in, .data, dependent, label = "Total N",
-  prefix = "N=")
+finalfit_column_totals(df.in, .data, dependent, percent = TRUE,
+  digits = 1, label = "Total N", prefix = "N=")
 }
 \arguments{
 \item{df.in}{\code{summary_factorlist()} output.}
@@ -17,6 +17,10 @@ finalfit_column_totals(df.in, .data, dependent, label = "Total N",
 \item{.data}{Data frame used to create \code{summary_factorlist()}.}
 
 \item{dependent}{Character. Name of dependent variable.}
+
+\item{percent}{Logical. Include percentage.}
+
+\item{digits}{Integer length 1. Number of digits for percentage.}
 
 \item{label}{Character. Label for total row.}
 
@@ -29,7 +33,6 @@ Data frame.
 Add column totals to \code{summary_factorlist()} output
 }
 \examples{
-library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = 'mort_5yr'
 colon_s \%>\% 

@@ -3,6 +3,8 @@
 #' @param df.in \code{summary_factorlist()} output.
 #' @param .data Data frame used to create \code{summary_factorlist()}.
 #' @param dependent Character. Name of dependent variable. 
+#' @param percent Logical. Include percentage. 
+#' @param digits Integer length 1. Number of digits for percentage. 
 #' @param label Character. Label for total row. 
 #' @param prefix Character. Prefix for column totals. 
 #'
@@ -10,7 +12,6 @@
 #' @export
 #'
 #' @examples
-#' library(finalfit)
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' dependent = 'mort_5yr'
 #' colon_s %>% 
@@ -25,34 +26,52 @@
 #'  colon_s %>% 
 #'  summary_factorlist(dependent, explanatory) %>% 
 #'  ff_column_totals(colon_s, dependent)
-ff_column_totals <- function(df.in, .data, dependent, label = "Total N", prefix = "N="){
+ff_column_totals <- function(df.in, .data, dependent, percent = TRUE, digits = 1, label = "Total N", prefix = "N="){
 	if(!any(names(df.in) == "label")) stop("finalfit function must include: add_dependent_label = FALSE")
 	if(.data %>% 
 		 dplyr::pull(dependent) %>% 
 		 is.na() %>% 
-		 any()) {message("Dependent includes missing data. This is dropped. Consider forcats::fct_explicit_na")}
+		 any()) {message("Dependent includes missing data. These are dropped. Consider forcats::fct_explicit_na")}
 	
+	# Create column totals
 	totals = .data %>% 
 		tidyr::drop_na(dependent) %>% 
 		dplyr::group_by(!! dplyr::sym(dependent)) %>% 
 		dplyr::count() %>% 
+		dplyr::group_by() %>% 
+		dplyr::mutate(
+			grand_total = sum(n, na.rm = TRUE),
+			percent = 100 * n / grand_total
+		)
+	grand_total = totals %>% dplyr::pull(grand_total) %>% unique()
+	
+	if(percent){
+		totals = totals %>% 
+			dplyr::mutate(
+				n = paste0(prefix, format_n_percent(n, percent, digits))
+			)
+	} else {
+		totals = totals %>% 
+			dplyr::mutate(
+				n = paste0(prefix, n)
+			)
+	}
+	
+	# Pivot and add
+	totals = totals %>% 
+		dplyr::select(-c(grand_total, percent)) %>% 
 		tidyr::pivot_wider(names_from = dependent, values_from = n) %>% 
 		as.data.frame() %>% 
 		dplyr::mutate(label = label, 
 									levels= "") %>% 
-		dplyr::mutate_if(is.integer, ~ paste0(prefix, .)) %>% 
 		dplyr::select(label, levels, dplyr::everything()) 
-	
-	
+
 	df.out = dplyr::bind_rows(totals, df.in)
 	df.out[1, is.na(df.out[1, ])] = "" # For neatness change NA to "" in top row
 	
+	# Make total
 	if(any(names(df.out) == "Total")){
-	df.out[1, "Total"] = 
-		sapply(df.out[1, ], stringr::str_extract, pattern = "[1234567890]+") %>% 
-		as.numeric() %>% 
-		sum(na.rm = TRUE) %>% 
-		paste0(prefix, .)
+	df.out[1, "Total"] = paste0(prefix, grand_total)
 	}
 	return(df.out)
 }
