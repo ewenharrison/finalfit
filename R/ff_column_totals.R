@@ -6,7 +6,7 @@
 #' @param percent Logical. Include percentage. 
 #' @param digits Integer length 1. Number of digits for percentage. 
 #' @param label Character. Label for total row. 
-#' @param prefix Character. Prefix for column totals. 
+#' @param prefix Character. Prefix for column totals, e.g "N=". 
 #'
 #' @return Data frame. 
 #' @export
@@ -26,7 +26,7 @@
 #'  colon_s %>% 
 #'  summary_factorlist(dependent, explanatory) %>% 
 #'  ff_column_totals(colon_s, dependent)
-ff_column_totals <- function(df.in, .data, dependent, percent = TRUE, digits = 1, label = "Total N", prefix = "N="){
+ff_column_totals <- function(df.in, .data, dependent, percent = TRUE, digits = 1, label = NULL, prefix = ""){
 	if(!any(names(df.in) == "label")) stop("finalfit function must include: add_dependent_label = FALSE")
 	if(.data %>% 
 		 dplyr::pull(dependent) %>% 
@@ -56,6 +56,9 @@ ff_column_totals <- function(df.in, .data, dependent, percent = TRUE, digits = 1
 				n = paste0(prefix, n)
 			)
 	}
+	
+	if(is.null(label) & percent) label = "Total N (%)"
+	if(is.null(label) & !percent) label = "Total N"
 	
 	# Pivot and add
 	totals = totals %>% 
