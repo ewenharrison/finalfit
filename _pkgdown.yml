@@ -31,6 +31,7 @@ reference:
     contents:
     - '`fit2df`'
     - '`ff_column_totals`'
+    - '`ff_row_totals`'
     - '`ff_formula`'
     - '`ff_glimpse`'
     - '`ff_interaction`'

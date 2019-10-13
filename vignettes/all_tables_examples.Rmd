@@ -160,7 +160,29 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.09 Order a variable by total
+
+### 1.09 Row totals with missing
+This was introduced to deal with the problem of summarising missing data for continuous variables.
+
+```{r message=FALSE, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+										 column = TRUE, total_col = TRUE) %>% 
+	ff_row_totals(colon_s, explanatory) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
+```
+
+
+
+
+### 1.10 Order a variable by total
 
 This is intended for when there is only one `explanatory` variable.  
 
@@ -178,7 +200,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.10 Label with `dependent` name
+### 1.11 Label with `dependent` name
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -213,7 +235,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.11 Dependent variable with any number of factor levels supported
+### 1.12 Dependent variable with any number of factor levels supported
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -232,7 +254,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.12 Explanatory variable defaults to factor when ≤5 distinct values
+### 1.13 Explanatory variable defaults to factor when ≤5 distinct values
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -251,7 +273,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.13 Keep as continous variable when ≤5 distinct values
+### 1.14 Keep as continous variable when ≤5 distinct values
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -266,7 +288,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.14 Stratified crosstables
+### 1.15 Stratified crosstables
 
 I've been meaning to include support for table stratification for a while. I have delayed for a good reason. Perhaps the most straightforward way to implement stratificiation is with `dplyr::group_by()`. However, the non-standard evaluation required for multiple strata may confuse as it is not implemented else where in the package (doesn't work with `group_by_`). This translates to whether variable names are passed in quotes or not. Finally,. `dplyr::do()` is planned for deprecation, but there is no good alternative at the moment. Anyway, here is a solution, which while not that pretty, is very effective. 
 
@@ -295,7 +317,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "l", "l", "r", "r", "r"))
 ```
 
-### 1.15 Add column totals
+### 1.16 Add column totals
 
 ```{r, warning=FALSE}
 explanatory = c("age.factor", "sex.factor")

@@ -231,7 +231,7 @@ remove index and fit_id columns.</p></td>
  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.multivariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='glmmixed.html'>glmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.multilevel</span>
+ <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.multilevel</span>
 
 <span class='co'># Pipe together</span>
 <span class='no'>example.summary</span> <span class='kw'>%&gt;%</span>
@@ -247,7 +247,7 @@ remove index and fit_id columns.</p></td>
 #&gt; 5                     Yes  89 (17.9)  85 (21.4) 1.25 (0.90-1.74, p=0.189)
 #&gt; 6 Perforation          No 497 (97.3) 391 (96.8)                         -
 #&gt; 7                     Yes   14 (2.7)   13 (3.2) 1.18 (0.54-2.55, p=0.672)
-#&gt;          OR (multivariable)            OR (multilevel
+#&gt;          OR (multivariable)           OR (multilevel)
 #&gt; 1                         -                         -
 #&gt; 2 0.57 (0.34-0.98, p=0.041) 0.75 (0.39-1.44, p=0.382)
 #&gt; 3 0.81 (0.48-1.36, p=0.426) 1.03 (0.55-1.96, p=0.916)
@@ -270,7 +270,7 @@ remove index and fit_id columns.</p></td>
 #&gt; 5                                     Yes  89 (51.1)  85 (48.9)
 #&gt; 6                 Perforation          No 497 (56.0) 391 (44.0)
 #&gt; 7                                     Yes  14 (51.9)  13 (48.1)
-#&gt;            OR (univariable)        OR (multivariable)            OR (multilevel
+#&gt;            OR (univariable)        OR (multivariable)           OR (multilevel)
 #&gt; 1                         -                         -                         -
 #&gt; 2 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041) 0.75 (0.39-1.44, p=0.382)
 #&gt; 3 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426) 1.03 (0.55-1.96, p=0.916)

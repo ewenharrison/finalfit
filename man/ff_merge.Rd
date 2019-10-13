@@ -63,7 +63,7 @@ colon_s \%>\%
 
 colon_s \%>\%
  glmmixed(dependent, explanatory, random_effect) \%>\%
- fit2df(estimate_suffix=" (multilevel") -> example.multilevel
+ fit2df(estimate_suffix=" (multilevel)") -> example.multilevel
 
 # Pipe together
 example.summary \%>\%
