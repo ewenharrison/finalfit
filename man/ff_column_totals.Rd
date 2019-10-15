@@ -6,10 +6,10 @@
 \title{Add column totals to \code{summary_factorlist()} output}
 \usage{
 ff_column_totals(df.in, .data, dependent, percent = TRUE, digits = 1,
-  label = "Total N", prefix = "N=")
+  label = NULL, prefix = "")
 
 finalfit_column_totals(df.in, .data, dependent, percent = TRUE,
-  digits = 1, label = "Total N", prefix = "N=")
+  digits = 1, label = NULL, prefix = "")
 }
 \arguments{
 \item{df.in}{\code{summary_factorlist()} output.}
@@ -24,7 +24,7 @@ finalfit_column_totals(df.in, .data, dependent, percent = TRUE,
 
 \item{label}{Character. Label for total row.}
 
-\item{prefix}{Character. Prefix for column totals.}
+\item{prefix}{Character. Prefix for column totals, e.g "N=".}
 }
 \value{
 Data frame.

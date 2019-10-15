@@ -9,6 +9,7 @@
 * `ff_percent_only()` added to be used in combination with `summary_factorlist()`. #25
 * `ff_remove_p()` can be applied to any condensed finalfit output to reomve the p-value. #26
 * `finalfit()` now takes `column = FALSE` to provide row proportions. #26
+* `check_recode()` added. 
 
 # finalfit 0.9.5
 

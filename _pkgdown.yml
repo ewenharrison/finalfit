@@ -44,6 +44,7 @@ reference:
     - '`ff_remove_ref`'
     - '`ff_remove_p`'
     - '`catTestfisher`'
+    - '`check_recode`'
     - '`colname2label`'
     - '`dependent_label`'
     - '`extract_variable_label`'
