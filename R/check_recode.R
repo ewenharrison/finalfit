@@ -7,7 +7,11 @@
 #' crosstables of all matched variables. A visual inspection should reveal any
 #' miscoding.
 #'
-#' @param .data Data frame or tibble. 
+#' @param .data Data frame or tibble.
+#' @param dependent Optional character vector: name(s) of depdendent
+#'   variable(s).
+#' @param explanatory Optional character vector: name(s) of explanatory
+#'   variable(s). 
 #' @param include_numerics Logical. Include numeric variables in function. 
 #'
 #' @return List of length two. The first is an index of variable combiations.
@@ -41,8 +45,14 @@
 #' out$counts[[9]] %>%
 #'   print(n = Inf)
 #' # Note this variable (node4) appears miscoded in original dataset survival::colon.
-check_recode <- function(.data, include_numerics = FALSE){
+check_recode <- function(.data, dependent = NULL, explanatory = NULL, include_numerics = TRUE){
 	if(!is.data.frame(.data)) stop(".data is not dataframe")
+	
+	if(is.null(dependent) && is.null(explanatory)){
+		df.in = .data
+	} else {
+		df.in = .data %>% dplyr::select(dependent, explanatory)
+	}
 	
 	if(include_numerics){
 		.varnames = .data  %>% 
@@ -60,14 +70,14 @@ check_recode <- function(.data, include_numerics = FALSE){
 		tidyr::unnest(cols = c(var2)) %>% 
 		dplyr::filter(var1 != var2) %>% 
 		dplyr::mutate(
-			keep= purrr::map2_chr(var1, var2, ~toString(sort(c(.x, .y))))
+			keep = purrr::map2_chr(var1, var2, ~toString(sort(c(.x, .y))))
 		) %>% 
 		dplyr::distinct(keep, .keep_all = TRUE) %>%
 		dplyr::select(-keep)
 	
 	count_stuff = function(.data, var1, var2){
 		.data %>% 
-			count(!! sym(var1), !! sym(var2))
+			dplyr::count(!! sym(var1), !! sym(var2))
 	}
 	
 	list.out = .varnames_combinations %>% 

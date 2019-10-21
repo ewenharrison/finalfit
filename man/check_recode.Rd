@@ -4,10 +4,17 @@
 \alias{check_recode}
 \title{Check accurate recoding of variables}
 \usage{
-check_recode(.data, include_numerics = FALSE)
+check_recode(.data, dependent = NULL, explanatory = NULL,
+  include_numerics = TRUE)
 }
 \arguments{
 \item{.data}{Data frame or tibble.}
+
+\item{dependent}{Optional character vector: name(s) of depdendent
+variable(s).}
+
+\item{explanatory}{Optional character vector: name(s) of explanatory
+variable(s).}
 
 \item{include_numerics}{Logical. Include numeric variables in function.}
 }
