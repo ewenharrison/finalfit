@@ -34,37 +34,44 @@
 #'
 #' # Check
 #' colon_s_small %>%
-#'   check_recode()
+#'   check_recode(include_numerics = FALSE)
 #'
 #' out = colon_s_small %>%
 #'   select(-extent, -extent.factor,-time, -time.years) %>%
-#'   check_recode(include_numerics = TRUE)
+#'   check_recode()
 #' out
 #'
 #' # Select a tibble and expand
 #' out$counts[[9]] %>%
 #'   print(n = Inf)
 #' # Note this variable (node4) appears miscoded in original dataset survival::colon.
+#' 
+#' # Choose to only include variables that you actually use. 
+#' # This uses standard Finalfit grammar. 
+#' dependent = "mort_5yr"
+#' explanatory = c("age.factor2", "sex.factor2")
+#' colon_s_small %>% 
+#'   check_recode(dependent, explanatory)
 check_recode <- function(.data, dependent = NULL, explanatory = NULL, include_numerics = TRUE){
 	if(!is.data.frame(.data)) stop(".data is not dataframe")
 	
-	if(is.null(dependent) && is.null(explanatory)){
-		df.in = .data
+	if(include_numerics){
+		.data = .data
 	} else {
-		df.in = .data %>% dplyr::select(dependent, explanatory)
+		.data = .data  %>% 
+			dplyr::select_if(purrr::negate(is.numeric))
 	}
 	
-	if(include_numerics){
-		.varnames = .data  %>% 
-			names()
+	if(is.null(dependent) && is.null(explanatory)){
+		.varnames = .data %>% names()
 	} else {
-		.varnames = .data  %>% 
-			dplyr::select_if(purrr::negate(is.numeric)) %>% 
+		.varnames = .data %>% 
+			dplyr::select(dependent, explanatory) %>% 
 			names()
 	}
 	
 	.varnames_combinations = .varnames %>%  
-		purrr::map(., agrep, ., value = TRUE) %>% 
+		purrr::map(., agrep, names(.data), value = TRUE) %>% 
 		dplyr::tibble(var1 = .varnames, 
 									var2 = .) %>% 
 		tidyr::unnest(cols = c(var2)) %>% 

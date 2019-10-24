@@ -10,6 +10,8 @@
 * `ff_remove_p()` can be applied to any condensed finalfit output to reomve the p-value. #26
 * `finalfit()` now takes `column = FALSE` to provide row proportions. #26
 * `check_recode()` added. 
+* `remove_labels()` now works for tibbles. #28
+* `summary_factorlist()` includes argument `cont_range = TRUE` to include quartiles Q1 and Q3 when median for continuous variables. #29
 
 # finalfit 0.9.5
 

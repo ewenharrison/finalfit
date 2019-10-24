@@ -165,7 +165,8 @@ crosstables of all matched variables. A visual inspection should reveal any
 miscoding.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_recode</span>(<span class='no'>.data</span>, <span class='kw'>include_numerics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>check_recode</span>(<span class='no'>.data</span>, <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>explanatory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>include_numerics</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,6 +174,16 @@ miscoding.</p>
     <tr>
       <th>.data</th>
       <td><p>Data frame or tibble.</p></td>
+    </tr>
+    <tr>
+      <th>dependent</th>
+      <td><p>Optional character vector: name(s) of depdendent
+variable(s).</p></td>
+    </tr>
+    <tr>
+      <th>explanatory</th>
+      <td><p>Optional character vector: name(s) of explanatory
+variable(s).</p></td>
     </tr>
     <tr>
       <th>include_numerics</th>
@@ -201,7 +212,7 @@ miscoding.</p>
 
 <span class='co'># Check</span>
 <span class='no'>colon_s_small</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>check_recode</span>()</div><div class='output co'>#&gt; $index
+  <span class='fu'>check_recode</span>(<span class='kw'>include_numerics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $index
 #&gt; <span style='color: #949494;'># A tibble: 3 x 2</span><span>
 #&gt;   var1        var2       
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
@@ -237,7 +248,7 @@ miscoding.</p>
 #&gt; </div><div class='input'>
 <span class='no'>out</span> <span class='kw'>=</span> <span class='no'>colon_s_small</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>extent</span>, -<span class='no'>extent.factor</span>,-<span class='no'>time</span>, -<span class='no'>time.years</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>check_recode</span>(<span class='kw'>include_numerics</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `differ.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `surg.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `loccomp.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `mort_5yr` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='input'><span class='no'>out</span></div><div class='output co'>#&gt; $index
+  <span class='fu'>check_recode</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `differ.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `surg.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `loccomp.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `mort_5yr` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='input'><span class='no'>out</span></div><div class='output co'>#&gt; $index
 #&gt; </span><span style='color: #949494;'># A tibble: 19 x 2</span><span>
 #&gt;    var1        var2           
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          
@@ -486,8 +497,56 @@ miscoding.</p>
 #&gt; </span><span style='color: #BCBCBC;'>29</span><span>    27     1     1
 #&gt; </span><span style='color: #BCBCBC;'>30</span><span>    33     1     1
 #&gt; </span><span style='color: #BCBCBC;'>31</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     0     1
-#&gt; </span><span style='color: #BCBCBC;'>32</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     1    17</div><div class='input'># Note this variable (node4) appears miscoded in original dataset survival::colon.
-</div></span></pre>
+#&gt; </span><span style='color: #BCBCBC;'>32</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     1    17</div><div class='input'><span class='co'># Note this variable (node4) appears miscoded in original dataset survival::colon.</span>
+
+<span class='co'># Choose to only include variables that you actually use. </span>
+<span class='co'># This uses standard Finalfit grammar. </span>
+<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
+<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor2"</span>, <span class='st'>"sex.factor2"</span>)
+<span class='no'>colon_s_small</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>check_recode</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `mort_5yr` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; $index
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 2</span><span>
+#&gt;   var1        var2        
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> mort_5yr    mort_5yr.num
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> age.factor2 age.factor  
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> sex.factor2 sex.factor  
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> sex.factor2 age.factor2 
+#&gt; 
+#&gt; $counts
+#&gt; $counts[[1]]
+#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
+#&gt;   mort_5yr mort_5yr.num     n
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Alive               1   511
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Died                2   404
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>    14
+#&gt; 
+#&gt; $counts[[2]]
+#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
+#&gt;   age.factor2 age.factor      n
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> &lt;60 years   &lt;40 years      70
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> &lt;60 years   40-59 years   344
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 60+ years   60+ years     515
+#&gt; 
+#&gt; $counts[[3]]
+#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
+#&gt;   sex.factor2 sex.factor     n
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> M           Female       445
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F           Male         484
+#&gt; 
+#&gt; $counts[[4]]
+#&gt; </span><span style='color: #949494;'># A tibble: 4 x 3</span><span>
+#&gt;   sex.factor2 age.factor2     n
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> M           &lt;60 years     204
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> M           60+ years     241
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F           &lt;60 years     210
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F           60+ years     274
+#&gt; 
+#&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -5,8 +5,8 @@
 \title{Summarise a set of factors (or continuous variables) by a dependent variable}
 \usage{
 summary_factorlist(.data, dependent = NULL, explanatory, cont = "mean",
-  cont_cut = 5, p = FALSE, digits = c(1, 1, 3, 1),
-  na_include = FALSE, column = TRUE, total_col = FALSE,
+  cont_range = FALSE, cont_cut = 5, p = FALSE, digits = c(1, 1, 3,
+  1), na_include = FALSE, column = TRUE, total_col = FALSE,
   orderbytotal = FALSE, fit_id = FALSE, na_to_missing = TRUE,
   add_dependent_label = FALSE, dependent_label_prefix = "Dependent: ",
   dependent_label_suffix = "", ...)
@@ -22,6 +22,8 @@ variables.}
 
 \item{cont}{Summary for continuous variables: "mean" (standard deviation) or
 "median" (interquartile range).}
+
+\item{cont_range}{Logical. Median is show with 1st and 3rd quartiles.}
 
 \item{cont_cut}{Numeric: number of unique values in continuous variable at
 which to consider it a factor.}

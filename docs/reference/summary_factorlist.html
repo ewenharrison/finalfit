@@ -160,8 +160,8 @@ summary table.</p>
     </div>
 
     <pre class="usage"><span class='fu'>summary_factorlist</span>(<span class='no'>.data</span>, <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>explanatory</span>, <span class='kw'>cont</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-  <span class='kw'>cont_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>),
-  <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>total_col</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>cont_range</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cont_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>3</span>,
+  <span class='fl'>1</span>), <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>total_col</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>orderbytotal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>na_to_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
   <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='no'>...</span>)</pre>
@@ -187,6 +187,10 @@ variables.</p></td>
       <th>cont</th>
       <td><p>Summary for continuous variables: "mean" (standard deviation) or
 "median" (interquartile range).</p></td>
+    </tr>
+    <tr>
+      <th>cont_range</th>
+      <td><p>Logical. Median is show with 1st and 3rd quartiles.</p></td>
     </tr>
     <tr>
       <th>cont_cut</th>

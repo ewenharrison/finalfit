@@ -618,11 +618,13 @@ colname2label <- function(.data, .cols){
 #' colon_s %>%
 #'   remove_labels()
 remove_labels = function(.data){
-	df.out = .data
-	for (i in 1:dim(.data)[2]){
-		attr(df.out[,i], "label") = NULL
+	attr_label_null <- function(x){
+		attr(x, "label") <- NULL
+		return(x)
 	}
-	return(df.out)
+	
+	.data %>% 
+		purrr::map_df(attr_label_null)
 }
 
 #' Generate formula as character string

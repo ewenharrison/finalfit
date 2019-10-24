@@ -46,15 +46,22 @@ colon_s_small = colon_s \%>\%
 
 # Check
 colon_s_small \%>\%
-  check_recode()
+  check_recode(include_numerics = FALSE)
 
 out = colon_s_small \%>\%
   select(-extent, -extent.factor,-time, -time.years) \%>\%
-  check_recode(include_numerics = TRUE)
+  check_recode()
 out
 
 # Select a tibble and expand
 out$counts[[9]] \%>\%
   print(n = Inf)
 # Note this variable (node4) appears miscoded in original dataset survival::colon.
+
+# Choose to only include variables that you actually use. 
+# This uses standard Finalfit grammar. 
+dependent = "mort_5yr"
+explanatory = c("age.factor2", "sex.factor2")
+colon_s_small \%>\% 
+  check_recode(dependent, explanatory)
 }

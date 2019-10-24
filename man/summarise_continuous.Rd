@@ -4,7 +4,7 @@
 \alias{summarise_continuous}
 \title{Helper function to generate the summary for a continuous variable}
 \usage{
-summarise_continuous(x, cont, total_col, digits)
+summarise_continuous(x, cont, cont_range, total_col, digits)
 }
 \description{
 Internal function, not called directly.
