@@ -92,7 +92,7 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 	}
 	
 	args = list(.data = .data, dependent = dependent, explanatory = explanatory,
-							cont = cont, cont_cut = cont_cut, p = p, digits = digits, 
+							cont = cont, cont_range = cont_range, cont_cut = cont_cut, p = p, digits = digits, 
 							na_include = na_include,
 							column = column, total_col = total_col, orderbytotal = orderbytotal, fit_id = fit_id,
 							na_to_missing = na_to_missing, add_dependent_label = add_dependent_label,
@@ -338,7 +338,7 @@ summarise_continuous = function(x, cont, cont_range, total_col, digits) {
 													 round_tidy(SD, digits[2]), ")"),
 				levels = "Mean (SD)"
 			)
-	} else if (cont == "median" & cont_range) {
+	} else if (cont == "median" && cont_range) {
 		df_out = x %>%
 			as.data.frame() %>%
 			dplyr::rename(Median = 6,
@@ -346,13 +346,12 @@ summarise_continuous = function(x, cont, cont_range, total_col, digits) {
 										Q1 = 4) %>%
 			dplyr::mutate(
 				Label = rownames(.),
-				IQR = Q3 - Q1,
 				Formatted = paste0(round_tidy(Median, digits[1]), " (",
 													 round_tidy(Q1, digits[2]), " to ",
 													 round_tidy(Q3, digits[2]), ")"),
 				levels = "Median (IQR)"
 			)
-	} else if (cont == "median" & !cont_range) {
+	} else if (cont == "median" && !cont_range) {
 		df_out = x %>%
 			as.data.frame() %>%
 			dplyr::rename(Median = 6,
