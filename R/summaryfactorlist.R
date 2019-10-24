@@ -150,7 +150,8 @@ summary_factorlist <- function(.data, dependent = NULL, explanatory, cont = "mea
 #'
 #' @keywords internal
 
-summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", cont_cut = 5, p = FALSE, 
+summary_factorlist0 <- function(.data, dependent, explanatory,  cont = "mean", cont_range = FALSE,
+																cont_cut = 5, p = FALSE, 
 																digits = c(1, 1, 3, 1),
 																na_include = FALSE,
 																column = FALSE, total_col = FALSE, orderbytotal = FALSE, fit_id = FALSE,

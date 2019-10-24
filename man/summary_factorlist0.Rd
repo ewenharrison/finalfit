@@ -5,8 +5,8 @@
 \title{Summarise a set of factors by a dependent variable}
 \usage{
 summary_factorlist0(.data, dependent, explanatory, cont = "mean",
-  cont_cut = 5, p = FALSE, digits = c(1, 1, 3, 1),
-  na_include = FALSE, column = FALSE, total_col = FALSE,
+  cont_range = FALSE, cont_cut = 5, p = FALSE, digits = c(1, 1, 3,
+  1), na_include = FALSE, column = FALSE, total_col = FALSE,
   orderbytotal = FALSE, fit_id = FALSE, na_to_missing = TRUE,
   add_dependent_label = FALSE, dependent_label_prefix = "Dependent: ",
   dependent_label_suffix = "")
