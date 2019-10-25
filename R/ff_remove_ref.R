@@ -104,7 +104,7 @@ finalfit_remove_p = ff_remove_p
 ff_percent_only <- function(.data){
 	if(!any(names(.data) == "label")) stop("summary_factorlist() must include: add_dependent_label = FALSE")
 	.data %>% 
-		dplyr::mutate_at(vars(-one_of("label", "levels", "p")), ~ dplyr::case_when(
+		dplyr::mutate_at(vars(-dplyr::one_of("label", "levels", "p")), ~ dplyr::case_when(
 			!levels %in% c("Mean (SD)", "Median (IQR)") ~ stringr::str_extract(., "(?<=\\().+?(?=\\))"), 
 			TRUE ~ .))
 }
