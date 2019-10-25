@@ -5,11 +5,11 @@
 \alias{finalfit_row_totals}
 \title{Add row totals to \code{summary_factorlist()} output}
 \usage{
-ff_row_totals(df.in, .data, explanatory, total_name = "Total N",
-  missing_name = "Missing N")
+ff_row_totals(df.in, .data, explanatory, na_include = TRUE,
+  total_name = "Total N", na_name = "Missing N")
 
-finalfit_row_totals(df.in, .data, explanatory, total_name = "Total N",
-  missing_name = "Missing N")
+finalfit_row_totals(df.in, .data, explanatory, na_include = TRUE,
+  total_name = "Total N", na_name = "Missing N")
 }
 \arguments{
 \item{df.in}{\code{summary_factorlist()} output.}
@@ -19,9 +19,11 @@ finalfit_row_totals(df.in, .data, explanatory, total_name = "Total N",
 \item{explanatory}{Character vector of any length: name(s) of explanatory
 variables.}
 
+\item{na_include}{Logical. Include a column of counts of missing data.}
+
 \item{total_name}{Character. Name of total column.}
 
-\item{missing_name}{Character. Name of missing column.}
+\item{na_name}{Character. Name of missing column.}
 }
 \value{
 Data frame.

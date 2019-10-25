@@ -68,13 +68,13 @@ ff_column_totals <- function(df.in, .data, dependent, percent = TRUE, digits = 1
 		dplyr::mutate(label = label, 
 									levels= "") %>% 
 		dplyr::select(label, levels, dplyr::everything()) 
-
+	
 	df.out = dplyr::bind_rows(totals, df.in)
 	df.out[1, is.na(df.out[1, ])] = "" # For neatness change NA to "" in top row
 	
 	# Make total
 	if(any(names(df.out) == "Total")){
-	df.out[1, "Total"] = paste0(prefix, grand_total)
+		df.out[1, "Total"] = paste0(prefix, grand_total)
 	}
 	return(df.out)
 }
@@ -95,8 +95,9 @@ finalfit_column_totals = ff_column_totals
 #' @param .data Data frame used to create \code{summary_factorlist()}.
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
+#' @param na_include Logical. Include a column of counts of missing data. 
 #' @param total_name Character. Name of total column.
-#' @param missing_name Character. Name of missing column.
+#' @param na_name Character. Name of missing column.
 #'
 #' @return Data frame.
 #' @export
@@ -107,22 +108,32 @@ finalfit_column_totals = ff_column_totals
 #' colon_s %>%
 #'  summary_factorlist(dependent, explanatory) %>%
 #' 	ff_row_totals(colon_s, explanatory)
-ff_row_totals <- function(df.in, .data, explanatory, total_name = "Total N", missing_name= "Missing N"){
+ff_row_totals <- function(df.in, .data, explanatory, na_include = TRUE, 
+													total_name = "Total N", na_name= "Missing N"){
 	if(!any(names(df.in) == "label")) 
 		stop("summary_factorlist function must include: add_dependent_label = FALSE")
 	
-	df.in %>%
+	df.out = df.in %>%
 		dplyr::left_join(
 			missing_glimpse(.data, explanatory) %>% 
 				dplyr::mutate(label = as.character(label)),
 		) %>%
 		dplyr::mutate(            # Rename, change to character, remove "NAs"
-			!! total_name := as.character(n) %>% dplyr::coalesce(""),
-			!! missing_name := as.character(missing_n) %>% dplyr::coalesce("")
-		) %>% # Reorder columns, remove unwanted columns
-		dplyr::select(label, !! total_name, !! missing_name, dplyr::everything(), 
+			!! total_name := as.character(n) %>% dplyr::coalesce("")
+		)
+	if(na_include){
+		df.out = df.out %>% 
+			dplyr::mutate(
+				!! na_name := as.character(missing_n) %>% dplyr::coalesce("")
+			) %>%  # Reorder columns, remove unwanted columns
+			dplyr::select(label, !! total_name, !! na_name, dplyr::everything(), 
+										-c(n, missing_n, var_type, missing_percent))
+	} else {
+	df.out = df.out %>%
+		dplyr::select(label, !! total_name, dplyr::everything(), 
 									-c(n, missing_n, var_type, missing_percent))
-	
+	}
+	return(df.out)
 }
 
 #' @rdname ff_row_totals

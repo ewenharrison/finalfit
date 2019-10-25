@@ -98,6 +98,8 @@ colon_s \%>\%
   summary_factorlist(dependent, explanatory)
 }
 \seealso{
-\code{\link{fit2df}}
+\code{\link{fit2df}} \code{\link{ff_column_totals}}
+  \code{\link{ff_row_totals}} \code{\link{ff_label}} \code{\link{ff_glimpse}}
+  \code{\link{ff_percent_only}}
 }
 \concept{finalfit wrappers}
