@@ -5,7 +5,7 @@
 \title{Check accurate recoding of variables}
 \usage{
 check_recode(.data, dependent = NULL, explanatory = NULL,
-  include_numerics = TRUE)
+  include_numerics = TRUE, ...)
 }
 \arguments{
 \item{.data}{Data frame or tibble.}
@@ -17,6 +17,8 @@ variable(s).}
 variable(s).}
 
 \item{include_numerics}{Logical. Include numeric variables in function.}
+
+\item{...}{Pass other arguments to \code{\link{agrep}}.}
 }
 \value{
 List of length two. The first is an index of variable combiations.

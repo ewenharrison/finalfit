@@ -13,6 +13,7 @@
 #' @param explanatory Optional character vector: name(s) of explanatory
 #'   variable(s). 
 #' @param include_numerics Logical. Include numeric variables in function. 
+#' @param ... Pass other arguments to \code{\link{agrep}}.
 #'
 #' @return List of length two. The first is an index of variable combiations.
 #'   The second is a nested list of crosstables as tibbles.
@@ -52,7 +53,7 @@
 #' explanatory = c("age.factor2", "sex.factor2")
 #' colon_s_small %>% 
 #'   check_recode(dependent, explanatory)
-check_recode <- function(.data, dependent = NULL, explanatory = NULL, include_numerics = TRUE){
+check_recode <- function(.data, dependent = NULL, explanatory = NULL, include_numerics = TRUE, ...){
 	if(!is.data.frame(.data)) stop(".data is not dataframe")
 	
 	if(include_numerics){
@@ -71,7 +72,7 @@ check_recode <- function(.data, dependent = NULL, explanatory = NULL, include_nu
 	}
 	
 	.varnames_combinations = .varnames %>%  
-		purrr::map(., agrep, names(.data), value = TRUE) %>% 
+		purrr::map(., agrep, names(.data), value = TRUE, ...) %>% 
 		dplyr::tibble(var1 = .varnames, 
 									var2 = .) %>% 
 		tidyr::unnest(cols = c(var2)) %>% 
