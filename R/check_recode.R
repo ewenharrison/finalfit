@@ -56,9 +56,7 @@
 check_recode <- function(.data, dependent = NULL, explanatory = NULL, include_numerics = TRUE, ...){
 	if(!is.data.frame(.data)) stop(".data is not dataframe")
 	
-	if(include_numerics){
-		.data = .data
-	} else {
+	if(!include_numerics){
 		.data = .data  %>% 
 			dplyr::select_if(purrr::negate(is.numeric))
 	}
