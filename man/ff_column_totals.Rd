@@ -5,11 +5,12 @@
 \alias{finalfit_column_totals}
 \title{Add column totals to \code{summary_factorlist()} output}
 \usage{
-ff_column_totals(df.in, .data, dependent, percent = TRUE, digits = 1,
-  label = NULL, prefix = "")
+ff_column_totals(df.in, .data, dependent, na_include_dependent = FALSE,
+  percent = TRUE, digits = 1, label = NULL, prefix = "")
 
-finalfit_column_totals(df.in, .data, dependent, percent = TRUE,
-  digits = 1, label = NULL, prefix = "")
+finalfit_column_totals(df.in, .data, dependent,
+  na_include_dependent = FALSE, percent = TRUE, digits = 1,
+  label = NULL, prefix = "")
 }
 \arguments{
 \item{df.in}{\code{summary_factorlist()} output.}
@@ -17,6 +18,9 @@ finalfit_column_totals(df.in, .data, dependent, percent = TRUE,
 \item{.data}{Data frame used to create \code{summary_factorlist()}.}
 
 \item{dependent}{Character. Name of dependent variable.}
+
+\item{na_include_dependent}{Logical. When TRUE, missing data in the dependent
+variable is included in totals.}
 
 \item{percent}{Logical. Include percentage.}
 
@@ -35,16 +39,16 @@ Add column totals to \code{summary_factorlist()} output
 \examples{
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = 'mort_5yr'
-colon_s \%>\% 
- summary_factorlist(dependent, explanatory) \%>\% 
+colon_s \%>\%
+ summary_factorlist(dependent, explanatory) \%>\%
  ff_column_totals(colon_s, dependent)
 
 # Ensure works with missing data in dependent
-colon_s = colon_s \%>\% 
+colon_s = colon_s \%>\%
  dplyr::mutate(
   mort_5yr = forcats::fct_explicit_na(mort_5yr)
  )
- colon_s \%>\% 
- summary_factorlist(dependent, explanatory) \%>\% 
+ colon_s \%>\%
+ summary_factorlist(dependent, explanatory) \%>\%
  ff_column_totals(colon_s, dependent)
 }

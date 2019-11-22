@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
       </span>
     </div>
 
@@ -155,11 +155,12 @@
     <p>Add column totals to <code><a href='summary_factorlist.html'>summary_factorlist()</a></code> output</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ff_column_totals</span>(<span class='no'>df.in</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>)
+    <pre class="usage"><span class='fu'>ff_column_totals</span>(<span class='no'>df.in</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='kw'>na_include_dependent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>)
 
-<span class='fu'>finalfit_column_totals</span>(<span class='no'>df.in</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
+<span class='fu'>finalfit_column_totals</span>(<span class='no'>df.in</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>,
+  <span class='kw'>na_include_dependent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -203,7 +204,7 @@
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'>ff_column_totals</span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt; <span class='message'>Dependent includes missing data. These are dropped. Consider forcats::fct_explicit_na</span></div><div class='output co'>#&gt;          label      levels      Alive       Died
+ <span class='fu'>ff_column_totals</span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt; <span class='message'>Dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;          label      levels      Alive       Died
 #&gt; 1  Total N (%)             511 (55.8) 404 (44.2)
 #&gt; 2          Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt; 3              40-59 years 208 (40.7) 131 (32.4)

@@ -2,40 +2,53 @@
 #'
 #' @param df.in \code{summary_factorlist()} output.
 #' @param .data Data frame used to create \code{summary_factorlist()}.
-#' @param dependent Character. Name of dependent variable. 
-#' @param percent Logical. Include percentage. 
-#' @param digits Integer length 1. Number of digits for percentage. 
-#' @param label Character. Label for total row. 
-#' @param prefix Character. Prefix for column totals, e.g "N=". 
+#' @param dependent Character. Name of dependent variable.
+#' @param na_include_dependent Logical. When TRUE, missing data in the dependent
+#'   variable is included in totals.
+#' @param percent Logical. Include percentage.
+#' @param digits Integer length 1. Number of digits for percentage.
+#' @param label Character. Label for total row.
+#' @param prefix Character. Prefix for column totals, e.g "N=".
 #'
-#' @return Data frame. 
+#' @return Data frame.
 #' @export
 #'
 #' @examples
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' dependent = 'mort_5yr'
-#' colon_s %>% 
-#'  summary_factorlist(dependent, explanatory) %>% 
+#' colon_s %>%
+#'  summary_factorlist(dependent, explanatory) %>%
 #'  ff_column_totals(colon_s, dependent)
-#' 
+#'
 #' # Ensure works with missing data in dependent
-#' colon_s = colon_s %>% 
+#' colon_s = colon_s %>%
 #'  dplyr::mutate(
 #'   mort_5yr = forcats::fct_explicit_na(mort_5yr)
 #'  )
-#'  colon_s %>% 
-#'  summary_factorlist(dependent, explanatory) %>% 
+#'  colon_s %>%
+#'  summary_factorlist(dependent, explanatory) %>%
 #'  ff_column_totals(colon_s, dependent)
-ff_column_totals <- function(df.in, .data, dependent, percent = TRUE, digits = 1, label = NULL, prefix = ""){
+ff_column_totals <- function(df.in, .data, dependent, na_include_dependent = FALSE, percent = TRUE, digits = 1, label = NULL, prefix = ""){
 	if(!any(names(df.in) == "label")) stop("finalfit function must include: add_dependent_label = FALSE")
-	if(.data %>% 
+	if(!na_include_dependent &
+		 .data %>% 
 		 dplyr::pull(dependent) %>% 
 		 is.na() %>% 
-		 any()) {message("Dependent includes missing data. These are dropped. Consider forcats::fct_explicit_na")}
+		 any()) {message("Dependent includes missing data. These are dropped.")}
+	
+	if(na_include_dependent){
+		.data = .data %>% 
+			mutate_if(names(.) %in% unlist(dependent) & 
+									sapply(., is.factor),
+								forcats::fct_explicit_na
+			)
+	} else {
+		.data = .data %>% 
+			tidyr::drop_na(dependent)
+	}
 	
 	# Create column totals
 	totals = .data %>% 
-		tidyr::drop_na(dependent) %>% 
 		dplyr::group_by(!! dplyr::sym(dependent)) %>% 
 		dplyr::count() %>% 
 		dplyr::group_by() %>% 
@@ -76,8 +89,12 @@ ff_column_totals <- function(df.in, .data, dependent, percent = TRUE, digits = 1
 	if(any(names(df.out) == "Total")){
 		df.out[1, "Total"] = paste0(prefix, grand_total)
 	}
+	if(any(names(df.out) == "All")){
+		df.out[1, "All"] = paste0(prefix, grand_total)
+	}
 	return(df.out)
 }
+
 
 #' @rdname ff_column_totals
 #' @export
@@ -95,7 +112,9 @@ finalfit_column_totals = ff_column_totals
 #' @param .data Data frame used to create \code{summary_factorlist()}.
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
-#' @param na_include Logical. Include a column of counts of missing data. 
+#' @param missing_column Logical. Include a column of counts of missing data. 
+#' @param na_include_dependent Logical. When TRUE, missing data in the dependent
+#'   variable is included in totals.
 #' @param total_name Character. Name of total column.
 #' @param na_name Character. Name of missing column.
 #'
@@ -108,20 +127,32 @@ finalfit_column_totals = ff_column_totals
 #' colon_s %>%
 #'  summary_factorlist(dependent, explanatory) %>%
 #' 	ff_row_totals(colon_s, explanatory)
-ff_row_totals <- function(df.in, .data, explanatory, na_include = TRUE, 
+ff_row_totals <- function(df.in, .data, explanatory, missing_column = TRUE, 
+													na_include_dependent = FALSE,
 													total_name = "Total N", na_name= "Missing N"){
 	if(!any(names(df.in) == "label")) 
 		stop("summary_factorlist function must include: add_dependent_label = FALSE")
 	
+	if(na_include_dependent){
+		.data = .data %>% 
+			mutate_if(names(.) %in% unlist(dependent) & 
+									sapply(., is.factor),
+								forcats::fct_explicit_na
+			)
+	} else {
+		.data = .data %>% 
+			tidyr::drop_na(dependent)
+	}
+	
 	df.out = df.in %>%
 		dplyr::left_join(
 			missing_glimpse(.data, explanatory) %>% 
-				dplyr::mutate(label = as.character(label)),
+				dplyr::mutate(label = as.character(label)), by = "label"
 		) %>%
 		dplyr::mutate(            # Rename, change to character, remove "NAs"
 			!! total_name := as.character(n) %>% dplyr::coalesce("")
 		)
-	if(na_include){
+	if(missing_column){
 		df.out = df.out %>% 
 			dplyr::mutate(
 				!! na_name := as.character(missing_n) %>% dplyr::coalesce("")
@@ -129,12 +160,13 @@ ff_row_totals <- function(df.in, .data, explanatory, na_include = TRUE,
 			dplyr::select(label, !! total_name, !! na_name, dplyr::everything(), 
 										-c(n, missing_n, var_type, missing_percent))
 	} else {
-	df.out = df.out %>%
-		dplyr::select(label, !! total_name, dplyr::everything(), 
-									-c(n, missing_n, var_type, missing_percent))
+		df.out = df.out %>%
+			dplyr::select(label, !! total_name, dplyr::everything(), 
+										-c(n, missing_n, var_type, missing_percent))
 	}
 	return(df.out)
 }
+
 
 #' @rdname ff_row_totals
 #' @export

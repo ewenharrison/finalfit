@@ -66,7 +66,7 @@ ff_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL,
   estimate_col_id = ifelse(is.null(estimate_name), "Coefficient|OR|HR", paste0(estimate_name, "|Coefficient|OR|HR"))
   estimate_col = grep(estimate_col_id, names(fit2df_df), value=TRUE)
   df.out = merge(factorlist, fit2df_df, by.x = "fit_id", by.y = explanatory_name, all = TRUE)
-  #df.out[,estimate_col] = as.character(df.out[,estimate_col])
+  df.out[,estimate_col] = as.character(df.out[,estimate_col])
   df.out[is.na(df.out[,estimate_col]),estimate_col] = ref_symbol
   df.out = df.out[order(df.out$index),]
   if(last_merge == TRUE){
