@@ -29,7 +29,7 @@ missing_plot <- function(.data, dependent=NULL, explanatory=NULL,
   requireNamespace("ggplot2")
 
   if (is.null(dependent) && is.null(explanatory)) {
-    df.in <<- .data
+    df.in = .data
   }
   else {
     df.in = .data %>%
