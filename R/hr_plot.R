@@ -93,8 +93,10 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
   if(is.null(coxfit)){
     coxfit = coxphmulti(.data, dependent, explanatory)
   }
-  coxfit_df_c = fit2df(coxfit, condense = TRUE, estimate_suffix = " (multivariable)", ...)
-  coxfit_df = fit2df(coxfit, condense = FALSE, ...)
+  coxfit_df_c = fit2df(coxfit, condense = TRUE, estimate_suffix = " (multivariable)", 
+                       estimate_name = "HR", exp = TRUE, ...)
+  coxfit_df = fit2df(coxfit, condense = FALSE, 
+                     estimate_name = "HR", exp = TRUE, ...)
 
   # Merge
   df.out = finalfit_merge(factorlist, coxfit_df_c)

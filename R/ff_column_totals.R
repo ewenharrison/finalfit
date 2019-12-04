@@ -30,15 +30,10 @@
 #'  ff_column_totals(colon_s, dependent)
 ff_column_totals <- function(df.in, .data, dependent, na_include_dependent = FALSE, percent = TRUE, digits = 1, label = NULL, prefix = ""){
 	if(!any(names(df.in) == "label")) stop("finalfit function must include: add_dependent_label = FALSE")
-	if(!na_include_dependent &
-		 .data %>% 
-		 dplyr::pull(dependent) %>% 
-		 is.na() %>% 
-		 any()) {message("Dependent includes missing data. These are dropped.")}
-	
+
 	if(na_include_dependent){
 		.data = .data %>% 
-			mutate_if(names(.) %in% unlist(dependent) & 
+			dplyr::mutate_if(names(.) %in% unlist(dependent) & 
 									sapply(., is.factor),
 								forcats::fct_explicit_na
 			)
@@ -133,16 +128,24 @@ ff_row_totals <- function(df.in, .data, explanatory, missing_column = TRUE,
 	if(!any(names(df.in) == "label")) 
 		stop("summary_factorlist function must include: add_dependent_label = FALSE")
 	
+	# Extract labels
+	var_labels = .data %>% 
+		extract_variable_label()
+	
 	if(na_include_dependent){
 		.data = .data %>% 
-			mutate_if(names(.) %in% unlist(dependent) & 
-									sapply(., is.factor),
-								forcats::fct_explicit_na
+			dplyr::mutate_if(names(.) %in% unlist(dependent) & 
+											 	sapply(., is.factor),
+											 forcats::fct_explicit_na
 			)
 	} else {
 		.data = .data %>% 
 			tidyr::drop_na(dependent)
 	}
+	
+	# Relabel
+	.data = .data %>% 
+		ff_relabel(var_labels)
 	
 	df.out = df.in %>%
 		dplyr::left_join(
@@ -166,7 +169,6 @@ ff_row_totals <- function(df.in, .data, explanatory, missing_column = TRUE,
 	}
 	return(df.out)
 }
-
 
 #' @rdname ff_row_totals
 #' @export
