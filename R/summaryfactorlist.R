@@ -4,12 +4,12 @@
 #' explanatory variable names (continuous or categorical variables) to produce a
 #' summary table.
 #'
-#' This function is mostly a wrapper for \code{Hmisc:::summary.formula(...,
-#' method = "reverse")} but produces a publication-ready table the way we like
-#' them. It usually takes a categorical dependent variable (with two to five
-#' levels) to produce a cross table of counts and proportions expressed as
-#' percentages. However, it will take a continuous dependent variable to produce
-#' mean (standard deviation) or median (interquartile range) for use with linear
+#' This function aims to produce publication-ready summary tables for
+#' categorical or continuous dependent variables. It usually takes a categorical
+#' dependent variable to produce a cross table of counts and proportions
+#' expressed as percentages or summarised continuous explanatory variables.
+#' However, it will take a continuous dependent variable to produce mean
+#' (standard deviation) or median (interquartile range) for use with linear
 #' regression models.
 #'
 #' @param .data Dataframe.
@@ -53,9 +53,11 @@
 #' @param col_totals_prefix Character. Prefix to column totals, e.g. "N=".
 #' @param add_row_totals Logical. Include row totals. Note this differs from
 #'   \code{total_col} above particularly for continuous explanatory variables.
-#' @param include_row_missing_col Logical. Include missing data total for each row.  
-#' @param row_totals_colname Character. Column name for row totals. 
-#' @param row_missing_colname Character. Column name for missing data totals for each row. 
+#' @param include_row_missing_col Logical. Include missing data total for each
+#'   row.
+#' @param row_totals_colname Character. Column name for row totals.
+#' @param row_missing_colname Character. Column name for missing data totals for
+#'   each row.
 #'
 #' @return Returns a \code{factorlist} dataframe.
 #'
@@ -478,7 +480,7 @@ summary_factorlist <- function(.data,
 												 }
 		) 
 	}
-	df.out %>% 
+	df.out = df.out %>% 
 		# Add hypothesis test
 		{ if(p){
 			purrr::map2_df(., p_tests,
@@ -515,7 +517,7 @@ summary_factorlist <- function(.data,
 		
 		# Add column totals
 		{ if(add_col_totals){
-			ff_column_totals(., .data, dependent, na_include, 
+			ff_column_totals(., .data, dependent, 
 											 percent = include_col_totals_percent, 
 											 digits = digits[4], label = col_totals_rowname, 
 											 prefix = col_totals_prefix)
@@ -525,8 +527,7 @@ summary_factorlist <- function(.data,
 		
 		# Add row totals
 		{ if(add_row_totals){
-			ff_row_totals(., .data, explanatory, missing_column = include_row_missing_col, 
-										na_include, 
+			ff_row_totals(., .data, explanatory, missing_column = include_row_missing_col,
 										total_name = row_totals_colname, na_name = row_missing_colname)
 		} else {
 			.
@@ -539,11 +540,12 @@ summary_factorlist <- function(.data,
 											prefix=dependent_label_prefix, suffix = dependent_label_suffix)
 		} else {
 			.
-		}} #%>% 
-	# This is breaking fit_id, add back in after workout what's wrong
-	# 
-	# # Replace any missing values with "", e.g. in (Missing) column
-	# dplyr::mutate_all(.,
-	#                   ~ dplyr::if_else(is.na(.), "", .)
-	# )
+		}} %>% 
+
+	# Replace any missing values with "", e.g. in (Missing) column
+	dplyr::mutate_all(.,
+	                  ~ ifelse(is.na(.), "-", .)
+	)
+	class(df.out) = c("data.frame.ff", class(df.out))
+	return(df.out)
 }

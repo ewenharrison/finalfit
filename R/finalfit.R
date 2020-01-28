@@ -327,6 +327,9 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 		df.out = df.out[,-c(index_fit_id, index_index)]
 	}
 
+	# Class
+	class(df.out) = c("data.frame.ff", class(df.out))
+	
 	# Add dependent name label
 	if(add_dependent_label){
 		df.out = dependent_label(df.out=df.out, .data=.data, dependent=dependent,
@@ -497,6 +500,9 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 		df.out = df.out[,-c(index_fit_id, index_index)]
 	}
 
+	# Class
+	class(df.out) = c("data.frame.ff", class(df.out))
+	
 	# Add dependent name label
 	if(add_dependent_label){
 		df.out = dependent_label(df.out=df.out, .data=.data, dependent=dependent,
@@ -638,6 +644,9 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 	} else {
 		df.out = df.out[,-c(index_fit_id, index_index)]
 	}
+	
+	# Class
+	class(df.out) = c("data.frame.ff", class(df.out))
 
 	# Add dependent name label
 	if(add_dependent_label){

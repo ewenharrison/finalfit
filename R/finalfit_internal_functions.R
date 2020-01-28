@@ -11,6 +11,21 @@ ff_eval <- function(.) {
 	eval(rlang::enexpr(.), rlang::caller_env())
 }
 
+#' Print methods for finalfit data frames
+#'
+#' @param .data Data frame
+#' @return Data frame with no line numbers
+#' 
+#' @rdname print
+#' @method print data.frame.ff
+#' @export
+#' 
+#' @keywords internal
+#'
+print.data.frame.ff <- function(x, ...){
+	print.data.frame(x, row.names = FALSE, ...)
+}
+
 #' Extract model output to dataframe
 #'
 #' Internal function, not usually called directly.

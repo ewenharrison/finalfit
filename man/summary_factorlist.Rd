@@ -83,11 +83,13 @@ left of table.}
 \item{add_row_totals}{Logical. Include row totals. Note this differs from
 \code{total_col} above particularly for continuous explanatory variables.}
 
-\item{include_row_missing_col}{Logical. Include missing data total for each row.}
+\item{include_row_missing_col}{Logical. Include missing data total for each
+row.}
 
 \item{row_totals_colname}{Character. Column name for row totals.}
 
-\item{row_missing_colname}{Character. Column name for missing data totals for each row.}
+\item{row_missing_colname}{Character. Column name for missing data totals for
+each row.}
 }
 \value{
 Returns a \code{factorlist} dataframe.
@@ -98,12 +100,12 @@ explanatory variable names (continuous or categorical variables) to produce a
 summary table.
 }
 \details{
-This function is mostly a wrapper for \code{Hmisc:::summary.formula(...,
-method = "reverse")} but produces a publication-ready table the way we like
-them. It usually takes a categorical dependent variable (with two to five
-levels) to produce a cross table of counts and proportions expressed as
-percentages. However, it will take a continuous dependent variable to produce
-mean (standard deviation) or median (interquartile range) for use with linear
+This function aims to produce publication-ready summary tables for
+categorical or continuous dependent variables. It usually takes a categorical
+dependent variable to produce a cross table of counts and proportions
+expressed as percentages or summarised continuous explanatory variables.
+However, it will take a continuous dependent variable to produce mean
+(standard deviation) or median (interquartile range) for use with linear
 regression models.
 }
 \examples{
