@@ -86,7 +86,7 @@ library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-  summary_factorlist(dependent, explanatory, p = TRUE, catTest = catTestfisher) -> t
+  summary_factorlist(dependent, explanatory, p = TRUE, p_cat = "fisher") -> t
 ```
 
 ```{r, echo=FALSE}
@@ -443,7 +443,7 @@ library(finalfit)
 explanatory = c("age.factor*sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
-	finalfit(dependent, explanatory) -> t
+	summary_factorlist(dependent, explanatory)
 ```
 
 ```{r, echo=FALSE}

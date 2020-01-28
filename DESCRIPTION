@@ -24,12 +24,10 @@ Imports:
     ggplot2,
     grid,
     gridExtra,
-    Hmisc,
     lme4,
     magrittr,
     mice,
     pillar,
-    plyr,
     pROC,
     purrr,
     scales,
@@ -37,11 +35,9 @@ Imports:
     stringr,
     survival,
     survminer,
-    tibble,
     tidyr (>= 1.0.0)
 RoxygenNote: 6.1.1
 Suggests:
-    covr,
     cmprsk, 
     knitr,
     readr,

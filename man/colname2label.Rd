@@ -29,7 +29,7 @@ split = c("rx.factor", "node4.factor")
 colon_s \%>\%
   group_by(!!! syms(split)) \%>\% #Looks awkward, but avoids unquoted var names
   do(
-    summary_factorlist(., dependent, explanatory, total = TRUE, p = TRUE)
+    summary_factorlist(., dependent, explanatory, total = TRUE)
   ) \%>\%
   data.frame() \%>\%
   dependent_label(colon_s, dependent, prefix = "") \%>\%

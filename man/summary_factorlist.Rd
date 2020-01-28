@@ -5,11 +5,16 @@
 \title{Summarise a set of factors (or continuous variables) by a dependent variable}
 \usage{
 summary_factorlist(.data, dependent = NULL, explanatory, cont = "mean",
-  cont_range = FALSE, cont_cut = 5, p = FALSE, digits = c(1, 1, 3,
-  1), na_include = FALSE, column = TRUE, total_col = FALSE,
-  orderbytotal = FALSE, fit_id = FALSE, na_to_missing = TRUE,
+  cont_nonpara = NULL, cont_cut = 5, cont_range = FALSE, p = FALSE,
+  p_cont_para = "aov", p_cat = "chisq", column = TRUE,
+  total_col = FALSE, orderbytotal = FALSE, digits = c(1, 1, 3, 1),
+  na_include = FALSE, na_to_p = FALSE, fit_id = FALSE,
   add_dependent_label = FALSE, dependent_label_prefix = "Dependent: ",
-  dependent_label_suffix = "", ...)
+  dependent_label_suffix = "", add_col_totals = FALSE,
+  include_col_totals_percent = TRUE, col_totals_rowname = NULL,
+  col_totals_prefix = "", add_row_totals = FALSE,
+  include_row_missing_col = TRUE, row_totals_colname = "Total N",
+  row_missing_colname = "Missing N")
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -20,21 +25,29 @@ to 5 factor levels).}
 \item{explanatory}{Character vector of any length: name(s) of explanatory
 variables.}
 
-\item{cont}{Summary for continuous variables: "mean" (standard deviation) or
-"median" (interquartile range).}
+\item{cont}{Summary for continuous explanatory variables: "mean" (standard
+deviation) or "median" (interquartile range). If "median" then
+non-parametric hypothesis test performed (see below).}
 
-\item{cont_range}{Logical. Median is show with 1st and 3rd quartiles.}
+\item{cont_nonpara}{Numeric vector of form e.g. \code{c(1,2)}. Specify which
+variables to perform non-parametric hypothesis tests on and summarise with
+"median".}
 
 \item{cont_cut}{Numeric: number of unique values in continuous variable at
 which to consider it a factor.}
 
-\item{p}{Logical: Include statistical test (see
-\code{\link[Hmisc]{summary.formula}}).}
+\item{cont_range}{Logical. Median is show with 1st and 3rd quartiles.}
 
-\item{digits}{Number of digits to round to (1) mean/median, (2) standard
-deviation / interquartile range, (3) p-value, (4) count percentage.}
+\item{p}{Logical: Include null hypothesis statistical test.}
 
-\item{na_include}{Logical: include missing data in summary (\code{NA}).}
+\item{p_cont_para}{Character. Continuous variable parametric test. One of
+either "aov" (analysis of variance) or "t.test" for Welch two sample
+t-test. Note continuous non-parametric test is always Kruskal Wallis
+(kruskal.test) which in two-group setting is equivalent to Mann-Whitney U
+/Wilcoxon rank sum test.}
+
+\item{p_cat}{Character. Categorical variable test. One of either "chisq" or
+"fisher".}
 
 \item{column}{Logical: Compute margins by column rather than row.}
 
@@ -43,11 +56,14 @@ levels.}
 
 \item{orderbytotal}{Logical: order final table by total column high to low.}
 
-\item{fit_id}{Logical: not used directly, allows merging via
-\code{\link{finalfit_merge}}.}
+\item{digits}{Number of digits to round to (1) mean/median, (2) standard
+deviation / interquartile range, (3) p-value, (4) count percentage.}
 
-\item{na_to_missing}{Logical: convert \code{NA} to 'Missing' when
-\code{na_include=TRUE}.}
+\item{na_include}{Logical: include missing data in summary (\code{NA}).}
+
+\item{na_to_p}{Logical: include missing as group in statistical test.}
+
+\item{fit_id}{Logical: allows merging via \code{\link{finalfit_merge}}.}
 
 \item{add_dependent_label}{Add the name of the dependent label to the top
 left of table.}
@@ -56,8 +72,22 @@ left of table.}
 
 \item{dependent_label_suffix}{Add text after dependent label.}
 
-\item{...}{Pass other arguments to \code{\link[Hmisc]{summary.formula}}),
-e.g. \code{catTest = catTestfisher}.}
+\item{add_col_totals}{Logical. Include column total n.}
+
+\item{include_col_totals_percent}{Include column percentage of total.}
+
+\item{col_totals_rowname}{Logical. Row name for column totals.}
+
+\item{col_totals_prefix}{Character. Prefix to column totals, e.g. "N=".}
+
+\item{add_row_totals}{Logical. Include row totals. Note this differs from
+\code{total_col} above particularly for continuous explanatory variables.}
+
+\item{include_row_missing_col}{Logical. Include missing data total for each row.}
+
+\item{row_totals_colname}{Character. Column name for row totals.}
+
+\item{row_missing_colname}{Character. Column name for missing data totals for each row.}
 }
 \value{
 Returns a \code{factorlist} dataframe.

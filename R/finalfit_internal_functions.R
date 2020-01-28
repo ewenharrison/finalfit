@@ -592,7 +592,7 @@ extract_labels = function(.data){
 #' colon_s %>%
 #'   group_by(!!! syms(split)) %>% #Looks awkward, but avoids unquoted var names
 #'   do(
-#'     summary_factorlist(., dependent, explanatory, total = TRUE, p = TRUE)
+#'     summary_factorlist(., dependent, explanatory, total = TRUE)
 #'   ) %>%
 #'   data.frame() %>%
 #'   dependent_label(colon_s, dependent, prefix = "") %>%
@@ -722,7 +722,7 @@ globalVariables(c("L95", "U95", "fit_id", "Total", "dependent",
 									":=", "Mean", "SD", "Median", "Q3", "Q1", "IQR", "Formatted", 
 									"w", "Freq", "g", "total_prop", "Prop", "index_total", "vname", "Combined",
 									"2.5 %", "97.5 %", "p.value", "estimate", "index", "n", "missing_n", "var_type",
-									"missing_percent", "var1", "var2", "keep"))
+									"missing_percent", "var1", "var2", "keep", "label"))
 
 
 # Workaround ::: as summary.formula not (yet) exported from Hmisc
@@ -732,20 +732,12 @@ globalVariables(c("L95", "U95", "fit_id", "Total", "dependent",
 	get(name, envir = asNamespace(pkg), inherits = FALSE)
 }
 
-#' Call to Hmisc:::summary.formula
-#'
-#' Not called directly.
-#'
-#' @keywords internal
-#' @import Hmisc
-summary_formula = 'Hmisc' %:::% 'summary.formula'
-
 #' Call to mice:::summary.mipo
 #'
 #' Not called directly.
 #'
 #' @keywords internal
-#' @import Hmisc
+#' @import mice
 summary_mipo = 'mice' %:::% 'summary.mipo'
 
 
