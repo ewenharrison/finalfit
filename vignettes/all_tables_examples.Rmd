@@ -24,7 +24,7 @@ install.packages("finalfit")
 
 Two-way tables are used extensively in healthcare research, e.g. a 2x2 table comparing two factors with two levels each, or table 1 from a typical clinical study or trial
 
-The main functions all take a `dependent` variable - the outcome (maximum of 5 levels) - and `explanatory` variables - predictors or exposures (any number categorical or continuous variables). 
+The main functions all take a `dependent` variable - the outcome - and `explanatory` variables - predictors or exposures (any number categorical or continuous variables). 
 
 ### 1.01 Default
 
@@ -45,7 +45,7 @@ Note, chi-squared warnings will be generated when the expected count in any cell
 
 ### 1.02 Add or edit variable labels
 
-```{r, warning = FALSE}
+```{r message=FALSE, warning=FALSE}
 library(finalfit)
 library(dplyr)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
@@ -64,7 +64,7 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r"))
 
 ### 1.03 P-value for hypothesis test
 
-Chi-squared for categorical, Kruskal-Wallis/Mann-Whitney for continuous
+Defaults are chi-squared for categorical explanatory variables and an F-test for continuous (`aov`, analysis of variance). Alternatives can be specified as per below. 
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -94,13 +94,31 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r"))
 ```
 
-### 1.05 Median (interquartile range) instead of mean (standard deviation)
+### 1.05 Parametric explanatory variables
 
-... for continuous variables.
+Summaries for continuous explanatory variables are mean (standard deviation) with `aov` statistical test by default. 
+The statistical test can be changed to the Welch t-test when there are two dependent variable levels if desired. 
+
+```{r}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, p_cont_para = "t.test") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r"))
+```
+
+### 1.06 Non-parametric explanatory variables
+
+If desired, all continuous explanatory variables can be considered non-parametric. Summaries will be median (interquartile range) and the statistical test is Kruskal-Wallis/Mann-Whitney U.
 
 ```{r, warning=FALSE}
 library(finalfit)
-explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+explanatory = c("age", "nodes", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
 	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median") -> t
@@ -111,16 +129,17 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.06 Missing values for the explanatory variables
+### 1.07 Select specific non-parametric variables
 
-Always do this when describing your data.
+Many have asked in the past if only particular variables can be considered non-parametric. 
+The argument `cont_nonpara` can take a vector (e.g. `c(1, 2, 3, 4)`) of values corresponding to the explanatory variable to specify which should be summarised as a median and be passed to a non-parametric test. 
 
 ```{r, warning=FALSE}
 library(finalfit)
-explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+explanatory = c("age", "nodes", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE) -> t
+	summary_factorlist(dependent, explanatory, p = TRUE, cont_nonpara = c(2)) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -128,14 +147,53 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.07 Row proportions (rather than column)
+### 1.08 Missing values for the explanatory variables
+
+Always consider summarising missing values when describing your data.
 
 ```{r, warning=FALSE}
 library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
+	summary_factorlist(dependent, explanatory, p = TRUE, na_include = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
+```
+
+### 1.09 Pass missing values to statistical tests
+
+This is a change from the default behaviour introduced in Finalfit 1.0.0.
+Previously, when missing data was presented it was also considered as a level in the statistical test. 
+This may or may not be desired. 
+Control this now using `na_to_p = TRUE` to include missing data in test.
+A message is produced reminding you that you are doing that. 
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+	summary_factorlist(dependent, explanatory, p = TRUE, na_include = TRUE, 
+										 na_to_p = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
+```
+
+### 1.10 Row proportions (rather than column)
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+	summary_factorlist(dependent, explanatory, p = TRUE, na_include = TRUE,
 										 column = FALSE) -> t
 ```
 
@@ -144,7 +202,9 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r"))
 ```
 
-### 1.08 Total column
+### 1.11 Total column
+
+The terms total column was introduced before this function summarised continuous variables. It would be better to be "All data" or something similar, as the continous explanatory variables a summary statistic is produced for all data. However, to keep backwards compatibility we have left it unchanged for now. For producing row totals including continous explanatory variables, see `add_row_total` below. 
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -161,17 +221,18 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
 
-### 1.09 Row totals with missing
+### 1.12 Row totals with missing
 This was introduced to deal with the problem of summarising missing data for continuous variables.
+By default, it provides the total N for the variable and includes a column enumerating missing values. 
 
 ```{r message=FALSE, warning=FALSE}
 library(finalfit)
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "perfor.factor"
 colon_s %>%
-	summary_factorlist(dependent, explanatory, p = TRUE, cont = "median", na_include = TRUE,
-										 column = TRUE, total_col = TRUE) %>% 
-	ff_row_totals(colon_s, explanatory) -> t
+	summary_factorlist(dependent, explanatory, p = TRUE, na_include = TRUE,
+										 total_col = TRUE,
+										 add_row_total = TRUE) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -179,10 +240,46 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
+### 1.13 Row totals without missing
 
+Remove missing column.
 
+```{r message=FALSE, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+	summary_factorlist(dependent, explanatory, p = TRUE, na_include = TRUE,
+										 total_col = TRUE,
+										 add_row_total = TRUE,
+										 include_row_missing_col = FALSE) -> t
+```
 
-### 1.10 Order a variable by total
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
+```
+
+### 1.14 Row totals with user-specified column names
+
+```{r message=FALSE, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
+colon_s %>%
+	summary_factorlist(dependent, explanatory, p = TRUE,
+										 total_col = TRUE,
+										 add_row_total = TRUE,
+										 row_totals_colname = "N (total)",
+										 row_missing_colname = "N (missing)") -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
+```
+
+### 1.15 Order a variable by total
 
 This is intended for when there is only one `explanatory` variable.  
 
@@ -200,7 +297,62 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.11 Label with `dependent` name
+### 1.17 Add column totals
+
+Column totals can be added, and by default are presented with a row percentage. 
+
+```{r, warning=FALSE}
+explanatory = c("age.factor", "sex.factor")
+dependent = "rx.factor"
+
+colon_s %>%
+	summary_factorlist(dependent, explanatory, p = TRUE,
+										 add_col_totals = TRUE)	-> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "l", "l", "r", "r", "r"))
+```
+
+### 1.18 Add column totals without proportion.
+
+```{r, warning=FALSE}
+explanatory = c("age.factor", "sex.factor")
+dependent = "rx.factor"
+
+colon_s %>%
+	summary_factorlist(dependent, explanatory, p = TRUE,
+										 add_col_totals = TRUE,
+										 include_col_totals_percent = FALSE)	-> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "l", "l", "r", "r", "r"))
+```
+
+
+### 1.19 Add column totals with user-specified row name and prefix.
+
+```{r, warning=FALSE}
+explanatory = c("age.factor", "sex.factor")
+dependent = "rx.factor"
+
+colon_s %>%
+	summary_factorlist(dependent, explanatory, p = TRUE,
+										 add_col_totals = TRUE,
+										 include_col_totals_percent = FALSE,
+										 col_totals_rowname = "",
+										 col_totals_prefix = "N=")	-> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "l", "l", "r", "r", "r"))
+```
+
+### 1.20 Label with `dependent` name
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -235,7 +387,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))
 ```
 
-### 1.12 Dependent variable with any number of factor levels supported
+### 1.21 Dependent variable with any number of factor levels supported
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -254,9 +406,84 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.13 Explanatory variable defaults to factor when ≤5 distinct values
+### 1.22 Missing data in the dependent
+
+If you are careful to count totals and you know your data, you should realise when there is data missing from the dependent, e.g.:
+
+```{r}
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "mort_5yr"
+colon_s %>% 
+	ff_glimpse(dependent, explanatory)
+```
+
+To make sure, a warning is generated when data are dropped from the dependent: 
 
 ```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, na_include = TRUE,
+  									 total_col = TRUE,
+  									 add_col_totals = TRUE, add_row_totals = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+You may consider making the missing data explicit.
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "mort_5yr"
+colon_s %>%
+	mutate(
+		mort_5yr = forcats::fct_explicit_na(mort_5yr)
+	) %>% 
+  summary_factorlist(dependent, explanatory, p = TRUE, na_include = TRUE,
+  									 total_col = TRUE,
+  									 add_col_totals = TRUE, add_row_totals = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 1.23 Actively dropping missing data (and tidyverse functions that strip attributes)
+
+You may wish to actively remove any rows with missing data, so you are explicit around which data are being used in models. 
+Unfortunately some tidyverse functions silently remove variable attributes (labels). This is complained about then put right. But here is a workaround if it is happening with a variable you wish to use, such as `tidyr::drop_na()`. 
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "mort_5yr"
+vlabels = colon_s %>% 
+	extract_variable_label()
+
+colon_s %>%
+	select(dependent, explanatory) %>% 
+	tidyr::drop_na() %>% # Silently removes attributes
+	ff_relabel(vlabels) %>% # Relabel
+  summary_factorlist(dependent, explanatory, p = TRUE, na_include = TRUE,
+  									 total_col = TRUE,
+  									 add_col_totals = TRUE, add_row_totals = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+
+### 1.22 Explanatory variable defaults to factor when ≤5 distinct values
+
+```{r message=FALSE, warning=FALSE}
 library(finalfit)
 
 # Here, `extent` is a continuous variable with 4 distinct values. 
@@ -273,14 +500,15 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.14 Keep as continous variable when ≤5 distinct values
+### 1.23 Keep as continous variable when ≤5 distinct values
 
 ```{r, warning=FALSE}
 library(finalfit)
-explanatory = c("extent")
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "mort_5yr"
 colon_s %>%
-  summary_factorlist(dependent, explanatory, cont_cut = 3) -> t
+  summary_factorlist(dependent, explanatory, p = TRUE, 
+  									 digits = c(1,2,3,4)) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -288,28 +516,30 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.15 Stratified crosstables
+### 1.24 Stratified crosstables
 
-I've been meaning to include support for table stratification for a while. I have delayed for a good reason. Perhaps the most straightforward way to implement stratificiation is with `dplyr::group_by()`. However, the non-standard evaluation required for multiple strata may confuse as it is not implemented else where in the package (doesn't work with `group_by_`). This translates to whether variable names are passed in quotes or not. Finally,. `dplyr::do()` is planned for deprecation, but there is no good alternative at the moment. Anyway, here is a solution, which while not that pretty, is very effective. 
+I've been meaning to include support for table stratification for a while. I have delayed for a good reason. Perhaps the most straightforward way to implement stratificiation is with `dplyr::group_by()`. However, the non-standard evaluation required for multiple strata may confuse as it is not implemented else where in the package.
+
+This translates to whether variable names are passed in quotes or not. 
+
+Here is a solution, which while not that pretty, is effective. 
+
+Note that `tidyverse` functions every so often start stripping labels/attributes. Hence the addition of the help function. 
 
 ```{r, warning=FALSE}
 library(dplyr)
-# Piped function to generate stratified crosstabs table
 explanatory = c("age.factor", "sex.factor")
-dependent = "rx.factor"
+dependent = "perfor.factor"
 
 # Pick option below
 split = "rx.factor"
-split = c("perfor.factor", "node4.factor")
+split = c("rx.factor", "node4.factor")
 
+# Piped function to generate stratified crosstabs table
 colon_s %>%
-  group_by(!!! syms(split)) %>% #Looks awkward, but this keeps quoted var names (rather than unquoted)
-  do(
-    summary_factorlist(., dependent, explanatory, p = TRUE)
-  ) %>%
-  data.frame() %>%
-  dependent_label(colon_s, dependent, prefix = "") %>%
-  colname2label(split) -> t
+  group_by(!!! syms(split)) %>% # Looks awkward, but avoids unquoted var names
+  group_modify(~ summary_factorlist(.x, dependent, explanatory)) %>%
+  ff_stratify_helper(colon_s) -> t
 ```
 
 ```{r, echo=FALSE}
@@ -317,20 +547,18 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "l", "l", "r", "r", "r"))
 ```
 
-### 1.16 Add column totals
+### 1.25 Digits / decimal places
 
 ```{r, warning=FALSE}
-explanatory = c("age.factor", "sex.factor")
-dependent = "rx.factor"
-
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "perfor.factor"
 colon_s %>%
-	summary_factorlist(., dependent, explanatory, p = TRUE) %>% 
-	ff_column_totals(colon_s, dependent)	-> t
+  summary_factorlist(dependent, explanatory, p = TRUE, digits = c(1,2,3,4)) -> t
 ```
 
 ```{r, echo=FALSE}
 library(knitr)
-kable(t, row.names=FALSE, align = c("l", "l", "l", "l", "r", "r", "r"))
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
 
@@ -443,7 +671,7 @@ library(finalfit)
 explanatory = c("age.factor*sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
-	summary_factorlist(dependent, explanatory)
+	finalfit(dependent, explanatory) -> t
 ```
 
 ```{r, echo=FALSE}

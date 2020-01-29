@@ -544,7 +544,7 @@ summary_factorlist <- function(.data,
 
 	# Replace any missing values with "", e.g. in (Missing) column
 	dplyr::mutate_all(.,
-	                  ~ ifelse(is.na(.), "-", .)
+	                  ~ ifelse(is.na(.), "", .)
 	)
 	class(df.out) = c("data.frame.ff", class(df.out))
 	return(df.out)

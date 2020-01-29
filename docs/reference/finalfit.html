@@ -84,7 +84,7 @@ finalfit.coxph method (not called directly)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -280,52 +280,52 @@ confint_sep</code>.</p></td>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                         Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt; 2                             40-59 years 208 (61.4) 131 (38.6)
-#&gt; 3                               60+ years 272 (53.4) 237 (46.6)
-#&gt; 8                         Sex      Female 243 (55.6) 194 (44.4)
-#&gt; 9                                    Male 268 (56.1) 210 (43.9)
-#&gt; 4                 Obstruction          No 408 (56.7) 312 (43.3)
-#&gt; 5                                     Yes  89 (51.1)  85 (48.9)
-#&gt; 6                 Perforation          No 497 (56.0) 391 (44.0)
-#&gt; 7                                     Yes  14 (51.9)  13 (48.1)
-#&gt;            OR (univariable)        OR (multivariable)
-#&gt; 1                         -                         -
-#&gt; 2 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
-#&gt; 3 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426)
-#&gt; 8                         -                         -
-#&gt; 9 0.98 (0.76-1.27, p=0.889) 0.98 (0.75-1.28, p=0.902)
-#&gt; 4                         -                         -
-#&gt; 5 1.25 (0.90-1.74, p=0.189) 1.25 (0.90-1.76, p=0.186)
-#&gt; 6                         -                         -
-#&gt; 7 1.18 (0.54-2.55, p=0.672) 1.12 (0.51-2.44, p=0.770)</div><div class='input'>
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;  Dependent: Mortality 5 year                  Alive       Died
+#&gt;                          Age   &lt;40 years  31 (47.0)  35 (53.0)
+#&gt;                              40-59 years 203 (61.1) 129 (38.9)
+#&gt;                                60+ years 263 (53.0) 233 (47.0)
+#&gt;                          Sex      Female 237 (55.2) 192 (44.8)
+#&gt;                                     Male 260 (55.9) 205 (44.1)
+#&gt;                  Obstruction          No 408 (56.7) 312 (43.3)
+#&gt;                                      Yes  89 (51.1)  85 (48.9)
+#&gt;                  Perforation          No 483 (55.7) 384 (44.3)
+#&gt;                                      Yes  14 (51.9)  13 (48.1)
+#&gt;           OR (univariable)        OR (multivariable)
+#&gt;                          -                         -
+#&gt;  0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
+#&gt;  0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426)
+#&gt;                          -                         -
+#&gt;  0.98 (0.76-1.27, p=0.889) 0.98 (0.75-1.28, p=0.902)
+#&gt;                          -                         -
+#&gt;  1.25 (0.90-1.74, p=0.189) 1.25 (0.90-1.76, p=0.186)
+#&gt;                          -                         -
+#&gt;  1.18 (0.54-2.55, p=0.672) 1.12 (0.51-2.44, p=0.770)</div><div class='input'>
 <span class='co'># Multivariable analysis with subset of explanatory</span>
 <span class='co'>#   variable set used in univariable analysis</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>explanatory_multi</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                         Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt; 2                             40-59 years 208 (61.4) 131 (38.6)
-#&gt; 3                               60+ years 272 (53.4) 237 (46.6)
-#&gt; 8                         Sex      Female 243 (55.6) 194 (44.4)
-#&gt; 9                                    Male 268 (56.1) 210 (43.9)
-#&gt; 4                 Obstruction          No 408 (56.7) 312 (43.3)
-#&gt; 5                                     Yes  89 (51.1)  85 (48.9)
-#&gt; 6                 Perforation          No 497 (56.0) 391 (44.0)
-#&gt; 7                                     Yes  14 (51.9)  13 (48.1)
-#&gt;            OR (univariable)        OR (multivariable)
-#&gt; 1                         -                         -
-#&gt; 2 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
-#&gt; 3 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.424)
-#&gt; 8                         -                         -
-#&gt; 9 0.98 (0.76-1.27, p=0.889)                         -
-#&gt; 4                         -                         -
-#&gt; 5 1.25 (0.90-1.74, p=0.189) 1.26 (0.90-1.76, p=0.176)
-#&gt; 6                         -                         -
-#&gt; 7 1.18 (0.54-2.55, p=0.672)                         -</div><div class='input'>
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;  Dependent: Mortality 5 year                  Alive       Died
+#&gt;                          Age   &lt;40 years  31 (47.0)  35 (53.0)
+#&gt;                              40-59 years 203 (61.1) 129 (38.9)
+#&gt;                                60+ years 263 (53.0) 233 (47.0)
+#&gt;                          Sex      Female 237 (55.2) 192 (44.8)
+#&gt;                                     Male 260 (55.9) 205 (44.1)
+#&gt;                  Obstruction          No 408 (56.7) 312 (43.3)
+#&gt;                                      Yes  89 (51.1)  85 (48.9)
+#&gt;                  Perforation          No 483 (55.7) 384 (44.3)
+#&gt;                                      Yes  14 (51.9)  13 (48.1)
+#&gt;           OR (univariable)        OR (multivariable)
+#&gt;                          -                         -
+#&gt;  0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
+#&gt;  0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.424)
+#&gt;                          -                         -
+#&gt;  0.98 (0.76-1.27, p=0.889)                         -
+#&gt;                          -                         -
+#&gt;  1.25 (0.90-1.74, p=0.189) 1.26 (0.90-1.76, p=0.176)
+#&gt;                          -                         -
+#&gt;  1.18 (0.54-2.55, p=0.672)                         -</div><div class='input'>
 <span class='co'># Summary, univariable and multivariable analyses of the form:</span>
 <span class='co'># lme4::glmer(dependent ~ explanatory + (1 | random_effect), family="binomial")</span>
 
@@ -334,52 +334,53 @@ confint_sep</code>.</p></td>
 <span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>, <span class='no'>random_effect</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                         Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt; 2                             40-59 years 208 (61.4) 131 (38.6)
-#&gt; 3                               60+ years 272 (53.4) 237 (46.6)
-#&gt; 8                         Sex      Female 243 (55.6) 194 (44.4)
-#&gt; 9                                    Male 268 (56.1) 210 (43.9)
-#&gt; 4                 Obstruction          No 408 (56.7) 312 (43.3)
-#&gt; 5                                     Yes  89 (51.1)  85 (48.9)
-#&gt; 6                 Perforation          No 497 (56.0) 391 (44.0)
-#&gt; 7                                     Yes  14 (51.9)  13 (48.1)
-#&gt;            OR (univariable)           OR (multilevel)
-#&gt; 1                         -                         -
-#&gt; 2 0.54 (0.32-0.92, p=0.023) 0.73 (0.38-1.40, p=0.342)
-#&gt; 3 0.75 (0.45-1.25, p=0.270) 1.01 (0.53-1.90, p=0.984)
-#&gt; 8                         -                         -
-#&gt; 9 0.98 (0.76-1.27, p=0.889)                         -
-#&gt; 4                         -                         -
-#&gt; 5 1.25 (0.90-1.74, p=0.189) 1.24 (0.83-1.85, p=0.292)
-#&gt; 6                         -                         -
-#&gt; 7 1.18 (0.54-2.55, p=0.672)                         -</div><div class='input'>
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>, <span class='no'>random_effect</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;  Dependent: Mortality 5 year                  Alive       Died
+#&gt;                          Age   &lt;40 years  31 (47.0)  35 (53.0)
+#&gt;                              40-59 years 203 (61.1) 129 (38.9)
+#&gt;                                60+ years 263 (53.0) 233 (47.0)
+#&gt;                          Sex      Female 237 (55.2) 192 (44.8)
+#&gt;                                     Male 260 (55.9) 205 (44.1)
+#&gt;                  Obstruction          No 408 (56.7) 312 (43.3)
+#&gt;                                      Yes  89 (51.1)  85 (48.9)
+#&gt;                  Perforation          No 483 (55.7) 384 (44.3)
+#&gt;                                      Yes  14 (51.9)  13 (48.1)
+#&gt;           OR (univariable)           OR (multilevel)
+#&gt;                          -                         -
+#&gt;  0.54 (0.32-0.92, p=0.023) 0.73 (0.38-1.40, p=0.342)
+#&gt;  0.75 (0.45-1.25, p=0.270) 1.01 (0.53-1.90, p=0.984)
+#&gt;                          -                         -
+#&gt;  0.98 (0.76-1.27, p=0.889)                         -
+#&gt;                          -                         -
+#&gt;  1.25 (0.90-1.74, p=0.189) 1.24 (0.83-1.85, p=0.292)
+#&gt;                          -                         -
+#&gt;  1.18 (0.54-2.55, p=0.672)                         -</div><div class='input'>
 <span class='co'># Include model metrics:</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>,  <span class='kw'>metrics</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [[1]]
-#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                         Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt; 2                             40-59 years 208 (61.4) 131 (38.6)
-#&gt; 3                               60+ years 272 (53.4) 237 (46.6)
-#&gt; 8                         Sex      Female 243 (55.6) 194 (44.4)
-#&gt; 9                                    Male 268 (56.1) 210 (43.9)
-#&gt; 4                 Obstruction          No 408 (56.7) 312 (43.3)
-#&gt; 5                                     Yes  89 (51.1)  85 (48.9)
-#&gt; 6                 Perforation          No 497 (56.0) 391 (44.0)
-#&gt; 7                                     Yes  14 (51.9)  13 (48.1)
-#&gt;            OR (univariable)        OR (multivariable)
-#&gt; 1                         -                         -
-#&gt; 2 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
-#&gt; 3 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.424)
-#&gt; 8                         -                         -
-#&gt; 9 0.98 (0.76-1.27, p=0.889)                         -
-#&gt; 4                         -                         -
-#&gt; 5 1.25 (0.90-1.74, p=0.189) 1.26 (0.90-1.76, p=0.176)
-#&gt; 6                         -                         -
-#&gt; 7 1.18 (0.54-2.55, p=0.672)                         -
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>,  <span class='kw'>metrics</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [[1]]
+#&gt;  Dependent: Mortality 5 year                  Alive       Died
+#&gt;                          Age   &lt;40 years  31 (47.0)  35 (53.0)
+#&gt;                              40-59 years 203 (61.1) 129 (38.9)
+#&gt;                                60+ years 263 (53.0) 233 (47.0)
+#&gt;                          Sex      Female 237 (55.2) 192 (44.8)
+#&gt;                                     Male 260 (55.9) 205 (44.1)
+#&gt;                  Obstruction          No 408 (56.7) 312 (43.3)
+#&gt;                                      Yes  89 (51.1)  85 (48.9)
+#&gt;                  Perforation          No 483 (55.7) 384 (44.3)
+#&gt;                                      Yes  14 (51.9)  13 (48.1)
+#&gt;           OR (univariable)        OR (multivariable)
+#&gt;                          -                         -
+#&gt;  0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
+#&gt;  0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.424)
+#&gt;                          -                         -
+#&gt;  0.98 (0.76-1.27, p=0.889)                         -
+#&gt;                          -                         -
+#&gt;  1.25 (0.90-1.74, p=0.189) 1.26 (0.90-1.76, p=0.176)
+#&gt;                          -                         -
+#&gt;  1.18 (0.54-2.55, p=0.672)                         -
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] "Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1226.8, C-statistic = 0.555, H&amp;L = Chi-sq(8) 0.06 (p=1.000)"
+#&gt;                                                                                                                                   
+#&gt;  Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1226.8, C-statistic = 0.555, H&amp;L = Chi-sq(8) 0.06 (p=1.000)
 #&gt; </div><div class='input'>
 <span class='co'># Summary, univariable and multivariable analyses of the form:</span>
 <span class='co'># survival::coxph(dependent ~ explanatory)</span>
@@ -388,26 +389,26 @@ confint_sep</code>.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"Surv(time, status)"</span>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt;   Dependent: Surv(time, status)                     all
-#&gt; 1                           Age   &lt;40 years  70 (100.0)
-#&gt; 2                               40-59 years 344 (100.0)
-#&gt; 3                                 60+ years 515 (100.0)
-#&gt; 8                           Sex      Female 445 (100.0)
-#&gt; 9                                      Male 484 (100.0)
-#&gt; 4                   Obstruction          No 732 (100.0)
-#&gt; 5                                       Yes 176 (100.0)
-#&gt; 6                   Perforation          No 902 (100.0)
-#&gt; 7                                       Yes  27 (100.0)
-#&gt;            HR (univariable)        HR (multivariable)
-#&gt; 1                         -                         -
-#&gt; 2 0.76 (0.53-1.09, p=0.132) 0.79 (0.55-1.13, p=0.196)
-#&gt; 3 0.93 (0.66-1.31, p=0.668) 0.98 (0.69-1.40, p=0.926)
-#&gt; 8                         -                         -
-#&gt; 9 1.01 (0.84-1.22, p=0.888) 1.02 (0.85-1.23, p=0.812)
-#&gt; 4                         -                         -
-#&gt; 5 1.29 (1.03-1.62, p=0.028) 1.30 (1.03-1.64, p=0.026)
-#&gt; 6                         -                         -
-#&gt; 7 1.17 (0.70-1.95, p=0.556) 1.08 (0.64-1.81, p=0.785)</div><div class='input'>
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt;  Dependent: Surv(time, status)                     all
+#&gt;                            Age   &lt;40 years  69 (100.0)
+#&gt;                                40-59 years 337 (100.0)
+#&gt;                                  60+ years 502 (100.0)
+#&gt;                            Sex      Female 437 (100.0)
+#&gt;                                       Male 471 (100.0)
+#&gt;                    Obstruction          No 732 (100.0)
+#&gt;                                        Yes 176 (100.0)
+#&gt;                    Perforation          No 881 (100.0)
+#&gt;                                        Yes  27 (100.0)
+#&gt;           HR (univariable)        HR (multivariable)
+#&gt;                          -                         -
+#&gt;  0.76 (0.53-1.09, p=0.132) 0.79 (0.55-1.13, p=0.196)
+#&gt;  0.93 (0.66-1.31, p=0.668) 0.98 (0.69-1.40, p=0.926)
+#&gt;                          -                         -
+#&gt;  1.01 (0.84-1.22, p=0.888) 1.02 (0.85-1.23, p=0.812)
+#&gt;                          -                         -
+#&gt;  1.29 (1.03-1.62, p=0.028) 1.30 (1.03-1.64, p=0.026)
+#&gt;                          -                         -
+#&gt;  1.17 (0.70-1.95, p=0.556) 1.08 (0.64-1.81, p=0.785)</div><div class='input'>
 <span class='co'># Rather than going all-in-one, any number of subset models can</span>
 <span class='co'># be manually added on to a summary_factorlist() table using finalfit.merge().</span>
 <span class='co'># This is particularly useful when models take a long-time to run or are complicated.</span>
@@ -418,30 +419,31 @@ confint_sep</code>.</p></td>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>metrics</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [[1]]
-#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                         Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt; 2                             40-59 years 208 (61.4) 131 (38.6)
-#&gt; 3                               60+ years 272 (53.4) 237 (46.6)
-#&gt; 8                         Sex      Female 243 (55.6) 194 (44.4)
-#&gt; 9                                    Male 268 (56.1) 210 (43.9)
-#&gt; 4                 Obstruction          No 408 (56.7) 312 (43.3)
-#&gt; 5                                     Yes  89 (51.1)  85 (48.9)
-#&gt; 6                 Perforation          No 497 (56.0) 391 (44.0)
-#&gt; 7                                     Yes  14 (51.9)  13 (48.1)
-#&gt;            OR (univariable)        OR (multivariable)
-#&gt; 1                         -                         -
-#&gt; 2 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
-#&gt; 3 0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426)
-#&gt; 8                         -                         -
-#&gt; 9 0.98 (0.76-1.27, p=0.889) 0.98 (0.75-1.28, p=0.902)
-#&gt; 4                         -                         -
-#&gt; 5 1.25 (0.90-1.74, p=0.189) 1.25 (0.90-1.76, p=0.186)
-#&gt; 6                         -                         -
-#&gt; 7 1.18 (0.54-2.55, p=0.672) 1.12 (0.51-2.44, p=0.770)
+  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>metrics</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [[1]]
+#&gt;  Dependent: Mortality 5 year                  Alive       Died
+#&gt;                          Age   &lt;40 years  31 (47.0)  35 (53.0)
+#&gt;                              40-59 years 203 (61.1) 129 (38.9)
+#&gt;                                60+ years 263 (53.0) 233 (47.0)
+#&gt;                          Sex      Female 237 (55.2) 192 (44.8)
+#&gt;                                     Male 260 (55.9) 205 (44.1)
+#&gt;                  Obstruction          No 408 (56.7) 312 (43.3)
+#&gt;                                      Yes  89 (51.1)  85 (48.9)
+#&gt;                  Perforation          No 483 (55.7) 384 (44.3)
+#&gt;                                      Yes  14 (51.9)  13 (48.1)
+#&gt;           OR (univariable)        OR (multivariable)
+#&gt;                          -                         -
+#&gt;  0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
+#&gt;  0.75 (0.45-1.25, p=0.270) 0.81 (0.48-1.36, p=0.426)
+#&gt;                          -                         -
+#&gt;  0.98 (0.76-1.27, p=0.889) 0.98 (0.75-1.28, p=0.902)
+#&gt;                          -                         -
+#&gt;  1.25 (0.90-1.74, p=0.189) 1.25 (0.90-1.76, p=0.186)
+#&gt;                          -                         -
+#&gt;  1.18 (0.54-2.55, p=0.672) 1.12 (0.51-2.44, p=0.770)
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] "Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)"
+#&gt;                                                                                                                                  
+#&gt;  Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)
 #&gt; </div><div class='input'>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>explanatory_multi</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span>)
@@ -450,8 +452,7 @@ confint_sep</code>.</p></td>
 
 <span class='co'># Separate tables</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>fit_id</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>example.summary</span>
-
+  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>fit_id</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>example.summary</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='glmuni.html'>glmuni</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.univariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
@@ -470,15 +471,15 @@ confint_sep</code>.</p></td>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>fit_id</span>, <span class='no'>index</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>) <span class='kw'>-&gt;</span> <span class='no'>example.final</span>
 <span class='no'>example.final</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                         Age   &lt;40 years   31 (6.1)   36 (8.9)
-#&gt; 2                             40-59 years 208 (40.7) 131 (32.4)
-#&gt; 3                               60+ years 272 (53.2) 237 (58.7)
-#&gt; 8                         Sex      Female 243 (47.6) 194 (48.0)
-#&gt; 9                                    Male 268 (52.4) 210 (52.0)
+#&gt; 1                         Age   &lt;40 years   31 (6.2)   35 (8.8)
+#&gt; 2                             40-59 years 203 (40.8) 129 (32.5)
+#&gt; 3                               60+ years 263 (52.9) 233 (58.7)
+#&gt; 8                         Sex      Female 237 (47.7) 192 (48.4)
+#&gt; 9                                    Male 260 (52.3) 205 (51.6)
 #&gt; 4                 Obstruction          No 408 (82.1) 312 (78.6)
 #&gt; 5                                     Yes  89 (17.9)  85 (21.4)
-#&gt; 6                 Perforation          No 497 (97.3) 391 (96.8)
-#&gt; 7                                     Yes   14 (2.7)   13 (3.2)
+#&gt; 6                 Perforation          No 483 (97.2) 384 (96.7)
+#&gt; 7                                     Yes   14 (2.8)   13 (3.3)
 #&gt;            OR (univariable)        OR (multivariable)            OR (multilevel
 #&gt; 1                         -                         -                         -
 #&gt; 2 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041) 0.75 (0.39-1.44, p=0.382)

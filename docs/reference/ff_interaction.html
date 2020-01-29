@@ -81,7 +81,7 @@ labelled with a name derived from any pre-existing labels." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -202,11 +202,11 @@ labelled with a name derived from any pre-existing labels.</p>
     <pre class="examples"><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>ff_interaction</span>(<span class='no'>sex.factor</span>, <span class='no'>perfor.factor</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='st'>"mort_5yr"</span>, <span class='st'>"sex.factor__perfor.factor"</span>)</div><div class='output co'>#&gt;             label     levels      Alive       Died
-#&gt; 1 Sex:Perforation  Female|No 238 (46.6) 186 (46.0)
-#&gt; 2                 Female|Yes    5 (1.0)    8 (2.0)
-#&gt; 3                    Male|No 259 (50.7) 205 (50.7)
-#&gt; 4                   Male|Yes    9 (1.8)    5 (1.2)</div></pre>
+    <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='st'>"mort_5yr"</span>, <span class='st'>"sex.factor__perfor.factor"</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;            label     levels      Alive       Died
+#&gt;  Sex:Perforation  Female|No 238 (46.6) 186 (46.0)
+#&gt;                  Female|Yes    5 (1.0)    8 (2.0)
+#&gt;                     Male|No 259 (50.7) 205 (50.7)
+#&gt;                    Male|Yes    9 (1.8)    5 (1.2)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

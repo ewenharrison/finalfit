@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -185,12 +185,7 @@ algorithm.</p></td>
 #&gt; <span class='message'>Attaching package: ‘mice’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    cbind, rbind</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>Hmisc</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Formula</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘Hmisc’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:dplyr’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    src, summarize</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    format.pval, units</span></div><div class='input'>
+
 <span class='co'># Create some extra missing data</span>
 <span class='co'>## Smoking missing completely at random</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
@@ -198,8 +193,8 @@ algorithm.</p></td>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
   <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>colon_s</span>)[<span class='fl'>1</span>], <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
   <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>0.7</span>, <span class='fl'>0.1</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>()
-<span class='kw pkg'>Hmisc</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/Hmisc/man/label.html'>label</a></span>(<span class='no'>colon_s</span>$<span class='no'>smoking_mcar</span>) <span class='kw'>=</span> <span class='st'>"Smoking (MCAR)"</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='ff_label.html'>ff_label</a></span>(<span class='st'>"Smoking (MCAR)"</span>)
 
 <span class='co'>## Make smoking missing conditional on patient sex</span>
 <span class='no'>colon_s</span>$<span class='no'>smoking_mar</span>[<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>==</span> <span class='st'>"Female"</span>] <span class='kw'>=</span>
@@ -211,8 +206,8 @@ algorithm.</p></td>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
          <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>==</span> <span class='st'>"Male"</span>),
          <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.15</span>, <span class='fl'>0.75</span>, <span class='fl'>0.1</span>))
-<span class='no'>colon_s</span>$<span class='no'>smoking_mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='no'>colon_s</span>$<span class='no'>smoking_mar</span>)
-<span class='kw pkg'>Hmisc</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/Hmisc/man/label.html'>label</a></span>(<span class='no'>colon_s</span>$<span class='no'>smoking_mar</span>) <span class='kw'>=</span> <span class='st'>"Smoking (MAR)"</span>
+<span class='no'>colon_s</span>$<span class='no'>smoking_mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='no'>colon_s</span>$<span class='no'>smoking_mar</span>)<span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='ff_label.html'>ff_label</a></span>(<span class='st'>"Smoking (MAR)"</span>)
 
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age"</span>, <span class='st'>"sex.factor"</span>,
   <span class='st'>"nodes"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"smoking_mar"</span>)

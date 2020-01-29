@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Binomial logistic regression multivariable models with bootstrapped
-confidence intervals: <code>finalfit</code> model wrapper — glmmulti_boot • finalfit</title>
+<title>Help making stratified summary_factorlist tables — ff_stratify_helper • finalfit</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -43,11 +42,8 @@ confidence intervals: <code>finalfit</code> model wrapper — glmmulti_boot • 
 
 
 
-<meta property="og:title" content="Binomial logistic regression multivariable models with bootstrapped
-confidence intervals: <code>finalfit</code> model wrapper — glmmulti_boot" />
-<meta property="og:description" content="Using finalfit conventions, produces a multivariable binomial logistic
-regression models for a set of explanatory variables against a binary
-dependent." />
+<meta property="og:title" content="Help making stratified summary_factorlist tables — ff_stratify_helper" />
+<meta property="og:description" content="Help making stratified summary_factorlist tables" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -150,88 +146,80 @@ dependent." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Binomial logistic regression multivariable models with bootstrapped
-confidence intervals: <code>finalfit</code> model wrapper</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/glmmultiboot.R'><code>R/glmmultiboot.R</code></a></small>
-    <div class="hidden name"><code>glmmulti_boot.Rd</code></div>
+    <h1>Help making stratified summary_factorlist tables</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/finalfit_internal_functions.R'><code>R/finalfit_internal_functions.R</code></a></small>
+    <div class="hidden name"><code>ff_stratify_helper.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Using <code>finalfit</code> conventions, produces a multivariable binomial logistic
-regression models for a set of explanatory variables against a binary
-dependent.</p>
+    <p>Help making stratified summary_factorlist tables</p>
     </div>
 
-    <pre class="usage"><span class='fu'>glmmulti_boot</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>1000</span>)</pre>
+    <pre class="usage"><span class='fu'>ff_stratify_helper</span>(<span class='no'>df.out</span>, <span class='no'>.data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>df.out</th>
+      <td><p>Output from <code>summary_factorlist</code></p></td>
+    </tr>
+    <tr>
       <th>.data</th>
-      <td><p>Dataframe.</p></td>
-    </tr>
-    <tr>
-      <th>dependent</th>
-      <td><p>Character vector length 1:  name of depdendent variable
-(must have 2 levels).</p></td>
-    </tr>
-    <tr>
-      <th>explanatory</th>
-      <td><p>Character vector of any length: name(s) of explanatory
-variables.</p></td>
-    </tr>
-    <tr>
-      <th>R</th>
-      <td><p>Number of draws.</p></td>
+      <td><p>Original data frame used for <code>summary_factorlist</code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A multivariable <code><a href='https://rdrr.io/r/stats/glm.html'>glm</a></code> fitted model with
-  bootstrapped confidence intervals. Output is of class <code>glmboot</code>.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Uses <code><a href='https://rdrr.io/r/stats/glm.html'>glm</a></code> with <code>finalfit</code> modelling conventions.
-<code>boot::<a href='https://rdrr.io/pkg/boot/man/boot.html'>boot</a></code> is used to draw bootstrapped confidence
-intervals on fixed effect model coefficients. Output can be passed to
-<code><a href='fit2df.html'>fit2df</a></code>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='fit2df.html'>fit2df</a>, <a href='ff_merge.html'>finalfit_merge</a></code></p>
-<p>Other finalfit model wrappers: <code><a href='coxphmulti.html'>coxphmulti</a></code>,
-  <code><a href='coxphuni.html'>coxphuni</a></code>, <code><a href='crrmulti.html'>crrmulti</a></code>,
-  <code><a href='crruni.html'>crruni</a></code>, <code><a href='glmmixed.html'>glmmixed</a></code>,
-  <code><a href='glmmulti.html'>glmmulti</a></code>, <code><a href='glmuni.html'>glmuni</a></code>,
-  <code><a href='lmmixed.html'>lmmixed</a></code>, <code><a href='lmmulti.html'>lmmulti</a></code>,
-  <code><a href='lmuni.html'>lmuni</a></code>, <code><a href='svyglmmulti.html'>svyglmmulti</a></code>,
-  <code><a href='svyglmuni.html'>svyglmuni</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>finalfit</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='co'>## Note number of draws set to 100 just for speed in this example</span>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>)
+<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"perfor.factor"</span>
 
+<span class='co'># Pick option below</span>
+<span class='no'>split</span> <span class='kw'>=</span> <span class='st'>"rx.factor"</span>
+<span class='no'>split</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rx.factor"</span>, <span class='st'>"node4.factor"</span>)
+
+<span class='co'># Piped function to generate stratified crosstabs table</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>glmmulti_boot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>100</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>"(multivariable (BS CIs))"</span>)</div><div class='output co'>#&gt;             explanatory OR(multivariable (BS CIs))
-#&gt; 1 age.factor40-59 years  0.57 (0.35-0.91, p&lt;0.001)
-#&gt; 2   age.factor60+ years  0.81 (0.44-1.31, p=0.520)
-#&gt; 3        sex.factorMale  0.98 (0.73-1.32, p=0.880)
-#&gt; 4    obstruct.factorYes  1.25 (0.88-1.78, p=0.120)
-#&gt; 5      perfor.factorYes  1.12 (0.35-2.69, p=0.780)</div><div class='input'>
-</div></pre>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(!!! <span class='fu'><a href='https://dplyr.tidyverse.org/reference/tidyeval.html'>syms</a></span>(<span class='no'>split</span>)) <span class='kw'>%&gt;%</span> <span class='co'>#Looks awkward, but avoids unquoted var names</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_map.html'>group_modify</a></span>(~ <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>.x</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'>ff_stratify_helper</span>(<span class='no'>colon_s</span>)</div><div class='output co'>#&gt;  Treatment &gt;4 positive nodes label      levels         No      Yes
+#&gt;        Obs                No   Age   &lt;40 years   14 (6.3)         
+#&gt;        Obs                No       40-59 years  89 (40.3) 3 (42.9)
+#&gt;        Obs                No         60+ years 118 (53.4) 4 (57.1)
+#&gt;        Obs                No   Sex      Female 101 (45.7) 3 (42.9)
+#&gt;        Obs                No              Male 120 (54.3) 4 (57.1)
+#&gt;        Obs               Yes   Age   &lt;40 years  10 (11.8) 1 (50.0)
+#&gt;        Obs               Yes       40-59 years  31 (36.5) 1 (50.0)
+#&gt;        Obs               Yes         60+ years  44 (51.8)         
+#&gt;        Obs               Yes   Sex      Female  44 (51.8) 1 (50.0)
+#&gt;        Obs               Yes              Male  41 (48.2) 1 (50.0)
+#&gt;        Lev                No   Age   &lt;40 years   14 (6.5)         
+#&gt;        Lev                No       40-59 years  78 (36.3) 3 (50.0)
+#&gt;        Lev                No         60+ years 123 (57.2) 3 (50.0)
+#&gt;        Lev                No   Sex      Female  89 (41.4) 2 (33.3)
+#&gt;        Lev                No              Male 126 (58.6) 4 (66.7)
+#&gt;        Lev               Yes   Age   &lt;40 years    4 (4.7) 1 (25.0)
+#&gt;        Lev               Yes       40-59 years  33 (38.8) 1 (25.0)
+#&gt;        Lev               Yes         60+ years  48 (56.5) 2 (50.0)
+#&gt;        Lev               Yes   Sex      Female  39 (45.9) 3 (75.0)
+#&gt;        Lev               Yes              Male  46 (54.1) 1 (25.0)
+#&gt;    Lev+5FU                No   Age   &lt;40 years   15 (6.9)         
+#&gt;    Lev+5FU                No       40-59 years  72 (33.2) 2 (25.0)
+#&gt;    Lev+5FU                No         60+ years 130 (59.9) 6 (75.0)
+#&gt;    Lev+5FU                No   Sex      Female 115 (53.0) 4 (50.0)
+#&gt;    Lev+5FU                No              Male 102 (47.0) 4 (50.0)
+#&gt;    Lev+5FU               Yes   Age   &lt;40 years  11 (13.9)         
+#&gt;    Lev+5FU               Yes       40-59 years  31 (39.2)         
+#&gt;    Lev+5FU               Yes         60+ years  37 (46.8)         
+#&gt;    Lev+5FU               Yes   Sex      Female  44 (55.7)         
+#&gt;    Lev+5FU               Yes              Male  35 (44.3)         </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

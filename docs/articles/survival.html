@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -369,7 +369,7 @@
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent_os, explanatory, <span class="dt">add_dependent_label =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">"Overall survival"</span> =<span class="st"> </span>label) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">" "</span> =<span class="st"> </span>levels) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">" "</span> =<span class="st"> </span>all) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="st">"  "</span> =<span class="st"> </span>all) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb10-6" data-line-number="6"><span class="st">    </span><span class="kw">mykable</span>()</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -575,6 +575,13 @@
 <td align="right">1.16 (1.10-1.23, p&lt;0.001)</td>
 <td align="right">1.08 (1.01-1.16, p=0.027)</td>
 </tr>
+<tr class="odd">
+<td align="left">year</td>
+<td>Mean (SD)</td>
+<td align="right">1969.9 (2.6)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -646,6 +653,13 @@
 <td align="right">3.52 (2.14-5.80, p&lt;0.001)</td>
 <td align="right">2.59 (1.61-4.16, p&lt;0.001)</td>
 </tr>
+<tr class="odd">
+<td align="left">hospital_id</td>
+<td>Mean (SD)</td>
+<td align="right">5.6 (3.0)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># Frailty model</span></a>
@@ -704,6 +718,13 @@
 <td align="right">3.52 (2.14-5.80, p&lt;0.001)</td>
 <td align="right">2.59 (1.53-4.38, p&lt;0.001)</td>
 </tr>
+<tr class="odd">
+<td align="left">hospital_id</td>
+<td>Mean (SD)</td>
+<td align="right">5.6 (3.0)</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
 </tbody>
 </table>
 <p>The <code><a href="https://rdrr.io/pkg/survival/man/frailty.html">frailty()</a></code> method here is being superseded by the <code>coxme</code> package, and we look forward to incorporating this in the future.</p>
@@ -715,7 +736,7 @@
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">melanoma <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="../reference/hr_plot.html">hr_plot</a></span>(dependent_os, explanatory)</a></code></pre></div>
 <pre><code>#&gt; Dependent variable is a survival object
-#&gt; Warning: Removed 2 rows containing missing values (geom_errorbarh).</code></pre>
+#&gt; Warning: Removed 3 rows containing missing values (geom_errorbarh).</code></pre>
 <p><img src="survival_files/figure-html/unnamed-chunk-17-1.png" width="672"></p>
 </div>
 </div>

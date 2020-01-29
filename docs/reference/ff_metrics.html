@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -201,25 +201,29 @@
 <span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span>(<span class='no'>mort_5yr</span> ~  <span class='no'>age.factor</span> + <span class='no'>sex.factor</span> + <span class='no'>obstruct.factor</span> + <span class='no'>perfor.factor</span>,
   <span class='kw'>data</span><span class='kw'>=</span><span class='no'>colon_s</span>, <span class='kw'>family</span><span class='kw'>=</span><span class='st'>"binomial"</span>)
 <span class='no'>fit</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)"</div><div class='input'>
+  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt;                                                                                                                                  
+#&gt;  Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)</div><div class='input'>
 <span class='co'># glmlist</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)"</div><div class='input'>
+  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt;                                                                                                                                  
+#&gt;  Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)</div><div class='input'>
 <span class='co'># glmerMod</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='glmmixed.html'>glmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [1] "Number in model = 894, Number of groups = 5, AIC = 933.8, C-statistic = 0.815"</div><div class='input'>
+  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt;                                                                               
+#&gt;  Number in model = 894, Number of groups = 5, AIC = 933.8, C-statistic = 0.815</div><div class='input'>
 <span class='co'># lm</span>
 <span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>nodes</span> ~  <span class='no'>age.factor</span> + <span class='no'>sex.factor</span> + <span class='no'>obstruct.factor</span> + <span class='no'>perfor.factor</span>,
   <span class='kw'>data</span><span class='kw'>=</span><span class='no'>colon_s</span>)
 <span class='no'>fit</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 890, Missing = 39, Log-likelihood = -2394.25, AIC = 4802.5, R-squared = 0.0092, Adjusted R-squared = 0.0036"</div><div class='input'>
+  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt;                                                                                                                                                          
+#&gt;  Number in dataframe = 929, Number in model = 890, Missing = 39, Log-likelihood = -2394.25, AIC = 4802.5, R-squared = 0.0092, Adjusted R-squared = 0.0036</div><div class='input'>
 <span class='co'># lmerMod</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>
@@ -227,7 +231,8 @@
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='lmmixed.html'>lmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in model = 890, Number of groups = 5, Log likelihood = -2317.13, REML criterion = 4634.3"</div><div class='input'>
+  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt;                                                                                                 
+#&gt;  Number in model = 890, Number of groups = 5, Log likelihood = -2317.13, REML criterion = 4634.3</div><div class='input'>
 <span class='co'># coxphlist</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"Surv(time, status)"</span>
@@ -235,14 +240,16 @@
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='coxphmulti.html'>coxphmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 908, Missing = 21, Number of events = 441, Concordance = 0.543 (SE = 0.014), R-squared = 0.011( Max possible = 0.998), Likelihood ratio test = 9.862 (df = 5, p = 0.079)"</div><div class='input'>
+  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt;                                                                                                                                                                                                                       
+#&gt;  Number in dataframe = 929, Number in model = 908, Missing = 21, Number of events = 441, Concordance = 0.543 (SE = 0.014), R-squared = 0.011( Max possible = 0.998), Likelihood ratio test = 9.862 (df = 5, p = 0.079)</div><div class='input'>
 <span class='co'># coxph</span>
 <span class='no'>fit</span> <span class='kw'>=</span> <span class='kw pkg'>survival</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></span>(<span class='kw pkg'>survival</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>age.factor</span> + <span class='no'>sex.factor</span> +
   <span class='no'>obstruct.factor</span> + <span class='no'>perfor.factor</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>colon_s</span>)
 
 <span class='no'>fit</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt; [1] "Number in dataframe = 929, Number in model = 908, Missing = 21, Number of events = 441, Concordance = 0.543 (SE = 0.014), R-squared = 0.011( Max possible = 0.998), Likelihood ratio test = 9.862 (df = 5, p = 0.079)"</div></pre>
+  <span class='fu'>ff_metrics</span>()</div><div class='output co'>#&gt;                                                                                                                                                                                                                       
+#&gt;  Number in dataframe = 929, Number in model = 908, Missing = 21, Number of events = 441, Concordance = 0.543 (SE = 0.014), R-squared = 0.011( Max possible = 0.998), Likelihood ratio test = 9.862 (df = 5, p = 0.079)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
