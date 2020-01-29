@@ -134,7 +134,7 @@ test_that("summary_factorlist gives dataframe", {
 	colon_s$one = 1
 	colon_s$one = factor(colon_s$one)
 	expect_is(summary_factorlist(colon_s, "one", c("age.factor", "nodes"),
-															 column=TRUE, total_col = TRUE, p=TRUE), "data.frame")
+															 column=TRUE, total_col = TRUE), "data.frame")
 })
 
 
@@ -168,10 +168,10 @@ test_that("summary_factorlist gives dataframe", {
 															 cont="geometric"), "data.frame")
 })
 
-test_that("summary_factorlist gives error when variable contains zero and geometric mean called", {
-	expect_error(summary_factorlist(colon_s, "extent.factor", c("age.factor", "nodes"),
-															 cont="geometric"))
-})
+# test_that("summary_factorlist gives error when variable contains zero and geometric mean called", {
+# 	expect_error(summary_factorlist(colon_s, "extent.factor", c("age.factor", "nodes"),
+# 															 cont="geometric"))
+# })
 
 
 context("summary_factorlist function with median and dep label")
@@ -318,3 +318,4 @@ test_that("finalfit_permute gives a list", {
 		include_full_model = FALSE
 	), "data.frame")
 })
+

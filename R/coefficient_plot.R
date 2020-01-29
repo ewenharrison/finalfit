@@ -145,7 +145,7 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 	t1 = ggplot(df.out, aes(x = as.numeric(Coefficient), y = fit_id))+
 		annotate("text", x = column_space[1], y = df.out$fit_id, label=df.out[,2], hjust=0, size=table_text_size)+
 		annotate("text", x = column_space[2], y = df.out$fit_id, label=df.out[,3], hjust=1, size=table_text_size)+
-		annotate("text", x = column_space[3], y = df.out$fit_id, label=df.out[,7], hjust=1, size=table_text_size)+
+		annotate("text", x = column_space[3], y = df.out$fit_id, label=df.out[,8], hjust=1, size=table_text_size)+
 		theme_classic(14)+
 		theme(axis.title.x = element_text(colour = "white"),
 					axis.text.x = element_text(colour = "white"),

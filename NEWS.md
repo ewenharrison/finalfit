@@ -1,3 +1,9 @@
+# finalfit 1.0.0
+
+* First official release. 
+* Re-write of major functions to remove older dependencies, improve performance and add functionality. 
+* `summary_factorlist()` completely rewritten. New column and row summary functions. Alternative statistical tests included. Finer control over continous variable behaviours. 
+
 # finalfit 0.9.6
 
 * Built on R 3.6.1.

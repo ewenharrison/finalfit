@@ -1,7 +1,7 @@
 Package: finalfit
 Type: Package
 Title: Quickly Create Elegant Regression Results Tables and Plots when Modelling
-Version: 0.9.7
+Version: 1.0.0
 Authors@R: c(
   person(given = "Ewen", family = "Harrison", role = c("aut", "cre"), email = "ewen.harrison@ed.ac.uk"),
   person(given = "Tom", family = "Drake", role = c("aut")),
@@ -24,24 +24,19 @@ Imports:
     ggplot2,
     grid,
     gridExtra,
-    Hmisc,
     lme4,
     magrittr,
     mice,
     pillar,
-    plyr,
     pROC,
     purrr,
     scales,
     stats,
     stringr,
     survival,
-    survminer,
-    tibble,
     tidyr (>= 1.0.0)
 RoxygenNote: 6.1.1
 Suggests:
-    covr,
     cmprsk, 
     knitr,
     readr,
@@ -49,5 +44,6 @@ Suggests:
     rmarkdown,
     rstan,
     survey,
+    survminer,
     testthat
 VignetteBuilder: knitr

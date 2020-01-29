@@ -80,7 +80,7 @@ or_plot, see below." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -190,14 +190,14 @@ factors. When set to false, reference level for all factors removed.</p></td>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
          <span class='fu'><a href='finalfit.html'>finalfit</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
          <span class='fu'>ff_remove_ref</span>() <span class='kw'>%&gt;%</span>
-         <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                   Alive        Died
-#&gt; 1                         Age   &lt;40 years   31 (46.3)   36 (53.7)
-#&gt; 2                             40-59 years  208 (61.4)  131 (38.6)
-#&gt; 3                               60+ years  272 (53.4)  237 (46.6)
-#&gt; 4                 Age (years)   Mean (SD) 59.8 (11.4) 59.9 (12.5)
-#&gt; 5                         Sex        Male  268 (56.1)  210 (43.9)
+         <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                   Alive        Died
+#&gt; 1                         Age   &lt;40 years   30 (47.6)   33 (52.4)
+#&gt; 2                             40-59 years  201 (61.5)  126 (38.5)
+#&gt; 3                               60+ years  259 (53.3)  227 (46.7)
+#&gt; 4                 Age (years)   Mean (SD) 59.7 (11.4) 59.9 (12.4)
+#&gt; 5                         Sex        Male  258 (56.5)  199 (43.5)
 #&gt; 6                       nodes   Mean (SD)   2.7 (2.4)   4.9 (4.4)
-#&gt; 7                 Obstruction         Yes   89 (51.1)   85 (48.9)
+#&gt; 7                 Obstruction         Yes   88 (51.8)   82 (48.2)
 #&gt; 8                 Perforation         Yes   14 (51.9)   13 (48.1)
 #&gt;            OR (univariable)        OR (multivariable)
 #&gt; 1                         -                         -
@@ -217,7 +217,7 @@ factors. When set to false, reference level for all factors removed.</p></td>
     <span class='fu'><a href='glmuni.html'>glmuni</a></span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='fit2df.html'>fit2df</a></span>()) <span class='kw'>%&gt;%</span>
   <span class='fu'>ff_remove_ref</span>() <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>`OR`</span>) <span class='kw'>-&gt;</span> <span class='no'>factorlist_plot</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>`OR`</span>) <span class='kw'>-&gt;</span> <span class='no'>factorlist_plot</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
    <span class='fu'><a href='or_plot.html'>or_plot</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>factorlist</span> <span class='kw'>=</span> <span class='no'>factorlist_plot</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='ff_remove_ref-1.png' alt='' width='700' height='433' /></div></pre>
   </div>

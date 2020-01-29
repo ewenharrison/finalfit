@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Binomial logistic regression multivariable models with bootstrapped
-confidence intervals: <code>finalfit</code> model wrapper — glmmulti_boot • finalfit</title>
+<title>Print methods for finalfit data frames — print.data.frame.ff • finalfit</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -43,11 +42,8 @@ confidence intervals: <code>finalfit</code> model wrapper — glmmulti_boot • 
 
 
 
-<meta property="og:title" content="Binomial logistic regression multivariable models with bootstrapped
-confidence intervals: <code>finalfit</code> model wrapper — glmmulti_boot" />
-<meta property="og:description" content="Using finalfit conventions, produces a multivariable binomial logistic
-regression models for a set of explanatory variables against a binary
-dependent." />
+<meta property="og:title" content="Print methods for finalfit data frames — print.data.frame.ff" />
+<meta property="og:description" content="Print methods for finalfit data frames" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -150,89 +146,37 @@ dependent." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Binomial logistic regression multivariable models with bootstrapped
-confidence intervals: <code>finalfit</code> model wrapper</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/glmmultiboot.R'><code>R/glmmultiboot.R</code></a></small>
-    <div class="hidden name"><code>glmmulti_boot.Rd</code></div>
+    <h1>Print methods for finalfit data frames</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/finalfit_internal_functions.R'><code>R/finalfit_internal_functions.R</code></a></small>
+    <div class="hidden name"><code>print.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Using <code>finalfit</code> conventions, produces a multivariable binomial logistic
-regression models for a set of explanatory variables against a binary
-dependent.</p>
+    <p>Print methods for finalfit data frames</p>
     </div>
 
-    <pre class="usage"><span class='fu'>glmmulti_boot</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>1000</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for data.frame.ff</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>Dataframe.</p></td>
-    </tr>
-    <tr>
-      <th>dependent</th>
-      <td><p>Character vector length 1:  name of depdendent variable
-(must have 2 levels).</p></td>
-    </tr>
-    <tr>
-      <th>explanatory</th>
-      <td><p>Character vector of any length: name(s) of explanatory
-variables.</p></td>
-    </tr>
-    <tr>
-      <th>R</th>
-      <td><p>Number of draws.</p></td>
+      <td><p>Data frame</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A multivariable <code><a href='https://rdrr.io/r/stats/glm.html'>glm</a></code> fitted model with
-  bootstrapped confidence intervals. Output is of class <code>glmboot</code>.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>Data frame with no line numbers</p>
 
-    <p>Uses <code><a href='https://rdrr.io/r/stats/glm.html'>glm</a></code> with <code>finalfit</code> modelling conventions.
-<code>boot::<a href='https://rdrr.io/pkg/boot/man/boot.html'>boot</a></code> is used to draw bootstrapped confidence
-intervals on fixed effect model coefficients. Output can be passed to
-<code><a href='fit2df.html'>fit2df</a></code>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='fit2df.html'>fit2df</a>, <a href='ff_merge.html'>finalfit_merge</a></code></p>
-<p>Other finalfit model wrappers: <code><a href='coxphmulti.html'>coxphmulti</a></code>,
-  <code><a href='coxphuni.html'>coxphuni</a></code>, <code><a href='crrmulti.html'>crrmulti</a></code>,
-  <code><a href='crruni.html'>crruni</a></code>, <code><a href='glmmixed.html'>glmmixed</a></code>,
-  <code><a href='glmmulti.html'>glmmulti</a></code>, <code><a href='glmuni.html'>glmuni</a></code>,
-  <code><a href='lmmixed.html'>lmmixed</a></code>, <code><a href='lmmulti.html'>lmmulti</a></code>,
-  <code><a href='lmuni.html'>lmuni</a></code>, <code><a href='svyglmmulti.html'>svyglmmulti</a></code>,
-  <code><a href='svyglmuni.html'>svyglmuni</a></code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>finalfit</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='co'>## Note number of draws set to 100 just for speed in this example</span>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
-
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>glmmulti_boot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>100</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>"(multivariable (BS CIs))"</span>)</div><div class='output co'>#&gt;             explanatory OR(multivariable (BS CIs))
-#&gt; 1 age.factor40-59 years  0.57 (0.35-0.91, p&lt;0.001)
-#&gt; 2   age.factor60+ years  0.81 (0.44-1.31, p=0.520)
-#&gt; 3        sex.factorMale  0.98 (0.73-1.32, p=0.880)
-#&gt; 4    obstruct.factorYes  1.25 (0.88-1.78, p=0.120)
-#&gt; 5      perfor.factorYes  1.12 (0.35-2.69, p=0.780)</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

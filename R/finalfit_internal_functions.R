@@ -11,6 +11,21 @@ ff_eval <- function(.) {
 	eval(rlang::enexpr(.), rlang::caller_env())
 }
 
+#' Print methods for finalfit data frames
+#'
+#' @param .data Data frame
+#' @return Data frame with no line numbers
+#' 
+#' @rdname print
+#' @method print data.frame.ff
+#' @export
+#' 
+#' @keywords internal
+#'
+print.data.frame.ff <- function(x, ...){
+	print.data.frame(x, row.names = FALSE, ...)
+}
+
 #' Extract model output to dataframe
 #'
 #' Internal function, not usually called directly.
@@ -55,7 +70,7 @@ extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name=
 	p = summary(x)$coef[ ,p_col]
 	L_confint_name = paste0("L", confint_level*100)
 	U_confint_name = paste0("U", confint_level*100)
-
+	
 	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
 											 L_confint_name, U_confint_name, p_name)
@@ -88,7 +103,7 @@ extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_
 	p = summary(x)$coef[,"Pr(>|z|)"]
 	L_confint_name = paste0("L", confint_level*100)
 	U_confint_name = paste0("U", confint_level*100)
-
+	
 	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
 											 L_confint_name, U_confint_name, p_name)
@@ -96,7 +111,7 @@ extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_
 	if(exp){
 		df.out[, 2:4] = df.out[, 2:4] %>% exp() # mutate_at not working here
 	}
-
+	
 	if(confint_level != 0.95){
 		df.out = df.out %>% dplyr::select(-p_name)
 	}
@@ -122,7 +137,7 @@ extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="
 	p = summary(x)$coef[,"Pr(>|t|)"]
 	L_confint_name = paste0("L", confint_level*100)
 	U_confint_name = paste0("U", confint_level*100)
-
+	
 	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
 											 L_confint_name, U_confint_name, p_name)
@@ -151,10 +166,10 @@ extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_n
 	confint = confint[-grep("sig", rownames(confint)),]
 	p = 1-pnorm(abs(summary(x)$coefficients[,3]))
 	message("P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.")
-
+	
 	L_confint_name = paste0("L", confint_level*100)
 	U_confint_name = paste0("U", confint_level*100)
-
+	
 	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
 											 L_confint_name, U_confint_name, p_name)
@@ -189,7 +204,7 @@ extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_nam
 	
 	p = summary(x)$coefficients[explanatory,
 															dim(summary(x)$coefficients)[2]]
-
+	
 	df.out = dplyr::tibble(explanatory, estimate, confint_L, confint_U, p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
 	df.out = data.frame(df.out)
@@ -267,7 +282,7 @@ extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_n
 	stanfit = .data
 	pars = "beta"
 	quantiles =  c(0.025, 0.50, 0.975)
-
+	
 	explanatory = dimnames(X)[[2]]
 	results = rstan::summary(stanfit,
 													 pars = pars,
@@ -275,7 +290,7 @@ extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_n
 	estimate = exp(results[, 1])
 	confint_L = exp(results[, 4])
 	confint_U = exp(results[, 6])
-
+	
 	# Determine a p-value based on two-sided examination of chains
 	chains = rstan::extract(stanfit, pars=pars, permuted = TRUE, inc_warmup = FALSE,
 													include = TRUE)
@@ -285,11 +300,11 @@ extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_n
 	p2.out = p2.out*2
 	p.out = ifelse(p1.out < 1, p1.out, p2.out)
 	p = round(p.out, 3)
-
+	
 	df.out = data.frame(explanatory, estimate, confint_L, confint_U, p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
 	return(df.out)
- }
+}
 
 #' Condense model output dataframe for final tables
 #'
@@ -321,21 +336,21 @@ condense_fit = function(.data, explanatory_name="explanatory", estimate_name=NA,
 	if(is.na(estimate_name)){
 		estimate_name = names(x)[2]
 	}
-
+	
 	explanatory = x[,1]
 	estimate = round_tidy(x[,2], d.estimate)
 	L_confint = round_tidy(x[,3], d.confint)
 	U_confint = round_tidy(x[,4], d.confint)
 	if(dim(x)[2] == 5){  #p-value not included when CI != 95%
 		p = p_tidy(x[,5], d.p)
-
-	df.out = data.frame(
-		explanatory,
-		paste0(
-			estimate, " (",
-			L_confint, confint_sep,
-			U_confint, ", ",
-			p_name, p, ")"))
+		
+		df.out = data.frame(
+			explanatory,
+			paste0(
+				estimate, " (",
+				L_confint, confint_sep,
+				U_confint, ", ",
+				p_name, p, ")"))
 	}else{
 		df.out = data.frame(
 			explanatory,
@@ -500,7 +515,7 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suffix=""){
 	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
 	d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
-
+	
 	if (is.null(d_label)){
 		d_label = dependent
 	} else {
@@ -508,7 +523,7 @@ dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suf
 	}
 	names(df.out)[which(names(df.out) == "label")] = paste0(prefix, d_label, suffix)
 	names(df.out)[which(names(df.out) == "levels")] = " "
-
+	
 	return(df.out)
 }
 
@@ -568,18 +583,15 @@ extract_labels = function(.data){
 	return(df.out)
 }
 
-#' Change column names to variable labels
+
+#' Help making stratified summary_factorlist tables
 #'
-#' Written to support stratified tables to \code{\link{summary_factorlist}}. See
-#' example below for explantion.
-#'
-#' @param .data Data frame
-#' @param .cols Quoted character vector of columns to change
+#' @param df.out Output from \code{summary_factorlist}
+#' @param .data Original data frame used for \code{summary_factorlist}.
 #'
 #' @export
 #'
 #' @examples
-#' library(rlang)
 #' library(dplyr)
 #' explanatory = c("age.factor", "sex.factor")
 #' dependent = "perfor.factor"
@@ -591,20 +603,39 @@ extract_labels = function(.data){
 #' # Piped function to generate stratified crosstabs table
 #' colon_s %>%
 #'   group_by(!!! syms(split)) %>% #Looks awkward, but avoids unquoted var names
-#'   do(
-#'     summary_factorlist(., dependent, explanatory, total = TRUE, p = TRUE)
-#'   ) %>%
-#'   data.frame() %>%
-#'   dependent_label(colon_s, dependent, prefix = "") %>%
-#'   colname2label(split)
-#'   
-colname2label <- function(.data, .cols){
-	lookup = extract_labels(.data) %>% 
-		dplyr::filter(vname %in% .cols)
+#'   group_modify(~ summary_factorlist(.x, dependent, explanatory)) %>%
+#'   ff_stratify_helper(colon_s)
+ff_stratify_helper <- function(df.out, .data){
+	# Get df labels
+	lookup = extract_variable_label(.data)
 	
-	.data %>%
-		dplyr::rename(!!! rlang::syms(with(lookup, setNames(vname, vfill))))
+	# Relabel label column
+	df.out$label = df.out$label %>% 
+		purrr::map_chr( ~ lookup[.x])
+	
+	# Get groups
+	.cols = attributes(df.out)$groups %>% 
+		names()
+	.cols = .cols[!.cols == ".rows"]
+	
+	# Relabel column headings with labels. 
+	names(df.out)[names(df.out) %in% .cols] = 
+		names(df.out)[names(df.out) %in% .cols] %>% 
+		purrr::map_chr( ~ lookup[.x])
+	
+	# Remove NAs for neatness
+	df.out = df.out %>%
+		dplyr::ungroup() %>%
+		dplyr::mutate_if(is.factor, as.character) %>% 
+		as.data.frame() %>% 
+		dplyr::mutate_all(.,
+											~ ifelse(is.na(.), "", .)
+		)
+	
+	class(df.out) = c("data.frame.ff", class(df.out))
+	return(df.out)
 }
+
 
 #' Remove variable labels.
 #'
@@ -626,6 +657,7 @@ remove_labels = function(.data){
 	.data %>% 
 		purrr::map_df(attr_label_null)
 }
+
 
 #' Generate formula as character string
 #'
@@ -651,7 +683,6 @@ remove_labels = function(.data){
 #' dependent = "mort_5yr"
 #' random_effect = "(age.factor | hospital)"
 #' ff_formula(dependent, explanatory)
-
 ff_formula = function(dependent, explanatory, random_effect = NULL){
 	if(!is.null(random_effect)){
 		if(!grepl("\\|", random_effect)) random_effect = paste0("(1 | ", random_effect, ")")
@@ -664,6 +695,7 @@ ff_formula = function(dependent, explanatory, random_effect = NULL){
 #' @rdname ff_formula
 #' @export
 finalfit_formula <- ff_formula
+
 
 #' Determine type/class of a variable
 #'
@@ -699,6 +731,7 @@ variable_type <- function(.var){
 	return(out)
 }
 
+
 #' Test character describes survival object
 #'
 #' @param .name Character string to test
@@ -716,13 +749,14 @@ is.survival <- function(.name){
 	grepl("^Surv[(].*[)]", .name)
 }
 
+
 # Specify global variables
 globalVariables(c("L95", "U95", "fit_id", "Total", "dependent",
 									"OR", "HR", "Coefficient", ".", ".id", "var", "value",
 									":=", "Mean", "SD", "Median", "Q3", "Q1", "IQR", "Formatted", 
 									"w", "Freq", "g", "total_prop", "Prop", "index_total", "vname", "Combined",
 									"2.5 %", "97.5 %", "p.value", "estimate", "index", "n", "missing_n", "var_type",
-									"missing_percent", "var1", "var2", "keep"))
+									"missing_percent", "var1", "var2", "keep", "label"))
 
 
 # Workaround ::: as summary.formula not (yet) exported from Hmisc
@@ -732,20 +766,13 @@ globalVariables(c("L95", "U95", "fit_id", "Total", "dependent",
 	get(name, envir = asNamespace(pkg), inherits = FALSE)
 }
 
-#' Call to Hmisc:::summary.formula
-#'
-#' Not called directly.
-#'
-#' @keywords internal
-#' @import Hmisc
-summary_formula = 'Hmisc' %:::% 'summary.formula'
 
 #' Call to mice:::summary.mipo
 #'
 #' Not called directly.
 #'
 #' @keywords internal
-#' @import Hmisc
+#' @import mice
 summary_mipo = 'mice' %:::% 'summary.mipo'
 
 

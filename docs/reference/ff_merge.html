@@ -82,7 +82,7 @@ produced with a model wrapper followed by the fit2df() function
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -221,8 +221,7 @@ remove index and fit_id columns.</p></td>
 
 <span class='co'># Create separate tables</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>fit_id</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>example.summary</span>
-
+ <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>fit_id</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>example.summary</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='glmuni.html'>glmuni</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.univariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
@@ -238,15 +237,15 @@ remove index and fit_id columns.</p></td>
  <span class='fu'>ff_merge</span>(<span class='no'>example.univariable</span>) <span class='kw'>%&gt;%</span>
  <span class='fu'>ff_merge</span>(<span class='no'>example.multivariable</span>) <span class='kw'>%&gt;%</span>
  <span class='fu'>ff_merge</span>(<span class='no'>example.multilevel</span>, <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;         label      levels      Alive       Died          OR (univariable)
-#&gt; 1         Age   &lt;40 years   31 (6.1)   36 (8.9)                         -
-#&gt; 2             40-59 years 208 (40.7) 131 (32.4) 0.54 (0.32-0.92, p=0.023)
-#&gt; 3               60+ years 272 (53.2) 237 (58.7) 0.75 (0.45-1.25, p=0.270)
-#&gt; 8         Sex      Female 243 (47.6) 194 (48.0)                         -
-#&gt; 9                    Male 268 (52.4) 210 (52.0) 0.98 (0.76-1.27, p=0.889)
+#&gt; 1         Age   &lt;40 years   31 (6.2)   35 (8.8)                         -
+#&gt; 2             40-59 years 203 (40.8) 129 (32.5) 0.54 (0.32-0.92, p=0.023)
+#&gt; 3               60+ years 263 (52.9) 233 (58.7) 0.75 (0.45-1.25, p=0.270)
+#&gt; 8         Sex      Female 237 (47.7) 192 (48.4)                         -
+#&gt; 9                    Male 260 (52.3) 205 (51.6) 0.98 (0.76-1.27, p=0.889)
 #&gt; 4 Obstruction          No 408 (82.1) 312 (78.6)                         -
 #&gt; 5                     Yes  89 (17.9)  85 (21.4) 1.25 (0.90-1.74, p=0.189)
-#&gt; 6 Perforation          No 497 (97.3) 391 (96.8)                         -
-#&gt; 7                     Yes   14 (2.7)   13 (3.2) 1.18 (0.54-2.55, p=0.672)
+#&gt; 6 Perforation          No 483 (97.2) 384 (96.7)                         -
+#&gt; 7                     Yes   14 (2.8)   13 (3.3) 1.18 (0.54-2.55, p=0.672)
 #&gt;          OR (multivariable)           OR (multilevel)
 #&gt; 1                         -                         -
 #&gt; 2 0.57 (0.34-0.98, p=0.041) 0.75 (0.39-1.44, p=0.382)
@@ -260,15 +259,15 @@ remove index and fit_id columns.</p></td>
 <span class='co'># Using finalfit()</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='finalfit.html'>finalfit</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>keep_fit_id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'>ff_merge</span>(<span class='no'>example.multilevel</span>, <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                         Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt; 2                             40-59 years 208 (61.4) 131 (38.6)
-#&gt; 3                               60+ years 272 (53.4) 237 (46.6)
-#&gt; 8                         Sex      Female 243 (55.6) 194 (44.4)
-#&gt; 9                                    Male 268 (56.1) 210 (43.9)
+ <span class='fu'>ff_merge</span>(<span class='no'>example.multilevel</span>, <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
+#&gt; 1                         Age   &lt;40 years  31 (47.0)  35 (53.0)
+#&gt; 2                             40-59 years 203 (61.1) 129 (38.9)
+#&gt; 3                               60+ years 263 (53.0) 233 (47.0)
+#&gt; 8                         Sex      Female 237 (55.2) 192 (44.8)
+#&gt; 9                                    Male 260 (55.9) 205 (44.1)
 #&gt; 4                 Obstruction          No 408 (56.7) 312 (43.3)
 #&gt; 5                                     Yes  89 (51.1)  85 (48.9)
-#&gt; 6                 Perforation          No 497 (56.0) 391 (44.0)
+#&gt; 6                 Perforation          No 483 (55.7) 384 (44.3)
 #&gt; 7                                     Yes  14 (51.9)  13 (48.1)
 #&gt;            OR (univariable)        OR (multivariable)           OR (multilevel)
 #&gt; 1                         -                         -                         -

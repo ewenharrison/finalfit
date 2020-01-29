@@ -90,7 +90,10 @@ ff_metrics.lm <- function(.data){
 		", Log-likelihood = ", loglik,
 		", AIC = ", aic,
 		", R-squared = ", r.squared,
-		", Adjusted R-squared = ", adj.r.squared)
+		", Adjusted R-squared = ", adj.r.squared) %>% 
+		as.data.frame() %>% 
+		unname()
+	class(metrics.out) = c("data.frame.ff", class(metrics.out))
 	return(metrics.out)
 }
 
@@ -114,7 +117,10 @@ ff_metrics.lmlist <- function(.data){
 		", Log-likelihood = ", loglik,
 		", AIC = ", aic,
 		", R-squared = ", r.squared,
-		", Adjusted R-squared = ", adj.r.squared)
+		", Adjusted R-squared = ", adj.r.squared) %>% 
+		as.data.frame() %>% 
+		unname()
+	class(metrics.out) = c("data.frame.ff", class(metrics.out))
 	return(metrics.out)
 }
 
@@ -134,7 +140,10 @@ ff_metrics.glm <- function(.data){
 		", Missing = ", n_data-n_model,
 		", AIC = ", aic,
 		", C-statistic = ", auc,
-		", H&L = ", h_l)
+		", H&L = ", h_l) %>% 
+		as.data.frame() %>% 
+		unname()
+	class(metrics.out) = c("data.frame.ff", class(metrics.out))
 	return(metrics.out)
 }
 
@@ -154,7 +163,10 @@ ff_metrics.glmlist <- function(.data){
 		", Missing = ", n_data-n_model,
 		", AIC = ", aic,
 		", C-statistic = ", auc,
-		", H&L = ", h_l)
+		", H&L = ", h_l) %>% 
+		as.data.frame() %>% 
+		unname()
+	class(metrics.out) = c("data.frame.ff", class(metrics.out))
 	return(metrics.out)
 }
 
@@ -171,7 +183,10 @@ ff_metrics.lmerMod <- function(.data){
 		"Number in model = ", n_model,
 		", Number of groups = ", paste(n_groups, collapse="/"),
 		", Log likelihood = ", loglik,
-		", REML criterion = ", aic)
+		", REML criterion = ", aic) %>% 
+		as.data.frame() %>% 
+		unname()
+	class(metrics.out) = c("data.frame.ff", class(metrics.out))
 	return(metrics.out)
 }
 
@@ -188,7 +203,10 @@ ff_metrics.glmerMod <- function(.data){
 		"Number in model = ", n_model,
 		", Number of groups = ", paste(n_groups, collapse="/"),
 		", AIC = ", aic,
-		", C-statistic = ", auc)
+		", C-statistic = ", auc) %>% 
+		as.data.frame() %>% 
+		unname()
+	class(metrics.out) = c("data.frame.ff", class(metrics.out))
 	return(metrics.out)
 }
 
@@ -217,7 +235,10 @@ ff_metrics.coxph <- function(.data){
 																				 round(logtest[2], 0), ", p = ",
 																				 round_tidy(logtest[3], 3), ")")
 
-	)
+	) %>% 
+		as.data.frame() %>% 
+		unname()
+	class(metrics.out) = c("data.frame.ff", class(metrics.out))
 	return(metrics.out)
 }
 
@@ -246,6 +267,9 @@ ff_metrics.coxphlist <- function(.data){
 																				 round_tidy(logtest[2], 0), ", p = ",
 																				 round_tidy(logtest[3], 3), ")")
 
-	)
+	) %>% 
+		as.data.frame() %>% 
+		unname()
+	class(metrics.out) = c("data.frame.ff", class(metrics.out))
 	return(metrics.out)
 }

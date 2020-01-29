@@ -181,7 +181,7 @@ melanoma %>%
 	finalfit(dependent_os, explanatory, add_dependent_label = FALSE) %>% 
 	rename("Overall survival" = label) %>% 
 	rename(" " = levels) %>% 
-	rename(" " = all) %>% 
+	rename("  " = all) %>% 
 	mykable()
 ```
 

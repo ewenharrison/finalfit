@@ -79,7 +79,7 @@ on the dependent variable type." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -200,11 +200,11 @@ variables.</p></td>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"nodes"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>ff_plot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Dependent is not a factor and will be treated as a continuous variable</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='ff_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+        <span class='fu'>ff_plot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Using size for a discrete variable is not advised.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='ff_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Odds ratio plot</span>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-        <span class='fu'>ff_plot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='ff_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
+        <span class='fu'>ff_plot</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 4 rows containing missing values (geom_errorbarh).</span></div><div class='img'><img src='ff_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
         <span class='co'># Hazard ratio plot	</span>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"Surv(time, status)"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
