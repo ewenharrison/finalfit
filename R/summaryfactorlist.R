@@ -193,6 +193,11 @@ summary_factorlist <- function(.data,
 	df.in = .data
 	
 	# Explanatory variables, make NA explicit for factors
+	if(na_complete_cases){
+		df.in = df.in %>% 
+			tidyr::drop_na()
+	}
+	
 	if(na_include){
 		df.in = df.in %>% 
 			dplyr::mutate_if(names(.) %in% unlist(explanatory) & 
@@ -211,11 +216,6 @@ summary_factorlist <- function(.data,
 	} else if(na_include_dependent & d_is.numeric){
 		warnings("Dependent is numeric and missing values cannot be made explicit. 
 							 Make dependent a factor or use na_include_dependent = FALSE.")
-	}
-	
-	if(na_complete_cases){
-		df.in = df.in %>% 
-			tidyr::drop_na()
 	}
 	
 	## Missing data to p-tests or not 
@@ -267,7 +267,7 @@ summary_factorlist <- function(.data,
 		}  
 		
 		summary_cont_name = rep("Mean (sd)", length(explanatory_nonpara))
-		if(!is.null(cont_nonpara)) summary_cont_name[explanatory_nonpara] = "Median (IQR)"
+		summary_cont_name[explanatory_nonpara] = "Median (IQR)"
 		
 		## Output table  --------------  
 		df.out = purrr::pmap(list(explanatory, explanatory_type, explanatory_nonpara, summary_cont_name), 
@@ -278,7 +278,7 @@ summary_factorlist <- function(.data,
 												 		dplyr::summarise(value_mean = mean(!! sym(dependent), na.rm = TRUE),
 												 										 value_sd = sd(!! sym(dependent), na.rm = TRUE),
 												 										 value_median = median(!! sym(dependent), na.rm = TRUE),
-												 										 value_q1 =quantile(!! sym(dependent), 0.75, na.rm = TRUE),
+												 										 value_q1 =quantile(!! sym(dependent), 0.25, na.rm = TRUE),
 												 										 value_q3 = quantile(!! sym(dependent), 0.75, na.rm = TRUE),
 												 										 n = dplyr::n()) %>% 
 												 		tidyr::drop_na() %>% 
