@@ -163,7 +163,8 @@ summary table.</p>
   <span class='kw'>cont_nonpara</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cont_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>cont_range</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>p_cont_para</span> <span class='kw'>=</span> <span class='st'>"aov"</span>, <span class='kw'>p_cat</span> <span class='kw'>=</span> <span class='st'>"chisq"</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>total_col</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>orderbytotal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>),
-  <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>na_to_p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>na_include_dependent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_complete_cases</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>na_to_p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
   <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>add_col_totals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>include_col_totals_percent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col_totals_rowname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -216,10 +217,14 @@ which to consider it a factor.</p></td>
     <tr>
       <th>p_cont_para</th>
       <td><p>Character. Continuous variable parametric test. One of
-either "aov" (analysis of variance) or "t.test" for Welch two sample
-t-test. Note continuous non-parametric test is always Kruskal Wallis
-(kruskal.test) which in two-group setting is equivalent to Mann-Whitney U
-/Wilcoxon rank sum test.</p></td>
+  either "aov" (analysis of variance) or "t.test" for Welch two sample
+  t-test. Note continuous non-parametric test is always Kruskal Wallis
+  (kruskal.test) which in two-group setting is equivalent to Mann-Whitney U
+  /Wilcoxon rank sum test.</p>
+<p>For continous dependent and continuous explanatory, the parametric test
+  p-value returned is for the Pearson correlation coefficient. The
+  non-parametric equivalent is for the p-value for the Spearman correlation
+  coefficient.</p></td>
     </tr>
     <tr>
       <th>p_cat</th>
@@ -246,7 +251,17 @@ deviation / interquartile range, (3) p-value, (4) count percentage.</p></td>
     </tr>
     <tr>
       <th>na_include</th>
-      <td><p>Logical: include missing data in summary (<code>NA</code>).</p></td>
+      <td><p>Logical: make explanatory variables missing data explicit
+(<code>NA</code>).</p></td>
+    </tr>
+    <tr>
+      <th>na_include_dependent</th>
+      <td><p>Logical: make dependent variable missing data
+explicit.</p></td>
+    </tr>
+    <tr>
+      <th>na_complete_cases</th>
+      <td><p>Logical: include only rows with complete data.</p></td>
     </tr>
     <tr>
       <th>na_to_p</th>
@@ -334,13 +349,13 @@ regression models.</p>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age"</span>, <span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"perfor.factor"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt;        label      levels          No         Yes     p
-#&gt;  Age (years)   Mean (SD) 59.7 (11.9) 58.4 (13.3) 0.542
-#&gt;          Age   &lt;40 years    67 (7.6)     2 (7.4) 1.000
-#&gt;              40-59 years  327 (37.1)   10 (37.0)      
-#&gt;                60+ years  487 (55.3)   15 (55.6)      
-#&gt;          Sex      Female  424 (48.1)   13 (48.1) 1.000
-#&gt;                     Male  457 (51.9)   14 (51.9)      
+  <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt;        label      levels          No         Yes     p
+#&gt;  Age (years)   Mean (SD) 59.8 (11.9) 58.4 (13.3) 0.542
+#&gt;          Age   &lt;40 years    68 (7.5)     2 (7.4) 1.000
+#&gt;              40-59 years  334 (37.0)   10 (37.0)      
+#&gt;                60+ years  500 (55.4)   15 (55.6)      
+#&gt;          Sex      Female  432 (47.9)   13 (48.1) 1.000
+#&gt;                     Male  470 (52.1)   14 (51.9)      
 #&gt;  Obstruction          No  715 (81.2)   17 (63.0) 0.035
 #&gt;                      Yes  166 (18.8)   10 (37.0)      </div><div class='input'>
 <span class='co'># summary.factorlist() is also commonly used to summarise any number of</span>
@@ -350,16 +365,16 @@ regression models.</p>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;        label      levels      Alive       Died
-#&gt;          Age   &lt;40 years   31 (6.2)   35 (8.8)
-#&gt;              40-59 years 203 (40.8) 129 (32.5)
-#&gt;                60+ years 263 (52.9) 233 (58.7)
-#&gt;          Sex      Female 237 (47.7) 192 (48.4)
-#&gt;                     Male 260 (52.3) 205 (51.6)
+  <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt;        label      levels      Alive       Died
+#&gt;          Age   &lt;40 years   31 (6.1)   36 (8.9)
+#&gt;              40-59 years 208 (40.7) 131 (32.4)
+#&gt;                60+ years 272 (53.2) 237 (58.7)
+#&gt;          Sex      Female 243 (47.6) 194 (48.0)
+#&gt;                     Male 268 (52.4) 210 (52.0)
 #&gt;  Obstruction          No 408 (82.1) 312 (78.6)
 #&gt;                      Yes  89 (17.9)  85 (21.4)
-#&gt;  Perforation          No 483 (97.2) 384 (96.7)
-#&gt;                      Yes   14 (2.8)   13 (3.3)</div></pre>
+#&gt;  Perforation          No 497 (97.3) 391 (96.8)
+#&gt;                      Yes   14 (2.7)   13 (3.2)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

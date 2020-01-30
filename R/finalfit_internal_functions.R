@@ -756,7 +756,7 @@ globalVariables(c("L95", "U95", "fit_id", "Total", "dependent",
 									":=", "Mean", "SD", "Median", "Q3", "Q1", "IQR", "Formatted", 
 									"w", "Freq", "g", "total_prop", "Prop", "index_total", "vname", "Combined",
 									"2.5 %", "97.5 %", "p.value", "estimate", "index", "n", "missing_n", "var_type",
-									"missing_percent", "var1", "var2", "keep", "label"))
+									"missing_percent", "var1", "var2", "keep", "label", "rowid"))
 
 
 # Workaround ::: as summary.formula not (yet) exported from Hmisc

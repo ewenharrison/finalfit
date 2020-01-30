@@ -8,7 +8,8 @@ summary_factorlist(.data, dependent = NULL, explanatory, cont = "mean",
   cont_nonpara = NULL, cont_cut = 5, cont_range = FALSE, p = FALSE,
   p_cont_para = "aov", p_cat = "chisq", column = TRUE,
   total_col = FALSE, orderbytotal = FALSE, digits = c(1, 1, 3, 1),
-  na_include = FALSE, na_to_p = FALSE, fit_id = FALSE,
+  na_include = FALSE, na_include_dependent = FALSE,
+  na_complete_cases = FALSE, na_to_p = FALSE, fit_id = FALSE,
   add_dependent_label = FALSE, dependent_label_prefix = "Dependent: ",
   dependent_label_suffix = "", add_col_totals = FALSE,
   include_col_totals_percent = TRUE, col_totals_rowname = NULL,
@@ -41,10 +42,15 @@ which to consider it a factor.}
 \item{p}{Logical: Include null hypothesis statistical test.}
 
 \item{p_cont_para}{Character. Continuous variable parametric test. One of
-either "aov" (analysis of variance) or "t.test" for Welch two sample
-t-test. Note continuous non-parametric test is always Kruskal Wallis
-(kruskal.test) which in two-group setting is equivalent to Mann-Whitney U
-/Wilcoxon rank sum test.}
+  either "aov" (analysis of variance) or "t.test" for Welch two sample
+  t-test. Note continuous non-parametric test is always Kruskal Wallis
+  (kruskal.test) which in two-group setting is equivalent to Mann-Whitney U
+  /Wilcoxon rank sum test.
+
+  For continous dependent and continuous explanatory, the parametric test
+  p-value returned is for the Pearson correlation coefficient. The
+  non-parametric equivalent is for the p-value for the Spearman correlation
+  coefficient.}
 
 \item{p_cat}{Character. Categorical variable test. One of either "chisq" or
 "fisher".}
@@ -59,7 +65,13 @@ levels.}
 \item{digits}{Number of digits to round to (1) mean/median, (2) standard
 deviation / interquartile range, (3) p-value, (4) count percentage.}
 
-\item{na_include}{Logical: include missing data in summary (\code{NA}).}
+\item{na_include}{Logical: make explanatory variables missing data explicit
+(\code{NA}).}
+
+\item{na_include_dependent}{Logical: make dependent variable missing data
+explicit.}
+
+\item{na_complete_cases}{Logical: include only rows with complete data.}
 
 \item{na_to_p}{Logical: include missing as group in statistical test.}
 

@@ -528,7 +528,7 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 #' @rdname finalfit
 #' @export
 finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-													column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
+													column = TRUE, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
 													dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 													keep_fit_id=FALSE, ...){
 

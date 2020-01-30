@@ -5,18 +5,22 @@
 \alias{finalfit_row_totals}
 \title{Add row totals to \code{summary_factorlist()} output}
 \usage{
-ff_row_totals(df.in, .data, explanatory, missing_column = TRUE,
-  na_include_dependent = FALSE, total_name = "Total N",
+ff_row_totals(df.in, .data, dependent, explanatory,
+  missing_column = TRUE, na_include_dependent = FALSE,
+  na_complete_cases = FALSE, total_name = "Total N",
   na_name = "Missing N")
 
-finalfit_row_totals(df.in, .data, explanatory, missing_column = TRUE,
-  na_include_dependent = FALSE, total_name = "Total N",
+finalfit_row_totals(df.in, .data, dependent, explanatory,
+  missing_column = TRUE, na_include_dependent = FALSE,
+  na_complete_cases = FALSE, total_name = "Total N",
   na_name = "Missing N")
 }
 \arguments{
 \item{df.in}{\code{summary_factorlist()} output.}
 
 \item{.data}{Data frame used to create \code{summary_factorlist()}.}
+
+\item{dependent}{Character. Name of dependent variable.}
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory
 variables.}
@@ -25,6 +29,9 @@ variables.}
 
 \item{na_include_dependent}{Logical. When TRUE, missing data in the dependent
 variable is included in totals.}
+
+\item{na_complete_cases}{Logical. When TRUE, missing data counts for variables
+are for compelte cases across all included variables.}
 
 \item{total_name}{Character. Name of total column.}
 
@@ -44,5 +51,5 @@ explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = 'mort_5yr'
 colon_s \%>\%
  summary_factorlist(dependent, explanatory) \%>\%
-	ff_row_totals(colon_s, explanatory)
+	ff_row_totals(colon_s, dependent, explanatory)
 }

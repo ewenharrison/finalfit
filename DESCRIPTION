@@ -45,5 +45,6 @@ Suggests:
     rstan,
     survey,
     survminer,
-    testthat
+    testthat,
+    tibble
 VignetteBuilder: knitr

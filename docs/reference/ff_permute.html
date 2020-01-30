@@ -230,17 +230,17 @@ table.</p></td>
 <span class='co'># Linear regression</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>finalfit_permute</span>(<span class='st'>"nodes"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;     Dependent: nodes                  unit     value
-#&gt; 1                Age   &lt;40 years Mean (sd) 4.8 (4.5)
+#&gt; 1                Age   &lt;40 years Mean (sd) 4.7 (4.5)
 #&gt; 2                    40-59 years Mean (sd) 3.6 (3.3)
 #&gt; 3                      60+ years Mean (sd) 3.6 (3.6)
-#&gt; 4                Sex      Female Mean (sd) 3.7 (3.5)
+#&gt; 4                Sex      Female Mean (sd) 3.7 (3.6)
 #&gt; 5                           Male Mean (sd) 3.6 (3.6)
 #&gt; 6        Obstruction          No Mean (sd) 3.7 (3.7)
 #&gt; 7                            Yes Mean (sd) 3.5 (3.2)
 #&gt; 8        Perforation          No Mean (sd) 3.7 (3.6)
 #&gt; 9                            Yes Mean (sd) 3.9 (2.8)
-#&gt; 10 &gt;4 positive nodes          No Mean (sd) 2.1 (1.1)
-#&gt; 11                           Yes Mean (sd) 8.2 (4.2)
+#&gt; 10 &gt;4 positive nodes          No Mean (sd) 2.0 (1.1)
+#&gt; 11                           Yes Mean (sd) 8.2 (4.1)
 #&gt;          Coefficient (univariable)   Coefficient (multivariable) 1
 #&gt; 1                                -                               -
 #&gt; 2  -1.14 (-2.08 to -0.21, p=0.016) -1.14 (-2.07 to -0.20, p=0.017)
@@ -280,17 +280,17 @@ table.</p></td>
 <span class='co'># Cox proportional hazards regression</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>finalfit_permute</span>(<span class='st'>"Surv(time, status)"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt;    Dependent: Surv(time, status)                     all
-#&gt; 1                            Age   &lt;40 years  69 (100.0)
-#&gt; 2                                40-59 years 337 (100.0)
-#&gt; 3                                  60+ years 502 (100.0)
-#&gt; 4                            Sex      Female 437 (100.0)
-#&gt; 5                                       Male 471 (100.0)
+#&gt; 1                            Age   &lt;40 years  70 (100.0)
+#&gt; 2                                40-59 years 344 (100.0)
+#&gt; 3                                  60+ years 515 (100.0)
+#&gt; 4                            Sex      Female 445 (100.0)
+#&gt; 5                                       Male 484 (100.0)
 #&gt; 6                    Obstruction          No 732 (100.0)
 #&gt; 7                                        Yes 176 (100.0)
-#&gt; 8                    Perforation          No 881 (100.0)
+#&gt; 8                    Perforation          No 902 (100.0)
 #&gt; 9                                        Yes  27 (100.0)
-#&gt; 10             &gt;4 positive nodes          No 659 (100.0)
-#&gt; 11                                       Yes 249 (100.0)
+#&gt; 10             &gt;4 positive nodes          No 674 (100.0)
+#&gt; 11                                       Yes 255 (100.0)
 #&gt;             HR (univariable)      HR (multivariable) 1
 #&gt; 1                          -                         -
 #&gt; 2  0.76 (0.53-1.09, p=0.132) 0.76 (0.53-1.08, p=0.129)
@@ -329,18 +329,18 @@ table.</p></td>
 #&gt; 11 2.64 (2.18-3.19, p&lt;0.001) 2.68 (2.21-3.26, p&lt;0.001)</div><div class='input'>
 <span class='co'># Logistic regression</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit_permute</span>(<span class='st'>"mort_5yr"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;    Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                          Age   &lt;40 years  31 (47.0)  35 (53.0)
-#&gt; 2                              40-59 years 203 (61.1) 129 (38.9)
-#&gt; 3                                60+ years 263 (53.0) 233 (47.0)
-#&gt; 4                          Sex      Female 237 (55.2) 192 (44.8)
-#&gt; 5                                     Male 260 (55.9) 205 (44.1)
+  <span class='fu'>finalfit_permute</span>(<span class='st'>"mort_5yr"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;    Dependent: Mortality 5 year                  Alive       Died
+#&gt; 1                          Age   &lt;40 years  31 (46.3)  36 (53.7)
+#&gt; 2                              40-59 years 208 (61.4) 131 (38.6)
+#&gt; 3                                60+ years 272 (53.4) 237 (46.6)
+#&gt; 4                          Sex      Female 243 (55.6) 194 (44.4)
+#&gt; 5                                     Male 268 (56.1) 210 (43.9)
 #&gt; 6                  Obstruction          No 408 (56.7) 312 (43.3)
 #&gt; 7                                      Yes  89 (51.1)  85 (48.9)
-#&gt; 8                  Perforation          No 483 (55.7) 384 (44.3)
+#&gt; 8                  Perforation          No 497 (56.0) 391 (44.0)
 #&gt; 9                                      Yes  14 (51.9)  13 (48.1)
-#&gt; 10           &gt;4 positive nodes          No 420 (64.8) 228 (35.2)
-#&gt; 11                                     Yes  77 (31.3) 169 (68.7)
+#&gt; 10           &gt;4 positive nodes          No 431 (65.0) 232 (35.0)
+#&gt; 11                                     Yes  80 (31.7) 172 (68.3)
 #&gt;             OR (univariable)      OR (multivariable) 1
 #&gt; 1                          -                         -
 #&gt; 2  0.54 (0.32-0.92, p=0.023) 0.54 (0.32-0.92, p=0.023)

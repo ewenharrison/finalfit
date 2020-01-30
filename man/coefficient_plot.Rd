@@ -72,7 +72,7 @@ library(ggplot2)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "nodes"
 colon_s \%>\%
-	 coefficient_plot(dependent, explanatory)
+  coefficient_plot(dependent, explanatory)
 
 colon_s \%>\%
   coefficient_plot(dependent, explanatory, table_text_size=4, title_text_size=14,

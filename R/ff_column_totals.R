@@ -106,9 +106,12 @@ finalfit_column_totals = ff_column_totals
 #'
 #' @param df.in \code{summary_factorlist()} output.
 #' @param .data Data frame used to create \code{summary_factorlist()}.
+#' @param dependent Character. Name of dependent variable.
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
-#' @param missing_column Logical. Include a column of counts of missing data. 
+#' @param missing_column Logical. Include a column of counts of missing data.
+#' @param na_complete_cases Logical. When TRUE, missing data counts for variables
+#'   are for compelte cases across all included variables.
 #' @param na_include_dependent Logical. When TRUE, missing data in the dependent
 #'   variable is included in totals.
 #' @param total_name Character. Name of total column.
@@ -122,30 +125,41 @@ finalfit_column_totals = ff_column_totals
 #' dependent = 'mort_5yr'
 #' colon_s %>%
 #'  summary_factorlist(dependent, explanatory) %>%
-#' 	ff_row_totals(colon_s, explanatory)
-ff_row_totals <- function(df.in, .data, explanatory, missing_column = TRUE, 
-													na_include_dependent = FALSE,
+#' 	ff_row_totals(colon_s, dependent, explanatory)
+ff_row_totals <- function(df.in, .data, dependent, explanatory, missing_column = TRUE, 
+													na_include_dependent = FALSE, na_complete_cases = FALSE,
 													total_name = "Total N", na_name= "Missing N"){
 	if(!any(names(df.in) == "label")) 
 		stop("summary_factorlist function must include: add_dependent_label = FALSE")
 	
 	# Extract labels
-	var_labels = .data %>% 
+	var_labels = .data %>%
 		extract_variable_label()
-	
+
 	if(na_include_dependent){
-		.data = .data %>% 
-			dplyr::mutate_if(names(.) %in% unlist(dependent) & 
+		.data = .data %>%
+			dplyr::mutate_if(names(.) %in% unlist(dependent) &
 											 	sapply(., is.factor),
 											 forcats::fct_explicit_na
 			)
 	} else {
-		.data = .data %>% 
+		.data = .data %>%
 			tidyr::drop_na(dependent)
 	}
 	
+	which_anyNA <- function(.data){
+		.data %>% 
+			tibble::rowid_to_column() %>% 
+			dplyr::filter_all(dplyr::any_vars(is.na(.))) %>%
+			dplyr::pull(rowid)
+	}
+	
+	if(na_complete_cases){
+		.data[which_anyNA(.data), ] = NA
+	}
+
 	# Relabel
-	.data = .data %>% 
+	.data = .data %>%
 		ff_relabel(var_labels)
 	
 	df.out = df.in %>%

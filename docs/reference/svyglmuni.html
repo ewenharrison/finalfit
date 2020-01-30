@@ -246,14 +246,14 @@ variables.</p></td>
   <span class='fu'><a href='ff_merge.html'>ff_merge</a></span>(<span class='no'>fit_uni</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='ff_merge.html'>ff_merge</a></span>(<span class='no'>fit_multi</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>fit_id</span>, -<span class='no'>index</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>apistrat</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt;                 Dependent: API in 2000 (api00)              unit         value
-#&gt; 1     English language learners (percent)(ell)  [0,84] Mean (sd) 652.8 (121.0)
-#&gt; 2              Meals eligible (percent)(meals) [0,100] Mean (sd) 652.8 (121.0)
-#&gt; 3 First year at the school (percent)(mobility)  [1,99] Mean (sd) 652.8 (121.0)
-#&gt;      Coefficient (univariable)  Coefficient (multivariable)
-#&gt; 1 -3.73 (-4.35--3.11, p&lt;0.001)  -0.48 (-1.25-0.29, p=0.222)
-#&gt; 2 -3.38 (-3.71--3.05, p&lt;0.001) -3.14 (-3.70--2.59, p&lt;0.001)
-#&gt; 3  -1.43 (-3.30-0.44, p=0.137)   0.23 (-0.54-1.00, p=0.567)</div><div class='input'>
+  <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>apistrat</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt;                 Dependent: API in 2000 (api00)                  unit
+#&gt; 1     English language learners (percent)(ell)  [0.0,84.0] Mean (sd)
+#&gt; 2              Meals eligible (percent)(meals) [0.0,100.0] Mean (sd)
+#&gt; 3 First year at the school (percent)(mobility)  [1.0,99.0] Mean (sd)
+#&gt;           value    Coefficient (univariable)  Coefficient (multivariable)
+#&gt; 1 652.8 (121.0) -3.73 (-4.35--3.11, p&lt;0.001)  -0.48 (-1.25-0.29, p=0.222)
+#&gt; 2 652.8 (121.0) -3.38 (-3.71--3.05, p&lt;0.001) -3.14 (-3.70--2.59, p&lt;0.001)
+#&gt; 3 652.8 (121.0)  -1.43 (-3.30-0.44, p=0.137)   0.23 (-0.54-1.00, p=0.567)</div><div class='input'>
 <span class='co'># Binomial example</span>
 <span class='co'>## Note model family needs specified and exponentiation if desired</span>
 
