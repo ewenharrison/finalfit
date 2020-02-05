@@ -541,6 +541,7 @@ dependent_label = function(df.out, .data, dependent, prefix = "Dependent: ", suf
 #' @keywords internal
 #' @export
 plot_title = function(.data, dependent, dependent_label, prefix = "", suffix=""){
+	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
 	if (is.null(dependent_label)){
 		d_label = attr(.data[,which(names(.data) %in% dependent)], "label")
 		if (is.null(d_label)){
