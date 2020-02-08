@@ -77,9 +77,6 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 		factorlist = summary_factorlist(.data, dependent, explanatory, total_col=TRUE, fit_id=TRUE)
 	}
 	
-	# For continuous variables, remove level label
-	drop = grepl("Mean \\(SD\\)|Median \\(IQR\\)", factorlist$levels)
-	factorlist$levels[drop] = "-"
 	
 	if(remove_ref){
 		factorlist = factorlist %>%  
@@ -125,13 +122,14 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	df.out = finalfit_merge(factorlist, glmfit_df_c)
 	df.out = finalfit_merge(df.out, glmfit_df, ref_symbol = "1.0")
 	
-	# Fill in total for continuous variables (NA by default)
-	## First line is a fix since change to total column for continuous variables
-	df.out$Total = suppressWarnings(
-		as.numeric(df.out$Total)
-	)
-	df.out$Total[is.na(df.out$Total)] = dim(.data)[1]
+	# Remove proportions from total column and make continuous explanatory reflect dataset
+	df.out$Total = stringr::str_remove(df.out$Total, " \\(.*\\)") %>% 
+		as.numeric()
+	df.out$Total[which(df.out$levels %in% c("Mean (SD)", "Median (IQR)"))] = dim(.data)[1]
 	
+	# For continuous variables, remove level label
+	df.out$levels[which(df.out$levels %in% c("Mean (SD)", "Median (IQR)"))] = "-"
+
 	# Remove unwanted lines, where there are more variables in model than wish to display.
 	# These not named in factorlist, creating this problem. Interactions don't show on plot.
 	if (any(
