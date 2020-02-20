@@ -15,7 +15,7 @@ summary_factorlist(.data, dependent = NULL, explanatory, cont = "mean",
   include_col_totals_percent = TRUE, col_totals_rowname = NULL,
   col_totals_prefix = "", add_row_totals = FALSE,
   include_row_missing_col = TRUE, row_totals_colname = "Total N",
-  row_missing_colname = "Missing N")
+  row_missing_colname = "Missing N", catTest = NULL)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -102,6 +102,8 @@ row.}
 
 \item{row_missing_colname}{Character. Column name for missing data totals for
 each row.}
+
+\item{catTest}{Deprecated. See \code{p_cat} above.}
 }
 \value{
 Returns a \code{factorlist} dataframe.

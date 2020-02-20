@@ -791,3 +791,11 @@ error_colon_fct_levels <- function(.data){
 		unlist() %>% 
 		any()
 }
+
+#' Deprecated catTest from Hmisc for reverse dependencies
+#'
+#' @param . Null
+#' @keywords internal
+#' @export
+catTestfisher = function(.){}
+

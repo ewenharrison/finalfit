@@ -67,6 +67,7 @@
 #' @param row_totals_colname Character. Column name for row totals.
 #' @param row_missing_colname Character. Column name for missing data totals for
 #'   each row.
+#' @param catTest Deprecated. See \code{p_cat} above.
 #'
 #' @return Returns a \code{factorlist} dataframe.
 #'
@@ -110,7 +111,8 @@ summary_factorlist <- function(.data,
 															 add_col_totals = FALSE, include_col_totals_percent = TRUE,
 															 col_totals_rowname = NULL, col_totals_prefix = "",
 															 add_row_totals = FALSE, include_row_missing_col = TRUE,
-															 row_totals_colname = "Total N", row_missing_colname = "Missing N"){
+															 row_totals_colname = "Total N", row_missing_colname = "Missing N",
+															 catTest = NULL){
 	
 	
 	# Warnings/Checks --------------
@@ -123,6 +125,12 @@ summary_factorlist <- function(.data,
 		.data$all = factor(1, labels="all")
 	}
 	if(na_to_p & !na_include) warning("If wish to pass missing to hypothesis test (na_to_p), must have na_include = TRUE")
+	
+	# Deprecated catTest from Hmisc for reverse dependencies
+	if(!is.null(catTest)){
+		message("catTest is deprecated. Using p_cat = 'fisher'")
+		p_cat = "fisher"}
+	
 	# Extract explanatory terms (to support using * and :)
 	explanatory = explanatory %>% 
 		paste("~", ., collapse = "+") %>% 
