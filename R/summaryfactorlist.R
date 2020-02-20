@@ -119,6 +119,11 @@ summary_factorlist <- function(.data,
 	if(!is.data.frame(.data)) stop(".data is not dataframe")
 	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
 	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
+	if(any(explanatory == ".")){
+		explanatory = .data %>% 
+			dplyr::select(-dependent) %>% 
+			names()
+	}
 	if(is.null(dependent)){
 		message("No dependent variable(s) provided; defaulting to single-level factor")
 		dependent = "all"
