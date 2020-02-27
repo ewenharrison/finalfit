@@ -724,7 +724,7 @@ fit2df.stanfit = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 #' Extract \code{mice} pooled fit results to dataframe: \code{finalfit} model
 #' extracters
 #'
-#' \code{fit2df.stanfit} is the model extract method for the \code{mipo} object
+#' \code{fit2df.mipo} is the model extract method for the \code{mipo} object
 #' created using \code{mice::pool}.
 #'
 #' @rdname fit2df
