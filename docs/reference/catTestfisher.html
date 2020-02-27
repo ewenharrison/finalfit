@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fisher's exact test for use with <code><a href='summary_factorlist.html'>summary_factorlist</a></code> — catTestfisher • finalfit</title>
+<title>Deprecated catTest from Hmisc for reverse dependencies — catTestfisher • finalfit</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Fisher's exact test for use with <code><a href='summary_factorlist.html'>summary_factorlist</a></code> — catTestfisher" />
-<meta property="og:description" content="Fisher's exact test for use with summary_factorlist" />
+<meta property="og:title" content="Deprecated catTest from Hmisc for reverse dependencies — catTestfisher" />
+<meta property="og:description" content="Deprecated catTest from Hmisc for reverse dependencies" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -146,42 +146,32 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fisher's exact test for use with <code><a href='summary_factorlist.html'>summary_factorlist</a></code></h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/catTest.R'><code>R/catTest.R</code></a></small>
+    <h1>Deprecated catTest from Hmisc for reverse dependencies</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/finalfit_internal_functions.R'><code>R/finalfit_internal_functions.R</code></a></small>
     <div class="hidden name"><code>catTestfisher.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Fisher's exact test for use with <code><a href='summary_factorlist.html'>summary_factorlist</a></code></p>
+    <p>Deprecated catTest from Hmisc for reverse dependencies</p>
     </div>
 
-    <pre class="usage"><span class='fu'>catTestfisher</span>(<span class='no'>tab</span>)</pre>
+    <pre class="usage"><span class='fu'>catTestfisher</span>(<span class='no'>.</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>tab</th>
-      <td><p>A frequency table such as that created by <code><a href='https://rdrr.io/r/base/table.html'>table()</a></code>.</p></td>
+      <th>.</th>
+      <td><p>Null</p></td>
     </tr>
     </table>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>catTest</span> <span class='kw'>=</span> <span class='no'>catTestfisher</span>)</div><div class='output co'>#&gt;         label levels      Alive       Died     p
-#&gt; 3         Sex Female 243 (47.6) 194 (48.0) 0.894
-#&gt; 4               Male 268 (52.4) 210 (52.0)      
-#&gt; 1 Obstruction     No 408 (82.1) 312 (78.6) 0.203
-#&gt; 2                Yes  89 (17.9)  85 (21.4)      </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

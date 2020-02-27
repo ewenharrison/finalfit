@@ -454,7 +454,48 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.23 Actively dropping missing data (and tidyverse functions that strip attributes)
+### 1.23 Directly include missing data in dependent
+
+Rather than making the data explicit in the dataset, you can use `na_include_dependent = TRUE` to do the same in `summary_factorlist()`. 
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, 
+  									 na_include = TRUE, na_include_dependent = TRUE,
+  									 total_col = TRUE,
+  									 add_col_totals = TRUE, add_row_totals = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+### 1.24 Summarise complete cases
+
+You may wish to see summaries for complete cases across included variables. Rather than selecting including variables and `drop_na()`, you can pass `na_complete_cases = TRUE` to `summary_factorlist()` to do the same. 
+
+```{r, warning=FALSE}
+library(finalfit)
+explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
+dependent = "mort_5yr"
+colon_s %>%
+  summary_factorlist(dependent, explanatory, p = TRUE, 
+  									 na_complete_cases = TRUE,
+  									 total_col = TRUE,
+  									 add_col_totals = TRUE, add_row_totals = TRUE) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+
+### 1.25 Actively dropping missing data (and tidyverse functions that strip attributes)
 
 You may wish to actively remove any rows with missing data, so you are explicit around which data are being used in models. 
 Unfortunately some tidyverse functions silently remove variable attributes (labels). This is complained about then put right. But here is a workaround if it is happening with a variable you wish to use, such as `tidyr::drop_na()`. 
@@ -481,7 +522,7 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
 
-### 1.22 Explanatory variable defaults to factor when ≤5 distinct values
+### 1.26 Explanatory variable defaults to factor when ≤5 distinct values
 
 ```{r message=FALSE, warning=FALSE}
 library(finalfit)
@@ -500,7 +541,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.23 Keep as continous variable when ≤5 distinct values
+### 1.27 Keep as continous variable when ≤5 distinct values
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -516,7 +557,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-### 1.24 Stratified crosstables
+### 1.28 Stratified crosstables
 
 I've been meaning to include support for table stratification for a while. I have delayed for a good reason. Perhaps the most straightforward way to implement stratificiation is with `dplyr::group_by()`. However, the non-standard evaluation required for multiple strata may confuse as it is not implemented else where in the package.
 
@@ -547,7 +588,7 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "l", "l", "r", "r", "r"))
 ```
 
-### 1.25 Digits / decimal places
+### 1.29 Digits / decimal places
 
 ```{r, warning=FALSE}
 explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
