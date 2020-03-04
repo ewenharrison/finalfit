@@ -1,3 +1,7 @@
+# finalfit 1.0.1
+
+* `ff_relabel()` tightend to allow mismatch between available data and labels. 
+
 # finalfit 1.0.0
 
 * First official release. 

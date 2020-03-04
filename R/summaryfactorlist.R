@@ -577,7 +577,7 @@ summary_factorlist <- function(.data,
 		
 		# Add column totals
 		{ if(add_col_totals){
-			ff_column_totals(., .data, dependent, 
+			ff_column_totals(., df.in, dependent, 
 											 percent = include_col_totals_percent, 
 											 na_include_dependent = na_include_dependent,
 											 digits = digits[4], label = col_totals_rowname, 

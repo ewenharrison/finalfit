@@ -185,7 +185,7 @@ specified in the parameters block as a vector named \code{beta}, of length
 \code{P}, where \code{P} is the number of fixed effect parameters. e.g.
 parameters{ vector[P] beta; }
 
-\code{fit2df.stanfit} is the model extract method for the \code{mipo} object
+\code{fit2df.mipo} is the model extract method for the \code{mipo} object
 created using \code{mice::pool}.
 }
 \details{

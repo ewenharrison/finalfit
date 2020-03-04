@@ -82,13 +82,16 @@ extract_variable_label = function(.data){
 #' colon_s %>% str()
 #'   
 ff_relabel <- function(.data, .labels){
-		.data %>% 
-			dplyr::mutate_all(dplyr::funs({
-				label = .labels[[dplyr::quo_name(dplyr::quo(.))]]
-				ff_label(., label)
-			})
-			)
-	}
+	# Keep only labels for variables in data
+	.labels = .labels[names(.labels) %in% names(.data)]
+	.data %>% 
+		dplyr::mutate_at(names(.labels), # Apply only to variables for which labels
+										 dplyr::funs({
+										 	label = .labels[[dplyr::quo_name(dplyr::quo(.))]]
+										 	ff_label(., label)
+										 })
+		)
+}
 
 #' @rdname ff_relabel
 #' @export
