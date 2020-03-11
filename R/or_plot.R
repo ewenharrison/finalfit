@@ -94,7 +94,7 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	# Confidence intervals, default to "profile" for glm and "Wald" for glmer
 	if(is.null(confint_type) && is.null(random_effect)){
 		confint_type = "profile"
-	} else if(is.null(confint_type) && !is.null(random_effect)){
+	} else if(is.null(confint_type) && (!is.null(random_effect) | class(glmfit) == "glmerMod")){
 		confint_type = "default"
 	}
 		
