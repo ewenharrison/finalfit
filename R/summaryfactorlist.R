@@ -63,7 +63,7 @@
 #' @param add_row_totals Logical. Include row totals. Note this differs from
 #'   \code{total_col} above particularly for continuous explanatory variables.
 #' @param include_row_missing_col Logical. Include missing data total for each
-#'   row. Only used when \code(add_row_totals} is \code{TRUE}.
+#'   row. Only used when \code{add_row_totals} is \code{TRUE}.
 #' @param row_totals_colname Character. Column name for row totals.
 #' @param row_missing_colname Character. Column name for missing data totals for
 #'   each row.

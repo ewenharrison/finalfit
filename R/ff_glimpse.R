@@ -104,16 +104,23 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1,
 	}else{
 		df.factors.out = df.factors
 	}
-
-	cat("Continuous\n")
-	print(df.numeric.out, row.names = TRUE)
-	cat("\nCategorical\n")
-	print(df.factors.out, row.names = TRUE)
-
-	return(invisible(
+	# Previous "always print" version
+	## Change to standard
+	# cat("Continuous\n")
+	# print(df.numeric.out, row.names = TRUE)
+	# cat("\nCategorical\n")
+	# print(df.factors.out, row.names = TRUE)
+	# 
+	# return(invisible(
+	# 	list(
+	# 		continuous = df.numeric.out,
+	# 		categorical = df.factors.out))
+	# )
+	# 
+	return(
 		list(
-			continuous = df.numeric.out,
-			categorical = df.factors.out))
+			Continuous = df.numeric.out,
+			Categorical = df.factors.out)
 	)
 }
 

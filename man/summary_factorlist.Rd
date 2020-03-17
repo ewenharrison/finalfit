@@ -95,9 +95,6 @@ left of table.}
 \item{add_row_totals}{Logical. Include row totals. Note this differs from
 \code{total_col} above particularly for continuous explanatory variables.}
 
-\item{include_row_missing_col}{Logical. Include missing data total for each
-row.}
-
 \item{row_totals_colname}{Character. Column name for row totals.}
 
 \item{row_missing_colname}{Character. Column name for missing data totals for
