@@ -4,7 +4,7 @@
 \alias{missing_compare}
 \title{Compare missing data}
 \usage{
-missing_compare(.data, dependent, explanatory, na_include = FALSE)
+missing_compare(.data, dependent, explanatory, na_include = FALSE, ...)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -15,6 +15,8 @@ missing_compare(.data, dependent, explanatory, na_include = FALSE)
 
 \item{na_include}{Include missing data in explanatory variables as a factor
 level.}
+
+\item{...}{Other arguments to \code{\link{summary_factorlist}()}.}
 }
 \value{
 A dataframe comparing missing data in the dependent variable across

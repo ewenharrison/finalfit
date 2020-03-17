@@ -1,6 +1,7 @@
 # finalfit 1.0.1
 
 * `ff_relabel()` tightend to allow mismatch between available data and labels. 
+* `missing_compare()` code updated to allow arguments to be passed to new `summary_factorlist()`. 
 
 # finalfit 1.0.0
 

@@ -109,6 +109,7 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 	
 	# Fill in total for continuous variables (NA by default)
 	df.out$Total[is.na(df.out$Total)] = dim(.data)[1]
+	df.out$Total = as.numeric(df.out$Total)
 	
 	# Remove unwanted lines, where there are more variables in model than wish to display.
 	# These not named in factorlist, creating this problem. Interactions don't show on plot.
