@@ -45,6 +45,7 @@ missing_compare <- function(.data, dependent, explanatory, na_include = FALSE, .
     ) %>% 
     ff_relabel(vlabels)
   
+  # Old code. Remove after checks. 
   # # Extract variables
   # d_vars = .data[ ,names(.data) %in% dependent, drop = FALSE]
   # e_vars = .data[ ,names(.data) %in% explanatory]
