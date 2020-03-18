@@ -137,8 +137,12 @@ summary_factorlist <- function(.data,
 		p_cat = "fisher"}
 	
 	# Extract explanatory terms (to support using * and :)
-	explanatory = explanatory %>% 
-		paste("~", ., collapse = "+") %>% 
+	explanatory_terms = paste("~", paste(explanatory, collapse = "+")) %>% 
+		formula() %>% 
+		terms() %>% 
+		attr("term.labels")
+	
+	explanatory = paste("~", paste(explanatory, collapse = "+")) %>% 
 		formula() %>% 
 		all.vars()
 	
@@ -560,8 +564,17 @@ summary_factorlist <- function(.data,
 			regex_sqbracket = "^(\\[).*(\\])$"
 			drop = grepl(regex_sqbracket, levels_id)
 			levels_id[drop] = ""
-			dplyr::mutate(., 
-										fit_id = paste0(label, levels_id),
+			# Where extra terms included, add these in, e.g. I(var) (not interactions)
+			extra_terms = explanatory_terms[-which(explanatory_terms %in% explanatory)]
+			drop = grepl(":", extra_terms)
+			extra_terms = extra_terms[!drop]
+			{ if(!identical(extra_terms, character(0))){
+				levels_id = c(levels_id, rep("", length(extra_terms)))
+				dplyr::add_row(., label = extra_terms)
+			} else {
+				.
+			}} %>% 
+			dplyr::mutate(., fit_id = paste0(label, levels_id),
 										index = 1:dim(.)[1])
 		} else {
 			.

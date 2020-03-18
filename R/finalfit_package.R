@@ -81,7 +81,7 @@
 #' @name finalfit-package
 #'
 #' @importFrom stats as.formula formula coef confint confint.default glm lm logLik pnorm
-#'   quantile setNames model.matrix
+#'   quantile setNames model.matrix terms
 # @exportPattern ^[[:alpha:]]+
 NULL
 
