@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -1931,13 +1931,13 @@
 <a class="sourceLine" id="cb23-2" data-line-number="2">dependent =<span class="st"> "mort_5yr"</span></a>
 <a class="sourceLine" id="cb23-3" data-line-number="3">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb23-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="../reference/ff_glimpse.html">ff_glimpse</a></span>(dependent, explanatory)</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="co">#&gt; Continuous</span></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="co">#&gt; $Continuous</span></a>
 <a class="sourceLine" id="cb23-6" data-line-number="6"><span class="co">#&gt;           label var_type   n missing_n missing_percent mean   sd  min</span></a>
 <a class="sourceLine" id="cb23-7" data-line-number="7"><span class="co">#&gt; age Age (years)    &lt;dbl&gt; 929         0             0.0 59.8 11.9 18.0</span></a>
 <a class="sourceLine" id="cb23-8" data-line-number="8"><span class="co">#&gt;     quartile_25 median quartile_75  max</span></a>
 <a class="sourceLine" id="cb23-9" data-line-number="9"><span class="co">#&gt; age        53.0   61.0        69.0 85.0</span></a>
 <a class="sourceLine" id="cb23-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb23-11" data-line-number="11"><span class="co">#&gt; Categorical</span></a>
+<a class="sourceLine" id="cb23-11" data-line-number="11"><span class="co">#&gt; $Categorical</span></a>
 <a class="sourceLine" id="cb23-12" data-line-number="12"><span class="co">#&gt;                            label var_type   n missing_n missing_percent</span></a>
 <a class="sourceLine" id="cb23-13" data-line-number="13"><span class="co">#&gt; mort_5yr        Mortality 5 year    &lt;fct&gt; 915        14             1.5</span></a>
 <a class="sourceLine" id="cb23-14" data-line-number="14"><span class="co">#&gt; age.factor                   Age    &lt;fct&gt; 929         0             0.0</span></a>
@@ -2381,9 +2381,9 @@
 <td align="left"></td>
 <td align="right"></td>
 <td align="right"></td>
-<td align="right">511 (55.8)</td>
-<td align="right">404 (44.2)</td>
-<td align="right">915</td>
+<td align="right">497 (55.6)</td>
+<td align="right">397 (44.4)</td>
+<td align="right">894</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
@@ -2485,7 +2485,15 @@
 <a class="sourceLine" id="cb28-10" data-line-number="10"><span class="st">    </span><span class="kw"><a href="../reference/ff_relabel.html">ff_relabel</a></span>(vlabels) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Relabel</span></a>
 <a class="sourceLine" id="cb28-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, <span class="dt">p =</span> <span class="ot">TRUE</span>, <span class="dt">na_include =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb28-12" data-line-number="12">                                     <span class="dt">total_col =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb28-13" data-line-number="13">                                     <span class="dt">add_col_totals =</span> <span class="ot">TRUE</span>, <span class="dt">add_row_totals =</span> <span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t</a></code></pre></div>
+<a class="sourceLine" id="cb28-13" data-line-number="13">                                     <span class="dt">add_col_totals =</span> <span class="ot">TRUE</span>, <span class="dt">add_row_totals =</span> <span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t</a>
+<a class="sourceLine" id="cb28-14" data-line-number="14"><span class="co">#&gt; Note: Using an external vector in selections is ambiguous.</span></a>
+<a class="sourceLine" id="cb28-15" data-line-number="15"><span class="co">#&gt; ℹ Use `all_of(dependent)` instead of `dependent` to silence this message.</span></a>
+<a class="sourceLine" id="cb28-16" data-line-number="16"><span class="co">#&gt; ℹ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span></a>
+<a class="sourceLine" id="cb28-17" data-line-number="17"><span class="co">#&gt; This message is displayed once per session.</span></a>
+<a class="sourceLine" id="cb28-18" data-line-number="18"><span class="co">#&gt; Note: Using an external vector in selections is ambiguous.</span></a>
+<a class="sourceLine" id="cb28-19" data-line-number="19"><span class="co">#&gt; ℹ Use `all_of(explanatory)` instead of `explanatory` to silence this message.</span></a>
+<a class="sourceLine" id="cb28-20" data-line-number="20"><span class="co">#&gt; ℹ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span></a>
+<a class="sourceLine" id="cb28-21" data-line-number="21"><span class="co">#&gt; This message is displayed once per session.</span></a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -5679,16 +5687,16 @@
 <td>40-59 years</td>
 <td align="right">208 (40.7)</td>
 <td align="right">131 (32.4)</td>
-<td align="right">0.53 (0.30-0.92, p=0.024)</td>
-<td align="right">0.54 (0.31-0.94, p=0.030)</td>
+<td align="right">0.50 (0.30-0.84, p=0.009)</td>
+<td align="right">0.53 (0.31-0.89, p=0.017)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td>60+ years</td>
 <td align="right">272 (53.2)</td>
 <td align="right">237 (58.7)</td>
-<td align="right">0.74 (0.43-1.26, p=0.269)</td>
-<td align="right">0.77 (0.45-1.33, p=0.356)</td>
+<td align="right">0.67 (0.41-1.10, p=0.119)</td>
+<td align="right">0.74 (0.44-1.22, p=0.235)</td>
 </tr>
 <tr class="even">
 <td align="left">Sex</td>
@@ -5703,8 +5711,8 @@
 <td>Male</td>
 <td align="right">268 (52.4)</td>
 <td align="right">210 (52.0)</td>
-<td align="right">0.96 (0.74-1.25, p=0.768)</td>
-<td align="right">0.99 (0.76-1.29, p=0.931)</td>
+<td align="right">1.08 (0.83-1.40, p=0.574)</td>
+<td align="right">1.10 (0.84-1.43, p=0.497)</td>
 </tr>
 <tr class="even">
 <td align="left">Obstruction</td>
@@ -5719,8 +5727,8 @@
 <td>Yes</td>
 <td align="right">89 (17.9)</td>
 <td align="right">85 (21.4)</td>
-<td align="right">1.10 (0.78-1.54, p=0.602)</td>
-<td align="right">1.09 (0.77-1.55, p=0.615)</td>
+<td align="right">1.35 (0.97-1.88, p=0.073)</td>
+<td align="right">1.38 (0.99-1.93, p=0.061)</td>
 </tr>
 <tr class="even">
 <td align="left">Perforation</td>
@@ -5735,8 +5743,8 @@
 <td>Yes</td>
 <td align="right">14 (2.7)</td>
 <td align="right">13 (3.2)</td>
-<td align="right">1.48 (0.74-2.96, p=0.267)</td>
-<td align="right">1.45 (0.72-2.93, p=0.293)</td>
+<td align="right">0.89 (0.40-1.90, p=0.773)</td>
+<td align="right">0.87 (0.39-1.88, p=0.725)</td>
 </tr>
 </tbody>
 </table>

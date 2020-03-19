@@ -142,10 +142,6 @@ summary_factorlist <- function(.data,
 		terms() %>% 
 		attr("term.labels")
 	
-	explanatory = paste("~", paste(explanatory, collapse = "+")) %>% 
-		formula() %>% 
-		all.vars()
-	
 	if(dependent %in% explanatory) stop("Cannot have dependent variable in explanatory list.")
 	
 	if(!is.null(cont_nonpara) && max(cont_nonpara) > length(explanatory)) {
@@ -162,11 +158,17 @@ summary_factorlist <- function(.data,
 		dependent = "all"
 		
 		# Remove strata and cluster terms - keep in table for now
-		# drop = grepl("cluster[(].*[)]", explanatory) |
-		# 	grepl("strata[(].*[)]", explanatory) |
-		# 	grepl("frailty[(].*[)]", explanatory)
-		# explanatory = explanatory[!drop]
+		drop = grepl("cluster[(].*[)]", explanatory) |
+			grepl("strata[(].*[)]", explanatory) |
+			grepl("frailty[(].*[)]", explanatory)
+		explanatory = explanatory[!drop]
 	}    
+	
+	# Remove interactions and indicator variables
+	## Intentionally done separately to above line. 
+	explanatory = paste("~", paste(explanatory, collapse = "+")) %>% 
+		formula() %>% 
+		all.vars()
 	
 	## Active dataset
 	.data = .data %>% 

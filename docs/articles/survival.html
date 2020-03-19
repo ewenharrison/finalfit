@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(finalfit)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">melanoma =<span class="st"> </span>boot<span class="op">::</span>melanoma <span class="co">#F1 here for help page with data dictionary</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="../reference/ff_glimpse.html">ff_glimpse</a></span>(melanoma)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; Continuous</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; $Continuous</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;               label var_type   n missing_n missing_percent   mean     sd</span></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; time           time    &lt;dbl&gt; 205         0             0.0 2152.8 1122.1</span></a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; status       status    &lt;dbl&gt; 205         0             0.0    1.8    0.6</span></a>
@@ -165,7 +165,7 @@
 <a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; thickness    0.1         1.0    1.9         3.6   17.4</span></a>
 <a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; ulcer        0.0         0.0    0.0         1.0    1.0</span></a>
 <a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt; Categorical</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt; $Categorical</span></a>
 <a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt; data frame with 0 columns and 205 rows</span></a></code></pre></div>
 <p>As can be seen, all variables are coded as numeric and some need recoding to factors. This is done below for for those we are interested in.</p>
 </div>
@@ -293,7 +293,9 @@
 <a class="sourceLine" id="cb8-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ulcer"</span>)</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">melanoma <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/surv_plot.html">surv_plot</a></span>(dependent_os, explanatory, <span class="dt">pval =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/surv_plot.html">surv_plot</a></span>(dependent_os, explanatory, <span class="dt">pval =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt; Warning: Vectorized input to `element_text()` is not officially supported.</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; Results may be unexpected or may change in future versions of ggplot2.</span></a></code></pre></div>
 <p><img src="survival_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
 </div>
 <div id="cox-proportional-hazards-regression" class="section level2">
@@ -576,9 +578,9 @@
 <td align="right">1.08 (1.01-1.16, p=0.027)</td>
 </tr>
 <tr class="odd">
-<td align="left">year</td>
-<td>Mean (SD)</td>
-<td align="right">1969.9 (2.6)</td>
+<td align="left">strata(year)</td>
+<td></td>
+<td align="right"></td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
@@ -654,9 +656,9 @@
 <td align="right">2.59 (1.61-4.16, p&lt;0.001)</td>
 </tr>
 <tr class="odd">
-<td align="left">hospital_id</td>
-<td>Mean (SD)</td>
-<td align="right">5.6 (3.0)</td>
+<td align="left">cluster(hospital_id)</td>
+<td></td>
+<td align="right"></td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
@@ -719,9 +721,9 @@
 <td align="right">2.59 (1.53-4.38, p&lt;0.001)</td>
 </tr>
 <tr class="odd">
-<td align="left">hospital_id</td>
-<td>Mean (SD)</td>
-<td align="right">5.6 (3.0)</td>
+<td align="left">frailty(hospital_id)</td>
+<td></td>
+<td align="right"></td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
@@ -736,6 +738,7 @@
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">melanoma <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="../reference/hr_plot.html">hr_plot</a></span>(dependent_os, explanatory)</a></code></pre></div>
 <pre><code>#&gt; Dependent variable is a survival object
+#&gt; Warning: Removed 1 rows containing missing values (geom_point).
 #&gt; Warning: Removed 3 rows containing missing values (geom_errorbarh).</code></pre>
 <p><img src="survival_files/figure-html/unnamed-chunk-17-1.png" width="672"></p>
 </div>

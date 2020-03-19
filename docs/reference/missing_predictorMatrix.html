@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -181,7 +181,7 @@ algorithm.</p></td>
     <p>Matrix formatted for predictorMatrix argument in mice.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mice</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: lattice</span></div><div class='output co'>#&gt; <span class='message'></span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mice</span>)</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘mice’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    cbind, rbind</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
@@ -216,8 +216,13 @@ algorithm.</p></td>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>missing_predictorMatrix</span>(<span class='kw'>drop_from_imputed</span> <span class='kw'>=</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"obstruct.factor"</span>, <span class='st'>"mort_5yr"</span>)) <span class='kw'>-&gt;</span> <span class='no'>predM</span>
-
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"obstruct.factor"</span>, <span class='st'>"mort_5yr"</span>)) <span class='kw'>-&gt;</span> <span class='no'>predM</span></div><div class='output co'>#&gt; <span class='message'>Note: Using an external vector in selections is ambiguous.</span>
+#&gt; <span class='message'><span style='color: #0000BB;'>ℹ</span><span> Use `all_of(dependent)` instead of `dependent` to silence this message.</span>
+#&gt; <span class='message'></span><span style='color: #0000BB;'>ℹ</span><span> See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span>
+#&gt; <span class='message'></span><span style='color: #555555;'>This message is displayed once per session.</span><span></span></div><div class='output co'>#&gt; <span class='message'>Note: Using an external vector in selections is ambiguous.</span>
+#&gt; <span class='message'></span><span style='color: #0000BB;'>ℹ</span><span> Use `all_of(explanatory)` instead of `explanatory` to silence this message.</span>
+#&gt; <span class='message'></span><span style='color: #0000BB;'>ℹ</span><span> See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span>
+#&gt; <span class='message'></span><span style='color: #555555;'>This message is displayed once per session.</span><span></span></div><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'><a href='http://stefvanbuuren.github.io/mice/reference/mice.html'>mice</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>predictorMatrix</span> <span class='kw'>=</span> <span class='no'>predM</span>) <span class='kw'>%&gt;%</span> <span class='co'># e.g. m=10 when for real</span>
@@ -242,7 +247,7 @@ algorithm.</p></td>
 #&gt;   4   2  mort_5yr  nodes  obstruct.factor  smoking_mar
 #&gt;   5   1  mort_5yr  nodes  obstruct.factor  smoking_mar
 #&gt;   5   2  mort_5yr  nodes  obstruct.factor  smoking_mar</div><div class='input'>
-</div></pre>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

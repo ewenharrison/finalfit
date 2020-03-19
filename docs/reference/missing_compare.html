@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -155,7 +155,7 @@
     <p>Compare missing data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>missing_compare</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>missing_compare</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,6 +177,10 @@
       <td><p>Include missing data in explanatory variables as a factor
 level.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments to <code><a href='summary_factorlist.html'>summary_factorlist</a>()</code>.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -192,13 +196,13 @@ level.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ff_glimpse.html'>ff_glimpse</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; Continuous
+  <span class='fu'><a href='ff_glimpse.html'>ff_glimpse</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; $Continuous
 #&gt;           label var_type   n missing_n missing_percent mean   sd  min
 #&gt; age Age (years)    &lt;dbl&gt; 929         0             0.0 59.8 11.9 18.0
 #&gt;     quartile_25 median quartile_75  max
 #&gt; age        53.0   61.0        69.0 85.0
 #&gt; 
-#&gt; Categorical
+#&gt; $Categorical
 #&gt;                          label var_type   n missing_n missing_percent levels_n
 #&gt; mort_5yr      Mortality 5 year    &lt;fct&gt; 915        14             1.5        2
 #&gt; age.factor                 Age    &lt;fct&gt; 929         0             0.0        3
@@ -213,7 +217,8 @@ level.</p></td>
 #&gt; mort_5yr          511, 404, 14       55.0, 43.5,  1.5
 #&gt; age.factor        70, 344, 515        7.5, 37.0, 55.4
 #&gt; extent.factor 21, 106, 759, 43  2.3, 11.4, 81.7,  4.6
-#&gt; perfor.factor          902, 27             97.1,  2.9</div><div class='input'>
+#&gt; perfor.factor          902, 27             97.1,  2.9
+#&gt; </div><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='missing_pattern.html'>missing_pattern</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='img'><img src='missing_compare-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;     age perfor.factor extent.factor age.factor mort_5yr   
 #&gt; 915   1             1             1          1        1  0
