@@ -9,12 +9,13 @@ test_that("ff_newdata gives dataframe", {
 })
 
 test_that("ff_newdata gives dataframe", {
-	expect_is(ff_newdata(colon_s, explanatory = c("nodes", "extent.factor", "perfor.factor"), newdata = list(
-		rep(seq(0, 30), 4),
-		c(rep("Muscle", 62), rep("Adjacent structures", 62)),
-		c(rep("No", 31), rep("Yes", 31), rep("No", 31), rep("Yes", 31))
-	)) -> newdata,
-		"data.frame")
+	expect_is(ff_newdata(colon_s, explanatory = c("nodes", "extent.factor", "perfor.factor"), rowwise = FALSE, 
+											 newdata = list(
+											 	rep(seq(0, 30), 4),
+											 	c(rep("Muscle", 62), rep("Adjacent structures", 62)),
+											 	c(rep("No", 31), rep("Yes", 31), rep("No", 31), rep("Yes", 31))
+											 )) -> newdata,
+						"data.frame")
 })
 
 test_that("ff_newdata gives dataframe", {

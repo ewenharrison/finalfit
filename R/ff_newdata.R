@@ -58,12 +58,10 @@ ff_newdata <- function(.data, dependent=NULL, explanatory=NULL,  rowwise=TRUE, n
 			dplyr::slice(0) -> df.out
 	}
 
-
-	is_numeric = sapply(df.out, is.numeric)
-
 	if(rowwise){
-		df.new = do.call(rbind.data.frame, newdata)
-		df.new[ ,is_numeric] = as.numeric(as.character(df.new[ ,is_numeric]))
+		is_numeric = sapply(df.out, is.numeric)
+		df.new = do.call(rbind, newdata) %>% data.frame(stringsAsFactors = FALSE) %>% 
+			dplyr::mutate_if(is_numeric, as.numeric)
 	}else{
 		df.new = do.call(data.frame, newdata)
 	}
