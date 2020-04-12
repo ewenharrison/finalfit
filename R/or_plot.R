@@ -77,13 +77,14 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 		factorlist = summary_factorlist(.data, dependent, explanatory, total_col=TRUE, fit_id=TRUE)
 	}
 	
-	
 	if(remove_ref){
 		factorlist = factorlist %>%  
 			dplyr::mutate(label = ifelse(label == "", NA, label)) %>% 
 			tidyr::fill(label) %>% 
 			dplyr::group_by(label) %>%
-			dplyr::slice(2:dplyr::n()) %>% 
+			#dplyr::slice(2:dplyr::n()) %>% 
+			dplyr::filter(dplyr::row_number() != 1 | 
+											dplyr::n() > 2) %>% 
 			rm_duplicate_labels()
 	}
 	
@@ -97,7 +98,7 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	} else if(is.null(confint_type) && (!is.null(random_effect) | class(glmfit) == "glmerMod")){
 		confint_type = "default"
 	}
-		
+	
 	# Generate or format glm
 	if(is.null(glmfit) && is.null(random_effect)){
 		glmfit = glmmulti(.data, dependent, explanatory)
@@ -115,7 +116,7 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 		glmfit_df_c = fit2df(glmfit, condense = TRUE, estimate_suffix = " (multilevel)",
 												 confint_type = confint_type, estimate_name = "OR", exp = TRUE, ...)
 	}
-
+	
 	glmfit_df = fit2df(glmfit, condense = FALSE, confint_type = confint_type,  estimate_name = "OR", exp = TRUE, ...)
 	
 	# Merge
@@ -129,7 +130,7 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	
 	# For continuous variables, remove level label
 	df.out$levels[which(df.out$levels %in% c("Mean (SD)", "Median (IQR)"))] = "-"
-
+	
 	# Remove unwanted lines, where there are more variables in model than wish to display.
 	# These not named in factorlist, creating this problem. Interactions don't show on plot.
 	if (any(

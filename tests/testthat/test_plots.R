@@ -15,7 +15,7 @@ test_that("or_plot gives plot with remove ref level", {
 })
 
 test_that("hr_plot gives plot with remove ref level", {
-	expect_is(hr_plot(colon_s, "Surv(time, status)", "age.factor", remove_ref = TRUE), "grob")
+	expect_is(hr_plot(colon_s, "Surv(time, status)", c("age.factor", "sex.factor"), remove_ref = TRUE), "grob")
 })
 
 
