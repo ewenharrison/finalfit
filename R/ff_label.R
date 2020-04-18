@@ -97,3 +97,55 @@ ff_relabel <- function(.data, .labels){
 #' @export
 #' 
 finalfit_relabel <- ff_relabel
+
+
+
+
+#' Relabel variables from data frame after tidyverse functions
+#'
+#' @param .data Data frame or tibble after applicaton of label stripping functions. 
+#' @param .df Original data frame which contains labels. 
+#'
+#' @return Data frame or tibble
+#' @export
+#'
+ff_relabel_df <- function(.data, .df){
+	.labels = extract_variable_label(.df)
+	.labels = .labels[names(.labels) %in% names(.data)]
+	.data %>% 
+		dplyr::mutate_at(names(.labels), # Apply only to variables for which labels
+										 dplyr::funs({
+										 	label = .labels[[dplyr::quo_name(dplyr::quo(.))]]
+										 	ff_label(., label)
+										 })
+		)
+}
+#' @rdname ff_relabel_df
+#' @export
+#' 
+finalfit_relabel_df <- ff_relabel_df
+
+
+
+#' Remove variable labels.
+#'
+#' @param .data Data frame
+#'
+#' @return The original data frame with variable label attributes removed.
+#' @export
+#' @keywords internal
+#'
+#' @examples
+#' colon_s %>%
+#'   remove_labels()
+remove_labels = function(.data){
+	attr_label_null <- function(x){
+		attr(x, "label") <- NULL
+		return(x)
+	}
+	
+	suppressWarnings( # All these irritiating bind_row warnings
+	.data %>% 
+		purrr::map_df(attr_label_null)
+	)
+}
