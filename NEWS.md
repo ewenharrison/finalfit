@@ -4,6 +4,8 @@
 * `missing_compare()` code updated to allow arguments to be passed to new `summary_factorlist()`. 
 * Quadratic terms (`I(var1^2)` etc.) are now better supported in `finalfit()`. 
 * `cluster()`, `frailty()` and `strata()` terms shown in `finalfit()` regression tables as an indicator they have been included in model. 
+* `or_plot()` remove_ref bug fix. 
+* `ff_newdata()` bug fix. 
 
 # finalfit 1.0.0
 
