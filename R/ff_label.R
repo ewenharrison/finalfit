@@ -84,13 +84,13 @@ extract_variable_label = function(.data){
 ff_relabel <- function(.data, .labels){
 	# Keep only labels for variables in data
 	.labels = .labels[names(.labels) %in% names(.data)]
+	relabel_one <- function(.){
+	  var <- as.character(match.call()[[2L]])
+	  label = .labels[[var]]
+	  ff_label(., label)
+	}
 	.data %>% 
-		dplyr::mutate_at(names(.labels), # Apply only to variables for which labels
-										 dplyr::funs({
-										 	label = .labels[[dplyr::quo_name(dplyr::quo(.))]]
-										 	ff_label(., label)
-										 })
-		)
+		dplyr::mutate_at(names(.labels), relabel_one) # Apply only to variables for which labels
 }
 
 #' @rdname ff_relabel
@@ -112,13 +112,13 @@ finalfit_relabel <- ff_relabel
 ff_relabel_df <- function(.data, .df){
 	.labels = extract_variable_label(.df)
 	.labels = .labels[names(.labels) %in% names(.data)]
+	relabel_one <- function(.) {
+	  var <- as.character(match.call()[[2L]])
+	  label = .labels[[var]]
+	  ff_label(., label)
+	}
 	.data %>% 
-		dplyr::mutate_at(names(.labels), # Apply only to variables for which labels
-										 dplyr::funs({
-										 	label = .labels[[dplyr::quo_name(dplyr::quo(.))]]
-										 	ff_label(., label)
-										 })
-		)
+		dplyr::mutate_at(names(.labels), relabel_one) # Apply only to variables for which labels
 }
 #' @rdname ff_relabel_df
 #' @export
