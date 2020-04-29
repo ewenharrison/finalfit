@@ -34,10 +34,11 @@ Imports:
     stats,
     stringr,
     survival,
-    tidyr (>= 1.0.0)
+    tidyr (>= 1.0.0),
+    tibble
 RoxygenNote: 6.1.1
 Suggests:
-    cmprsk, 
+    cmprsk,
     knitr,
     readr,
     rlang,
@@ -45,6 +46,5 @@ Suggests:
     rstan,
     survey,
     survminer,
-    testthat,
-    tibble
+    testthat
 VignetteBuilder: knitr
