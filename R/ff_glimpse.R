@@ -96,7 +96,7 @@ ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1,
 																	format(digits = 2) %>%
 																	paste(collapse=", "),
 																"-")
-				df.out = dplyr::data_frame(levels_n, levels, levels_count, levels_percent) %>% data.frame()
+				df.out = tibble::tibble(levels_n, levels, levels_count, levels_percent) %>% data.frame()
 			}) -> df.factors.out2
 
 		df.factors.out = data.frame(df.factors.out1, df.factors.out2)

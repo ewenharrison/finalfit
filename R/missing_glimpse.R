@@ -30,7 +30,7 @@ missing_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1)
 			missing_n = sum(is.na(x))
 			n = obs-missing_n
 			missing_percent = round_tidy(100*missing_n/obs, digits=digits)
-			dplyr::data_frame(var_type, n, missing_n, missing_percent)
+			tibble::tibble(var_type, n, missing_n, missing_percent)
 		}) -> df.out1
 
 	df.in %>%
