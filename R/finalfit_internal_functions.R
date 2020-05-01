@@ -266,7 +266,7 @@ extract_fit.coxme = function(.data, explanatory_name="explanatory", estimate_nam
 	estimate = exp(results$beta)
 	confint_results = confint(.data, level = confint_level) %>% exp()
 	confint_L = confint_results[, 1]
-	contint_U = confint_results[, 2]
+	confint_U = confint_results[, 2]
 	p = results$p
 	df.out = dplyr::tibble(explanatory, estimate, confint_L, confint_U, p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
