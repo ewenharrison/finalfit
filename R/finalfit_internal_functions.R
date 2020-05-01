@@ -250,21 +250,21 @@ extract_fit.coxme = function(.data, explanatory_name="explanatory", estimate_nam
 																estimate_suffix = "",  p_name = "p",
 																confint_level = 0.95, ...){
 	
-	extract_coxme_table <- function (fit){
-		beta <- fit$coefficients #$fixed is not needed
+	extract_coxme_table <- function(fit){
+		beta <- fit$coefficients
 		nvar <- length(beta)
 		nfrail <- nrow(fit$var) - nvar
 		se <- sqrt(diag(fit$var)[nfrail + 1:nvar])
 		z <- round(beta/se, 2)
 		p <- signif(1 - pchisq((beta/se)^2, 1), 2)
-		table=data.frame(cbind(beta,se,z,p))
+		table = data.frame(cbind(beta,se,z,p))
 		return(table)
 	}
 	
 	results = extract_coxme_table(.data)
 	explanatory = row.names(results)
 	estimate = exp(results$beta)
-	confint_results = confint(fit, level = confint_level) %>% exp()
+	confint_results = confint(.data, level = confint_level) %>% exp()
 	confint_L = confint_results[, 1]
 	contint_U = confint_results[, 2]
 	p = results$p
