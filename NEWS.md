@@ -6,6 +6,8 @@
 * `cluster()`, `frailty()` and `strata()` terms shown in `finalfit()` regression tables as an indicator they have been included in model. 
 * `or_plot()` remove_ref bug fix. 
 * `ff_newdata()` bug fix. 
+* Minor changes to accommodate dplyr 1.0.0.
+* Plots bug fix when using `remove_ref` argument. 
 
 # finalfit 1.0.0
 

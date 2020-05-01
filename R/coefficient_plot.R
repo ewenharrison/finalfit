@@ -82,10 +82,11 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 			dplyr::mutate(label = ifelse(label == "", NA, label)) %>% 
 			tidyr::fill(label) %>% 
 			dplyr::group_by(label) %>%
-			#dplyr::slice(2:dplyr::n()) %>% 
 			dplyr::filter(dplyr::row_number() != 1 | 
-											dplyr::n() > 2) %>% 
-		rm_duplicate_labels()
+											dplyr::n() > 2 |
+											levels %in% c("Mean (SD)", "Median (IQR)")
+			)%>% 
+			rm_duplicate_labels()
 	}
 	
 	if(is.null(breaks)){
