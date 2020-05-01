@@ -237,35 +237,54 @@ extract_fit.crr = function(.data, explanatory_name="explanatory", estimate_name=
 	return(df.out)
 }
 
-#' #' Extract model output to dataframe
-#' #'
-#' #' @keywords internal
-#' #' @rdname extract_fit
-#' #' @method extract_fit coxme
-#' #' @export
-#' 
-#' extract_fit.coxme = function(.data, explanatory_name="explanatory", estimate_name="HR",
-#' 																estimate_suffix = "",  p_name = "p",
-#' 																confint_level = 0.95, ...){
-#' 	x=.data
-#' 	if(confint_type == "default") confint_type = "Wald"
-#' 	explanatory = names(coxme::fixef(x))
-#' 	estimate = exp(coxme::fixef(x))
-#' 	# confint = 
-#' 	# p =
-#' 	L_confint_name = paste0("L", confint_level*100)
-#' 	U_confint_name = paste0("U", confint_level*100)
-#' 	
-#' 	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
-#' 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
-#' 											 L_confint_name, U_confint_name, p_name)
-#' 	
-#' 	if(confint_level != 0.95){
-#' 		df.out = df.out %>% dplyr::select(-p_name)
-#' 	}
-#' 	df.out = data.frame(df.out)
-#' 	return(df.out)
-#' }
+
+
+#' Extract model output to dataframe
+#'
+#' @keywords internal
+#' @rdname extract_fit
+#' @method extract_fit coxme
+#' @export
+
+extract_fit.coxme = function(.data, explanatory_name="explanatory", estimate_name="HR",
+																estimate_suffix = "",  p_name = "p",
+																confint_level = 0.95, ...){
+	
+	extract_coxme_table <- function (fit){
+		beta <- fit$coefficients #$fixed is not needed
+		nvar <- length(beta)
+		nfrail <- nrow(fit$var) - nvar
+		se <- sqrt(diag(fit$var)[nfrail + 1:nvar])
+		z <- round(beta/se, 2)
+		p <- signif(1 - pchisq((beta/se)^2, 1), 2)
+		table=data.frame(cbind(beta,se,z,p))
+		return(table)
+	}
+	
+	x=.data
+	
+	df.out = x %>% 
+		extract_coxme_table() %>%
+		tibble::rownames_to_column(var = "explanatory") %>%
+		dplyr::mutate(    
+			estimate = exp(beta),
+			confint_L = x %>% confint(level = confint_level) %>% exp() %>% magrittr::extract(, 1),
+			confint_U = x %>% confint() %>% exp() %>% magrittr::extract(, 2)
+		) %>% 
+		dplyr::select(explanatory, estimate, confint_L, confint_U, p)
+	
+	colnames(df.out) = c(explanatory_name, 
+											 paste0(estimate_name, estimate_suffix), 
+											 paste0("L", confint_level*100), 
+											 paste0("U", confint_level*100), 
+											 p_name)
+	
+	if(confint_level != 0.95){
+		df.out = df.out %>% dplyr::select(-p_name)
+	}
+	df.out = data.frame(df.out)
+	return(df.out)
+}
 
 
 #' Extract model output to dataframe
@@ -734,7 +753,8 @@ globalVariables(c("L95", "U95", "fit_id", "Total", "dependent",
 									":=", "Mean", "SD", "Median", "Q3", "Q1", "IQR", "Formatted", 
 									"w", "Freq", "g", "total_prop", "Prop", "index_total", "vname", "Combined",
 									"2.5 %", "97.5 %", "p.value", "estimate", "index", "n", "missing_n", "var_type",
-									"missing_percent", "var1", "var2", "keep", "label", "rowid", "term"))
+									"missing_percent", "var1", "var2", "keep", "label", "rowid", "term",
+									"confint_L", "confint_U", "explanatory", "p"))
 
 
 # Workaround ::: as summary.formula not (yet) exported from Hmisc

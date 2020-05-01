@@ -620,6 +620,44 @@ fit2df.crr <- function(.data, condense=TRUE, metrics=FALSE,
 	}
 }
 
+
+#' Extract \code{coxme::coxme} model fit results to dataframe: \code{finalfit} model extracters
+#'
+#' \code{fit2df.coxme} is the model extract method for \code{eoxme::\link[coxme]{coxme}}.
+#'
+#' @rdname fit2df
+#' @method fit2df coxme
+#' @export
+#'
+fit2df.coxme <- function(.data, condense=TRUE, metrics=FALSE,
+											 explanatory_name = "explanatory",
+											 estimate_name = "HR",
+											 estimate_suffix = "",
+											 p_name = "p",
+											 digits=c(2,2,3),
+											 confint_sep = "-", ...){
+	
+	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
+											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+											 p_name=p_name)
+	
+	if (condense==TRUE){
+		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
+													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
+													p_name=p_name, digits=digits, confint_sep=confint_sep)
+	}
+	# Extract model metrics
+	if (metrics==TRUE){
+		metrics.out = ff_metrics(.data)
+		return(list(df.out, metrics.out))
+	} else {
+		return(df.out)
+	}
+}
+
+
+
+
 #' Extract \code{crruni} and \code{crrmulti} model fit results to dataframe:
 #' \code{finalfit} model extracters
 #'

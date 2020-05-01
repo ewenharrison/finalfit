@@ -13,6 +13,7 @@
 \alias{fit2df.coxph}
 \alias{fit2df.coxphlist}
 \alias{fit2df.crr}
+\alias{fit2df.coxme}
 \alias{fit2df.crrlist}
 \alias{fit2df.stanfit}
 \alias{fit2df.mipo}
@@ -79,6 +80,11 @@ fit2df(...)
   confint_sep = "-", ...)
 
 \method{fit2df}{crr}(.data, condense = TRUE, metrics = FALSE,
+  explanatory_name = "explanatory", estimate_name = "HR",
+  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
+  confint_sep = "-", ...)
+
+\method{fit2df}{coxme}(.data, condense = TRUE, metrics = FALSE,
   explanatory_name = "explanatory", estimate_name = "HR",
   estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
   confint_sep = "-", ...)
@@ -173,6 +179,8 @@ wrappers.
 \code{fit2df.coxphlist} is the model extract method for \code{coxphuni} and \code{coxphmulti}.
 
 \code{fit2df.crr} is the model extract method for \code{cmprsk::\link[cmprsk]{crr}}.
+
+\code{fit2df.coxme} is the model extract method for \code{eoxme::\link[coxme]{coxme}}.
 
 \code{fit2df.crr} is the model extract method for
 \code{crruni} and \code{crrmulti}.
