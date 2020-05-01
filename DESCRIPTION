@@ -16,6 +16,7 @@ LazyData: true
 BugReports: https://github.com/ewenharrison/finalfit/issues
 URL: https://github.com/ewenharrison/finalfit
 Imports:
+    bdsmatrix,
     boot,
     broom,
     dplyr,
@@ -38,6 +39,7 @@ Imports:
 RoxygenNote: 6.1.1
 Suggests:
     cmprsk, 
+    coxme,
     knitr,
     readr,
     rlang,

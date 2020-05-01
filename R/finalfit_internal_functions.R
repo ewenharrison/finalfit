@@ -253,8 +253,8 @@ extract_fit.coxme = function(.data, explanatory_name="explanatory", estimate_nam
 	extract_coxme_table <- function(fit){
 		beta <- fit$coefficients
 		nvar <- length(beta)
-		nfrail <- nrow(fit$var) - nvar
-		se <- sqrt(diag(fit$var)[nfrail + 1:nvar])
+		nfrail <- nrow(fit$variance) - nvar
+		se <- sqrt(bdsmatrix::diag(fit$variance)[nfrail + 1:nvar])
 		z <- round(beta/se, 2)
 		p <- signif(1 - pchisq((beta/se)^2, 1), 2)
 		table = data.frame(cbind(beta,se,z,p))
