@@ -148,3 +148,25 @@ remove_labels = function(.data){
 		purrr::map_df(attr_label_null)
 	)
 }
+
+
+
+#' Labels to column names
+#'
+#' @param .data 
+#'
+#' @return Data frame or tibble
+#' @export
+#'
+#' @examples
+#' library(dplyr)
+#' colon_s %>% 
+#'   select(sex.factor) %>% 
+#'   labels_to_column()
+labels_to_column <- function(.data){
+	.labels = extract_variable_label(.data)
+	.labels2 = names(.labels)
+	names(.labels2) = .labels
+	.data %>% 
+		dplyr::rename(.labels2)
+}
