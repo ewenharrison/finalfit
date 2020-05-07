@@ -30,7 +30,7 @@
 #'
 #' colon_s %>%
 #' 	glmmulti(dependent, explanatory) %>%
-#' 	fit2df(estimate_suffix=" (univariable)")
+#' 	fit2df(estimate_suffix=" (multivariable)")
 #' 
 glmmulti <- function(.data, dependent, explanatory, family = "binomial", ...){
   ff_eval(
