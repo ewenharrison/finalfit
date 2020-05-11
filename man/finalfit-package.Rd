@@ -4,6 +4,10 @@
 \name{finalfit-package}
 \alias{finalfit-package}
 \title{finalfit: Quickly create elegant final results tables and plots when modelling.}
+\description{
+Generate regression results tables and plots in final format for publication. Explore models and export directly to PDF 
+and 'Word' using 'RMarkdown'.
+}
 \section{\code{finalfit} model wrappers}{
 
 
