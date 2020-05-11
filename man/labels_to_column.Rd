@@ -7,7 +7,7 @@
 labels_to_column(.data)
 }
 \arguments{
-\item{.data}{}
+\item{.data}{Data frame or tibble after applicaton of label stripping functions.}
 }
 \value{
 Data frame or tibble
@@ -20,4 +20,5 @@ library(dplyr)
 colon_s \%>\% 
   select(sex.factor) \%>\% 
   labels_to_column()
+  
 }

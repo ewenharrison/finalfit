@@ -17,10 +17,10 @@ _config.yml
 ^.github$
 ^images.*
 ^_pkgdown\.yml$
-^docs$
+docs/
 ^pkgdown$
 _pkgdown.yml 
 data-raw
 ^docs$ 
-^packrat$ 
+packrat/
 ^pkgdown$

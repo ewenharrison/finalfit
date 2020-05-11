@@ -1,5 +1,5 @@
 #' Label a variable
-#'
+#' 
 #' @param .var Quoted variable name
 #' @param variable_label Quoted variable label
 #'
@@ -153,7 +153,7 @@ remove_labels = function(.data){
 
 #' Labels to column names
 #'
-#' @param .data 
+#' @inheritParams ff_relabel_df 
 #'
 #' @return Data frame or tibble
 #' @export
@@ -163,6 +163,7 @@ remove_labels = function(.data){
 #' colon_s %>% 
 #'   select(sex.factor) %>% 
 #'   labels_to_column()
+#'   
 labels_to_column <- function(.data){
 	.labels = extract_variable_label(.data)
 	.labels2 = names(.labels)
