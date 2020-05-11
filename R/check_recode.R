@@ -44,7 +44,7 @@
 #'
 #' # Select a tibble and expand
 #' out$counts[[9]] %>%
-#'   print(n = Inf)
+#'   print()
 #' # Note this variable (node4) appears miscoded in original dataset survival::colon.
 #' 
 #' # Choose to only include variables that you actually use. 
