@@ -156,18 +156,18 @@ fit2df.lm <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRUE
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name, digits=digits,)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	
-	if (remove_intercept==TRUE){
+	if (remove_intercept){
 		df.out = remove_intercept(df.out)
 	}
 	
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -193,7 +193,7 @@ fit2df.lmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 													confint_level = 0.95,
 													confint_sep = " to ", ...){
 	
-	if (metrics==TRUE && length(.data)>1){
+	if (all(metrics, length(.data)>1)){
 		stop("Metrics only generated for single models: multiple models supplied to function")
 	}
 	
@@ -202,18 +202,18 @@ fit2df.lmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 									 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 									 p_name=p_name,  confint_level=confint_level)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	
-	if (remove_intercept==TRUE){
+	if (remove_intercept){
 		df.out = remove_intercept(df.out)
 	}
 	
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -251,18 +251,18 @@ fit2df.glm <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TRU
 											 confint_level = confint_level,
 											 p_name=p_name)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(df.out, explanatory_name = explanatory_name,
 													estimate_name = estimate_name, estimate_suffix = estimate_suffix,
 													p_name = p_name, digits = digits, confint_sep = confint_sep)
 	}
 	
-	if (remove_intercept==TRUE){
+	if (remove_intercept){
 		df.out = remove_intercept(df.out)
 	}
 	
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -285,7 +285,7 @@ fit2df.glmboot = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 													p_name = "p",
 													digits=c(2,2,3),
 													confint_sep = "-", ...){
-	if(metrics == TRUE) warning("Metrics not currently available for this model")
+	if(metrics) warning("Metrics not currently available for this model")
 	
 	x = .data
 	d.estimate = digits[1]
@@ -308,13 +308,13 @@ fit2df.glmboot = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 	df.out$p = round(df.out$p, d.p)
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	
-	if (remove_intercept==TRUE){
+	if (remove_intercept){
 		df.out = remove_intercept(df.out)
 	}
 	
@@ -340,7 +340,7 @@ fit2df.glmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept
 													 confint_level = 0.95,
 													 confint_sep = "-", ...){
 	
-	if (metrics==TRUE && length(.data)>1){
+	if (all(metrics, length(.data)>1)){
 		stop("Metrics only generated for single models: multiple models supplied to function")
 	}
 	
@@ -352,18 +352,18 @@ fit2df.glmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept
 									 confint_level = confint_level,
 									 digits=digits)
 	
-	if (condense == TRUE){
+	if (condense){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	
-	if (remove_intercept == TRUE){
+	if (remove_intercept){
 		df.out = remove_intercept(df.out)
 	}
 	
 	# Extract model metrics
-	if (metrics == TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -391,7 +391,7 @@ fit2df.svyglmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_interc
 													 confint_level = 0.95,
 													 confint_sep = "-", ...){
 	
-	if (metrics==TRUE && length(.data)>1){
+	if (metrics && length(.data)>1){
 		stop("Metrics only generated for single models: multiple models supplied to function")
 	}
 	
@@ -403,18 +403,18 @@ fit2df.svyglmlist <- function(.data, condense=TRUE, metrics=FALSE, remove_interc
 									 confint_level = confint_level,
 									 digits=digits)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	
-	if (remove_intercept==TRUE){
+	if (remove_intercept){
 		df.out = remove_intercept(df.out)
 	}
 	
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -448,18 +448,18 @@ fit2df.lmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name, confint_type = confint_type, confint_level = confint_level)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	
-	if (remove_intercept==TRUE){
+	if (remove_intercept){
 		df.out = remove_intercept(df.out)
 	}
 	
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -494,19 +494,19 @@ fit2df.glmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept
 											 p_name=p_name, confint_type = confint_type,
 											 confint_level = confint_level)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	
-	if (remove_intercept==TRUE){
+	if (remove_intercept){
 		df.out = remove_intercept(df.out)
 	}
 	
 	
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -534,13 +534,13 @@ fit2df.coxph <- function(.data, condense=TRUE, metrics=FALSE,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -563,21 +563,21 @@ fit2df.coxphlist <- function(.data, condense=TRUE, metrics=FALSE,
 														 p_name = "p",
 														 digits=c(2,2,3),
 														 confint_sep = "-", ...){
-	#if(metrics==TRUE) warning("Metrics not currently available for this model")
+	#if(metrics) warning("Metrics not currently available for this model")
 	
 	df.out = .data %>% 
 		purrr::map_dfr(extract_fit, explanatory_name=explanatory_name,
 									 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 									 p_name=p_name, digits=digits)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -606,13 +606,13 @@ fit2df.crr <- function(.data, condense=TRUE, metrics=FALSE,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -641,13 +641,13 @@ fit2df.coxme <- function(.data, condense=TRUE, metrics=FALSE,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name)
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -682,13 +682,13 @@ fit2df.crrlist <- function(.data, condense=TRUE, metrics=FALSE,
 									 p_name=p_name, digits=digits)
 
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(.data=df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 	# Extract model metrics
-	if (metrics==TRUE){
+	if (metrics){
 		metrics.out = ff_metrics(.data)
 		return(list(df.out, metrics.out))
 	} else {
@@ -726,19 +726,19 @@ fit2df.stanfit = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 											 p_name=p_name, digits=digits, X=args$X)
 
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)
 	}
 
-	if (remove_intercept==TRUE){
+	if (remove_intercept){
 		df.out = remove_intercept(df.out)
 	}
 
 	# Extract model metrics
 	## This needs an ff_metrics() method
-	if (metrics==TRUE){
+	if (metrics){
 		# n_data = dim(x$data)[1] # no equivalent here
 		n_model = dim(args$X)[1]
 		# aic = round(x$aic, 1) # add WAIC later?
@@ -751,7 +751,7 @@ fit2df.stanfit = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 		#	", C-statistic = ", auc)
 	}
 
-	if (metrics==TRUE){
+	if (metrics){
 		return(list(df.out, metrics.out))
 	} else {
 		return(df.out)
@@ -785,19 +785,19 @@ fit2df.mipo <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TR
 		dplyr::select(explanatory_name = term, estimate, `2.5 %`, `97.5 %`, p.value)
 	colnames(df.out) = c(explanatory_name, estimate_name, "L95", "U95", "p")
 	
-	if (condense==TRUE){
+	if (condense){
 		df.out = condense_fit(df.out, explanatory_name = explanatory_name,
 													estimate_name = estimate_name, estimate_suffix = estimate_suffix,
 													p_name = p_name, digits = digits, confint_sep = confint_sep)
 	}
 	
-	if (remove_intercept==TRUE){
+	if (remove_intercept){
 		df.out = remove_intercept(df.out)
 	}
 	
 	# Extract model metrics
 	## Not implemented for mipo
-	# if (metrics==TRUE){
+	# if (metrics){
 	#   metrics.out = ff_metrics(.data)
 	#   return(list(df.out, metrics.out))
 	# } else {

@@ -4,8 +4,14 @@
 \alias{missing_plot}
 \title{Missing values occurence plot}
 \usage{
-missing_plot(.data, dependent = NULL, explanatory = NULL,
-  use_labels = TRUE, title = NULL, plot_opts = NULL)
+missing_plot(
+  .data,
+  dependent = NULL,
+  explanatory = NULL,
+  use_labels = TRUE,
+  title = NULL,
+  plot_opts = NULL
+)
 }
 \arguments{
 \item{.data}{Data frame.}

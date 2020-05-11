@@ -69,7 +69,7 @@ ff_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL,
   df.out[,estimate_col] = as.character(df.out[,estimate_col])
   df.out[is.na(df.out[,estimate_col]),estimate_col] = ref_symbol
   df.out = df.out[order(df.out$index),]
-  if(last_merge == TRUE){
+  if(last_merge){
     df.out = df.out %>% 
       dplyr::select(-fit_id, -index)
   }

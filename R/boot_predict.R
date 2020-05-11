@@ -143,7 +143,7 @@ boot_predict = function (fit, newdata, type = "response", R = 100,
   bs.tidy = data.frame(bs.tidy)
 
 
-  if(condense == FALSE){
+  if(!condense){
     df.out = bs.tidy[, c(1, 4,5)]
     colnames(df.out) = c(estimate_name, paste0(estimate_name, "_conf.low"), paste0(estimate_name, "_conf.high"))
   } else {
@@ -165,7 +165,7 @@ boot_predict = function (fit, newdata, type = "response", R = 100,
 
 
   # Final table
-  if(condense == TRUE){
+  if(condense){
     labels = extract_variable_label(newdata)
     names(newdata) = labels
   }

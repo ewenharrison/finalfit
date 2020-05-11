@@ -6,15 +6,29 @@
 \title{Permuate explanatory variables to produce multiple output tables for common
 regression models}
 \usage{
-ff_permute(.data, dependent = NULL, explanatory_base = NULL,
-  explanatory_permute = NULL, multiple_tables = FALSE,
-  include_base_model = TRUE, include_full_model = TRUE,
-  base_on_top = TRUE, ...)
+ff_permute(
+  .data,
+  dependent = NULL,
+  explanatory_base = NULL,
+  explanatory_permute = NULL,
+  multiple_tables = FALSE,
+  include_base_model = TRUE,
+  include_full_model = TRUE,
+  base_on_top = TRUE,
+  ...
+)
 
-finalfit_permute(.data, dependent = NULL, explanatory_base = NULL,
-  explanatory_permute = NULL, multiple_tables = FALSE,
-  include_base_model = TRUE, include_full_model = TRUE,
-  base_on_top = TRUE, ...)
+finalfit_permute(
+  .data,
+  dependent = NULL,
+  explanatory_base = NULL,
+  explanatory_permute = NULL,
+  multiple_tables = FALSE,
+  include_base_model = TRUE,
+  include_full_model = TRUE,
+  base_on_top = TRUE,
+  ...
+)
 }
 \arguments{
 \item{.data}{Data frame or tibble.}

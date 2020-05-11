@@ -4,9 +4,6 @@
 \name{finalfit-package}
 \alias{finalfit-package}
 \title{finalfit: Quickly create elegant final results tables and plots when modelling.}
-\description{
-finalfit: Quickly create elegant final results tables and plots when modelling.
-}
 \section{\code{finalfit} model wrappers}{
 
 

@@ -203,7 +203,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 	# This is standard approach, which is why written out in full but duplicated somewhat below
 	## Come back and reduce the conditional logic here.
 	## Fast though, as only required models are being made.
-	if(keep_models == FALSE){
+	if(!keep_models){
 		# Multivariable/Mixed
 		if (is.null(random_effect)){
 			if (is.null(explanatory_multi)){
@@ -213,7 +213,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 			}
 			lmmulti.df = do.call(fit2df,
 													 c(list(.data=lmmulti.out, metrics=metrics, estimate_suffix = " (multivariable)"), args))
-		} else if (is.null(random_effect) == FALSE){
+		} else if (!is.null(random_effect)){
 			if (is.null(explanatory_multi)){
 				lmmulti.out = lmmixed(.data, dependent, explanatory, random_effect)
 			} else {
@@ -224,14 +224,14 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 		}
 
 		# Multi
-		if (metrics == FALSE){
+		if (!metrics){
 			df.out = finalfit_merge(df.out, lmmulti.df, estimate_name = args$estimate_name)
 		} else {
 			df.out = finalfit_merge(df.out, lmmulti.df[[1]], estimate_name = args$estimate_name)
 			df.metrics = lmmulti.df[[2]]
 		}
 
-	}else if(keep_models == TRUE){
+	}else if(keep_models){
 		lmmulti1.out = lmmulti(.data, dependent, explanatory)
 		lmmulti1.df = do.call(fit2df,
 													c(list(.data=lmmulti1.out, metrics=metrics,
@@ -253,7 +253,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 													 			 estimate_suffix = " (multilevel)"), args))
 		}
 
-		if (metrics == FALSE){
+		if (!metrics){
 			if (is.null(random_effect)){
 				if (is.null(explanatory_multi)){
 					df.out = df.out %>%
@@ -276,7 +276,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 				}
 			}
 		}
-		if (metrics == TRUE){
+		if (metrics){
 			if (is.null(random_effect)){
 				if (is.null(explanatory_multi)){
 					df.out = df.out %>%
@@ -337,7 +337,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 	}
 
 	# Add metrics
-	if (metrics == TRUE){
+	if (metrics){
 		return(list(df.out, df.metrics))
 	} else {
 		return(df.out)
@@ -376,7 +376,7 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 	df.out = finalfit_merge(summary.out, glmuni.df, estimate_name = args$estimate_name)
 
 	# This is standard approach, which is why written out in full but duplicated somewhat below
-	if(keep_models == FALSE){
+	if(!keep_models){
 		# Multivariable/Mixed
 		if (is.null(random_effect)){
 			if (is.null(explanatory_multi)){
@@ -397,14 +397,14 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 		}
 
 		# Multi
-		if (metrics == FALSE){
+		if (!metrics){
 			df.out = finalfit_merge(df.out, glmmulti.df, estimate_name = args$estimate_name)
 		} else {
 			df.out = finalfit_merge(df.out, glmmulti.df[[1]], estimate_name = args$estimate_name)
 			df.metrics = glmmulti.df[[2]]
 		}
 
-	}else if(keep_models == TRUE){
+	}else if(keep_models){
 		glmmulti1.out = glmmulti(.data, dependent, explanatory)
 		glmmulti1.df = do.call(fit2df,
 													 c(list(.data=glmmulti1.out, metrics=metrics,
@@ -426,7 +426,7 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 																	 estimate_suffix = " (multilevel)"), args))
 		}
 
-		if (metrics == FALSE){
+		if (!metrics){
 			if (is.null(random_effect)){
 				if (is.null(explanatory_multi)){
 					df.out = df.out %>%
@@ -449,7 +449,7 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 				}
 			}
 		}
-		if (metrics == TRUE){
+		if (metrics){
 			if (is.null(random_effect)){
 				if (is.null(explanatory_multi)){
 					df.out = df.out %>%
@@ -560,7 +560,7 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 	df.out = finalfit_merge(summary.out, coxphuni_df, estimate_name = args$estimate_name)
 
 	# Multivariable
-	if(keep_models == FALSE){
+	if(!keep_models){
 		if (is.null(explanatory_multi)){
 			coxphmulti.out = coxphmulti(.data, dependent, explanatory)
 		} else {
@@ -571,7 +571,7 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 															metrics=metrics, args))
 
 
-		if (metrics == FALSE){
+		if (!metrics){
 			df.out = finalfit_merge(df.out, coxphmulti.df, estimate_name = args$estimate_name)
 		} else {
 			df.out = finalfit_merge(df.out, coxphmulti.df[[1]], estimate_name = args$estimate_name)
@@ -579,7 +579,7 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 		}
 
 
-	}else if(keep_models == TRUE){
+	}else if(keep_models){
 		coxphmulti1.out = coxphmulti(.data, dependent, explanatory)
 		coxphmulti1.df = do.call(fit2df,
 														 c(list(.data=coxphmulti1.out, metrics=metrics,
@@ -591,7 +591,7 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 															 			 estimate_suffix = " (multivariable reduced)"), args))
 		}
 
-		if (metrics == FALSE){
+		if (!metrics){
 			if (is.null(explanatory_multi)){
 				df.out = df.out %>%
 					finalfit_merge(coxphmulti1.df, estimate_name = args$estimate_name)
@@ -602,7 +602,7 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 			}
 		}
 
-		if (metrics == TRUE){
+		if (metrics){
 			if (is.null(explanatory_multi)){
 				df.out = df.out %>%
 					finalfit_merge(coxphmulti1.df[[1]], estimate_name = args$estimate_name)
@@ -655,7 +655,7 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 	}
 
 	# Add metrics
-	if (metrics == TRUE){
+	if (metrics){
 		return(list(df.out, df.metrics))
 	} else {
 		return(df.out)

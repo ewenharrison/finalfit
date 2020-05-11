@@ -4,8 +4,14 @@
 \alias{summary_mipo}
 \title{Call to mice:::summary.mipo}
 \usage{
-summary_mipo(object, type = c("tests", "all"), conf.int = FALSE,
-  conf.level = 0.95, exponentiate = FALSE, ...)
+summary_mipo(
+  object,
+  type = c("tests", "all"),
+  conf.int = FALSE,
+  conf.level = 0.95,
+  exponentiate = FALSE,
+  ...
+)
 }
 \description{
 Not called directly.

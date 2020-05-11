@@ -4,12 +4,26 @@
 \alias{or_plot}
 \title{Produce an odds ratio table and plot}
 \usage{
-or_plot(.data, dependent, explanatory, random_effect = NULL,
-  factorlist = NULL, glmfit = NULL, confint_type = NULL,
-  remove_ref = FALSE, breaks = NULL, column_space = c(-0.5, 0, 0.5),
-  dependent_label = NULL, prefix = "",
-  suffix = ": OR (95\% CI, p-value)", table_text_size = 5,
-  title_text_size = 18, plot_opts = NULL, table_opts = NULL, ...)
+or_plot(
+  .data,
+  dependent,
+  explanatory,
+  random_effect = NULL,
+  factorlist = NULL,
+  glmfit = NULL,
+  confint_type = NULL,
+  remove_ref = FALSE,
+  breaks = NULL,
+  column_space = c(-0.5, 0, 0.5),
+  dependent_label = NULL,
+  prefix = "",
+  suffix = ": OR (95\% CI, p-value)",
+  table_text_size = 5,
+  title_text_size = 18,
+  plot_opts = NULL,
+  table_opts = NULL,
+  ...
+)
 }
 \arguments{
 \item{.data}{Data frame.}
@@ -82,8 +96,10 @@ colon_s \%>\%
     plot_opts=list(xlab("OR, 95\% CI"), theme(axis.title = element_text(size=12))))
 }
 \seealso{
-Other finalfit plot functions: \code{\link{coefficient_plot}},
-  \code{\link{ff_plot}}, \code{\link{hr_plot}},
-  \code{\link{surv_plot}}
+Other finalfit plot functions: 
+\code{\link{coefficient_plot}()},
+\code{\link{ff_plot}()},
+\code{\link{hr_plot}()},
+\code{\link{surv_plot}()}
 }
 \concept{finalfit plot functions}

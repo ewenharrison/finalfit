@@ -4,18 +4,39 @@
 \alias{summary_factorlist}
 \title{Summarise a set of factors (or continuous variables) by a dependent variable}
 \usage{
-summary_factorlist(.data, dependent = NULL, explanatory, cont = "mean",
-  cont_nonpara = NULL, cont_cut = 5, cont_range = FALSE, p = FALSE,
-  p_cont_para = "aov", p_cat = "chisq", column = TRUE,
-  total_col = FALSE, orderbytotal = FALSE, digits = c(1, 1, 3, 1),
-  na_include = FALSE, na_include_dependent = FALSE,
-  na_complete_cases = FALSE, na_to_p = FALSE, fit_id = FALSE,
-  add_dependent_label = FALSE, dependent_label_prefix = "Dependent: ",
-  dependent_label_suffix = "", add_col_totals = FALSE,
-  include_col_totals_percent = TRUE, col_totals_rowname = NULL,
-  col_totals_prefix = "", add_row_totals = FALSE,
-  include_row_missing_col = TRUE, row_totals_colname = "Total N",
-  row_missing_colname = "Missing N", catTest = NULL)
+summary_factorlist(
+  .data,
+  dependent = NULL,
+  explanatory,
+  cont = "mean",
+  cont_nonpara = NULL,
+  cont_cut = 5,
+  cont_range = FALSE,
+  p = FALSE,
+  p_cont_para = "aov",
+  p_cat = "chisq",
+  column = TRUE,
+  total_col = FALSE,
+  orderbytotal = FALSE,
+  digits = c(1, 1, 3, 1),
+  na_include = FALSE,
+  na_include_dependent = FALSE,
+  na_complete_cases = FALSE,
+  na_to_p = FALSE,
+  fit_id = FALSE,
+  add_dependent_label = FALSE,
+  dependent_label_prefix = "Dependent: ",
+  dependent_label_suffix = "",
+  add_col_totals = FALSE,
+  include_col_totals_percent = TRUE,
+  col_totals_rowname = NULL,
+  col_totals_prefix = "",
+  add_row_totals = FALSE,
+  include_row_missing_col = TRUE,
+  row_totals_colname = "Total N",
+  row_missing_colname = "Missing N",
+  catTest = NULL
+)
 }
 \arguments{
 \item{.data}{Dataframe.}

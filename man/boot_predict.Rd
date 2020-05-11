@@ -4,10 +4,20 @@
 \alias{boot_predict}
 \title{Bootstrap simulation for model prediction}
 \usage{
-boot_predict(fit, newdata, type = "response", R = 100,
-  estimate_name = NULL, confint_sep = " to ", condense = TRUE,
-  boot_compare = TRUE, compare_name = NULL,
-  comparison = "difference", ref_symbol = "-", digits = c(2, 3))
+boot_predict(
+  fit,
+  newdata,
+  type = "response",
+  R = 100,
+  estimate_name = NULL,
+  confint_sep = " to ",
+  condense = TRUE,
+  boot_compare = TRUE,
+  compare_name = NULL,
+  comparison = "difference",
+  ref_symbol = "-",
+  digits = c(2, 3)
+)
 }
 \arguments{
 \item{fit}{A model generated using \code{lm}, \code{glm},

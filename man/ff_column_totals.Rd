@@ -5,12 +5,27 @@
 \alias{finalfit_column_totals}
 \title{Add column totals to \code{summary_factorlist()} output}
 \usage{
-ff_column_totals(df.in, .data, dependent, na_include_dependent = FALSE,
-  percent = TRUE, digits = 1, label = NULL, prefix = "")
+ff_column_totals(
+  df.in,
+  .data,
+  dependent,
+  na_include_dependent = FALSE,
+  percent = TRUE,
+  digits = 1,
+  label = NULL,
+  prefix = ""
+)
 
-finalfit_column_totals(df.in, .data, dependent,
-  na_include_dependent = FALSE, percent = TRUE, digits = 1,
-  label = NULL, prefix = "")
+finalfit_column_totals(
+  df.in,
+  .data,
+  dependent,
+  na_include_dependent = FALSE,
+  percent = TRUE,
+  digits = 1,
+  label = NULL,
+  prefix = ""
+)
 }
 \arguments{
 \item{df.in}{\code{summary_factorlist()} output.}

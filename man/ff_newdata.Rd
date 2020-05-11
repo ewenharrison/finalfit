@@ -5,11 +5,21 @@
 \alias{finalfit_newdata}
 \title{Generate newdata for simulations}
 \usage{
-ff_newdata(.data, dependent = NULL, explanatory = NULL,
-  rowwise = TRUE, newdata)
+ff_newdata(
+  .data,
+  dependent = NULL,
+  explanatory = NULL,
+  rowwise = TRUE,
+  newdata
+)
 
-finalfit_newdata(.data, dependent = NULL, explanatory = NULL,
-  rowwise = TRUE, newdata)
+finalfit_newdata(
+  .data,
+  dependent = NULL,
+  explanatory = NULL,
+  rowwise = TRUE,
+  newdata
+)
 }
 \arguments{
 \item{.data}{Dataframe.}

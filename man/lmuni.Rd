@@ -42,12 +42,19 @@ colon_s \%>\%
 \seealso{
 \code{\link{fit2df}}
 
-Other finalfit model wrappers: \code{\link{coxphmulti}},
-  \code{\link{coxphuni}}, \code{\link{crrmulti}},
-  \code{\link{crruni}}, \code{\link{glmmixed}},
-  \code{\link{glmmulti_boot}}, \code{\link{glmmulti}},
-  \code{\link{glmuni}}, \code{\link{lmmixed}},
-  \code{\link{lmmulti}}, \code{\link{svyglmmulti}},
-  \code{\link{svyglmuni}}
+Other finalfit model wrappers: 
+\code{\link{coxphmixed}()},
+\code{\link{coxphmulti}()},
+\code{\link{coxphuni}()},
+\code{\link{crrmulti}()},
+\code{\link{crruni}()},
+\code{\link{glmmixed}()},
+\code{\link{glmmulti_boot}()},
+\code{\link{glmmulti}()},
+\code{\link{glmuni}()},
+\code{\link{lmmixed}()},
+\code{\link{lmmulti}()},
+\code{\link{svyglmmulti}()},
+\code{\link{svyglmuni}()}
 }
 \concept{finalfit model wrappers}

@@ -4,9 +4,15 @@
 \alias{boot_compare}
 \title{Compare bootstrapped distributions}
 \usage{
-boot_compare(bs.out, confint_sep = " to ", comparison = "difference",
-  condense = TRUE, compare_name = NULL, digits = c(2, 3),
-  ref_symbol = 1)
+boot_compare(
+  bs.out,
+  confint_sep = " to ",
+  comparison = "difference",
+  condense = TRUE,
+  compare_name = NULL,
+  digits = c(2, 3),
+  ref_symbol = 1
+)
 }
 \arguments{
 \item{bs.out}{Output from \code{boot::boot},}

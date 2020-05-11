@@ -7,29 +7,69 @@
 \alias{finalfit.coxph}
 \title{Final output tables for common regression models}
 \usage{
-finalfit(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, column = FALSE, keep_models = FALSE,
-  metrics = FALSE, add_dependent_label = TRUE,
-  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
-  keep_fit_id = FALSE, ...)
+finalfit(
+  .data,
+  dependent,
+  explanatory,
+  explanatory_multi = NULL,
+  random_effect = NULL,
+  column = FALSE,
+  keep_models = FALSE,
+  metrics = FALSE,
+  add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ",
+  dependent_label_suffix = "",
+  keep_fit_id = FALSE,
+  ...
+)
 
-finalfit.lm(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, column = FALSE, keep_models = FALSE,
-  metrics = FALSE, add_dependent_label = TRUE,
-  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
-  keep_fit_id = FALSE, ...)
+finalfit.lm(
+  .data,
+  dependent,
+  explanatory,
+  explanatory_multi = NULL,
+  random_effect = NULL,
+  column = FALSE,
+  keep_models = FALSE,
+  metrics = FALSE,
+  add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ",
+  dependent_label_suffix = "",
+  keep_fit_id = FALSE,
+  ...
+)
 
-finalfit.glm(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, column = FALSE, keep_models = FALSE,
-  metrics = FALSE, add_dependent_label = TRUE,
-  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
-  keep_fit_id = FALSE, ...)
+finalfit.glm(
+  .data,
+  dependent,
+  explanatory,
+  explanatory_multi = NULL,
+  random_effect = NULL,
+  column = FALSE,
+  keep_models = FALSE,
+  metrics = FALSE,
+  add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ",
+  dependent_label_suffix = "",
+  keep_fit_id = FALSE,
+  ...
+)
 
-finalfit.coxph(.data, dependent, explanatory, explanatory_multi = NULL,
-  random_effect = NULL, column = TRUE, keep_models = FALSE,
-  metrics = FALSE, add_dependent_label = TRUE,
-  dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
-  keep_fit_id = FALSE, ...)
+finalfit.coxph(
+  .data,
+  dependent,
+  explanatory,
+  explanatory_multi = NULL,
+  random_effect = NULL,
+  column = TRUE,
+  keep_models = FALSE,
+  metrics = FALSE,
+  add_dependent_label = TRUE,
+  dependent_label_prefix = "Dependent: ",
+  dependent_label_suffix = "",
+  keep_fit_id = FALSE,
+  ...
+)
 }
 \arguments{
 \item{.data}{Data frame or tibble.}

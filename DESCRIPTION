@@ -36,7 +36,7 @@ Imports:
     stringr,
     survival,
     tidyr (>= 1.0.0)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Suggests:
     cmprsk, 
     coxme,

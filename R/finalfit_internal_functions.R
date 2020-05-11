@@ -471,7 +471,7 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 		x$p[duplicate_rows] = ""
 		x$p[x$p == "0.000"] = "<0.001"
 	}
-	if (na_to_missing == TRUE){
+	if (na_to_missing){
 		x$levels = as.character(x$levels)
 		x$levels[which(x$levels == "NA")] = "Missing"
 	}

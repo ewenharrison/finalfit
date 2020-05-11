@@ -27,7 +27,7 @@
 
 ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1,
 											 levels_cut = 5){
-	if(is.null(dependent) && is.null(explanatory)){
+	if(all(is.null(dependent), is.null(explanatory))){
 		df.in = .data
 	} else {
 		df.in = .data %>% dplyr::select(dependent, explanatory)
