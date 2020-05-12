@@ -42,13 +42,21 @@ boot_compare = function(bs.out, confint_sep = " to ", comparison = "difference",
   }
 
   if(is.null(dim(estimate))) estimate = matrix(estimate, ncol=1) #allow single vector to pass to apply
-
-  estimate_centre = apply(estimate, 2, median)
-  estimate_conf.low = apply(estimate, 2, quantile, probs = c(0.025))
-  estimate_conf.high = apply(estimate, 2, quantile, probs = c(0.975))
-  estimate_p1 = apply(estimate, 2, function(x) mean(x < null_ref ))
-  estimate_p2 = apply(estimate, 2, function(x) mean(x > null_ref ))
-  estimate_p3 = apply(estimate, 2, function(x) mean(x == null_ref ))
+  # calculate estimates one
+  estimates = sapply(estimate, function(x) {
+    estimate_center <- median(x)
+    estimate_conf.low <- quantile(x, probs = c(0.025))
+    estimate_conf.high <- quantile(x, probs = c(0.975))
+    estimate_p1 <- mean( x < null_ref)
+    estimate_p2 <- mean( x > null_ref )
+    estimate_p3 <- mean( x == null_ref )
+    })
+  estimate_centre = estimates["estimate_centre"]
+  estimate_conf.low = estimates["estimate_conf.low"]
+  estimate_conf.high = estimates["estimate_conf.low"]
+  estimate_p1 = estimates["estimate_p1"]
+  estimate_p2 = estimates["estimate_centre_p2"]
+  estimate_p3 = estimates["estimate_centre_p3"]
   estimate_p = apply(rbind(estimate_p1, estimate_p2), 2, min)
   estimate_p = ifelse(estimate_p3==1, 1, estimate_p)
   estimate_p = apply(rbind(estimate_p*2, 1), 2, min)  #two-tailed, max 1
