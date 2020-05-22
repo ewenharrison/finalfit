@@ -43,7 +43,7 @@ fit2df(...)
 \method{fit2df}{glmboot}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",
   estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = "-", ...)
+  digits = c(2, 2, 3), exp = TRUE, confint_sep = "-", ...)
 
 \method{fit2df}{glmlist}(.data, condense = TRUE, metrics = FALSE,
   remove_intercept = TRUE, explanatory_name = "explanatory",

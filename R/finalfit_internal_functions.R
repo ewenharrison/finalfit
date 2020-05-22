@@ -451,6 +451,22 @@ remove_intercept = function(.data, intercept_name = "(Intercept)"){
 		dplyr::filter_at(.vars = 1, dplyr::any_vars(. != intercept_name))
 }
 
+#' Remove duplicates and replace  
+#'
+#' @param .var Vector. 
+#' @param fromLast Logical. Consider duplication from last to first.  
+#' @param replacement Character for what to replace duplicate with. 
+#'
+#' @return Character vector.
+#' @export
+
+rm_duplicates <- function(.var, fromLast = FALSE, replacement = ""){
+	.keep = c(TRUE, .var[-1] != .var[-length(.var)])
+	if(fromLast) .keep = c(.var[-1] != .var[-length(.var)], TRUE)
+	.var[!.keep] = replacement
+	return(.var)
+}
+
 #' Remove duplicate levels within \code{\link{summary_factorlist}}: \code{finalfit} helper function
 #'
 #' Not called directly.

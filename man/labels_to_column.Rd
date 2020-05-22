@@ -7,7 +7,7 @@
 labels_to_column(.data)
 }
 \arguments{
-\item{.data}{}
+\item{.data}{Data frame or tibble.}
 }
 \value{
 Data frame or tibble

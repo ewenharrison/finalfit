@@ -153,7 +153,7 @@ remove_labels = function(.data){
 
 #' Labels to column names
 #'
-#' @param .data 
+#' @param .data Data frame or tibble.
 #'
 #' @return Data frame or tibble
 #' @export

@@ -32,9 +32,6 @@ missing_compare <- function(.data, dependent, explanatory, na_include = FALSE, .
     stop("One and only one dependent variable must be provided")
   }
   
-  vlabels = .data %>% 
-    extract_variable_label()
-  
   df.out = .data %>% 
     dplyr::mutate(
       !! rlang::sym(dependent) := dplyr::case_when(
@@ -43,28 +40,11 @@ missing_compare <- function(.data, dependent, explanatory, na_include = FALSE, .
       ) %>% 
         factor(levels = c("Not missing", "Missing"))
     ) %>% 
-    ff_relabel(vlabels)
+    ff_relabel_df(.data)
   
-  # Old code. Remove after checks. 
-  # # Extract variables
-  # d_vars = .data[ ,names(.data) %in% dependent, drop = FALSE]
-  # e_vars = .data[ ,names(.data) %in% explanatory]
-  # 
-  # # Extract dependent variable as lost in next move
-  # d_label = attr(d_vars[,1], "label")
-  # 
-  # # Create new variable for missings
-  # d_vars[,1] = as.character(d_vars[, 1])
-  # d_vars[!is.na(d_vars)] = 0
-  # d_vars[is.na(d_vars)] = 1
-  # d_vars[,1] = factor(d_vars[,1], levels = c(0, 1), labels = c("Not missing", "Missing"))
-  # 
-  # # df.out
-  # df.out = data.frame(d_vars, e_vars)
-  # attr(df.out[,1], "label") = d_label
-
   args = list(.data=df.out, dependent=dependent, explanatory=explanatory, 
               na_include = na_include, ...)
+  if(is.null(args$column)) args$column = FALSE
   if(is.null(args$p)) args$p = TRUE
   if(is.null(args$add_dependent_label)) args$add_dependent_label = TRUE
   if(is.null(args$dependent_label_prefix)) args$dependent_label_prefix = "Missing data analysis: "

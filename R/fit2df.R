@@ -284,6 +284,7 @@ fit2df.glmboot = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 													estimate_suffix = "",
 													p_name = "p",
 													digits=c(2,2,3),
+													exp = TRUE,
 													confint_sep = "-", ...){
 	if(metrics == TRUE) warning("Metrics not currently available for this model")
 	
@@ -296,19 +297,21 @@ fit2df.glmboot = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 	
 	df.out = data.frame(
 		explanatory = names(x$t0),
-		estimate = exp(x$t0))
+		estimate = x$t0)
 	for (i in 1:dim(df.out)[1]){
-		df.out$L95[i] = exp(sort(x$t[,i]))[floor(R*0.025)]
-		df.out$U95[i] = exp(sort(x$t[,i]))[floor((R*0.975)+1)]
+		df.out$L95[i] = sort(x$t[,i])[floor(R*0.025)]
+		df.out$U95[i] = sort(x$t[,i])[floor((R*0.975)+1)]
 		df.out$p[i] = ifelse(x$t0[i] >= 0, mean(x$t[,i]<0)*2, mean(x$t[,i]>0)*2)
 	}
-	df.out$estimate = round(df.out$estimate, d.estimate)
-	df.out$L95 = round(df.out$L95, d.confint)
-	df.out$U95 = round(df.out$U95, d.confint)
-	df.out$p = round(df.out$p, d.p)
+	
+	if(exp){
+		df.out = df.out %>% 
+			dplyr::mutate_at(dplyr::vars(estimate, L95, U95), ~ exp(.))
+	}
+	
 	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix), "L95", "U95", p_name)
 	
-	if (condense==TRUE){
+	if(condense){
 		df.out = condense_fit(df.out, explanatory_name=explanatory_name,
 													estimate_name=estimate_name, estimate_suffix=estimate_suffix,
 													p_name=p_name, digits=digits, confint_sep=confint_sep)

@@ -191,7 +191,8 @@ summary_factorlist <- function(.data,
 		purrr::keep(~ .x < cont_cut) %>% 
 		names()
 	.data = .data %>% 
-		dplyr::mutate_at(cont_distinct, as.factor)
+		dplyr::mutate_at(cont_distinct, as.factor) %>% 
+		ff_relabel_df(.data)
 	
 	## Explanatory variable type
 	explanatory_type = .data %>% 
