@@ -65,6 +65,7 @@ finalfit::glmmixed model wrapper.
 fit2df.coxph is the model extract method for survival::coxph.
 fit2df.coxphlist is the model extract method for coxphuni and coxphmulti.
 fit2df.crr is the model extract method for cmprsk::crr.
+fit2df.coxme is the model extract method for eoxme::coxme.
 fit2df.crr is the model extract method for
 crruni and crrmulti.
 fit2df.stanfit is the model extract method for our standard Bayesian
@@ -205,6 +206,7 @@ wrappers.</p>
 <p><code>fit2df.coxph</code> is the model extract method for <code>survival::<a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></code>.</p>
 <p><code>fit2df.coxphlist</code> is the model extract method for <code>coxphuni</code> and <code>coxphmulti</code>.</p>
 <p><code>fit2df.crr</code> is the model extract method for <code>cmprsk::<a href='https://rdrr.io/pkg/cmprsk/man/crr.html'>crr</a></code>.</p>
+<p><code>fit2df.coxme</code> is the model extract method for <code>eoxme::<a href='https://rdrr.io/pkg/coxme/man/coxme.html'>coxme</a></code>.</p>
 <p><code>fit2df.crr</code> is the model extract method for
 <code>crruni</code> and <code>crrmulti</code>.</p>
 <p><code>fit2df.stanfit</code> is the model extract method for our standard Bayesian
@@ -245,7 +247,7 @@ created using <code><a href='http://stefvanbuuren.github.io/mice/reference/pool.
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for glmlist</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -288,6 +290,12 @@ created using <code><a href='http://stefvanbuuren.github.io/mice/reference/pool.
   <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for crr</span>
+<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for coxme</span>
 <span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
   <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),

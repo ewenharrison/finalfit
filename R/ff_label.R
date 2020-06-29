@@ -170,3 +170,28 @@ labels_to_column <- function(.data){
 	.data %>% 
 		dplyr::rename(.labels2)
 }
+
+
+
+#' Labels to level
+#' 
+#' For use with forcats::fct_relabel.
+#'
+#' @param .data Data frame or tibble.
+#' @param .labels Output from \code{extract_variable_label}.
+#'
+#' @return Data frame or tibble
+#' @export
+#'
+#' @examples
+#' library(dplyr)
+#' vlabels = extract_variable_label(colon_s)
+#' colon_s %>%
+#'  select(sex.factor, obstruct.factor) %>% 
+#'  tidyr::gather() %>% 
+#'  mutate(
+#'   key = forcats::fct_relabel(key, labels_to_level, vlabels)
+#'  )
+labels_to_level <- function(.data, .labels){
+	.labels[.data] 
+}

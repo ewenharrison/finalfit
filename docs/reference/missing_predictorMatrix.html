@@ -190,7 +190,7 @@ algorithm.</p></td>
 <span class='co'>## Smoking missing completely at random</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
 <span class='no'>colon_s</span>$<span class='no'>smoking_mcar</span> <span class='kw'>=</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
+  <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
   <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>colon_s</span>)[<span class='fl'>1</span>], <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
   <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>0.7</span>, <span class='fl'>0.1</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>() <span class='kw'>%&gt;%</span>
@@ -198,12 +198,12 @@ algorithm.</p></td>
 
 <span class='co'>## Make smoking missing conditional on patient sex</span>
 <span class='no'>colon_s</span>$<span class='no'>smoking_mar</span>[<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>==</span> <span class='st'>"Female"</span>] <span class='kw'>=</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
+  <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
          <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>==</span> <span class='st'>"Female"</span>),
          <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.1</span>, <span class='fl'>0.5</span>, <span class='fl'>0.4</span>))
 
 <span class='no'>colon_s</span>$<span class='no'>smoking_mar</span>[<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>==</span> <span class='st'>"Male"</span>] <span class='kw'>=</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
+  <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Smoker"</span>, <span class='st'>"Non-smoker"</span>, <span class='fl'>NA</span>),
          <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>==</span> <span class='st'>"Male"</span>),
          <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.15</span>, <span class='fl'>0.75</span>, <span class='fl'>0.1</span>))
 <span class='no'>colon_s</span>$<span class='no'>smoking_mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='no'>colon_s</span>$<span class='no'>smoking_mar</span>)<span class='kw'>%&gt;%</span>

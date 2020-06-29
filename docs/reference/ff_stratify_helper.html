@@ -182,39 +182,39 @@
 
 <span class='co'># Piped function to generate stratified crosstabs table</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(!!! <span class='fu'><a href='https://dplyr.tidyverse.org/reference/tidyeval.html'>syms</a></span>(<span class='no'>split</span>)) <span class='kw'>%&gt;%</span> <span class='co'>#Looks awkward, but avoids unquoted var names</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(!!! <span class='fu'><a href='https://dplyr.tidyverse.org/reference/tidyeval-compat.html'>syms</a></span>(<span class='no'>split</span>)) <span class='kw'>%&gt;%</span> <span class='co'>#Looks awkward, but avoids unquoted var names</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_map.html'>group_modify</a></span>(~ <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>.x</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>ff_stratify_helper</span>(<span class='no'>colon_s</span>)</div><div class='output co'>#&gt;  Treatment &gt;4 positive nodes label      levels         No      Yes
-#&gt;        Obs                No   Age   &lt;40 years   14 (6.3)         
+#&gt;        Obs                No         &lt;40 years   14 (6.3)  0 (0.0)
 #&gt;        Obs                No       40-59 years  89 (40.3) 3 (42.9)
 #&gt;        Obs                No         60+ years 118 (53.4) 4 (57.1)
-#&gt;        Obs                No   Sex      Female 101 (45.7) 3 (42.9)
+#&gt;        Obs                No            Female 101 (45.7) 3 (42.9)
 #&gt;        Obs                No              Male 120 (54.3) 4 (57.1)
-#&gt;        Obs               Yes   Age   &lt;40 years  10 (11.8) 1 (50.0)
+#&gt;        Obs               Yes         &lt;40 years  10 (11.8) 1 (50.0)
 #&gt;        Obs               Yes       40-59 years  31 (36.5) 1 (50.0)
-#&gt;        Obs               Yes         60+ years  44 (51.8)         
-#&gt;        Obs               Yes   Sex      Female  44 (51.8) 1 (50.0)
+#&gt;        Obs               Yes         60+ years  44 (51.8)  0 (0.0)
+#&gt;        Obs               Yes            Female  44 (51.8) 1 (50.0)
 #&gt;        Obs               Yes              Male  41 (48.2) 1 (50.0)
-#&gt;        Lev                No   Age   &lt;40 years   14 (6.5)         
+#&gt;        Lev                No         &lt;40 years   14 (6.5)  0 (0.0)
 #&gt;        Lev                No       40-59 years  78 (36.3) 3 (50.0)
 #&gt;        Lev                No         60+ years 123 (57.2) 3 (50.0)
-#&gt;        Lev                No   Sex      Female  89 (41.4) 2 (33.3)
+#&gt;        Lev                No            Female  89 (41.4) 2 (33.3)
 #&gt;        Lev                No              Male 126 (58.6) 4 (66.7)
-#&gt;        Lev               Yes   Age   &lt;40 years    4 (4.7) 1 (25.0)
+#&gt;        Lev               Yes         &lt;40 years    4 (4.7) 1 (25.0)
 #&gt;        Lev               Yes       40-59 years  33 (38.8) 1 (25.0)
 #&gt;        Lev               Yes         60+ years  48 (56.5) 2 (50.0)
-#&gt;        Lev               Yes   Sex      Female  39 (45.9) 3 (75.0)
+#&gt;        Lev               Yes            Female  39 (45.9) 3 (75.0)
 #&gt;        Lev               Yes              Male  46 (54.1) 1 (25.0)
-#&gt;    Lev+5FU                No   Age   &lt;40 years   15 (6.9)         
+#&gt;    Lev+5FU                No         &lt;40 years   15 (6.9)  0 (0.0)
 #&gt;    Lev+5FU                No       40-59 years  72 (33.2) 2 (25.0)
 #&gt;    Lev+5FU                No         60+ years 130 (59.9) 6 (75.0)
-#&gt;    Lev+5FU                No   Sex      Female 115 (53.0) 4 (50.0)
+#&gt;    Lev+5FU                No            Female 115 (53.0) 4 (50.0)
 #&gt;    Lev+5FU                No              Male 102 (47.0) 4 (50.0)
-#&gt;    Lev+5FU               Yes   Age   &lt;40 years  11 (13.9)         
-#&gt;    Lev+5FU               Yes       40-59 years  31 (39.2)         
-#&gt;    Lev+5FU               Yes         60+ years  37 (46.8)         
-#&gt;    Lev+5FU               Yes   Sex      Female  44 (55.7)         
-#&gt;    Lev+5FU               Yes              Male  35 (44.3)         </div></pre>
+#&gt;    Lev+5FU               Yes         &lt;40 years  11 (13.9)  0 (NaN)
+#&gt;    Lev+5FU               Yes       40-59 years  31 (39.2)  0 (NaN)
+#&gt;    Lev+5FU               Yes         60+ years  37 (46.8)  0 (NaN)
+#&gt;    Lev+5FU               Yes            Female  44 (55.7)  0 (NaN)
+#&gt;    Lev+5FU               Yes              Male  35 (44.3)  0 (NaN)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

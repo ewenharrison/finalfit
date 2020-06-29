@@ -226,33 +226,28 @@ variable(s).</p></td>
 #&gt; 
 #&gt; $counts
 #&gt; $counts[[1]]
-#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
-#&gt;   sex.factor sex.factor2     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Female     M             445
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Male       F             484
+#&gt;   sex.factor sex.factor2   n
+#&gt; 1     Female           M 445
+#&gt; 2       Male           F 484
 #&gt; 
 #&gt; $counts[[2]]
-#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
-#&gt;   age.factor  age.factor2     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> &lt;40 years   &lt;60 years      70
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 40-59 years &lt;60 years     344
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 60+ years   60+ years     515
+#&gt;    age.factor age.factor2   n
+#&gt; 1   &lt;40 years   &lt;60 years  70
+#&gt; 2 40-59 years   &lt;60 years 344
+#&gt; 3   60+ years   60+ years 515
 #&gt; 
 #&gt; $counts[[3]]
-#&gt; </span><span style='color: #949494;'># A tibble: 4 x 3</span><span>
-#&gt;   sex.factor2 age.factor2     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> M           &lt;60 years     204
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> M           60+ years     241
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F           &lt;60 years     210
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F           60+ years     274
+#&gt;   sex.factor2 age.factor2   n
+#&gt; 1           M   &lt;60 years 204
+#&gt; 2           M   60+ years 241
+#&gt; 3           F   &lt;60 years 210
+#&gt; 4           F   60+ years 274
 #&gt; 
 #&gt; </div><div class='input'>
 <span class='no'>out</span> <span class='kw'>=</span> <span class='no'>colon_s_small</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>extent</span>, -<span class='no'>extent.factor</span>,-<span class='no'>time</span>, -<span class='no'>time.years</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>check_recode</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `differ.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `surg.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `loccomp.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `mort_5yr` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='input'><span class='no'>out</span></div><div class='output co'>#&gt; $index
+  <span class='fu'>check_recode</span>()
+<span class='no'>out</span></div><div class='output co'>#&gt; $index
 #&gt; </span><span style='color: #949494;'># A tibble: 19 x 2</span><span>
 #&gt;    var1        var2           
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          
@@ -278,237 +273,391 @@ variable(s).</p></td>
 #&gt; 
 #&gt; $counts
 #&gt; $counts[[1]]
-#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
-#&gt;     sex sex.factor     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     0 Female       445
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     1 Male         484
+#&gt;   sex sex.factor   n
+#&gt; 1   0     Female 445
+#&gt; 2   1       Male 484
 #&gt; 
 #&gt; $counts[[2]]
-#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
-#&gt;     sex sex.factor2     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     0 M             445
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     1 F             484
+#&gt;   sex sex.factor2   n
+#&gt; 1   0           M 445
+#&gt; 2   1           F 484
 #&gt; 
 #&gt; $counts[[3]]
-#&gt; </span><span style='color: #949494;'># A tibble: 62 x 3</span><span>
-#&gt;      age age.factor     n
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>    18 &lt;40 years      1
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>    22 &lt;40 years      1
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>    25 &lt;40 years      1
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>    26 &lt;40 years      1
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>    27 &lt;40 years      3
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>    28 &lt;40 years      1
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>    29 &lt;40 years      1
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>    30 &lt;40 years      5
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>    31 &lt;40 years      2
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>    32 &lt;40 years      5
-#&gt; </span><span style='color: #949494;'># … with 52 more rows</span><span>
+#&gt;    age  age.factor  n
+#&gt; 1   18   &lt;40 years  1
+#&gt; 2   22   &lt;40 years  1
+#&gt; 3   25   &lt;40 years  1
+#&gt; 4   26   &lt;40 years  1
+#&gt; 5   27   &lt;40 years  3
+#&gt; 6   28   &lt;40 years  1
+#&gt; 7   29   &lt;40 years  1
+#&gt; 8   30   &lt;40 years  5
+#&gt; 9   31   &lt;40 years  2
+#&gt; 10  32   &lt;40 years  5
+#&gt; 11  33   &lt;40 years  7
+#&gt; 12  34   &lt;40 years  4
+#&gt; 13  35   &lt;40 years  2
+#&gt; 14  36   &lt;40 years 10
+#&gt; 15  37   &lt;40 years  2
+#&gt; 16  38   &lt;40 years 10
+#&gt; 17  39   &lt;40 years 14
+#&gt; 18  40 40-59 years  8
+#&gt; 19  41 40-59 years  7
+#&gt; 20  42 40-59 years  7
+#&gt; 21  43 40-59 years 11
+#&gt; 22  44 40-59 years  8
+#&gt; 23  45 40-59 years 13
+#&gt; 24  46 40-59 years 19
+#&gt; 25  47 40-59 years 12
+#&gt; 26  48 40-59 years 15
+#&gt; 27  49 40-59 years 13
+#&gt; 28  50 40-59 years 14
+#&gt; 29  51 40-59 years 10
+#&gt; 30  52 40-59 years 20
+#&gt; 31  53 40-59 years 22
+#&gt; 32  54 40-59 years 16
+#&gt; 33  55 40-59 years 27
+#&gt; 34  56 40-59 years 31
+#&gt; 35  57 40-59 years 31
+#&gt; 36  58 40-59 years 29
+#&gt; 37  59 40-59 years 31
+#&gt; 38  60   60+ years 31
+#&gt; 39  61   60+ years 36
+#&gt; 40  62   60+ years 21
+#&gt; 41  63   60+ years 29
+#&gt; 42  64   60+ years 36
+#&gt; 43  65   60+ years 28
+#&gt; 44  66   60+ years 35
+#&gt; 45  67   60+ years 24
+#&gt; 46  68   60+ years 38
+#&gt; 47  69   60+ years 20
+#&gt; 48  70   60+ years 36
+#&gt; 49  71   60+ years 24
+#&gt; 50  72   60+ years 25
+#&gt; 51  73   60+ years 20
+#&gt; 52  74   60+ years 34
+#&gt; 53  75   60+ years 17
+#&gt; 54  76   60+ years 21
+#&gt; 55  77   60+ years 11
+#&gt; 56  78   60+ years  5
+#&gt; 57  79   60+ years  7
+#&gt; 58  80   60+ years  8
+#&gt; 59  81   60+ years  5
+#&gt; 60  82   60+ years  2
+#&gt; 61  83   60+ years  1
+#&gt; 62  85   60+ years  1
 #&gt; 
 #&gt; $counts[[4]]
-#&gt; </span><span style='color: #949494;'># A tibble: 62 x 3</span><span>
-#&gt;      age age.10     n
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>    18    1.8     1
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>    22    2.2     1
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>    25    2.5     1
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>    26    2.6     1
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>    27    2.7     3
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>    28    2.8     1
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>    29    2.9     1
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>    30    3       5
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>    31    3.1     2
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>    32    3.2     5
-#&gt; </span><span style='color: #949494;'># … with 52 more rows</span><span>
+#&gt;    age age.10  n
+#&gt; 1   18    1.8  1
+#&gt; 2   22    2.2  1
+#&gt; 3   25    2.5  1
+#&gt; 4   26    2.6  1
+#&gt; 5   27    2.7  3
+#&gt; 6   28    2.8  1
+#&gt; 7   29    2.9  1
+#&gt; 8   30    3.0  5
+#&gt; 9   31    3.1  2
+#&gt; 10  32    3.2  5
+#&gt; 11  33    3.3  7
+#&gt; 12  34    3.4  4
+#&gt; 13  35    3.5  2
+#&gt; 14  36    3.6 10
+#&gt; 15  37    3.7  2
+#&gt; 16  38    3.8 10
+#&gt; 17  39    3.9 14
+#&gt; 18  40    4.0  8
+#&gt; 19  41    4.1  7
+#&gt; 20  42    4.2  7
+#&gt; 21  43    4.3 11
+#&gt; 22  44    4.4  8
+#&gt; 23  45    4.5 13
+#&gt; 24  46    4.6 19
+#&gt; 25  47    4.7 12
+#&gt; 26  48    4.8 15
+#&gt; 27  49    4.9 13
+#&gt; 28  50    5.0 14
+#&gt; 29  51    5.1 10
+#&gt; 30  52    5.2 20
+#&gt; 31  53    5.3 22
+#&gt; 32  54    5.4 16
+#&gt; 33  55    5.5 27
+#&gt; 34  56    5.6 31
+#&gt; 35  57    5.7 31
+#&gt; 36  58    5.8 29
+#&gt; 37  59    5.9 31
+#&gt; 38  60    6.0 31
+#&gt; 39  61    6.1 36
+#&gt; 40  62    6.2 21
+#&gt; 41  63    6.3 29
+#&gt; 42  64    6.4 36
+#&gt; 43  65    6.5 28
+#&gt; 44  66    6.6 35
+#&gt; 45  67    6.7 24
+#&gt; 46  68    6.8 38
+#&gt; 47  69    6.9 20
+#&gt; 48  70    7.0 36
+#&gt; 49  71    7.1 24
+#&gt; 50  72    7.2 25
+#&gt; 51  73    7.3 20
+#&gt; 52  74    7.4 34
+#&gt; 53  75    7.5 17
+#&gt; 54  76    7.6 21
+#&gt; 55  77    7.7 11
+#&gt; 56  78    7.8  5
+#&gt; 57  79    7.9  7
+#&gt; 58  80    8.0  8
+#&gt; 59  81    8.1  5
+#&gt; 60  82    8.2  2
+#&gt; 61  83    8.3  1
+#&gt; 62  85    8.5  1
 #&gt; 
 #&gt; $counts[[5]]
-#&gt; </span><span style='color: #949494;'># A tibble: 62 x 3</span><span>
-#&gt;      age age.factor2     n
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>    18 &lt;60 years       1
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>    22 &lt;60 years       1
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>    25 &lt;60 years       1
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>    26 &lt;60 years       1
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>    27 &lt;60 years       3
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>    28 &lt;60 years       1
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>    29 &lt;60 years       1
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>    30 &lt;60 years       5
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>    31 &lt;60 years       2
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>    32 &lt;60 years       5
-#&gt; </span><span style='color: #949494;'># … with 52 more rows</span><span>
+#&gt;    age age.factor2  n
+#&gt; 1   18   &lt;60 years  1
+#&gt; 2   22   &lt;60 years  1
+#&gt; 3   25   &lt;60 years  1
+#&gt; 4   26   &lt;60 years  1
+#&gt; 5   27   &lt;60 years  3
+#&gt; 6   28   &lt;60 years  1
+#&gt; 7   29   &lt;60 years  1
+#&gt; 8   30   &lt;60 years  5
+#&gt; 9   31   &lt;60 years  2
+#&gt; 10  32   &lt;60 years  5
+#&gt; 11  33   &lt;60 years  7
+#&gt; 12  34   &lt;60 years  4
+#&gt; 13  35   &lt;60 years  2
+#&gt; 14  36   &lt;60 years 10
+#&gt; 15  37   &lt;60 years  2
+#&gt; 16  38   &lt;60 years 10
+#&gt; 17  39   &lt;60 years 14
+#&gt; 18  40   &lt;60 years  8
+#&gt; 19  41   &lt;60 years  7
+#&gt; 20  42   &lt;60 years  7
+#&gt; 21  43   &lt;60 years 11
+#&gt; 22  44   &lt;60 years  8
+#&gt; 23  45   &lt;60 years 13
+#&gt; 24  46   &lt;60 years 19
+#&gt; 25  47   &lt;60 years 12
+#&gt; 26  48   &lt;60 years 15
+#&gt; 27  49   &lt;60 years 13
+#&gt; 28  50   &lt;60 years 14
+#&gt; 29  51   &lt;60 years 10
+#&gt; 30  52   &lt;60 years 20
+#&gt; 31  53   &lt;60 years 22
+#&gt; 32  54   &lt;60 years 16
+#&gt; 33  55   &lt;60 years 27
+#&gt; 34  56   &lt;60 years 31
+#&gt; 35  57   &lt;60 years 31
+#&gt; 36  58   &lt;60 years 29
+#&gt; 37  59   &lt;60 years 31
+#&gt; 38  60   60+ years 31
+#&gt; 39  61   60+ years 36
+#&gt; 40  62   60+ years 21
+#&gt; 41  63   60+ years 29
+#&gt; 42  64   60+ years 36
+#&gt; 43  65   60+ years 28
+#&gt; 44  66   60+ years 35
+#&gt; 45  67   60+ years 24
+#&gt; 46  68   60+ years 38
+#&gt; 47  69   60+ years 20
+#&gt; 48  70   60+ years 36
+#&gt; 49  71   60+ years 24
+#&gt; 50  72   60+ years 25
+#&gt; 51  73   60+ years 20
+#&gt; 52  74   60+ years 34
+#&gt; 53  75   60+ years 17
+#&gt; 54  76   60+ years 21
+#&gt; 55  77   60+ years 11
+#&gt; 56  78   60+ years  5
+#&gt; 57  79   60+ years  7
+#&gt; 58  80   60+ years  8
+#&gt; 59  81   60+ years  5
+#&gt; 60  82   60+ years  2
+#&gt; 61  83   60+ years  1
+#&gt; 62  85   60+ years  1
 #&gt; 
 #&gt; $counts[[6]]
-#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
-#&gt;   obstruct obstruct.factor     n
-#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        0 No                732
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>        1 Yes               176
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>       </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 21
+#&gt;   obstruct obstruct.factor   n
+#&gt; 1        0              No 732
+#&gt; 2        1             Yes 176
+#&gt; 3       NA            &lt;NA&gt;  21
 #&gt; 
 #&gt; $counts[[7]]
-#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
-#&gt;   perfor perfor.factor     n
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>      0 No              902
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>      1 Yes              27
+#&gt;   perfor perfor.factor   n
+#&gt; 1      0            No 902
+#&gt; 2      1           Yes  27
 #&gt; 
 #&gt; $counts[[8]]
-#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
-#&gt;   adhere adhere.factor     n
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>      0 No              794
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>      1 Yes             135
+#&gt;   adhere adhere.factor   n
+#&gt; 1      0            No 794
+#&gt; 2      1           Yes 135
 #&gt; 
 #&gt; $counts[[9]]
-#&gt; </span><span style='color: #949494;'># A tibble: 32 x 3</span><span>
-#&gt;    nodes node4     n
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     0     0     2
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     1     0   269
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     1     1     5
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     2     0   194
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     3     0   124
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     3     1     1
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     4     0    81
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     4     1     3
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     5     0     1
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>     5     1    45
-#&gt; </span><span style='color: #949494;'># … with 22 more rows</span><span>
+#&gt;    nodes node4   n
+#&gt; 1      0     0   2
+#&gt; 2      1     0 269
+#&gt; 3      1     1   5
+#&gt; 4      2     0 194
+#&gt; 5      3     0 124
+#&gt; 6      3     1   1
+#&gt; 7      4     0  81
+#&gt; 8      4     1   3
+#&gt; 9      5     0   1
+#&gt; 10     5     1  45
+#&gt; 11     6     1  43
+#&gt; 12     7     1  38
+#&gt; 13     8     0   1
+#&gt; 14     8     1  22
+#&gt; 15     9     0   1
+#&gt; 16     9     1  19
+#&gt; 17    10     1  13
+#&gt; 18    11     1  10
+#&gt; 19    12     1  11
+#&gt; 20    13     1   7
+#&gt; 21    14     1   4
+#&gt; 22    15     1   6
+#&gt; 23    16     1   1
+#&gt; 24    17     1   2
+#&gt; 25    19     1   2
+#&gt; 26    20     1   2
+#&gt; 27    22     1   1
+#&gt; 28    24     1   1
+#&gt; 29    27     1   1
+#&gt; 30    33     1   1
+#&gt; 31    NA     0   1
+#&gt; 32    NA     1  17
 #&gt; 
 #&gt; $counts[[10]]
-#&gt; </span><span style='color: #949494;'># A tibble: 32 x 3</span><span>
-#&gt;    nodes node4.factor     n
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     0 No               2
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     1 No             269
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     1 Yes              5
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     2 No             194
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     3 No             124
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     3 Yes              1
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     4 No              81
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     4 Yes              3
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     5 No               1
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>     5 Yes             45
-#&gt; </span><span style='color: #949494;'># … with 22 more rows</span><span>
+#&gt;    nodes node4.factor   n
+#&gt; 1      0           No   2
+#&gt; 2      1           No 269
+#&gt; 3      1          Yes   5
+#&gt; 4      2           No 194
+#&gt; 5      3           No 124
+#&gt; 6      3          Yes   1
+#&gt; 7      4           No  81
+#&gt; 8      4          Yes   3
+#&gt; 9      5           No   1
+#&gt; 10     5          Yes  45
+#&gt; 11     6          Yes  43
+#&gt; 12     7          Yes  38
+#&gt; 13     8           No   1
+#&gt; 14     8          Yes  22
+#&gt; 15     9           No   1
+#&gt; 16     9          Yes  19
+#&gt; 17    10          Yes  13
+#&gt; 18    11          Yes  10
+#&gt; 19    12          Yes  11
+#&gt; 20    13          Yes   7
+#&gt; 21    14          Yes   4
+#&gt; 22    15          Yes   6
+#&gt; 23    16          Yes   1
+#&gt; 24    17          Yes   2
+#&gt; 25    19          Yes   2
+#&gt; 26    20          Yes   2
+#&gt; 27    22          Yes   1
+#&gt; 28    24          Yes   1
+#&gt; 29    27          Yes   1
+#&gt; 30    33          Yes   1
+#&gt; 31    NA           No   1
+#&gt; 32    NA          Yes  17
 #&gt; 
 #&gt; $counts[[11]]
-#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
-#&gt;   status status.factor     n
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>      0 Alive           477
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>      1 Died            452
+#&gt;   status status.factor   n
+#&gt; 1      0         Alive 477
+#&gt; 2      1          Died 452
 #&gt; 
 #&gt; $counts[[12]]
-#&gt; </span><span style='color: #949494;'># A tibble: 4 x 3</span><span>
-#&gt;   differ differ.factor     n
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>      1 Well             93
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>      2 Moderate        663
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>      3 Poor            150
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>     </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>               23
+#&gt;   differ differ.factor   n
+#&gt; 1      1          Well  93
+#&gt; 2      2      Moderate 663
+#&gt; 3      3          Poor 150
+#&gt; 4     NA          &lt;NA&gt;  23
 #&gt; 
 #&gt; $counts[[13]]
-#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
-#&gt;    surg surg.factor     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     0 Short         668
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     1 Long          244
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>    </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>             17
+#&gt;   surg surg.factor   n
+#&gt; 1    0       Short 668
+#&gt; 2    1        Long 244
+#&gt; 3   NA        &lt;NA&gt;  17
 #&gt; 
 #&gt; $counts[[14]]
-#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
-#&gt;   node4 node4.factor     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     0 No             674
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     1 Yes            255
+#&gt;   node4 node4.factor   n
+#&gt; 1     0           No 674
+#&gt; 2     1          Yes 255
 #&gt; 
 #&gt; $counts[[15]]
-#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
-#&gt;   sex.factor sex.factor2     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Female     M             445
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Male       F             484
+#&gt;   sex.factor sex.factor2   n
+#&gt; 1     Female           M 445
+#&gt; 2       Male           F 484
 #&gt; 
 #&gt; $counts[[16]]
-#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
-#&gt;   age.factor  age.factor2     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> &lt;40 years   &lt;60 years      70
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 40-59 years &lt;60 years     344
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 60+ years   60+ years     515
+#&gt;    age.factor age.factor2   n
+#&gt; 1   &lt;40 years   &lt;60 years  70
+#&gt; 2 40-59 years   &lt;60 years 344
+#&gt; 3   60+ years   60+ years 515
 #&gt; 
 #&gt; $counts[[17]]
-#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
-#&gt;   loccomp loccomp.factor     n
-#&gt;     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>       0 No               616
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>       1 Yes              293
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>      </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #BB0000;'>NA</span><span>                20
+#&gt;   loccomp loccomp.factor   n
+#&gt; 1       0             No 616
+#&gt; 2       1            Yes 293
+#&gt; 3      NA           &lt;NA&gt;  20
 #&gt; 
 #&gt; $counts[[18]]
-#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
-#&gt;   mort_5yr mort_5yr.num     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Alive               1   511
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Died                2   404
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>    14
+#&gt;   mort_5yr mort_5yr.num   n
+#&gt; 1    Alive            1 511
+#&gt; 2     Died            2 404
+#&gt; 3     &lt;NA&gt;           NA  14
 #&gt; 
 #&gt; $counts[[19]]
-#&gt; </span><span style='color: #949494;'># A tibble: 4 x 3</span><span>
-#&gt;   sex.factor2 age.factor2     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> M           &lt;60 years     204
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> M           60+ years     241
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F           &lt;60 years     210
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F           60+ years     274
+#&gt;   sex.factor2 age.factor2   n
+#&gt; 1           M   &lt;60 years 204
+#&gt; 2           M   60+ years 241
+#&gt; 3           F   &lt;60 years 210
+#&gt; 4           F   60+ years 274
 #&gt; 
 #&gt; </div><div class='input'>
 <span class='co'># Select a tibble and expand</span>
-<span class='no'>out</span>$<span class='no'>counts</span><span class='kw'>[[</span><span class='fl'>9</span>]] <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>Inf</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 32 x 3</span><span>
-#&gt;    nodes node4     n
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     0     0     2
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     1     0   269
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     1     1     5
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     2     0   194
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     3     0   124
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     3     1     1
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     4     0    81
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     4     1     3
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     5     0     1
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>     5     1    45
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span>     6     1    43
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span>     7     1    38
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span>     8     0     1
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span>     8     1    22
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span>     9     0     1
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span>     9     1    19
-#&gt; </span><span style='color: #BCBCBC;'>17</span><span>    10     1    13
-#&gt; </span><span style='color: #BCBCBC;'>18</span><span>    11     1    10
-#&gt; </span><span style='color: #BCBCBC;'>19</span><span>    12     1    11
-#&gt; </span><span style='color: #BCBCBC;'>20</span><span>    13     1     7
-#&gt; </span><span style='color: #BCBCBC;'>21</span><span>    14     1     4
-#&gt; </span><span style='color: #BCBCBC;'>22</span><span>    15     1     6
-#&gt; </span><span style='color: #BCBCBC;'>23</span><span>    16     1     1
-#&gt; </span><span style='color: #BCBCBC;'>24</span><span>    17     1     2
-#&gt; </span><span style='color: #BCBCBC;'>25</span><span>    19     1     2
-#&gt; </span><span style='color: #BCBCBC;'>26</span><span>    20     1     2
-#&gt; </span><span style='color: #BCBCBC;'>27</span><span>    22     1     1
-#&gt; </span><span style='color: #BCBCBC;'>28</span><span>    24     1     1
-#&gt; </span><span style='color: #BCBCBC;'>29</span><span>    27     1     1
-#&gt; </span><span style='color: #BCBCBC;'>30</span><span>    33     1     1
-#&gt; </span><span style='color: #BCBCBC;'>31</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     0     1
-#&gt; </span><span style='color: #BCBCBC;'>32</span><span>    </span><span style='color: #BB0000;'>NA</span><span>     1    17</div><div class='input'><span class='co'># Note this variable (node4) appears miscoded in original dataset survival::colon.</span>
+<span class='no'>out</span>$<span class='no'>counts</span><span class='kw'>[[</span><span class='fl'>9</span>]]</div><div class='output co'>#&gt;    nodes node4   n
+#&gt; 1      0     0   2
+#&gt; 2      1     0 269
+#&gt; 3      1     1   5
+#&gt; 4      2     0 194
+#&gt; 5      3     0 124
+#&gt; 6      3     1   1
+#&gt; 7      4     0  81
+#&gt; 8      4     1   3
+#&gt; 9      5     0   1
+#&gt; 10     5     1  45
+#&gt; 11     6     1  43
+#&gt; 12     7     1  38
+#&gt; 13     8     0   1
+#&gt; 14     8     1  22
+#&gt; 15     9     0   1
+#&gt; 16     9     1  19
+#&gt; 17    10     1  13
+#&gt; 18    11     1  10
+#&gt; 19    12     1  11
+#&gt; 20    13     1   7
+#&gt; 21    14     1   4
+#&gt; 22    15     1   6
+#&gt; 23    16     1   1
+#&gt; 24    17     1   2
+#&gt; 25    19     1   2
+#&gt; 26    20     1   2
+#&gt; 27    22     1   1
+#&gt; 28    24     1   1
+#&gt; 29    27     1   1
+#&gt; 30    33     1   1
+#&gt; 31    NA     0   1
+#&gt; 32    NA     1  17</div><div class='input'><span class='co'># Note this variable (node4) appears miscoded in original dataset survival::colon.</span>
 
 <span class='co'># Choose to only include variables that you actually use. </span>
 <span class='co'># This uses standard Finalfit grammar. </span>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor2"</span>, <span class='st'>"sex.factor2"</span>)
 <span class='no'>colon_s_small</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>check_recode</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `mort_5yr` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; $index
+  <span class='fu'>check_recode</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; $index
 #&gt; </span><span style='color: #949494;'># A tibble: 4 x 2</span><span>
 #&gt;   var1        var2        
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       
@@ -519,36 +668,28 @@ variable(s).</p></td>
 #&gt; 
 #&gt; $counts
 #&gt; $counts[[1]]
-#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
-#&gt;   mort_5yr mort_5yr.num     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Alive               1   511
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Died                2   404
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #BB0000;'>NA</span><span>                 </span><span style='color: #BB0000;'>NA</span><span>    14
+#&gt;   mort_5yr mort_5yr.num   n
+#&gt; 1    Alive            1 511
+#&gt; 2     Died            2 404
+#&gt; 3     &lt;NA&gt;           NA  14
 #&gt; 
 #&gt; $counts[[2]]
-#&gt; </span><span style='color: #949494;'># A tibble: 3 x 3</span><span>
-#&gt;   age.factor2 age.factor      n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> &lt;60 years   &lt;40 years      70
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> &lt;60 years   40-59 years   344
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 60+ years   60+ years     515
+#&gt;   age.factor2  age.factor   n
+#&gt; 1   &lt;60 years   &lt;40 years  70
+#&gt; 2   &lt;60 years 40-59 years 344
+#&gt; 3   60+ years   60+ years 515
 #&gt; 
 #&gt; $counts[[3]]
-#&gt; </span><span style='color: #949494;'># A tibble: 2 x 3</span><span>
-#&gt;   sex.factor2 sex.factor     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> M           Female       445
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F           Male         484
+#&gt;   sex.factor2 sex.factor   n
+#&gt; 1           M     Female 445
+#&gt; 2           F       Male 484
 #&gt; 
 #&gt; $counts[[4]]
-#&gt; </span><span style='color: #949494;'># A tibble: 4 x 3</span><span>
-#&gt;   sex.factor2 age.factor2     n
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> M           &lt;60 years     204
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> M           60+ years     241
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F           &lt;60 years     210
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F           60+ years     274
+#&gt;   sex.factor2 age.factor2   n
+#&gt; 1           M   &lt;60 years 204
+#&gt; 2           M   60+ years 241
+#&gt; 3           F   &lt;60 years 210
+#&gt; 4           F   60+ years 274
 #&gt; 
 #&gt; </div></span></pre>
   </div>

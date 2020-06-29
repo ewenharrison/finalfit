@@ -269,11 +269,11 @@ bootstrapped predictions under 1.0, multiplied by two so is two-sided.</p>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>boot_predict</span>(<span class='no'>newdata</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Predicted probability of death"</span>,
-    <span class='kw'>compare_name</span> <span class='kw'>=</span> <span class='st'>"Absolute risk difference"</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>100</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>3</span>))</div><div class='output co'>#&gt;   age.factor       extent.factor perfor.factor Predicted probability of death
-#&gt; 1  &lt;40 years           Submucosa            No            0.28 (0.06 to 0.55)
-#&gt; 2  &lt;40 years           Submucosa           Yes            0.29 (0.05 to 0.56)
-#&gt; 3  &lt;40 years Adjacent structures            No            0.71 (0.55 to 0.89)
-#&gt; 4  &lt;40 years Adjacent structures           Yes            0.72 (0.40 to 0.87)
+    <span class='kw'>compare_name</span> <span class='kw'>=</span> <span class='st'>"Absolute risk difference"</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>100</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>3</span>))</div><div class='output co'>#&gt;         Age    Extent of spread Perforation Predicted probability of death
+#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.06 to 0.55)
+#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.05 to 0.56)
+#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.55 to 0.89)
+#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.40 to 0.87)
 #&gt;        Absolute risk difference
 #&gt; 1                             -
 #&gt; 2 0.00 (-0.12 to 0.18, p=0.960)

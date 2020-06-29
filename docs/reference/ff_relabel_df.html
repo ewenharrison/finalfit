@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove p-value from output — ff_remove_p • finalfit</title>
+<title>Relabel variables from data frame after tidyverse functions — ff_relabel_df • finalfit</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,9 +42,8 @@
 
 
 
-<meta property="og:title" content="Remove p-value from output — ff_remove_p" />
-<meta property="og:description" content="This will work with finalfit and any fit2df
-output." />
+<meta property="og:title" content="Relabel variables from data frame after tidyverse functions — ff_relabel_df" />
+<meta property="og:description" content="Relabel variables from data frame after tidyverse functions" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -147,65 +146,42 @@ output." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove p-value from output</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/ff_remove_ref.R'><code>R/ff_remove_ref.R</code></a></small>
-    <div class="hidden name"><code>ff_remove_p.Rd</code></div>
+    <h1>Relabel variables from data frame after tidyverse functions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/R/ff_label.R'><code>R/ff_label.R</code></a></small>
+    <div class="hidden name"><code>ff_relabel_df.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This will work with <code><a href='finalfit.html'>finalfit</a></code> and any <code><a href='fit2df.html'>fit2df</a></code>
-output.</p>
+    <p>Relabel variables from data frame after tidyverse functions</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ff_remove_p</span>(<span class='no'>.data</span>)
+    <pre class="usage"><span class='fu'>ff_relabel_df</span>(<span class='no'>.data</span>, <span class='no'>.df</span>)
 
-<span class='fu'>finalfit_remove_p</span>(<span class='no'>.data</span>)</pre>
+<span class='fu'>finalfit_relabel_df</span>(<span class='no'>.data</span>, <span class='no'>.df</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>Output from <code><a href='finalfit.html'>finalfit</a></code> or similar.</p></td>
+      <td><p>Data frame or tibble after applicaton of label stripping functions.</p></td>
+    </tr>
+    <tr>
+      <th>.df</th>
+      <td><p>Original data frame which contains labels.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame.</p>
+    <p>Data frame or tibble</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='finalfit.html'>finalfit</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>ff_remove_p</span>()</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;  Dependent: Mortality 5 year                  Alive       Died OR (univariable)
-#&gt;                          Age   &lt;40 years  31 (46.3)  36 (53.7)                -
-#&gt;                              40-59 years 208 (61.4) 131 (38.6) 0.54 (0.32-0.92)
-#&gt;                                60+ years 272 (53.4) 237 (46.6) 0.75 (0.45-1.25)
-#&gt;                          Sex      Female 243 (55.6) 194 (44.4)                -
-#&gt;                                     Male 268 (56.1) 210 (43.9) 0.98 (0.76-1.27)
-#&gt;                  Obstruction          No 408 (56.7) 312 (43.3)                -
-#&gt;                                      Yes  89 (51.1)  85 (48.9) 1.25 (0.90-1.74)
-#&gt;                  Perforation          No 497 (56.0) 391 (44.0)                -
-#&gt;                                      Yes  14 (51.9)  13 (48.1) 1.18 (0.54-2.55)
-#&gt;  OR (multivariable)
-#&gt;                   -
-#&gt;    0.57 (0.34-0.98)
-#&gt;    0.81 (0.48-1.36)
-#&gt;                   -
-#&gt;    0.98 (0.75-1.28)
-#&gt;                   -
-#&gt;    1.25 (0.90-1.76)
-#&gt;                   -
-#&gt;    1.12 (0.51-2.44)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

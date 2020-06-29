@@ -337,9 +337,7 @@
 <a class="sourceLine" id="cb11-3" data-line-number="3">dependent =<span class="st"> "smoking_mcar"</span></a>
 <a class="sourceLine" id="cb11-4" data-line-number="4">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/missing_compare.html">missing_compare</a></span>(dependent, explanatory) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">    </span>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>)) <span class="co"># Omit when you run</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; Warning: Factor `obstruct.factor` contains implicit NA, consider using</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; `forcats::fct_explicit_na`</span></a></code></pre></div>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">    </span>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>)) <span class="co"># Omit when you run</span></a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Missing data analysis: Smoking (MCAR)</th>
@@ -359,15 +357,15 @@
 <tr class="even">
 <td align="left">Sex</td>
 <td>Female</td>
-<td align="right">399 (48.2)</td>
-<td align="right">46 (45.5)</td>
+<td align="right">399 (89.7)</td>
+<td align="right">46 (10.3)</td>
 <td align="right">0.692</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td>Male</td>
-<td align="right">429 (51.8)</td>
-<td align="right">55 (54.5)</td>
+<td align="right">429 (88.6)</td>
+<td align="right">55 (11.4)</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
@@ -380,15 +378,15 @@
 <tr class="odd">
 <td align="left">Obstruction</td>
 <td>No</td>
-<td align="right">654 (80.7)</td>
-<td align="right">78 (79.6)</td>
+<td align="right">654 (89.3)</td>
+<td align="right">78 (10.7)</td>
 <td align="right">0.891</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td>Yes</td>
-<td align="right">156 (19.3)</td>
-<td align="right">20 (20.4)</td>
+<td align="right">156 (88.6)</td>
+<td align="right">20 (11.4)</td>
 <td align="right"></td>
 </tr>
 </tbody>
@@ -396,9 +394,7 @@
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">dependent =<span class="st"> "smoking_mar"</span></a>
 <a class="sourceLine" id="cb12-2" data-line-number="2">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/missing_compare.html">missing_compare</a></span>(dependent, explanatory) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">    </span>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>)) <span class="co"># Omit when you run</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; Warning: Factor `obstruct.factor` contains implicit NA, consider using</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; `forcats::fct_explicit_na`</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">    </span>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>)) <span class="co"># Omit when you run</span></a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Missing data analysis: Smoking (MAR)</th>
@@ -418,15 +414,15 @@
 <tr class="even">
 <td align="left">Sex</td>
 <td>Female</td>
-<td align="right">288 (40.1)</td>
-<td align="right">157 (74.8)</td>
+<td align="right">288 (64.7)</td>
+<td align="right">157 (35.3)</td>
 <td align="right">&lt;0.001</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td>Male</td>
-<td align="right">431 (59.9)</td>
-<td align="right">53 (25.2)</td>
+<td align="right">431 (89.0)</td>
+<td align="right">53 (11.0)</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
@@ -439,15 +435,15 @@
 <tr class="odd">
 <td align="left">Obstruction</td>
 <td>No</td>
-<td align="right">558 (79.6)</td>
-<td align="right">174 (84.1)</td>
+<td align="right">558 (76.2)</td>
+<td align="right">174 (23.8)</td>
 <td align="right">0.185</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td>Yes</td>
-<td align="right">143 (20.4)</td>
-<td align="right">33 (15.9)</td>
+<td align="right">143 (81.2)</td>
+<td align="right">33 (18.8)</td>
 <td align="right"></td>
 </tr>
 </tbody>
@@ -503,16 +499,12 @@
 <a class="sourceLine" id="cb14-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb14-7" data-line-number="7"><span class="st">    </span>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>)) <span class="co"># Omit when you run</span></a>
 <a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; Note: dependent includes missing data. These are dropped.</span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; Warning: Factor `obstruct.factor` contains implicit NA, consider using</span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; `forcats::fct_explicit_na`</span></a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; Warning: Factor `smoking_mcar` contains implicit NA, consider using</span></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; `forcats::fct_explicit_na`</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; Waiting for profiling to be done...</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; Waiting for profiling to be done...</span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; Waiting for profiling to be done...</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; Waiting for profiling to be done...</span></a>
 <a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt; Waiting for profiling to be done...</span></a>
-<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; Waiting for profiling to be done...</span></a>
-<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; Waiting for profiling to be done...</span></a>
-<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; Waiting for profiling to be done...</span></a>
-<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; Waiting for profiling to be done...</span></a>
-<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt; Waiting for profiling to be done...</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; Waiting for profiling to be done...</span></a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -760,7 +752,7 @@
 <td align="right">1.00 (0.99-1.01, p=0.986)</td>
 <td align="right">1.01 (1.00-1.02, p=0.122)</td>
 <td align="right">1.02 (1.00-1.03, p=0.010)</td>
-<td align="right">-</td>
+<td align="right">1.01 (1.00-1.02, p=0.235)</td>
 </tr>
 <tr class="even">
 <td align="left">Sex</td>
@@ -780,7 +772,7 @@
 <td align="right">0.98 (0.76-1.27, p=0.889)</td>
 <td align="right">0.98 (0.74-1.30, p=0.890)</td>
 <td align="right">0.88 (0.64-1.23, p=0.461)</td>
-<td align="right">-</td>
+<td align="right">1.01 (0.77-1.32, p=0.960)</td>
 </tr>
 <tr class="even">
 <td align="left">nodes</td>
@@ -790,7 +782,7 @@
 <td align="right">1.24 (1.18-1.30, p&lt;0.001)</td>
 <td align="right">1.25 (1.19-1.32, p&lt;0.001)</td>
 <td align="right">1.25 (1.18-1.33, p&lt;0.001)</td>
-<td align="right">-</td>
+<td align="right">1.24 (1.18-1.30, p&lt;0.001)</td>
 </tr>
 <tr class="odd">
 <td align="left">Obstruction</td>
@@ -810,7 +802,7 @@
 <td align="right">1.25 (0.90-1.74, p=0.189)</td>
 <td align="right">1.36 (0.95-1.93, p=0.089)</td>
 <td align="right">1.26 (0.85-1.88, p=0.252)</td>
-<td align="right">-</td>
+<td align="right">1.33 (0.92-1.92, p=0.124)</td>
 </tr>
 <tr class="odd">
 <td align="left">Smoking (MAR)</td>
@@ -830,66 +822,6 @@
 <td align="right">1.12 (0.76-1.65, p=0.563)</td>
 <td align="right">-</td>
 <td align="right">1.25 (0.82-1.89, p=0.300)</td>
-<td align="right">-</td>
-</tr>
-<tr class="odd">
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">0.22 (0.10-0.49, p&lt;0.001)</td>
-</tr>
-<tr class="even">
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">1.01 (1.00-1.02, p=0.235)</td>
-</tr>
-<tr class="odd">
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">1.01 (0.77-1.32, p=0.960)</td>
-</tr>
-<tr class="even">
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">1.24 (1.18-1.30, p&lt;0.001)</td>
-</tr>
-<tr class="odd">
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">1.33 (0.92-1.92, p=0.124)</td>
-</tr>
-<tr class="even">
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
 <td align="right">1.23 (0.77-1.96, p=0.364)</td>
 </tr>
 </tbody>

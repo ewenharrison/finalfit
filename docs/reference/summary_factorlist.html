@@ -353,7 +353,7 @@ regression models.</p>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age"</span>, <span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"perfor.factor"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt;        label      levels          No         Yes     p
+  <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt;        label      levels          No         Yes     p
 #&gt;  Age (years)   Mean (SD) 59.8 (11.9) 58.4 (13.3) 0.542
 #&gt;          Age   &lt;40 years    68 (7.5)     2 (7.4) 1.000
 #&gt;              40-59 years  334 (37.0)   10 (37.0)      
@@ -369,7 +369,7 @@ regression models.</p>
 <span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt;        label      levels      Alive       Died
+  <span class='fu'>summary_factorlist</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;        label      levels      Alive       Died
 #&gt;          Age   &lt;40 years   31 (6.1)   36 (8.9)
 #&gt;              40-59 years 208 (40.7) 131 (32.4)
 #&gt;                60+ years 272 (53.2) 237 (58.7)

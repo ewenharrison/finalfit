@@ -45,24 +45,7 @@
 <meta property="og:title" content="Extract model output to dataframe — extract_fit" />
 <meta property="og:description" content="Internal function, not usually called directly.
 Internal function, not called directly.
-Internal function, not called directly.
-extract_fit.coxme = function(.data, explanatory_name=&quot;explanatory&quot;, estimate_name=&quot;HR&quot;,
-																estimate_suffix = &quot;&quot;,  p_name = &quot;p&quot;,
-																confint_level = 0.95, ...)
-	x=.data
-	if(confint_type == &quot;default&quot;) confint_type = &quot;Wald&quot;
-	explanatory = names(coxme::fixef(x))
-	estimate = exp(coxme::fixef(x))
-	# confint = 
-	# p =
-	L_confint_name = paste0(&quot;L&quot;, confint_level*100)
-	U_confint_name = paste0(&quot;U&quot;, confint_level*100)	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
-											 L_confint_name, U_confint_name, p_name)	if(confint_level != 0.95)
-		df.out = df.out 	df.out = data.frame(df.out)
-	return(df.out)
-
-Extract model output to dataframe" />
+Internal function, not called directly." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -174,23 +157,6 @@ Extract model output to dataframe" />
     <p>Internal function, not usually called directly.</p>
 <p>Internal function, not called directly.</p>
 <p>Internal function, not called directly.</p>
-<p>extract_fit.coxme = function(.data, explanatory_name="explanatory", estimate_name="HR",
-																estimate_suffix = "",  p_name = "p",
-																confint_level = 0.95, ...)
-	x=.data
-	if(confint_type == "default") confint_type = "Wald"
-	explanatory = names(coxme::fixef(x))
-	estimate = exp(coxme::fixef(x))
-	# confint = 
-	# p =
-	L_confint_name = paste0("L", confint_level*100)
-	U_confint_name = paste0("U", confint_level*100)	df.out = dplyr::tibble(explanatory, estimate, confint[,1], confint[,2], p)
-	colnames(df.out) = c(explanatory_name, paste0(estimate_name, estimate_suffix),
-											 L_confint_name, U_confint_name, p_name)	if(confint_level != 0.95)
-		df.out = df.out <!-- %&gt;% dplyr::select(-p_name) -->	df.out = data.frame(df.out)
-	return(df.out)
-
-Extract model output to dataframe</p>
     </div>
 
     <pre class="usage"><span class='fu'>extract_fit</span>(<span class='no'>...</span>)
@@ -222,6 +188,11 @@ Extract model output to dataframe</p>
 <span class='co'># S3 method for crr</span>
 <span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
   <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for coxme</span>
+<span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for stanfit</span>
 <span class='fu'>extract_fit</span>(<span class='no'>.data</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,

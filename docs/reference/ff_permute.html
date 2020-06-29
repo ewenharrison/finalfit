@@ -229,154 +229,130 @@ table.</p></td>
 
 <span class='co'># Linear regression</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit_permute</span>(<span class='st'>"nodes"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;     Dependent: nodes                  unit     value
-#&gt; 1                Age   &lt;40 years Mean (sd) 4.7 (4.5)
-#&gt; 2                    40-59 years Mean (sd) 3.6 (3.3)
-#&gt; 3                      60+ years Mean (sd) 3.6 (3.6)
-#&gt; 4                Sex      Female Mean (sd) 3.7 (3.6)
-#&gt; 5                           Male Mean (sd) 3.6 (3.6)
-#&gt; 6        Obstruction          No Mean (sd) 3.7 (3.7)
-#&gt; 7                            Yes Mean (sd) 3.5 (3.2)
-#&gt; 8        Perforation          No Mean (sd) 3.7 (3.6)
-#&gt; 9                            Yes Mean (sd) 3.9 (2.8)
-#&gt; 10 &gt;4 positive nodes          No Mean (sd) 2.0 (1.1)
-#&gt; 11                           Yes Mean (sd) 8.2 (4.1)
-#&gt;          Coefficient (univariable)   Coefficient (multivariable) 1
-#&gt; 1                                -                               -
-#&gt; 2  -1.14 (-2.08 to -0.21, p=0.016) -1.14 (-2.07 to -0.20, p=0.017)
-#&gt; 3  -1.19 (-2.10 to -0.28, p=0.010) -1.18 (-2.09 to -0.27, p=0.011)
-#&gt; 4                                -                               -
-#&gt; 5   -0.14 (-0.60 to 0.33, p=0.565)  -0.12 (-0.58 to 0.35, p=0.626)
-#&gt; 6                                -                               -
-#&gt; 7   -0.24 (-0.83 to 0.36, p=0.435)                               -
-#&gt; 8                                -                               -
-#&gt; 9    0.24 (-1.13 to 1.61, p=0.735)                               -
-#&gt; 10                               -                               -
-#&gt; 11    6.19 (5.84 to 6.53, p&lt;0.001)                               -
-#&gt;      Coefficient (multivariable) 2   Coefficient (multivariable) 3
-#&gt; 1                                -                               -
-#&gt; 2  -1.21 (-2.16 to -0.26, p=0.012) -1.14 (-2.07 to -0.20, p=0.017)
-#&gt; 3  -1.25 (-2.17 to -0.33, p=0.008) -1.18 (-2.09 to -0.27, p=0.011)
-#&gt; 4                                -                               -
-#&gt; 5   -0.07 (-0.54 to 0.40, p=0.779)  -0.12 (-0.58 to 0.35, p=0.627)
-#&gt; 6                                -                               -
-#&gt; 7   -0.30 (-0.90 to 0.30, p=0.327)                               -
-#&gt; 8                                -                               -
-#&gt; 9                                -   0.24 (-1.13 to 1.60, p=0.736)
-#&gt; 10                               -                               -
-#&gt; 11                               -                               -
-#&gt;      Coefficient (multivariable) 4   Coefficient (multivariable) 5
-#&gt; 1                                -                               -
-#&gt; 2  -0.63 (-1.24 to -0.02, p=0.042) -0.64 (-1.26 to -0.02, p=0.043)
-#&gt; 3   -0.47 (-1.06 to 0.13, p=0.123)  -0.48 (-1.08 to 0.12, p=0.119)
-#&gt; 4                                -                               -
-#&gt; 5    0.10 (-0.20 to 0.40, p=0.527)   0.13 (-0.17 to 0.44, p=0.391)
-#&gt; 6                                -                               -
-#&gt; 7                                -  -0.13 (-0.53 to 0.26, p=0.500)
-#&gt; 8                                -                               -
-#&gt; 9                                -   0.50 (-0.40 to 1.39, p=0.277)
-#&gt; 10                               -                               -
-#&gt; 11    6.18 (5.84 to 6.52, p&lt;0.001)    6.19 (5.84 to 6.54, p&lt;0.001)</div><div class='input'>
+  <span class='fu'>finalfit_permute</span>(<span class='st'>"nodes"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;   Dependent: nodes                  unit     value
+#&gt;                Age   &lt;40 years Mean (sd) 4.7 (4.5)
+#&gt;                    40-59 years Mean (sd) 3.6 (3.3)
+#&gt;                      60+ years Mean (sd) 3.6 (3.6)
+#&gt;                Sex      Female Mean (sd) 3.7 (3.6)
+#&gt;                           Male Mean (sd) 3.6 (3.6)
+#&gt;        Obstruction          No Mean (sd) 3.7 (3.7)
+#&gt;                            Yes Mean (sd) 3.5 (3.2)
+#&gt;        Perforation          No Mean (sd) 3.7 (3.6)
+#&gt;                            Yes Mean (sd) 3.9 (2.8)
+#&gt;  &gt;4 positive nodes          No Mean (sd) 2.0 (1.1)
+#&gt;                            Yes Mean (sd) 8.2 (4.1)
+#&gt;        Coefficient (univariable)   Coefficient (multivariable) 1
+#&gt;                                -                               -
+#&gt;  -1.14 (-2.08 to -0.21, p=0.016) -1.14 (-2.07 to -0.20, p=0.017)
+#&gt;  -1.19 (-2.10 to -0.28, p=0.010) -1.18 (-2.09 to -0.27, p=0.011)
+#&gt;                                -                               -
+#&gt;   -0.14 (-0.60 to 0.33, p=0.565)  -0.12 (-0.58 to 0.35, p=0.626)
+#&gt;                                -                               -
+#&gt;   -0.24 (-0.83 to 0.36, p=0.435)                               -
+#&gt;                                -                               -
+#&gt;    0.24 (-1.13 to 1.61, p=0.735)                               -
+#&gt;                                -                               -
+#&gt;     6.19 (5.84 to 6.53, p&lt;0.001)                               -
+#&gt;    Coefficient (multivariable) 2   Coefficient (multivariable) 3
+#&gt;                                -                               -
+#&gt;  -1.21 (-2.16 to -0.26, p=0.012) -1.14 (-2.07 to -0.20, p=0.017)
+#&gt;  -1.25 (-2.17 to -0.33, p=0.008) -1.18 (-2.09 to -0.27, p=0.011)
+#&gt;                                -                               -
+#&gt;   -0.07 (-0.54 to 0.40, p=0.779)  -0.12 (-0.58 to 0.35, p=0.627)
+#&gt;                                -                               -
+#&gt;   -0.30 (-0.90 to 0.30, p=0.327)                               -
+#&gt;                                -                               -
+#&gt;                                -   0.24 (-1.13 to 1.60, p=0.736)
+#&gt;                                -                               -
+#&gt;                                -                               -
+#&gt;    Coefficient (multivariable) 4   Coefficient (multivariable) 5
+#&gt;                                -                               -
+#&gt;  -0.63 (-1.24 to -0.02, p=0.042) -0.64 (-1.26 to -0.02, p=0.043)
+#&gt;   -0.47 (-1.06 to 0.13, p=0.123)  -0.48 (-1.08 to 0.12, p=0.119)
+#&gt;                                -                               -
+#&gt;    0.10 (-0.20 to 0.40, p=0.527)   0.13 (-0.17 to 0.44, p=0.391)
+#&gt;                                -                               -
+#&gt;                                -  -0.13 (-0.53 to 0.26, p=0.500)
+#&gt;                                -                               -
+#&gt;                                -   0.50 (-0.40 to 1.39, p=0.277)
+#&gt;                                -                               -
+#&gt;     6.18 (5.84 to 6.52, p&lt;0.001)    6.19 (5.84 to 6.54, p&lt;0.001)</div><div class='input'>
 <span class='co'># Cox proportional hazards regression</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit_permute</span>(<span class='st'>"Surv(time, status)"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt;    Dependent: Surv(time, status)                     all
-#&gt; 1                            Age   &lt;40 years  70 (100.0)
-#&gt; 2                                40-59 years 344 (100.0)
-#&gt; 3                                  60+ years 515 (100.0)
-#&gt; 4                            Sex      Female 445 (100.0)
-#&gt; 5                                       Male 484 (100.0)
-#&gt; 6                    Obstruction          No 732 (100.0)
-#&gt; 7                                        Yes 176 (100.0)
-#&gt; 8                    Perforation          No 902 (100.0)
-#&gt; 9                                        Yes  27 (100.0)
-#&gt; 10             &gt;4 positive nodes          No 674 (100.0)
-#&gt; 11                                       Yes 255 (100.0)
-#&gt;             HR (univariable)      HR (multivariable) 1
-#&gt; 1                          -                         -
-#&gt; 2  0.76 (0.53-1.09, p=0.132) 0.76 (0.53-1.08, p=0.129)
-#&gt; 3  0.93 (0.66-1.31, p=0.668) 0.93 (0.66-1.31, p=0.660)
-#&gt; 4                          -                         -
-#&gt; 5  1.01 (0.84-1.22, p=0.888) 1.02 (0.85-1.23, p=0.847)
-#&gt; 6                          -                         -
-#&gt; 7  1.29 (1.03-1.62, p=0.028)                         -
-#&gt; 8                          -                         -
-#&gt; 9  1.17 (0.70-1.95, p=0.556)                         -
-#&gt; 10                         -                         -
-#&gt; 11 2.60 (2.15-3.14, p&lt;0.001)                         -
-#&gt;         HR (multivariable) 2      HR (multivariable) 3
-#&gt; 1                          -                         -
-#&gt; 2  0.79 (0.55-1.13, p=0.198) 0.76 (0.53-1.08, p=0.127)
-#&gt; 3  0.98 (0.69-1.40, p=0.931) 0.92 (0.65-1.31, p=0.656)
-#&gt; 4                          -                         -
-#&gt; 5  1.02 (0.85-1.24, p=0.803) 1.02 (0.85-1.22, p=0.854)
-#&gt; 6                          -                         -
-#&gt; 7  1.31 (1.04-1.64, p=0.022)                         -
-#&gt; 8                          -                         -
-#&gt; 9                          - 1.18 (0.70-1.97, p=0.535)
-#&gt; 10                         -                         -
-#&gt; 11                         -                         -
-#&gt;         HR (multivariable) 4      HR (multivariable) 5
-#&gt; 1                          -                         -
-#&gt; 2  0.85 (0.59-1.22, p=0.379) 0.90 (0.63-1.30, p=0.590)
-#&gt; 3  1.09 (0.77-1.55, p=0.615) 1.19 (0.83-1.69, p=0.346)
-#&gt; 4                          -                         -
-#&gt; 5  1.04 (0.87-1.26, p=0.647) 1.05 (0.87-1.27, p=0.597)
-#&gt; 6                          -                         -
-#&gt; 7                          - 1.35 (1.07-1.70, p=0.011)
-#&gt; 8                          -                         -
-#&gt; 9                          - 1.16 (0.69-1.94, p=0.581)
-#&gt; 10                         -                         -
-#&gt; 11 2.64 (2.18-3.19, p&lt;0.001) 2.68 (2.21-3.26, p&lt;0.001)</div><div class='input'>
+  <span class='fu'>finalfit_permute</span>(<span class='st'>"Surv(time, status)"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt;  Dependent: Surv(time, status)                     all
+#&gt;                            Age   &lt;40 years  70 (100.0)
+#&gt;                                40-59 years 344 (100.0)
+#&gt;                                  60+ years 515 (100.0)
+#&gt;                            Sex      Female 445 (100.0)
+#&gt;                                       Male 484 (100.0)
+#&gt;                    Obstruction          No 732 (100.0)
+#&gt;                                        Yes 176 (100.0)
+#&gt;                    Perforation          No 902 (100.0)
+#&gt;                                        Yes  27 (100.0)
+#&gt;              &gt;4 positive nodes          No 674 (100.0)
+#&gt;                                        Yes 255 (100.0)
+#&gt;           HR (univariable)      HR (multivariable) 1      HR (multivariable) 2
+#&gt;                          -                         -                         -
+#&gt;  0.76 (0.53-1.09, p=0.132) 0.76 (0.53-1.08, p=0.129) 0.79 (0.55-1.13, p=0.198)
+#&gt;  0.93 (0.66-1.31, p=0.668) 0.93 (0.66-1.31, p=0.660) 0.98 (0.69-1.40, p=0.931)
+#&gt;                          -                         -                         -
+#&gt;  1.01 (0.84-1.22, p=0.888) 1.02 (0.85-1.23, p=0.847) 1.02 (0.85-1.24, p=0.803)
+#&gt;                          -                         -                         -
+#&gt;  1.29 (1.03-1.62, p=0.028)                         - 1.31 (1.04-1.64, p=0.022)
+#&gt;                          -                         -                         -
+#&gt;  1.17 (0.70-1.95, p=0.556)                         -                         -
+#&gt;                          -                         -                         -
+#&gt;  2.60 (2.15-3.14, p&lt;0.001)                         -                         -
+#&gt;       HR (multivariable) 3      HR (multivariable) 4      HR (multivariable) 5
+#&gt;                          -                         -                         -
+#&gt;  0.76 (0.53-1.08, p=0.127) 0.85 (0.59-1.22, p=0.379) 0.90 (0.63-1.30, p=0.590)
+#&gt;  0.92 (0.65-1.31, p=0.656) 1.09 (0.77-1.55, p=0.615) 1.19 (0.83-1.69, p=0.346)
+#&gt;                          -                         -                         -
+#&gt;  1.02 (0.85-1.22, p=0.854) 1.04 (0.87-1.26, p=0.647) 1.05 (0.87-1.27, p=0.597)
+#&gt;                          -                         -                         -
+#&gt;                          -                         - 1.35 (1.07-1.70, p=0.011)
+#&gt;                          -                         -                         -
+#&gt;  1.18 (0.70-1.97, p=0.535)                         - 1.16 (0.69-1.94, p=0.581)
+#&gt;                          -                         -                         -
+#&gt;                          - 2.64 (2.18-3.19, p&lt;0.001) 2.68 (2.21-3.26, p&lt;0.001)</div><div class='input'>
 <span class='co'># Logistic regression</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit_permute</span>(<span class='st'>"mort_5yr"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Factor `obstruct.factor` contains implicit NA, consider using `forcats::fct_explicit_na`</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;    Dependent: Mortality 5 year                  Alive       Died
-#&gt; 1                          Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt; 2                              40-59 years 208 (61.4) 131 (38.6)
-#&gt; 3                                60+ years 272 (53.4) 237 (46.6)
-#&gt; 4                          Sex      Female 243 (55.6) 194 (44.4)
-#&gt; 5                                     Male 268 (56.1) 210 (43.9)
-#&gt; 6                  Obstruction          No 408 (56.7) 312 (43.3)
-#&gt; 7                                      Yes  89 (51.1)  85 (48.9)
-#&gt; 8                  Perforation          No 497 (56.0) 391 (44.0)
-#&gt; 9                                      Yes  14 (51.9)  13 (48.1)
-#&gt; 10           &gt;4 positive nodes          No 431 (65.0) 232 (35.0)
-#&gt; 11                                     Yes  80 (31.7) 172 (68.3)
-#&gt;             OR (univariable)      OR (multivariable) 1
-#&gt; 1                          -                         -
-#&gt; 2  0.54 (0.32-0.92, p=0.023) 0.54 (0.32-0.92, p=0.023)
-#&gt; 3  0.75 (0.45-1.25, p=0.270) 0.75 (0.45-1.25, p=0.273)
-#&gt; 4                          -                         -
-#&gt; 5  0.98 (0.76-1.27, p=0.889) 0.99 (0.76-1.28, p=0.925)
-#&gt; 6                          -                         -
-#&gt; 7  1.25 (0.90-1.74, p=0.189)                         -
-#&gt; 8                          -                         -
-#&gt; 9  1.18 (0.54-2.55, p=0.672)                         -
-#&gt; 10                         -                         -
-#&gt; 11 3.99 (2.94-5.46, p&lt;0.001)                         -
-#&gt;         OR (multivariable) 2      OR (multivariable) 3
-#&gt; 1                          -                         -
-#&gt; 2  0.57 (0.34-0.98, p=0.041) 0.54 (0.32-0.92, p=0.023)
-#&gt; 3  0.81 (0.48-1.36, p=0.427) 0.75 (0.45-1.25, p=0.273)
-#&gt; 4                          -                         -
-#&gt; 5  0.98 (0.75-1.28, p=0.903) 0.99 (0.76-1.28, p=0.926)
-#&gt; 6                          -                         -
-#&gt; 7  1.26 (0.90-1.76, p=0.177)                         -
-#&gt; 8                          -                         -
-#&gt; 9                          - 1.18 (0.54-2.56, p=0.671)
-#&gt; 10                         -                         -
-#&gt; 11                         -                         -
-#&gt;         OR (multivariable) 4      OR (multivariable) 5
-#&gt; 1                          -                         -
-#&gt; 2  0.61 (0.35-1.06, p=0.080) 0.66 (0.37-1.16, p=0.147)
-#&gt; 3  0.90 (0.52-1.55, p=0.705) 1.00 (0.57-1.73, p=0.988)
-#&gt; 4                          -                         -
-#&gt; 5  1.04 (0.79-1.37, p=0.787) 1.03 (0.78-1.37, p=0.823)
-#&gt; 6                          -                         -
-#&gt; 7                          - 1.34 (0.94-1.91, p=0.103)
-#&gt; 8                          -                         -
-#&gt; 9                          - 1.21 (0.54-2.71, p=0.634)
-#&gt; 10                         -                         -
-#&gt; 11 4.05 (2.97-5.56, p&lt;0.001) 4.15 (3.03-5.73, p&lt;0.001)</div><div class='input'>
+  <span class='fu'>finalfit_permute</span>(<span class='st'>"mort_5yr"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;  Dependent: Mortality 5 year                  Alive       Died
+#&gt;                          Age   &lt;40 years  31 (46.3)  36 (53.7)
+#&gt;                              40-59 years 208 (61.4) 131 (38.6)
+#&gt;                                60+ years 272 (53.4) 237 (46.6)
+#&gt;                          Sex      Female 243 (55.6) 194 (44.4)
+#&gt;                                     Male 268 (56.1) 210 (43.9)
+#&gt;                  Obstruction          No 408 (56.7) 312 (43.3)
+#&gt;                                      Yes  89 (51.1)  85 (48.9)
+#&gt;                  Perforation          No 497 (56.0) 391 (44.0)
+#&gt;                                      Yes  14 (51.9)  13 (48.1)
+#&gt;            &gt;4 positive nodes          No 431 (65.0) 232 (35.0)
+#&gt;                                      Yes  80 (31.7) 172 (68.3)
+#&gt;           OR (univariable)      OR (multivariable) 1      OR (multivariable) 2
+#&gt;                          -                         -                         -
+#&gt;  0.54 (0.32-0.92, p=0.023) 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
+#&gt;  0.75 (0.45-1.25, p=0.270) 0.75 (0.45-1.25, p=0.273) 0.81 (0.48-1.36, p=0.427)
+#&gt;                          -                         -                         -
+#&gt;  0.98 (0.76-1.27, p=0.889) 0.99 (0.76-1.28, p=0.925) 0.98 (0.75-1.28, p=0.903)
+#&gt;                          -                         -                         -
+#&gt;  1.25 (0.90-1.74, p=0.189)                         - 1.26 (0.90-1.76, p=0.177)
+#&gt;                          -                         -                         -
+#&gt;  1.18 (0.54-2.55, p=0.672)                         -                         -
+#&gt;                          -                         -                         -
+#&gt;  3.99 (2.94-5.46, p&lt;0.001)                         -                         -
+#&gt;       OR (multivariable) 3      OR (multivariable) 4      OR (multivariable) 5
+#&gt;                          -                         -                         -
+#&gt;  0.54 (0.32-0.92, p=0.023) 0.61 (0.35-1.06, p=0.080) 0.66 (0.37-1.16, p=0.147)
+#&gt;  0.75 (0.45-1.25, p=0.273) 0.90 (0.52-1.55, p=0.705) 1.00 (0.57-1.73, p=0.988)
+#&gt;                          -                         -                         -
+#&gt;  0.99 (0.76-1.28, p=0.926) 1.04 (0.79-1.37, p=0.787) 1.03 (0.78-1.37, p=0.823)
+#&gt;                          -                         -                         -
+#&gt;                          -                         - 1.34 (0.94-1.91, p=0.103)
+#&gt;                          -                         -                         -
+#&gt;  1.18 (0.54-2.56, p=0.671)                         - 1.21 (0.54-2.71, p=0.634)
+#&gt;                          -                         -                         -
+#&gt;                          - 4.05 (2.97-5.56, p&lt;0.001) 4.15 (3.03-5.73, p&lt;0.001)</div><div class='input'>
 # Logistic regression with random effect (glmer)
 # colon_s %>%
 #   finalfit_permute("mort_5yr", explanatory_base, explanatory_permute,
