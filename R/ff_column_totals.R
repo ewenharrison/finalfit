@@ -110,6 +110,8 @@ finalfit_column_totals = ff_column_totals
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
 #' @param missing_column Logical. Include a column of counts of missing data.
+#' @param digits Integer length 1. Number of digits for percentage.
+#' @param percent Logical. Include percentage.
 #' @param na_complete_cases Logical. When TRUE, missing data counts for variables
 #'   are for compelte cases across all included variables.
 #' @param na_include_dependent Logical. When TRUE, missing data in the dependent
@@ -127,6 +129,7 @@ finalfit_column_totals = ff_column_totals
 #'  summary_factorlist(dependent, explanatory) %>%
 #' 	ff_row_totals(colon_s, dependent, explanatory)
 ff_row_totals <- function(df.in, .data, dependent, explanatory, missing_column = TRUE, 
+													percent = TRUE, digits = 1, 
 													na_include_dependent = FALSE, na_complete_cases = FALSE,
 													total_name = "Total N", na_name= "Missing N"){
 	if(!any(names(df.in) == "label")) 
@@ -164,12 +167,22 @@ ff_row_totals <- function(df.in, .data, dependent, explanatory, missing_column =
 	
 	df.out = df.in %>%
 		dplyr::left_join(
-			missing_glimpse(.data, explanatory) %>% 
+			missing_glimpse(.data, explanatory, digits = digits) %>% 
 				dplyr::mutate(label = as.character(label)), by = "label"
 		) %>%
-		dplyr::mutate(            # Rename, change to character, remove "NAs"
-			!! total_name := as.character(n) %>% dplyr::coalesce("")
-		)
+		{ if(!percent){
+			dplyr::mutate(.,             # Rename, change to character, remove "NAs"
+										!! total_name := as.character(n) %>% 
+											dplyr::coalesce("")
+			)
+		} else {
+			dplyr::mutate(.,             # Rename, change to character, remove "NAs"
+										!! total_name := stringr::str_c(n, " (", (100 - as.numeric(missing_percent)) %>% 
+																							round_tidy(digits), ")") %>% 
+											dplyr::coalesce("")
+			)
+		}} 
+	
 	if(missing_column){
 		df.out = df.out %>% 
 			dplyr::mutate(

@@ -4,7 +4,9 @@
 \name{colon_s}
 \alias{colon_s}
 \title{Chemotherapy for Stage B/C colon cancer}
-\format{A data frame with 929 rows and 33 variables}
+\format{
+A data frame with 929 rows and 33 variables
+}
 \source{
 \code{\link[survival]{colon}}
 }

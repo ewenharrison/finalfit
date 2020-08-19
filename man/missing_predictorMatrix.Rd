@@ -4,8 +4,11 @@
 \alias{missing_predictorMatrix}
 \title{Create predictorMatrix for use with mice}
 \usage{
-missing_predictorMatrix(.data, drop_from_imputed = NULL,
-  drop_from_imputer = NULL)
+missing_predictorMatrix(
+  .data,
+  drop_from_imputed = NULL,
+  drop_from_imputer = NULL
+)
 }
 \arguments{
 \item{.data}{Data frame.}

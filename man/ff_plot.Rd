@@ -46,8 +46,10 @@ colon_s \%>\%
 	ff_plot(dependent, explanatory, dependent_label = "Survival")
 }
 \seealso{
-Other finalfit plot functions: \code{\link{coefficient_plot}},
-  \code{\link{hr_plot}}, \code{\link{or_plot}},
-  \code{\link{surv_plot}}
+Other finalfit plot functions: 
+\code{\link{coefficient_plot}()},
+\code{\link{hr_plot}()},
+\code{\link{or_plot}()},
+\code{\link{surv_plot}()}
 }
 \concept{finalfit plot functions}

@@ -4,7 +4,8 @@
 \name{wcgs}
 \alias{wcgs}
 \title{Western Collaborative Group Study}
-\format{A data frame with 3154 observations on the following 13 variables.
+\format{
+A data frame with 3154 observations on the following 13 variables.
   \itemize{ \item{\code{id}}{ Subject ID } \item{\code{age}}{ Age: age in
   years } \item{\code{height}}{ Height: height in inches }
   \item{\code{weight}}{ Weight: weight in pounds } \item{\code{sbp}}{
@@ -20,7 +21,8 @@
   \item{\code{typechd}}{ coronary heart disease is a factor with levels
   \code{No}, \code{MI_SD} (MI or sudden death), \code{Silent_MI},
   \code{Angina} } \item{\code{timechd}}{ Observation (follow up) time: Days }
-  }}
+  }
+}
 \source{
 Statistics for Epidemiology by N. Jewell (2004)
 }

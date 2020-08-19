@@ -4,9 +4,16 @@
 \alias{missing_pairs}
 \title{Missing values pairs plot}
 \usage{
-missing_pairs(.data, dependent = NULL, explanatory = NULL,
-  use_labels = TRUE, title = NULL, position = "stack",
-  showXAxisPlotLabels = TRUE, showYAxisPlotLabels = FALSE)
+missing_pairs(
+  .data,
+  dependent = NULL,
+  explanatory = NULL,
+  use_labels = TRUE,
+  title = NULL,
+  position = "stack",
+  showXAxisPlotLabels = TRUE,
+  showYAxisPlotLabels = FALSE
+)
 }
 \arguments{
 \item{.data}{Data frame.}

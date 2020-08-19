@@ -1,3 +1,7 @@
+# finalfit 1.0.2
+* `ff_relabel_df()` added to allow passing data frame / tibble with labels directly at bottom of pipe. 
+* `add_row_total` in `summary_factorlist()` now can include proportion of complete data via `include_row_totals_percent` argument. 
+
 # finalfit 1.0.1
 
 * `ff_relabel()` tightend to allow mismatch between available data and labels. 

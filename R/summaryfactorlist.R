@@ -62,6 +62,7 @@
 #' @param col_totals_prefix Character. Prefix to column totals, e.g. "N=".
 #' @param add_row_totals Logical. Include row totals. Note this differs from
 #'   \code{total_col} above particularly for continuous explanatory variables.
+#' @param include_row_totals_percent Include row percentage of total.
 #' @param include_row_missing_col Logical. Include missing data total for each
 #'   row. Only used when \code{add_row_totals} is \code{TRUE}.
 #' @param row_totals_colname Character. Column name for row totals.
@@ -110,7 +111,8 @@ summary_factorlist <- function(.data,
 															 dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
 															 add_col_totals = FALSE, include_col_totals_percent = TRUE,
 															 col_totals_rowname = NULL, col_totals_prefix = "",
-															 add_row_totals = FALSE, include_row_missing_col = TRUE,
+															 add_row_totals = FALSE, include_row_totals_percent = TRUE,
+															 include_row_missing_col = TRUE,
 															 row_totals_colname = "Total N", row_missing_colname = "Missing N",
 															 catTest = NULL){
 	

@@ -4,8 +4,7 @@
 \alias{dependent_label}
 \title{Make a label for the dependent variable}
 \usage{
-dependent_label(df.out, .data, dependent, prefix = "Dependent: ",
-  suffix = "")
+dependent_label(df.out, .data, dependent, prefix = "Dependent: ", suffix = "")
 }
 \arguments{
 \item{df.out}{Dataframe (results table) to be altered.}

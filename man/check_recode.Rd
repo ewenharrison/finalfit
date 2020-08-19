@@ -4,8 +4,13 @@
 \alias{check_recode}
 \title{Check accurate recoding of variables}
 \usage{
-check_recode(.data, dependent = NULL, explanatory = NULL,
-  include_numerics = TRUE, ...)
+check_recode(
+  .data,
+  dependent = NULL,
+  explanatory = NULL,
+  include_numerics = TRUE,
+  ...
+)
 }
 \arguments{
 \item{.data}{Data frame or tibble.}

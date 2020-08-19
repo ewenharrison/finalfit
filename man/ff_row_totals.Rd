@@ -5,15 +5,33 @@
 \alias{finalfit_row_totals}
 \title{Add row totals to \code{summary_factorlist()} output}
 \usage{
-ff_row_totals(df.in, .data, dependent, explanatory,
-  missing_column = TRUE, na_include_dependent = FALSE,
-  na_complete_cases = FALSE, total_name = "Total N",
-  na_name = "Missing N")
+ff_row_totals(
+  df.in,
+  .data,
+  dependent,
+  explanatory,
+  missing_column = TRUE,
+  percent = TRUE,
+  digits = 1,
+  na_include_dependent = FALSE,
+  na_complete_cases = FALSE,
+  total_name = "Total N",
+  na_name = "Missing N"
+)
 
-finalfit_row_totals(df.in, .data, dependent, explanatory,
-  missing_column = TRUE, na_include_dependent = FALSE,
-  na_complete_cases = FALSE, total_name = "Total N",
-  na_name = "Missing N")
+finalfit_row_totals(
+  df.in,
+  .data,
+  dependent,
+  explanatory,
+  missing_column = TRUE,
+  percent = TRUE,
+  digits = 1,
+  na_include_dependent = FALSE,
+  na_complete_cases = FALSE,
+  total_name = "Total N",
+  na_name = "Missing N"
+)
 }
 \arguments{
 \item{df.in}{\code{summary_factorlist()} output.}
@@ -26,6 +44,10 @@ finalfit_row_totals(df.in, .data, dependent, explanatory,
 variables.}
 
 \item{missing_column}{Logical. Include a column of counts of missing data.}
+
+\item{percent}{Logical. Include percentage.}
+
+\item{digits}{Integer length 1. Number of digits for percentage.}
 
 \item{na_include_dependent}{Logical. When TRUE, missing data in the dependent
 variable is included in totals.}

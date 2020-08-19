@@ -5,11 +5,21 @@
 \alias{finalfit_glimpse}
 \title{Descriptive statistics for dataframe}
 \usage{
-ff_glimpse(.data, dependent = NULL, explanatory = NULL, digits = 1,
-  levels_cut = 5)
+ff_glimpse(
+  .data,
+  dependent = NULL,
+  explanatory = NULL,
+  digits = 1,
+  levels_cut = 5
+)
 
-finalfit_glimpse(.data, dependent = NULL, explanatory = NULL,
-  digits = 1, levels_cut = 5)
+finalfit_glimpse(
+  .data,
+  dependent = NULL,
+  explanatory = NULL,
+  digits = 1,
+  levels_cut = 5
+)
 }
 \arguments{
 \item{.data}{Dataframe.}

@@ -4,12 +4,26 @@
 \alias{coefficient_plot}
 \title{Produce a coefficient table and plot}
 \usage{
-coefficient_plot(.data, dependent, explanatory, random_effect = NULL,
-  factorlist = NULL, lmfit = NULL, confint_type = "default",
-  remove_ref = FALSE, breaks = NULL, column_space = c(-0.5, -0.1,
-  0.5), dependent_label = NULL, prefix = "",
-  suffix = ": Coefficient, 95\% CI, p-value)", table_text_size = 5,
-  title_text_size = 18, plot_opts = NULL, table_opts = NULL, ...)
+coefficient_plot(
+  .data,
+  dependent,
+  explanatory,
+  random_effect = NULL,
+  factorlist = NULL,
+  lmfit = NULL,
+  confint_type = "default",
+  remove_ref = FALSE,
+  breaks = NULL,
+  column_space = c(-0.5, -0.1, 0.5),
+  dependent_label = NULL,
+  prefix = "",
+  suffix = ": Coefficient, 95\% CI, p-value)",
+  table_text_size = 5,
+  title_text_size = 18,
+  plot_opts = NULL,
+  table_opts = NULL,
+  ...
+)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -79,8 +93,10 @@ colon_s \%>\%
     plot_opts=list(xlab("Beta, 95\% CI"), theme(axis.title = element_text(size=12))))
 }
 \seealso{
-Other finalfit plot functions: \code{\link{ff_plot}},
-  \code{\link{hr_plot}}, \code{\link{or_plot}},
-  \code{\link{surv_plot}}
+Other finalfit plot functions: 
+\code{\link{ff_plot}()},
+\code{\link{hr_plot}()},
+\code{\link{or_plot}()},
+\code{\link{surv_plot}()}
 }
 \concept{finalfit plot functions}

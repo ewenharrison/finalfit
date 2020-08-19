@@ -68,8 +68,8 @@
 #' explanatory_multi = c("age.factor", "obstruct.factor")
 #' random_effect = "hospital"
 #' dependent = "mort_5yr"
-#' colon_s %>%
-#'   finalfit(dependent, explanatory, explanatory_multi, random_effect)
+#' # colon_s %>%
+#' #   finalfit(dependent, explanatory, explanatory_multi, random_effect)
 #'
 #' # Include model metrics:
 #' colon_s %>%
@@ -113,19 +113,16 @@
 #'   glmmulti(dependent, explanatory) %>%
 #'   fit2df(estimate_suffix=" (multivariable)") -> example.multivariable
 #'
-#' colon_s %>%
-#'   glmmixed(dependent, explanatory, random_effect) %>%
-#'   fit2df(estimate_suffix=" (multilevel") -> example.multilevel
+#' # Edited as CRAN slow to run these
+#' # colon_s %>%
+#' #   glmmixed(dependent, explanatory, random_effect) %>%
+#' #   fit2df(estimate_suffix=" (multilevel") -> example.multilevel
 #'
 #' # Pipe together
 #' example.summary %>%
 #'   finalfit_merge(example.univariable) %>%
-#'   finalfit_merge(example.multivariable) %>%
-#'   finalfit_merge(example.multilevel) %>%
-#'   select(-c(fit_id, index)) %>%
-#'   dependent_label(colon_s, dependent) -> example.final
-#' example.final
-#'
+#'   finalfit_merge(example.multivariable, last_merge = TRUE)
+#' # finalfit_merge(example.multilevel)
 
 finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
 										column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,

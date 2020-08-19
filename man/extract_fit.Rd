@@ -14,35 +14,89 @@
 \usage{
 extract_fit(...)
 
-\method{extract_fit}{glm}(.data, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  exp = TRUE, confint_type = "profile", confint_level = 0.95, ...)
+\method{extract_fit}{glm}(
+  .data,
+  explanatory_name = "explanatory",
+  estimate_name = "OR",
+  estimate_suffix = "",
+  p_name = "p",
+  exp = TRUE,
+  confint_type = "profile",
+  confint_level = 0.95,
+  ...
+)
 
-\method{extract_fit}{glmerMod}(.data, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  exp = TRUE, confint_type = "Wald", confint_level = 0.95, ...)
+\method{extract_fit}{glmerMod}(
+  .data,
+  explanatory_name = "explanatory",
+  estimate_name = "OR",
+  estimate_suffix = "",
+  p_name = "p",
+  exp = TRUE,
+  confint_type = "Wald",
+  confint_level = 0.95,
+  ...
+)
 
-\method{extract_fit}{lm}(.data, explanatory_name = "explanatory",
-  estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
-  confint_level = 0.95, ...)
+\method{extract_fit}{lm}(
+  .data,
+  explanatory_name = "explanatory",
+  estimate_name = "Coefficient",
+  estimate_suffix = "",
+  p_name = "p",
+  confint_level = 0.95,
+  ...
+)
 
-\method{extract_fit}{lmerMod}(.data, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  confint_type = "Wald", confint_level = 0.95, ...)
+\method{extract_fit}{lmerMod}(
+  .data,
+  explanatory_name = "explanatory",
+  estimate_name = "OR",
+  estimate_suffix = "",
+  p_name = "p",
+  confint_type = "Wald",
+  confint_level = 0.95,
+  ...
+)
 
-\method{extract_fit}{coxph}(.data, explanatory_name = "explanatory",
-  estimate_name = "HR", estimate_suffix = "", p_name = "p", ...)
+\method{extract_fit}{coxph}(
+  .data,
+  explanatory_name = "explanatory",
+  estimate_name = "HR",
+  estimate_suffix = "",
+  p_name = "p",
+  ...
+)
 
-\method{extract_fit}{crr}(.data, explanatory_name = "explanatory",
-  estimate_name = "HR", estimate_suffix = "", p_name = "p", ...)
+\method{extract_fit}{crr}(
+  .data,
+  explanatory_name = "explanatory",
+  estimate_name = "HR",
+  estimate_suffix = "",
+  p_name = "p",
+  ...
+)
 
-\method{extract_fit}{coxme}(.data, explanatory_name = "explanatory",
-  estimate_name = "HR", estimate_suffix = "", p_name = "p",
-  confint_level = 0.95, ...)
+\method{extract_fit}{coxme}(
+  .data,
+  explanatory_name = "explanatory",
+  estimate_name = "HR",
+  estimate_suffix = "",
+  p_name = "p",
+  confint_level = 0.95,
+  ...
+)
 
-\method{extract_fit}{stanfit}(.data, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), X, ...)
+\method{extract_fit}{stanfit}(
+  .data,
+  explanatory_name = "explanatory",
+  estimate_name = "OR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  X,
+  ...
+)
 }
 \arguments{
 \item{...}{Other arguments.}

@@ -901,7 +901,7 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 
 Clearly, as models get more complex, parameters such as random effect group variances may require to be extracted directly from model outputs. 
 
-```{r, warning=FALSE, message=FALSE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
 library(finalfit)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
@@ -911,7 +911,7 @@ colon_s %>%
 	broom::tidy() -> t
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval=FALSE}
 library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```

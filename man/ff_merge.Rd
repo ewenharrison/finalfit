@@ -6,11 +6,21 @@
 \title{Merge a \code{\link{summary_factorlist}()} table with any number of model
 results tables.}
 \usage{
-ff_merge(factorlist, fit2df_df, ref_symbol = "-", estimate_name = NULL,
-  last_merge = FALSE)
+ff_merge(
+  factorlist,
+  fit2df_df,
+  ref_symbol = "-",
+  estimate_name = NULL,
+  last_merge = FALSE
+)
 
-finalfit_merge(factorlist, fit2df_df, ref_symbol = "-",
-  estimate_name = NULL, last_merge = FALSE)
+finalfit_merge(
+  factorlist,
+  fit2df_df,
+  ref_symbol = "-",
+  estimate_name = NULL,
+  last_merge = FALSE
+)
 }
 \arguments{
 \item{factorlist}{Output from \code{\link{summary_factorlist}(...,

@@ -20,7 +20,7 @@
 #' @param exp Currently GLM only. Exponentiate coefficients and confidence
 #'   intervals. Defaults to TRUE.
 #' @param confint_type One of \code{c("profile", "default")} for GLM models
-#'   (\code{\link[MASS]{confint.glm}}) or \code{c("profile", "Wald", "boot")}
+#'   (\link[MASS:confint]{confint.glm}) or \code{c("profile", "Wald", "boot")}
 #'   for \code{glmer/lmer} models (\code{\link[lme4]{confint.merMod}}.). Not
 #'   implemented for \code{lm, coxph or coxphlist}.
 #' @param confint_level The confidence level required.

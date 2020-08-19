@@ -1,5 +1,7 @@
 #' finalfit: Quickly create elegant final results tables and plots when modelling.
 #'
+#' @description Quickly create elegant final results tables and plots when modelling.
+#'
 #' @section \code{finalfit} model wrappers:
 #'
 #' \link{glmuni},

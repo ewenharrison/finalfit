@@ -22,88 +22,229 @@ extractors}
 \usage{
 fit2df(...)
 
-\method{fit2df}{lm}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_level = 0.95, confint_sep = " to ",
-  ...)
+\method{fit2df}{lm}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  remove_intercept = TRUE,
+  explanatory_name = "explanatory",
+  estimate_name = "Coefficient",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  confint_level = 0.95,
+  confint_sep = " to ",
+  ...
+)
 
-\method{fit2df}{lmlist}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_level = 0.95, confint_sep = " to ",
-  ...)
+\method{fit2df}{lmlist}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  remove_intercept = TRUE,
+  explanatory_name = "explanatory",
+  estimate_name = "Coefficient",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  confint_level = 0.95,
+  confint_sep = " to ",
+  ...
+)
 
-\method{fit2df}{glm}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), exp = TRUE, confint_type = "profile",
-  confint_level = 0.95, confint_sep = "-", ...)
+\method{fit2df}{glm}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  remove_intercept = TRUE,
+  explanatory_name = "explanatory",
+  estimate_name = "OR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  exp = TRUE,
+  confint_type = "profile",
+  confint_level = 0.95,
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{glmboot}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), exp = TRUE, confint_sep = "-", ...)
+\method{fit2df}{glmboot}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  remove_intercept = TRUE,
+  explanatory_name = "explanatory",
+  estimate_name = "OR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  exp = TRUE,
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{glmlist}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), exp = TRUE, confint_type = "profile",
-  confint_level = 0.95, confint_sep = "-", ...)
+\method{fit2df}{glmlist}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  remove_intercept = TRUE,
+  explanatory_name = "explanatory",
+  estimate_name = "OR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  exp = TRUE,
+  confint_type = "profile",
+  confint_level = 0.95,
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{svyglmlist}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), exp = FALSE, confint_type = "profile",
-  confint_level = 0.95, confint_sep = "-", ...)
+\method{fit2df}{svyglmlist}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  remove_intercept = TRUE,
+  explanatory_name = "explanatory",
+  estimate_name = "Coefficient",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  exp = FALSE,
+  confint_type = "profile",
+  confint_level = 0.95,
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{lmerMod}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_type = "Wald", confint_level = 0.95,
-  confint_sep = "-", ...)
+\method{fit2df}{lmerMod}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  remove_intercept = TRUE,
+  explanatory_name = "explanatory",
+  estimate_name = "Coefficient",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  confint_type = "Wald",
+  confint_level = 0.95,
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{glmerMod}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), exp = TRUE, confint_type = "Wald",
-  confint_level = 0.95, confint_sep = "-", ...)
+\method{fit2df}{glmerMod}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  remove_intercept = TRUE,
+  explanatory_name = "explanatory",
+  estimate_name = "OR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  exp = TRUE,
+  confint_type = "Wald",
+  confint_level = 0.95,
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{coxph}(.data, condense = TRUE, metrics = FALSE,
-  explanatory_name = "explanatory", estimate_name = "HR",
-  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
-  confint_sep = "-", ...)
+\method{fit2df}{coxph}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  explanatory_name = "explanatory",
+  estimate_name = "HR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{coxphlist}(.data, condense = TRUE, metrics = FALSE,
-  explanatory_name = "explanatory", estimate_name = "HR",
-  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
-  confint_sep = "-", ...)
+\method{fit2df}{coxphlist}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  explanatory_name = "explanatory",
+  estimate_name = "HR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{crr}(.data, condense = TRUE, metrics = FALSE,
-  explanatory_name = "explanatory", estimate_name = "HR",
-  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
-  confint_sep = "-", ...)
+\method{fit2df}{crr}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  explanatory_name = "explanatory",
+  estimate_name = "HR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{coxme}(.data, condense = TRUE, metrics = FALSE,
-  explanatory_name = "explanatory", estimate_name = "HR",
-  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
-  confint_sep = "-", ...)
+\method{fit2df}{coxme}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  explanatory_name = "explanatory",
+  estimate_name = "HR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{crrlist}(.data, condense = TRUE, metrics = FALSE,
-  explanatory_name = "explanatory", estimate_name = "HR",
-  estimate_suffix = "", p_name = "p", digits = c(2, 2, 3),
-  confint_sep = "-", ...)
+\method{fit2df}{crrlist}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  explanatory_name = "explanatory",
+  estimate_name = "HR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{stanfit}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "OR", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), confint_sep = "-", ...)
+\method{fit2df}{stanfit}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  remove_intercept = TRUE,
+  explanatory_name = "explanatory",
+  estimate_name = "OR",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  confint_sep = "-",
+  ...
+)
 
-\method{fit2df}{mipo}(.data, condense = TRUE, metrics = FALSE,
-  remove_intercept = TRUE, explanatory_name = "explanatory",
-  estimate_name = "Coefficient", estimate_suffix = "", p_name = "p",
-  digits = c(2, 2, 3), exp = FALSE, confint_level = 0.95,
-  confint_sep = "-", ...)
+\method{fit2df}{mipo}(
+  .data,
+  condense = TRUE,
+  metrics = FALSE,
+  remove_intercept = TRUE,
+  explanatory_name = "explanatory",
+  estimate_name = "Coefficient",
+  estimate_suffix = "",
+  p_name = "p",
+  digits = c(2, 2, 3),
+  exp = FALSE,
+  confint_level = 0.95,
+  confint_sep = "-",
+  ...
+)
 }
 \arguments{
 \item{...}{Other arguments: \code{X}: Design matrix from stanfit modelling.
@@ -138,7 +279,7 @@ interval limits, (3) p-value.}
 intervals. Defaults to TRUE.}
 
 \item{confint_type}{One of \code{c("profile", "default")} for GLM models
-(\code{\link[MASS]{confint.glm}}) or \code{c("profile", "Wald", "boot")}
+(\link[MASS:confint]{confint.glm}) or \code{c("profile", "Wald", "boot")}
 for \code{glmer/lmer} models (\code{\link[lme4]{confint.merMod}}.). Not
 implemented for \code{lm, coxph or coxphlist}.}
 }

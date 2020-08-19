@@ -4,8 +4,7 @@
 \alias{missing_glimpse}
 \title{Summary of missing values}
 \usage{
-missing_glimpse(.data, dependent = NULL, explanatory = NULL,
-  digits = 1)
+missing_glimpse(.data, dependent = NULL, explanatory = NULL, digits = 1)
 }
 \arguments{
 \item{.data}{Data frame.}

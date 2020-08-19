@@ -4,8 +4,13 @@
 \alias{missing_pattern}
 \title{Characterise missing data for \code{finalfit} models}
 \usage{
-missing_pattern(.data, dependent = NULL, explanatory = NULL,
-  rotate.names = TRUE, ...)
+missing_pattern(
+  .data,
+  dependent = NULL,
+  explanatory = NULL,
+  rotate.names = TRUE,
+  ...
+)
 }
 \arguments{
 \item{.data}{Data frame. Missing values must be coded \code{NA}.}
