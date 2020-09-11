@@ -885,8 +885,7 @@ t2 = colon_s %>%
   condense_fit(estimate_name = "OR (multivariable robust SE)")
 
 ff_merge(t1, t2, last_merge = TRUE) %>% 
-  gt::gt() %>% 
-  gt::cols_align(align = "right", columns = c(3:7))
+	knitr::kable(row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
 ### 2.15 Remove p-value
