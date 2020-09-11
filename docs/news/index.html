@@ -76,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -149,9 +149,21 @@
       <small>Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="finalfit-1-0-1" class="section level1">
+    <div id="finalfit-102" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-1-0-1" class="anchor"></a>finalfit 1.0.1<small> 2020-04-21 </small>
+<a href="#finalfit-102" class="anchor"></a>finalfit 1.0.2<small> 2020-07-03 </small>
+</h1>
+<ul>
+<li>
+<code><a href="../reference/ff_relabel_df.html">ff_relabel_df()</a></code> added to allow passing data frame / tibble with labels directly at bottom of pipe.</li>
+<li>
+<code>add_row_total</code> in <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> now can include proportion of complete data via <code>include_row_totals_percent</code> argument.</li>
+<li>Robust standard error approach added to vignette.</li>
+</ul>
+</div>
+    <div id="finalfit-101" class="section level1">
+<h1 class="page-header">
+<a href="#finalfit-101" class="anchor"></a>finalfit 1.0.1<small> 2020-04-21 </small>
 </h1>
 <ul>
 <li>
@@ -169,9 +181,9 @@
 <li>Plots bug fix when using <code>remove_ref</code> argument.</li>
 </ul>
 </div>
-    <div id="finalfit-1-0-0" class="section level1">
+    <div id="finalfit-100" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-1-0-0" class="anchor"></a>finalfit 1.0.0<small> 2020-02-20 </small>
+<a href="#finalfit-100" class="anchor"></a>finalfit 1.0.0<small> 2020-02-20 </small>
 </h1>
 <ul>
 <li>First official release.</li>
@@ -180,9 +192,9 @@
 <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> completely rewritten. New column and row summary functions. Alternative statistical tests included. Finer control over continous variable behaviours.</li>
 </ul>
 </div>
-    <div id="finalfit-0-9-6" class="section level1">
+    <div id="finalfit-096" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-9-6" class="anchor"></a>finalfit 0.9.6<small> 2019-11-20 </small>
+<a href="#finalfit-096" class="anchor"></a>finalfit 0.9.6<small> 2019-11-20 </small>
 </h1>
 <ul>
 <li>Built on R 3.6.1.</li>
@@ -207,9 +219,9 @@
 <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> includes argument <code>cont_range = TRUE</code> to include quartiles Q1 and Q3 when median for continuous variables. <a href='https://github.com/ewenharrison/finalfit/issues/29'>#29</a></li>
 </ul>
 </div>
-    <div id="finalfit-0-9-5" class="section level1">
+    <div id="finalfit-095" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-9-5" class="anchor"></a>finalfit 0.9.5<small> 2019-09-10 </small>
+<a href="#finalfit-095" class="anchor"></a>finalfit 0.9.5<small> 2019-09-10 </small>
 </h1>
 <ul>
 <li>
@@ -224,9 +236,9 @@
 <code><a href="../reference/ff_permute.html">ff_permute()</a></code> re-written to allow many more options for producing intermediate models.</li>
 </ul>
 </div>
-    <div id="finalfit-0-9-4" class="section level1">
+    <div id="finalfit-094" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-9-4" class="anchor"></a>finalfit 0.9.4<small> 2019-07-19 </small>
+<a href="#finalfit-094" class="anchor"></a>finalfit 0.9.4<small> 2019-07-19 </small>
 </h1>
 <ul>
 <li>
@@ -240,17 +252,17 @@
 <li>Level label removed for continous variables from <code><a href="../reference/or_plot.html">or_plot()</a></code>, <code><a href="../reference/hr_plot.html">hr_plot()</a></code> and <code>coeffient_plot()</code>.</li>
 </ul>
 </div>
-    <div id="finalfit-0-9-3" class="section level1">
+    <div id="finalfit-093" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-9-3" class="anchor"></a>finalfit 0.9.3<small> 2019-05-31 </small>
+<a href="#finalfit-093" class="anchor"></a>finalfit 0.9.3<small> 2019-05-31 </small>
 </h1>
 <ul>
 <li>Bug in <code><a href="../reference/or_plot.html">or_plot()</a></code> and <code><a href="../reference/hr_plot.html">hr_plot()</a></code> introduced in 0.9.2 because of new total column specification.</li>
 </ul>
 </div>
-    <div id="finalfit-0-9-2" class="section level1">
+    <div id="finalfit-092" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-9-2" class="anchor"></a>finalfit 0.9.2<small> 2019-05-31 </small>
+<a href="#finalfit-092" class="anchor"></a>finalfit 0.9.2<small> 2019-05-31 </small>
 </h1>
 <ul>
 <li>Competing risks time-to-event regression now supported via <code><a href="https://rdrr.io/pkg/cmprsk/man/crr.html">cmprsk::crr()</a></code>: <code><a href="../reference/crruni.html">crruni()</a></code>, <code><a href="../reference/crrmulti.html">crrmulti()</a></code> and <code><a href="../reference/fit2df.html">fit2df()</a></code>.</li>
@@ -265,9 +277,9 @@
 <code><a href="../reference/ff_permute.html">finalfit_permute()</a></code> added.</li>
 </ul>
 </div>
-    <div id="finalfit-0-9-1" class="section level1">
+    <div id="finalfit-091" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-9-1" class="anchor"></a>finalfit 0.9.1<small> 2019-03-26 </small>
+<a href="#finalfit-091" class="anchor"></a>finalfit 0.9.1<small> 2019-03-26 </small>
 </h1>
 <ul>
 <li>
@@ -278,9 +290,9 @@
 <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> now provides total count for continuous variable. <a href='https://github.com/ewenharrison/finalfit/issues/17'>#17</a></li>
 </ul>
 </div>
-    <div id="finalfit-0-9-0" class="section level1">
+    <div id="finalfit-090" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-9-0" class="anchor"></a>finalfit 0.9.0<small> 2019-02-15 </small>
+<a href="#finalfit-090" class="anchor"></a>finalfit 0.9.0<small> 2019-02-15 </small>
 </h1>
 <ul>
 <li>
@@ -292,9 +304,9 @@
 <li>Data preparation vignette added.</li>
 </ul>
 </div>
-    <div id="finalfit-0-8-9" class="section level1">
+    <div id="finalfit-089" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-8-9" class="anchor"></a>finalfit 0.8.9<small> 2018-12-18 </small>
+<a href="#finalfit-089" class="anchor"></a>finalfit 0.8.9<small> 2018-12-18 </small>
 </h1>
 <ul>
 <li>
@@ -309,9 +321,9 @@
 <li>Error added to <code><a href="../reference/finalfit.html">finalfit()</a></code> for not-allowed colons (:) in factor levels. <a href='https://github.com/ewenharrison/finalfit/issues/10'>#10</a></li>
 </ul>
 </div>
-    <div id="finalfit-0-8-8" class="section level1">
+    <div id="finalfit-088" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-8-8" class="anchor"></a>finalfit 0.8.8<small> 2018-11-09 </small>
+<a href="#finalfit-088" class="anchor"></a>finalfit 0.8.8<small> 2018-11-09 </small>
 </h1>
 <ul>
 <li>
@@ -330,9 +342,9 @@
 <code><a href="../reference/fit2df.html">fit2df()</a></code> and its internal function <code>extract_fit</code> modified to take <code>confint_type</code> and <code>confint_level</code>.</li>
 </ul>
 </div>
-    <div id="finalfit-0-8-7" class="section level1">
+    <div id="finalfit-087" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-8-7" class="anchor"></a>finalfit 0.8.7<small> 2018-09-21 </small>
+<a href="#finalfit-087" class="anchor"></a>finalfit 0.8.7<small> 2018-09-21 </small>
 </h1>
 <ul>
 <li>New vignettes</li>
@@ -342,49 +354,49 @@
 </li>
 </ul>
 </div>
-    <div id="finalfit-0-8-6" class="section level1">
+    <div id="finalfit-086" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-8-6" class="anchor"></a>finalfit 0.8.6<small> 2018-08-30 </small>
+<a href="#finalfit-086" class="anchor"></a>finalfit 0.8.6<small> 2018-08-30 </small>
 </h1>
 <ul>
 <li>Bug fix</li>
 </ul>
 </div>
-    <div id="finalfit-0-8-5" class="section level1">
+    <div id="finalfit-085" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-8-5" class="anchor"></a>finalfit 0.8.5<small> 2018-08-27 </small>
+<a href="#finalfit-085" class="anchor"></a>finalfit 0.8.5<small> 2018-08-27 </small>
 </h1>
 <ul>
 <li>Extended missing data functions added</li>
 </ul>
 </div>
-    <div id="finalfit-0-8-4" class="section level1">
+    <div id="finalfit-084" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-8-4" class="anchor"></a>finalfit 0.8.4<small> 2018-08-01 </small>
+<a href="#finalfit-084" class="anchor"></a>finalfit 0.8.4<small> 2018-08-01 </small>
 </h1>
 <ul>
 <li>Bootstrap simulation functions added</li>
 </ul>
 </div>
-    <div id="finalfit-0-8-3" class="section level1">
+    <div id="finalfit-083" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-8-3" class="anchor"></a>finalfit 0.8.3<small> 2018-07-25 </small>
+<a href="#finalfit-083" class="anchor"></a>finalfit 0.8.3<small> 2018-07-25 </small>
 </h1>
 <ul>
 <li>Bug fix</li>
 </ul>
 </div>
-    <div id="finalfit-0-8-2" class="section level1">
+    <div id="finalfit-082" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-8-2" class="anchor"></a>finalfit 0.8.2<small> 2018-07-24 </small>
+<a href="#finalfit-082" class="anchor"></a>finalfit 0.8.2<small> 2018-07-24 </small>
 </h1>
 <ul>
 <li>Missing data functions added</li>
 </ul>
 </div>
-    <div id="finalfit-0-8-1" class="section level1">
+    <div id="finalfit-081" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-8-1" class="anchor"></a>finalfit 0.8.1<small> 2018-07-17 </small>
+<a href="#finalfit-081" class="anchor"></a>finalfit 0.8.1<small> 2018-07-17 </small>
 </h1>
 <div id="bug-fixes" class="section level2">
 <h2 class="hasAnchor">
@@ -404,9 +416,9 @@
 </ul>
 </div>
 </div>
-    <div id="finalfit-0-7-8" class="section level1">
+    <div id="finalfit-078" class="section level1">
 <h1 class="page-header">
-<a href="#finalfit-0-7-8" class="anchor"></a>finalfit 0.7.8<small> 2018-06-27 </small>
+<a href="#finalfit-078" class="anchor"></a>finalfit 0.7.8<small> 2018-06-27 </small>
 </h1>
 <ul>
 <li>First CRAN release</li>
@@ -418,25 +430,26 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#finalfit-1-0-1">1.0.1</a></li>
-        <li><a href="#finalfit-1-0-0">1.0.0</a></li>
-        <li><a href="#finalfit-0-9-6">0.9.6</a></li>
-        <li><a href="#finalfit-0-9-5">0.9.5</a></li>
-        <li><a href="#finalfit-0-9-4">0.9.4</a></li>
-        <li><a href="#finalfit-0-9-3">0.9.3</a></li>
-        <li><a href="#finalfit-0-9-2">0.9.2</a></li>
-        <li><a href="#finalfit-0-9-1">0.9.1</a></li>
-        <li><a href="#finalfit-0-9-0">0.9.0</a></li>
-        <li><a href="#finalfit-0-8-9">0.8.9</a></li>
-        <li><a href="#finalfit-0-8-8">0.8.8</a></li>
-        <li><a href="#finalfit-0-8-7">0.8.7</a></li>
-        <li><a href="#finalfit-0-8-6">0.8.6</a></li>
-        <li><a href="#finalfit-0-8-5">0.8.5</a></li>
-        <li><a href="#finalfit-0-8-4">0.8.4</a></li>
-        <li><a href="#finalfit-0-8-3">0.8.3</a></li>
-        <li><a href="#finalfit-0-8-2">0.8.2</a></li>
-        <li><a href="#finalfit-0-8-1">0.8.1</a></li>
-        <li><a href="#finalfit-0-7-8">0.7.8</a></li>
+        <li><a href="#finalfit-102">1.0.2</a></li>
+        <li><a href="#finalfit-101">1.0.1</a></li>
+        <li><a href="#finalfit-100">1.0.0</a></li>
+        <li><a href="#finalfit-096">0.9.6</a></li>
+        <li><a href="#finalfit-095">0.9.5</a></li>
+        <li><a href="#finalfit-094">0.9.4</a></li>
+        <li><a href="#finalfit-093">0.9.3</a></li>
+        <li><a href="#finalfit-092">0.9.2</a></li>
+        <li><a href="#finalfit-091">0.9.1</a></li>
+        <li><a href="#finalfit-090">0.9.0</a></li>
+        <li><a href="#finalfit-089">0.8.9</a></li>
+        <li><a href="#finalfit-088">0.8.8</a></li>
+        <li><a href="#finalfit-087">0.8.7</a></li>
+        <li><a href="#finalfit-086">0.8.6</a></li>
+        <li><a href="#finalfit-085">0.8.5</a></li>
+        <li><a href="#finalfit-084">0.8.4</a></li>
+        <li><a href="#finalfit-083">0.8.3</a></li>
+        <li><a href="#finalfit-082">0.8.2</a></li>
+        <li><a href="#finalfit-081">0.8.1</a></li>
+        <li><a href="#finalfit-078">0.7.8</a></li>
       </ul>
     </div>
   </div>

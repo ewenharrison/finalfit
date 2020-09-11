@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -110,9 +110,9 @@
   <div class="contents col-md-9">
 
 
-<div id="finalfit" class="section level1">
+<div id="finalfit-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#finalfit" class="anchor"></a>finalfit <img src="reference/figures/finalfit_hex.png" align="right">
+<a href="#finalfit-" class="anchor"></a>finalfit <img src="reference/figures/finalfit_hex.png" align="right">
 </h1></div>
 <p>The <code>finalfit</code> package provides functions that help you quickly create elegant final results tables and plots when modelling in R. These can easily be exported as Word documents, PDFs, or html files.</p>
 <p>Its design follows Hadley Wickham’s <a href="http://tidyverse.tidyverse.org/articles/manifesto.html">tidy tool manifesto</a>.</p>
@@ -121,9 +121,9 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install <code>finalfit</code> from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"finalfit"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"finalfit"</span>)</span></code></pre></div>
 <p>It is recommended that this package is used together with <code>dplyr</code> which can be installed via:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"dplyr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"dplyr"</span>)</span></code></pre></div>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
@@ -134,28 +134,28 @@
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
 <p>See <code>getting started</code> and the <code>All tables</code> vignettes for extensive examples.</p>
-<div id="crosstable-table-1" class="section level3">
+<div id="crosstable--table-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#crosstable-table-1" class="anchor"></a>Crosstable / table 1</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Crosstable </span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, </a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">add_dependent_label=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t1</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t1, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a></code></pre></div>
+<a href="#crosstable--table-1" class="anchor"></a>Crosstable / table 1</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Crosstable </span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="st">  </span><span class="kw"><a href="reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, </span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">add_dependent_label=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t1</span>
+<span id="cb3-7"><a href="#cb3-7"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t1, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg" alt="" width="600" class="aligncenter"></a></p>
 </div>
 <div id="regression-table" class="section level3">
 <h3 class="hasAnchor">
 <a href="#regression-table" class="anchor"></a>Regression table</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, </a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">metrics=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t2</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t2[[<span class="dv">1</span>]], <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t2[[<span class="dv">2</span>]], <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">col.names=</span><span class="st">""</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, </span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw"><a href="reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">metrics=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t2</span>
+<span id="cb4-6"><a href="#cb4-6"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t2[[<span class="dv">1</span>]], <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span>
+<span id="cb4-7"><a href="#cb4-7"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t2[[<span class="dv">2</span>]], <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">col.names=</span><span class="st">""</span>)</span></code></pre></div>
 <p>When exported to PDF:</p>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg" alt="" width="700"></a></p>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg" alt="" width="700"></a></p>
@@ -163,11 +163,11 @@
 <div id="regression-plots" class="section level3">
 <h3 class="hasAnchor">
 <a href="#regression-plots" class="anchor"></a>Regression plots</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, </a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="reference/or_plot.html">or_plot</a></span>(dependent, explanatory)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, </span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="st">  </span><span class="kw"><a href="reference/or_plot.html">or_plot</a></span>(dependent, explanatory)</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg" alt="" width="600" class="aligncenter"></a></p>
 </div>
 </div>

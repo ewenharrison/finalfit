@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -125,11 +125,11 @@
 <a href="#installation-and-documentation" class="anchor"></a>Installation and Documentation</h2>
 <p>Development lives on <a href="https://github.com/ewenharrison/finalfit">GitHub</a>.</p>
 <p>You can install the <code>finalfit</code> development version from CRAN with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"finalfit"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"finalfit"</span>)</span></code></pre></div>
 <p>It is recommended that this package is used together with <code>dplyr</code>, which is a dependent.</p>
 <p>Some of the functions require <code>rstan</code> and <code>boot</code>. These have been left as <code>Suggests</code> rather than <code>Depends</code> to avoid unnecessary installation. If needed, they can be installed in the normal way:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"rstan"</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"boot"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"rstan"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"boot"</span>)</span></code></pre></div>
 <p>To <a href="https://www.datasurg.net/2018/05/05/install-github-package-on-safe-haven-server/">install off-line (or in a Safe Haven)</a>, download the zip file and use <code>devtools::install_local()</code>.</p>
 </div>
 <div id="main-features" class="section level2">
@@ -139,19 +139,19 @@
 <h3 class="hasAnchor">
 <a href="#summarise-variablesfactors-by-a-categorical-variable" class="anchor"></a>1. Summarise variables/factors by a categorical variable</h3>
 <p><code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> is a wrapper used to aggregate any number of explanatory variables by a single <strong>variable of interest</strong>. This is often “Table 1” of a published study. When categorical, the variable of interest can have a maximum of five levels. It uses <code><a href="https://rdrr.io/pkg/Hmisc/man/summary.formula.html">Hmisc::summary.formula()</a></code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(finalfit)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># Load example dataset, modified version of survival::colon</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(colon_s)</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co"># Table 1 - Patient demographics by variable of interest ----</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">dependent =<span class="st"> "perfor.factor"</span> <span class="co"># Bowel perforation</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory,</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">add_dependent_label=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t1</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t1, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(finalfit)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># Load example dataset, modified version of survival::colon</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(colon_s)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># Table 1 - Patient demographics by variable of interest ----</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>dependent =<span class="st"> "perfor.factor"</span> <span class="co"># Bowel perforation</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">add_dependent_label=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t1</span>
+<span id="cb3-13"><a href="#cb3-13"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t1, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Perforation</th>
@@ -223,13 +223,13 @@
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg" alt="" width="600" class="aligncenter"></a></p>
 <p>See other options relating to inclusion of missing data, mean vs. median for continuous variables, column vs. row proportions, include a total column etc.</p>
 <p><code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> is also commonly used to summarise any number of variables by an <strong>outcome variable</strong> (say dead yes/no).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># Table 2 - 5 yr mortality ----</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, </a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">add_dependent_label=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t2</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t2, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Table 2 - 5 yr mortality ----</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, </span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">add_dependent_label=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t2</span>
+<span id="cb4-7"><a href="#cb4-7"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t2, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -302,11 +302,11 @@
 <h4 class="hasAnchor">
 <a href="#logistic-regression-glm" class="anchor"></a>Logistic regression: glm()</h4>
 <p>Of the form: <code><a href="https://rdrr.io/r/stats/glm.html">glm(depdendent ~ explanatory, family="binomial")</a></code></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t3</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t3, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t3</span>
+<span id="cb5-5"><a href="#cb5-5"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t3, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -397,12 +397,12 @@
 <h4 class="hasAnchor">
 <a href="#logistic-regression-with-reduced-model-glm" class="anchor"></a>Logistic regression with reduced model: glm()</h4>
 <p>Where a multivariable model contains a subset of the variables included specified in the full univariable set, this can be specified.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">explanatory_multi =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, explanatory_multi) -&gt;<span class="st"> </span>t4</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t4, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>explanatory_multi =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, explanatory_multi) -&gt;<span class="st"> </span>t4</span>
+<span id="cb6-6"><a href="#cb6-6"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t4, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -493,14 +493,14 @@
 <h4 class="hasAnchor">
 <a href="#mixed-effects-logistic-regression-lme4glmer" class="anchor"></a>Mixed effects logistic regression: lme4::glmer()</h4>
 <p>Of the form: <code><a href="https://rdrr.io/pkg/lme4/man/glmer.html">lme4::glmer(dependent ~ explanatory + (1 | random_effect), family="binomial")</a></code></p>
-<p>Hierarchical/mixed effects/multilevel logistic regression models can be specified using the argument <code>random_effect</code>. At the moment it is just set up for random intercepts (i.e. <code>(1 | random_effect)</code>, but in the future I’ll adjust this to accommodate random gradients if needed (i.e. <code>(variable1 | variable2)</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">explanatory_multi =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">random_effect =<span class="st"> "hospital"</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, explanatory_multi, random_effect) -&gt;<span class="st"> </span>t5</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t5, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a></code></pre></div>
+<p>Hierarchical/mixed effects/multilevel logistic regression models can be specified using the argument <code>random_effect</code>. At the moment it is just set up for random intercepts (i.e. <code>(1 | random_effect)</code>, but in the future I’ll adjust this to accommodate random gradients if needed (i.e. <code>(variable1 | variable2)</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>explanatory_multi =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>random_effect =<span class="st"> "hospital"</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, explanatory_multi, random_effect) -&gt;<span class="st"> </span>t5</span>
+<span id="cb7-7"><a href="#cb7-7"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t5, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -591,11 +591,11 @@
 <h4 class="hasAnchor">
 <a href="#cox-proportional-hazards-survivalcoxph" class="anchor"></a>Cox proportional hazards: survival::coxph()</h4>
 <p>Of the form: <code><a href="https://rdrr.io/pkg/survival/man/coxph.html">survival::coxph(dependent ~ explanatory)</a></code></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">dependent =<span class="st"> "Surv(time, status)"</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t6</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t6, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>dependent =<span class="st"> "Surv(time, status)"</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory) -&gt;<span class="st"> </span>t6</span>
+<span id="cb8-5"><a href="#cb8-5"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t6, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Surv(time, status)</th>
@@ -676,12 +676,12 @@
 <h4 class="hasAnchor">
 <a href="#add-common-model-metrics-to-output" class="anchor"></a>Add common model metrics to output</h4>
 <p><code>metrics=TRUE</code> provides common model metrics. The output is a list of two dataframes. Note chunk specification for output below.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, </a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">metrics=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t7</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t7[[<span class="dv">1</span>]], <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, <span class="dt">metrics=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>t7</span>
+<span id="cb9-6"><a href="#cb9-6"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t7[[<span class="dv">1</span>]], <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -766,7 +766,7 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t7[[<span class="dv">2</span>]], <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">col.names=</span><span class="st">""</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t7[[<span class="dv">2</span>]], <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">col.names=</span><span class="st">""</span>)</span></code></pre></div>
 <table class="table">
 <colgroup><col width="100%"></colgroup>
 <tbody><tr class="odd">
@@ -781,35 +781,35 @@
 <a href="#combine-multiple-models-into-single-table" class="anchor"></a>Combine multiple models into single table</h4>
 <p>Rather than going all-in-one, any number of subset models can be manually added on to a <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> table using <code><a href="../reference/ff_merge.html">finalfit_merge()</a></code>. This is particularly useful when models take a long-time to run or are complicated.</p>
 <p>Note the requirement for <code>fit_id=TRUE</code> in <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code>. <code>fit2df</code> extracts, condenses, and add metrics to supported models.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">explanatory_multi =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span>)</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">random_effect =<span class="st"> "hospital"</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co"># Separate tables</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, </a>
-<a class="sourceLine" id="cb11-9" data-line-number="9">  explanatory, <span class="dt">fit_id=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>example.summary</a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb11-11" data-line-number="11">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="../reference/glmuni.html">glmuni</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (univariable)"</span>) -&gt;<span class="st"> </span>example.univariable</a>
-<a class="sourceLine" id="cb11-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="st">  </span><span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (multivariable)"</span>) -&gt;<span class="st"> </span>example.multivariable</a>
-<a class="sourceLine" id="cb11-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb11-19" data-line-number="19">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-20" data-line-number="20"><span class="st">  </span><span class="kw"><a href="../reference/glmmixed.html">glmmixed</a></span>(dependent, explanatory, random_effect) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (multilevel)"</span>) -&gt;<span class="st"> </span>example.multilevel</a>
-<a class="sourceLine" id="cb11-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb11-23" data-line-number="23"><span class="co"># Pipe together</span></a>
-<a class="sourceLine" id="cb11-24" data-line-number="24">example.summary <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-25" data-line-number="25"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">finalfit_merge</a></span>(example.univariable) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-26" data-line-number="26"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">finalfit_merge</a></span>(example.multivariable) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-27" data-line-number="27"><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">finalfit_merge</a></span>(example.multilevel, <span class="dt">last_merge =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-28" data-line-number="28"><span class="st">  </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(colon_s, dependent, <span class="dt">prefix=</span><span class="st">""</span>) -&gt;<span class="st"> </span>t8 <span class="co"># place dependent variable label</span></a>
-<a class="sourceLine" id="cb11-29" data-line-number="29">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t8, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>explanatory_multi =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a>random_effect =<span class="st"> "hospital"</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co"># Separate tables</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, </span>
+<span id="cb11-9"><a href="#cb11-9"></a>  explanatory, <span class="dt">fit_id=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>example.summary</span>
+<span id="cb11-10"><a href="#cb11-10"></a></span>
+<span id="cb11-11"><a href="#cb11-11"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="st">  </span><span class="kw"><a href="../reference/glmuni.html">glmuni</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (univariable)"</span>) -&gt;<span class="st"> </span>example.univariable</span>
+<span id="cb11-14"><a href="#cb11-14"></a></span>
+<span id="cb11-15"><a href="#cb11-15"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a><span class="st">  </span><span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (multivariable)"</span>) -&gt;<span class="st"> </span>example.multivariable</span>
+<span id="cb11-18"><a href="#cb11-18"></a></span>
+<span id="cb11-19"><a href="#cb11-19"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb11-20"><a href="#cb11-20"></a><span class="st">  </span><span class="kw"><a href="../reference/glmmixed.html">glmmixed</a></span>(dependent, explanatory, random_effect) <span class="op">%&gt;%</span></span>
+<span id="cb11-21"><a href="#cb11-21"></a><span class="st">  </span><span class="kw"><a href="../reference/fit2df.html">fit2df</a></span>(<span class="dt">estimate_suffix=</span><span class="st">" (multilevel)"</span>) -&gt;<span class="st"> </span>example.multilevel</span>
+<span id="cb11-22"><a href="#cb11-22"></a></span>
+<span id="cb11-23"><a href="#cb11-23"></a><span class="co"># Pipe together</span></span>
+<span id="cb11-24"><a href="#cb11-24"></a>example.summary <span class="op">%&gt;%</span></span>
+<span id="cb11-25"><a href="#cb11-25"></a><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">finalfit_merge</a></span>(example.univariable) <span class="op">%&gt;%</span></span>
+<span id="cb11-26"><a href="#cb11-26"></a><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">finalfit_merge</a></span>(example.multivariable) <span class="op">%&gt;%</span></span>
+<span id="cb11-27"><a href="#cb11-27"></a><span class="st">  </span><span class="kw"><a href="../reference/ff_merge.html">finalfit_merge</a></span>(example.multilevel, <span class="dt">last_merge =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb11-28"><a href="#cb11-28"></a><span class="st">  </span><span class="kw"><a href="../reference/dependent_label.html">dependent_label</a></span>(colon_s, dependent, <span class="dt">prefix=</span><span class="st">""</span>) -&gt;<span class="st"> </span>t8 <span class="co"># place dependent variable label</span></span>
+<span id="cb11-29"><a href="#cb11-29"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(t8, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">align=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Mortality 5 year</th>
@@ -920,32 +920,32 @@
 <div id="or-plot" class="section level4">
 <h4 class="hasAnchor">
 <a href="#or-plot" class="anchor"></a>OR plot</h4>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/or_plot.html">or_plot</a></span>(dependent, explanatory)</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co"># Previously fitted models (`glmmulti()` or # `glmmixed()`) can be provided directly to `glmfit`</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="st">  </span><span class="kw"><a href="../reference/or_plot.html">or_plot</a></span>(dependent, explanatory)</span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="co"># Previously fitted models (`glmmulti()` or # `glmmixed()`) can be provided directly to `glmfit`</span></span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg" alt="" width="700"></a></p>
 </div>
 <div id="hr-plot" class="section level4">
 <h4 class="hasAnchor">
 <a href="#hr-plot" class="anchor"></a>HR plot</h4>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">dependent =<span class="st"> "Surv(time, status)"</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/hr_plot.html">hr_plot</a></span>(dependent, explanatory, <span class="dt">dependent_label =</span> <span class="st">"Survival"</span>)</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co"># Previously fitted models (`coxphmulti`) can be provided directly using `coxfit`</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>dependent =<span class="st"> "Surv(time, status)"</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="st">  </span><span class="kw"><a href="../reference/hr_plot.html">hr_plot</a></span>(dependent, explanatory, <span class="dt">dependent_label =</span> <span class="st">"Survival"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="co"># Previously fitted models (`coxphmulti`) can be provided directly using `coxfit`</span></span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/plot2.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/plot2.jpg" alt="" width="700"></a></p>
 </div>
 <div id="kaplan-meier-survival-plots" class="section level4">
 <h4 class="hasAnchor">
 <a href="#kaplan-meier-survival-plots" class="anchor"></a>Kaplan-Meier survival plots</h4>
 <p>KM plots can be produced using the <code><a href="https://rdrr.io/r/base/library.html">library(survminer)</a></code></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">dependent =<span class="st"> "Surv(time, status)"</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/surv_plot.html">surv_plot</a></span>(dependent, explanatory, </a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">  <span class="dt">xlab=</span><span class="st">"Time (days)"</span>, <span class="dt">pval=</span><span class="ot">TRUE</span>, <span class="dt">legend=</span><span class="st">"none"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"perfor.factor"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>dependent =<span class="st"> "Surv(time, status)"</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="st">  </span><span class="kw"><a href="../reference/surv_plot.html">surv_plot</a></span>(dependent, explanatory, </span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="dt">xlab=</span><span class="st">"Time (days)"</span>, <span class="dt">pval=</span><span class="ot">TRUE</span>, <span class="dt">legend=</span><span class="st">"none"</span>)</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/Rplot.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/Rplot.png" alt="" width="500" height="500" class="aligncenter size-full wp-image-964"></a></p>
 </div>
 </div>
@@ -954,14 +954,14 @@
 <h2 class="hasAnchor">
 <a href="#notes" class="anchor"></a>Notes</h2>
 <p>Use <code><a href="../reference/ff_label.html">ff_label()</a></code> to assign labels to variables for tables and plots.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">    <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(age.factor, <span class="st">"Age (years)"</span>)</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">  )</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>colon_s <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(age.factor, <span class="st">"Age (years)"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>  )</span></code></pre></div>
 <p>Export dataframe tables directly or to <a href="http://rmarkdown.rstudio.com">R Markdown</a> <a href="https://yihui.name/knitr/"><code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code></a>.</p>
-<p>Note wrapper <code><a href="../reference/missing_pattern.html">missing_pattern()</a></code> is also useful. Wraps <code><a href="http://stefvanbuuren.github.io/mice/reference/md.pattern.html">mice::md.pattern</a></code>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/missing_pattern.html">missing_pattern</a></span>(dependent, explanatory)</a></code></pre></div>
+<p>Note wrapper <code><a href="../reference/missing_pattern.html">missing_pattern()</a></code> is also useful. Wraps <code><a href="https://rdrr.io/pkg/mice/man/md.pattern.html">mice::md.pattern</a></code>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="kw"><a href="../reference/missing_pattern.html">missing_pattern</a></span>(dependent, explanatory)</span></code></pre></div>
 <p><img src="finalfit_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <pre><code>#&gt;     sex.factor perfor.factor age.factor mort_5yr obstruct.factor   
 #&gt; 894          1             1          1        1               1  0

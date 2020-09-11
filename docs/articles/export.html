@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -120,65 +120,65 @@
     
 <p><code>finalfit</code> makes it easy to export final results tables and plots from RStudio to Microsoft Word and PDF.</p>
 <p>Make sure you are on the most up-to-date version of finalfit.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"finalfit"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"finalfit"</span>)</span></code></pre></div>
 <p>What follows is for demonstration purposes and is not meant to illustrate model building. We will ask, does a particular characteristic of a tumour (differentiation) predict 5-year survival?</p>
 <div id="explore-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#explore-data" class="anchor"></a>Explore data</h2>
 <p>First explore variable of interest (exposure) by making it the dependent.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(finalfit)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">dependent =<span class="st"> "differ.factor"</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># Specify explanatory variables of interest</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">  <span class="st">"extent.factor"</span>, <span class="st">"obstruct.factor"</span>, </a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">  <span class="st">"nodes"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(finalfit)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>dependent =<span class="st"> "differ.factor"</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># Specify explanatory variables of interest</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="st">"extent.factor"</span>, <span class="st">"obstruct.factor"</span>, </span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="st">"nodes"</span>)</span></code></pre></div>
 <p>Note this useful alternative way of specifying explanatory variable lists:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(age, sex.factor, extent.factor, obstruct.factor, nodes) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>() -&gt;<span class="st"> </span>explanatory</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>colon_s <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(age, sex.factor, extent.factor, obstruct.factor, nodes) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>() -&gt;<span class="st"> </span>explanatory</span></code></pre></div>
 <p>Check data.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/ff_glimpse.html">ff_glimpse</a></span>(dependent, explanatory)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; $Continuous</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;             label var_type   n missing_n missing_percent mean   sd  min</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; age   Age (years)    &lt;dbl&gt; 929         0             0.0 59.8 11.9 18.0</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; nodes       nodes    &lt;dbl&gt; 911        18             1.9  3.7  3.6  0.0</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt;       quartile_25 median quartile_75  max</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; age          53.0   61.0        69.0 85.0</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; nodes         1.0    2.0         5.0 33.0</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; $Categorical</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;                            label var_type   n missing_n missing_percent</span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; differ.factor    Differentiation    &lt;fct&gt; 906        23             2.5</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; sex.factor                   Sex    &lt;fct&gt; 929         0             0.0</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; extent.factor   Extent of spread    &lt;fct&gt; 929         0             0.0</span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; obstruct.factor      Obstruction    &lt;fct&gt; 908        21             2.3</span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;                 levels_n</span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; differ.factor          3</span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; sex.factor             2</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; extent.factor          4</span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; obstruct.factor        2</span></a>
-<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt;                                                                 levels</span></a>
-<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; differ.factor                  "Well", "Moderate", "Poor", "(Missing)"</span></a>
-<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt; sex.factor                                            "Female", "Male"</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt; extent.factor   "Submucosa", "Muscle", "Serosa", "Adjacent structures"</span></a>
-<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt; obstruct.factor                               "No", "Yes", "(Missing)"</span></a>
-<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt;                     levels_count         levels_percent</span></a>
-<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt; differ.factor   93, 663, 150, 23 10.0, 71.4, 16.1,  2.5</span></a>
-<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="co">#&gt; sex.factor              445, 484                 48, 52</span></a>
-<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="co">#&gt; extent.factor   21, 106, 759, 43  2.3, 11.4, 81.7,  4.6</span></a>
-<a class="sourceLine" id="cb4-31" data-line-number="31"><span class="co">#&gt; obstruct.factor     732, 176, 21       78.8, 18.9,  2.3</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>colon_s <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw"><a href="../reference/ff_glimpse.html">ff_glimpse</a></span>(dependent, explanatory)</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; $Continuous</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt;             label var_type   n missing_n missing_percent mean   sd  min</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; age   Age (years)    &lt;dbl&gt; 929         0             0.0 59.8 11.9 18.0</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; nodes       nodes    &lt;dbl&gt; 911        18             1.9  3.7  3.6  0.0</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt;       quartile_25 median quartile_75  max</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; age          53.0   61.0        69.0 85.0</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; nodes         1.0    2.0         5.0 33.0</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; </span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt; $Categorical</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt;                            label var_type   n missing_n missing_percent</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt; differ.factor    Differentiation    &lt;fct&gt; 906        23             2.5</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; sex.factor                   Sex    &lt;fct&gt; 929         0             0.0</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt; extent.factor   Extent of spread    &lt;fct&gt; 929         0             0.0</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt; obstruct.factor      Obstruction    &lt;fct&gt; 908        21             2.3</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co">#&gt;                 levels_n</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="co">#&gt; differ.factor          3</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="co">#&gt; sex.factor             2</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="co">#&gt; extent.factor          4</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a><span class="co">#&gt; obstruct.factor        2</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a><span class="co">#&gt;                                                                 levels</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a><span class="co">#&gt; differ.factor                  "Well", "Moderate", "Poor", "(Missing)"</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="co">#&gt; sex.factor                                            "Female", "Male"</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a><span class="co">#&gt; extent.factor   "Submucosa", "Muscle", "Serosa", "Adjacent structures"</span></span>
+<span id="cb4-26"><a href="#cb4-26"></a><span class="co">#&gt; obstruct.factor                               "No", "Yes", "(Missing)"</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a><span class="co">#&gt;                     levels_count         levels_percent</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a><span class="co">#&gt; differ.factor   93, 663, 150, 23 10.0, 71.4, 16.1,  2.5</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a><span class="co">#&gt; sex.factor              445, 484                 48, 52</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a><span class="co">#&gt; extent.factor   21, 106, 759, 43  2.3, 11.4, 81.7,  4.6</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a><span class="co">#&gt; obstruct.factor     732, 176, 21       78.8, 18.9,  2.3</span></span></code></pre></div>
 </div>
 <div id="demographics-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#demographics-table" class="anchor"></a>Demographics table</h2>
 <p>Look at associations between our exposure and other explanatory variables. Include missing data.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, </a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">na_include=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>colon_s <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, </span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">na_include=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -281,17 +281,17 @@
 </table>
 <p>Note missing data in <code>obstruct.factor</code>. See a full description of options in the forthcoming missing data vignette.</p>
 <p>We will drop this variable for now. Also see that nodes has not been labelled. There are small numbers in some variables generating chisq.test warnings (predicted less than 5 in any cell). Generate final table.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="st">"extent.factor"</span>, <span class="st">"nodes"</span>)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">        <span class="dt">nodes =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(nodes, <span class="st">"Lymph nodes involved"</span>)</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, </a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">na_include=</span><span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="dt">add_dependent_label=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>table <span class="dv">1</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">table1</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="st">"extent.factor"</span>, <span class="st">"nodes"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>colon_s <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="dt">nodes =</span> <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(nodes, <span class="st">"Lymph nodes involved"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="st">  </span><span class="kw"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span>(dependent, explanatory, </span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="dt">p=</span><span class="ot">TRUE</span>, <span class="dt">na_include=</span><span class="ot">TRUE</span>, </span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="dt">add_dependent_label=</span><span class="ot">TRUE</span>) -&gt;<span class="st"> </span>table <span class="dv">1</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>table1</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Differentiation</th>
@@ -373,13 +373,13 @@
 <h2 class="hasAnchor">
 <a href="#logistic-regression-table" class="anchor"></a>Logistic regression table</h2>
 <p>Now examine explanatory variables against outcome. Check plot runs ok.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="st">"extent.factor"</span>, <span class="st">"nodes"</span>, <span class="st">"differ.factor"</span>)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">dependent =<span class="st"> "mort_5yr"</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, </a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">dependent_label_prefix =</span> <span class="st">""</span>) -&gt;<span class="st"> </span>table2</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">table2</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="st">"extent.factor"</span>, <span class="st">"nodes"</span>, <span class="st">"differ.factor"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>dependent =<span class="st"> "mort_5yr"</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>colon_s <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="st">  </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, explanatory, </span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="dt">dependent_label_prefix =</span> <span class="st">""</span>) -&gt;<span class="st"> </span>table2</span>
+<span id="cb7-7"><a href="#cb7-7"></a>table2</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Mortality 5 year</th>
@@ -484,17 +484,17 @@
 <div id="odds-ratio-plot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#odds-ratio-plot" class="anchor"></a>Odds ratio plot</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/or_plot.html">or_plot</a></span>(dependent, explanatory, </a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>colon_s <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw"><a href="../reference/or_plot.html">or_plot</a></span>(dependent, explanatory, </span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>))</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/example_or_plot.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/example_or_plot.png" alt="" width="600" class="aligncenter"></a></p>
 </div>
 <div id="ms-word-via-knitrr-markdown" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ms-word-via-knitrr-markdown" class="anchor"></a>MS Word via knitr/R Markdown</h2>
 <p>Important. In most R Markdown set-ups, environment objects require to be saved and loaded to R Markdown document.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># Save objects for knitr/markdown</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/save.html">save</a></span>(table1, table2, dependent, explanatory, <span class="dt">file =</span> <span class="st">"out.rda"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Save objects for knitr/markdown</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw"><a href="https://rdrr.io/r/base/save.html">save</a></span>(table1, table2, dependent, explanatory, <span class="dt">file =</span> <span class="st">"out.rda"</span>)</span></code></pre></div>
 <p>We use RStudio Server Pro set-up on Ubuntu. But these instructions should work fine for most/all RStudio/Markdown default set-ups.</p>
 <p>In RStudio, select File &gt; New File &gt; R Markdown.</p>
 <p>A useful template file is produced by default. Try hitting knit to Word on the knitr button at the top of the .Rmd script window.</p>

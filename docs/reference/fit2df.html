@@ -110,7 +110,7 @@ created using mice::pool." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -217,108 +217,249 @@ specified in the parameters block as a vector named <code>beta</code>, of length
 <code>P</code>, where <code>P</code> is the number of fixed effect parameters. e.g.
 parameters vector[P] beta;</p>
 <p><code>fit2df.mipo</code> is the model extract method for the <code>mipo</code> object
-created using <code><a href='http://stefvanbuuren.github.io/mice/reference/pool.html'>mice::pool</a></code>.</p>
+created using <code><a href='https://rdrr.io/pkg/mice/man/pool.html'>mice::pool</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>fit2df</span>(<span class='no'>...</span>)
 
 <span class='co'># S3 method for lm</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>" to "</span>,
-  <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>" to "</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for lmlist</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>" to "</span>,
-  <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>" to "</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for glm</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
-  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for glmboot</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for glmlist</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
-  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for svyglmlist</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
-  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"profile"</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for lmerMod</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>, <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for glmerMod</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>,
-  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>confint_type</span> <span class='kw'>=</span> <span class='st'>"Wald"</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for coxph</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
-  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
-  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for coxphlist</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
-  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
-  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for crr</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
-  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
-  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for coxme</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
-  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
-  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for crrlist</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
-  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
-  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"HR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for stanfit</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)
 
 <span class='co'># S3 method for mipo</span>
-<span class='fu'>fit2df</span>(<span class='no'>.data</span>, <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>fit2df</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>condense</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>remove_intercept</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>explanatory_name</span> <span class='kw'>=</span> <span class='st'>"explanatory"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"Coefficient"</span>,
+  <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>p_name</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
+  <span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>confint_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>confint_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -383,7 +524,7 @@ intervals. Defaults to TRUE.</p></td>
     <tr>
       <th>confint_type</th>
       <td><p>One of <code><a href='https://rdrr.io/r/base/c.html'>c("profile", "default")</a></code> for GLM models
-(<code><a href='https://rdrr.io/pkg/MASS/man/confint.html'>confint.glm</a></code>) or <code><a href='https://rdrr.io/r/base/c.html'>c("profile", "Wald", "boot")</a></code>
+(confint.glm) or <code><a href='https://rdrr.io/r/base/c.html'>c("profile", "Wald", "boot")</a></code>
 for <code>glmer/lmer</code> models (<code><a href='https://rdrr.io/pkg/lme4/man/confint.merMod.html'>confint.merMod</a></code>.). Not
 implemented for <code>lm, coxph or coxphlist</code>.</p></td>
     </tr>

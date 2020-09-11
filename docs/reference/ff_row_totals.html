@@ -80,7 +80,7 @@ TRUE) which includes a count for each dummy variable as a factor and mean
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -161,15 +161,33 @@ TRUE)</a></code> which includes a count for each dummy variable as a factor and 
 (sd) or median (iqr) for continuous variables.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ff_row_totals</span>(<span class='no'>df.in</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>,
-  <span class='kw'>missing_column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>na_include_dependent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>na_complete_cases</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>total_name</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
-  <span class='kw'>na_name</span> <span class='kw'>=</span> <span class='st'>"Missing N"</span>)
+    <pre class="usage"><span class='fu'>ff_row_totals</span>(
+  <span class='no'>df.in</span>,
+  <span class='no'>.data</span>,
+  <span class='no'>dependent</span>,
+  <span class='no'>explanatory</span>,
+  <span class='kw'>missing_column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>na_include_dependent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_complete_cases</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>total_name</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
+  <span class='kw'>na_name</span> <span class='kw'>=</span> <span class='st'>"Missing N"</span>
+)
 
-<span class='fu'>finalfit_row_totals</span>(<span class='no'>df.in</span>, <span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>,
-  <span class='kw'>missing_column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>na_include_dependent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>na_complete_cases</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>total_name</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
-  <span class='kw'>na_name</span> <span class='kw'>=</span> <span class='st'>"Missing N"</span>)</pre>
+<span class='fu'>finalfit_row_totals</span>(
+  <span class='no'>df.in</span>,
+  <span class='no'>.data</span>,
+  <span class='no'>dependent</span>,
+  <span class='no'>explanatory</span>,
+  <span class='kw'>missing_column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>na_include_dependent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_complete_cases</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>total_name</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
+  <span class='kw'>na_name</span> <span class='kw'>=</span> <span class='st'>"Missing N"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,6 +212,14 @@ variables.</p></td>
     <tr>
       <th>missing_column</th>
       <td><p>Logical. Include a column of counts of missing data.</p></td>
+    </tr>
+    <tr>
+      <th>percent</th>
+      <td><p>Logical. Include percentage.</p></td>
+    </tr>
+    <tr>
+      <th>digits</th>
+      <td><p>Integer length 1. Number of digits for percentage.</p></td>
     </tr>
     <tr>
       <th>na_include_dependent</th>
@@ -224,16 +250,16 @@ are for compelte cases across all included variables.</p></td>
 <span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'>ff_row_totals</span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;        label Total N Missing N      levels      Alive       Died
-#&gt;          Age     915         0   &lt;40 years   31 (6.1)   36 (8.9)
-#&gt;                                40-59 years 208 (40.7) 131 (32.4)
-#&gt;                                  60+ years 272 (53.2) 237 (58.7)
-#&gt;          Sex     915         0      Female 243 (47.6) 194 (48.0)
-#&gt;                                       Male 268 (52.4) 210 (52.0)
-#&gt;  Obstruction     894        21          No 408 (82.1) 312 (78.6)
-#&gt;                                        Yes  89 (17.9)  85 (21.4)
-#&gt;  Perforation     915         0          No 497 (97.3) 391 (96.8)
-#&gt;                                        Yes   14 (2.7)   13 (3.2)</div></pre>
+        <span class='fu'>ff_row_totals</span>(<span class='no'>colon_s</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;        label     Total N Missing N      levels      Alive       Died
+#&gt;          Age 915 (100.0)         0   &lt;40 years   31 (6.1)   36 (8.9)
+#&gt;                                    40-59 years 208 (40.7) 131 (32.4)
+#&gt;                                      60+ years 272 (53.2) 237 (58.7)
+#&gt;          Sex 915 (100.0)         0      Female 243 (47.6) 194 (48.0)
+#&gt;                                           Male 268 (52.4) 210 (52.0)
+#&gt;  Obstruction  894 (97.7)        21          No 408 (82.1) 312 (78.6)
+#&gt;                                            Yes  89 (17.9)  85 (21.4)
+#&gt;  Perforation 915 (100.0)         0          No 497 (97.3) 391 (96.8)
+#&gt;                                            Yes   14 (2.7)   13 (3.2)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

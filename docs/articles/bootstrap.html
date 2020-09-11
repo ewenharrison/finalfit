@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -127,43 +127,43 @@
 <p>Well now I can with <code>finalfit</code></p>
 <p>There’s two main functions with some new internals to help expand to other models in the future.</p>
 <p>Make sure you are on the most up-to-date version of finalfit.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"finalfit"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"finalfit"</span>)</span></code></pre></div>
 <div id="create-new-dataframe-of-explanatory-variable-levels" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-new-dataframe-of-explanatory-variable-levels" class="anchor"></a>Create new dataframe of explanatory variable levels</h2>
 <p><code>ff_newdata</code> (alias: <code>finalfit_newdata</code>) is used to generate a new dataframe. I usually want to set 4 or 5 combinations of <code>x</code> levels and often find it difficult to get this formatted correctly to use with <code>predict</code>. Pass the original dataset, the names of explanatory variables used in the model, and a list of levels for these. For the latter, they can be included as rows or columns. If the data type is incorrect or you try to pass factor levels that don’t exist, it will fail with a useful warning.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(finalfit)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="../reference/ff_newdata.html">finalfit_newdata</a></span>(<span class="dt">explanatory =</span> explanatory, <span class="dt">newdata =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;40 years"</span>,  <span class="st">"Submucosa"</span>, <span class="st">"No"</span>),</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;40 years"</span>, <span class="st">"Submucosa"</span>, <span class="st">"Yes"</span>),</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;40 years"</span>, <span class="st">"Adjacent structures"</span>, <span class="st">"No"</span>),</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">    <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;40 years"</span>, <span class="st">"Adjacent structures"</span>, <span class="st">"Yes"</span>) )) -&gt;<span class="st"> </span>newdata</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">newdata</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;   age.factor       extent.factor perfor.factor</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; 1  &lt;40 years           Submucosa            No</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; 2  &lt;40 years           Submucosa           Yes</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; 3  &lt;40 years Adjacent structures            No</span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; 4  &lt;40 years Adjacent structures           Yes</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(finalfit)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age.factor"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="st">  </span><span class="kw"><a href="../reference/ff_newdata.html">finalfit_newdata</a></span>(<span class="dt">explanatory =</span> explanatory, <span class="dt">newdata =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;40 years"</span>,  <span class="st">"Submucosa"</span>, <span class="st">"No"</span>),</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;40 years"</span>, <span class="st">"Submucosa"</span>, <span class="st">"Yes"</span>),</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;40 years"</span>, <span class="st">"Adjacent structures"</span>, <span class="st">"No"</span>),</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;40 years"</span>, <span class="st">"Adjacent structures"</span>, <span class="st">"Yes"</span>) )) -&gt;<span class="st"> </span>newdata</span>
+<span id="cb2-11"><a href="#cb2-11"></a>newdata</span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;   age.factor       extent.factor perfor.factor</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt; 1  &lt;40 years           Submucosa            No</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt; 2  &lt;40 years           Submucosa           Yes</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt; 3  &lt;40 years Adjacent structures            No</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt; 4  &lt;40 years Adjacent structures           Yes</span></span></code></pre></div>
 </div>
 <div id="run-bootstrap-simulations-of-model-predictions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#run-bootstrap-simulations-of-model-predictions" class="anchor"></a>Run bootstrap simulations of model predictions</h2>
-<p><code>boot_predict</code> takes standard <code>lm</code> and <code>glm</code> model objects, together with <code>finalfit</code> <code>lmlist</code> and <code>glmlist</code> objects from fitters, e.g. <code>lmmulti</code> and <code>glmmulti</code>. In addition, it requires a <code>newdata</code> object generated from <code>ff_newdata</code>. If you’re new to this, don’t be put off by all those model acronyms, it is straightforward.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/boot_predict.html">boot_predict</a></span>(newdata, </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="dt">estimate_name =</span> <span class="st">"Predicted probability of death"</span>,</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">boot_compare =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">digits =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.03 to 0.60)</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.02 to 0.69)</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.53 to 0.87)</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.45 to 0.91)</span></a></code></pre></div>
+<p><code>boot_predict</code> takes standard <code>lm</code> and <code>glm</code> model objects, together with <code>finalfit</code> <code>lmlist</code> and <code>glmlist</code> objects from fitters, e.g. <code>lmmulti</code> and <code>glmmulti</code>. In addition, it requires a <code>newdata</code> object generated from <code>ff_newdata</code>. If you’re new to this, don’t be put off by all those model acronyms, it is straightforward.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>colon_s <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span><span class="kw"><a href="../reference/boot_predict.html">boot_predict</a></span>(newdata, </span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="dt">estimate_name =</span> <span class="st">"Predicted probability of death"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">boot_compare =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="dt">digits =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.08 to 0.49)</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.05 to 0.61)</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.50 to 0.86)</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.43 to 0.93)</span></span></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for demonstration purposes. You should expect to use 1000 to 10000 to ensure you have stable estimates.</p>
 </div>
 <div id="output-to-word-pdf-and-html-via-rmarkdown" class="section level2">
@@ -171,29 +171,29 @@
 <a href="#output-to-word-pdf-and-html-via-rmarkdown" class="anchor"></a>Output to Word, PDF, and html via RMarkdown</h2>
 <p>Simulations are produced using bootstrapping and everything is tidily outputted in a table/dataframe, which can be passed to <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code>.</p>
 <p>Place this chunk in an .Rmd file:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(table, <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">align =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(table, <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">align =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>))</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png" alt="" width="600" class="aligncenter"></a></p>
 </div>
 <div id="make-comparisons" class="section level2">
 <h2 class="hasAnchor">
 <a href="#make-comparisons" class="anchor"></a>Make comparisons</h2>
 <p>Better still, by including <code>boot_compare=TRUE</code> (default), comparisons are made between the first row of newdata and each subsequent row. These can be first differences (e.g. absolute risk differences) or ratios (e.g. relative risk ratios). The comparisons are done on the individual bootstrap predictions and the distribution summarised as a mean with percentile confidence intervals (95% CI as default, e.g. 2.5 and 97.5 percentiles). A p-value is generated on the proportion of values on the other side of the null from the mean, e.g. for a ratio greater than 1.0, p is the number of bootstrapped predictions under 1.0. Multiplied by two so it is two-sided.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/boot_predict.html">boot_predict</a></span>(newdata, </a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="dt">estimate_name =</span> <span class="st">"Predicted probability of death"</span>,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="co">#compare_name = "Absolute risk difference",</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">digits =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.00 to 0.55)</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.00 to 0.62)</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.47 to 0.84)</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.45 to 0.90)</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;                      Difference</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 1                             -</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2 0.00 (-0.13 to 0.18, p=0.980)</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3  0.41 (0.15 to 0.74, p&lt;0.001)</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4  0.42 (0.13 to 0.75, p&lt;0.001)</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>colon_s <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="st">  </span><span class="kw"><a href="../reference/boot_predict.html">boot_predict</a></span>(newdata, </span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="dt">estimate_name =</span> <span class="st">"Predicted probability of death"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="co">#compare_name = "Absolute risk difference",</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">digits =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.05 to 0.54)</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.04 to 0.68)</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.48 to 0.87)</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.49 to 0.90)</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt;                      Difference</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; 1                             -</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 2 0.02 (-0.12 to 0.21, p=0.820)</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 3  0.40 (0.15 to 0.64, p&lt;0.001)</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 4  0.41 (0.13 to 0.68, p&lt;0.001)</span></span></code></pre></div>
 </div>
 <div id="what-is-not-included" class="section level2">
 <h2 class="hasAnchor">
@@ -204,35 +204,35 @@
 <h2 class="hasAnchor">
 <a href="#plotting" class="anchor"></a>Plotting</h2>
 <p>Finally, as with all finalfit functions, results can be produced as individual variables using <code>condense == FALSE</code>. This is particularly useful for plotting.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(finalfit)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>())</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"nodes"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span>)</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">dependent =<span class="st"> 'mort_5yr'</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">colon_s <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="../reference/ff_newdata.html">finalfit_newdata</a></span>(<span class="dt">explanatory =</span> explanatory, <span class="dt">rowwise =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="dt">newdata =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">      <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">0</span>, <span class="dv">30</span>), <span class="dv">4</span>),</a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">      <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Muscle"</span>, <span class="dv">62</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Adjacent structures"</span>, <span class="dv">62</span>)),</a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">      <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"No"</span>, <span class="dv">31</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Yes"</span>, <span class="dv">31</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"No"</span>, <span class="dv">31</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Yes"</span>, <span class="dv">31</span>))</a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">    )</a>
-<a class="sourceLine" id="cb6-15" data-line-number="15">  ) -&gt;<span class="st"> </span>newdata</a>
-<a class="sourceLine" id="cb6-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17">colon_s <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="st">  </span><span class="kw"><a href="../reference/boot_predict.html">boot_predict</a></span>(newdata, <span class="dt">boot_compare =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb6-20" data-line-number="20">  <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">condense=</span><span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> nodes, <span class="dt">y =</span> estimate, <span class="dt">ymin =</span> estimate_conf.low,</a>
-<a class="sourceLine" id="cb6-22" data-line-number="22">      <span class="dt">ymax =</span> estimate_conf.high, <span class="dt">fill=</span>extent.factor))<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">colour =</span> extent.factor))<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span>(<span class="dt">alpha=</span><span class="fl">0.1</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span>(.<span class="op">~</span>perfor.factor)<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Number of postive lymph nodes"</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Probability of death"</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill =</span> <span class="st">"Extent of tumour"</span>, <span class="dt">colour =</span> <span class="st">"Extent of tumour"</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Probability of death by lymph node count"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(finalfit)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>())</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"nodes"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6"></a>dependent =<span class="st"> 'mort_5yr'</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a>colon_s <span class="op">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="st">  </span><span class="kw"><a href="../reference/ff_newdata.html">finalfit_newdata</a></span>(<span class="dt">explanatory =</span> explanatory, <span class="dt">rowwise =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="dt">newdata =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb6-11"><a href="#cb6-11"></a>      <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">0</span>, <span class="dv">30</span>), <span class="dv">4</span>),</span>
+<span id="cb6-12"><a href="#cb6-12"></a>      <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Muscle"</span>, <span class="dv">62</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Adjacent structures"</span>, <span class="dv">62</span>)),</span>
+<span id="cb6-13"><a href="#cb6-13"></a>      <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"No"</span>, <span class="dv">31</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Yes"</span>, <span class="dv">31</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"No"</span>, <span class="dv">31</span>), <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Yes"</span>, <span class="dv">31</span>))</span>
+<span id="cb6-14"><a href="#cb6-14"></a>    )</span>
+<span id="cb6-15"><a href="#cb6-15"></a>  ) -&gt;<span class="st"> </span>newdata</span>
+<span id="cb6-16"><a href="#cb6-16"></a></span>
+<span id="cb6-17"><a href="#cb6-17"></a>colon_s <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="st">  </span><span class="kw"><a href="../reference/glmmulti.html">glmmulti</a></span>(dependent, explanatory) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="st">  </span><span class="kw"><a href="../reference/boot_predict.html">boot_predict</a></span>(newdata, <span class="dt">boot_compare =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb6-20"><a href="#cb6-20"></a>  <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">condense=</span><span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> nodes, <span class="dt">y =</span> estimate, <span class="dt">ymin =</span> estimate_conf.low,</span>
+<span id="cb6-22"><a href="#cb6-22"></a>      <span class="dt">ymax =</span> estimate_conf.high, <span class="dt">fill=</span>extent.factor))<span class="op">+</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">colour =</span> extent.factor))<span class="op">+</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span>(<span class="dt">alpha=</span><span class="fl">0.1</span>)<span class="op">+</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span>(.<span class="op">~</span>perfor.factor)<span class="op">+</span></span>
+<span id="cb6-26"><a href="#cb6-26"></a><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Number of postive lymph nodes"</span>)<span class="op">+</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Probability of death"</span>)<span class="op">+</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill =</span> <span class="st">"Extent of tumour"</span>, <span class="dt">colour =</span> <span class="st">"Extent of tumour"</span>)<span class="op">+</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Probability of death by lymph node count"</span>)</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png" alt="" width="600" class="aligncenter"></a></p>
 <p>So there you have it. Straightforward bootstrapped simulations of model predictions, together with comparisons and easy plotting.</p>
 </div>

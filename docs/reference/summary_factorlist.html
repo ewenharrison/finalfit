@@ -79,7 +79,7 @@ summary table." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -159,18 +159,40 @@ explanatory variable names (continuous or categorical variables) to produce a
 summary table.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>summary_factorlist</span>(<span class='no'>.data</span>, <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>explanatory</span>, <span class='kw'>cont</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-  <span class='kw'>cont_nonpara</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cont_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>cont_range</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>p_cont_para</span> <span class='kw'>=</span> <span class='st'>"aov"</span>, <span class='kw'>p_cat</span> <span class='kw'>=</span> <span class='st'>"chisq"</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>total_col</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>orderbytotal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>),
-  <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>na_include_dependent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>na_complete_cases</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>na_to_p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
-  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>add_col_totals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>include_col_totals_percent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col_totals_rowname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>col_totals_prefix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>add_row_totals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>include_row_missing_col</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>row_totals_colname</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
-  <span class='kw'>row_missing_colname</span> <span class='kw'>=</span> <span class='st'>"Missing N"</span>, <span class='kw'>catTest</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>summary_factorlist</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>explanatory</span>,
+  <span class='kw'>cont</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
+  <span class='kw'>cont_nonpara</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>cont_cut</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>cont_range</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>p_cont_para</span> <span class='kw'>=</span> <span class='st'>"aov"</span>,
+  <span class='kw'>p_cat</span> <span class='kw'>=</span> <span class='st'>"chisq"</span>,
+  <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>total_col</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>orderbytotal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>),
+  <span class='kw'>na_include</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_include_dependent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_complete_cases</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_to_p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
+  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>add_col_totals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>include_col_totals_percent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>col_totals_rowname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>col_totals_prefix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>add_row_totals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>include_row_totals_percent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>include_row_missing_col</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>row_totals_colname</span> <span class='kw'>=</span> <span class='st'>"Total N"</span>,
+  <span class='kw'>row_missing_colname</span> <span class='kw'>=</span> <span class='st'>"Missing N"</span>,
+  <span class='kw'>catTest</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -304,6 +326,10 @@ left of table.</p></td>
       <th>add_row_totals</th>
       <td><p>Logical. Include row totals. Note this differs from
 <code>total_col</code> above particularly for continuous explanatory variables.</p></td>
+    </tr>
+    <tr>
+      <th>include_row_totals_percent</th>
+      <td><p>Include row percentage of total.</p></td>
     </tr>
     <tr>
       <th>include_row_missing_col</th>

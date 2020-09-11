@@ -82,7 +82,7 @@ produced with a model wrapper followed by the fit2df() function
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -164,11 +164,21 @@ produced with a model wrapper followed by the <code><a href='fit2df.html'>fit2df
 (see examples).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ff_merge</span>(<span class='no'>factorlist</span>, <span class='no'>fit2df_df</span>, <span class='kw'>ref_symbol</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>ff_merge</span>(
+  <span class='no'>factorlist</span>,
+  <span class='no'>fit2df_df</span>,
+  <span class='kw'>ref_symbol</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
-<span class='fu'>finalfit_merge</span>(<span class='no'>factorlist</span>, <span class='no'>fit2df_df</span>, <span class='kw'>ref_symbol</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>finalfit_merge</span>(
+  <span class='no'>factorlist</span>,
+  <span class='no'>fit2df_df</span>,
+  <span class='kw'>ref_symbol</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
+  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

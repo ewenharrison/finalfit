@@ -80,7 +80,7 @@ regression models" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -160,15 +160,29 @@ regression models</h1>
 regression models</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ff_permute</span>(<span class='no'>.data</span>, <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>explanatory_base</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>explanatory_permute</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>multiple_tables</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>include_base_model</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>include_full_model</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>base_on_top</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>ff_permute</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>explanatory_base</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>explanatory_permute</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>multiple_tables</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>include_base_model</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>include_full_model</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>base_on_top</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
+)
 
-<span class='fu'>finalfit_permute</span>(<span class='no'>.data</span>, <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>explanatory_base</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>explanatory_permute</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>multiple_tables</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>include_base_model</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>include_full_model</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>base_on_top</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>finalfit_permute</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>dependent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>explanatory_base</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>explanatory_permute</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>multiple_tables</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>include_base_model</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>include_full_model</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>base_on_top</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -315,44 +329,10 @@ table.</p></td>
 #&gt;  1.18 (0.70-1.97, p=0.535)                         - 1.16 (0.69-1.94, p=0.581)
 #&gt;                          -                         -                         -
 #&gt;                          - 2.64 (2.18-3.19, p&lt;0.001) 2.68 (2.21-3.26, p&lt;0.001)</div><div class='input'>
-<span class='co'># Logistic regression</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit_permute</span>(<span class='st'>"mort_5yr"</span>, <span class='no'>explanatory_base</span>, <span class='no'>explanatory_permute</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;  Dependent: Mortality 5 year                  Alive       Died
-#&gt;                          Age   &lt;40 years  31 (46.3)  36 (53.7)
-#&gt;                              40-59 years 208 (61.4) 131 (38.6)
-#&gt;                                60+ years 272 (53.4) 237 (46.6)
-#&gt;                          Sex      Female 243 (55.6) 194 (44.4)
-#&gt;                                     Male 268 (56.1) 210 (43.9)
-#&gt;                  Obstruction          No 408 (56.7) 312 (43.3)
-#&gt;                                      Yes  89 (51.1)  85 (48.9)
-#&gt;                  Perforation          No 497 (56.0) 391 (44.0)
-#&gt;                                      Yes  14 (51.9)  13 (48.1)
-#&gt;            &gt;4 positive nodes          No 431 (65.0) 232 (35.0)
-#&gt;                                      Yes  80 (31.7) 172 (68.3)
-#&gt;           OR (univariable)      OR (multivariable) 1      OR (multivariable) 2
-#&gt;                          -                         -                         -
-#&gt;  0.54 (0.32-0.92, p=0.023) 0.54 (0.32-0.92, p=0.023) 0.57 (0.34-0.98, p=0.041)
-#&gt;  0.75 (0.45-1.25, p=0.270) 0.75 (0.45-1.25, p=0.273) 0.81 (0.48-1.36, p=0.427)
-#&gt;                          -                         -                         -
-#&gt;  0.98 (0.76-1.27, p=0.889) 0.99 (0.76-1.28, p=0.925) 0.98 (0.75-1.28, p=0.903)
-#&gt;                          -                         -                         -
-#&gt;  1.25 (0.90-1.74, p=0.189)                         - 1.26 (0.90-1.76, p=0.177)
-#&gt;                          -                         -                         -
-#&gt;  1.18 (0.54-2.55, p=0.672)                         -                         -
-#&gt;                          -                         -                         -
-#&gt;  3.99 (2.94-5.46, p&lt;0.001)                         -                         -
-#&gt;       OR (multivariable) 3      OR (multivariable) 4      OR (multivariable) 5
-#&gt;                          -                         -                         -
-#&gt;  0.54 (0.32-0.92, p=0.023) 0.61 (0.35-1.06, p=0.080) 0.66 (0.37-1.16, p=0.147)
-#&gt;  0.75 (0.45-1.25, p=0.273) 0.90 (0.52-1.55, p=0.705) 1.00 (0.57-1.73, p=0.988)
-#&gt;                          -                         -                         -
-#&gt;  0.99 (0.76-1.28, p=0.926) 1.04 (0.79-1.37, p=0.787) 1.03 (0.78-1.37, p=0.823)
-#&gt;                          -                         -                         -
-#&gt;                          -                         - 1.34 (0.94-1.91, p=0.103)
-#&gt;                          -                         -                         -
-#&gt;  1.18 (0.54-2.56, p=0.671)                         - 1.21 (0.54-2.71, p=0.634)
-#&gt;                          -                         -                         -
-#&gt;                          - 4.05 (2.97-5.56, p&lt;0.001) 4.15 (3.03-5.73, p&lt;0.001)</div><div class='input'>
+# Logistic regression
+# colon_s %>%
+#   finalfit_permute("mort_5yr", explanatory_base, explanatory_permute)
+
 # Logistic regression with random effect (glmer)
 # colon_s %>%
 #   finalfit_permute("mort_5yr", explanatory_base, explanatory_permute,
