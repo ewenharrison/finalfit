@@ -49,7 +49,7 @@ extract_variable_label = function(.data){
 #'
 #' @param .data Data frame to be relabelled
 #' @param .labels Vector of variable labels (usually created using
-#'   \code{\link{extract_variable_label}}) of same length as \code{.data}.
+#'   \code{\link{extract_variable_label}}).
 #'
 #' @export
 #'

@@ -12,6 +12,7 @@
 #'   form \code{Surv(time, status)}.
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
+#' @param ... Other arguments to pass to \code{\link[survival]{coxph}}.
 #' @return A multivariable \code{\link[survival]{coxph}} fitted model
 #'   output. Output is of class \code{coxph}.
 #'
@@ -30,8 +31,12 @@
 #' 	coxphmulti(dependent, explanatory) %>%
 #' 	fit2df()
 
-coxphmulti <- function(.data, dependent, explanatory){
-  requireNamespace("survival")
-  coxph(as.formula(paste0(dependent, "~",
-                          paste(explanatory, collapse="+"))), data=.data)
+coxphmulti <- function(.data, dependent, explanatory, ...){
+	requireNamespace("survival")
+	ff_eval(
+		coxph(as.formula(paste0(dependent, "~",
+														paste(explanatory, collapse="+"))), data=.data, ...)
+	)
 }
+
+

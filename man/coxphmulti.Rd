@@ -4,7 +4,7 @@
 \alias{coxphmulti}
 \title{Cox proprotional hazards multivariable models: \code{finalfit} model wrapper}
 \usage{
-coxphmulti(.data, dependent, explanatory)
+coxphmulti(.data, dependent, explanatory, ...)
 }
 \arguments{
 \item{.data}{Data frame.}
@@ -14,6 +14,8 @@ form \code{Surv(time, status)}.}
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory
 variables.}
+
+\item{...}{Other arguments to pass to \code{\link[survival]{coxph}}.}
 }
 \value{
 A multivariable \code{\link[survival]{coxph}} fitted model

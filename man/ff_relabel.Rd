@@ -13,7 +13,7 @@ finalfit_relabel(.data, .labels)
 \item{.data}{Data frame to be relabelled}
 
 \item{.labels}{Vector of variable labels (usually created using
-\code{\link{extract_variable_label}}) of same length as \code{.data}.}
+\code{\link{extract_variable_label}}).}
 }
 \description{
 Variable labels can be created using \code{\link{ff_label}}. Some functions
