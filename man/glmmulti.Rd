@@ -41,7 +41,7 @@ dependent = "mort_5yr"
 
 colon_s \%>\%
 	glmmulti(dependent, explanatory) \%>\%
-	fit2df(estimate_suffix=" (univariable)")
+	fit2df(estimate_suffix=" (multivariable)")
 
 }
 \seealso{
