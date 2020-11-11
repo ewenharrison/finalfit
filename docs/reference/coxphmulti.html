@@ -159,7 +159,7 @@ Proportional Hazard regression models for a set of explanatory variables
 against a survival object.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>coxphmulti</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>)</pre>
+    <pre class="usage"><span class='fu'>coxphmulti</span>(<span class='no'>.data</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,6 +177,10 @@ form <code>Surv(time, status)</code>.</p></td>
       <th>explanatory</th>
       <td><p>Character vector of any length: name(s) of explanatory
 variables.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments to pass to <code><a href='https://rdrr.io/pkg/survival/man/coxph.html'>coxph</a></code>.</p></td>
     </tr>
     </table>
 
