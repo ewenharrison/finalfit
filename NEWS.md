@@ -2,7 +2,9 @@
 * `ff_relabel_df()` added to allow passing data frame / tibble with labels directly at bottom of pipe. 
 * `add_row_total` in `summary_factorlist()` now can include proportion of complete data via `include_row_totals_percent` argument. 
 * Robust standard error approach added to vignette.
-* Support added for weights etc. to be included in `coxphmulti()`. 
+* Support added for weights etc. to be included in `coxphmulti()`.
+* "Univariable" mixed effects models including random effects added to vignette. 
+* `summary_factorlist()`: non-parametric continuous variables now defaul to Q1 - Q3 rather than single figure IQR. 
 
 # finalfit 1.0.1
 

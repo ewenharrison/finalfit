@@ -82,6 +82,7 @@ extract_variable_label = function(.data){
 #' colon_s %>% str()
 #'   
 ff_relabel <- function(.data, .labels){
+	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
 	# Keep only labels for variables in data
 	.labels = .labels[names(.labels) %in% names(.data)]
 	relabel_one <- function(.){
@@ -144,8 +145,8 @@ remove_labels = function(.data){
 	}
 	
 	suppressWarnings( # All these irritiating bind_row warnings
-	.data %>% 
-		purrr::map_df(attr_label_null)
+		.data %>% 
+			purrr::map_df(attr_label_null)
 	)
 }
 

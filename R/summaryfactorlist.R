@@ -100,7 +100,7 @@
 #'   summary_factorlist(dependent, explanatory)
 summary_factorlist <- function(.data, 
 															 dependent = NULL, explanatory, 
-															 cont = "mean", cont_nonpara = NULL, cont_cut = 5, cont_range = FALSE, 
+															 cont = "mean", cont_nonpara = NULL, cont_cut = 5, cont_range = TRUE, 
 															 p = FALSE, p_cont_para = "aov", p_cat = "chisq",
 															 column = TRUE, total_col = FALSE, orderbytotal = FALSE,
 															 digits = c(1, 1, 3, 1), 

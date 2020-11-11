@@ -11,7 +11,7 @@ summary_factorlist(
   cont = "mean",
   cont_nonpara = NULL,
   cont_cut = 5,
-  cont_range = FALSE,
+  cont_range = TRUE,
   p = FALSE,
   p_cont_para = "aov",
   p_cat = "chisq",

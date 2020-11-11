@@ -906,7 +906,7 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 
 ### 2.16 Mixed effects random-intercept model
 
-At its simplest, a random-intercept model can be specified using a single quoted variable. In this example, it is the equivalent of quoting `random_effect = "(1 | hospital)"`. 
+At its simplest, a random-intercept model can be specified using a single quoted variable, e.g. `random_effect = "hospital"`. This is equivalent to  `random_effect = "(1 | hospital)"`. Alternatively you can provide the full specification including parenthesis, e.g. `random_effect = "(1 | hospital) + (1 | country)"`. 
 
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
@@ -922,6 +922,34 @@ colon_s %>%
 library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
+
+### 2.16b Mixed effects random-intercept model with univariable estimates including random effects
+
+Some recently asked about this and it is a good question. Here is an approach. 
+
+```{r, warning=FALSE, message=FALSE}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+random_effect = "hospital"
+
+colon_s %>%
+	finalfit(dependent, explanatory, random_effect = random_effect, keep_fit_id = TRUE) %>% 
+	ff_merge(
+		explanatory %>% 
+			purrr::map_df(~ glmmixed(colon_s, dependent, .x, random_effect = random_effect) %>% 
+											fit2df(estimate_suffix = " (univariable with RE)")), 
+		last_merge = TRUE
+	) %>% 
+	dplyr::relocate(7, .before = 6) -> t
+```
+
+```{r, echo=FALSE}
+library(knitr)
+kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
+```
+
+
 
 ### 2.17 Mixed effects random-slope model
 
