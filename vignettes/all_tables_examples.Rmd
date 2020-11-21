@@ -114,7 +114,7 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r"))
 
 ### 1.06 Non-parametric explanatory variables
 
-If desired, all continuous explanatory variables can be considered non-parametric. Summaries will be median (interquartile range) and the statistical test is Kruskal-Wallis/Mann-Whitney U.
+If desired, all continuous explanatory variables can be considered non-parametric. Summaries will be median (interquartile range) and the statistical test is Kruskal-Wallis/Mann-Whitney U. Use `cont_range = FALSE` if wish single-digit IQR, i.e. Q3-Q1. 
 
 ```{r, warning=FALSE}
 library(finalfit)
@@ -729,7 +729,7 @@ explanatory = c("obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s %>%
 	ff_interaction(age.factor, sex.factor) %>% 
-	finalfit(dependent, c(explanatory, "age.factor__sex.factor")) -> t
+	finalfit(dependent, c(explanatory, "age.factor_sex.factor")) -> t
 ```
 
 ```{r, echo=FALSE}

@@ -5,13 +5,13 @@
 \alias{finalfit_interaction}
 \title{Make an interaction variable and add to dataframe}
 \usage{
-ff_interaction(.data, ..., levels_sep = "|", var_sep = "__", label_sep = ":")
+ff_interaction(.data, ..., levels_sep = "_", var_sep = "_", label_sep = ":")
 
 finalfit_interaction(
   .data,
   ...,
-  levels_sep = "|",
-  var_sep = "__",
+  levels_sep = "_",
+  var_sep = "_",
   label_sep = ":"
 )
 }
@@ -24,7 +24,7 @@ finalfit_interaction(
 
 \item{var_sep}{Quoted character: how variable name is separated.}
 
-\item{label_sep}{Quoted character: how variable label is spearated}
+\item{label_sep}{Quoted character: how variable label is separated}
 }
 \value{
 Original data frame with new variable added via `dplyr::mutate`.
@@ -40,5 +40,5 @@ labelled with a name derived from any pre-existing labels.
 
 colon_s \%>\%
   ff_interaction(sex.factor, perfor.factor) \%>\%
-    summary_factorlist("mort_5yr", "sex.factor__perfor.factor")
+    summary_factorlist("mort_5yr", "sex.factor_perfor.factor")
 }

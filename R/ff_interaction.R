@@ -10,7 +10,7 @@
 #' @param ... The unquoted names of two factors.
 #' @param levels_sep Quoted character: how levels are separated in new variable.
 #' @param var_sep Quoted character: how variable name is separated.
-#' @param label_sep Quoted character: how variable label is spearated
+#' @param label_sep Quoted character: how variable label is separated
 #'
 #' @return Original data frame with new variable added via `dplyr::mutate`.
 #' @export
@@ -19,9 +19,9 @@
 #'
 #' colon_s %>%
 #'   ff_interaction(sex.factor, perfor.factor) %>%
-#'     summary_factorlist("mort_5yr", "sex.factor__perfor.factor")
+#'     summary_factorlist("mort_5yr", "sex.factor_perfor.factor")
 
-ff_interaction = function(.data, ..., levels_sep = "|", var_sep = "__", label_sep=":"){
+ff_interaction = function(.data, ..., levels_sep = "_", var_sep = "_", label_sep=":"){
 	.f <- rlang::quos(...)
 	.f_len <- length(.f)
 	if(.f_len>2) stop("Currently only supports two factors.")
