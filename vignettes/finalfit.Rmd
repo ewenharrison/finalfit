@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 The `finafit` package brings together the day-to-day functions we use to generate final results tables and plots when modelling. 
 
-I spent many years repeatedly manually copying results from R analyses and built these functions to automate our standard healthcare data workflow. It is particularly useful when undertaking a large study involving multiple different regression analyses. When combined with <a href="https://rmarkdown.rstudio.com/">RMarkdown</a>, the reporting becomes entirely automated. Its design follows Hadley Wickham's <a href="http://tidyverse.tidyverse.org/articles/manifesto.html">tidy tool manifesto</a>.
+I spent many years repeatedly manually copying results from R analyses and built these functions to automate our standard healthcare data workflow. It is particularly useful when undertaking a large study involving multiple different regression analyses. When combined with <a href="https://rmarkdown.rstudio.com/">RMarkdown</a>, the reporting becomes entirely automated. Its design follows Hadley Wickham's <a href="https://tidyverse.tidyverse.org/articles/manifesto.html">tidy tool manifesto</a>.
 
 ## Installation and Documentation
 
@@ -267,7 +267,7 @@ colon_s %>%
   )
 ```
 
-Export dataframe tables directly or to <a href="http://rmarkdown.rstudio.com">R Markdown</a> <a href="https://yihui.name/knitr/">`knitr::kable()`</a>.
+Export dataframe tables directly or to <a href="https://rmarkdown.rstudio.com">R Markdown</a> <a href="https://yihui.org/knitr/">`knitr::kable()`</a>.
 
 Note wrapper `missing_pattern()` is also useful. Wraps `mice::md.pattern`.
 

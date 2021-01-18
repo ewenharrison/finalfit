@@ -81,7 +81,7 @@ labelled with a name derived from any pre-existing labels." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -163,13 +163,13 @@ created from the names of the two factors. The variable is also
 labelled with a name derived from any pre-existing labels.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ff_interaction</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>levels_sep</span> <span class='kw'>=</span> <span class='st'>"|"</span>, <span class='kw'>var_sep</span> <span class='kw'>=</span> <span class='st'>"__"</span>, <span class='kw'>label_sep</span> <span class='kw'>=</span> <span class='st'>":"</span>)
+    <pre class="usage"><span class='fu'>ff_interaction</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>levels_sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>, <span class='kw'>var_sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>, <span class='kw'>label_sep</span> <span class='kw'>=</span> <span class='st'>":"</span>)
 
 <span class='fu'>finalfit_interaction</span>(
   <span class='no'>.data</span>,
   <span class='no'>...</span>,
-  <span class='kw'>levels_sep</span> <span class='kw'>=</span> <span class='st'>"|"</span>,
-  <span class='kw'>var_sep</span> <span class='kw'>=</span> <span class='st'>"__"</span>,
+  <span class='kw'>levels_sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>,
+  <span class='kw'>var_sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>,
   <span class='kw'>label_sep</span> <span class='kw'>=</span> <span class='st'>":"</span>
 )</pre>
 
@@ -194,7 +194,7 @@ labelled with a name derived from any pre-existing labels.</p>
     </tr>
     <tr>
       <th>label_sep</th>
-      <td><p>Quoted character: how variable label is spearated</p></td>
+      <td><p>Quoted character: how variable label is separated</p></td>
     </tr>
     </table>
 
@@ -206,11 +206,11 @@ labelled with a name derived from any pre-existing labels.</p>
     <pre class="examples"><div class='input'>
 <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>ff_interaction</span>(<span class='no'>sex.factor</span>, <span class='no'>perfor.factor</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='st'>"mort_5yr"</span>, <span class='st'>"sex.factor__perfor.factor"</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;            label     levels      Alive       Died
-#&gt;  Sex:Perforation  Female|No 238 (46.6) 186 (46.0)
-#&gt;                  Female|Yes    5 (1.0)    8 (2.0)
-#&gt;                     Male|No 259 (50.7) 205 (50.7)
-#&gt;                    Male|Yes    9 (1.8)    5 (1.2)</div></pre>
+    <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='st'>"mort_5yr"</span>, <span class='st'>"sex.factor_perfor.factor"</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt;            label     levels      Alive       Died
+#&gt;  Sex:Perforation  Female_No 238 (46.6) 186 (46.0)
+#&gt;                  Female_Yes    5 (1.0)    8 (2.0)
+#&gt;                     Male_No 259 (50.7) 205 (50.7)
+#&gt;                    Male_Yes    9 (1.8)    5 (1.2)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

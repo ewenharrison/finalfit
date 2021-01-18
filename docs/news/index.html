@@ -76,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -149,6 +149,22 @@
       <small>Source: <a href='https://github.com/ewenharrison/finalfit/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="finalfit-103" class="section level1">
+<h1 class="page-header">
+<a href="#finalfit-103" class="anchor"></a>finalfit 1.0.3<small> Unreleased </small>
+</h1>
+<ul>
+<li>
+<code>add_row_total</code> in <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> now can include proportion of complete data via <code>include_row_totals_percent</code> argument.</li>
+<li>Robust standard error approach added to vignette.</li>
+<li>Support added for weights etc. to be included in <code><a href="../reference/coxphmulti.html">coxphmulti()</a></code>.</li>
+<li>“Univariable” mixed effects models including random effects added to vignette.</li>
+<li>
+<code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code>: non-parametric continuous variables now defaults to Q1 - Q3 rather than single figure IQR.</li>
+<li>
+<code><a href="../reference/ff_interaction.html">ff_interaction()</a></code>: default factor separator changed from “|” to "_" and variable separator from "__" to "_" given incompatibilities with packages such as <code>brms</code>.</li>
+</ul>
+</div>
     <div id="finalfit-102" class="section level1">
 <h1 class="page-header">
 <a href="#finalfit-102" class="anchor"></a>finalfit 1.0.2<small> 2020-07-03 </small>
@@ -156,13 +172,6 @@
 <ul>
 <li>
 <code><a href="../reference/ff_relabel_df.html">ff_relabel_df()</a></code> added to allow passing data frame / tibble with labels directly at bottom of pipe.</li>
-<li>
-<code>add_row_total</code> in <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> now can include proportion of complete data via <code>include_row_totals_percent</code> argument.</li>
-<li>Robust standard error approach added to vignette.</li>
-<li>Support added for weights etc. to be included in <code><a href="../reference/coxphmulti.html">coxphmulti()</a></code>.</li>
-<li>“Univariable” mixed effects models including random effects added to vignette.</li>
-<li>
-<code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code>: non-parametric continuous variables now defaul to Q1 - Q3 rather than single figure IQR.</li>
 </ul>
 </div>
     <div id="finalfit-101" class="section level1">
@@ -434,6 +443,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#finalfit-103">1.0.3</a></li>
         <li><a href="#finalfit-102">1.0.2</a></li>
         <li><a href="#finalfit-101">1.0.1</a></li>
         <li><a href="#finalfit-100">1.0.0</a></li>

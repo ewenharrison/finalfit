@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -498,7 +498,7 @@
 <div id="non-parametric-explanatory-variables" class="section level3">
 <h3 class="hasAnchor">
 <a href="#non-parametric-explanatory-variables" class="anchor"></a>1.06 Non-parametric explanatory variables</h3>
-<p>If desired, all continuous explanatory variables can be considered non-parametric. Summaries will be median (interquartile range) and the statistical test is Kruskal-Wallis/Mann-Whitney U.</p>
+<p>If desired, all continuous explanatory variables can be considered non-parametric. Summaries will be median (interquartile range) and the statistical test is Kruskal-Wallis/Mann-Whitney U. Use <code>cont_range = FALSE</code> if wish single-digit IQR, i.e. Q3-Q1.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(finalfit)</span>
 <span id="cb7-2"><a href="#cb7-2"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"nodes"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3"></a>dependent =<span class="st"> "perfor.factor"</span></span>
@@ -3652,7 +3652,7 @@
 <span id="cb40-4"><a href="#cb40-4"></a>dependent =<span class="st"> "mort_5yr"</span></span>
 <span id="cb40-5"><a href="#cb40-5"></a>colon_s <span class="op">%&gt;%</span></span>
 <span id="cb40-6"><a href="#cb40-6"></a><span class="st">    </span><span class="kw"><a href="../reference/ff_interaction.html">ff_interaction</a></span>(age.factor, sex.factor) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb40-7"><a href="#cb40-7"></a><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(explanatory, <span class="st">"age.factor__sex.factor"</span>)) -&gt;<span class="st"> </span>t</span></code></pre></div>
+<span id="cb40-7"><a href="#cb40-7"></a><span class="st">    </span><span class="kw"><a href="../reference/finalfit.html">finalfit</a></span>(dependent, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(explanatory, <span class="st">"age.factor_sex.factor"</span>)) -&gt;<span class="st"> </span>t</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -3697,7 +3697,7 @@
 </tr>
 <tr class="odd">
 <td align="left">Age:Sex</td>
-<td>&lt;40 years|Female</td>
+<td>&lt;40 years_Female</td>
 <td align="right">18 (48.6)</td>
 <td align="right">19 (51.4)</td>
 <td align="right">-</td>
@@ -3705,7 +3705,7 @@
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td>&lt;40 years|Male</td>
+<td>&lt;40 years_Male</td>
 <td align="right">13 (43.3)</td>
 <td align="right">17 (56.7)</td>
 <td align="right">1.24 (0.47-3.30, p=0.665)</td>
@@ -3713,7 +3713,7 @@
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td>40-59 years|Female</td>
+<td>40-59 years_Female</td>
 <td align="right">96 (59.3)</td>
 <td align="right">66 (40.7)</td>
 <td align="right">0.65 (0.32-1.34, p=0.241)</td>
@@ -3721,7 +3721,7 @@
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td>40-59 years|Male</td>
+<td>40-59 years_Male</td>
 <td align="right">112 (63.3)</td>
 <td align="right">65 (36.7)</td>
 <td align="right">0.55 (0.27-1.12, p=0.100)</td>
@@ -3729,7 +3729,7 @@
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td>60+ years|Female</td>
+<td>60+ years_Female</td>
 <td align="right">129 (54.2)</td>
 <td align="right">109 (45.8)</td>
 <td align="right">0.80 (0.40-1.61, p=0.529)</td>
@@ -3737,7 +3737,7 @@
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td>60+ years|Male</td>
+<td>60+ years_Male</td>
 <td align="right">143 (52.8)</td>
 <td align="right">128 (47.2)</td>
 <td align="right">0.85 (0.42-1.69, p=0.638)</td>
@@ -5777,16 +5777,16 @@
 <td>40-59 years</td>
 <td align="right">208 (40.7)</td>
 <td align="right">131 (32.4)</td>
-<td align="right">0.52 (0.30-0.89, p=0.017)</td>
-<td align="right">0.55 (0.32-0.94, p=0.030)</td>
+<td align="right">0.52 (0.31-0.87, p=0.013)</td>
+<td align="right">0.55 (0.32-0.94, p=0.028)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td>60+ years</td>
 <td align="right">272 (53.2)</td>
 <td align="right">237 (58.7)</td>
-<td align="right">0.77 (0.46-1.28, p=0.314)</td>
-<td align="right">0.81 (0.48-1.37, p=0.442)</td>
+<td align="right">0.75 (0.45-1.25, p=0.269)</td>
+<td align="right">0.83 (0.50-1.38, p=0.472)</td>
 </tr>
 <tr class="even">
 <td align="left">Sex</td>
@@ -5801,8 +5801,8 @@
 <td>Male</td>
 <td align="right">268 (52.4)</td>
 <td align="right">210 (52.0)</td>
-<td align="right">1.12 (0.86-1.46, p=0.392)</td>
-<td align="right">1.16 (0.89-1.51, p=0.283)</td>
+<td align="right">0.97 (0.75-1.27, p=0.841)</td>
+<td align="right">0.97 (0.74-1.27, p=0.812)</td>
 </tr>
 <tr class="even">
 <td align="left">Obstruction</td>
@@ -5817,8 +5817,8 @@
 <td>Yes</td>
 <td align="right">89 (17.9)</td>
 <td align="right">85 (21.4)</td>
-<td align="right">1.22 (0.87-1.70, p=0.245)</td>
-<td align="right">1.23 (0.88-1.73, p=0.229)</td>
+<td align="right">1.28 (0.91-1.80, p=0.153)</td>
+<td align="right">1.34 (0.95-1.91, p=0.095)</td>
 </tr>
 <tr class="even">
 <td align="left">Perforation</td>
@@ -5833,8 +5833,8 @@
 <td>Yes</td>
 <td align="right">14 (2.7)</td>
 <td align="right">13 (3.2)</td>
-<td align="right">1.12 (0.54-2.30, p=0.766)</td>
-<td align="right">1.09 (0.52-2.27, p=0.819)</td>
+<td align="right">0.76 (0.32-1.70, p=0.518)</td>
+<td align="right">0.71 (0.30-1.61, p=0.424)</td>
 </tr>
 </tbody>
 </table>

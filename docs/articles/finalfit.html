@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -119,7 +119,7 @@
     
     
 <p>The <code>finafit</code> package brings together the day-to-day functions we use to generate final results tables and plots when modelling.</p>
-<p>I spent many years repeatedly manually copying results from R analyses and built these functions to automate our standard healthcare data workflow. It is particularly useful when undertaking a large study involving multiple different regression analyses. When combined with <a href="https://rmarkdown.rstudio.com/">RMarkdown</a>, the reporting becomes entirely automated. Its design follows Hadley Wickham’s <a href="http://tidyverse.tidyverse.org/articles/manifesto.html">tidy tool manifesto</a>.</p>
+<p>I spent many years repeatedly manually copying results from R analyses and built these functions to automate our standard healthcare data workflow. It is particularly useful when undertaking a large study involving multiple different regression analyses. When combined with <a href="https://rmarkdown.rstudio.com/">RMarkdown</a>, the reporting becomes entirely automated. Its design follows Hadley Wickham’s <a href="https://tidyverse.tidyverse.org/articles/manifesto.html">tidy tool manifesto</a>.</p>
 <div id="installation-and-documentation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation-and-documentation" class="anchor"></a>Installation and Documentation</h2>
@@ -958,7 +958,7 @@
 <span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</span>
 <span id="cb15-3"><a href="#cb15-3"></a>    <span class="kw"><a href="../reference/ff_label.html">ff_label</a></span>(age.factor, <span class="st">"Age (years)"</span>)</span>
 <span id="cb15-4"><a href="#cb15-4"></a>  )</span></code></pre></div>
-<p>Export dataframe tables directly or to <a href="http://rmarkdown.rstudio.com">R Markdown</a> <a href="https://yihui.name/knitr/"><code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code></a>.</p>
+<p>Export dataframe tables directly or to <a href="https://rmarkdown.rstudio.com">R Markdown</a> <a href="https://yihui.org/knitr/"><code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code></a>.</p>
 <p>Note wrapper <code><a href="../reference/missing_pattern.html">missing_pattern()</a></code> is also useful. Wraps <code><a href="https://rdrr.io/pkg/mice/man/md.pattern.html">mice::md.pattern</a></code>.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>colon_s <span class="op">%&gt;%</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="kw"><a href="../reference/missing_pattern.html">missing_pattern</a></span>(dependent, explanatory)</span></code></pre></div>

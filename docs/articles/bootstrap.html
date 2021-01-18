@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -121,8 +121,8 @@
 <p>I’ve always been a fan of converting model outputs to real-life quantities of interest. For example, I like to supplement a logistic regression model table with predicted probabilities for a given set of explanatory variable levels. This can be more intuitive than odds ratios, particularly for a lay audience.</p>
 <p>For example, say I have run a logistic regression model for predicted 5 year survival after colon cancer. What is the actual probability of death for a patient under 40 with a small cancer that has not perforated? How does that probability differ for a patient over 40?</p>
 <p>I’ve tried this various ways. I used <a href="https://zeligproject.org/">Zelig</a> for a while including <a href="https://www.bmj.com/content/344/bmj.e3330">here</a>, but it started trying to do too much and was always broken (I updated it the other day in the hope that things were better, but was met with a string of errors again).</p>
-<p>I also used <a href="https://CRAN.R-project.org/package=rms">rms</a>, including <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148782">here</a> (checkout the nice plots!). I like it and respect the package. But I don’t use it as standard and so need to convert all the models first, e.g. to lrm. Again, for my needs it tries to do too much and I find datadist awkward.</p>
-<p>Thirdly, I love <a href="http://mc-stan.org/users/interfaces/rstan">Stan</a> for this, e.g. used in this <a href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(18)30101-4/fulltext">paper</a>. The generated quantities block allows great flexibility to simulate whatever you wish from the posterior. I’m a Bayesian at heart will always come back to this. But for some applications it’s a bit much, and takes some time to get running as I want.</p>
+<p>I also used <a href="https://CRAN.R-project.org/package=rms">rms</a>, including <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148782">here</a> (checkout the nice plots!). I like it and respect the package. But I don’t use it as standard and so need to convert all the models first, e.g. to lrm. Again, for my needs it tries to do too much and I find datadist awkward.</p>
+<p>Thirdly, I love <a href="https://mc-stan.org/users/interfaces/rstan">Stan</a> for this, e.g. used in this <a href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(18)30101-4/fulltext">paper</a>. The generated quantities block allows great flexibility to simulate whatever you wish from the posterior. I’m a Bayesian at heart will always come back to this. But for some applications it’s a bit much, and takes some time to get running as I want.</p>
 <p>I often simply want to predict y-hat from lm and glm with bootstrapped intervals and ideally a comparison of explanatory levels sets. Just like <code>sim</code> does in <code>Zelig</code>. But I want it in a format I can immediately use in a publication.</p>
 <p>Well now I can with <code>finalfit</code></p>
 <p>There’s two main functions with some new internals to help expand to other models in the future.</p>
@@ -160,10 +160,10 @@
 <span id="cb3-5"><a href="#cb3-5"></a>    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">boot_compare =</span> <span class="ot">FALSE</span>,</span>
 <span id="cb3-6"><a href="#cb3-6"></a>    <span class="dt">digits =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
 <span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.06 to 0.60)</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.04 to 0.68)</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.52 to 0.85)</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.51 to 0.90)</span></span></code></pre></div>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.00 to 0.65)</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.00 to 0.70)</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.54 to 0.86)</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.48 to 0.88)</span></span></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for demonstration purposes. You should expect to use 1000 to 10000 to ensure you have stable estimates.</p>
 </div>
 <div id="output-to-word-pdf-and-html-via-rmarkdown" class="section level2">
@@ -185,15 +185,15 @@
 <span id="cb5-5"><a href="#cb5-5"></a>    <span class="co">#compare_name = "Absolute risk difference",</span></span>
 <span id="cb5-6"><a href="#cb5-6"></a>    <span class="dt">R=</span><span class="dv">100</span>, <span class="dt">digits =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
 <span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.00 to 0.55)</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.00 to 0.63)</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.52 to 0.88)</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.46 to 0.89)</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.06 to 0.53)</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.06 to 0.62)</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.54 to 0.86)</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.47 to 0.89)</span></span>
 <span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt;                       Difference</span></span>
 <span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; 1                              -</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 2 -0.00 (-0.10 to 0.16, p=0.900)</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 3   0.44 (0.13 to 0.68, p&lt;0.001)</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 4   0.43 (0.19 to 0.72, p&lt;0.001)</span></span></code></pre></div>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 2 -0.00 (-0.15 to 0.17, p=0.940)</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 3   0.43 (0.18 to 0.66, p&lt;0.001)</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 4   0.44 (0.09 to 0.72, p&lt;0.001)</span></span></code></pre></div>
 </div>
 <div id="what-is-not-included" class="section level2">
 <h2 class="hasAnchor">

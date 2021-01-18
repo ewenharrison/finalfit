@@ -10,7 +10,7 @@ finalfit <img src="man/figures/finalfit_hex.png" align="right" />
 
 The `finalfit` package provides functions that help you quickly create elegant final results tables and plots when modelling in R. These can easily be exported as Word documents, PDFs, or html files. 
 
-Its design follows Hadley Wickham's [tidy tool manifesto](http://tidyverse.tidyverse.org/articles/manifesto.html).
+Its design follows Hadley Wickham's [tidy tool manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html).
 
 In addition, it provides functions for identifying and handling missing data, together with a number of functions to bootstrap simulate regression model results. 
 
@@ -30,7 +30,7 @@ install.packages("dplyr")
 
 ## Documentation
 
-The package documentation is maintained independently at [finalfit.org](http://finalfit.org/). 
+The package documentation is maintained independently at [finalfit.org](https://finalfit.org/). 
 
 ## Examples
 

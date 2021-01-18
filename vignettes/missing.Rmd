@@ -142,7 +142,7 @@ colon_s %>%
 
 <a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png" alt="" width="700" /></a>
 
-It was only when writing this post that I discovered the amazing package, [naniar](http://naniar.njtierney.com/). This package is recommended and provides lots of great visualisations for missing data.
+It was only when writing this post that I discovered the amazing package, [naniar](https://naniar.njtierney.com/). This package is recommended and provides lots of great visualisations for missing data.
 
 ## 3. Look for patterns of missingness: `missing_pattern`
 
@@ -186,7 +186,7 @@ In deciding whether data is MCAR or MAR, one approach is to explore patterns of 
 
 Take for example “death”. When that outcome is missing it is often for a particular reason. For example, perhaps patients undergoing emergency surgery were less likely to have complete records compared with those undergoing planned surgery. And of course, death is more likely after emergency surgery.
 
-`missing_pairs` uses functions from the excellent [GGally](http://ggobi.github.io/ggally/) package. It produces pairs plots to show relationships between missing values and observed values in all variables.
+`missing_pairs` uses functions from the excellent [GGally](https://ggobi.github.io/ggally/) package. It produces pairs plots to show relationships between missing values and observed values in all variables.
 
 ```{r, eval=FALSE}
 explanatory = c("age", "sex.factor", 
@@ -254,7 +254,7 @@ colon_s %>%
 
 ## 5. Decide how to handle missing data
 
-These [pages](http://www.theanalysisfactor.com/missing-data-mechanism/) from Karen Grace-Martin are great for this.
+These [pages](https://www.theanalysisfactor.com/missing-data-mechanism/) from Karen Grace-Martin are great for this.
 
 Prior to a standard regression analysis, we can either:
 
@@ -310,7 +310,7 @@ If we simply drop all the cases (patients) in which smoking is missing (list-wis
 
 #### Common solution
 
-[mice](https://github.com/stefvanbuuren/mice) is our go to package for multiple imputation. That’s the process of filling in missing data using a best-estimate from all the other data that exists. When first encountered, this may not sound like a good idea.
+[mice](https://github.com/amices/mice) is our go to package for multiple imputation. That’s the process of filling in missing data using a best-estimate from all the other data that exists. When first encountered, this may not sound like a good idea.
 
 However, taking our simple example, if missingness in smoking is predicted strongly by sex (and other observed variables), and the values of the missing data are random, then we can impute (best-guess) the missing smoking values using sex and other variables in the dataset.
 

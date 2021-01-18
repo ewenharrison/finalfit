@@ -73,9 +73,12 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 		factorlist = summary_factorlist(.data, dependent, explanatory, total_col=TRUE, fit_id=TRUE)
 	}
 	
+	# Extract total
+	factorlist$Total = sub("([[:digit:]]+).*", "\\1", factorlist$Total) %>% as.numeric()
+	
 	# For continuous variables, remove level label
-	drop = grepl("Mean \\(SD\\)|Median \\(IQR\\)", factorlist$levels)
-	factorlist$levels[drop] = "-"
+	# drop = grepl("Mean \\(SD\\)|Median \\(IQR\\)", factorlist$levels)
+	# factorlist$levels[drop] = "-"
 	
 	if(remove_ref){
 		factorlist = factorlist %>%  

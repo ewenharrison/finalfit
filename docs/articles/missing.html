@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -252,7 +252,7 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>colon_s <span class="op">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw"><a href="../reference/missing_plot.html">missing_plot</a></span>()</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png" alt="" width="700"></a></p>
-<p>It was only when writing this post that I discovered the amazing package, <a href="http://naniar.njtierney.com/">naniar</a>. This package is recommended and provides lots of great visualisations for missing data.</p>
+<p>It was only when writing this post that I discovered the amazing package, <a href="https://naniar.njtierney.com/">naniar</a>. This package is recommended and provides lots of great visualisations for missing data.</p>
 </div>
 <div id="look-for-patterns-of-missingness-missing_pattern" class="section level2">
 <h2 class="hasAnchor">
@@ -317,7 +317,7 @@
 </h2>
 <p>In deciding whether data is MCAR or MAR, one approach is to explore patterns of missingness between levels of included variables. This is particularly important (I would say absolutely required) for a primary outcome measure / dependent variable.</p>
 <p>Take for example “death”. When that outcome is missing it is often for a particular reason. For example, perhaps patients undergoing emergency surgery were less likely to have complete records compared with those undergoing planned surgery. And of course, death is more likely after emergency surgery.</p>
-<p><code>missing_pairs</code> uses functions from the excellent <a href="http://ggobi.github.io/ggally/">GGally</a> package. It produces pairs plots to show relationships between missing values and observed values in all variables.</p>
+<p><code>missing_pairs</code> uses functions from the excellent <a href="https://ggobi.github.io/ggally/">GGally</a> package. It produces pairs plots to show relationships between missing values and observed values in all variables.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>explanatory =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="st">"nodes"</span>, <span class="st">"obstruct.factor"</span>,  </span>
 <span id="cb9-3"><a href="#cb9-3"></a>  <span class="st">"smoking_mcar"</span>, <span class="st">"smoking_mar"</span>)</span>
@@ -469,7 +469,7 @@
 <div id="decide-how-to-handle-missing-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#decide-how-to-handle-missing-data" class="anchor"></a>5. Decide how to handle missing data</h2>
-<p>These <a href="http://www.theanalysisfactor.com/missing-data-mechanism/">pages</a> from Karen Grace-Martin are great for this.</p>
+<p>These <a href="https://www.theanalysisfactor.com/missing-data-mechanism/">pages</a> from Karen Grace-Martin are great for this.</p>
 <p>Prior to a standard regression analysis, we can either:</p>
 <ul>
 <li>Delete the variable with the missing data</li>
@@ -606,7 +606,7 @@
 <div id="common-solution-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#common-solution-1" class="anchor"></a>Common solution</h4>
-<p><a href="https://github.com/stefvanbuuren/mice">mice</a> is our go to package for multiple imputation. That’s the process of filling in missing data using a best-estimate from all the other data that exists. When first encountered, this may not sound like a good idea.</p>
+<p><a href="https://github.com/amices/mice">mice</a> is our go to package for multiple imputation. That’s the process of filling in missing data using a best-estimate from all the other data that exists. When first encountered, this may not sound like a good idea.</p>
 <p>However, taking our simple example, if missingness in smoking is predicted strongly by sex (and other observed variables), and the values of the missing data are random, then we can impute (best-guess) the missing smoking values using sex and other variables in the dataset.</p>
 <p>Imputation is not usually appropriate for the explanatory variable of interest or the outcome variable. In both case, the hypothesis is that there is an meaningful association with other variables in the dataset, therefore it doesn’t make sense to use these variables to impute them.</p>
 <p>Here is some code to run <code>mice</code>. The package is well documented, and there are a number of checks and considerations that should be made to inform the imputation process. Read the documentation carefully prior to doing this yourself.</p>
