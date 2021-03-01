@@ -427,7 +427,12 @@ summary_factorlist <- function(.data,
 												 		dplyr::count(!! sym(..1), .drop = FALSE) %>% 
 												 		dplyr::ungroup() %>% 
 												 		tidyr::drop_na() %>% 
-												 		dplyr::mutate(grand_total = sum(n)) %>% 
+												 		{ if(na_to_prop) {
+												 			dplyr::mutate(., grand_total = sum(n))
+												 		} else {
+												 			dplyr::mutate(., grand_total = sum(n[.[[2]] != "(Missing)"], na.rm = TRUE))
+												 		}
+												 		} %>% 
 												 		dplyr::group_by_at(2) %>% 
 												 		dplyr::mutate(row_total = sum(n),
 												 									col_total_prop = 100 * row_total / grand_total) %>% 
@@ -437,17 +442,20 @@ summary_factorlist <- function(.data,
 												 				{ if(na_to_prop) {
 												 					dplyr::mutate(., 
 												 												col_total = sum(n),
-												 												prop = 100 * n / col_total)
+												 												prop = 100 * n / col_total,
+												 												Total = format_n_percent(row_total, col_total_prop, digits[[4]], 
+												 																								 na_include = FALSE)
+												 					)
 												 				} else {
 												 					dplyr::mutate(., 
 												 												col_total = sum(n[.[[2]] != "(Missing)"], na.rm = TRUE),
 												 												prop = 100 * n / col_total,
 												 												prop = if_else(!! sym(names(.)[2]) == "(Missing)", NA_real_, prop),
+												 												row_prop = if_else(!! sym(names(.)[2]) == "(Missing)", NA_real_, row_prop),
+												 												Total = format_n_percent(row_total, col_total_prop, digits[[4]], 
+												 																								 na_include = FALSE)
 												 				)}
 												 				} %>% 
-												 				mutate(
-												 					Total = format_n_percent(row_total, col_total_prop, digits[[4]])
-												 				) %>% 
 												 				dplyr::select(-col_total)
 												 		} else { 
 												 			dplyr::group_by_at(., 2) %>% 
