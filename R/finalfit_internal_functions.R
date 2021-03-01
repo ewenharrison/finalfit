@@ -429,10 +429,10 @@ p_tidy = function(x, digits, prefix="="){
 #' @export
 #'
 format_n_percent = function(n, percent, digits, na_include = TRUE) {
-	percent = round_tidy(percent, digits)
 	if(is.na(percent) && !na_include){
 		paste0(n)
 	} else {
+		percent = round_tidy(percent, digits)
 		paste0(n, " (", percent, ")")
 	}
 }
