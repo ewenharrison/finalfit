@@ -443,8 +443,7 @@ summary_factorlist <- function(.data,
 												 					dplyr::mutate(., 
 												 												col_total = sum(n),
 												 												prop = 100 * n / col_total,
-												 												Total = format_n_percent(row_total, col_total_prop, digits[[4]], 
-												 																								 na_include = FALSE)
+												 												Total = format_n_percent(row_total, col_total_prop, digits[[4]])
 												 					)
 												 				} else {
 												 					dplyr::mutate(., 

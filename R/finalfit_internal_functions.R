@@ -429,12 +429,12 @@ p_tidy = function(x, digits, prefix="="){
 #' @export
 #'
 format_n_percent = function(n, percent, digits, na_include = TRUE) {
-	if(is.na(percent) && !na_include){
-		paste0(n)
-	} else {
-		percent = round_tidy(percent, digits)
-		paste0(n, " (", percent, ")")
+	percent = round_tidy(percent, digits)
+	out = paste0(n, " (", percent, ")")
+	if(!na_include){
+		out = gsub(" \\(NA\\)", "", out)
 	}
+	return(out)
 }
 
 #' Remove intercept from model output
