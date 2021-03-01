@@ -105,7 +105,7 @@ summary_factorlist <- function(.data,
 															 column = TRUE, total_col = FALSE, orderbytotal = FALSE,
 															 digits = c(1, 1, 3, 1), 
 															 na_include = FALSE, na_include_dependent = FALSE, 
-															 na_complete_cases = FALSE, na_to_p = FALSE,
+															 na_complete_cases = FALSE, na_to_p = FALSE, na_to_prop = TRUE,
 															 fit_id = FALSE,
 															 add_dependent_label = FALSE,  
 															 dependent_label_prefix = "Dependent: ", dependent_label_suffix = "",
@@ -433,9 +433,19 @@ summary_factorlist <- function(.data,
 												 									col_total_prop = 100 * row_total / grand_total) %>% 
 												 		{ if(column) {
 												 			dplyr::group_by(., !! sym(dependent)) %>% 
-												 				dplyr::mutate(
-												 					col_total = sum(n),
-												 					prop = 100 * n / col_total,
+												 				# Choose to include missing in column proportions 
+												 				{ if(na_to_prop) {
+												 					dplyr::mutate(., 
+												 												col_total = sum(n),
+												 												prop = 100 * n / col_total)
+												 				} else {
+												 					dplyr::mutate(., 
+												 												col_total = sum(n[.[[2]] != "(Missing)"], na.rm = TRUE),
+												 												prop = 100 * n / col_total,
+												 												prop = if_else(!! sym(names(.)[2]) == "(Missing)", NA_real_, prop),
+												 				)}
+												 				} %>% 
+												 				mutate(
 												 					Total = format_n_percent(row_total, col_total_prop, digits[[4]])
 												 				) %>% 
 												 				dplyr::select(-col_total)
@@ -449,7 +459,7 @@ summary_factorlist <- function(.data,
 												 		} %>% 
 												 		dplyr::ungroup() %>% 
 												 		dplyr::mutate(
-												 			value = format_n_percent(n, prop, digits[4])
+												 			value = format_n_percent(n, prop, digits[4], na_include = FALSE)
 												 		) %>%
 												 		dplyr::select(-prop, -n, -grand_total, -col_total_prop) %>% 
 												 		tidyr::pivot_wider(names_from = !! dependent, values_from = value) %>% 

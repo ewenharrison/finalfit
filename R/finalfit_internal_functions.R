@@ -424,12 +424,17 @@ p_tidy = function(x, digits, prefix="="){
 #' @param n Value
 #' @param percent Value
 #' @param digits Value
+#' @param na_include When proportion missing, include in parentheses?
 #'
 #' @export
 #'
-format_n_percent = function(n, percent, digits) {
+format_n_percent = function(n, percent, digits, na_include = TRUE) {
 	percent = round_tidy(percent, digits)
-	paste0(n, " (", percent, ")")
+	if(is.na(digits) && !na_include){
+		paste0(n)
+	} else {
+		paste0(n, " (", percent, ")")
+	}
 }
 
 #' Remove intercept from model output

@@ -4,7 +4,7 @@
 \alias{format_n_percent}
 \title{Format n and percent as a character}
 \usage{
-format_n_percent(n, percent, digits)
+format_n_percent(n, percent, digits, na_include = TRUE)
 }
 \arguments{
 \item{n}{Value}
@@ -12,6 +12,8 @@ format_n_percent(n, percent, digits)
 \item{percent}{Value}
 
 \item{digits}{Value}
+
+\item{na_include}{When proportion missing, include in parentheses?}
 }
 \description{
 Internal, function, not called directly
