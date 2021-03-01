@@ -451,7 +451,8 @@ summary_factorlist <- function(.data,
 												 												col_total = sum(n[.[[2]] != "(Missing)"], na.rm = TRUE),
 												 												prop = 100 * n / col_total,
 												 												prop = if_else(!! sym(names(.)[2]) == "(Missing)", NA_real_, prop),
-												 												row_prop = if_else(!! sym(names(.)[2]) == "(Missing)", NA_real_, row_prop),
+												 												col_total_prop = if_else(!! sym(names(.)[2]) == "(Missing)", 
+												 																								 NA_real_, col_total_prop),
 												 												Total = format_n_percent(row_total, col_total_prop, digits[[4]], 
 												 																								 na_include = FALSE)
 												 				)}
