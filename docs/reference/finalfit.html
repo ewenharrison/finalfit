@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -52,7 +56,6 @@ finalfit.lm method (not called directly)
 finalfit.glm method (not called directly)
 finalfit.coxph method (not called directly)" />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -70,7 +73,7 @@ finalfit.coxph method (not called directly)" />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -92,7 +95,7 @@ finalfit.coxph method (not called directly)" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -135,8 +138,8 @@ finalfit.coxph method (not called directly)" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ewenharrison/finalfit">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/ewenharrison/finalfit/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -169,69 +172,69 @@ a random effect is specified.</p>
 <p><code>finalfit.coxph</code> method (not called directly)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>finalfit</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>dependent</span>,
-  <span class='no'>explanatory</span>,
-  <span class='kw'>explanatory_multi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>keep_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
-  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>keep_fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)
+    <pre class="usage"><span class='fu'>finalfit</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>dependent</span>,
+  <span class='va'>explanatory</span>,
+  explanatory_multi <span class='op'>=</span> <span class='cn'>NULL</span>,
+  random_effect <span class='op'>=</span> <span class='cn'>NULL</span>,
+  column <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  keep_models <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  metrics <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  add_dependent_label <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dependent_label_prefix <span class='op'>=</span> <span class='st'>"Dependent: "</span>,
+  dependent_label_suffix <span class='op'>=</span> <span class='st'>""</span>,
+  keep_fit_id <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>finalfit.lm</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>dependent</span>,
-  <span class='no'>explanatory</span>,
-  <span class='kw'>explanatory_multi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>keep_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
-  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>keep_fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)
+<span class='fu'>finalfit.lm</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>dependent</span>,
+  <span class='va'>explanatory</span>,
+  explanatory_multi <span class='op'>=</span> <span class='cn'>NULL</span>,
+  random_effect <span class='op'>=</span> <span class='cn'>NULL</span>,
+  column <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  keep_models <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  metrics <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  add_dependent_label <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dependent_label_prefix <span class='op'>=</span> <span class='st'>"Dependent: "</span>,
+  dependent_label_suffix <span class='op'>=</span> <span class='st'>""</span>,
+  keep_fit_id <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>finalfit.glm</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>dependent</span>,
-  <span class='no'>explanatory</span>,
-  <span class='kw'>explanatory_multi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>keep_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
-  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>keep_fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)
+<span class='fu'>finalfit.glm</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>dependent</span>,
+  <span class='va'>explanatory</span>,
+  explanatory_multi <span class='op'>=</span> <span class='cn'>NULL</span>,
+  random_effect <span class='op'>=</span> <span class='cn'>NULL</span>,
+  column <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  keep_models <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  metrics <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  add_dependent_label <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dependent_label_prefix <span class='op'>=</span> <span class='st'>"Dependent: "</span>,
+  dependent_label_suffix <span class='op'>=</span> <span class='st'>""</span>,
+  keep_fit_id <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>finalfit.coxph</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>dependent</span>,
-  <span class='no'>explanatory</span>,
-  <span class='kw'>explanatory_multi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>random_effect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>column</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>keep_models</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>metrics</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>add_dependent_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>dependent_label_prefix</span> <span class='kw'>=</span> <span class='st'>"Dependent: "</span>,
-  <span class='kw'>dependent_label_suffix</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>keep_fit_id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+<span class='fu'>finalfit.coxph</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>dependent</span>,
+  <span class='va'>explanatory</span>,
+  explanatory_multi <span class='op'>=</span> <span class='cn'>NULL</span>,
+  random_effect <span class='op'>=</span> <span class='cn'>NULL</span>,
+  column <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  keep_models <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  metrics <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  add_dependent_label <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dependent_label_prefix <span class='op'>=</span> <span class='st'>"Dependent: "</span>,
+  dependent_label_suffix <span class='op'>=</span> <span class='st'>""</span>,
+  keep_fit_id <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -309,19 +312,20 @@ confint_sep</code>.</p></td>
     <p>Returns a data frame with the final model table.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>finalfit</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/ewenharrison/finalfit'>finalfit</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 
 <span class='co'># Summary, univariable and multivariable analyses of the form:</span>
 <span class='co'># glm(depdendent ~ explanatory, family="binomial")</span>
 <span class='co'># lmuni(), lmmulti(), lmmixed(), glmuni(), glmmulti(), glmmixed(), glmmultiboot(),</span>
 <span class='co'>#   coxphuni(), coxphmulti()</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>colon_s</span>) <span class='co'># Modified from survival::colon</span>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;  Dependent: Mortality 5 year                  Alive       Died
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>colon_s</span><span class='op'>)</span> <span class='co'># Modified from survival::colon</span>
+<span class='va'>explanatory</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span><span class='op'>)</span>
+<span class='va'>dependent</span> <span class='op'>=</span> <span class='st'>'mort_5yr'</span>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>finalfit</span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;  Dependent: Mortality 5 year                  Alive       Died
 #&gt;                          Age   &lt;40 years  31 (46.3)  36 (53.7)
 #&gt;                              40-59 years 208 (61.4) 131 (38.6)
 #&gt;                                60+ years 272 (53.4) 237 (46.6)
@@ -343,11 +347,12 @@ confint_sep</code>.</p></td>
 #&gt;  1.18 (0.54-2.55, p=0.672) 1.12 (0.51-2.44, p=0.770)</div><div class='input'>
 <span class='co'># Multivariable analysis with subset of explanatory</span>
 <span class='co'>#   variable set used in univariable analysis</span>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>explanatory_multi</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;  Dependent: Mortality 5 year                  Alive       Died
+<span class='va'>explanatory</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span><span class='op'>)</span>
+<span class='va'>explanatory_multi</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span><span class='op'>)</span>
+<span class='va'>dependent</span> <span class='op'>=</span> <span class='st'>"mort_5yr"</span>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>finalfit</span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, <span class='va'>explanatory_multi</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;  Dependent: Mortality 5 year                  Alive       Died
 #&gt;                          Age   &lt;40 years  31 (46.3)  36 (53.7)
 #&gt;                              40-59 years 208 (61.4) 131 (38.6)
 #&gt;                                60+ years 272 (53.4) 237 (46.6)
@@ -370,16 +375,17 @@ confint_sep</code>.</p></td>
 <span class='co'># Summary, univariable and multivariable analyses of the form:</span>
 <span class='co'># lme4::glmer(dependent ~ explanatory + (1 | random_effect), family="binomial")</span>
 
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>explanatory_multi</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span>)
-<span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
+<span class='va'>explanatory</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span><span class='op'>)</span>
+<span class='va'>explanatory_multi</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span><span class='op'>)</span>
+<span class='va'>random_effect</span> <span class='op'>=</span> <span class='st'>"hospital"</span>
+<span class='va'>dependent</span> <span class='op'>=</span> <span class='st'>"mort_5yr"</span>
 <span class='co'># colon_s %&gt;%</span>
 <span class='co'>#   finalfit(dependent, explanatory, explanatory_multi, random_effect)</span>
 
 <span class='co'># Include model metrics:</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>explanatory_multi</span>,  <span class='kw'>metrics</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [[1]]
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>finalfit</span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, <span class='va'>explanatory_multi</span>,  metrics<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [[1]]
 #&gt;  Dependent: Mortality 5 year                  Alive       Died
 #&gt;                          Age   &lt;40 years  31 (46.3)  36 (53.7)
 #&gt;                              40-59 years 208 (61.4) 131 (38.6)
@@ -408,11 +414,12 @@ confint_sep</code>.</p></td>
 <span class='co'># Summary, univariable and multivariable analyses of the form:</span>
 <span class='co'># survival::coxph(dependent ~ explanatory)</span>
 
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"Surv(time, status)"</span>
+<span class='va'>explanatory</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span><span class='op'>)</span>
+<span class='va'>dependent</span> <span class='op'>=</span> <span class='st'>"Surv(time, status)"</span>
 
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>)</div><div class='output co'>#&gt;  Dependent: Surv(time, status)                     all
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>finalfit</span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  Dependent: Surv(time, status)                     all
 #&gt;                            Age   &lt;40 years  70 (100.0)
 #&gt;                                40-59 years 344 (100.0)
 #&gt;                                  60+ years 515 (100.0)
@@ -439,10 +446,11 @@ confint_sep</code>.</p></td>
 <span class='co'># Note requirement for fit_id=TRUE.</span>
 <span class='co'># `fit2df` is a subfunction extracting most common models to a dataframe.</span>
 
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>finalfit</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>metrics</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [[1]]
+<span class='va'>explanatory</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span><span class='op'>)</span>
+<span class='va'>dependent</span> <span class='op'>=</span> <span class='st'>'mort_5yr'</span>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>finalfit</span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, metrics<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Setting levels: control = 0, case = 1</span></div><div class='output co'>#&gt; <span class='message'>Setting direction: controls &lt; cases</span></div><div class='output co'>#&gt; [[1]]
 #&gt;  Dependent: Mortality 5 year                  Alive       Died
 #&gt;                          Age   &lt;40 years  31 (46.3)  36 (53.7)
 #&gt;                              40-59 years 208 (61.4) 131 (38.6)
@@ -468,29 +476,33 @@ confint_sep</code>.</p></td>
 #&gt;                                                                                                                                  
 #&gt;  Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)
 #&gt; </div><div class='input'>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>explanatory_multi</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span>)
-<span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>'mort_5yr'</span>
+<span class='va'>explanatory</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span><span class='op'>)</span>
+<span class='va'>explanatory_multi</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span><span class='op'>)</span>
+<span class='va'>random_effect</span> <span class='op'>=</span> <span class='st'>"hospital"</span>
+<span class='va'>dependent</span> <span class='op'>=</span> <span class='st'>'mort_5yr'</span>
 
 <span class='co'># Separate tables</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>fit_id</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>example.summary</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='input'>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='glmuni.html'>glmuni</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.univariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.multivariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, fit_id<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>example.summary</span>
+</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='input'>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='glmuni.html'>glmuni</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='fit2df.html'>fit2df</a></span><span class='op'>(</span>estimate_suffix<span class='op'>=</span><span class='st'>" (univariable)"</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>example.univariable</span>
+</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='glmmulti.html'>glmmulti</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='fit2df.html'>fit2df</a></span><span class='op'>(</span>estimate_suffix<span class='op'>=</span><span class='st'>" (multivariable)"</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>example.multivariable</span>
+</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
 <span class='co'># Edited as CRAN slow to run these</span>
 <span class='co'># colon_s %&gt;%</span>
 <span class='co'>#   glmmixed(dependent, explanatory, random_effect) %&gt;%</span>
 <span class='co'>#   fit2df(estimate_suffix=" (multilevel") -&gt; example.multilevel</span>
 
 <span class='co'># Pipe together</span>
-<span class='no'>example.summary</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ff_merge.html'>finalfit_merge</a></span>(<span class='no'>example.univariable</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ff_merge.html'>finalfit_merge</a></span>(<span class='no'>example.multivariable</span>, <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;         label      levels      Alive       Died          OR (univariable)
+<span class='va'>example.summary</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='ff_merge.html'>finalfit_merge</a></span><span class='op'>(</span><span class='va'>example.univariable</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='ff_merge.html'>finalfit_merge</a></span><span class='op'>(</span><span class='va'>example.multivariable</span>, last_merge <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         label      levels      Alive       Died          OR (univariable)
 #&gt; 1         Age   &lt;40 years   31 (6.1)   36 (8.9)                         -
 #&gt; 2             40-59 years 208 (40.7) 131 (32.4) 0.54 (0.32-0.92, p=0.023)
 #&gt; 3               60+ years 272 (53.2) 237 (58.7) 0.75 (0.45-1.25, p=0.270)
@@ -509,17 +521,13 @@ confint_sep</code>.</p></td>
 #&gt; 4                         -
 #&gt; 5 1.25 (0.90-1.76, p=0.186)
 #&gt; 6                         -
-#&gt; 7 1.12 (0.51-2.44, p=0.770)</div><div class='input'># finalfit_merge(example.multilevel)
+#&gt; 7 1.12 (0.51-2.44, p=0.770)</div><div class='input'><span class='co'># finalfit_merge(example.multilevel)</span>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -530,7 +538,7 @@ confint_sep</code>.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Merge a <code><a href='summary_factorlist.html'>summary_factorlist</a>()</code> table with any number of model
+<title>Merge a summary_factorlist() table with any number of model
 results tables. — ff_merge • finalfit</title>
 
 <!-- favicons -->
@@ -18,23 +18,27 @@ results tables. — ff_merge • finalfit</title>
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -43,14 +47,13 @@ results tables. — ff_merge • finalfit</title>
 
 
 
-<meta property="og:title" content="Merge a <code><a href='summary_factorlist.html'>summary_factorlist</a>()</code> table with any number of model
+<meta property="og:title" content="Merge a summary_factorlist() table with any number of model
 results tables. — ff_merge" />
 <meta property="og:description" content="A function that takes the output from summary_factorlist(...,
 fit_id=TRUE) and merges with any number of model dataframes, usually
 produced with a model wrapper followed by the fit2df() function
 (see examples)." />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -68,7 +71,7 @@ produced with a model wrapper followed by the fit2df() function
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -90,7 +93,7 @@ produced with a model wrapper followed by the fit2df() function
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -133,8 +136,8 @@ produced with a model wrapper followed by the fit2df() function
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ewenharrison/finalfit">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/ewenharrison/finalfit/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -164,21 +167,21 @@ produced with a model wrapper followed by the <code><a href='fit2df.html'>fit2df
 (see examples).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ff_merge</span>(
-  <span class='no'>factorlist</span>,
-  <span class='no'>fit2df_df</span>,
-  <span class='kw'>ref_symbol</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+    <pre class="usage"><span class='fu'>ff_merge</span><span class='op'>(</span>
+  <span class='va'>factorlist</span>,
+  <span class='va'>fit2df_df</span>,
+  ref_symbol <span class='op'>=</span> <span class='st'>"-"</span>,
+  estimate_name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  last_merge <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>finalfit_merge</span>(
-  <span class='no'>factorlist</span>,
-  <span class='no'>fit2df_df</span>,
-  <span class='kw'>ref_symbol</span> <span class='kw'>=</span> <span class='st'>"-"</span>,
-  <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+<span class='fu'>finalfit_merge</span><span class='op'>(</span>
+  <span class='va'>factorlist</span>,
+  <span class='va'>fit2df_df</span>,
+  ref_symbol <span class='op'>=</span> <span class='st'>"-"</span>,
+  estimate_name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  last_merge <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -220,33 +223,37 @@ remove index and fit_id columns.</p></td>
     <div class='dont-index'><p><code><a href='summary_factorlist.html'>summary_factorlist</a></code> <code><a href='fit2df.html'>fit2df</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>finalfit</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/ewenharrison/finalfit'>finalfit</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>colon_s</span>)
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span>)
-<span class='no'>explanatory_multi</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span>)
-<span class='no'>random_effect</span> <span class='kw'>=</span> <span class='st'>"hospital"</span>
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"mort_5yr"</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>colon_s</span><span class='op'>)</span>
+<span class='va'>explanatory</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"sex.factor"</span>, <span class='st'>"obstruct.factor"</span>, <span class='st'>"perfor.factor"</span><span class='op'>)</span>
+<span class='va'>explanatory_multi</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age.factor"</span>, <span class='st'>"obstruct.factor"</span><span class='op'>)</span>
+<span class='va'>random_effect</span> <span class='op'>=</span> <span class='st'>"hospital"</span>
+<span class='va'>dependent</span> <span class='op'>=</span> <span class='st'>"mort_5yr"</span>
 
 <span class='co'># Create separate tables</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>fit_id</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>example.summary</span></div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='input'>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='glmuni.html'>glmuni</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (univariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.univariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='glmmulti.html'>glmmulti</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multivariable)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.multivariable</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='glmmixed.html'>glmmixed</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>random_effect</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span><span class='kw'>=</span><span class='st'>" (multilevel)"</span>) <span class='kw'>-&gt;</span> <span class='no'>example.multilevel</span>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, fit_id<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>example.summary</span>
+</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='input'>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='glmuni.html'>glmuni</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='fit2df.html'>fit2df</a></span><span class='op'>(</span>estimate_suffix<span class='op'>=</span><span class='st'>" (univariable)"</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>example.univariable</span>
+</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='glmmulti.html'>glmmulti</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='fit2df.html'>fit2df</a></span><span class='op'>(</span>estimate_suffix<span class='op'>=</span><span class='st'>" (multivariable)"</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>example.multivariable</span>
+</div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='input'>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='glmmixed.html'>glmmixed</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, <span class='va'>random_effect</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='fit2df.html'>fit2df</a></span><span class='op'>(</span>estimate_suffix<span class='op'>=</span><span class='st'>" (multilevel)"</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>example.multilevel</span>
 
 <span class='co'># Pipe together</span>
-<span class='no'>example.summary</span> <span class='kw'>%&gt;%</span>
- <span class='fu'>ff_merge</span>(<span class='no'>example.univariable</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'>ff_merge</span>(<span class='no'>example.multivariable</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'>ff_merge</span>(<span class='no'>example.multilevel</span>, <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;         label      levels      Alive       Died          OR (univariable)
+<span class='va'>example.summary</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>ff_merge</span><span class='op'>(</span><span class='va'>example.univariable</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>ff_merge</span><span class='op'>(</span><span class='va'>example.multivariable</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>ff_merge</span><span class='op'>(</span><span class='va'>example.multilevel</span>, last_merge <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         label      levels      Alive       Died          OR (univariable)
 #&gt; 1         Age   &lt;40 years   31 (6.1)   36 (8.9)                         -
 #&gt; 2             40-59 years 208 (40.7) 131 (32.4) 0.54 (0.32-0.92, p=0.023)
 #&gt; 3               60+ years 272 (53.2) 237 (58.7) 0.75 (0.45-1.25, p=0.270)
@@ -267,9 +274,10 @@ remove index and fit_id columns.</p></td>
 #&gt; 6                         -                         -
 #&gt; 7 1.12 (0.51-2.44, p=0.770) 1.03 (0.43-2.51, p=0.940)</div><div class='input'>
 <span class='co'># Using finalfit()</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='finalfit.html'>finalfit</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>keep_fit_id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'>ff_merge</span>(<span class='no'>example.multilevel</span>, <span class='kw'>last_merge</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='finalfit.html'>finalfit</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, keep_fit_id <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>ff_merge</span><span class='op'>(</span><span class='va'>example.multilevel</span>, last_merge <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Note: dependent includes missing data. These are dropped.</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt; <span class='message'>Waiting for profiling to be done...</span></div><div class='output co'>#&gt;   Dependent: Mortality 5 year                  Alive       Died
 #&gt; 1                         Age   &lt;40 years  31 (46.3)  36 (53.7)
 #&gt; 2                             40-59 years 208 (61.4) 131 (38.6)
 #&gt; 3                               60+ years 272 (53.4) 237 (46.6)
@@ -290,15 +298,10 @@ remove index and fit_id columns.</p></td>
 #&gt; 6                         -                         -                         -
 #&gt; 7 1.18 (0.54-2.55, p=0.672) 1.12 (0.51-2.44, p=0.770) 1.03 (0.43-2.51, p=0.940)</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -309,7 +312,7 @@ remove index and fit_id columns.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

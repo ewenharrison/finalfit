@@ -98,6 +98,8 @@ explicit.}
 
 \item{na_to_p}{Logical: include missing as group in statistical test.}
 
+\item{na_to_prop}{Logical: include missing in calculation of column proportions.}
+
 \item{fit_id}{Logical: allows merging via \code{\link{finalfit_merge}}.}
 
 \item{add_dependent_label}{Add the name of the dependent label to the top

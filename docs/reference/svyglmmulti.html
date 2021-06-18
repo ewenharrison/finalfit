@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -47,7 +51,6 @@
 data from a complex survey design, with inverse-probability weighting and
 design-based standard errors." />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -65,7 +68,7 @@ design-based standard errors." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,7 +90,7 @@ design-based standard errors." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -130,8 +133,8 @@ design-based standard errors." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ewenharrison/finalfit">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/ewenharrison/finalfit/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -159,7 +162,7 @@ data from a complex survey design, with inverse-probability weighting and
 design-based standard errors.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>svyglmmulti</span>(<span class='no'>design</span>, <span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>svyglmmulti</span><span class='op'>(</span><span class='va'>design</span>, <span class='va'>dependent</span>, <span class='va'>explanatory</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -208,53 +211,55 @@ variables.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Examples taken from survey::svyglm() help page. </span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>survey</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: grid</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='output co'>#&gt; <span class='message'></span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://r-survey.r-forge.r-project.org/survey/'>survey</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: grid</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘survey’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:graphics’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    dotchart</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+#&gt; <span class='message'>    dotchart</span></div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>api</span>)
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"api00"</span>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ell"</span>, <span class='st'>"meals"</span>, <span class='st'>"mobility"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>api</span><span class='op'>)</span>
+<span class='va'>dependent</span> <span class='op'>=</span> <span class='st'>"api00"</span>
+<span class='va'>explanatory</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ell"</span>, <span class='st'>"meals"</span>, <span class='st'>"mobility"</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>survey</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://r-survey.r-forge.r-project.org/survey/'>survey</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>api</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>api</span><span class='op'>)</span>
 
-<span class='no'>apistrat</span> <span class='kw'>=</span> <span class='no'>apistrat</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
-  <span class='kw'>api00</span> <span class='kw'>=</span> <span class='fu'><a href='ff_label.html'>ff_label</a></span>(<span class='no'>api00</span>, <span class='st'>"API in 2000 (api00)"</span>),
-  <span class='kw'>ell</span> <span class='kw'>=</span> <span class='fu'><a href='ff_label.html'>ff_label</a></span>(<span class='no'>ell</span>, <span class='st'>"English language learners (percent)(ell)"</span>),
-  <span class='kw'>meals</span> <span class='kw'>=</span> <span class='fu'><a href='ff_label.html'>ff_label</a></span>(<span class='no'>meals</span>, <span class='st'>"Meals eligible (percent)(meals)"</span>),
-  <span class='kw'>mobility</span> <span class='kw'>=</span> <span class='fu'><a href='ff_label.html'>ff_label</a></span>(<span class='no'>mobility</span>, <span class='st'>"First year at the school (percent)(mobility)"</span>),
-  <span class='kw'>sch.wide</span> <span class='kw'>=</span> <span class='fu'><a href='ff_label.html'>ff_label</a></span>(<span class='no'>sch.wide</span>, <span class='st'>"School-wide target met (sch.wide)"</span>)
-  )
+<span class='va'>apistrat</span> <span class='op'>=</span> <span class='va'>apistrat</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+  api00 <span class='op'>=</span> <span class='fu'><a href='ff_label.html'>ff_label</a></span><span class='op'>(</span><span class='va'>api00</span>, <span class='st'>"API in 2000 (api00)"</span><span class='op'>)</span>,
+  ell <span class='op'>=</span> <span class='fu'><a href='ff_label.html'>ff_label</a></span><span class='op'>(</span><span class='va'>ell</span>, <span class='st'>"English language learners (percent)(ell)"</span><span class='op'>)</span>,
+  meals <span class='op'>=</span> <span class='fu'><a href='ff_label.html'>ff_label</a></span><span class='op'>(</span><span class='va'>meals</span>, <span class='st'>"Meals eligible (percent)(meals)"</span><span class='op'>)</span>,
+  mobility <span class='op'>=</span> <span class='fu'><a href='ff_label.html'>ff_label</a></span><span class='op'>(</span><span class='va'>mobility</span>, <span class='st'>"First year at the school (percent)(mobility)"</span><span class='op'>)</span>,
+  sch.wide <span class='op'>=</span> <span class='fu'><a href='ff_label.html'>ff_label</a></span><span class='op'>(</span><span class='va'>sch.wide</span>, <span class='st'>"School-wide target met (sch.wide)"</span><span class='op'>)</span>
+  <span class='op'>)</span>
 
 <span class='co'># Linear example</span>
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"api00"</span>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ell"</span>, <span class='st'>"meals"</span>, <span class='st'>"mobility"</span>)
+<span class='va'>dependent</span> <span class='op'>=</span> <span class='st'>"api00"</span>
+<span class='va'>explanatory</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ell"</span>, <span class='st'>"meals"</span>, <span class='st'>"mobility"</span><span class='op'>)</span>
 
 <span class='co'># Stratified design</span>
-<span class='no'>dstrat</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/survey/man/svydesign.html'>svydesign</a></span>(<span class='kw'>id</span><span class='kw'>=</span>~<span class='fl'>1</span>,<span class='kw'>strata</span><span class='kw'>=</span>~<span class='no'>stype</span>, <span class='kw'>weights</span><span class='kw'>=</span>~<span class='no'>pw</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>apistrat</span>, <span class='kw'>fpc</span><span class='kw'>=</span>~<span class='no'>fpc</span>)
+<span class='va'>dstrat</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/survey/man/svydesign.html'>svydesign</a></span><span class='op'>(</span>id<span class='op'>=</span><span class='op'>~</span><span class='fl'>1</span>,strata<span class='op'>=</span><span class='op'>~</span><span class='va'>stype</span>, weights<span class='op'>=</span><span class='op'>~</span><span class='va'>pw</span>, data<span class='op'>=</span><span class='va'>apistrat</span>, fpc<span class='op'>=</span><span class='op'>~</span><span class='va'>fpc</span><span class='op'>)</span>
 
 <span class='co'># Univariable fit</span>
-<span class='no'>fit_uni</span> <span class='kw'>=</span> <span class='no'>dstrat</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='svyglmuni.html'>svyglmuni</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>" (univariable)"</span>)
+<span class='va'>fit_uni</span> <span class='op'>=</span> <span class='va'>dstrat</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='svyglmuni.html'>svyglmuni</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='fit2df.html'>fit2df</a></span><span class='op'>(</span>estimate_suffix <span class='op'>=</span> <span class='st'>" (univariable)"</span><span class='op'>)</span>
 
 <span class='co'># Multivariable fit</span>
-<span class='no'>fit_multi</span> <span class='kw'>=</span> <span class='no'>dstrat</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>svyglmmulti</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>" (multivariable)"</span>)
+<span class='va'>fit_multi</span> <span class='op'>=</span> <span class='va'>dstrat</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>svyglmmulti</span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='fit2df.html'>fit2df</a></span><span class='op'>(</span>estimate_suffix <span class='op'>=</span> <span class='st'>" (multivariable)"</span><span class='op'>)</span>
 
 <span class='co'># Pipe together</span>
-<span class='no'>apistrat</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ff_merge.html'>ff_merge</a></span>(<span class='no'>fit_uni</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ff_merge.html'>ff_merge</a></span>(<span class='no'>fit_multi</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>fit_id</span>, -<span class='no'>index</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>apistrat</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt;                 Dependent: API in 2000 (api00)                  unit
+<span class='va'>apistrat</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, fit_id <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='ff_merge.html'>ff_merge</a></span><span class='op'>(</span><span class='va'>fit_uni</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='ff_merge.html'>ff_merge</a></span><span class='op'>(</span><span class='va'>fit_multi</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>fit_id</span>, <span class='op'>-</span><span class='va'>index</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='dependent_label.html'>dependent_label</a></span><span class='op'>(</span><span class='va'>apistrat</span>, <span class='va'>dependent</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                 Dependent: API in 2000 (api00)                  unit
 #&gt; 1     English language learners (percent)(ell)  [0.0,84.0] Mean (sd)
 #&gt; 2              Meals eligible (percent)(meals) [0.0,100.0] Mean (sd)
 #&gt; 3 First year at the school (percent)(mobility)  [1.0,99.0] Mean (sd)
@@ -265,26 +270,27 @@ variables.</p></td>
 <span class='co'># Binomial example</span>
 <span class='co'>## Note model family needs specified and exponentiation if desired</span>
 
-<span class='no'>dependent</span> <span class='kw'>=</span> <span class='st'>"sch.wide"</span>
-<span class='no'>explanatory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ell"</span>, <span class='st'>"meals"</span>, <span class='st'>"mobility"</span>)
+<span class='va'>dependent</span> <span class='op'>=</span> <span class='st'>"sch.wide"</span>
+<span class='va'>explanatory</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ell"</span>, <span class='st'>"meals"</span>, <span class='st'>"mobility"</span><span class='op'>)</span>
 
 <span class='co'># Univariable fit</span>
-<span class='no'>fit_uni</span> <span class='kw'>=</span> <span class='no'>dstrat</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='svyglmuni.html'>svyglmuni</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"quasibinomial"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>" (univariable)"</span>)
+<span class='va'>fit_uni</span> <span class='op'>=</span> <span class='va'>dstrat</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='svyglmuni.html'>svyglmuni</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, family <span class='op'>=</span> <span class='st'>"quasibinomial"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='fit2df.html'>fit2df</a></span><span class='op'>(</span>exp <span class='op'>=</span> <span class='cn'>TRUE</span>, estimate_name <span class='op'>=</span> <span class='st'>"OR"</span>, estimate_suffix <span class='op'>=</span> <span class='st'>" (univariable)"</span><span class='op'>)</span>
 
 <span class='co'># Multivariable fit</span>
-<span class='no'>fit_multi</span> <span class='kw'>=</span> <span class='no'>dstrat</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>svyglmmulti</span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"quasibinomial"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='fit2df.html'>fit2df</a></span>(<span class='kw'>exp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>estimate_name</span> <span class='kw'>=</span> <span class='st'>"OR"</span>, <span class='kw'>estimate_suffix</span> <span class='kw'>=</span> <span class='st'>" (multivariable)"</span>)
+<span class='va'>fit_multi</span> <span class='op'>=</span> <span class='va'>dstrat</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>svyglmmulti</span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, family <span class='op'>=</span> <span class='st'>"quasibinomial"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='fit2df.html'>fit2df</a></span><span class='op'>(</span>exp <span class='op'>=</span> <span class='cn'>TRUE</span>, estimate_name <span class='op'>=</span> <span class='st'>"OR"</span>, estimate_suffix <span class='op'>=</span> <span class='st'>" (multivariable)"</span><span class='op'>)</span>
 
 <span class='co'># Pipe together</span>
-<span class='no'>apistrat</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span>(<span class='no'>dependent</span>, <span class='no'>explanatory</span>, <span class='kw'>fit_id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ff_merge.html'>ff_merge</a></span>(<span class='no'>fit_uni</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ff_merge.html'>ff_merge</a></span>(<span class='no'>fit_multi</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='no'>fit_id</span>, -<span class='no'>index</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='dependent_label.html'>dependent_label</a></span>(<span class='no'>apistrat</span>, <span class='no'>dependent</span>)</div><div class='output co'>#&gt;   Dependent: School-wide target met (sch.wide)                    No
+<span class='va'>apistrat</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='summary_factorlist.html'>summary_factorlist</a></span><span class='op'>(</span><span class='va'>dependent</span>, <span class='va'>explanatory</span>, fit_id <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='ff_merge.html'>ff_merge</a></span><span class='op'>(</span><span class='va'>fit_uni</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='ff_merge.html'>ff_merge</a></span><span class='op'>(</span><span class='va'>fit_multi</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>fit_id</span>, <span class='op'>-</span><span class='va'>index</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='dependent_label.html'>dependent_label</a></span><span class='op'>(</span><span class='va'>apistrat</span>, <span class='va'>dependent</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   Dependent: School-wide target met (sch.wide)                    No
 #&gt; 1     English language learners (percent)(ell) Mean (SD) 22.5 (19.3)
 #&gt; 2              Meals eligible (percent)(meals) Mean (SD) 46.0 (29.1)
 #&gt; 3 First year at the school (percent)(mobility) Mean (SD)  13.9 (8.6)
@@ -293,15 +299,10 @@ variables.</p></td>
 #&gt; 2 44.7 (29.0) 1.00 (0.99-1.01, p=0.968) 1.00 (0.98-1.01, p=0.732)
 #&gt; 3 17.2 (13.0) 1.06 (1.00-1.12, p=0.049) 1.06 (1.00-1.13, p=0.058)</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -312,7 +313,7 @@ variables.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -48,7 +52,6 @@ strip variable labels (variable attributes), e.g. forcats::fct_recode.
 Use this function to create a vector of variable labels from a data frame.
 Then use ff_relabel to relabel variables in data frame." />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -66,7 +69,7 @@ Then use ff_relabel to relabel variables in data frame." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -88,7 +91,7 @@ Then use ff_relabel to relabel variables in data frame." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -131,8 +134,8 @@ Then use ff_relabel to relabel variables in data frame." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ewenharrison/finalfit">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/ewenharrison/finalfit/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -161,9 +164,9 @@ Use this function to create a vector of variable labels from a data frame.
 Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ff_relabel</span>(<span class='no'>.data</span>, <span class='no'>.labels</span>)
+    <pre class="usage"><span class='fu'>ff_relabel</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>.labels</span><span class='op'>)</span>
 
-<span class='fu'>finalfit_relabel</span>(<span class='no'>.data</span>, <span class='no'>.labels</span>)</pre>
+<span class='fu'>finalfit_relabel</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>.labels</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -182,15 +185,17 @@ Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Label variable</span>
-<span class='no'>colon_s</span>$<span class='no'>sex.factor</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='ff_label.html'>ff_label</a></span>(<span class='st'>"Sex"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt;  Factor w/ 2 levels "Female","Male": 2 2 1 1 2 1 2 2 2 1 ...
+<span class='va'>colon_s</span><span class='op'>$</span><span class='va'>sex.factor</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='ff_label.html'>ff_label</a></span><span class='op'>(</span><span class='st'>"Sex"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  Factor w/ 2 levels "Female","Male": 2 2 1 1 2 1 2 2 2 1 ...
 #&gt;  - attr(*, "label")= chr "Sex"</div><div class='input'>
 <span class='co'># Make factor level "Unknown" NA</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_if</a></span>(<span class='no'>is.factor</span>, <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='no'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span>,
-  <span class='kw'>NULL</span> <span class='kw'>=</span> <span class='st'>"Unknown"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt; 'data.frame':	929 obs. of  32 variables:
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_if</a></span><span class='op'>(</span><span class='va'>is.factor</span>, <span class='fu'>forcats</span><span class='fu'>::</span><span class='va'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span>, 
+  <span class='cn'>NULL</span> <span class='op'>=</span> <span class='st'>"Unknown"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 'data.frame':	929 obs. of  32 variables:
 #&gt;  $ id             : num  1 2 3 4 5 6 7 8 9 10 ...
 #&gt;  $ rx             : Factor w/ 3 levels "Obs","Lev","Lev+5FU": 3 3 1 3 1 3 2 1 2 3 ...
 #&gt;  $ sex            : num  1 1 0 0 1 0 1 1 1 0 ...
@@ -226,16 +231,17 @@ Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
 #&gt;  $ mort_5yr.num   : num  2 1 2 2 2 2 2 1 1 1 ...
 #&gt;  $ hospital       : Factor w/ 5 levels "hospital_1","hospital_2",..: 5 3 5 4 5 4 2 2 2 2 ...</div><div class='input'>
 <span class='co'># Reset data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>colon_s</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>colon_s</span><span class='op'>)</span>
 
 <span class='co'># Extract variable labels</span>
-<span class='no'>vlabels</span> <span class='kw'>=</span> <span class='no'>colon_s</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='extract_variable_label.html'>extract_variable_label</a></span>()
+<span class='va'>vlabels</span> <span class='op'>=</span> <span class='va'>colon_s</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='extract_variable_label.html'>extract_variable_label</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># Run function where labels are lost</span>
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_if</a></span>(<span class='no'>is.factor</span>, <span class='kw pkg'>forcats</span><span class='kw ns'>::</span><span class='no'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span>,
-  <span class='kw'>NULL</span> <span class='kw'>=</span> <span class='st'>"Unknown"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt; 'data.frame':	929 obs. of  32 variables:
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_if</a></span><span class='op'>(</span><span class='va'>is.factor</span>, <span class='fu'>forcats</span><span class='fu'>::</span><span class='va'><a href='https://forcats.tidyverse.org/reference/fct_recode.html'>fct_recode</a></span>, 
+  <span class='cn'>NULL</span> <span class='op'>=</span> <span class='st'>"Unknown"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 'data.frame':	929 obs. of  32 variables:
 #&gt;  $ id             : num  1 2 3 4 5 6 7 8 9 10 ...
 #&gt;  $ rx             : Factor w/ 3 levels "Obs","Lev","Lev+5FU": 3 3 1 3 1 3 2 1 2 3 ...
 #&gt;  $ sex            : num  1 1 0 0 1 0 1 1 1 0 ...
@@ -271,8 +277,9 @@ Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
 #&gt;  $ mort_5yr.num   : num  2 1 2 2 2 2 2 1 1 1 ...
 #&gt;  $ hospital       : Factor w/ 5 levels "hospital_1","hospital_2",..: 5 3 5 4 5 4 2 2 2 2 ...</div><div class='input'>
 <span class='co'># Relabel</span>
-<span class='no'>colon_s</span> <span class='kw'>%&lt;&gt;%</span> <span class='fu'>ff_relabel</span>(<span class='no'>vlabels</span>)
-<span class='no'>colon_s</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt; 'data.frame':	929 obs. of  32 variables:
+<span class='va'>colon_s</span> <span class='op'>%&lt;&gt;%</span> <span class='fu'>ff_relabel</span><span class='op'>(</span><span class='va'>vlabels</span><span class='op'>)</span>
+<span class='va'>colon_s</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 'data.frame':	929 obs. of  32 variables:
 #&gt;  $ id             : num  1 2 3 4 5 6 7 8 9 10 ...
 #&gt;   ..- attr(*, "label")= chr "id"
 #&gt;  $ rx             : Factor w/ 3 levels "Obs","Lev","Lev+5FU": 3 3 1 3 1 3 2 1 2 3 ...
@@ -339,13 +346,10 @@ Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
 #&gt;   ..- attr(*, "label")= chr "hospital"</div><div class='input'>  
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -356,7 +360,7 @@ Then use <code>ff_relabel</code> to relabel variables in data frame.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

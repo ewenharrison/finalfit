@@ -51,6 +51,7 @@
 #'   explicit.
 #' @param na_complete_cases Logical: include only rows with complete data.
 #' @param na_to_p Logical: include missing as group in statistical test.
+#' @param na_to_prop Logical: include missing in calculation of column proportions.
 #' @param fit_id Logical: allows merging via \code{\link{finalfit_merge}}.
 #' @param add_dependent_label Add the name of the dependent label to the top
 #'   left of table.

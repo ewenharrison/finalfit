@@ -1,5 +1,5 @@
 ---
-title: "finalfit: Getting started"
+title: "Getting started"
 author: "Ewen Harrison"
 output: rmarkdown::html_vignette
 vignette: >
