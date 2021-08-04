@@ -1,3 +1,6 @@
+# finalfit 1.0.4
+* `missing_plot` bugs fixed, many thanks @nathansam. #72
+
 # finalfit 1.0.3
 * `add_row_total` in `summary_factorlist()` now can include proportion of complete data via `include_row_totals_percent` argument. 
 * Robust standard error approach added to vignette.

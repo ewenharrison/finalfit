@@ -39,6 +39,8 @@ missing_plot <- function(.data, dependent=NULL, explanatory=NULL,
   # Labels
   if(use_labels){
     vlabels = extract_labels(df.in)$vfill
+  } else {
+    vlabels =  vlabels = extract_labels(df.in)$vname
   }
 
   # Replace missings with 1s
@@ -47,8 +49,8 @@ missing_plot <- function(.data, dependent=NULL, explanatory=NULL,
       ifelse(is.na(x), 1, 0)
     }) -> df.in
 
-  # Take dataframe rownames for x-axis
-  df.in$.id = rownames(df.in) %>% as.numeric()
+  # X-axis numbering
+  df.in$.id = seq(1, nrow(df.in))
 
   # Gather to key and values for plot
   df.in %>%
