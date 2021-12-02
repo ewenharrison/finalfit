@@ -648,3 +648,87 @@ summary_factorlist <- function(.data,
 	class(df.out) = c("data.frame.ff", class(df.out))
 	return(df.out)
 }
+
+
+
+#' Summarise a set of factors (or continuous variables) by a dependent variable
+#'
+#' A function that takes a single dependent variable with a vector of
+#' explanatory variable names (continuous or categorical variables) to produce a
+#' summary table.
+#'
+#' This function aims to produce publication-ready summary tables for
+#' categorical or continuous dependent variables. It usually takes a categorical
+#' dependent variable to produce a cross table of counts and proportions
+#' expressed as percentages or summarised continuous explanatory variables.
+#' However, it will take a continuous dependent variable to produce mean
+#' (standard deviation) or median (interquartile range) for use with linear
+#' regression models.
+
+
+
+
+#' Stratify a \code{\link{summary_factorlist}} table (beta testing) 
+#'
+#' @param .data Dataframe.
+#' @param ... Arguments to \code{\link{summary_factorlist}}.
+#' @param split Quoted variable name to stratify columns by. 
+#' @param colname_sep Separator for creation of new column name. 
+#' @param level_max_length Maximum name for each factor level contributing to column name. 
+#' @param n_common_cols Number of common columns in \code{\link{summary_factorlist}} table, usually 2.
+#'
+#' @return Dataframe. 
+#' @export
+#'
+#' @examples
+#' # Table 1 - Perforation status stratified by sex ----
+#' explanatory = c("age", "obstruct.factor")
+#' dependent = "perfor.factor"
+#'
+#' # Single split
+#' colon_s %>%
+#'   summary_factorlist_stratified(dependent, explanatory, split = c("sex.factor"))
+#' 
+#' # Double split
+#' colon_s %>%
+#'	 summary_factorlist_stratified(dependent, explanatory, split = c("sex.factor", "age.factor"))
+
+summary_factorlist_stratified <- function(.data, ..., split, colname_sep = "|", level_max_length = 10,
+																					n_common_cols = 2){
+	# Warnings/Checks --------------
+	if(!is.data.frame(.data)) stop(".data is not dataframe")
+	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
+	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
+	if(any(explanatory == ".")){
+		explanatory = .data %>% 
+			dplyr::select(-dependent) %>% 
+			names()
+	}
+	if(is.null(dependent)){
+		message("No dependent variable(s) provided; defaulting to single-level factor")
+		dependent = "all"
+		.data$all = factor(1, labels="all")
+	}
+	if(is.null(split)) stop("No split variable provided")
+	if(any(split %in% explanatory | split %in% dependent)) stop("Split variable cannot be dependent or explanatory")
+	
+	df.out = .data %>% 
+		dplyr::group_by(!!! rlang::syms(split)) %>% 
+		dplyr::group_map(function(.x, .y){
+			summary_factorlist(.x, ...) %>% 
+				dplyr::rename_with(paste0, colname_sep, 
+										.y %>% 
+											#dplyr::first() %>%
+											purrr::map(as.character) %>% 
+											purrr::map(stringr::str_trunc, level_max_length, ellipsis = "") %>% 
+											paste(collapse = colname_sep),
+										.cols = -c(1:n_common_cols)) %>% 
+				dplyr::select(-c(1:n_common_cols)) 
+		}
+		) %>% 
+		dplyr::bind_cols()
+	
+	summary_factorlist(.data, ...) %>% 
+		dplyr::select(1:n_common_cols) %>% 
+		dplyr::bind_cols(df.out)
+}

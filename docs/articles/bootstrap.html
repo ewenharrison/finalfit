@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/finalfit.html">Get started</a>
 </li>
@@ -89,7 +85,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ewenharrison/finalfit/">
+  <a href="https://github.com/ewenharrison/finalfit/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -104,14 +100,14 @@
 
       
 
-      </header><script src="bootstrap_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Bootstrap simulation for model prediction</h1>
-                        <h4 class="author">Ewen Harrison</h4>
+                        <h4 data-toc-skip class="author">Ewen Harrison</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ewenharrison/finalfit/blob/master/vignettes/bootstrap.Rmd"><code>vignettes/bootstrap.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ewenharrison/finalfit/blob/HEAD/vignettes/bootstrap.Rmd" class="external-link"><code>vignettes/bootstrap.Rmd</code></a></small>
       <div class="hidden name"><code>bootstrap.Rmd</code></div>
 
     </div>
@@ -120,30 +116,30 @@
     
 <p>I’ve always been a fan of converting model outputs to real-life quantities of interest. For example, I like to supplement a logistic regression model table with predicted probabilities for a given set of explanatory variable levels. This can be more intuitive than odds ratios, particularly for a lay audience.</p>
 <p>For example, say I have run a logistic regression model for predicted 5 year survival after colon cancer. What is the actual probability of death for a patient under 40 with a small cancer that has not perforated? How does that probability differ for a patient over 40?</p>
-<p>I’ve tried this various ways. I used <a href="https://zeligproject.org/">Zelig</a> for a while including <a href="https://www.bmj.com/content/344/bmj.e3330">here</a>, but it started trying to do too much and was always broken (I updated it the other day in the hope that things were better, but was met with a string of errors again).</p>
-<p>I also used <a href="https://CRAN.R-project.org/package=rms">rms</a>, including <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148782">here</a> (checkout the nice plots!). I like it and respect the package. But I don’t use it as standard and so need to convert all the models first, e.g. to lrm. Again, for my needs it tries to do too much and I find datadist awkward.</p>
-<p>Thirdly, I love <a href="https://mc-stan.org/users/interfaces/rstan">Stan</a> for this, e.g. used in this <a href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(18)30101-4/fulltext">paper</a>. The generated quantities block allows great flexibility to simulate whatever you wish from the posterior. I’m a Bayesian at heart will always come back to this. But for some applications it’s a bit much, and takes some time to get running as I want.</p>
+<p>I’ve tried this various ways. I used <a href="https://zeligproject.org/" class="external-link">Zelig</a> for a while including <a href="https://www.bmj.com/content/344/bmj.e3330" class="external-link">here</a>, but it started trying to do too much and was always broken (I updated it the other day in the hope that things were better, but was met with a string of errors again).</p>
+<p>I also used <a href="https://CRAN.R-project.org/package=rms" class="external-link">rms</a>, including <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148782" class="external-link">here</a> (checkout the nice plots!). I like it and respect the package. But I don’t use it as standard and so need to convert all the models first, e.g. to lrm. Again, for my needs it tries to do too much and I find datadist awkward.</p>
+<p>Thirdly, I love <a href="https://mc-stan.org/users/interfaces/rstan" class="external-link">Stan</a> for this, e.g. used in this <a href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(18)30101-4/fulltext" class="external-link">paper</a>. The generated quantities block allows great flexibility to simulate whatever you wish from the posterior. I’m a Bayesian at heart will always come back to this. But for some applications it’s a bit much, and takes some time to get running as I want.</p>
 <p>I often simply want to predict y-hat from lm and glm with bootstrapped intervals and ideally a comparison of explanatory levels sets. Just like <code>sim</code> does in <code>Zelig</code>. But I want it in a format I can immediately use in a publication.</p>
 <p>Well now I can with <code>finalfit</code></p>
 <p>There’s two main functions with some new internals to help expand to other models in the future.</p>
 <p>Make sure you are on the most up-to-date version of finalfit.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"finalfit"</span><span class="op">)</span></code></pre></div>
-<div id="create-new-dataframe-of-explanatory-variable-levels" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-new-dataframe-of-explanatory-variable-levels" class="anchor"></a>Create new dataframe of explanatory variable levels</h2>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"finalfit"</span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="create-new-dataframe-of-explanatory-variable-levels">Create new dataframe of explanatory variable levels<a class="anchor" aria-label="anchor" href="#create-new-dataframe-of-explanatory-variable-levels"></a>
+</h2>
 <p><code>ff_newdata</code> (alias: <code>finalfit_newdata</code>) is used to generate a new dataframe. I usually want to set 4 or 5 combinations of <code>x</code> levels and often find it difficult to get this formatted correctly to use with <code>predict</code>. Pass the original dataset, the names of explanatory variables used in the model, and a list of levels for these. For the latter, they can be included as rows or columns. If the data type is incorrect or you try to pass factor levels that don’t exist, it will fail with a useful warning.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit">finalfit</a></span><span class="op">)</span>
-<span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
+<span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
 
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/ff_newdata.html">finalfit_newdata</a></span><span class="op">(</span>explanatory <span class="op">=</span> <span class="va">explanatory</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;40 years"</span>,  <span class="st">"Submucosa"</span>, <span class="st">"No"</span><span class="op">)</span>,
-    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;40 years"</span>, <span class="st">"Submucosa"</span>, <span class="st">"Yes"</span><span class="op">)</span>,
-    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;40 years"</span>, <span class="st">"Adjacent structures"</span>, <span class="st">"No"</span><span class="op">)</span>,
-    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;40 years"</span>, <span class="st">"Adjacent structures"</span>, <span class="st">"Yes"</span><span class="op">)</span> <span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">newdata</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/ff_newdata.html">finalfit_newdata</a></span><span class="op">(</span>explanatory <span class="op">=</span> <span class="va">explanatory</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"&lt;40 years"</span>,  <span class="st">"Submucosa"</span>, <span class="st">"No"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"&lt;40 years"</span>, <span class="st">"Submucosa"</span>, <span class="st">"Yes"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"&lt;40 years"</span>, <span class="st">"Adjacent structures"</span>, <span class="st">"No"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"&lt;40 years"</span>, <span class="st">"Adjacent structures"</span>, <span class="st">"Yes"</span><span class="op">)</span> <span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">newdata</span>
 <span class="va">newdata</span>
 <span class="co">#&gt;   age.factor       extent.factor perfor.factor</span>
 <span class="co">#&gt; 1  &lt;40 years           Submucosa            No</span>
@@ -151,95 +147,95 @@
 <span class="co">#&gt; 3  &lt;40 years Adjacent structures            No</span>
 <span class="co">#&gt; 4  &lt;40 years Adjacent structures           Yes</span></code></pre></div>
 </div>
-<div id="run-bootstrap-simulations-of-model-predictions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#run-bootstrap-simulations-of-model-predictions" class="anchor"></a>Run bootstrap simulations of model predictions</h2>
+<div class="section level2">
+<h2 id="run-bootstrap-simulations-of-model-predictions">Run bootstrap simulations of model predictions<a class="anchor" aria-label="anchor" href="#run-bootstrap-simulations-of-model-predictions"></a>
+</h2>
 <p><code>boot_predict</code> takes standard <code>lm</code> and <code>glm</code> model objects, together with <code>finalfit</code> <code>lmlist</code> and <code>glmlist</code> objects from fitters, e.g. <code>lmmulti</code> and <code>glmmulti</code>. In addition, it requires a <code>newdata</code> object generated from <code>ff_newdata</code>. If you’re new to this, don’t be put off by all those model acronyms, it is straightforward.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">colon_s</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/boot_predict.html">boot_predict</a></span><span class="op">(</span><span class="va">newdata</span>, 
     estimate_name <span class="op">=</span> <span class="st">"Predicted probability of death"</span>,
     R<span class="op">=</span><span class="fl">100</span>, boot_compare <span class="op">=</span> <span class="cn">FALSE</span>,
-    digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+    digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.04 to 0.65)</span>
-<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.04 to 0.68)</span>
-<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.52 to 0.89)</span>
-<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.45 to 0.91)</span></code></pre></div>
+<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.03 to 0.58)</span>
+<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.02 to 0.55)</span>
+<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.55 to 0.88)</span>
+<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.45 to 0.90)</span></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for demonstration purposes. You should expect to use 1000 to 10000 to ensure you have stable estimates.</p>
 </div>
-<div id="output-to-word-pdf-and-html-via-rmarkdown" class="section level2">
-<h2 class="hasAnchor">
-<a href="#output-to-word-pdf-and-html-via-rmarkdown" class="anchor"></a>Output to Word, PDF, and html via RMarkdown</h2>
-<p>Simulations are produced using bootstrapping and everything is tidily outputted in a table/dataframe, which can be passed to <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code>.</p>
+<div class="section level2">
+<h2 id="output-to-word-pdf-and-html-via-rmarkdown">Output to Word, PDF, and html via RMarkdown<a class="anchor" aria-label="anchor" href="#output-to-word-pdf-and-html-via-rmarkdown"></a>
+</h2>
+<p>Simulations are produced using bootstrapping and everything is tidily outputted in a table/dataframe, which can be passed to <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable</a></code>.</p>
 <p>Place this chunk in an .Rmd file:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">table</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png" alt="" width="600" class="aligncenter"></a></p>
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">table</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png" alt="" width="600" class="aligncenter"></a></p>
 </div>
-<div id="make-comparisons" class="section level2">
-<h2 class="hasAnchor">
-<a href="#make-comparisons" class="anchor"></a>Make comparisons</h2>
+<div class="section level2">
+<h2 id="make-comparisons">Make comparisons<a class="anchor" aria-label="anchor" href="#make-comparisons"></a>
+</h2>
 <p>Better still, by including <code>boot_compare=TRUE</code> (default), comparisons are made between the first row of newdata and each subsequent row. These can be first differences (e.g. absolute risk differences) or ratios (e.g. relative risk ratios). The comparisons are done on the individual bootstrap predictions and the distribution summarised as a mean with percentile confidence intervals (95% CI as default, e.g. 2.5 and 97.5 percentiles). A p-value is generated on the proportion of values on the other side of the null from the mean, e.g. for a ratio greater than 1.0, p is the number of bootstrapped predictions under 1.0. Multiplied by two so it is two-sided.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">colon_s</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/boot_predict.html">boot_predict</a></span><span class="op">(</span><span class="va">newdata</span>, 
     estimate_name <span class="op">=</span> <span class="st">"Predicted probability of death"</span>,
     <span class="co">#compare_name = "Absolute risk difference",</span>
-    R<span class="op">=</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+    R<span class="op">=</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.04 to 0.56)</span>
-<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.03 to 0.61)</span>
-<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.52 to 0.85)</span>
-<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.37 to 0.89)</span>
+<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.08 to 0.56)</span>
+<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.07 to 0.67)</span>
+<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.52 to 0.87)</span>
+<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.47 to 0.88)</span>
 <span class="co">#&gt;                      Difference</span>
 <span class="co">#&gt; 1                             -</span>
-<span class="co">#&gt; 2 0.02 (-0.18 to 0.20, p=0.740)</span>
-<span class="co">#&gt; 3  0.42 (0.15 to 0.69, p&lt;0.001)</span>
-<span class="co">#&gt; 4 0.44 (-0.02 to 0.68, p=0.060)</span></code></pre></div>
+<span class="co">#&gt; 2 0.02 (-0.13 to 0.17, p=0.740)</span>
+<span class="co">#&gt; 3  0.42 (0.13 to 0.64, p&lt;0.001)</span>
+<span class="co">#&gt; 4  0.43 (0.14 to 0.70, p&lt;0.001)</span></code></pre></div>
 </div>
-<div id="what-is-not-included" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what-is-not-included" class="anchor"></a>What is not included?</h2>
+<div class="section level2">
+<h2 id="what-is-not-included">What is not included?<a class="anchor" aria-label="anchor" href="#what-is-not-included"></a>
+</h2>
 <p>It doesn’t yet include our other common models, such as <code>coxph</code> which I may add in. It doesn’t do <code>lmer</code> or <code>glmer</code> either. <code>bootMer</code> works well mixed-effects models which take a bit more care and thought, e.g. how are random effects to be handled in the simulations. So I don’t have immediate plans to add that in, better to do directly.</p>
 </div>
-<div id="plotting" class="section level2">
-<h2 class="hasAnchor">
-<a href="#plotting" class="anchor"></a>Plotting</h2>
+<div class="section level2">
+<h2 id="plotting">Plotting<a class="anchor" aria-label="anchor" href="#plotting"></a>
+</h2>
 <p>Finally, as with all finalfit functions, results can be produced as individual variables using <code>condense == FALSE</code>. This is particularly useful for plotting.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit">finalfit</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nodes"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
+<span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"nodes"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
 
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/ff_newdata.html">finalfit_newdata</a></span><span class="op">(</span>explanatory <span class="op">=</span> <span class="va">explanatory</span>, rowwise <span class="op">=</span> <span class="cn">FALSE</span>,
-    newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">30</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Muscle"</span>, <span class="fl">62</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Adjacent structures"</span>, <span class="fl">62</span><span class="op">)</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="fl">31</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Yes"</span>, <span class="fl">31</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="fl">31</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Yes"</span>, <span class="fl">31</span><span class="op">)</span><span class="op">)</span>
+    newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">30</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span>,
+      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Muscle"</span>, <span class="fl">62</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Adjacent structures"</span>, <span class="fl">62</span><span class="op">)</span><span class="op">)</span>,
+      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="fl">31</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Yes"</span>, <span class="fl">31</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="fl">31</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Yes"</span>, <span class="fl">31</span><span class="op">)</span><span class="op">)</span>
     <span class="op">)</span>
   <span class="op">)</span> <span class="op">-&gt;</span> <span class="va">newdata</span>
 
-<span class="va">colon_s</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/boot_predict.html">boot_predict</a></span><span class="op">(</span><span class="va">newdata</span>, boot_compare <span class="op">=</span> <span class="cn">FALSE</span>, 
-  R<span class="op">=</span><span class="fl">100</span>, condense<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">nodes</span>, y <span class="op">=</span> <span class="va">estimate</span>, ymin <span class="op">=</span> <span class="va">estimate_conf.low</span>,
+  R<span class="op">=</span><span class="fl">100</span>, condense<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">nodes</span>, y <span class="op">=</span> <span class="va">estimate</span>, ymin <span class="op">=</span> <span class="va">estimate_conf.low</span>,
       ymax <span class="op">=</span> <span class="va">estimate_conf.high</span>, fill<span class="op">=</span><span class="va">extent.factor</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">extent.factor</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span><span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">.</span><span class="op">~</span><span class="va">perfor.factor</span><span class="op">)</span><span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Number of postive lymph nodes"</span><span class="op">)</span><span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Probability of death"</span><span class="op">)</span><span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Extent of tumour"</span>, colour <span class="op">=</span> <span class="st">"Extent of tumour"</span><span class="op">)</span><span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Probability of death by lymph node count"</span><span class="op">)</span></code></pre></div>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png" alt="" width="600" class="aligncenter"></a></p>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">extent.factor</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html" class="external-link">geom_ribbon</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span><span class="va">.</span><span class="op">~</span><span class="va">perfor.factor</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Number of postive lymph nodes"</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Probability of death"</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Extent of tumour"</span>, colour <span class="op">=</span> <span class="st">"Extent of tumour"</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Probability of death by lymph node count"</span><span class="op">)</span></code></pre></div>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/simulation_plot-1024x567.png" alt="" width="600" class="aligncenter"></a></p>
 <p>So there you have it. Straightforward bootstrapped simulations of model predictions, together with comparisons and easy plotting.</p>
 </div>
   </div>
@@ -255,11 +251,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Ewen Harrison, Tom Drake, Riinu Ots.</p>
+  <p></p>
+<p>Developed by Ewen Harrison, Tom Drake, Riinu Ots.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
 </div>
 
       </footer>
@@ -267,6 +265,8 @@
 
   
 
+
+  
 
   </body>
 </html>

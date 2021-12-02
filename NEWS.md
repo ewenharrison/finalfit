@@ -1,5 +1,8 @@
 # finalfit 1.0.4
-* `missing_plot` bugs fixed, many thanks @nathansam. #72
+* `missing_plot()` bugs fixed, many thanks @nathansam. #72
+* `finalfit()` for CPH models now provides column proportions by default, many thanks corneliushennch. #74
+* `summary_factorlist_stratified()`: beta testing for stratified tables.
+* `rm_empty_block()` added: remove rows where all specified variables are missing. 
 
 # finalfit 1.0.3
 * `add_row_total` in `summary_factorlist()` now can include proportion of complete data via `include_row_totals_percent` argument. 

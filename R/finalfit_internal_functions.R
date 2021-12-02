@@ -499,6 +499,39 @@ rm_duplicate_labels = function(factorlist, na_to_missing = TRUE){
 	return(x)
 }
 
+#' Remove rows where all specified variables are missing
+#' 
+#' It is common to want to remove cases/rows where all variables in a particular set are missing, 
+#' e.g. all symptom variables are missing in a health care dataset. 
+#'
+#' @param .data Dataframe.
+#' @param ... Unquoted variable/column names. 
+#'
+#' @return Data frame. 
+#' @export
+#'
+#' @examples
+#' # Pretend that we want to remove rows that are missing in group1, group2, and group3 
+#' # but keep rest of dataset. 
+#' colon_s %>% 
+#'   dplyr::mutate(
+#'     group1 = rep(c(NA, 1), length.out = 929),
+#'     group2 = rep(c(NA, 1), length.out = 929),
+#'		 group3 = rep(c(NA, 1), length.out = 929)
+#'   ) %>% 
+#' rm_empty_block(group1, group2, group3)
+rm_empty_block <- function(.data, ...){
+	.keep <- .data %>% 
+		dplyr::select(...) %>% 
+		dplyr::mutate(dplyr::across(dplyr::everything(), ~ !is.na(.))) %>% 
+		rowSums() %>% 
+		{. > 0}
+	
+	.data[.keep, ]
+}
+
+
+
 #' Make a label for the dependent variable
 #'
 #' Can be add dependent label to final results dataframe.

@@ -13,7 +13,7 @@ finalfit(
   explanatory,
   explanatory_multi = NULL,
   random_effect = NULL,
-  column = FALSE,
+  column = NULL,
   keep_models = FALSE,
   metrics = FALSE,
   add_dependent_label = TRUE,

@@ -5,6 +5,7 @@ reference:
     - '`finalfit`'
     - '`finalfit_permute`'
     - '`summary_factorlist`'
+    - '`summary_factorlist_stratified`'
   - title: "Model wrappers"
     desc: "Wrappers for common statistical models"
     contents:
@@ -53,6 +54,7 @@ reference:
     - '`labels_to_level`' 
     - '`p_tidy`'
     - '`rm_duplicates`' 
+    - '`rm_empty_block`'     
     - '`round_tidy`'
   - title: "Plotting"
     desc: ~

@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/finalfit.html">Get started</a>
 </li>
@@ -89,7 +85,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ewenharrison/finalfit/">
+  <a href="https://github.com/ewenharrison/finalfit/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -104,14 +100,14 @@
 
       
 
-      </header><script src="finalfit_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting started</h1>
-                        <h4 class="author">Ewen Harrison</h4>
+                        <h4 data-toc-skip class="author">Ewen Harrison</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ewenharrison/finalfit/blob/master/vignettes/finalfit.Rmd"><code>vignettes/finalfit.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ewenharrison/finalfit/blob/HEAD/vignettes/finalfit.Rmd" class="external-link"><code>vignettes/finalfit.Rmd</code></a></small>
       <div class="hidden name"><code>finalfit.Rmd</code></div>
 
     </div>
@@ -119,42 +115,42 @@
     
     
 <p>The <code>finafit</code> package brings together the day-to-day functions we use to generate final results tables and plots when modelling.</p>
-<p>I spent many years repeatedly manually copying results from R analyses and built these functions to automate our standard healthcare data workflow. It is particularly useful when undertaking a large study involving multiple different regression analyses. When combined with <a href="https://rmarkdown.rstudio.com/">RMarkdown</a>, the reporting becomes entirely automated. Its design follows Hadley Wickham’s <a href="https://tidyverse.tidyverse.org/articles/manifesto.html">tidy tool manifesto</a>.</p>
-<div id="installation-and-documentation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation-and-documentation" class="anchor"></a>Installation and Documentation</h2>
-<p>Development lives on <a href="https://github.com/ewenharrison/finalfit">GitHub</a>.</p>
+<p>I spent many years repeatedly manually copying results from R analyses and built these functions to automate our standard healthcare data workflow. It is particularly useful when undertaking a large study involving multiple different regression analyses. When combined with <a href="https://rmarkdown.rstudio.com/" class="external-link">RMarkdown</a>, the reporting becomes entirely automated. Its design follows Hadley Wickham’s <a href="https://tidyverse.tidyverse.org/articles/manifesto.html" class="external-link">tidy tool manifesto</a>.</p>
+<div class="section level2">
+<h2 id="installation-and-documentation">Installation and Documentation<a class="anchor" aria-label="anchor" href="#installation-and-documentation"></a>
+</h2>
+<p>Development lives on <a href="https://github.com/ewenharrison/finalfit" class="external-link">GitHub</a>.</p>
 <p>You can install the <code>finalfit</code> development version from CRAN with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"finalfit"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"finalfit"</span><span class="op">)</span></code></pre></div>
 <p>It is recommended that this package is used together with <code>dplyr</code>, which is a dependent.</p>
 <p>Some of the functions require <code>rstan</code> and <code>boot</code>. These have been left as <code>Suggests</code> rather than <code>Depends</code> to avoid unnecessary installation. If needed, they can be installed in the normal way:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rstan"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"boot"</span><span class="op">)</span></code></pre></div>
-<p>To <a href="https://www.datasurg.net/2018/05/05/install-github-package-on-safe-haven-server/">install off-line (or in a Safe Haven)</a>, download the zip file and use <code>devtools::install_local()</code>.</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rstan"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"boot"</span><span class="op">)</span></code></pre></div>
+<p>To <a href="https://www.datasurg.net/2018/05/05/install-github-package-on-safe-haven-server/" class="external-link">install off-line (or in a Safe Haven)</a>, download the zip file and use <code>devtools::install_local()</code>.</p>
 </div>
-<div id="main-features" class="section level2">
-<h2 class="hasAnchor">
-<a href="#main-features" class="anchor"></a>Main Features</h2>
-<div id="summarise-variablesfactors-by-a-categorical-variable" class="section level3">
-<h3 class="hasAnchor">
-<a href="#summarise-variablesfactors-by-a-categorical-variable" class="anchor"></a>1. Summarise variables/factors by a categorical variable</h3>
-<p><code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> is a wrapper used to aggregate any number of explanatory variables by a single <strong>variable of interest</strong>. This is often “Table 1” of a published study. When categorical, the variable of interest can have a maximum of five levels. It uses <code><a href="https://rdrr.io/pkg/Hmisc/man/summary.formula.html">Hmisc::summary.formula()</a></code>.</p>
+<div class="section level2">
+<h2 id="main-features">Main Features<a class="anchor" aria-label="anchor" href="#main-features"></a>
+</h2>
+<div class="section level3">
+<h3 id="summarise-variablesfactors-by-a-categorical-variable">1. Summarise variables/factors by a categorical variable<a class="anchor" aria-label="anchor" href="#summarise-variablesfactors-by-a-categorical-variable"></a>
+</h3>
+<p><code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> is a wrapper used to aggregate any number of explanatory variables by a single <strong>variable of interest</strong>. This is often “Table 1” of a published study. When categorical, the variable of interest can have a maximum of five levels. It uses <code><a href="https://rdrr.io/pkg/Hmisc/man/summary.formula.html" class="external-link">Hmisc::summary.formula()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit">finalfit</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
 <span class="co"># Load example dataset, modified version of survival::colon</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">colon_s</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">colon_s</span><span class="op">)</span>
 
 <span class="co"># Table 1 - Patient demographics by variable of interest ----</span>
-<span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
+<span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"perfor.factor"</span> <span class="co"># Bowel perforation</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>,
   p<span class="op">=</span><span class="cn">TRUE</span>, add_dependent_label<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t1</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">t1</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t1</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Perforation</th>
@@ -223,17 +219,17 @@
 </tbody>
 </table>
 <p>When exported to PDF:</p>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg" alt="" width="600" class="aligncenter"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table1.jpg" alt="" width="600" class="aligncenter"></a></p>
 <p>See other options relating to inclusion of missing data, mean vs. median for continuous variables, column vs. row proportions, include a total column etc.</p>
 <p><code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> is also commonly used to summarise any number of variables by an <strong>outcome variable</strong> (say dead yes/no).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Table 2 - 5 yr mortality ----</span>
-<span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
+<span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, 
   p<span class="op">=</span><span class="cn">TRUE</span>, add_dependent_label<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t2</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">t2</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t2</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Mortality 5 year</th>
@@ -294,24 +290,24 @@
 </tr>
 </tbody>
 </table>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg" alt="" width="600" class="aligncenter"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table2.jpg" alt="" width="600" class="aligncenter"></a></p>
 <p>Tables can be knitted to PDF, Word or html documents. We do this in RStudio from a .Rmd document.</p>
 </div>
-<div id="summarise-regression-model-results-in-final-table-format" class="section level3">
-<h3 class="hasAnchor">
-<a href="#summarise-regression-model-results-in-final-table-format" class="anchor"></a>2. Summarise regression model results in final table format</h3>
-<p>The second main feature is the ability to create final tables for linear <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, logistic <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>, hierarchical logistic <code><a href="https://rdrr.io/pkg/lme4/man/glmer.html">lme4::glmer()</a></code> and Cox proportional hazards <code><a href="https://rdrr.io/pkg/survival/man/coxph.html">survival::coxph()</a></code> regression models.</p>
+<div class="section level3">
+<h3 id="summarise-regression-model-results-in-final-table-format">2. Summarise regression model results in final table format<a class="anchor" aria-label="anchor" href="#summarise-regression-model-results-in-final-table-format"></a>
+</h3>
+<p>The second main feature is the ability to create final tables for linear <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>, logistic <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>, hierarchical logistic <code><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">lme4::glmer()</a></code> and Cox proportional hazards <code><a href="https://rdrr.io/pkg/survival/man/coxph.html" class="external-link">survival::coxph()</a></code> regression models.</p>
 <p>The <code><a href="../reference/finalfit.html">finalfit()</a></code> “all-in-one” function takes a single dependent variable with a vector of explanatory variable names (continuous or categorical variables) to produce a final table for publication including summary statistics, univariable and multivariable regression analyses. The first columns are those produced by <code>summary_factorist()</code>. The appropriate regression model is chosen on the basis of the dependent variable type and other arguments passed.</p>
-<div id="logistic-regression-glm" class="section level4">
-<h4 class="hasAnchor">
-<a href="#logistic-regression-glm" class="anchor"></a>Logistic regression: glm()</h4>
-<p>Of the form: <code><a href="https://rdrr.io/r/stats/glm.html">glm(depdendent ~ explanatory, family="binomial")</a></code></p>
+<div class="section level4">
+<h4 id="logistic-regression-glm">Logistic regression: glm()<a class="anchor" aria-label="anchor" href="#logistic-regression-glm"></a>
+</h4>
+<p>Of the form: <code>glm(depdendent ~ explanatory, family="binomial")</code></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/finalfit.html">finalfit</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t3</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">t3</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t3</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="24%">
@@ -404,19 +400,19 @@
 </tr>
 </tbody>
 </table>
-<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table3.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table3.jpg" alt="" width="700"></a></p>
+<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table3.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table3.jpg" alt="" width="700"></a></p>
 </div>
-<div id="logistic-regression-with-reduced-model-glm" class="section level4">
-<h4 class="hasAnchor">
-<a href="#logistic-regression-with-reduced-model-glm" class="anchor"></a>Logistic regression with reduced model: glm()</h4>
+<div class="section level4">
+<h4 id="logistic-regression-with-reduced-model-glm">Logistic regression with reduced model: glm()<a class="anchor" aria-label="anchor" href="#logistic-regression-with-reduced-model-glm"></a>
+</h4>
 <p>Where a multivariable model contains a subset of the variables included specified in the full univariable set, this can be specified.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
-<span class="va">explanatory_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
+<span class="va">explanatory_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/finalfit.html">finalfit</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, <span class="va">explanatory_multi</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t4</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">t4</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t4</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="24%">
@@ -509,21 +505,21 @@
 </tr>
 </tbody>
 </table>
-<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table4.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table4.jpg" alt="" width="700"></a></p>
+<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table4.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table4.jpg" alt="" width="700"></a></p>
 </div>
-<div id="mixed-effects-logistic-regression-lme4glmer" class="section level4">
-<h4 class="hasAnchor">
-<a href="#mixed-effects-logistic-regression-lme4glmer" class="anchor"></a>Mixed effects logistic regression: lme4::glmer()</h4>
-<p>Of the form: <code><a href="https://rdrr.io/pkg/lme4/man/glmer.html">lme4::glmer(dependent ~ explanatory + (1 | random_effect), family="binomial")</a></code></p>
+<div class="section level4">
+<h4 id="mixed-effects-logistic-regression-lme4glmer">Mixed effects logistic regression: lme4::glmer()<a class="anchor" aria-label="anchor" href="#mixed-effects-logistic-regression-lme4glmer"></a>
+</h4>
+<p>Of the form: <code>lme4::glmer(dependent ~ explanatory + (1 | random_effect), family="binomial")</code></p>
 <p>Hierarchical/mixed effects/multilevel logistic regression models can be specified using the argument <code>random_effect</code>. At the moment it is just set up for random intercepts (i.e. <code>(1 | random_effect)</code>, but in the future I’ll adjust this to accommodate random gradients if needed (i.e. <code>(variable1 | variable2)</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
-<span class="va">explanatory_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
+<span class="va">explanatory_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
 <span class="va">random_effect</span> <span class="op">=</span> <span class="st">"hospital"</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/finalfit.html">finalfit</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, <span class="va">explanatory_multi</span>, <span class="va">random_effect</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t5</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">t5</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t5</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="24%">
@@ -616,18 +612,18 @@
 </tr>
 </tbody>
 </table>
-<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table5.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table5.jpg" alt="" width="700"></a></p>
+<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table5.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table5.jpg" alt="" width="700"></a></p>
 </div>
-<div id="cox-proportional-hazards-survivalcoxph" class="section level4">
-<h4 class="hasAnchor">
-<a href="#cox-proportional-hazards-survivalcoxph" class="anchor"></a>Cox proportional hazards: survival::coxph()</h4>
-<p>Of the form: <code><a href="https://rdrr.io/pkg/survival/man/coxph.html">survival::coxph(dependent ~ explanatory)</a></code></p>
+<div class="section level4">
+<h4 id="cox-proportional-hazards-survivalcoxph">Cox proportional hazards: survival::coxph()<a class="anchor" aria-label="anchor" href="#cox-proportional-hazards-survivalcoxph"></a>
+</h4>
+<p>Of the form: <code>survival::coxph(dependent ~ explanatory)</code></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"Surv(time, status)"</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/finalfit.html">finalfit</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t6</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">t6</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t6</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Dependent: Surv(time, status)</th>
@@ -640,81 +636,81 @@
 <tr class="odd">
 <td align="left">Age</td>
 <td align="left">&lt;40 years</td>
-<td align="right">70 (100.0)</td>
+<td align="right">70 (7.5)</td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">40-59 years</td>
-<td align="right">344 (100.0)</td>
+<td align="right">344 (37.0)</td>
 <td align="right">0.76 (0.53-1.09, p=0.132)</td>
 <td align="right">0.79 (0.55-1.13, p=0.196)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">60+ years</td>
-<td align="right">515 (100.0)</td>
+<td align="right">515 (55.4)</td>
 <td align="right">0.93 (0.66-1.31, p=0.668)</td>
 <td align="right">0.98 (0.69-1.40, p=0.926)</td>
 </tr>
 <tr class="even">
 <td align="left">Sex</td>
 <td align="left">Female</td>
-<td align="right">445 (100.0)</td>
+<td align="right">445 (47.9)</td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Male</td>
-<td align="right">484 (100.0)</td>
+<td align="right">484 (52.1)</td>
 <td align="right">1.01 (0.84-1.22, p=0.888)</td>
 <td align="right">1.02 (0.85-1.23, p=0.812)</td>
 </tr>
 <tr class="even">
 <td align="left">Obstruction</td>
 <td align="left">No</td>
-<td align="right">732 (100.0)</td>
+<td align="right">732 (80.6)</td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Yes</td>
-<td align="right">176 (100.0)</td>
+<td align="right">176 (19.4)</td>
 <td align="right">1.29 (1.03-1.62, p=0.028)</td>
 <td align="right">1.30 (1.03-1.64, p=0.026)</td>
 </tr>
 <tr class="even">
 <td align="left">Perforation</td>
 <td align="left">No</td>
-<td align="right">902 (100.0)</td>
+<td align="right">902 (97.1)</td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">Yes</td>
-<td align="right">27 (100.0)</td>
+<td align="right">27 (2.9)</td>
 <td align="right">1.17 (0.70-1.95, p=0.556)</td>
 <td align="right">1.08 (0.64-1.81, p=0.785)</td>
 </tr>
 </tbody>
 </table>
-<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table6.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table6.jpg" alt="" width="700"></a></p>
+<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table6.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table6.jpg" alt="" width="700"></a></p>
 </div>
-<div id="add-common-model-metrics-to-output" class="section level4">
-<h4 class="hasAnchor">
-<a href="#add-common-model-metrics-to-output" class="anchor"></a>Add common model metrics to output</h4>
+<div class="section level4">
+<h4 id="add-common-model-metrics-to-output">Add common model metrics to output<a class="anchor" aria-label="anchor" href="#add-common-model-metrics-to-output"></a>
+</h4>
 <p><code>metrics=TRUE</code> provides common model metrics. The output is a list of two dataframes. Note chunk specification for output below.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, 
+<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, 
   <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/finalfit.html">finalfit</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, metrics<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t7</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">t7</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t7</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="24%">
@@ -808,51 +804,51 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">t7</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, col.names<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t7</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, col.names<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup><col width="100%"></colgroup>
 <tbody><tr class="odd">
 <td align="left">Number in dataframe = 929, Number in model = 894, Missing = 35, AIC = 1230.7, C-statistic = 0.56, H&amp;L = Chi-sq(8) 5.69 (p=0.682)</td>
 </tr></tbody>
 </table>
-<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg" alt="" width="700"></a></p>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg" alt="" width="700"></a></p>
+<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table7a.jpg" alt="" width="700"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table7b.jpg" alt="" width="700"></a></p>
 </div>
-<div id="combine-multiple-models-into-single-table" class="section level4">
-<h4 class="hasAnchor">
-<a href="#combine-multiple-models-into-single-table" class="anchor"></a>Combine multiple models into single table</h4>
+<div class="section level4">
+<h4 id="combine-multiple-models-into-single-table">Combine multiple models into single table<a class="anchor" aria-label="anchor" href="#combine-multiple-models-into-single-table"></a>
+</h4>
 <p>Rather than going all-in-one, any number of subset models can be manually added on to a <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> table using <code><a href="../reference/ff_merge.html">finalfit_merge()</a></code>. This is particularly useful when models take a long-time to run or are complicated.</p>
 <p>Note the requirement for <code>fit_id=TRUE</code> in <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code>. <code>fit2df</code> extracts, condenses, and add metrics to supported models.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
-<span class="va">explanatory_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
+<span class="va">explanatory_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
 <span class="va">random_effect</span> <span class="op">=</span> <span class="st">"hospital"</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
 
 <span class="co"># Separate tables</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span><span class="op">(</span><span class="va">dependent</span>, 
   <span class="va">explanatory</span>, fit_id<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">example.summary</span>
 
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/glmuni.html">glmuni</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/glmuni.html">glmuni</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/fit2df.html">fit2df</a></span><span class="op">(</span>estimate_suffix<span class="op">=</span><span class="st">" (univariable)"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">example.univariable</span>
 
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/fit2df.html">fit2df</a></span><span class="op">(</span>estimate_suffix<span class="op">=</span><span class="st">" (multivariable)"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">example.multivariable</span>
 
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/glmmixed.html">glmmixed</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, <span class="va">random_effect</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/glmmixed.html">glmmixed</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, <span class="va">random_effect</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/fit2df.html">fit2df</a></span><span class="op">(</span>estimate_suffix<span class="op">=</span><span class="st">" (multilevel)"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">example.multilevel</span>
 
 <span class="co"># Pipe together</span>
-<span class="va">example.summary</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/ff_merge.html">finalfit_merge</a></span><span class="op">(</span><span class="va">example.univariable</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/ff_merge.html">finalfit_merge</a></span><span class="op">(</span><span class="va">example.multivariable</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/ff_merge.html">finalfit_merge</a></span><span class="op">(</span><span class="va">example.multilevel</span>, last_merge <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">example.summary</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/ff_merge.html">finalfit_merge</a></span><span class="op">(</span><span class="va">example.univariable</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/ff_merge.html">finalfit_merge</a></span><span class="op">(</span><span class="va">example.multivariable</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/ff_merge.html">finalfit_merge</a></span><span class="op">(</span><span class="va">example.multilevel</span>, last_merge <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/dependent_label.html">dependent_label</a></span><span class="op">(</span><span class="va">colon_s</span>, <span class="va">dependent</span>, prefix<span class="op">=</span><span class="st">""</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t8</span> <span class="co"># place dependent variable label</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">t8</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t8</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="13%">
@@ -956,75 +952,74 @@
 </tr>
 </tbody>
 </table>
-<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table8.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table8.jpg" alt="" width="700"></a></p>
+<p>When exported to PDF: <a href="https://www.datasurg.net/wp-content/uploads/2018/05/table8.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/table8.jpg" alt="" width="700"></a></p>
 </div>
-<div id="bayesian-logistic-regression-with-stan" class="section level4">
-<h4 class="hasAnchor">
-<a href="#bayesian-logistic-regression-with-stan" class="anchor"></a>Bayesian logistic regression: with <code>stan</code>
+<div class="section level4">
+<h4 id="bayesian-logistic-regression-with-stan">Bayesian logistic regression: with <code>stan</code><a class="anchor" aria-label="anchor" href="#bayesian-logistic-regression-with-stan"></a>
 </h4>
-<p>Our own particular <code>rstan</code> models are supported and will be documented in the future. Broadly, if you are running (hierarchical) logistic regression models in <a href="https://mc-stan.org/users/interfaces/rstan">Stan</a> with coefficients specified as a vector labelled <code>beta</code>, then <code><a href="../reference/fit2df.html">fit2df()</a></code> will work directly on the <code>stanfit</code> object in a similar manner to if it was a <code>glm</code> or <code>glmerMod</code> object.</p>
+<p>Our own particular <code>rstan</code> models are supported and will be documented in the future. Broadly, if you are running (hierarchical) logistic regression models in <a href="https://mc-stan.org/users/interfaces/rstan" class="external-link">Stan</a> with coefficients specified as a vector labelled <code>beta</code>, then <code><a href="../reference/fit2df.html">fit2df()</a></code> will work directly on the <code>stanfit</code> object in a similar manner to if it was a <code>glm</code> or <code>glmerMod</code> object.</p>
 </div>
 </div>
-<div id="summarise-regression-model-results-in-plot" class="section level3">
-<h3 class="hasAnchor">
-<a href="#summarise-regression-model-results-in-plot" class="anchor"></a>3. Summarise regression model results in plot</h3>
+<div class="section level3">
+<h3 id="summarise-regression-model-results-in-plot">3. Summarise regression model results in plot<a class="anchor" aria-label="anchor" href="#summarise-regression-model-results-in-plot"></a>
+</h3>
 <p>Models can be summarized with odds ratio/hazard ratio plots using <code>or_plot</code>, <code>hr_plot</code> and <code>surv_plot</code>.</p>
-<div id="or-plot" class="section level4">
-<h4 class="hasAnchor">
-<a href="#or-plot" class="anchor"></a>OR plot</h4>
+<div class="section level4">
+<h4 id="or-plot">OR plot<a class="anchor" aria-label="anchor" href="#or-plot"></a>
+</h4>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/or_plot.html">or_plot</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span>
 <span class="co"># Previously fitted models (`glmmulti()` or # `glmmixed()`) can be provided directly to `glmfit`</span></code></pre></div>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg" alt="" width="700"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/plot1.jpg" alt="" width="700"></a></p>
 </div>
-<div id="hr-plot" class="section level4">
-<h4 class="hasAnchor">
-<a href="#hr-plot" class="anchor"></a>HR plot</h4>
+<div class="section level4">
+<h4 id="hr-plot">HR plot<a class="anchor" aria-label="anchor" href="#hr-plot"></a>
+</h4>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"Surv(time, status)"</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/hr_plot.html">hr_plot</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, dependent_label <span class="op">=</span> <span class="st">"Survival"</span><span class="op">)</span>
 <span class="co"># Previously fitted models (`coxphmulti`) can be provided directly using `coxfit`</span></code></pre></div>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/plot2.jpg"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/plot2.jpg" alt="" width="700"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/plot2.jpg" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/plot2.jpg" alt="" width="700"></a></p>
 </div>
-<div id="kaplan-meier-survival-plots" class="section level4">
-<h4 class="hasAnchor">
-<a href="#kaplan-meier-survival-plots" class="anchor"></a>Kaplan-Meier survival plots</h4>
-<p>KM plots can be produced using the <code><a href="http://www.sthda.com/english/rpkgs/survminer/">library(survminer)</a></code></p>
+<div class="section level4">
+<h4 id="kaplan-meier-survival-plots">Kaplan-Meier survival plots<a class="anchor" aria-label="anchor" href="#kaplan-meier-survival-plots"></a>
+</h4>
+<p>KM plots can be produced using the <code><a href="https://rpkgs.datanovia.com/survminer/index.html" class="external-link">library(survminer)</a></code></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"perfor.factor"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"Surv(time, status)"</span>
-<span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/surv_plot.html">surv_plot</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, 
   xlab<span class="op">=</span><span class="st">"Time (days)"</span>, pval<span class="op">=</span><span class="cn">TRUE</span>, legend<span class="op">=</span><span class="st">"none"</span><span class="op">)</span></code></pre></div>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/Rplot.png"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/Rplot.png" alt="" width="500" height="500" class="aligncenter size-full wp-image-964"></a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/Rplot.png" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/05/Rplot.png" alt="" width="500" height="500" class="aligncenter size-full wp-image-964"></a></p>
 </div>
 </div>
 </div>
-<div id="notes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#notes" class="anchor"></a>Notes</h2>
+<div class="section level2">
+<h2 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
+</h2>
 <p>Use <code><a href="../reference/ff_label.html">ff_label()</a></code> to assign labels to variables for tables and plots.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">colon_s</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
     <span class="fu"><a href="../reference/ff_label.html">ff_label</a></span><span class="op">(</span><span class="va">age.factor</span>, <span class="st">"Age (years)"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<p>Export dataframe tables directly or to <a href="https://rmarkdown.rstudio.com">R Markdown</a> <a href="https://yihui.org/knitr/"><code>knitr::kable()</code></a>.</p>
-<p>Note wrapper <code><a href="../reference/missing_pattern.html">missing_pattern()</a></code> is also useful. Wraps <code><a href="https://amices.org/mice/reference/md.pattern.html">mice::md.pattern</a></code>.</p>
+<p>Export dataframe tables directly or to <a href="https://rmarkdown.rstudio.com" class="external-link">R Markdown</a> <a href="https://yihui.org/knitr/" class="external-link"><code>knitr::kable()</code></a>.</p>
+<p>Note wrapper <code><a href="../reference/missing_pattern.html">missing_pattern()</a></code> is also useful. Wraps <code><a href="https://amices.org/mice/reference/md.pattern.html" class="external-link">mice::md.pattern</a></code>.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">colon_s</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/missing_pattern.html">missing_pattern</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span></code></pre></div>
 <p><img src="finalfit_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
-<pre><code>#&gt;     sex.factor perfor.factor age.factor mort_5yr obstruct.factor   
-#&gt; 894          1             1          1        1               1  0
-#&gt; 21           1             1          1        1               0  1
-#&gt; 14           1             1          1        0               1  1
-#&gt;              0             0          0       14              21 35</code></pre>
+<pre><code><span class="co">#&gt;     sex.factor perfor.factor age.factor mort_5yr obstruct.factor   </span>
+<span class="co">#&gt; 894          1             1          1        1               1  0</span>
+<span class="co">#&gt; 21           1             1          1        1               0  1</span>
+<span class="co">#&gt; 14           1             1          1        0               1  1</span>
+<span class="co">#&gt;              0             0          0       14              21 35</span></code></pre>
 <p>Development will be on-going, but any input appreciated.</p>
 </div>
   </div>
@@ -1040,11 +1035,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Ewen Harrison, Tom Drake, Riinu Ots.</p>
+  <p></p>
+<p>Developed by Ewen Harrison, Tom Drake, Riinu Ots.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
 </div>
 
       </footer>
@@ -1052,6 +1049,8 @@
 
   
 
+
+  
 
   </body>
 </html>

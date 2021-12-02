@@ -126,7 +126,7 @@
 #' # finalfit_merge(example.multilevel)
 
 finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-										column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
+										column=NULL, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
 										dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 										keep_fit_id = FALSE, ...){
 	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
@@ -136,6 +136,25 @@ finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, rando
 		stop("Colons (:) not allowed in factor-level names. Check with ff_glimpse(.data). Recode: forcats::fct_recode()")
 	}
 
+	# Fix tibble issue
+	if(any(class(.data) %in% c("tbl_df", "tbl")))  .data = data.frame(.data)
+
+	# What is dependent variable
+	d_variable = .data[,names(.data) %in% dependent]
+	d_is.factor = is.factor(d_variable) |
+		is.character(d_variable)
+	d_is.surv = grepl("^Surv[(].*[)]", dependent)
+	
+	# Column proportions for CPH tables
+	if(is.null(column)){
+		if(d_is.surv){
+			column = TRUE
+		} else {
+			column = FALSE
+		}
+	}
+
+	# Arguments to send
 	args = list(.data=.data, dependent=dependent, explanatory=explanatory,
 							explanatory_multi=explanatory_multi,
 							random_effect=random_effect, column = column,
@@ -145,16 +164,7 @@ finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, rando
 							dependent_label_prefix=dependent_label_prefix,
 							dependent_label_suffix=dependent_label_suffix, 
 							keep_fit_id=keep_fit_id, ...=...)
-
-	# Fix tibble issue
-	if(any(class(.data) %in% c("tbl_df", "tbl")))  .data = data.frame(.data)
-
-	# What is dependent variable
-	d_variable = .data[,names(.data) %in% dependent]
-	d_is.factor = is.factor(d_variable) |
-		is.character(d_variable)
-	d_is.surv = grepl("^Surv[(].*[)]", dependent)
-
+	
 	# Send to method
 	if (!d_is.factor & !d_is.surv){
 		do.call(finalfit.lm, args)
