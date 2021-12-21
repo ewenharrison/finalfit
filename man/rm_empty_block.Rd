@@ -7,7 +7,7 @@
 rm_empty_block(.data, ...)
 }
 \arguments{
-\item{.data}{}
+\item{.data}{Dataframe.}
 
 \item{...}{Unquoted variable/column names.}
 }
