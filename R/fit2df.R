@@ -285,9 +285,10 @@ fit2df.glmboot = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 													p_name = "p",
 													digits=c(2,2,3),
 													exp = TRUE,
+													confint_level = 0.95, 
 													confint_sep = "-", ...){
 	if(metrics == TRUE) warning("Metrics not currently available for this model")
-	if(!is.null(confint_level)) warning("Only 95% CI currently supported")
+	if(confint_level != 0.95) stop("Only 95% CI currently supported")
 	
 	x = .data
 	d.estimate = digits[1]
