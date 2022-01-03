@@ -145,7 +145,8 @@ parameters vector[P] beta;</p>
 created using <code><a href="https://amices.org/mice/reference/pool.html" class="external-link">mice::pool</a></code>.</p>
     </div>
 
-    <div id="ref-usage">Usage,<div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fit2df</span><span class="op">(</span><span class="va">...</span><span class="op">)</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fit2df</span><span class="op">(</span><span class="va">...</span><span class="op">)</span>
 
 <span class="co"># S3 method for lm</span>
 <span class="fu">fit2df</span><span class="op">(</span>
@@ -384,7 +385,8 @@ created using <code><a href="https://amices.org/mice/reference/pool.html" class=
   confint_level <span class="op">=</span> <span class="fl">0.95</span>,
   confint_sep <span class="op">=</span> <span class="st">"-"</span>,
   <span class="va">...</span>
-<span class="op">)</span></code></pre></div></div>
+<span class="op">)</span></code></pre></div>
+    </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
@@ -490,11 +492,11 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></dd>
 <span class="r-in">  <span class="fu"><a href="glmmulti_boot.html">glmmulti_boot</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>,  R <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">fit2df</span><span class="op">(</span>estimate_suffix<span class="op">=</span><span class="st">" (multivariable (BS CIs))"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             explanatory OR (multivariable (BS CIs))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years   0.57 (0.38-0.99, p=0.020)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years   0.81 (0.46-1.31, p=0.520)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale   0.98 (0.72-1.28, p=0.960)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes   1.25 (0.86-1.81, p=0.100)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes   1.12 (0.55-2.44, p=0.740)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years   0.57 (0.27-1.07, p=0.100)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years   0.81 (0.47-1.34, p=0.360)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale   0.98 (0.71-1.26, p=0.740)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes   1.25 (0.93-1.68, p=0.140)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes   1.12 (0.50-2.22, p=0.660)</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># lm</span></span>
 <span class="r-in"><span class="va">fit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">nodes</span> <span class="op">~</span>  <span class="va">age.factor</span> <span class="op">+</span> <span class="va">sex.factor</span> <span class="op">+</span> <span class="va">obstruct.factor</span> <span class="op">+</span> <span class="va">perfor.factor</span>,</span>
@@ -610,7 +612,7 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer></div>
