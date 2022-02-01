@@ -19,6 +19,9 @@
 #'   intercept variable, e.g. "var1", (automatically convered to "(1 | var1)");
 #'   or, (2) the full \code{lme4} specification, e.g. "(var1 | var2)". Note
 #'   parenthesis MUST be included in (2) but NOT included in (1).
+#' @param formula an object of class "formula" (or one that can be coerced to 
+#'   that class). Optional instead of standard dependent/explanatory format. 
+#'   Do not include if using dependent/explanatory. 
 #' @param column Logical: Compute margins by column rather than row.
 #' @param keep_models Logical: include full multivariable model in output when
 #'   working with reduced multivariable model (\code{explanatory_multi}) and/or
@@ -125,10 +128,23 @@
 #'   finalfit_merge(example.multivariable, last_merge = TRUE)
 #' # finalfit_merge(example.multilevel)
 
-finalfit = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
+finalfit = function(.data, dependent = NULL, explanatory = NULL, explanatory_multi=NULL, random_effect=NULL,
+										formula = NULL,
 										column=NULL, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
 										dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 										keep_fit_id = FALSE, ...){
+	
+	# Formula interface -----------------
+	## Added at request
+	if(!is.null(formula) & (!is.null(dependent) | !is.null(explanatory))) stop("Formula OR dependent/explanatory terms, not both")
+	if(!is.null(formula)){
+		.terms = ff_parse_formula(formula)
+		dependent = .terms$dependent
+		explanatory = .terms$explanatory
+		if("random_effect" %in% names(.terms)) random_effect = .terms$random_effect
+	}
+	
+	# Checks
 	if(is.data.frame(.data)==FALSE) stop(".data is not dataframe")
 	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
 	if(is.null(dependent)) stop("No dependent variable provided")

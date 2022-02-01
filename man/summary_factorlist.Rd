@@ -7,7 +7,8 @@
 summary_factorlist(
   .data,
   dependent = NULL,
-  explanatory,
+  explanatory = NULL,
+  formula = NULL,
   cont = "mean",
   cont_nonpara = NULL,
   cont_cut = 5,
@@ -48,6 +49,10 @@ to 5 factor levels).}
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory
 variables.}
+
+\item{formula}{an object of class "formula" (or one that can be coerced to 
+that class). Optional instead of standard dependent/explanatory format. 
+Do not include if using dependent/explanatory.}
 
 \item{cont}{Summary for continuous explanatory variables: "mean" (standard
 deviation) or "median" (interquartile range). If "median" then

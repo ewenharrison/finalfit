@@ -43,7 +43,6 @@ print.data.frame.ff <- function(x, ...){
 #'
 #' @keywords internal
 #' @export
-
 extract_fit = function(...){
 	UseMethod("extract_fit")
 }
@@ -54,7 +53,6 @@ extract_fit = function(...){
 #' @rdname extract_fit
 #' @method extract_fit glm
 #' @export
-
 extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name="OR",
 													 estimate_suffix = "",  p_name = "p", exp = TRUE,
 													 confint_type = "profile", confint_level = 0.95, ...){
@@ -90,7 +88,6 @@ extract_fit.glm = function(.data, explanatory_name="explanatory", estimate_name=
 #' @rdname extract_fit
 #' @method extract_fit glmerMod
 #' @export
-
 extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_name="OR",
 																estimate_suffix = "",  p_name = "p", exp = TRUE, 
 																confint_type = "Wald", confint_level = 0.95, ...){
@@ -126,7 +123,6 @@ extract_fit.glmerMod = function(.data, explanatory_name="explanatory", estimate_
 #' @rdname extract_fit
 #' @method extract_fit lm
 #' @export
-
 extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="Coefficient",
 													estimate_suffix = "",  p_name = "p",
 													confint_level = 0.95, ...){
@@ -154,7 +150,6 @@ extract_fit.lm = function(.data, explanatory_name="explanatory", estimate_name="
 #' @rdname extract_fit
 #' @method extract_fit lmerMod
 #' @export
-
 extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_name="OR",
 															 estimate_suffix = "",  p_name = "p",
 															 confint_type = "Wald", confint_level = 0.95, ...){
@@ -188,7 +183,6 @@ extract_fit.lmerMod = function(.data, explanatory_name="explanatory", estimate_n
 #' @rdname extract_fit
 #' @method extract_fit coxph
 #' @export
-
 extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_name="HR",
 														 estimate_suffix = "",
 														 p_name = "p", ...){
@@ -219,7 +213,6 @@ extract_fit.coxph = function(.data, explanatory_name="explanatory", estimate_nam
 #' @rdname extract_fit
 #' @method extract_fit crr
 #' @export
-
 extract_fit.crr = function(.data, explanatory_name="explanatory", estimate_name="HR",
 													 estimate_suffix = "",
 													 p_name = "p", ...){
@@ -245,7 +238,6 @@ extract_fit.crr = function(.data, explanatory_name="explanatory", estimate_name=
 #' @rdname extract_fit
 #' @method extract_fit coxme
 #' @export
-
 extract_fit.coxme = function(.data, explanatory_name="explanatory", estimate_name="HR",
 																estimate_suffix = "",  p_name = "p",
 																confint_level = 0.95, ...){
@@ -287,7 +279,6 @@ extract_fit.coxme = function(.data, explanatory_name="explanatory", estimate_nam
 #' @rdname extract_fit
 #' @method extract_fit stanfit
 #' @export
-
 extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_name="OR",
 															 estimate_suffix = "",  p_name = "p", digits=c(2,2,3), X, ...){
 	stanfit = .data
@@ -336,7 +327,6 @@ extract_fit.stanfit = function(.data, explanatory_name="explanatory", estimate_n
 #'
 #' @keywords internal
 #' @export
-
 condense_fit = function(.data, explanatory_name="explanatory", estimate_name=NA,
 												estimate_suffix = "", p_name = "p",
 												digits=c(2,2,3), confint_sep = "-"){
@@ -387,7 +377,6 @@ condense_fit = function(.data, explanatory_name="explanatory", estimate_name=NA,
 #' 
 #' @examples
 #' round_tidy(0.01023, 3)
-
 round_tidy = function(x, digits){
 	sprintf.arg = paste0("%.", digits, "f")
 	x.out = do.call(sprintf, list(sprintf.arg, x)) # keep trailing zeros
@@ -407,7 +396,6 @@ round_tidy = function(x, digits){
 #' @return Vector of strings.
 #'
 #' @export
-
 p_tidy = function(x, digits, prefix="="){
 	x.out = paste0(prefix, round_tidy(x, digits))
 	all_zeros = paste0(prefix, round_tidy(0, digits))
@@ -739,6 +727,40 @@ ff_formula = function(dependent, explanatory, random_effect = NULL){
 #' @export
 finalfit_formula <- ff_formula
 
+#' Parse a formula to finalfit grammar
+#'
+#' @param .formula an object of class "formula" (or one that can be coerced to that class). 
+#'
+#' @return A list containing dependent, explanatory and random effects variables 
+#' @export
+#'
+#' @examples
+#' ff_parse_formula(mort ~ age + sex + (1 | hospital))
+ff_parse_formula <- function(.formula){
+	dependent = .formula %>% 
+		terms(keep.order = TRUE) %>% 
+		attr("variables") %>% 
+		magrittr::extract2(2) %>% 
+		deparse()
+	rhs = .formula %>% 
+		terms(keep.order = TRUE) %>% 
+		attr("term.labels")
+	## Random effects
+	ind <- grep("|", rhs, fixed = TRUE)
+	if (length(ind) > 0){ 
+		rhs[ind] <- paste("(", rhs[ind], ")")
+		out = list(
+			dependent = dependent,
+			explanatory = rhs[-ind],
+			random_effect = rhs[ind])
+	} else {
+		out = list(
+			dependent = dependent,
+			explanatory = rhs)
+	}
+	return(out)
+}
+
 
 #' Determine type/class of a variable
 #'
@@ -841,4 +863,3 @@ error_colon_fct_levels <- function(.data){
 #' @keywords internal
 #' @export
 catTestfisher = function(.){}
-

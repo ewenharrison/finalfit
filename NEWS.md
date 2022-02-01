@@ -1,3 +1,6 @@
+# finalfit 1.0.5
+* formula interface added to finalfit()` and `summary_factorlist()`. 
+
 # finalfit 1.0.4
 * `missing_plot()` bugs fixed, many thanks @nathansam. #72
 * `finalfit()` for CPH models now provides column proportions by default, many thanks corneliushennch. #74
@@ -19,7 +22,7 @@
 
 # finalfit 1.0.1
 
-* `ff_relabel()` tightend to allow mismatch between available data and labels. 
+* `ff_relabel()` tightened to allow mismatch between available data and labels. 
 * `missing_compare()` code updated to allow arguments to be passed to new `summary_factorlist()`. 
 * Quadratic terms (`I(var1^2)` etc.) are now better supported in `finalfit()`. 
 * `cluster()`, `frailty()` and `strata()` terms shown in `finalfit()` regression tables as an indicator they have been included in model. 
@@ -32,7 +35,7 @@
 
 * First official release. 
 * Re-write of major functions to remove older dependencies, improve performance and add functionality. 
-* `summary_factorlist()` completely rewritten. New column and row summary functions. Alternative statistical tests included. Finer control over continous variable behaviours. 
+* `summary_factorlist()` completely rewritten. New column and row summary functions. Alternative statistical tests included. Finer control over continuous variable behaviours. 
 
 # finalfit 0.9.6
 
@@ -43,7 +46,7 @@
 * `ff_column_totals()` added to be used in combination with `summary_factorlist()`.
 * `ff_row_totals()` added to be used in combination with `summary_factorlist()`.
 * `ff_percent_only()` added to be used in combination with `summary_factorlist()`. #25
-* `ff_remove_p()` can be applied to any condensed finalfit output to reomve the p-value. #26
+* `ff_remove_p()` can be applied to any condensed finalfit output to remove the p-value. #26
 * `finalfit()` now takes `column = FALSE` to provide row proportions. #26
 * `check_recode()` added. 
 * `remove_labels()` now works for tibbles. #28
@@ -65,7 +68,7 @@
 * Add option to remove reference level (`remove_ref = TRUE`) to `or_plot()`, `hr_plot()` and `coefficient_plot()`. 
 * `summary_factorlist()` digit rounding option added.
 * `summary_factorlist()` geometric mean option added. 
-* Level label removed for continous variables from `or_plot()`, `hr_plot()` and `coeffient_plot()`. 
+* Level label removed for continuous variables from `or_plot()`, `hr_plot()` and `coeffient_plot()`. 
 
 # finalfit 0.9.3
 

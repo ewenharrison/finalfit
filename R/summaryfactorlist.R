@@ -17,6 +17,9 @@
 #'   to 5 factor levels).
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
+#' @param formula an object of class "formula" (or one that can be coerced to 
+#'   that class). Optional instead of standard dependent/explanatory format. 
+#'   Do not include if using dependent/explanatory. 
 #' @param cont Summary for continuous explanatory variables: "mean" (standard
 #'   deviation) or "median" (interquartile range). If "median" then
 #'   non-parametric hypothesis test performed (see below).
@@ -100,7 +103,8 @@
 #' colon_s %>%
 #'   summary_factorlist(dependent, explanatory)
 summary_factorlist <- function(.data, 
-															 dependent = NULL, explanatory, 
+															 dependent = NULL, explanatory = NULL, 
+															 formula = NULL, 
 															 cont = "mean", cont_nonpara = NULL, cont_cut = 5, cont_range = TRUE, 
 															 p = FALSE, p_cont_para = "aov", p_cat = "chisq",
 															 column = TRUE, total_col = FALSE, orderbytotal = FALSE,
@@ -117,6 +121,14 @@ summary_factorlist <- function(.data,
 															 row_totals_colname = "Total N", row_missing_colname = "Missing N",
 															 catTest = NULL){
 	
+	# Formula interface -----------------
+	## Added at request
+	if(!is.null(formula) & (!is.null(dependent) | !is.null(explanatory))) stop("Formula OR dependent/explanatory terms, not both")
+	if(!is.null(formula)){
+		.terms = ff_parse_formula(formula)
+		dependent = .terms$dependent
+		explanatory = .terms$explanatory
+	}
 	
 	# Warnings/Checks --------------
 	if(!is.data.frame(.data)) stop(".data is not dataframe")

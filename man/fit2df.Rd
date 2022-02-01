@@ -80,6 +80,7 @@ fit2df(...)
   p_name = "p",
   digits = c(2, 2, 3),
   exp = TRUE,
+  confint_level = 0.95,
   confint_sep = "-",
   ...
 )
