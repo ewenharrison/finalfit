@@ -1,5 +1,7 @@
 language: r
-
+r:
+  - release
+  
 r_packages:
   - covr
 
@@ -13,7 +15,6 @@ addons:
       - g++-7
       - libv8-dev
       - libnlopt-dev
-      - libgsl0-dev
 
 env:
   - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
