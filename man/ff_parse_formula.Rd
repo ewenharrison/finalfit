@@ -18,4 +18,3 @@ Parse a formula to finalfit grammar
 \examples{
 ff_parse_formula(mort ~ age + sex + (1 | hospital))
 }
-\keyword{internal}
