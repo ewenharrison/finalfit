@@ -12,6 +12,7 @@ addons:
     packages:
       - g++-7
       - libv8-dev
+      - libnlopt-dev
 
 env:
   - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
