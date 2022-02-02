@@ -1,6 +1,6 @@
 language: r
 r:
-  - release
+  - 4.1
   
 r_packages:
   - covr
