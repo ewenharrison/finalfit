@@ -707,22 +707,9 @@ summary_factorlist <- function(.data,
 
 summary_factorlist_stratified <- function(.data, ..., split, colname_sep = "|", level_max_length = 10,
 																					n_common_cols = 2){
-	# Warnings/Checks --------------
-	if(!is.data.frame(.data)) stop(".data is not dataframe")
-	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
-	if(is.null(explanatory)) stop("No explanatory variable(s) provided")
-	if(any(explanatory == ".")){
-		explanatory = .data %>% 
-			dplyr::select(-dependent) %>% 
-			names()
-	}
-	if(is.null(dependent)){
-		message("No dependent variable(s) provided; defaulting to single-level factor")
-		dependent = "all"
-		.data$all = factor(1, labels="all")
-	}
+	dots = list(...)
 	if(is.null(split)) stop("No split variable provided")
-	if(any(split %in% explanatory | split %in% dependent)) stop("Split variable cannot be dependent or explanatory")
+	if(any(split %in% dots$explanatory | split %in% dots$dependent)) stop("Split variable cannot be dependent or explanatory")
 	
 	df.out = .data %>% 
 		dplyr::group_by(!!! rlang::syms(split)) %>% 
