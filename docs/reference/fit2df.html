@@ -50,7 +50,7 @@ created using mice::pool."><meta property="og:image" content="/logo.png"><!-- ma
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.5</span>
       </span>
     </div>
 
@@ -210,6 +210,7 @@ created using <code><a href="https://amices.org/mice/reference/pool.html" class=
   p_name <span class="op">=</span> <span class="st">"p"</span>,
   digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,
   exp <span class="op">=</span> <span class="cn">TRUE</span>,
+  confint_level <span class="op">=</span> <span class="fl">0.95</span>,
   confint_sep <span class="op">=</span> <span class="st">"-"</span>,
   <span class="va">...</span>
 <span class="op">)</span>
@@ -492,11 +493,11 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></dd>
 <span class="r-in">  <span class="fu"><a href="glmmulti_boot.html">glmmulti_boot</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>,  R <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">fit2df</span><span class="op">(</span>estimate_suffix<span class="op">=</span><span class="st">" (multivariable (BS CIs))"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             explanatory OR (multivariable (BS CIs))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years   0.57 (0.27-1.07, p=0.100)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years   0.81 (0.47-1.34, p=0.360)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale   0.98 (0.71-1.26, p=0.740)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes   1.25 (0.93-1.68, p=0.140)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes   1.12 (0.50-2.22, p=0.660)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years   0.57 (0.31-1.14, p=0.060)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years   0.81 (0.40-1.29, p=0.460)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale   0.98 (0.67-1.28, p=0.920)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes   1.25 (0.92-1.73, p=0.200)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes   1.12 (0.43-3.00, p=0.760)</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># lm</span></span>
 <span class="r-in"><span class="va">fit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">nodes</span> <span class="op">~</span>  <span class="va">age.factor</span> <span class="op">+</span> <span class="va">sex.factor</span> <span class="op">+</span> <span class="va">obstruct.factor</span> <span class="op">+</span> <span class="va">perfor.factor</span>,</span>

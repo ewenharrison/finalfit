@@ -19,7 +19,7 @@ summary table."><meta property="og:image" content="/logo.png"><!-- mathjax --><s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.5</span>
       </span>
     </div>
 
@@ -88,7 +88,8 @@ summary table.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">summary_factorlist</span><span class="op">(</span>
   <span class="va">.data</span>,
   dependent <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">explanatory</span>,
+  explanatory <span class="op">=</span> <span class="cn">NULL</span>,
+  formula <span class="op">=</span> <span class="cn">NULL</span>,
   cont <span class="op">=</span> <span class="st">"mean"</span>,
   cont_nonpara <span class="op">=</span> <span class="cn">NULL</span>,
   cont_cut <span class="op">=</span> <span class="fl">5</span>,
@@ -132,6 +133,10 @@ to 5 factor levels).</p></dd>
 <dt>explanatory</dt>
 <dd><p>Character vector of any length: name(s) of explanatory
 variables.</p></dd>
+<dt>formula</dt>
+<dd><p>an object of class "formula" (or one that can be coerced to 
+that class). Optional instead of standard dependent/explanatory format. 
+Do not include if using dependent/explanatory.</p></dd>
 <dt>cont</dt>
 <dd><p>Summary for continuous explanatory variables: "mean" (standard
 deviation) or "median" (interquartile range). If "median" then
