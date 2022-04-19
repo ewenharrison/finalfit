@@ -329,20 +329,26 @@ explanatory = c("age", "sex.factor",
   "nodes", "obstruct.factor", "smoking_mar")
 dependent = "mort_5yr"
 
-# Choose not to impute missing values
-# for explanatory variable of interest and
-# outcome variable. 
-# But include in algorithm for imputation.
+# Choose whether to impute missing values
+# from particular variables, e.g. explanatory variable of interest
+# or outcome variable. 
+# Outcome often imputed as best practice, dropped here for demonstration. 
 colon_s %>% 
 	select(dependent, explanatory) %>% 
 	missing_predictorMatrix(
-		drop_from_imputed = c("obstruct.factor", "mort_5yr")
+		drop_from_imputed = c("mort_5yr"),
+		drop_from_imputer = ""
 		) -> predM
+
+# This is needed to drop from imputed
+m0 = mice(colon_s %>% 
+            select(dependent, explanatory), maxit=0)
+m0$method[c("mort_5yr")] = ""
 
 fits = colon_s %>% 
   select(dependent, explanatory) %>% 
   # Usually run imputation with 10 imputed sets, 4 here for demonstration
-  mice(m = 4, predictorMatrix = predM) %>% 
+  mice(m = 4, predictorMatrix = predM, method = m0$method) %>% 
   # Run logistic regression on each imputed set
   with(glm(formula(ff_formula(dependent, explanatory)), 
     family="binomial"))

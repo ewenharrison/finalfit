@@ -1,5 +1,5 @@
 # finalfit 1.0.5
-* formula interface added to finalfit()` and `summary_factorlist()`. 
+* formula interface added to `finalfit()` and `summary_factorlist()`. 
 
 # finalfit 1.0.4
 * `missing_plot()` bugs fixed, many thanks @nathansam. #72
