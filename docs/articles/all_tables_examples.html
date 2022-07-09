@@ -53,7 +53,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -2563,7 +2563,8 @@
 <span class="co">#&gt; Note: Using an external vector in selections is ambiguous.</span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> Use `all_of(dependent)` instead of `dependent` to silence this message.</span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span>
-<span class="co">#&gt; <span style="color: #555555;">This message is displayed once per session.</span>Note: Using an external vector in selections is ambiguous.</span>
+<span class="co">#&gt; <span style="color: #555555;">This message is displayed once per session.</span></span>
+<span class="co">#&gt; Note: Using an external vector in selections is ambiguous.</span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> Use `all_of(explanatory)` instead of `explanatory` to silence this message.</span>
 <span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span>
 <span class="co">#&gt; <span style="color: #555555;">This message is displayed once per session.</span></span></code></pre></div>
@@ -4521,7 +4522,7 @@
 <span class="co"># GLM with Stata-like robust standard errors</span>
 <span class="va">t2</span> <span class="op">=</span> <span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">lmtest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/coeftest.html" class="external-link">coeftest</a></span><span class="op">(</span><span class="va">.</span>, vcov <span class="op">=</span> <span class="fu">sandwich</span><span class="fu">::</span><span class="fu"><a href="https://sandwich.R-Forge.R-project.org//reference/vcovHC.html" class="external-link">vcovHC</a></span><span class="op">(</span><span class="va">.</span>, <span class="st">"HC1"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">lmtest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/coeftest.html" class="external-link">coeftest</a></span><span class="op">(</span><span class="va">.</span>, vcov <span class="op">=</span> <span class="fu">sandwich</span><span class="fu">::</span><span class="fu"><a href="https://sandwich.R-Forge.R-project.org/reference/vcovHC.html" class="external-link">vcovHC</a></span><span class="op">(</span><span class="va">.</span>, <span class="st">"HC1"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span>conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/remove_intercept.html">remove_intercept</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">term</span>, <span class="va">estimate</span>, <span class="va">conf.low</span>, <span class="va">conf.high</span>, <span class="va">p.value</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
@@ -6076,16 +6077,16 @@
 <td align="left">40-59 years</td>
 <td align="right">208 (40.7)</td>
 <td align="right">131 (32.4)</td>
-<td align="right">0.45 (0.26-0.76, p=0.003)</td>
-<td align="right">0.48 (0.27-0.82, p=0.008)</td>
+<td align="right">0.59 (0.35-1.01, p=0.055)</td>
+<td align="right">0.64 (0.37-1.09, p=0.102)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">60+ years</td>
 <td align="right">272 (53.2)</td>
 <td align="right">237 (58.7)</td>
-<td align="right">0.70 (0.41-1.18, p=0.178)</td>
-<td align="right">0.76 (0.44-1.29, p=0.311)</td>
+<td align="right">0.73 (0.43-1.22, p=0.231)</td>
+<td align="right">0.80 (0.47-1.35, p=0.406)</td>
 </tr>
 <tr class="even">
 <td align="left">Sex</td>
@@ -6100,8 +6101,8 @@
 <td align="left">Male</td>
 <td align="right">268 (52.4)</td>
 <td align="right">210 (52.0)</td>
-<td align="right">0.92 (0.71-1.20, p=0.539)</td>
-<td align="right">0.93 (0.71-1.22, p=0.602)</td>
+<td align="right">0.94 (0.73-1.23, p=0.670)</td>
+<td align="right">0.92 (0.71-1.21, p=0.563)</td>
 </tr>
 <tr class="even">
 <td align="left">Obstruction</td>
@@ -6116,8 +6117,8 @@
 <td align="left">Yes</td>
 <td align="right">89 (17.9)</td>
 <td align="right">85 (21.4)</td>
-<td align="right">1.43 (1.03-1.98, p=0.035)</td>
-<td align="right">1.49 (1.07-2.09, p=0.020)</td>
+<td align="right">1.17 (0.84-1.63, p=0.349)</td>
+<td align="right">1.17 (0.83-1.64, p=0.363)</td>
 </tr>
 <tr class="even">
 <td align="left">Perforation</td>
@@ -6132,8 +6133,8 @@
 <td align="left">Yes</td>
 <td align="right">14 (2.7)</td>
 <td align="right">13 (3.2)</td>
-<td align="right">0.78 (0.36-1.63, p=0.520)</td>
-<td align="right">0.74 (0.34-1.57, p=0.445)</td>
+<td align="right">1.01 (0.44-2.22, p=0.990)</td>
+<td align="right">0.97 (0.43-2.16, p=0.948)</td>
 </tr>
 </tbody>
 </table>

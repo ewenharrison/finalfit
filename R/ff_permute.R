@@ -62,6 +62,10 @@ ff_permute <- function(.data, dependent = NULL,
 		explanatory = c(list(explanatory_base), explanatory)
 	}
 	
+	if(include_full_model){
+		explanatory = c(explanatory, list(c(explanatory_base, explanatory_permute)))
+	}
+	
 	fits = explanatory %>% 
 		purrr::map(~ do.call(finalfit, c(list(.data, dependent, explanatory = .x, keep_fit_id = TRUE), 
 																		 args)))
@@ -72,18 +76,10 @@ ff_permute <- function(.data, dependent = NULL,
 		explanatory = c(explanatory_permute, explanatory_base)
 	}
 	
-	if(include_full_model){
-		fits = c(fits,
-						 list(
-						 	finalfit(.data, dependent, explanatory, keep_fit_id = TRUE, ...)
-						 )
-		)
-	}
-	
 	# Multiple tables ----
 	if(multiple_tables){
 		out = fits %>% 
-			purrr::map(dplyr::select, -fit_id)
+			purrr::map(dplyr::select, -c(fit_id, index))
 		return(out)
 	}
 	
