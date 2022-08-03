@@ -41,6 +41,7 @@ reference:
     - '`ff_metrics`'
     - '`ff_newdata`'
     - '`ff_percent_only`'
+    - '`ff_parse_formula`'
     - '`ff_relabel`'
     - '`ff_relabel_df`'
     - '`ff_remove_ref`'

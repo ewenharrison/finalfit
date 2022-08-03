@@ -115,34 +115,53 @@ regression models</p>
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>Data frame or tibble.</p></dd>
+
+
 <dt>dependent</dt>
 <dd><p>Character vector of length 1:  quoted name of dependent
 variable. Can be continuous, a binary factor, or a survival object of form
 <code>Surv(time, status)</code>.</p></dd>
+
+
 <dt>explanatory_base</dt>
 <dd><p>Character vector of any length: quoted name(s) of
 base model explanatory variables.</p></dd>
+
+
 <dt>explanatory_permute</dt>
 <dd><p>Character vector of any length: quoted name(s) of
 explanatory variables to permute through models.</p></dd>
+
+
 <dt>multiple_tables</dt>
 <dd><p>Logical. Multiple model tables as a list, or a single
 table including multiple models.</p></dd>
+
+
 <dt>include_base_model</dt>
 <dd><p>Logical. Include model using <code>explanatory_base</code>
 variables only.</p></dd>
+
+
 <dt>include_full_model</dt>
 <dd><p>Logical. Include model using all <code>explanatory_base</code>
 and <code>explanatory_permute</code> variables.</p></dd>
+
+
 <dt>base_on_top</dt>
 <dd><p>Logical. Base variables at top of table, or bottom of
 table.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other arguments to <code><a href="finalfit.html">finalfit</a></code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a list of data frame with the final model table.</p>
+    
+
+<p>Returns a list of data frame with the final model table.</p>
     </div>
 
     <div id="ref-examples">
@@ -270,7 +289,7 @@ table.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -685,32 +685,32 @@
     <span class="fu"><a href="https://amices.org/mice/reference/getfit.html" class="external-link">getfit</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">AIC</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [1] 1172.373</span>
+<span class="co">#&gt; [1] 1176.554</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; [1] 1170.95</span>
+<span class="co">#&gt; [1] 1168.684</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; [1] 1168.909</span>
+<span class="co">#&gt; [1] 1169.41</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[4]]</span>
-<span class="co">#&gt; [1] 1172.158</span>
+<span class="co">#&gt; [1] 1174.924</span>
 
 <span class="co"># C-statistic</span>
 <span class="va">fits</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu"><a href="https://amices.org/mice/reference/getfit.html" class="external-link">getfit</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="op">~</span> <span class="fu">pROC</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pROC/man/roc.html" class="external-link">roc</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">y</span>, <span class="va">.x</span><span class="op">$</span><span class="va">fitted</span><span class="op">)</span><span class="op">$</span><span class="va">auc</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; Area under the curve: 0.6841</span>
+<span class="co">#&gt; Area under the curve: 0.6832</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; Area under the curve: 0.6864</span>
+<span class="co">#&gt; Area under the curve: 0.6877</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; Area under the curve: 0.6847</span>
+<span class="co">#&gt; Area under the curve: 0.6851</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[4]]</span>
-<span class="co">#&gt; Area under the curve: 0.6839</span>
+<span class="co">#&gt; Area under the curve: 0.6801</span>
 
   
 <span class="co"># Pool  results</span>
@@ -783,7 +783,7 @@
 <td align="right">1.00 (0.99-1.01, p=0.986)</td>
 <td align="right">1.01 (1.00-1.02, p=0.122)</td>
 <td align="right">1.02 (1.00-1.03, p=0.010)</td>
-<td align="right">1.01 (1.00-1.02, p=0.180)</td>
+<td align="right">1.01 (1.00-1.02, p=0.191)</td>
 </tr>
 <tr class="even">
 <td align="left">Sex</td>
@@ -803,7 +803,7 @@
 <td align="right">0.98 (0.76-1.27, p=0.889)</td>
 <td align="right">0.98 (0.74-1.30, p=0.890)</td>
 <td align="right">0.88 (0.64-1.23, p=0.461)</td>
-<td align="right">1.01 (0.77-1.33, p=0.940)</td>
+<td align="right">1.01 (0.77-1.33, p=0.930)</td>
 </tr>
 <tr class="even">
 <td align="left">nodes</td>
@@ -833,7 +833,7 @@
 <td align="right">1.25 (0.90-1.74, p=0.189)</td>
 <td align="right">1.36 (0.95-1.93, p=0.089)</td>
 <td align="right">1.26 (0.85-1.88, p=0.252)</td>
-<td align="right">1.38 (0.97-1.95, p=0.072)</td>
+<td align="right">1.36 (0.95-1.95, p=0.090)</td>
 </tr>
 <tr class="odd">
 <td align="left">Smoking (MAR)</td>
@@ -853,7 +853,7 @@
 <td align="right">1.12 (0.76-1.65, p=0.563)</td>
 <td align="right">-</td>
 <td align="right">1.25 (0.82-1.89, p=0.300)</td>
-<td align="right">1.21 (0.80-1.84, p=0.359)</td>
+<td align="right">1.31 (0.89-1.91, p=0.170)</td>
 </tr>
 </tbody>
 </table>
@@ -1008,7 +1008,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

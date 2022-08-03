@@ -27,5 +27,6 @@ colon_s \%>\%
     group2 = rep(c(NA, 1), length.out = 929),
 	 group3 = rep(c(NA, 1), length.out = 929)
   ) \%>\% 
-rm_empty_block(group1, group2, group3)
+rm_empty_block(group1, group2, group3) \%>\% 
+  head()
 }

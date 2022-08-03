@@ -96,22 +96,33 @@ md.pattern."><meta property="og:image" content="/logo.png"><!-- mathjax --><scri
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>Data frame. Missing values must be coded <code>NA</code>.</p></dd>
+
+
 <dt>dependent</dt>
 <dd><p>Character vector usually of length 1, name of depdendent
 variable.</p></dd>
+
+
 <dt>explanatory</dt>
 <dd><p>Character vector of any length: name(s) of explanatory
 variables.</p></dd>
+
+
 <dt>rotate.names</dt>
 <dd><p>Logical. Should the orientation of variable names on plot
 should be vertical.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>pass other arguments such as <code>plot = TRUE</code> to
 <code><a href="https://amices.org/mice/reference/md.pattern.html" class="external-link">md.pattern</a></code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A matrix with <code>ncol(x)+1</code> columns, in which each row corresponds
+    
+
+<p>A matrix with <code>ncol(x)+1</code> columns, in which each row corresponds
   to a missing data pattern (1=observed, 0=missing). Rows and columns are
   sorted in increasing amounts of missing information. The last column and
   row contain row and column counts, respectively.</p>
@@ -147,7 +158,7 @@ should be vertical.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

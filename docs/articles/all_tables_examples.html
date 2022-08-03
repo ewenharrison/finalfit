@@ -116,14 +116,14 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"finalfit"</span><span class="op">)</span></code></pre></div>
-<div class="section level2">
-<h2 id="cross-tables">1 Cross tables<a class="anchor" aria-label="anchor" href="#cross-tables"></a>
-</h2>
+<div class="section level3">
+<h3 id="cross-tables">1 Cross tables<a class="anchor" aria-label="anchor" href="#cross-tables"></a>
+</h3>
 <p>Two-way tables are used extensively in healthcare research, e.g. a 2x2 table comparing two factors with two levels each, or table 1 from a typical clinical study or trial</p>
 <p>The main functions all take a <code>dependent</code> variable - the outcome - and <code>explanatory</code> variables - predictors or exposures (any number categorical or continuous variables).</p>
-<div class="section level3">
-<h3 id="default">1.01 Default<a class="anchor" aria-label="anchor" href="#default"></a>
-</h3>
+<div class="section level4">
+<h4 id="default">1.01 Default<a class="anchor" aria-label="anchor" href="#default"></a>
+</h4>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
@@ -190,9 +190,9 @@
 </table>
 <p>Note, chi-squared warnings will be generated when the expected count in any cell is less than 5. Fisher’s exact test can be used as below, or go straight to a univariable logistic regression, e.g. <code>colon_s %&gt;% finalfit(dependent, explanatory)</code></p>
 </div>
-<div class="section level3">
-<h3 id="add-or-edit-variable-labels">1.02 Add or edit variable labels<a class="anchor" aria-label="anchor" href="#add-or-edit-variable-labels"></a>
-</h3>
+<div class="section level4">
+<h4 id="add-or-edit-variable-labels">1.02 Add or edit variable labels<a class="anchor" aria-label="anchor" href="#add-or-edit-variable-labels"></a>
+</h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
@@ -262,9 +262,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="p-value-for-hypothesis-test">1.03 P-value for hypothesis test<a class="anchor" aria-label="anchor" href="#p-value-for-hypothesis-test"></a>
-</h3>
+<div class="section level4">
+<h4 id="p-value-for-hypothesis-test">1.03 P-value for hypothesis test<a class="anchor" aria-label="anchor" href="#p-value-for-hypothesis-test"></a>
+</h4>
 <p>Defaults are chi-squared for categorical explanatory variables and an F-test for continuous (<code>aov</code>, analysis of variance). Alternatives can be specified as per below.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -340,9 +340,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="with-fishers-exact-test">1.04 With Fisher’s exact test<a class="anchor" aria-label="anchor" href="#with-fishers-exact-test"></a>
-</h3>
+<div class="section level4">
+<h4 id="with-fishers-exact-test">1.04 With Fisher’s exact test<a class="anchor" aria-label="anchor" href="#with-fishers-exact-test"></a>
+</h4>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
@@ -417,9 +417,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="parametric-explanatory-variables">1.05 Parametric explanatory variables<a class="anchor" aria-label="anchor" href="#parametric-explanatory-variables"></a>
-</h3>
+<div class="section level4">
+<h4 id="parametric-explanatory-variables">1.05 Parametric explanatory variables<a class="anchor" aria-label="anchor" href="#parametric-explanatory-variables"></a>
+</h4>
 <p>Summaries for continuous explanatory variables are mean (standard deviation) with <code>aov</code> statistical test by default. The statistical test can be changed to the Welch t-test when there are two dependent variable levels if desired.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -497,9 +497,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="non-parametric-explanatory-variables">1.06 Non-parametric explanatory variables<a class="anchor" aria-label="anchor" href="#non-parametric-explanatory-variables"></a>
-</h3>
+<div class="section level4">
+<h4 id="non-parametric-explanatory-variables">1.06 Non-parametric explanatory variables<a class="anchor" aria-label="anchor" href="#non-parametric-explanatory-variables"></a>
+</h4>
 <p>If desired, all continuous explanatory variables can be considered non-parametric. Summaries will be median (interquartile range) and the statistical test is Kruskal-Wallis/Mann-Whitney U. Use <code>cont_range = FALSE</code> if wish single-digit IQR, i.e. Q3-Q1.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -582,9 +582,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="select-specific-non-parametric-variables">1.07 Select specific non-parametric variables<a class="anchor" aria-label="anchor" href="#select-specific-non-parametric-variables"></a>
-</h3>
+<div class="section level4">
+<h4 id="select-specific-non-parametric-variables">1.07 Select specific non-parametric variables<a class="anchor" aria-label="anchor" href="#select-specific-non-parametric-variables"></a>
+</h4>
 <p>Many have asked in the past if only particular variables can be considered non-parametric. The argument <code>cont_nonpara</code> can take a vector (e.g. <code>c(1, 2, 3, 4)</code>) of values corresponding to the explanatory variable to specify which should be summarised as a median and be passed to a non-parametric test.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -667,9 +667,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="missing-values-for-the-explanatory-variables">1.08 Missing values for the explanatory variables<a class="anchor" aria-label="anchor" href="#missing-values-for-the-explanatory-variables"></a>
-</h3>
+<div class="section level4">
+<h4 id="missing-values-for-the-explanatory-variables">1.08 Missing values for the explanatory variables<a class="anchor" aria-label="anchor" href="#missing-values-for-the-explanatory-variables"></a>
+</h4>
 <p>Always consider summarising missing values when describing your data.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -752,9 +752,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="pass-missing-values-to-statistical-tests">1.09 Pass missing values to statistical tests<a class="anchor" aria-label="anchor" href="#pass-missing-values-to-statistical-tests"></a>
-</h3>
+<div class="section level4">
+<h4 id="pass-missing-values-to-statistical-tests">1.09 Pass missing values to statistical tests<a class="anchor" aria-label="anchor" href="#pass-missing-values-to-statistical-tests"></a>
+</h4>
 <p>This is a change from the default behaviour introduced in Finalfit 1.0.0. Previously, when missing data was presented it was also considered as a level in the statistical test. This may or may not be desired. Control this now using <code>na_to_p = TRUE</code> to include missing data in test. A message is produced reminding you that you are doing that.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -839,9 +839,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="row-proportions-rather-than-column">1.10 Row proportions (rather than column)<a class="anchor" aria-label="anchor" href="#row-proportions-rather-than-column"></a>
-</h3>
+<div class="section level4">
+<h4 id="row-proportions-rather-than-column">1.10 Row proportions (rather than column)<a class="anchor" aria-label="anchor" href="#row-proportions-rather-than-column"></a>
+</h4>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
@@ -924,9 +924,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="total-column">1.11 Total column<a class="anchor" aria-label="anchor" href="#total-column"></a>
-</h3>
+<div class="section level4">
+<h4 id="total-column">1.11 Total column<a class="anchor" aria-label="anchor" href="#total-column"></a>
+</h4>
 <p>The terms total column was introduced before this function summarised continuous variables. It would be better to be “All data” or something similar, as the continous explanatory variables a summary statistic is produced for all data. However, to keep backwards compatibility we have left it unchanged for now. For producing row totals including continous explanatory variables, see <code>add_row_total</code> below.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -1028,9 +1028,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="row-totals-with-missing">1.12 Row totals with missing<a class="anchor" aria-label="anchor" href="#row-totals-with-missing"></a>
-</h3>
+<div class="section level4">
+<h4 id="row-totals-with-missing">1.12 Row totals with missing<a class="anchor" aria-label="anchor" href="#row-totals-with-missing"></a>
+</h4>
 <p>This was introduced to deal with the problem of summarising missing data for continuous variables. By default, it provides the total N for the variable and includes a column enumerating missing values.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -1145,9 +1145,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="row-totals-without-missing">1.13 Row totals without missing<a class="anchor" aria-label="anchor" href="#row-totals-without-missing"></a>
-</h3>
+<div class="section level4">
+<h4 id="row-totals-without-missing">1.13 Row totals without missing<a class="anchor" aria-label="anchor" href="#row-totals-without-missing"></a>
+</h4>
 <p>Remove missing column.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -1253,9 +1253,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="row-totals-with-user-specified-column-names">1.14 Row totals with user-specified column names<a class="anchor" aria-label="anchor" href="#row-totals-with-user-specified-column-names"></a>
-</h3>
+<div class="section level4">
+<h4 id="row-totals-with-user-specified-column-names">1.14 Row totals with user-specified column names<a class="anchor" aria-label="anchor" href="#row-totals-with-user-specified-column-names"></a>
+</h4>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
@@ -1361,9 +1361,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="order-a-variable-by-total">1.15 Order a variable by total<a class="anchor" aria-label="anchor" href="#order-a-variable-by-total"></a>
-</h3>
+<div class="section level4">
+<h4 id="order-a-variable-by-total">1.15 Order a variable by total<a class="anchor" aria-label="anchor" href="#order-a-variable-by-total"></a>
+</h4>
 <p>This is intended for when there is only one <code>explanatory</code> variable.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -1417,9 +1417,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="add-column-totals">1.17 Add column totals<a class="anchor" aria-label="anchor" href="#add-column-totals"></a>
-</h3>
+<div class="section level4">
+<h4 id="add-column-totals">1.17 Add column totals<a class="anchor" aria-label="anchor" href="#add-column-totals"></a>
+</h4>
 <p>Column totals can be added, and by default are presented with a row percentage.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span><span class="op">)</span>
@@ -1489,9 +1489,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="add-column-totals-without-proportion-">1.18 Add column totals without proportion.<a class="anchor" aria-label="anchor" href="#add-column-totals-without-proportion-"></a>
-</h3>
+<div class="section level4">
+<h4 id="add-column-totals-without-proportion-">1.18 Add column totals without proportion.<a class="anchor" aria-label="anchor" href="#add-column-totals-without-proportion-"></a>
+</h4>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"rx.factor"</span>
@@ -1561,9 +1561,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="add-column-totals-with-user-specified-row-name-and-prefix-">1.19 Add column totals with user-specified row name and prefix.<a class="anchor" aria-label="anchor" href="#add-column-totals-with-user-specified-row-name-and-prefix-"></a>
-</h3>
+<div class="section level4">
+<h4 id="add-column-totals-with-user-specified-row-name-and-prefix-">1.19 Add column totals with user-specified row name and prefix.<a class="anchor" aria-label="anchor" href="#add-column-totals-with-user-specified-row-name-and-prefix-"></a>
+</h4>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"rx.factor"</span>
@@ -1635,9 +1635,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="label-with-dependent-name">1.20 Label with <code>dependent</code> name<a class="anchor" aria-label="anchor" href="#label-with-dependent-name"></a>
-</h3>
+<div class="section level4">
+<h4 id="label-with-dependent-name">1.20 Label with <code>dependent</code> name<a class="anchor" aria-label="anchor" href="#label-with-dependent-name"></a>
+</h4>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
@@ -1841,9 +1841,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="dependent-variable-with-any-number-of-factor-levels-supported">1.21 Dependent variable with any number of factor levels supported<a class="anchor" aria-label="anchor" href="#dependent-variable-with-any-number-of-factor-levels-supported"></a>
-</h3>
+<div class="section level4">
+<h4 id="dependent-variable-with-any-number-of-factor-levels-supported">1.21 Dependent variable with any number of factor levels supported<a class="anchor" aria-label="anchor" href="#dependent-variable-with-any-number-of-factor-levels-supported"></a>
+</h4>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
@@ -1969,9 +1969,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="missing-data-in-the-dependent">1.22 Missing data in the dependent<a class="anchor" aria-label="anchor" href="#missing-data-in-the-dependent"></a>
-</h3>
+<div class="section level4">
+<h4 id="missing-data-in-the-dependent">1.22 Missing data in the dependent<a class="anchor" aria-label="anchor" href="#missing-data-in-the-dependent"></a>
+</h4>
 <p>If you are careful to count totals and you know your data, you should realise when there is data missing from the dependent, e.g.:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
@@ -2273,9 +2273,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="directly-include-missing-data-in-dependent">1.23 Directly include missing data in dependent<a class="anchor" aria-label="anchor" href="#directly-include-missing-data-in-dependent"></a>
-</h3>
+<div class="section level4">
+<h4 id="directly-include-missing-data-in-dependent">1.23 Directly include missing data in dependent<a class="anchor" aria-label="anchor" href="#directly-include-missing-data-in-dependent"></a>
+</h4>
 <p>Rather than making the data explicit in the dataset, you can use <code>na_include_dependent = TRUE</code> to do the same in <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code>.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -2423,9 +2423,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="summarise-complete-cases">1.24 Summarise complete cases<a class="anchor" aria-label="anchor" href="#summarise-complete-cases"></a>
-</h3>
+<div class="section level4">
+<h4 id="summarise-complete-cases">1.24 Summarise complete cases<a class="anchor" aria-label="anchor" href="#summarise-complete-cases"></a>
+</h4>
 <p>You may wish to see summaries for complete cases across included variables. Rather than selecting including variables and <code>drop_na()</code>, you can pass <code>na_complete_cases = TRUE</code> to <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> to do the same.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -2454,29 +2454,29 @@
 <td align="left"></td>
 <td align="right"></td>
 <td align="right"></td>
-<td align="right">497 (55.6)</td>
-<td align="right">397 (44.4)</td>
-<td align="right">894</td>
+<td align="right">467 (55.7)</td>
+<td align="right">372 (44.3)</td>
+<td align="right">839</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">Age (years)</td>
-<td align="left">894 (97.7)</td>
-<td align="right">21</td>
+<td align="left">839 (91.7)</td>
+<td align="right">76</td>
 <td align="right">Mean (SD)</td>
-<td align="right">59.7 (11.5)</td>
-<td align="right">59.9 (12.5)</td>
-<td align="right">59.7 (11.9)</td>
+<td align="right">59.6 (11.5)</td>
+<td align="right">60.0 (12.3)</td>
+<td align="right">59.8 (11.9)</td>
 <td align="right">0.986</td>
 </tr>
 <tr class="odd">
 <td align="left">Age</td>
-<td align="left">894 (97.7)</td>
-<td align="right">21</td>
+<td align="left">839 (91.7)</td>
+<td align="right">76</td>
 <td align="right">&lt;40 years</td>
-<td align="right">31 (6.2)</td>
-<td align="right">35 (8.8)</td>
-<td align="right">66 (7.4)</td>
+<td align="right">30 (6.4)</td>
+<td align="right">30 (8.1)</td>
+<td align="right">60 (7.2)</td>
 <td align="right">0.020</td>
 </tr>
 <tr class="even">
@@ -2484,9 +2484,9 @@
 <td align="left"></td>
 <td align="right"></td>
 <td align="right">40-59 years</td>
-<td align="right">203 (40.8)</td>
-<td align="right">129 (32.5)</td>
-<td align="right">332 (37.1)</td>
+<td align="right">190 (40.7)</td>
+<td align="right">122 (32.8)</td>
+<td align="right">312 (37.2)</td>
 <td align="right"></td>
 </tr>
 <tr class="odd">
@@ -2494,19 +2494,19 @@
 <td align="left"></td>
 <td align="right"></td>
 <td align="right">60+ years</td>
-<td align="right">263 (52.9)</td>
-<td align="right">233 (58.7)</td>
-<td align="right">496 (55.5)</td>
+<td align="right">247 (52.9)</td>
+<td align="right">220 (59.1)</td>
+<td align="right">467 (55.7)</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">Sex</td>
-<td align="left">894 (97.7)</td>
-<td align="right">21</td>
+<td align="left">839 (91.7)</td>
+<td align="right">76</td>
 <td align="right">Female</td>
-<td align="right">237 (47.7)</td>
-<td align="right">192 (48.4)</td>
-<td align="right">429 (48.0)</td>
+<td align="right">223 (47.8)</td>
+<td align="right">183 (49.2)</td>
+<td align="right">406 (48.4)</td>
 <td align="right">0.941</td>
 </tr>
 <tr class="odd">
@@ -2514,19 +2514,19 @@
 <td align="left"></td>
 <td align="right"></td>
 <td align="right">Male</td>
-<td align="right">260 (52.3)</td>
-<td align="right">205 (51.6)</td>
-<td align="right">465 (52.0)</td>
+<td align="right">244 (52.2)</td>
+<td align="right">189 (50.8)</td>
+<td align="right">433 (51.6)</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">Obstruction</td>
-<td align="left">894 (97.7)</td>
-<td align="right">21</td>
+<td align="left">839 (91.7)</td>
+<td align="right">76</td>
 <td align="right">No</td>
-<td align="right">408 (82.1)</td>
-<td align="right">312 (78.6)</td>
-<td align="right">720 (80.5)</td>
+<td align="right">381 (81.6)</td>
+<td align="right">296 (79.6)</td>
+<td align="right">677 (80.7)</td>
 <td align="right">0.219</td>
 </tr>
 <tr class="odd">
@@ -2534,17 +2534,17 @@
 <td align="left"></td>
 <td align="right"></td>
 <td align="right">Yes</td>
-<td align="right">89 (17.9)</td>
-<td align="right">85 (21.4)</td>
-<td align="right">174 (19.5)</td>
+<td align="right">86 (18.4)</td>
+<td align="right">76 (20.4)</td>
+<td align="right">162 (19.3)</td>
 <td align="right"></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="actively-dropping-missing-data-and-tidyverse-functions-that-strip-attributes">1.25 Actively dropping missing data (and tidyverse functions that strip attributes)<a class="anchor" aria-label="anchor" href="#actively-dropping-missing-data-and-tidyverse-functions-that-strip-attributes"></a>
-</h3>
+<div class="section level4">
+<h4 id="actively-dropping-missing-data-and-tidyverse-functions-that-strip-attributes">1.25 Actively dropping missing data (and tidyverse functions that strip attributes)<a class="anchor" aria-label="anchor" href="#actively-dropping-missing-data-and-tidyverse-functions-that-strip-attributes"></a>
+</h4>
 <p>You may wish to actively remove any rows with missing data, so you are explicit around which data are being used in models. Unfortunately some tidyverse functions silently remove variable attributes (labels). This is complained about then put right. But here is a workaround if it is happening with a variable you wish to use, such as <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html" class="external-link">tidyr::drop_na()</a></code>.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -2673,9 +2673,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="explanatory-variable-defaults-to-factor-when-5-distinct-values">1.26 Explanatory variable defaults to factor when ≤5 distinct values<a class="anchor" aria-label="anchor" href="#explanatory-variable-defaults-to-factor-when-5-distinct-values"></a>
-</h3>
+<div class="section level4">
+<h4 id="explanatory-variable-defaults-to-factor-when-5-distinct-values">1.26 Explanatory variable defaults to factor when ≤5 distinct values<a class="anchor" aria-label="anchor" href="#explanatory-variable-defaults-to-factor-when-5-distinct-values"></a>
+</h4>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 
@@ -2721,88 +2721,38 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="keep-as-continous-variable-when-5-distinct-values">1.27 Keep as continous variable when ≤5 distinct values<a class="anchor" aria-label="anchor" href="#keep-as-continous-variable-when-5-distinct-values"></a>
-</h3>
+<div class="section level4">
+<h4 id="keep-as-continous-variable-when-5-distinct-values">1.27 Keep as continous variable when ≤5 distinct values<a class="anchor" aria-label="anchor" href="#keep-as-continous-variable-when-5-distinct-values"></a>
+</h4>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
-<span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
+
+<span class="co"># Here, `extent` is a continuous variable with 4 distinct values. </span>
+<span class="co"># Any continuous variable with 5 or fewer unique values is converted silently to factor </span>
+<span class="co"># e.g.</span>
+<span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"extent"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
 <span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, p <span class="op">=</span> <span class="cn">TRUE</span>, 
-                                     digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t</span>
-<span class="co">#&gt; Note: dependent includes missing data. These are dropped.</span></code></pre></div>
+  <span class="fu"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, 
+                                     cont_cut <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">levels</th>
 <th align="right">Alive</th>
 <th align="right">Died</th>
-<th align="right">p</th>
 </tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Age (years)</td>
+<tbody><tr class="odd">
+<td align="left">extent</td>
 <td align="left">Mean (SD)</td>
-<td align="right">59.8 (11.44)</td>
-<td align="right">59.9 (12.51)</td>
-<td align="right">0.986</td>
-</tr>
-<tr class="even">
-<td align="left">Age</td>
-<td align="left">&lt;40 years</td>
-<td align="right">31 (6.0665)</td>
-<td align="right">36 (8.9109)</td>
-<td align="right">0.020</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">40-59 years</td>
-<td align="right">208 (40.7045)</td>
-<td align="right">131 (32.4257)</td>
-<td align="right"></td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">60+ years</td>
-<td align="right">272 (53.2290)</td>
-<td align="right">237 (58.6634)</td>
-<td align="right"></td>
-</tr>
-<tr class="odd">
-<td align="left">Sex</td>
-<td align="left">Female</td>
-<td align="right">243 (47.5538)</td>
-<td align="right">194 (48.0198)</td>
-<td align="right">0.941</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">Male</td>
-<td align="right">268 (52.4462)</td>
-<td align="right">210 (51.9802)</td>
-<td align="right"></td>
-</tr>
-<tr class="odd">
-<td align="left">Obstruction</td>
-<td align="left">No</td>
-<td align="right">408 (82.0926)</td>
-<td align="right">312 (78.5894)</td>
-<td align="right">0.219</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">Yes</td>
-<td align="right">89 (17.9074)</td>
-<td align="right">85 (21.4106)</td>
-<td align="right"></td>
-</tr>
-</tbody>
+<td align="right">2.8 (0.5)</td>
+<td align="right">3.0 (0.4)</td>
+</tr></tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="stratified-crosstables">1.28 Stratified crosstables<a class="anchor" aria-label="anchor" href="#stratified-crosstables"></a>
-</h3>
+<div class="section level4">
+<h4 id="stratified-crosstables">1.28 Stratified crosstables<a class="anchor" aria-label="anchor" href="#stratified-crosstables"></a>
+</h4>
 <p>I’ve been meaning to include support for table stratification for a while. I have delayed for a good reason. Perhaps the most straightforward way to implement stratificiation is with <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">dplyr::group_by()</a></code>. However, the non-standard evaluation required for multiple strata may confuse as it is not implemented else where in the package.</p>
 <p>This translates to whether variable names are passed in quotes or not.</p>
 <p>Here is a solution, which while not that pretty, is effective.</p>
@@ -3074,14 +3024,14 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="digits-decimal-places">1.29 Digits / decimal places<a class="anchor" aria-label="anchor" href="#digits-decimal-places"></a>
-</h3>
+<div class="section level4">
+<h4 id="digits-decimal-places">1.29 Digits / decimal places<a class="anchor" aria-label="anchor" href="#digits-decimal-places"></a>
+</h4>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"perfor.factor"</span>
 <span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, p <span class="op">=</span> <span class="cn">TRUE</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t</span></code></pre></div>
+  <span class="fu"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, p <span class="op">=</span> <span class="cn">TRUE</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -3150,15 +3100,92 @@
 </tbody>
 </table>
 </div>
+<div class="section level4">
+<h4 id="weighted-tables">1.30 Weighted tables<a class="anchor" aria-label="anchor" href="#weighted-tables"></a>
+</h4>
+<p>A simple weighting can be applied to tables. Explanatory continuous variables are multiplied by weights. Explanatory categorical variables are counted with a frequency weight (<code>sum(weights)</code>). This could be used with, say, inverse probability of treatment weightings (IPTW). The example uses random weights for demonstration purposes only. Hypothesis tests are not run on weighted data, p is set to FALSE.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
+<span class="va">dependent</span> <span class="op">=</span> <span class="st">"perfor.factor"</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>my_weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">929</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="co"># Random just to demonstrate</span>
+    <span class="fu"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, weights <span class="op">=</span> <span class="st">"my_weights"</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">-&gt;</span> <span class="va">t</span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">label</th>
+<th align="left">levels</th>
+<th align="right">No</th>
+<th align="right">Yes</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Age (years)</td>
+<td align="left">Mean (SD)</td>
+<td align="right">30.2 (18.8)</td>
+<td align="right">28.2 (19.6)</td>
+</tr>
+<tr class="even">
+<td align="left">Age</td>
+<td align="left">&lt;40 years</td>
+<td align="right">36.0 (7.9)</td>
+<td align="right">1.2 (9.4)</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">40-59 years</td>
+<td align="right">168.5 (37.0)</td>
+<td align="right">4.4 (33.6)</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">60+ years</td>
+<td align="right">251.0 (55.1)</td>
+<td align="right">7.4 (57.0)</td>
+</tr>
+<tr class="odd">
+<td align="left">Sex</td>
+<td align="left">Female</td>
+<td align="right">223.2 (49.0)</td>
+<td align="right">5.7 (44.0)</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Male</td>
+<td align="right">232.2 (51.0)</td>
+<td align="right">7.3 (56.0)</td>
+</tr>
+<tr class="odd">
+<td align="left">Obstruction</td>
+<td align="left">No</td>
+<td align="right">360.0 (81.2)</td>
+<td align="right">8.6 (66.0)</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Yes</td>
+<td align="right">83.4 (18.8)</td>
+<td align="right">4.4 (34.0)</td>
+</tr>
+</tbody>
+</table>
+<p>dim(colon_s) colon_s = colon_s %&gt;% mutate(my_weights = runif(929, 0, 1))</p>
+</div>
 </div>
 <div class="section level2">
-<h2 id="model-tables-with-finalfit">2 Model tables with <code>finalfit()</code><a class="anchor" aria-label="anchor" href="#model-tables-with-finalfit"></a>
+<h2 id="table-1---patient-demographics--">Table 1 - Patient demographics —-<a class="anchor" aria-label="anchor" href="#table-1---patient-demographics--"></a>
 </h2>
+<p>explanatory = c(“age”, “age.factor”, “sex.factor”, “obstruct.factor”) dependent = “perfor.factor”</p>
+<p>colon_s %&gt;% summary_factorlist(dependent, explanatory, p=TRUE)</p>
+<p>colon_s %&gt;% summary_factorlist(dependent, explanatory, p=TRUE, weights = “my_weights”, total_col = TRUE, digits = c(1, 1, 3, 1, 1))</p>
+<p>colon_s %&gt;% mutate(across(where(is.numeric) &amp; any_of(explanatory), ~ .x * my_weights))</p>
 <div class="section level3">
-<h3 id="default-1">2.01 Default<a class="anchor" aria-label="anchor" href="#default-1"></a>
+<h3 id="model-tables-with-finalfit">2 Model tables with <code>finalfit()</code><a class="anchor" aria-label="anchor" href="#model-tables-with-finalfit"></a>
 </h3>
+<div class="section level4">
+<h4 id="default-1">2.01 Default<a class="anchor" aria-label="anchor" href="#default-1"></a>
+</h4>
 <p>Logistic regression first.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -3257,11 +3284,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="hide-reference-levels">2.02 Hide reference levels<a class="anchor" aria-label="anchor" href="#hide-reference-levels"></a>
-</h3>
+<div class="section level4">
+<h4 id="hide-reference-levels">2.02 Hide reference levels<a class="anchor" aria-label="anchor" href="#hide-reference-levels"></a>
+</h4>
 <p>Most appropriate when all explanatory variables are continuous or well-known binary variables, such as sex.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -3306,10 +3333,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="model-metrics">2.03 Model metrics<a class="anchor" aria-label="anchor" href="#model-metrics"></a>
-</h3>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="model-metrics">2.03 Model metrics<a class="anchor" aria-label="anchor" href="#model-metrics"></a>
+</h4>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -3414,10 +3441,10 @@
 </tr></tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="model-metrics-can-be-applied-to-all-supported-base-models">2.04 Model metrics can be applied to all supported base models<a class="anchor" aria-label="anchor" href="#model-metrics-can-be-applied-to-all-supported-base-models"></a>
-</h3>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="model-metrics-can-be-applied-to-all-supported-base-models">2.04 Model metrics can be applied to all supported base models<a class="anchor" aria-label="anchor" href="#model-metrics-can-be-applied-to-all-supported-base-models"></a>
+</h4>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">mort_5yr</span> <span class="op">~</span> <span class="va">age.factor</span> <span class="op">+</span> <span class="va">sex.factor</span> <span class="op">+</span> <span class="va">obstruct.factor</span> <span class="op">+</span> <span class="va">perfor.factor</span>, data <span class="op">=</span> <span class="va">colon_s</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu"><a href="../reference/ff_metrics.html">ff_metrics</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t</span></code></pre></div>
@@ -3428,10 +3455,10 @@
 </tr></tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="reduced-model">2.05 Reduced model<a class="anchor" aria-label="anchor" href="#reduced-model"></a>
-</h3>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="reduced-model">2.05 Reduced model<a class="anchor" aria-label="anchor" href="#reduced-model"></a>
+</h4>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">explanatory_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
@@ -3531,10 +3558,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="include-all-models">2.06 Include all models<a class="anchor" aria-label="anchor" href="#include-all-models"></a>
-</h3>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="include-all-models">2.06 Include all models<a class="anchor" aria-label="anchor" href="#include-all-models"></a>
+</h4>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">explanatory_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"obstruct.factor"</span><span class="op">)</span>
@@ -3663,11 +3690,11 @@
 </td>
 </tr></tbody></table>
 </div>
-<div class="section level3">
-<h3 id="interactions">2.06 Interactions<a class="anchor" aria-label="anchor" href="#interactions"></a>
-</h3>
+<div class="section level4">
+<h4 id="interactions">2.06 Interactions<a class="anchor" aria-label="anchor" href="#interactions"></a>
+</h4>
 <p>Interactions can be specified in the normal way. Formatting the output is trickier. At the moment, we have left the default model output. This can be adjusted as necessary.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor*sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -3782,10 +3809,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="interactions-create-interaction-variable-with-two-factors">2.07 Interactions: create interaction variable with two factors<a class="anchor" aria-label="anchor" href="#interactions-create-interaction-variable-with-two-factors"></a>
-</h3>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="interactions-create-interaction-variable-with-two-factors">2.07 Interactions: create interaction variable with two factors<a class="anchor" aria-label="anchor" href="#interactions-create-interaction-variable-with-two-factors"></a>
+</h4>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="co">#explanatory = c("age.factor*sex.factor", "obstruct.factor", "perfor.factor")</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
@@ -3894,11 +3921,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="dependent-name">2.08 Dependent name<a class="anchor" aria-label="anchor" href="#dependent-name"></a>
-</h3>
+<div class="section level4">
+<h4 id="dependent-name">2.08 Dependent name<a class="anchor" aria-label="anchor" href="#dependent-name"></a>
+</h4>
 <p>The dependent name cannot be specified directly intentionally. This is to prevent errors when copying code. Re-label using <code><a href="../reference/ff_label.html">ff_label()</a></code>. The dependent prefix and suffix can also be altered.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -4001,10 +4028,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="estimate-name">2.09 Estimate name<a class="anchor" aria-label="anchor" href="#estimate-name"></a>
-</h3>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="estimate-name">2.09 Estimate name<a class="anchor" aria-label="anchor" href="#estimate-name"></a>
+</h4>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -4103,11 +4130,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="digits-decimal-places-1">2.10 Digits / decimal places<a class="anchor" aria-label="anchor" href="#digits-decimal-places-1"></a>
-</h3>
+<div class="section level4">
+<h4 id="digits-decimal-places-1">2.10 Digits / decimal places<a class="anchor" aria-label="anchor" href="#digits-decimal-places-1"></a>
+</h4>
 <p>Number of digits to round to regression results. (1) estimate, (2) confidence interval limits, (3) p-value. Default is c(2,2,3). Trailing zeros are preserved. Number of decimal places for counts and mean (sd) / median (IQR) not currently supported. Defaults are senisble :)</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -4206,12 +4233,12 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="confidence-interval-type">2.11 Confidence interval type<a class="anchor" aria-label="anchor" href="#confidence-interval-type"></a>
-</h3>
+<div class="section level4">
+<h4 id="confidence-interval-type">2.11 Confidence interval type<a class="anchor" aria-label="anchor" href="#confidence-interval-type"></a>
+</h4>
 <p>One of <code>c("profile", "default")</code> for GLM models (<code>confint.glm()</code>). Note, a little awkwardly, the ‘default’ setting is <code>profile</code>, rather than <code>default</code>. Profile levels are probably a little more accurate. Only go to default if taking a significant length of time for profile, i.e. data is greater than hundreds of thousands of lines.</p>
 <p>For glmer/lmer models (<code>confint.merMod()</code>), <code>c("profile", "Wald", "boot")</code>. Not implemented for <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>, <code><a href="https://rdrr.io/pkg/survival/man/coxph.html" class="external-link">coxph()</a></code> or <code>coxphlist</code>, which use default.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -4310,11 +4337,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="confidence-interval-level">2.12 Confidence interval level<a class="anchor" aria-label="anchor" href="#confidence-interval-level"></a>
-</h3>
+<div class="section level4">
+<h4 id="confidence-interval-level">2.12 Confidence interval level<a class="anchor" aria-label="anchor" href="#confidence-interval-level"></a>
+</h4>
 <p>Probably never change this :) Note, the p-value is intentionally not included for confidence levels other than 95% to avoid confusion.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -4405,11 +4432,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="confidence-interval-separation">2.13 Confidence interval separation<a class="anchor" aria-label="anchor" href="#confidence-interval-separation"></a>
-</h3>
+<div class="section level4">
+<h4 id="confidence-interval-separation">2.13 Confidence interval separation<a class="anchor" aria-label="anchor" href="#confidence-interval-separation"></a>
+</h4>
 <p>Some like to avoid the hyphen so as not to confuse with minus sign. Obviously not an issue in logistic regression.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -4508,10 +4535,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="robust-standard-errors-confidence-intervals">2.14 Robust standard errors / confidence intervals<a class="anchor" aria-label="anchor" href="#robust-standard-errors-confidence-intervals"></a>
-</h3>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="robust-standard-errors-confidence-intervals">2.14 Robust standard errors / confidence intervals<a class="anchor" aria-label="anchor" href="#robust-standard-errors-confidence-intervals"></a>
+</h4>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
 
@@ -4585,10 +4612,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="remove-p-value">2.15 Remove p-value<a class="anchor" aria-label="anchor" href="#remove-p-value"></a>
-</h3>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="remove-p-value">2.15 Remove p-value<a class="anchor" aria-label="anchor" href="#remove-p-value"></a>
+</h4>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -4680,11 +4707,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="mixed-effects-random-intercept-model">2.16 Mixed effects random-intercept model<a class="anchor" aria-label="anchor" href="#mixed-effects-random-intercept-model"></a>
-</h3>
+<div class="section level4">
+<h4 id="mixed-effects-random-intercept-model">2.16 Mixed effects random-intercept model<a class="anchor" aria-label="anchor" href="#mixed-effects-random-intercept-model"></a>
+</h4>
 <p>At its simplest, a random-intercept model can be specified using a single quoted variable, e.g. <code>random_effect = "hospital"</code>. This is equivalent to <code>random_effect = "(1 | hospital)"</code>. Alternatively you can provide the full specification including parenthesis, e.g. <code>random_effect = "(1 | hospital) + (1 | country)"</code>.</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -4785,11 +4812,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="b-mixed-effects-random-intercept-model-with-univariable-estimates-including-random-effects">2.16b Mixed effects random-intercept model with univariable estimates including random effects<a class="anchor" aria-label="anchor" href="#b-mixed-effects-random-intercept-model-with-univariable-estimates-including-random-effects"></a>
-</h3>
+<div class="section level4">
+<h4 id="b-mixed-effects-random-intercept-model-with-univariable-estimates-including-random-effects">2.16b Mixed effects random-intercept model with univariable estimates including random effects<a class="anchor" aria-label="anchor" href="#b-mixed-effects-random-intercept-model-with-univariable-estimates-including-random-effects"></a>
+</h4>
 <p>Some recently asked about this and it is a good question. Here is an approach.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -4908,11 +4935,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="mixed-effects-random-slope-model">2.17 Mixed effects random-slope model<a class="anchor" aria-label="anchor" href="#mixed-effects-random-slope-model"></a>
-</h3>
+<div class="section level4">
+<h4 id="mixed-effects-random-slope-model">2.17 Mixed effects random-slope model<a class="anchor" aria-label="anchor" href="#mixed-effects-random-slope-model"></a>
+</h4>
 <p>In the example below, allow the effect of age on outcome to vary by hospital. Note, this specification must have parentheses included.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -5013,11 +5040,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="mixed-effects-random-slope-model-directly-from-lme4">2.18 Mixed effects random-slope model directly from <code>lme4</code><a class="anchor" aria-label="anchor" href="#mixed-effects-random-slope-model-directly-from-lme4"></a>
-</h3>
+<div class="section level4">
+<h4 id="mixed-effects-random-slope-model-directly-from-lme4">2.18 Mixed effects random-slope model directly from <code>lme4</code><a class="anchor" aria-label="anchor" href="#mixed-effects-random-slope-model-directly-from-lme4"></a>
+</h4>
 <p>Clearly, as models get more complex, parameters such as random effect group variances may require to be extracted directly from model outputs.</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"mort_5yr"</span>
@@ -5026,11 +5053,11 @@
     <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">glmer</a></span><span class="op">(</span><span class="va">mort_5yr</span> <span class="op">~</span> <span class="va">age.factor</span> <span class="op">+</span> <span class="op">(</span><span class="va">age.factor</span> <span class="op">|</span> <span class="va">hospital</span><span class="op">)</span>, family <span class="op">=</span> <span class="st">"binomial"</span>, data <span class="op">=</span> <span class="va">.</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t</span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="exclude-all-missing-data-in-final-model-from-univariable-analyses">2.19 Exclude all missing data in final model from univariable analyses<a class="anchor" aria-label="anchor" href="#exclude-all-missing-data-in-final-model-from-univariable-analyses"></a>
-</h3>
+<div class="section level4">
+<h4 id="exclude-all-missing-data-in-final-model-from-univariable-analyses">2.19 Exclude all missing data in final model from univariable analyses<a class="anchor" aria-label="anchor" href="#exclude-all-missing-data-in-final-model-from-univariable-analyses"></a>
+</h4>
 <p>This can be useful if you want the numbers in the final table to match the final multivariable model. However, be careful to include a full explanation of this in the methods and the reason for exluding the missing data.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
@@ -5131,10 +5158,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="linear-regression">2.20 Linear regression<a class="anchor" aria-label="anchor" href="#linear-regression"></a>
-</h3>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="linear-regression">2.20 Linear regression<a class="anchor" aria-label="anchor" href="#linear-regression"></a>
+</h4>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'nodes'</span>
@@ -5233,10 +5260,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="mixed-effects-random-intercept-linear-regression">2.21 Mixed effects random-intercept linear regression<a class="anchor" aria-label="anchor" href="#mixed-effects-random-intercept-linear-regression"></a>
-</h3>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="mixed-effects-random-intercept-linear-regression">2.21 Mixed effects random-intercept linear regression<a class="anchor" aria-label="anchor" href="#mixed-effects-random-intercept-linear-regression"></a>
+</h4>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"nodes"</span>
@@ -5337,10 +5364,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="mixed-effects-random-slope-linear-regression">2.22 Mixed effects random-slope linear regression<a class="anchor" aria-label="anchor" href="#mixed-effects-random-slope-linear-regression"></a>
-</h3>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="mixed-effects-random-slope-linear-regression">2.22 Mixed effects random-slope linear regression<a class="anchor" aria-label="anchor" href="#mixed-effects-random-slope-linear-regression"></a>
+</h4>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"nodes"</span>
@@ -5441,10 +5468,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="cox-proportional-hazards-model-survival-time-to-event">2.23 Cox proportional hazards model (survival / time to event)<a class="anchor" aria-label="anchor" href="#cox-proportional-hazards-model-survival-time-to-event"></a>
-</h3>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="cox-proportional-hazards-model-survival-time-to-event">2.23 Cox proportional hazards model (survival / time to event)<a class="anchor" aria-label="anchor" href="#cox-proportional-hazards-model-survival-time-to-event"></a>
+</h4>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"Surv(time, status)"</span>
@@ -5525,11 +5552,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="cox-proportional-hazards-model-change-dependent-label">2.24 Cox proportional hazards model: change dependent label<a class="anchor" aria-label="anchor" href="#cox-proportional-hazards-model-change-dependent-label"></a>
-</h3>
+<div class="section level4">
+<h4 id="cox-proportional-hazards-model-change-dependent-label">2.24 Cox proportional hazards model: change dependent label<a class="anchor" aria-label="anchor" href="#cox-proportional-hazards-model-change-dependent-label"></a>
+</h4>
 <p>As above, the dependent label cannot be specfied directly in the model to avoid errors. However, in survival modelling the surivial object specification can be long or awkward. Therefore, here is the work around.</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">"Surv(time, status)"</span>
@@ -5613,14 +5640,14 @@
 </table>
 </div>
 </div>
-<div class="section level2">
-<h2 id="model-tables-manually-using-ff_merge">3 Model tables manually using <code>ff_merge()</code><a class="anchor" aria-label="anchor" href="#model-tables-manually-using-ff_merge"></a>
-</h2>
 <div class="section level3">
-<h3 id="basic-table">3.1 Basic table<a class="anchor" aria-label="anchor" href="#basic-table"></a>
+<h3 id="model-tables-manually-using-ff_merge">3 Model tables manually using <code>ff_merge()</code><a class="anchor" aria-label="anchor" href="#model-tables-manually-using-ff_merge"></a>
 </h3>
+<div class="section level4">
+<h4 id="basic-table">3.1 Basic table<a class="anchor" aria-label="anchor" href="#basic-table"></a>
+</h4>
 <p>Note <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> needs argument, <code>fit_id = TRUE</code>.</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
@@ -5716,10 +5743,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="complex-table-all-in-single-pipe">3.2 Complex table (all in single pipe)<a class="anchor" aria-label="anchor" href="#complex-table-all-in-single-pipe"></a>
-</h3>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="complex-table-all-in-single-pipe">3.2 Complex table (all in single pipe)<a class="anchor" aria-label="anchor" href="#complex-table-all-in-single-pipe"></a>
+</h4>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
@@ -5855,13 +5882,13 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="other-glm-models">3.3 Other GLM models<a class="anchor" aria-label="anchor" href="#other-glm-models"></a>
-</h3>
 <div class="section level4">
-<h4 id="poisson">Poisson<a class="anchor" aria-label="anchor" href="#poisson"></a>
+<h4 id="other-glm-models">3.3 Other GLM models<a class="anchor" aria-label="anchor" href="#other-glm-models"></a>
 </h4>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="section level5">
+<h5 id="poisson">Poisson<a class="anchor" aria-label="anchor" href="#poisson"></a>
+</h5>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
@@ -5963,10 +5990,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level4">
-<h4 id="gamma">Gamma<a class="anchor" aria-label="anchor" href="#gamma"></a>
-</h4>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="section level5">
+<h5 id="gamma">Gamma<a class="anchor" aria-label="anchor" href="#gamma"></a>
+</h5>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
@@ -6018,10 +6045,10 @@
 </table>
 </div>
 </div>
-<div class="section level3">
-<h3 id="weighted-regression">3.4 Weighted regression<a class="anchor" aria-label="anchor" href="#weighted-regression"></a>
-</h3>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="section level4">
+<h4 id="weighted-regression">3.4 Weighted regression<a class="anchor" aria-label="anchor" href="#weighted-regression"></a>
+</h4>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
@@ -6077,16 +6104,16 @@
 <td align="left">40-59 years</td>
 <td align="right">208 (40.7)</td>
 <td align="right">131 (32.4)</td>
-<td align="right">0.59 (0.35-1.01, p=0.055)</td>
-<td align="right">0.64 (0.37-1.09, p=0.102)</td>
+<td align="right">0.51 (0.30-0.86, p=0.012)</td>
+<td align="right">0.54 (0.31-0.91, p=0.021)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">60+ years</td>
 <td align="right">272 (53.2)</td>
 <td align="right">237 (58.7)</td>
-<td align="right">0.73 (0.43-1.22, p=0.231)</td>
-<td align="right">0.80 (0.47-1.35, p=0.406)</td>
+<td align="right">0.74 (0.44-1.23, p=0.245)</td>
+<td align="right">0.79 (0.47-1.32, p=0.365)</td>
 </tr>
 <tr class="even">
 <td align="left">Sex</td>
@@ -6101,8 +6128,8 @@
 <td align="left">Male</td>
 <td align="right">268 (52.4)</td>
 <td align="right">210 (52.0)</td>
-<td align="right">0.94 (0.73-1.23, p=0.670)</td>
-<td align="right">0.92 (0.71-1.21, p=0.563)</td>
+<td align="right">0.95 (0.73-1.24, p=0.703)</td>
+<td align="right">0.94 (0.72-1.23, p=0.643)</td>
 </tr>
 <tr class="even">
 <td align="left">Obstruction</td>
@@ -6117,8 +6144,8 @@
 <td align="left">Yes</td>
 <td align="right">89 (17.9)</td>
 <td align="right">85 (21.4)</td>
-<td align="right">1.17 (0.84-1.63, p=0.349)</td>
-<td align="right">1.17 (0.83-1.64, p=0.363)</td>
+<td align="right">1.10 (0.79-1.54, p=0.558)</td>
+<td align="right">1.10 (0.79-1.54, p=0.566)</td>
 </tr>
 <tr class="even">
 <td align="left">Perforation</td>
@@ -6133,17 +6160,17 @@
 <td align="left">Yes</td>
 <td align="right">14 (2.7)</td>
 <td align="right">13 (3.2)</td>
-<td align="right">1.01 (0.44-2.22, p=0.990)</td>
-<td align="right">0.97 (0.43-2.16, p=0.948)</td>
+<td align="right">0.98 (0.46-2.03, p=0.948)</td>
+<td align="right">0.95 (0.45-2.00, p=0.901)</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="using-base-r-functions">3.5 Using base R functions<a class="anchor" aria-label="anchor" href="#using-base-r-functions"></a>
-</h3>
+<div class="section level4">
+<h4 id="using-base-r-functions">3.5 Using base R functions<a class="anchor" aria-label="anchor" href="#using-base-r-functions"></a>
+</h4>
 <p>Note <code><a href="../reference/ff_formula.html">ff_formula()</a></code> convenience function to make multivariable formula (<code>y ~ x1 + x2 + x3</code> etc.) from a <code>dependent</code> and <code>explanatory</code> vector of names.</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
@@ -6263,11 +6290,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="edit-table-rows">3.6 Edit table rows<a class="anchor" aria-label="anchor" href="#edit-table-rows"></a>
-</h3>
+<div class="section level4">
+<h4 id="edit-table-rows">3.6 Edit table rows<a class="anchor" aria-label="anchor" href="#edit-table-rows"></a>
+</h4>
 <p>This can be done as any dataframe would be edited.</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor*sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span>
@@ -6410,9 +6437,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="base-model-individual-explanatory-variables">3.7 Base model + individual explanatory variables<a class="anchor" aria-label="anchor" href="#base-model-individual-explanatory-variables"></a>
-</h3>
+<div class="section level4">
+<h4 id="base-model-individual-explanatory-variables">3.7 Base model + individual explanatory variables<a class="anchor" aria-label="anchor" href="#base-model-individual-explanatory-variables"></a>
+</h4>
 <p>This was an email enquiry about how to build on a base model. The example request was in a survival context.</p>
 <p>This has been updated August 2019. We have left the original example of building the table from scratch as a comparison.</p>
 <p><code><a href="../reference/ff_permute.html">ff_permute()</a></code> allows combinations of variables to be built on a base model. See options on help page to,</p>
@@ -6421,7 +6448,7 @@
 <li>present the permuted variables at the top or bottom of the table,</li>
 <li>produce separate model tables, or the default which is a single table.</li>
 </ul>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="va">mydata</span> <span class="op">=</span> <span class="va">colon_s</span>
 <span class="va">explanatory_base</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span><span class="op">)</span>
@@ -6579,7 +6606,7 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
@@ -6785,14 +6812,14 @@
 </table>
 </div>
 </div>
-<div class="section level2">
-<h2 id="support-for-complex-survey-structures-via-librarysurvey">4 Support for complex survey structures via <code>library(survey)</code><a class="anchor" aria-label="anchor" href="#support-for-complex-survey-structures-via-librarysurvey"></a>
-</h2>
 <div class="section level3">
-<h3 id="linear-regression-1">4.1 Linear regression<a class="anchor" aria-label="anchor" href="#linear-regression-1"></a>
+<h3 id="support-for-complex-survey-structures-via-librarysurvey">4 Support for complex survey structures via <code>library(survey)</code><a class="anchor" aria-label="anchor" href="#support-for-complex-survey-structures-via-librarysurvey"></a>
 </h3>
+<div class="section level4">
+<h4 id="linear-regression-1">4.1 Linear regression<a class="anchor" aria-label="anchor" href="#linear-regression-1"></a>
+</h4>
 <p>Examples taken from <code><a href="https://rdrr.io/pkg/survey/man/svyglm.html" class="external-link">survey::svyglm()</a></code> help page.</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://r-survey.r-forge.r-project.org/survey/" class="external-link">survey</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
@@ -6878,11 +6905,11 @@
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="binomial-example">4.2 Binomial example<a class="anchor" aria-label="anchor" href="#binomial-example"></a>
-</h3>
+<div class="section level4">
+<h4 id="binomial-example">4.2 Binomial example<a class="anchor" aria-label="anchor" href="#binomial-example"></a>
+</h4>
 <p>Note model family needs specified and exponentiation set to <code>TRUE</code> if desired.</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://r-survey.r-forge.r-project.org/survey/" class="external-link">survey</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
@@ -6962,6 +6989,7 @@
 </table>
 </div>
 </div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -6981,7 +7009,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

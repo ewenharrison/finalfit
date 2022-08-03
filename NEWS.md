@@ -1,5 +1,6 @@
 # finalfit 1.0.5
 * formula interface added to `finalfit()` and `summary_factorlist()`. 
+* weights argument added to `summary_factorlist()` for weighted tables. 
 
 # finalfit 1.0.4
 * `missing_plot()` bugs fixed, many thanks @nathansam. #72

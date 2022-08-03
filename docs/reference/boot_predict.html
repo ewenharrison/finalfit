@@ -106,38 +106,63 @@ the first row of <code>newdata</code> with all subsequent rows.</p>
     <dl><dt>fit</dt>
 <dd><p>A model generated using <code>lm</code>, <code>glm</code>,
 <code><a href="lmmulti.html">lmmulti</a></code>, and <code><a href="glmmulti.html">glmmulti</a></code>.</p></dd>
+
+
 <dt>newdata</dt>
 <dd><p>Dataframe usually generated with
 <code><a href="ff_newdata.html">finalfit_newdata</a></code>.</p></dd>
+
+
 <dt>type</dt>
 <dd><p>the type of prediction required, see
 <code><a href="https://rdrr.io/r/stats/predict.glm.html" class="external-link">predict.glm</a></code>. The default for glm models is on the
 scale of the response variable. Thus for a binomial model the default
 predictions are predicted probabilities.</p></dd>
+
+
 <dt>R</dt>
 <dd><p>Number of simulations. Note default R=100 is very low.</p></dd>
+
+
 <dt>estimate_name</dt>
 <dd><p>Name to be given to prediction variable y-hat.</p></dd>
+
+
 <dt>confint_sep</dt>
 <dd><p>String separating lower and upper confidence interval</p></dd>
+
+
 <dt>condense</dt>
 <dd><p>Logical. FALSE gives numeric values, usually for plotting.
 TRUE gives table for final output.</p></dd>
+
+
 <dt>boot_compare</dt>
 <dd><p>Include a comparison with the first row of <code>newdata</code>
 with all subsequent rows. See <code><a href="boot_compare.html">boot_compare</a></code>.</p></dd>
+
+
 <dt>compare_name</dt>
 <dd><p>Name to be given to comparison metric.</p></dd>
+
+
 <dt>comparison</dt>
 <dd><p>Either "difference" or "ratio".</p></dd>
+
+
 <dt>ref_symbol</dt>
 <dd><p>Reference level symbol</p></dd>
+
+
 <dt>digits</dt>
 <dd><p>Rounding for estimate values and p-values, default c(2,3).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A dataframe of predicted values and confidence intervals, with the
+    
+
+<p>A dataframe of predicted values and confidence intervals, with the
   option of including a comparison of difference between first row and all
   subsequent rows of <code>newdata</code>.</p>
     </div>
@@ -190,15 +215,15 @@ bootstrapped predictions under 1.0, multiplied by two so is two-sided.</p>
 <span class="r-in">  <span class="fu">boot_predict</span><span class="op">(</span><span class="va">newdata</span>, estimate_name <span class="op">=</span> <span class="st">"Predicted probability of death"</span>,</span>
 <span class="r-in">    compare_name <span class="op">=</span> <span class="st">"Absolute risk difference"</span>, R<span class="op">=</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt;40 years           Submucosa          No            0.28 (0.07 to 0.61)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 &lt;40 years           Submucosa         Yes            0.29 (0.06 to 0.71)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 &lt;40 years Adjacent structures          No            0.71 (0.51 to 0.86)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 &lt;40 years Adjacent structures         Yes            0.72 (0.45 to 0.88)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt;40 years           Submucosa          No            0.28 (0.03 to 0.56)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 &lt;40 years           Submucosa         Yes            0.29 (0.03 to 0.59)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 &lt;40 years Adjacent structures          No            0.71 (0.54 to 0.86)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 &lt;40 years Adjacent structures         Yes            0.72 (0.42 to 0.90)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Absolute risk difference</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                              -</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.01 (-0.13 to 0.23, p=0.920)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.41 (0.18 to 0.65, p&lt;0.001)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0.40 (0.15 to 0.68, p&lt;0.001)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.02 (-0.14 to 0.16, p=0.820)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.44 (0.19 to 0.63, p&lt;0.001)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0.41 (0.13 to 0.66, p&lt;0.001)</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Plotting</span></span>
 <span class="r-in"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"nodes"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span></span>
@@ -240,7 +265,7 @@ bootstrapped predictions under 1.0, multiplied by two so is two-sided.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

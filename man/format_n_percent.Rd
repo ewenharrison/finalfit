@@ -4,7 +4,7 @@
 \alias{format_n_percent}
 \title{Format n and percent as a character}
 \usage{
-format_n_percent(n, percent, digits, na_include = TRUE)
+format_n_percent(n, percent, digits, digits_n = 0, na_include = TRUE)
 }
 \arguments{
 \item{n}{Value}
@@ -12,6 +12,8 @@ format_n_percent(n, percent, digits, na_include = TRUE)
 \item{percent}{Value}
 
 \item{digits}{Value}
+
+\item{digits_n}{Value. Used when using weighted frequency counts}
 
 \item{na_include}{When proportion missing, include in parentheses?}
 }

@@ -19,7 +19,7 @@ summary_factorlist(
   column = TRUE,
   total_col = FALSE,
   orderbytotal = FALSE,
-  digits = c(1, 1, 3, 1),
+  digits = c(1, 1, 3, 1, 0),
   na_include = FALSE,
   na_include_dependent = FALSE,
   na_complete_cases = FALSE,
@@ -38,7 +38,8 @@ summary_factorlist(
   include_row_missing_col = TRUE,
   row_totals_colname = "Total N",
   row_missing_colname = "Missing N",
-  catTest = NULL
+  catTest = NULL,
+  weights = NULL
 )
 }
 \arguments{
@@ -136,6 +137,10 @@ row. Only used when \code{add_row_totals} is \code{TRUE}.}
 each row.}
 
 \item{catTest}{Deprecated. See \code{p_cat} above.}
+
+\item{weights}{Character vector of length 1: name of column to use for weights. 
+Explanatory continuous variables are multiplied by weights. 
+Explanatory categorical variables are counted with a frequency weight (sum(weights)).}
 }
 \value{
 Returns a \code{factorlist} dataframe.
@@ -178,6 +183,6 @@ colon_s \%>\%
 \seealso{
 \code{\link{fit2df}} \code{\link{ff_column_totals}}
   \code{\link{ff_row_totals}} \code{\link{ff_label}} \code{\link{ff_glimpse}}
-  \code{\link{ff_percent_only}}
+  \code{\link{ff_percent_only}}. For lots of examples, see \url{https://finalfit.org/}
 }
 \concept{finalfit wrappers}

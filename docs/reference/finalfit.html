@@ -165,52 +165,81 @@ a random effect is specified.</p>
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>Data frame or tibble.</p></dd>
+
+
 <dt>dependent</dt>
 <dd><p>Character vector of length 1:  quoted name of dependent
 variable. Can be continuous, a binary factor, or a survival object of form
 <code>Surv(time, status)</code>.</p></dd>
+
+
 <dt>explanatory</dt>
 <dd><p>Character vector of any length: quoted name(s) of
 explanatory variables.</p></dd>
+
+
 <dt>explanatory_multi</dt>
 <dd><p>Character vector of any length: quoted name(s) of a
 subset of explanatory variables to generate reduced multivariable model
 (must only contain variables contained in <code>explanatory</code>).</p></dd>
+
+
 <dt>random_effect</dt>
 <dd><p>Character vector of length 1, either, (1) name of random
 intercept variable, e.g. "var1", (automatically convered to "(1 | var1)");
 or, (2) the full <code>lme4</code> specification, e.g. "(var1 | var2)". Note
 parenthesis MUST be included in (2) but NOT included in (1).</p></dd>
+
+
 <dt>formula</dt>
 <dd><p>an object of class "formula" (or one that can be coerced to 
 that class). Optional instead of standard dependent/explanatory format. 
 Do not include if using dependent/explanatory.</p></dd>
+
+
 <dt>column</dt>
 <dd><p>Logical: Compute margins by column rather than row.</p></dd>
+
+
 <dt>keep_models</dt>
 <dd><p>Logical: include full multivariable model in output when
 working with reduced multivariable model (<code>explanatory_multi</code>) and/or
 mixed effect models (<code>random_effect</code>).</p></dd>
+
+
 <dt>metrics</dt>
 <dd><p>Logical: include useful model metrics in output in
 publication format.</p></dd>
+
+
 <dt>add_dependent_label</dt>
 <dd><p>Add the name of the dependent label to the top
 left of table.</p></dd>
+
+
 <dt>dependent_label_prefix</dt>
 <dd><p>Add text before dependent label.</p></dd>
+
+
 <dt>dependent_label_suffix</dt>
 <dd><p>Add text after dependent label.</p></dd>
+
+
 <dt>keep_fit_id</dt>
 <dd><p>Keep original model output coefficient label (internal).</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other arguments to pass to <code><a href="fit2df.html">fit2df</a></code>:
 <code>estimate_name, digits, confint_type, confint_level,
 confint_sep</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a data frame with the final model table.</p>
+    
+
+<p>Returns a data frame with the final model table.</p>
     </div>
 
     <div id="ref-examples">
@@ -479,7 +508,7 @@ confint_sep</code>.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

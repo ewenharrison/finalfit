@@ -100,7 +100,7 @@ summary table.</p>
   column <span class="op">=</span> <span class="cn">TRUE</span>,
   total_col <span class="op">=</span> <span class="cn">FALSE</span>,
   orderbytotal <span class="op">=</span> <span class="cn">FALSE</span>,
-  digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>,
+  digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
   na_include <span class="op">=</span> <span class="cn">FALSE</span>,
   na_include_dependent <span class="op">=</span> <span class="cn">FALSE</span>,
   na_complete_cases <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -119,7 +119,8 @@ summary table.</p>
   include_row_missing_col <span class="op">=</span> <span class="cn">TRUE</span>,
   row_totals_colname <span class="op">=</span> <span class="st">"Total N"</span>,
   row_missing_colname <span class="op">=</span> <span class="st">"Missing N"</span>,
-  catTest <span class="op">=</span> <span class="cn">NULL</span>
+  catTest <span class="op">=</span> <span class="cn">NULL</span>,
+  weights <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -127,31 +128,49 @@ summary table.</p>
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>Dataframe.</p></dd>
+
+
 <dt>dependent</dt>
 <dd><p>Character vector of length 1:  name of dependent variable (2
 to 5 factor levels).</p></dd>
+
+
 <dt>explanatory</dt>
 <dd><p>Character vector of any length: name(s) of explanatory
 variables.</p></dd>
+
+
 <dt>formula</dt>
 <dd><p>an object of class "formula" (or one that can be coerced to 
 that class). Optional instead of standard dependent/explanatory format. 
 Do not include if using dependent/explanatory.</p></dd>
+
+
 <dt>cont</dt>
 <dd><p>Summary for continuous explanatory variables: "mean" (standard
 deviation) or "median" (interquartile range). If "median" then
 non-parametric hypothesis test performed (see below).</p></dd>
+
+
 <dt>cont_nonpara</dt>
 <dd><p>Numeric vector of form e.g. <code>c(1,2)</code>. Specify which
 variables to perform non-parametric hypothesis tests on and summarise with
 "median".</p></dd>
+
+
 <dt>cont_cut</dt>
 <dd><p>Numeric: number of unique values in continuous variable at
 which to consider it a factor.</p></dd>
+
+
 <dt>cont_range</dt>
 <dd><p>Logical. Median is show with 1st and 3rd quartiles.</p></dd>
+
+
 <dt>p</dt>
 <dd><p>Logical: Include null hypothesis statistical test.</p></dd>
+
+
 <dt>p_cont_para</dt>
 <dd><p>Character. Continuous variable parametric test. One of
   either "aov" (analysis of variance) or "t.test" for Welch two sample
@@ -162,67 +181,124 @@ which to consider it a factor.</p></dd>
   p-value returned is for the Pearson correlation coefficient. The
   non-parametric equivalent is for the p-value for the Spearman correlation
   coefficient.</p></dd>
+
+
 <dt>p_cat</dt>
 <dd><p>Character. Categorical variable test. One of either "chisq" or
 "fisher".</p></dd>
+
+
 <dt>column</dt>
 <dd><p>Logical: Compute margins by column rather than row.</p></dd>
+
+
 <dt>total_col</dt>
 <dd><p>Logical: include a total column summing across factor
 levels.</p></dd>
+
+
 <dt>orderbytotal</dt>
 <dd><p>Logical: order final table by total column high to low.</p></dd>
+
+
 <dt>digits</dt>
 <dd><p>Number of digits to round to (1) mean/median, (2) standard
 deviation / interquartile range, (3) p-value, (4) count percentage.</p></dd>
+
+
 <dt>na_include</dt>
 <dd><p>Logical: make explanatory variables missing data explicit
 (<code>NA</code>).</p></dd>
+
+
 <dt>na_include_dependent</dt>
 <dd><p>Logical: make dependent variable missing data
 explicit.</p></dd>
+
+
 <dt>na_complete_cases</dt>
 <dd><p>Logical: include only rows with complete data.</p></dd>
+
+
 <dt>na_to_p</dt>
 <dd><p>Logical: include missing as group in statistical test.</p></dd>
+
+
 <dt>na_to_prop</dt>
 <dd><p>Logical: include missing in calculation of column proportions.</p></dd>
+
+
 <dt>fit_id</dt>
 <dd><p>Logical: allows merging via <code><a href="ff_merge.html">finalfit_merge</a></code>.</p></dd>
+
+
 <dt>add_dependent_label</dt>
 <dd><p>Add the name of the dependent label to the top
 left of table.</p></dd>
+
+
 <dt>dependent_label_prefix</dt>
 <dd><p>Add text before dependent label.</p></dd>
+
+
 <dt>dependent_label_suffix</dt>
 <dd><p>Add text after dependent label.</p></dd>
+
+
 <dt>add_col_totals</dt>
 <dd><p>Logical. Include column total n.</p></dd>
+
+
 <dt>include_col_totals_percent</dt>
 <dd><p>Include column percentage of total.</p></dd>
+
+
 <dt>col_totals_rowname</dt>
 <dd><p>Logical. Row name for column totals.</p></dd>
+
+
 <dt>col_totals_prefix</dt>
 <dd><p>Character. Prefix to column totals, e.g. "N=".</p></dd>
+
+
 <dt>add_row_totals</dt>
 <dd><p>Logical. Include row totals. Note this differs from
 <code>total_col</code> above particularly for continuous explanatory variables.</p></dd>
+
+
 <dt>include_row_totals_percent</dt>
 <dd><p>Include row percentage of total.</p></dd>
+
+
 <dt>include_row_missing_col</dt>
 <dd><p>Logical. Include missing data total for each
 row. Only used when <code>add_row_totals</code> is <code>TRUE</code>.</p></dd>
+
+
 <dt>row_totals_colname</dt>
 <dd><p>Character. Column name for row totals.</p></dd>
+
+
 <dt>row_missing_colname</dt>
 <dd><p>Character. Column name for missing data totals for
 each row.</p></dd>
+
+
 <dt>catTest</dt>
 <dd><p>Deprecated. See <code>p_cat</code> above.</p></dd>
+
+
+<dt>weights</dt>
+<dd><p>Character vector of length 1: name of column to use for weights. 
+Explanatory continuous variables are multiplied by weights. 
+Explanatory categorical variables are counted with a frequency weight (sum(weights)).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a <code>factorlist</code> dataframe.</p>
+    
+
+<p>Returns a <code>factorlist</code> dataframe.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -238,7 +314,7 @@ regression models.</p>
     <h2>See also</h2>
     <div class="dont-index"><p><code><a href="fit2df.html">fit2df</a></code> <code><a href="ff_column_totals.html">ff_column_totals</a></code>
   <code><a href="ff_row_totals.html">ff_row_totals</a></code> <code><a href="ff_label.html">ff_label</a></code> <code><a href="ff_glimpse.html">ff_glimpse</a></code>
-  <code><a href="ff_percent_only.html">ff_percent_only</a></code></p></div>
+  <code><a href="ff_percent_only.html">ff_percent_only</a></code>. For lots of examples, see <a href="https://finalfit.org/" class="external-link">https://finalfit.org/</a></p></div>
     </div>
 
     <div id="ref-examples">
@@ -297,7 +373,7 @@ regression models.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

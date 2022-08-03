@@ -35,8 +35,9 @@ Imports:
     stats,
     stringr,
     survival,
-    tidyr (>= 1.0.0)
-RoxygenNote: 7.1.2
+    tidyr (>= 1.0.0),
+    tidyselect
+RoxygenNote: 7.2.1
 Suggests:
     cmprsk, 
     coxme,

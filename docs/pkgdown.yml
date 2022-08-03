@@ -1,5 +1,5 @@
 pandoc: 2.11.4
-pkgdown: 2.0.1
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   all_tables_examples: all_tables_examples.html
@@ -9,5 +9,5 @@ articles:
   finalfit: finalfit.html
   missing: missing.html
   survival: survival.html
-last_built: 2022-07-09T12:41Z
+last_built: 2022-08-03T13:05Z
 

@@ -95,18 +95,27 @@ dependent.</p>
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>Dataframe.</p></dd>
+
+
 <dt>dependent</dt>
 <dd><p>Character vector length 1:  name of depdendent variable
 (must have 2 levels).</p></dd>
+
+
 <dt>explanatory</dt>
 <dd><p>Character vector of any length: name(s) of explanatory
 variables.</p></dd>
+
+
 <dt>R</dt>
 <dd><p>Number of draws.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A multivariable <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></code> fitted model with
+    
+
+<p>A multivariable <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></code> fitted model with
   bootstrapped confidence intervals. Output is of class <code>glmboot</code>.</p>
     </div>
     <div id="details">
@@ -146,11 +155,11 @@ intervals on fixed effect model coefficients. Output can be passed to
 <span class="r-in">  <span class="fu">glmmulti_boot</span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, R<span class="op">=</span><span class="fl">100</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="fit2df.html">fit2df</a></span><span class="op">(</span>estimate_suffix<span class="op">=</span><span class="st">"(multivariable (BS CIs))"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             explanatory OR(multivariable (BS CIs))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years  0.57 (0.29-0.95, p=0.020)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years  0.81 (0.47-1.32, p=0.360)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale  0.98 (0.77-1.30, p=0.960)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes  1.25 (0.88-1.88, p=0.140)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes  1.12 (0.44-2.66, p=0.660)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years  0.57 (0.33-0.95, p=0.040)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years  0.81 (0.46-1.44, p=0.460)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale  0.98 (0.72-1.35, p=0.900)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes  1.25 (0.88-1.83, p=0.160)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes  1.12 (0.46-3.19, p=0.660)</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
@@ -166,7 +175,7 @@ intervals on fixed effect model coefficients. Output can be passed to
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
