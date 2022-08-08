@@ -102,6 +102,7 @@ a random effect is specified.</p>
   explanatory_multi <span class="op">=</span> <span class="cn">NULL</span>,
   random_effect <span class="op">=</span> <span class="cn">NULL</span>,
   formula <span class="op">=</span> <span class="cn">NULL</span>,
+  model_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,
   column <span class="op">=</span> <span class="cn">NULL</span>,
   keep_models <span class="op">=</span> <span class="cn">FALSE</span>,
   metrics <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -118,6 +119,7 @@ a random effect is specified.</p>
   <span class="va">explanatory</span>,
   explanatory_multi <span class="op">=</span> <span class="cn">NULL</span>,
   random_effect <span class="op">=</span> <span class="cn">NULL</span>,
+  <span class="va">model_args</span>,
   column <span class="op">=</span> <span class="cn">FALSE</span>,
   keep_models <span class="op">=</span> <span class="cn">FALSE</span>,
   metrics <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -134,6 +136,7 @@ a random effect is specified.</p>
   <span class="va">explanatory</span>,
   explanatory_multi <span class="op">=</span> <span class="cn">NULL</span>,
   random_effect <span class="op">=</span> <span class="cn">NULL</span>,
+  <span class="va">model_args</span>,
   column <span class="op">=</span> <span class="cn">FALSE</span>,
   keep_models <span class="op">=</span> <span class="cn">FALSE</span>,
   metrics <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -150,6 +153,7 @@ a random effect is specified.</p>
   <span class="va">explanatory</span>,
   explanatory_multi <span class="op">=</span> <span class="cn">NULL</span>,
   random_effect <span class="op">=</span> <span class="cn">NULL</span>,
+  <span class="va">model_args</span>,
   column <span class="op">=</span> <span class="cn">TRUE</span>,
   keep_models <span class="op">=</span> <span class="cn">FALSE</span>,
   metrics <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -195,6 +199,11 @@ parenthesis MUST be included in (2) but NOT included in (1).</p></dd>
 <dd><p>an object of class "formula" (or one that can be coerced to 
 that class). Optional instead of standard dependent/explanatory format. 
 Do not include if using dependent/explanatory.</p></dd>
+
+
+<dt>model_args</dt>
+<dd><p>List. A list of arguments to pass to 
+<code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>, <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></code>, <code>coxph</code>.</p></dd>
 
 
 <dt>column</dt>
