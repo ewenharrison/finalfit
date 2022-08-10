@@ -9,12 +9,14 @@
 #' Output can be passed to \code{\link{fit2df}}.
 #'
 #' @param .data Data frame.
-#' @param dependent Character vector of length 1: name of depdendent variable
+#' @param dependent Character vector of length 1: name of dependent variable
 #'   (must have 2 levels).
 #' @param explanatory Character vector of any length: name(s) of explanatory
 #'   variables.
 #' @param family Character vector quoted or unquoted of the error distribution
 #'   and link function to be used in the model, see \code{\link[stats]{glm}}.
+#' @param weights Character vector of length 1: name of variabe for weighting. 
+#' 'Prior weights' to be used in the fitting process.   
 #' @param ... Other arguments to pass to \code{\link[stats]{glm}}.
 #' @return A multivariable \code{\link[stats]{glm}} fitted model.
 #'
@@ -32,9 +34,9 @@
 #' 	glmmulti(dependent, explanatory) %>%
 #' 	fit2df(estimate_suffix=" (multivariable)")
 #' 
-glmmulti <- function(.data, dependent, explanatory, family = "binomial", ...){
+glmmulti <- function(.data, dependent, explanatory, family = "binomial", weights = "", ...){
   ff_eval(
     glm(ff_formula(dependent, explanatory),
-        data = .data, family = family, ...)
+        data = .data, family = family, weights = !!sym(weights), ...)
   )
 }

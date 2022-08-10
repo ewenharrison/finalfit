@@ -4,7 +4,7 @@
 \alias{lmuni}
 \title{Linear regression univariable models: \code{finalfit} model wrapper}
 \usage{
-lmuni(.data, dependent, explanatory, ...)
+lmuni(.data, dependent, explanatory, weights = "", ...)
 }
 \arguments{
 \item{.data}{Dataframe.}

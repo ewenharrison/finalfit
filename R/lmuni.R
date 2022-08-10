@@ -9,6 +9,8 @@
 #' @param .data Dataframe.
 #' @param dependent Character vector of length 1, name of depdendent variable (must be continuous vector).
 #' @param explanatory Character vector of any length: name(s) of explanatory variables.
+#' @param weights Character vector of length 1: name of variabe for weighting. 
+#' 'Prior weights' to be used in the fitting process.
 #' @param ... Other arguments to pass to \code{\link[stats]{lm}}.
 #' @return A list of multivariable \code{\link[stats]{lm}} fitted model outputs.
 #'   Output is of class \code{lmlist}.
@@ -28,11 +30,11 @@
 #'   lmuni(dependent, explanatory) %>%
 #'   fit2df()
 #'
-lmuni <- function(.data, dependent, explanatory, ...){
+lmuni <- function(.data, dependent, explanatory, weights = "", ...){
   result <- list()
   for (i in 1:length(explanatory)){
     result[[i]] <- ff_eval(
-    	lm(ff_formula(dependent, explanatory[i]), data = .data, ...)
+    	lm(ff_formula(dependent, explanatory[i]), weights = !!sym(weights), data = .data, ...)
     )
   }
   class(result) = "lmlist"

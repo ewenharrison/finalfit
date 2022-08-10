@@ -5,7 +5,7 @@
 \title{Binomial logistic regression multivariable models: \code{finalfit} model
 wrapper}
 \usage{
-glmmulti(.data, dependent, explanatory, family = "binomial", ...)
+glmmulti(.data, dependent, explanatory, family = "binomial", weights = "", ...)
 }
 \arguments{
 \item{.data}{Data frame.}

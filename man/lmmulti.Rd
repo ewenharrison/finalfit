@@ -4,7 +4,7 @@
 \alias{lmmulti}
 \title{Linear regression multivariable models: \code{finalfit} model wrapper}
 \usage{
-lmmulti(.data, dependent, explanatory, ...)
+lmmulti(.data, dependent, explanatory, weights = "", ...)
 }
 \arguments{
 \item{.data}{Dataframe.}

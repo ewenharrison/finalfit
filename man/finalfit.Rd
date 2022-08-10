@@ -15,6 +15,7 @@ finalfit(
   random_effect = NULL,
   formula = NULL,
   model_args = list(),
+  weights = NULL,
   column = NULL,
   keep_models = FALSE,
   metrics = FALSE,
@@ -32,6 +33,7 @@ finalfit.lm(
   explanatory_multi = NULL,
   random_effect = NULL,
   model_args,
+  weights = NULL,
   column = FALSE,
   keep_models = FALSE,
   metrics = FALSE,
@@ -49,6 +51,7 @@ finalfit.glm(
   explanatory_multi = NULL,
   random_effect = NULL,
   model_args,
+  weights = NULL,
   column = FALSE,
   keep_models = FALSE,
   metrics = FALSE,
@@ -101,6 +104,12 @@ Do not include if using dependent/explanatory.}
 
 \item{model_args}{List. A list of arguments to pass to 
 \code{\link{lm}}, \code{\link{glm}}, \code{\link{coxph}}.}
+
+\item{weights}{Character vector of length 1: quoted name of weights variable. 
+Passed to \code{\link{summary_factorlist}}, \code{\link{lm}}, and \code{\link{glm}} 
+to provide weighted summary table and regression (e.g. IPTW). If wish weighted regression
+and non-weighted summary table, pass \code{weights} argument within \code{model_args}. 
+Not available with surival dependent variable.}
 
 \item{column}{Logical: Compute margins by column rather than row.}
 

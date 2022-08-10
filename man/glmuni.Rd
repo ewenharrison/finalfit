@@ -4,7 +4,7 @@
 \alias{glmuni}
 \title{Binomial logistic regression univariable models: \code{finalfit} model wrapper}
 \usage{
-glmuni(.data, dependent, explanatory, family = "binomial", ...)
+glmuni(.data, dependent, explanatory, family = "binomial", weights = "", ...)
 }
 \arguments{
 \item{.data}{Data frame.}

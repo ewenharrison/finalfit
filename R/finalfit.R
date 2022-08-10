@@ -24,6 +24,11 @@
 #'   Do not include if using dependent/explanatory. 
 #' @param model_args List. A list of arguments to pass to 
 #' \code{\link{lm}}, \code{\link{glm}}, \code{\link{coxph}}.  
+#' @param weights Character vector of length 1: quoted name of weights variable. 
+#' Passed to \code{\link{summary_factorlist}}, \code{\link{lm}}, and \code{\link{glm}} 
+#' to provide weighted summary table and regression (e.g. IPTW). If wish weighted regression
+#' and non-weighted summary table, pass \code{weights} argument within \code{model_args}. 
+#' Not available with surival dependent variable. 
 #' @param column Logical: Compute margins by column rather than row.
 #' @param keep_models Logical: include full multivariable model in output when
 #'   working with reduced multivariable model (\code{explanatory_multi}) and/or
@@ -131,7 +136,7 @@
 #' # finalfit_merge(example.multilevel)
 
 finalfit = function(.data, dependent = NULL, explanatory = NULL, explanatory_multi=NULL, random_effect=NULL,
-										formula = NULL, model_args = list(), 
+										formula = NULL, model_args = list(), weights=NULL, 
 										column=NULL, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
 										dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 										keep_fit_id = FALSE, ...){
@@ -165,6 +170,8 @@ finalfit = function(.data, dependent = NULL, explanatory = NULL, explanatory_mul
 	d_is.factor = is.factor(d_variable) |
 		is.character(d_variable)
 	d_is.surv = grepl("^Surv[(].*[)]", dependent)
+	
+	if(!is.null(weights) & d_is.surv) stop("Weights not available for when dependent survival object.")
 	
 	# Column proportions for CPH tables
 	if(is.null(column)){
@@ -204,11 +211,13 @@ finalfit = function(.data, dependent = NULL, explanatory = NULL, explanatory_mul
 #' @rdname finalfit
 #' @export
 finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-											 model_args, column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label = TRUE,
+											 model_args, weights = NULL, column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label = TRUE,
 											 dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 											 keep_fit_id=FALSE, ...){
 	
 	args = list(...)
+	if(!is.null(weights)) model_args = c(model_args, list(weights = weights))
+	if(dependent_label_suffix == "" & "weights" %in% names(model_args)) dependent_label_suffix = " (weighted)"
 	model_args_in = model_args
 	
 	# Define arguments
@@ -226,7 +235,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 	# Logistic regression ----
 	# Summary table
 	summary.out = summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
-																	 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE)
+																	 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE, weights = weights)
 	
 	# Univariable
 	lmuni.out = do.call(lmuni, c(list(.data=.data, dependent=dependent, explanatory=explanatory), model_args_in))
@@ -344,11 +353,13 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 #' @rdname finalfit
 #' @export
 finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-												model_args, column = FALSE, keep_models=FALSE, metrics=FALSE,  add_dependent_label=TRUE,
+												model_args, weights = NULL, column = FALSE, keep_models=FALSE, metrics=FALSE,  add_dependent_label=TRUE,
 												dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 												keep_fit_id=FALSE, ...){
 	
 	args = list(...)
+	if(!is.null(weights)) model_args = c(model_args, list(weights = weights))
+	if(dependent_label_suffix == "" & "weights" %in% names(model_args)) dependent_label_suffix = " (weighted)"
 	model_args_in = model_args
 	
 	# Define arguments
@@ -366,7 +377,7 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 	# Logistic regression ----
 	# Summary table
 	summary.out = summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
-																	 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE)
+																	 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE, weights = weights)
 	
 	# Univariable
 	glmuni.out = do.call(glmuni, c(list(.data=.data, dependent=dependent, explanatory=explanatory), model_args_in))

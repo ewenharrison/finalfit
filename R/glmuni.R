@@ -11,6 +11,8 @@
 #' @param explanatory Character vector of any length: name(s) of explanatory variables.
 #' @param family Character vector quoted or unquoted of the error distribution
 #'   and link function to be used in the model, see \code{\link[stats]{glm}}.
+#' @param weights Character vector of length 1: name of variabe for weighting. 
+#' 'Prior weights' to be used in the fitting process.
 #' @param ... Other arguments to pass to \code{\link[stats]{glm}}. 
 #' @return A list of univariable \code{\link[stats]{glm}} fitted model outputs.
 #'   Output is of class \code{glmlist}.
@@ -30,11 +32,12 @@
 #' 	fit2df(estimate_suffix=" (univariable)")
 #'
 #'
-glmuni <- function(.data, dependent, explanatory, family = "binomial", ...){
+glmuni <- function(.data, dependent, explanatory, family = "binomial", weights = "", ...){
 	result <- list()
 	for (i in 1:length(explanatory)){
 		result[[i]] <- ff_eval(
-			glm(ff_formula(dependent, explanatory[i]), data = .data, family = family, ...)
+			glm(ff_formula(dependent, explanatory[i]), data = .data, family = family, 
+					weights = !!sym(weights), ...)
 		)
 	}
 	class(result) = "glmlist"

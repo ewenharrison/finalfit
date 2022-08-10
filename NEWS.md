@@ -1,3 +1,6 @@
+# finalfit 1.0.51
+* weighting now available directly in `finalfit()`. 
+
 # finalfit 1.0.5
 * formula interface added to `finalfit()` and `summary_factorlist()`. 
 * weights argument added to `summary_factorlist()` for weighted tables. 

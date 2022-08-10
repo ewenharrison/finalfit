@@ -624,26 +624,6 @@ library(knitr)
 kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 ```
 
-dim(colon_s)
-colon_s = colon_s %>% 
-	mutate(my_weights = runif(929, 0, 1))
-
-# Table 1 - Patient demographics ----
-explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
-dependent = "perfor.factor"
-
-
-colon_s %>%
-  summary_factorlist(dependent, explanatory, p=TRUE)
-
-colon_s %>%
-	summary_factorlist(dependent, explanatory, p=TRUE, weights = "my_weights", total_col = TRUE, digits = c(1, 1, 3, 1, 1))
-
-
-colon_s %>% 
-	mutate(across(where(is.numeric) & any_of(explanatory), ~ .x * my_weights))
-
-
 ## 2 Model tables with `finalfit()`
 
 ### 2.01 Default
@@ -1287,31 +1267,17 @@ kable(t, row.names=FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r"))
 
 ### 3.4 Weighted regression
 
+Note this is updated August 2022. Weights can specified from data and `summary_factorlist()` table is now weighted. 
+
 ```{r, warning=FALSE, message=FALSE}
 library(finalfit)
 library(dplyr)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
-weights = runif(dim(colon_s)[1]) # random just for example
 
-# All in one pipe
 colon_s %>%
-	## Crosstable
-	summary_factorlist(dependent, explanatory, fit_id=TRUE)  %>% 
-	
-	## Add univariable
-	ff_merge(
-		glmuni(colon_s, dependent, explanatory, weights = weights, family = quasibinomial) %>%
-			fit2df(estimate_suffix=" (univariable)")
-	) %>% 
-	
-	## Add multivariable
-	ff_merge(
-		glmmulti(colon_s, dependent, explanatory, weights = weights, family = quasibinomial) %>%
-			fit2df(estimate_suffix=" (multivariable)"),
-		last_merge = TRUE
-	) %>% 
-	dependent_label(colon_s, dependent) -> t
+	mutate(myweights = runif(dim(colon_s)[1])) %>% # random just for example
+	finalfit(dependent, explanatory, weights = "myweights") -> t
 ```
 
 ```{r, echo=FALSE}
