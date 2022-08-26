@@ -33,10 +33,12 @@
 
 coxphmulti <- function(.data, dependent, explanatory, ...){
 	requireNamespace("survival")
-	ff_eval(
+	result = ff_eval(
 		coxph(as.formula(paste0(dependent, "~",
 														paste(explanatory, collapse="+"))), data=.data, ...)
 	)
+	result$call$formula = formula(result)
+	return(result)
 }
 
 

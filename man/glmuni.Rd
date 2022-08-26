@@ -16,6 +16,9 @@ glmuni(.data, dependent, explanatory, family = "binomial", weights = "", ...)
 \item{family}{Character vector quoted or unquoted of the error distribution
 and link function to be used in the model, see \code{\link[stats]{glm}}.}
 
+\item{weights}{Character vector of length 1: name of variabe for weighting. 
+'Prior weights' to be used in the fitting process.}
+
 \item{...}{Other arguments to pass to \code{\link[stats]{glm}}.}
 }
 \value{

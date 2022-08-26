@@ -13,6 +13,9 @@ lmuni(.data, dependent, explanatory, weights = "", ...)
 
 \item{explanatory}{Character vector of any length: name(s) of explanatory variables.}
 
+\item{weights}{Character vector of length 1: name of variabe for weighting. 
+'Prior weights' to be used in the fitting process.}
+
 \item{...}{Other arguments to pass to \code{\link[stats]{lm}}.}
 }
 \value{

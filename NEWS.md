@@ -1,5 +1,6 @@
-# finalfit 1.0.51
+# finalfit 1.0.52
 * weighting now available directly in `finalfit()`. 
+* formula parsed correctly in `lmuni()`, `lmmulti()`, `glmuni()`, `glmmulti()`, `coxphuni()`, coxphmulti().
 
 # finalfit 1.0.5
 * formula interface added to `finalfit()` and `summary_factorlist()`. 

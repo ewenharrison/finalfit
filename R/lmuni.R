@@ -36,6 +36,7 @@ lmuni <- function(.data, dependent, explanatory, weights = "", ...){
     result[[i]] <- ff_eval(
     	lm(ff_formula(dependent, explanatory[i]), weights = !!sym(weights), data = .data, ...)
     )
+    result[[i]]$call$formula <- formula(result[[i]])
   }
   class(result) = "lmlist"
   return(result)

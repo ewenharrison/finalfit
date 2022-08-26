@@ -39,6 +39,7 @@ glmuni <- function(.data, dependent, explanatory, family = "binomial", weights =
 			glm(ff_formula(dependent, explanatory[i]), data = .data, family = family, 
 					weights = !!sym(weights), ...)
 		)
+		result[[i]]$call$formula <- formula(result[[i]])
 	}
 	class(result) = "glmlist"
 	return(result)

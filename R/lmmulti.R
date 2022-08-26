@@ -32,7 +32,9 @@
 #'   fit2df()
 #' 
 lmmulti <- function(.data, dependent, explanatory, weights = "", ...){
-	ff_eval(
+	result = ff_eval(
 		lm(ff_formula(dependent, explanatory), data = .data, weights = !!sym(weights), ...)
 	)
+	result$call$formula = formula(result)
+	return(result)
 }

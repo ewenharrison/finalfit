@@ -35,8 +35,10 @@
 #' 	fit2df(estimate_suffix=" (multivariable)")
 #' 
 glmmulti <- function(.data, dependent, explanatory, family = "binomial", weights = "", ...){
-  ff_eval(
+  result = ff_eval(
     glm(ff_formula(dependent, explanatory),
         data = .data, family = family, weights = !!sym(weights), ...)
   )
+	result$call$formula = formula(result)
+	return(result)
 }

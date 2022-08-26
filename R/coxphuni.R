@@ -40,6 +40,7 @@ coxphuni <- function(.data, dependent, explanatory){
   result <- list()
   for (i in 1:length(explanatory)){
     result[[i]] <- coxph(as.formula(paste0(dependent, "~", explanatory[i])), data=.data)
+    result[[i]]$call$formula <- formula(result[[i]])
   }
   class(result) = "coxphlist"
   return(result)
