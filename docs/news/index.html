@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.52</span>
       </span>
     </div>
 
@@ -76,7 +76,12 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.0.5" id="finalfit-105">finalfit 1.0.5<a class="anchor" aria-label="anchor" href="#finalfit-105"></a></h2>
+<h2 class="page-header" data-toc-text="1.0.52" id="finalfit-1052">finalfit 1.0.52<a class="anchor" aria-label="anchor" href="#finalfit-1052"></a></h2>
+<ul><li>weighting now available directly in <code><a href="../reference/finalfit.html">finalfit()</a></code>.</li>
+<li>formula parsed correctly in <code><a href="../reference/lmuni.html">lmuni()</a></code>, <code><a href="../reference/lmmulti.html">lmmulti()</a></code>, <code><a href="../reference/glmuni.html">glmuni()</a></code>, <code><a href="../reference/glmmulti.html">glmmulti()</a></code>, <code><a href="../reference/coxphuni.html">coxphuni()</a></code>, coxphmulti().</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.0.5" id="finalfit-105">finalfit 1.0.5<small>2022-08-09</small><a class="anchor" aria-label="anchor" href="#finalfit-105"></a></h2>
 <ul><li>formula interface added to <code><a href="../reference/finalfit.html">finalfit()</a></code> and <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code>.</li>
 <li>weights argument added to <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> for weighted tables.</li>
 <li>
@@ -103,7 +108,7 @@
 <li>
 <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code>: non-parametric continuous variables now defaults to Q1 - Q3 rather than single figure IQR.</li>
 <li>
-<code><a href="../reference/ff_interaction.html">ff_interaction()</a></code>: default factor separator changed from “|” to "_" and variable separator from "__" to "_" given incompatibilities with packages such as <code>brms</code>.</li>
+<code><a href="../reference/ff_interaction.html">ff_interaction()</a></code>: default factor separator changed from “|” to “_” and variable separator from “__” to “_” given incompatibilities with packages such as <code>brms</code>.</li>
 <li>Bug to <code><a href="../reference/coefficient_plot.html">coefficient_plot()</a></code> fixed to bring back point estimates.</li>
 <li>
 <code>na_to_prop = FALSE</code> in <code><a href="../reference/summary_factorlist.html">summary_factorlist()</a></code> to not include missing data in column proportions of categorical data.</li>
@@ -111,7 +116,8 @@
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.0.2" id="finalfit-102">finalfit 1.0.2<small>2020-07-03</small><a class="anchor" aria-label="anchor" href="#finalfit-102"></a></h2>
 <ul><li>
-<code><a href="../reference/ff_relabel_df.html">ff_relabel_df()</a></code> added to allow passing data frame / tibble with labels directly at bottom of pipe.</li></ul></div>
+<code><a href="../reference/ff_relabel_df.html">ff_relabel_df()</a></code> added to allow passing data frame / tibble with labels directly at bottom of pipe.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.0.1" id="finalfit-101">finalfit 1.0.1<small>2020-04-21</small><a class="anchor" aria-label="anchor" href="#finalfit-101"></a></h2>
 <ul><li>
@@ -185,7 +191,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.9.3" id="finalfit-093">finalfit 0.9.3<small>2019-05-31</small><a class="anchor" aria-label="anchor" href="#finalfit-093"></a></h2>
-<ul><li>Bug in <code><a href="../reference/or_plot.html">or_plot()</a></code> and <code><a href="../reference/hr_plot.html">hr_plot()</a></code> introduced in 0.9.2 because of new total column specification.</li></ul></div>
+<ul><li>Bug in <code><a href="../reference/or_plot.html">or_plot()</a></code> and <code><a href="../reference/hr_plot.html">hr_plot()</a></code> introduced in 0.9.2 because of new total column specification.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.9.2" id="finalfit-092">finalfit 0.9.2<small>2019-05-31</small><a class="anchor" aria-label="anchor" href="#finalfit-092"></a></h2>
 <ul><li>Competing risks time-to-event regression now supported via <code><a href="https://rdrr.io/pkg/cmprsk/man/crr.html" class="external-link">cmprsk::crr()</a></code>: <code><a href="../reference/crruni.html">crruni()</a></code>, <code><a href="../reference/crrmulti.html">crrmulti()</a></code> and <code><a href="../reference/fit2df.html">fit2df()</a></code>.</li>
@@ -258,34 +265,42 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.6" id="finalfit-086">finalfit 0.8.6<small>2018-08-30</small><a class="anchor" aria-label="anchor" href="#finalfit-086"></a></h2>
-<ul><li>Bug fix</li></ul></div>
+<ul><li>Bug fix</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.5" id="finalfit-085">finalfit 0.8.5<small>2018-08-27</small><a class="anchor" aria-label="anchor" href="#finalfit-085"></a></h2>
-<ul><li>Extended missing data functions added</li></ul></div>
+<ul><li>Extended missing data functions added</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.4" id="finalfit-084">finalfit 0.8.4<small>2018-08-01</small><a class="anchor" aria-label="anchor" href="#finalfit-084"></a></h2>
-<ul><li>Bootstrap simulation functions added</li></ul></div>
+<ul><li>Bootstrap simulation functions added</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.3" id="finalfit-083">finalfit 0.8.3<small>2018-07-25</small><a class="anchor" aria-label="anchor" href="#finalfit-083"></a></h2>
-<ul><li>Bug fix</li></ul></div>
+<ul><li>Bug fix</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.2" id="finalfit-082">finalfit 0.8.2<small>2018-07-24</small><a class="anchor" aria-label="anchor" href="#finalfit-082"></a></h2>
-<ul><li>Missing data functions added</li></ul></div>
+<ul><li>Missing data functions added</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.1" id="finalfit-081">finalfit 0.8.1<small>2018-07-17</small><a class="anchor" aria-label="anchor" href="#finalfit-081"></a></h2>
 <div class="section level3">
 <h3 id="bug-fixes-0-8-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-8-1"></a></h3>
 <ul><li>
 <code><a href="../reference/lmuni.html">lmuni()</a></code>, <code><a href="../reference/lmmulti.html">lmmulti()</a></code>, <code><a href="../reference/lmmixed.html">lmmixed()</a></code>, <code><a href="../reference/glmuni.html">glmuni()</a></code>, <code><a href="../reference/glmmulti.html">glmmulti()</a></code>, <code><a href="../reference/glmmixed.html">glmmixed()</a></code>, <code><a href="../reference/coxphuni.html">coxphuni()</a></code>, <code><a href="../reference/coxphmulti.html">coxphmulti()</a></code>
-</li></ul></div>
+</li>
+</ul></div>
 <div class="section level3">
 <h3 id="new-functions-0-8-1">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-8-1"></a></h3>
 <ul><li>
-<code><a href="../reference/metrics_hoslem.html">metrics_hoslem()</a></code> is the first of a number of ‘metrics’ functions which will be introduced.</li></ul></div>
+<code><a href="../reference/metrics_hoslem.html">metrics_hoslem()</a></code> is the first of a number of ‘metrics’ functions which will be introduced.</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.8" id="finalfit-078">finalfit 0.7.8<small>2018-06-27</small><a class="anchor" aria-label="anchor" href="#finalfit-078"></a></h2>
-<ul><li>First CRAN release</li></ul></div>
+<ul><li>First CRAN release</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -18,7 +18,7 @@ model for a set of explanatory variables against a continuous dependent."><meta 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.52</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@ model for a set of explanatory variables against a continuous dependent.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">lmmulti</span><span class="op">(</span><span class="va">.data</span>, <span class="va">dependent</span>, <span class="va">explanatory</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">lmmulti</span><span class="op">(</span><span class="va">.data</span>, <span class="va">dependent</span>, <span class="va">explanatory</span>, weights <span class="op">=</span> <span class="st">""</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -100,6 +100,11 @@ model for a set of explanatory variables against a continuous dependent.</p>
 <dt>explanatory</dt>
 <dd><p>Character vector of any length: name(s) of explanatory
 variables.</p></dd>
+
+
+<dt>weights</dt>
+<dd><p>Character vector of length 1: name of variabe for weighting. 
+'Prior weights' to be used in the fitting process.</p></dd>
 
 
 <dt>...</dt>

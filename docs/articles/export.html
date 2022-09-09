@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.52</span>
       </span>
     </div>
 
@@ -104,7 +104,8 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Exporting tables and plots</h1>
-                        <h4 data-toc-skip class="author">Ewen Harrison</h4>
+                        <h4 data-toc-skip class="author">Ewen
+Harrison</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/ewenharrison/finalfit/blob/HEAD/vignettes/export.Rmd" class="external-link"><code>vignettes/export.Rmd</code></a></small>
@@ -114,15 +115,19 @@
 
     
     
-<p><code>finalfit</code> makes it easy to export final results tables and plots from RStudio to Microsoft Word and PDF.</p>
+<p><code>finalfit</code> makes it easy to export final results tables
+and plots from RStudio to Microsoft Word and PDF.</p>
 <p>Make sure you are on the most up-to-date version of finalfit.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"finalfit"</span><span class="op">)</span></code></pre></div>
-<p>What follows is for demonstration purposes and is not meant to illustrate model building. We will ask, does a particular characteristic of a tumour (differentiation) predict 5-year survival?</p>
+<p>What follows is for demonstration purposes and is not meant to
+illustrate model building. We will ask, does a particular characteristic
+of a tumour (differentiation) predict 5-year survival?</p>
 <div class="section level2">
 <h2 id="explore-data">Explore data<a class="anchor" aria-label="anchor" href="#explore-data"></a>
 </h2>
-<p>First explore variable of interest (exposure) by making it the dependent.</p>
+<p>First explore variable of interest (exposure) by making it the
+dependent.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
@@ -133,7 +138,8 @@
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex.factor"</span>, 
   <span class="st">"extent.factor"</span>, <span class="st">"obstruct.factor"</span>, 
   <span class="st">"nodes"</span><span class="op">)</span></code></pre></div>
-<p>Note this useful alternative way of specifying explanatory variable lists:</p>
+<p>Note this useful alternative way of specifying explanatory variable
+lists:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">sex.factor</span>, <span class="va">extent.factor</span>, <span class="va">obstruct.factor</span>, <span class="va">nodes</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
@@ -170,12 +176,21 @@
 <div class="section level2">
 <h2 id="demographics-table">Demographics table<a class="anchor" aria-label="anchor" href="#demographics-table"></a>
 </h2>
-<p>Look at associations between our exposure and other explanatory variables. Include missing data.</p>
+<p>Look at associations between our exposure and other explanatory
+variables. Include missing data.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/summary_factorlist.html">summary_factorlist</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, 
   p<span class="op">=</span><span class="cn">TRUE</span>, na_include<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="21%">
+<col width="25%">
+<col width="15%">
+<col width="15%">
+<col width="15%">
+<col width="8%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">levels</th>
@@ -275,8 +290,12 @@
 </tr>
 </tbody>
 </table>
-<p>Note missing data in <code>obstruct.factor</code>. See a full description of options in the forthcoming missing data vignette.</p>
-<p>We will drop this variable for now. Also see that nodes has not been labelled. There are small numbers in some variables generating chisq.test warnings (predicted less than 5 in any cell). Generate final table.</p>
+<p>Note missing data in <code>obstruct.factor</code>. See a full
+description of options in the forthcoming missing data vignette.</p>
+<p>We will drop this variable for now. Also see that nodes has not been
+labelled. There are small numbers in some variables generating
+chisq.test warnings (predicted less than 5 in any cell). Generate final
+table.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>explanatory <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"age"</span>, <span class="st">"sex.factor"</span>, </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"extent.factor"</span>, <span class="st">"nodes"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -288,7 +307,15 @@
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">p=</span><span class="cn">TRUE</span>, <span class="at">na_include=</span><span class="cn">TRUE</span>, </span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">add_dependent_label=</span><span class="cn">TRUE</span>) <span class="ot">-&gt;</span> table <span class="dv">1</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>table1</span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="30%">
+<col width="22%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="7%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">Dependent: Differentiation</th>
 <th align="left"></th>
@@ -368,7 +395,8 @@
 <div class="section level2">
 <h2 id="logistic-regression-table">Logistic regression table<a class="anchor" aria-label="anchor" href="#logistic-regression-table"></a>
 </h2>
-<p>Now examine explanatory variables against outcome. Check plot runs ok.</p>
+<p>Now examine explanatory variables against outcome. Check plot runs
+ok.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex.factor"</span>, 
   <span class="st">"extent.factor"</span>, <span class="st">"nodes"</span>, <span class="st">"differ.factor"</span><span class="op">)</span>
@@ -498,13 +526,16 @@
 <div class="section level2">
 <h2 id="ms-word-via-knitrr-markdown">MS Word via knitr/R Markdown<a class="anchor" aria-label="anchor" href="#ms-word-via-knitrr-markdown"></a>
 </h2>
-<p>Important. In most R Markdown set-ups, environment objects require to be saved and loaded to R Markdown document.</p>
+<p>Important. In most R Markdown set-ups, environment objects require to
+be saved and loaded to R Markdown document.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Save objects for knitr/markdown</span>
 <span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">table1</span>, <span class="va">table2</span>, <span class="va">dependent</span>, <span class="va">explanatory</span>, file <span class="op">=</span> <span class="st">"out.rda"</span><span class="op">)</span></code></pre></div>
-<p>We use RStudio Server Pro set-up on Ubuntu. But these instructions should work fine for most/all RStudio/Markdown default set-ups.</p>
+<p>We use RStudio Server Pro set-up on Ubuntu. But these instructions
+should work fine for most/all RStudio/Markdown default set-ups.</p>
 <p>In RStudio, select File &gt; New File &gt; R Markdown.</p>
-<p>A useful template file is produced by default. Try hitting knit to Word on the knitr button at the top of the .Rmd script window.</p>
+<p>A useful template file is produced by default. Try hitting knit to
+Word on the knitr button at the top of the .Rmd script window.</p>
 <p>Now paste this into the file:</p>
 <pre>
 ---
@@ -541,13 +572,20 @@ kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"))
 colon_s %&gt;% 
   or_plot(dependent, explanatory)
 </pre>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/example.docx" class="external-link">The result is ok, but not great.</a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/example.docx" class="external-link">The
+result is ok, but not great.</a></p>
 </div>
 <div class="section level2">
 <h2 id="create-word-template-file">Create Word template file<a class="anchor" aria-label="anchor" href="#create-word-template-file"></a>
 </h2>
-<p>Now, edit your Word file to create a new template. Click on a table. The style should be <code>compact</code>. Right click &gt; Modify… &gt; font size = 9. Alter heading and text styles in the same way as desired. Save this as <code>template.docx</code>. Upload the file to your project folder. Add this reference to the .Rmd YAML heading, as below. Make sure you get the spacing correct.</p>
-<p>The plot also doesn’t look quite right and it prints with warning messages. Experiment with fig.width to get it looking right.</p>
+<p>Now, edit your Word file to create a new template. Click on a table.
+The style should be <code>compact</code>. Right click &gt; Modify… &gt;
+font size = 9. Alter heading and text styles in the same way as desired.
+Save this as <code>template.docx</code>. Upload the file to your project
+folder. Add this reference to the .Rmd YAML heading, as below. Make sure
+you get the spacing correct.</p>
+<p>The plot also doesn’t look quite right and it prints with warning
+messages. Experiment with fig.width to get it looking right.</p>
 <p>Now paste this into your .Rmd file and run:</p>
 <pre>
 ---
@@ -586,7 +624,8 @@ colon_s %&gt;%
   or_plot(dependent, explanatory)
 ```
 </pre>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/example2.docx" class="external-link">This is now looking good, and further tweaks can be made if you wish.</a></p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/example2.docx" class="external-link">This
+is now looking good, and further tweaks can be made if you wish.</a></p>
 </div>
 <div class="section level2">
 <h2 id="pdf-via-knitrr-markdown">PDF via knitr/R Markdown<a class="anchor" aria-label="anchor" href="#pdf-via-knitrr-markdown"></a>
@@ -628,8 +667,12 @@ colon_s %&gt;%
   or_plot(dependent, explanatory)
 ```
 </pre>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/example.pdf" class="external-link">Again, this is not bad, but has issues.</a></p>
-<p>We can fix the plot in exactly the same way. But the table is off the side of the page. For this we use the ’kableExtra` package. Install this in the normal manner. You may also want to alter the margins of your page using geometry in the preamble.</p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/example.pdf" class="external-link">Again,
+this is not bad, but has issues.</a></p>
+<p>We can fix the plot in exactly the same way. But the table is off the
+side of the page. For this we use the ’kableExtra` package. Install this
+in the normal manner. You may also want to alter the margins of your
+page using geometry in the preamble.</p>
 <pre>
 ---
 title: "Example knitr/R Markdown document"
@@ -670,8 +713,10 @@ kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
 colon_s %&gt;% 
   or_plot(dependent, explanatory)
 </pre>
-<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/example2.pdf" class="external-link">This is now looking pretty good for me as well.</a></p>
-<p>There you have it. A pretty quick workflow to get final results into Word and a PDF.</p>
+<p><a href="https://www.datasurg.net/wp-content/uploads/2018/05/example2.pdf" class="external-link">This
+is now looking pretty good for me as well.</a></p>
+<p>There you have it. A pretty quick workflow to get final results into
+Word and a PDF.</p>
 </div>
   </div>
 

@@ -1,3 +1,6 @@
+# finalfit 1.0.53
+* correction to weighting of contiuous explanatory variables in `summary_factorlist()`.
+
 # finalfit 1.0.52
 * weighting now available directly in `finalfit()`. 
 * formula parsed correctly in `lmuni()`, `lmmulti()`, `glmuni()`, `glmmulti()`, `coxphuni()`, coxphmulti().

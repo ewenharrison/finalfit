@@ -202,7 +202,7 @@ summary_factorlist <- function(.data,
 		message("Cannot have add_col_totals with numeric dependent.")
 	}
 	
-	## Continous data to categorical if unique values below threshold
+	## Continuous data to categorical if unique values below threshold
 	cont_distinct = .data %>%
 		dplyr::select(explanatory) %>% 
 		dplyr::summarise_if(is.numeric, dplyr::n_distinct) %>% 
@@ -228,10 +228,7 @@ summary_factorlist <- function(.data,
 		extract_variable_label()
 	
 	## Weights
-	if(!is.null(weights)){
-		.data = .data %>% 
-			dplyr::mutate(dplyr::across(where(is.numeric) & dplyr::any_of(explanatory), ~ .x * !! sym(weights)))
-	}
+	is_weighted = ifelse(is.null(weights), FALSE, TRUE)
 	
 	# Missing data handling ------------------------------------------------------------
 	df.in = .data
@@ -279,7 +276,7 @@ summary_factorlist <- function(.data,
 		 any()) {message("Note: dependent includes missing data. These are dropped.")}
 	
 	
-	# Continous dependent --------------------------------------------------------------------
+	# Continuous dependent --------------------------------------------------------------------
 	if(d_is.numeric){
 		
 		## Hypothesis tests ---------
@@ -372,8 +369,6 @@ summary_factorlist <- function(.data,
 												 										 value_min = min(!! sym(..1), na.rm = TRUE),
 												 										 value_max = max(!! sym(..1), na.rm = TRUE),
 												 										 n = (!is.na(!! sym(..1))) %>% sum(),
-												 										 # row_total = dplyr::n(), # think about whether prop of df length
-												 										 # row_prop = 100 * n/row_total,
 												 										 Total = format_n_percent(n, 100, digits[4], digits[5])) %>%
 												 		dplyr::mutate(
 												 			label = ..1,
@@ -481,7 +476,7 @@ summary_factorlist <- function(.data,
 												 																								 NA_real_, col_total_prop),
 												 												Total = format_n_percent(row_total, col_total_prop, digits[4], digits[5], 
 												 																								 na_include = FALSE)
-												 				)}
+												 					)}
 												 				} %>% 
 												 				dplyr::select(-col_total)
 												 		} else { 
@@ -520,228 +515,255 @@ summary_factorlist <- function(.data,
 												 		}
 												 } else {
 												 	df.in %>% 
-												 		dplyr::mutate(
-												 			value_mean_total = mean(!! sym(..1), na.rm = TRUE),
-												 			value_sd_total = sd(!! sym(..1), na.rm = TRUE),
-												 			value_median_total = median(!! sym(..1), na.rm = TRUE),
-												 			value_q1_total = quantile(!! sym(..1), 0.25, na.rm = TRUE),
-												 			value_q3_total = quantile(!! sym(..1), 0.75, na.rm = TRUE)
-												 		) %>%
-												 		dplyr::group_by(!! sym(dependent)) %>% 
-												 		dplyr::summarise(
-												 			value_mean = mean(!! sym(..1), na.rm = TRUE),
-												 			value_sd = sd(!! sym(..1), na.rm = TRUE),
-												 			value_median = median(!! sym(..1), na.rm = TRUE),
-												 			value_q1 = quantile(!! sym(..1), 0.25, na.rm = TRUE),
-												 			value_q3 = quantile(!! sym(..1), 0.75, na.rm = TRUE),
-												 			value_iqr = value_q3 - value_q1,
-												 			value_mean_total = unique(value_mean_total),
-												 			value_sd_total = unique(value_sd_total),
-												 			value_median_total = unique(value_median_total),
-												 			value_q1_total = unique(value_q1_total),
-												 			value_q3_total = unique(value_q3_total),
-												 			value_iqr_total = value_q3_total - value_q1_total,
-												 			
-												 		) %>% 
-												 		{ if(! ..3) {
+												 		{ if(!is_weighted){
 												 			dplyr::mutate(., 
-												 										value = paste0(value_mean %>% round_tidy(digits[1]), " (", 
-												 																	 value_sd %>%  round_tidy(digits[2]), ")") ,
-												 										Total = paste0(value_mean_total %>% round_tidy(digits[1]), " (", 
-												 																	 value_sd_total %>%  round_tidy(digits[2]), ")") 
-												 			) %>% 
-												 				dplyr::select(dependent, value, Total) %>% 
-												 				tidyr::pivot_wider(names_from = !! dependent, values_from = value) %>% 
-												 				dplyr::mutate(
-												 					label = .x,
-												 					levels = "Mean (SD)"
-												 				) 
-												 		} else if (..3){
-												 			{if(cont_range){
-												 				dplyr::mutate(., 
-												 											value = paste0(value_median %>% round_tidy(digits[1]), " (", 
-												 																		 value_q1 %>% round_tidy(digits[2]), " to ",
-												 																		 value_q3 %>% round_tidy(digits[2]), ")"), 
-												 											Total = paste0(value_median_total %>% round_tidy(digits[1]), " (", 
-												 																		 value_q1_total %>% round_tidy(digits[2]), " to ",
-												 																		 value_q3_total %>% round_tidy(digits[2]), ")") 
+												 										value_mean_total = mean(!! sym(..1), na.rm = TRUE),
+												 										value_sd_total = sd(!! sym(..1), na.rm = TRUE),
+												 										value_median_total = median(!! sym(..1), na.rm = TRUE),
+												 										value_q1_total = quantile(!! sym(..1), 0.25, na.rm = TRUE),
+												 										value_q3_total = quantile(!! sym(..1), 0.75, na.rm = TRUE)
+												 			) %>%
+												 				dplyr::group_by(!! sym(dependent)) %>% 
+												 				dplyr::summarise(
+												 					value_mean = mean(!! sym(..1), na.rm = TRUE),
+												 					value_sd = sd(!! sym(..1), na.rm = TRUE),
+												 					value_median = median(!! sym(..1), na.rm = TRUE),
+												 					value_q1 = quantile(!! sym(..1), 0.25, na.rm = TRUE),
+												 					value_q3 = quantile(!! sym(..1), 0.75, na.rm = TRUE),
+												 					value_iqr = value_q3 - value_q1,
+												 					value_mean_total = unique(value_mean_total),
+												 					value_sd_total = unique(value_sd_total),
+												 					value_median_total = unique(value_median_total),
+												 					value_q1_total = unique(value_q1_total),
+												 					value_q3_total = unique(value_q3_total),
+												 					value_iqr_total = value_q3_total - value_q1_total
 												 				)
-												 			} else {
-												 				dplyr::mutate(., 
-												 											value = paste0(value_median %>% round_tidy(digits[1]), " (", 
-												 																		 value_iqr %>% round_tidy(digits[2]), ")"), 
-												 											Total = paste0(value_median_total %>% round_tidy(digits[1]), " (", 
-												 																		 value_iqr_total %>% round_tidy(digits[2]), ")") 
-												 				)
-												 			}} %>% 
-												 				dplyr::select(dependent, value, Total) %>% 
-												 				tidyr::pivot_wider(names_from = !! dependent, values_from = value) %>% 
-												 				dplyr::mutate(
-												 					label = .x,
-												 					levels = "Median (IQR)"
-												 				) 
-												 		}
-												 		} %>% 
-												 		dplyr::select(label, levels, dplyr::everything()) %>% 
-												 		dplyr::select(-Total, dplyr::everything()) %>% 
-												 		# Total column
-												 		{ if(total_col){
-												 			.
 												 		} else {
-												 			dplyr::select(., -Total)
+												 			dplyr::mutate(., 
+												 										value_mean_total = Hmisc::wtd.mean(!! sym(..1), weights = !! sym(weights), na.rm = TRUE),
+												 										value_sd_total = sqrt(Hmisc::wtd.var(!! sym(..1),  weights = !! sym(weights), na.rm = TRUE)),
+												 										value_median_total = Hmisc::wtd.quantile(!! sym(..1), weights = !! sym(weights), probs = 0.5, na.rm = TRUE),
+												 										value_q1_total = Hmisc::wtd.quantile(!! sym(..1), weights = !! sym(weights), probs = 0.25, na.rm = TRUE),
+												 										value_q3_total = Hmisc::wtd.quantile(!! sym(..1), weights = !! sym(weights), probs = 0.75, na.rm = TRUE),
+												 			) %>%
+												 				dplyr::group_by(!! sym(dependent)) %>% 
+												 				dplyr::summarise(
+												 					value_mean = Hmisc::wtd.mean(!! sym(..1), weights = !! sym(weights), na.rm = TRUE),
+												 					value_sd = sqrt(Hmisc::wtd.var(!! sym(..1),  weights = !! sym(weights), na.rm = TRUE)),
+												 					value_median = Hmisc::wtd.quantile(!! sym(..1), weights = !! sym(weights), probs = 0.5, na.rm = TRUE),
+												 					value_q1 = Hmisc::wtd.quantile(!! sym(..1), weights = !! sym(weights), probs = 0.25, na.rm = TRUE),
+												 					value_q3 = Hmisc::wtd.quantile(!! sym(..1), weights = !! sym(weights), probs = 0.75, na.rm = TRUE),
+												 					value_iqr = value_q3 - value_q1,
+												 					value_mean_total = unique(value_mean_total),
+												 					value_sd_total = unique(value_sd_total),
+												 					value_median_total = unique(value_median_total),
+												 					value_q1_total = unique(value_q1_total),
+												 					value_q3_total = unique(value_q3_total),
+												 					value_iqr_total = value_q3_total - value_q1_total
+												 				)
+												 			
+												 			
+												 		}} %>% 
+												 				{ if(! ..3) {
+												 					dplyr::mutate(., 
+												 												value = paste0(value_mean %>% round_tidy(digits[1]), " (", 
+												 																			 value_sd %>%  round_tidy(digits[2]), ")") ,
+												 												Total = paste0(value_mean_total %>% round_tidy(digits[1]), " (", 
+												 																			 value_sd_total %>%  round_tidy(digits[2]), ")") 
+												 					) %>% 
+												 						dplyr::select(dependent, value, Total) %>% 
+												 						tidyr::pivot_wider(names_from = !! dependent, values_from = value) %>% 
+												 						dplyr::mutate(
+												 							label = .x,
+												 							levels = "Mean (SD)"
+												 						) 
+												 				} else if (..3){
+												 					{if(cont_range){
+												 						dplyr::mutate(., 
+												 													value = paste0(value_median %>% round_tidy(digits[1]), " (", 
+												 																				 value_q1 %>% round_tidy(digits[2]), " to ",
+												 																				 value_q3 %>% round_tidy(digits[2]), ")"), 
+												 													Total = paste0(value_median_total %>% round_tidy(digits[1]), " (", 
+												 																				 value_q1_total %>% round_tidy(digits[2]), " to ",
+												 																				 value_q3_total %>% round_tidy(digits[2]), ")") 
+												 						)
+												 					} else {
+												 						dplyr::mutate(., 
+												 													value = paste0(value_median %>% round_tidy(digits[1]), " (", 
+												 																				 value_iqr %>% round_tidy(digits[2]), ")"), 
+												 													Total = paste0(value_median_total %>% round_tidy(digits[1]), " (", 
+												 																				 value_iqr_total %>% round_tidy(digits[2]), ")") 
+												 						)
+												 					}} %>% 
+												 						dplyr::select(dependent, value, Total) %>% 
+												 						tidyr::pivot_wider(names_from = !! dependent, values_from = value) %>% 
+												 						dplyr::mutate(
+												 							label = .x,
+												 							levels = "Median (IQR)"
+												 						) 
+												 				}
+												 				} %>% 
+												 				dplyr::select(label, levels, dplyr::everything()) %>% 
+												 				dplyr::select(-Total, dplyr::everything()) %>% 
+												 				# Total column
+												 				{ if(total_col){
+												 					.
+												 				} else {
+												 					dplyr::select(., -Total)
+												 				}
+												 				}
 												 		}
-												 		}
-												 }
 		) 
-	}
-	df.out = df.out %>% 
-		# Add hypothesis test
-		{ if(p){
-			purrr::map2_df(., p_tests,
-										 ~ dplyr::mutate(.x,
-										 								p = .y)
-			)} else {
-				dplyr::bind_rows(.)
-			}} %>%
-		dplyr::select(label, levels, dplyr::everything()) %>% 
-		as.data.frame() %>%
-		{ if(fit_id){
-			levels_id = .$levels
-			# Catagorical outcome, continous explanatory
-			drop = levels_id %in% c("Mean (SD)", "Median (IQR)")
-			levels_id[drop] = ""
-			# Continuous outcome, continuous explanatory
-			regex_sqbracket = "^(\\[).*(\\])$"
-			drop = grepl(regex_sqbracket, levels_id)
-			levels_id[drop] = ""
-			# Where extra terms included, add these in, e.g. I(var) (not interactions)
-			extra_terms = explanatory_terms[-which(explanatory_terms %in% explanatory)]
-			drop = grepl(":", extra_terms)
-			extra_terms = extra_terms[!drop]
-			{ if(!identical(extra_terms, character(0))){
-				levels_id = c(levels_id, rep("", length(extra_terms)))
-				dplyr::add_row(., label = extra_terms)
+												 }
+		df.out = df.out %>% 
+			# Add hypothesis test
+			{ if(p){
+				purrr::map2_df(., p_tests,
+											 ~ dplyr::mutate(.x,
+											 								p = .y)
+				)} else {
+					dplyr::bind_rows(.)
+				}} %>%
+			dplyr::select(label, levels, dplyr::everything()) %>% 
+			as.data.frame() %>%
+			{ if(fit_id){
+				levels_id = .$levels
+				# Catagorical outcome, continous explanatory
+				drop = levels_id %in% c("Mean (SD)", "Median (IQR)")
+				levels_id[drop] = ""
+				# Continuous outcome, continuous explanatory
+				regex_sqbracket = "^(\\[).*(\\])$"
+				drop = grepl(regex_sqbracket, levels_id)
+				levels_id[drop] = ""
+				# Where extra terms included, add these in, e.g. I(var) (not interactions)
+				extra_terms = explanatory_terms[-which(explanatory_terms %in% explanatory)]
+				drop = grepl(":", extra_terms)
+				extra_terms = extra_terms[!drop]
+				{ if(!identical(extra_terms, character(0))){
+					levels_id = c(levels_id, rep("", length(extra_terms)))
+					dplyr::add_row(., label = extra_terms)
+				} else {
+					.
+				}} %>% 
+					dplyr::mutate(., fit_id = paste0(label, levels_id),
+												index = 1:dim(.)[1])
 			} else {
 				.
 			}} %>% 
-			dplyr::mutate(., fit_id = paste0(label, levels_id),
-										index = 1:dim(.)[1])
-		} else {
-			.
-		}} %>% 
-		
-		# Recode variable names to labels where available 
-		dplyr::mutate(
-			label = dplyr::recode(label,  !!! var_labels)
-		) %>% 
-		
-		# Remove duplicate variables/p-values
-		rm_duplicate_labels() %>% 
-		
-		# Add column totals
-		{ if(add_col_totals){
-			ff_column_totals(., df.in, dependent, 
-											 percent = include_col_totals_percent, 
-											 na_include_dependent = na_include_dependent,
-											 digits = digits[4], label = col_totals_rowname, 
-											 prefix = col_totals_prefix)
-		} else {
-			.
-		}} %>% 
-		
-		# Add row totals
-		{ if(add_row_totals){
-			ff_row_totals(., .data, dependent, explanatory, missing_column = include_row_missing_col,
-										na_include_dependent = FALSE, na_complete_cases = na_complete_cases, 
-										total_name = row_totals_colname, na_name = row_missing_colname)
-		} else {
-			.
-		}} %>% 
-		
-		
-		# Add dependent label
-		{ if(add_dependent_label){
-			dependent_label(., .data, dependent, 
-											prefix=dependent_label_prefix, suffix = dependent_label_suffix)
-		} else {
-			.
-		}} %>% 
-		
-		# Replace any missing values with "", e.g. in (Missing) column
-		dplyr::mutate_all(.,
-											~ ifelse(is.na(.), "", .)
-		)
-	class(df.out) = c("data.frame.ff", class(df.out))
-	return(df.out)
-}
-
-
-
-#' Summarise a set of factors (or continuous variables) by a dependent variable
-#'
-#' A function that takes a single dependent variable with a vector of
-#' explanatory variable names (continuous or categorical variables) to produce a
-#' summary table.
-#'
-#' This function aims to produce publication-ready summary tables for
-#' categorical or continuous dependent variables. It usually takes a categorical
-#' dependent variable to produce a cross table of counts and proportions
-#' expressed as percentages or summarised continuous explanatory variables.
-#' However, it will take a continuous dependent variable to produce mean
-#' (standard deviation) or median (interquartile range) for use with linear
-#' regression models.
-
-
-
-
-#' Stratify a \code{\link{summary_factorlist}} table (beta testing) 
-#'
-#' @param .data Dataframe.
-#' @param ... Arguments to \code{\link{summary_factorlist}}.
-#' @param split Quoted variable name to stratify columns by. 
-#' @param colname_sep Separator for creation of new column name. 
-#' @param level_max_length Maximum name for each factor level contributing to column name. 
-#' @param n_common_cols Number of common columns in \code{\link{summary_factorlist}} table, usually 2.
-#'
-#' @return Dataframe. 
-#' @export
-#'
-#' @examples
-#' # Table 1 - Perforation status stratified by sex ----
-#' explanatory = c("age", "obstruct.factor")
-#' dependent = "perfor.factor"
-#'
-#' # Single split
-#' colon_s %>%
-#'   summary_factorlist_stratified(dependent, explanatory, split = c("sex.factor"))
-#' 
-#' # Double split
-#' colon_s %>%
-#'	 summary_factorlist_stratified(dependent, explanatory, split = c("sex.factor", "age.factor"))
-
-summary_factorlist_stratified <- function(.data, ..., split, colname_sep = "|", level_max_length = 10,
-																					n_common_cols = 2){
-	dots = list(...)
-	if(is.null(split)) stop("No split variable provided")
-	if(any(split %in% dots$explanatory | split %in% dots$dependent)) stop("Split variable cannot be dependent or explanatory")
+			
+			# Recode variable names to labels where available 
+			dplyr::mutate(
+				label = dplyr::recode(label,  !!! var_labels)
+			) %>% 
+			
+			# Remove duplicate variables/p-values
+			rm_duplicate_labels() %>% 
+			
+			# Add column totals
+			{ if(add_col_totals){
+				ff_column_totals(., df.in, dependent, 
+												 percent = include_col_totals_percent, 
+												 na_include_dependent = na_include_dependent,
+												 digits = digits[4], label = col_totals_rowname, 
+												 prefix = col_totals_prefix)
+			} else {
+				.
+			}} %>% 
+			
+			# Add row totals
+			{ if(add_row_totals){
+				ff_row_totals(., .data, dependent, explanatory, missing_column = include_row_missing_col,
+											na_include_dependent = FALSE, na_complete_cases = na_complete_cases, 
+											total_name = row_totals_colname, na_name = row_missing_colname)
+			} else {
+				.
+			}} %>% 
+			
+			
+			# Add dependent label
+			{ if(add_dependent_label){
+				dependent_label(., .data, dependent, 
+												prefix=dependent_label_prefix, suffix = dependent_label_suffix)
+			} else {
+				.
+			}} %>% 
+			
+			# Replace any missing values with "", e.g. in (Missing) column
+			dplyr::mutate_all(.,
+												~ ifelse(is.na(.), "", .)
+			)
+		class(df.out) = c("data.frame.ff", class(df.out))
+		return(df.out)
+	}
 	
-	df.out = .data %>% 
-		dplyr::group_by(!!! rlang::syms(split)) %>% 
-		dplyr::group_map(function(.x, .y){
-			summary_factorlist(.x, ...) %>% 
-				dplyr::rename_with(paste0, colname_sep, 
-										.y %>% 
-											#dplyr::first() %>%
-											purrr::map(as.character) %>% 
-											purrr::map(stringr::str_trunc, level_max_length, ellipsis = "") %>% 
-											paste(collapse = colname_sep),
-										.cols = -c(1:n_common_cols)) %>% 
-				dplyr::select(-c(1:n_common_cols)) 
-		}
-		) %>% 
-		dplyr::bind_cols()
 	
-	summary_factorlist(.data, ...) %>% 
-		dplyr::select(1:n_common_cols) %>% 
-		dplyr::bind_cols(df.out)
-}
+	
+	#' Summarise a set of factors (or continuous variables) by a dependent variable
+	#'
+	#' A function that takes a single dependent variable with a vector of
+	#' explanatory variable names (continuous or categorical variables) to produce a
+	#' summary table.
+	#'
+	#' This function aims to produce publication-ready summary tables for
+	#' categorical or continuous dependent variables. It usually takes a categorical
+	#' dependent variable to produce a cross table of counts and proportions
+	#' expressed as percentages or summarised continuous explanatory variables.
+	#' However, it will take a continuous dependent variable to produce mean
+	#' (standard deviation) or median (interquartile range) for use with linear
+	#' regression models.
+	
+	
+	
+	
+	#' Stratify a \code{\link{summary_factorlist}} table (beta testing) 
+	#'
+	#' @param .data Dataframe.
+	#' @param ... Arguments to \code{\link{summary_factorlist}}.
+	#' @param split Quoted variable name to stratify columns by. 
+	#' @param colname_sep Separator for creation of new column name. 
+	#' @param level_max_length Maximum name for each factor level contributing to column name. 
+	#' @param n_common_cols Number of common columns in \code{\link{summary_factorlist}} table, usually 2.
+	#'
+	#' @return Dataframe. 
+	#' @export
+	#'
+	#' @examples
+	#' # Table 1 - Perforation status stratified by sex ----
+	#' explanatory = c("age", "obstruct.factor")
+	#' dependent = "perfor.factor"
+	#'
+	#' # Single split
+	#' colon_s %>%
+	#'   summary_factorlist_stratified(dependent, explanatory, split = c("sex.factor"))
+	#' 
+	#' # Double split
+	#' colon_s %>%
+	#'	 summary_factorlist_stratified(dependent, explanatory, split = c("sex.factor", "age.factor"))
+	
+	summary_factorlist_stratified <- function(.data, ..., split, colname_sep = "|", level_max_length = 10,
+																						n_common_cols = 2){
+		dots = list(...)
+		if(is.null(split)) stop("No split variable provided")
+		if(any(split %in% dots$explanatory | split %in% dots$dependent)) stop("Split variable cannot be dependent or explanatory")
+		
+		df.out = .data %>% 
+			dplyr::group_by(!!! rlang::syms(split)) %>% 
+			dplyr::group_map(function(.x, .y){
+				summary_factorlist(.x, ...) %>% 
+					dplyr::rename_with(paste0, colname_sep, 
+														 .y %>% 
+														 	#dplyr::first() %>%
+														 	purrr::map(as.character) %>% 
+														 	purrr::map(stringr::str_trunc, level_max_length, ellipsis = "") %>% 
+														 	paste(collapse = colname_sep),
+														 .cols = -c(1:n_common_cols)) %>% 
+					dplyr::select(-c(1:n_common_cols)) 
+			}
+			) %>% 
+			dplyr::bind_cols()
+		
+		summary_factorlist(.data, ...) %>% 
+			dplyr::select(1:n_common_cols) %>% 
+			dplyr::bind_cols(df.out)
+	}
+	

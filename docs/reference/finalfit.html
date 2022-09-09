@@ -24,7 +24,7 @@ finalfit.coxph method (not called directly)'><meta property="og:image" content="
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.52</span>
       </span>
     </div>
 
@@ -103,6 +103,7 @@ a random effect is specified.</p>
   random_effect <span class="op">=</span> <span class="cn">NULL</span>,
   formula <span class="op">=</span> <span class="cn">NULL</span>,
   model_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,
+  weights <span class="op">=</span> <span class="cn">NULL</span>,
   column <span class="op">=</span> <span class="cn">NULL</span>,
   keep_models <span class="op">=</span> <span class="cn">FALSE</span>,
   metrics <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -120,6 +121,7 @@ a random effect is specified.</p>
   explanatory_multi <span class="op">=</span> <span class="cn">NULL</span>,
   random_effect <span class="op">=</span> <span class="cn">NULL</span>,
   <span class="va">model_args</span>,
+  weights <span class="op">=</span> <span class="cn">NULL</span>,
   column <span class="op">=</span> <span class="cn">FALSE</span>,
   keep_models <span class="op">=</span> <span class="cn">FALSE</span>,
   metrics <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -137,6 +139,7 @@ a random effect is specified.</p>
   explanatory_multi <span class="op">=</span> <span class="cn">NULL</span>,
   random_effect <span class="op">=</span> <span class="cn">NULL</span>,
   <span class="va">model_args</span>,
+  weights <span class="op">=</span> <span class="cn">NULL</span>,
   column <span class="op">=</span> <span class="cn">FALSE</span>,
   keep_models <span class="op">=</span> <span class="cn">FALSE</span>,
   metrics <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -204,6 +207,14 @@ Do not include if using dependent/explanatory.</p></dd>
 <dt>model_args</dt>
 <dd><p>List. A list of arguments to pass to 
 <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>, <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></code>, <code>coxph</code>.</p></dd>
+
+
+<dt>weights</dt>
+<dd><p>Character vector of length 1: quoted name of weights variable. 
+Passed to <code><a href="summary_factorlist.html">summary_factorlist</a></code>, <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>, and <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></code> 
+to provide weighted summary table and regression (e.g. IPTW). If wish weighted regression
+and non-weighted summary table, pass <code>weights</code> argument within <code>model_args</code>. 
+Not available with surival dependent variable.</p></dd>
 
 
 <dt>column</dt>

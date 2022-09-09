@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.52</span>
       </span>
     </div>
 
@@ -104,7 +104,8 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Missing data</h1>
-                        <h4 data-toc-skip class="author">Ewen Harrison</h4>
+                        <h4 data-toc-skip class="author">Ewen
+Harrison</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/ewenharrison/finalfit/blob/HEAD/vignettes/missing.Rmd" class="external-link"><code>vignettes/missing.Rmd</code></a></small>
@@ -114,8 +115,14 @@
 
     
     
-<p>As a journal editor, I often receive studies in which the investigators fail to describe, analyse, or even acknowledge missing data. This is frustrating, as it is often of the utmost importance. Conclusions may (and do) change when missing data is accounted for. A few seem to not even appreciate that in conventional regression, only rows with complete data are included.</p>
-<p>These are the five steps to ensuring missing data are correctly identified and appropriately dealt with:</p>
+<p>As a journal editor, I often receive studies in which the
+investigators fail to describe, analyse, or even acknowledge missing
+data. This is frustrating, as it is often of the utmost importance.
+Conclusions may (and do) change when missing data is accounted for. A
+few seem to not even appreciate that in conventional regression, only
+rows with complete data are included.</p>
+<p>These are the five steps to ensuring missing data are correctly
+identified and appropriately dealt with:</p>
 <ol style="list-style-type: decimal">
 <li>Ensure your data are coded correctly.</li>
 <li>Identify missing values within each variable.</li>
@@ -123,48 +130,82 @@
 <li>Check for associations between missing and observed data.</li>
 <li>Decide how to handle missing data.</li>
 </ol>
-<p><code>finalfit</code> includes a number of functions to help with this.</p>
+<p><code>finalfit</code> includes a number of functions to help with
+this.</p>
 <div class="section level2">
 <h2 id="some-confusing-terminology">Some confusing terminology<a class="anchor" aria-label="anchor" href="#some-confusing-terminology"></a>
 </h2>
-<p>But first there are some terms which easy to mix up. These are important as they describe the mechanism of missingness and this determines how you can handle the missing data.</p>
+<p>But first there are some terms which easy to mix up. These are
+important as they describe the mechanism of missingness and this
+determines how you can handle the missing data.</p>
 <div class="section level3">
 <h3 id="missing-completely-at-random-mcar">Missing completely at random (MCAR)<a class="anchor" aria-label="anchor" href="#missing-completely-at-random-mcar"></a>
 </h3>
-<p>As it says, values are randomly missing from your dataset. Missing data values do not relate to any other data in the dataset and there is no pattern to the actual values of the missing data themselves.</p>
-<p>For instance, when smoking status is not recorded in a random subset of patients.</p>
-<p>This is easy to handle, but unfortunately, data are almost never missing completely at random.</p>
+<p>As it says, values are randomly missing from your dataset. Missing
+data values do not relate to any other data in the dataset and there is
+no pattern to the actual values of the missing data themselves.</p>
+<p>For instance, when smoking status is not recorded in a random subset
+of patients.</p>
+<p>This is easy to handle, but unfortunately, data are almost never
+missing completely at random.</p>
 </div>
 <div class="section level3">
 <h3 id="missing-at-random-mar">Missing at random (MAR)<a class="anchor" aria-label="anchor" href="#missing-at-random-mar"></a>
 </h3>
-<p>This is confusing and would be better stated as missing conditionally at random. Here, missing data do have a relationship with other variables in the dataset. However, the actual values that are missing are random.</p>
-<p>For example, smoking status is not documented in female patients because the doctor was too shy to ask. Yes ok, not that realistic!</p>
+<p>This is confusing and would be better stated as missing conditionally
+at random. Here, missing data do have a relationship with other
+variables in the dataset. However, the actual values that are missing
+are random.</p>
+<p>For example, smoking status is not documented in female patients
+because the doctor was too shy to ask. Yes ok, not that realistic!</p>
 </div>
 <div class="section level3">
 <h3 id="missing-not-at-random-mnar">Missing not at random (MNAR)<a class="anchor" aria-label="anchor" href="#missing-not-at-random-mnar"></a>
 </h3>
-<p>The pattern of missingness is related to other variables in the dataset, but in addition, the values of the missing data are not random.</p>
-<p>For example, when smoking status is not recorded in patients admitted as an emergency, who are also more likely to have worse outcomes from surgery.</p>
-<p>Missing not at random data are important, can alter your conclusions, and are the most difficult to diagnose and handle. They can only be detected by collecting and examining some of the missing data. This is often difficult or impossible to do.</p>
-<p>How you deal with missing data is dependent on the type of missingness. Once you know this, then you can sort it.</p>
+<p>The pattern of missingness is related to other variables in the
+dataset, but in addition, the values of the missing data are not
+random.</p>
+<p>For example, when smoking status is not recorded in patients admitted
+as an emergency, who are also more likely to have worse outcomes from
+surgery.</p>
+<p>Missing not at random data are important, can alter your conclusions,
+and are the most difficult to diagnose and handle. They can only be
+detected by collecting and examining some of the missing data. This is
+often difficult or impossible to do.</p>
+<p>How you deal with missing data is dependent on the type of
+missingness. Once you know this, then you can sort it.</p>
 <p>More on this below.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="ensure-your-data-are-coded-correctly-ff_glimpse">1. Ensure your data are coded correctly: <code>ff_glimpse</code><a class="anchor" aria-label="anchor" href="#ensure-your-data-are-coded-correctly-ff_glimpse"></a>
+<h2 id="ensure-your-data-are-coded-correctly-ff_glimpse">1. Ensure your data are coded correctly:
+<code>ff_glimpse</code><a class="anchor" aria-label="anchor" href="#ensure-your-data-are-coded-correctly-ff_glimpse"></a>
 </h2>
-<p>While clearly obvious, this step is often ignored in the rush to get results. The first step in any analysis is robust data cleaning and coding. Lots of packages have a glimpse-type function and <code>finalfit</code> is no different. This function has three specific goals:</p>
+<p>While clearly obvious, this step is often ignored in the rush to get
+results. The first step in any analysis is robust data cleaning and
+coding. Lots of packages have a glimpse-type function and
+<code>finalfit</code> is no different. This function has three specific
+goals:</p>
 <ol style="list-style-type: decimal">
-<li>Ensure all factors and numerics are correctly assigned. That is the commonest reason to get an error with a finalfit function. You think you’re using a factor variable, but in fact it is incorrectly coded as a continuous numeric.</li>
-<li>Ensure you know which variables have missing data. This presumes missing values are correctly assigned NA. See here for more details if you are unsure.</li>
-<li>Ensure factor levels and variable labels are assigned correctly.</li>
+<li>Ensure all factors and numerics are correctly assigned. That is the
+commonest reason to get an error with a finalfit function. You think
+you’re using a factor variable, but in fact it is incorrectly coded as a
+continuous numeric.</li>
+<li>Ensure you know which variables have missing data. This presumes
+missing values are correctly assigned NA. See here for more details if
+you are unsure.</li>
+<li>Ensure factor levels and variable labels are assigned
+correctly.</li>
 </ol>
 <div class="section level3">
 <h3 id="example-scenario">Example scenario<a class="anchor" aria-label="anchor" href="#example-scenario"></a>
 </h3>
-<p>Using the <code>colon_s</code> cancer dataset that comes with <code>finalfit</code>, we are interested in exploring the association between a cancer obstructing the bowel and 5-year survival, accounting for other patient and disease characteristics.</p>
-<p>For demonstration purposes, we will create random MCAR and MAR smoking variables to the dataset.</p>
+<p>Using the <code>colon_s</code> cancer dataset that comes with
+<code>finalfit</code>, we are interested in exploring the association
+between a cancer obstructing the bowel and 5-year survival, accounting
+for other patient and disease characteristics.</p>
+<p>For demonstration purposes, we will create random MCAR and MAR
+smoking variables to the dataset.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Make sure finalfit is up-to-date </span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"finalfit"</span><span class="op">)</span></code></pre></div>
@@ -230,33 +271,50 @@
 <span class="co">#&gt; obstruct.factor 78.8, 18.9,  2.3</span>
 <span class="co">#&gt; smoking_mcar          69, 20, 11</span>
 <span class="co">#&gt; smoking_mar           64, 14, 23</span></code></pre></div>
-<p>The function summarises a data frame or tibble by numeric (continuous) variables and factor (discrete) variables. The dependent and explanatory are for convenience. Pass either or neither e.g. to summarise data frame or tibble:</p>
+<p>The function summarises a data frame or tibble by numeric
+(continuous) variables and factor (discrete) variables. The dependent
+and explanatory are for convenience. Pass either or neither e.g. to
+summarise data frame or tibble:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/ff_glimpse.html">ff_glimpse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>It doesn’t present well if you have factors with lots of levels, so you may want to remove these.</p>
+<p>It doesn’t present well if you have factors with lots of levels, so
+you may want to remove these.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">hospital</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/ff_glimpse.html">ff_glimpse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>Use this to check that the variables are all assigned and behaving as expected. The proportion of missing data can be seen, e.g. smoking_mar has 23% missing data.</p>
+<p>Use this to check that the variables are all assigned and behaving as
+expected. The proportion of missing data can be seen, e.g. smoking_mar
+has 23% missing data.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="identify-missing-values-in-each-variable-missing_plot">2. Identify missing values in each variable: <code>missing_plot</code><a class="anchor" aria-label="anchor" href="#identify-missing-values-in-each-variable-missing_plot"></a>
+<h2 id="identify-missing-values-in-each-variable-missing_plot">2. Identify missing values in each variable:
+<code>missing_plot</code><a class="anchor" aria-label="anchor" href="#identify-missing-values-in-each-variable-missing_plot"></a>
 </h2>
-<p>In detecting patterns of missingness, this plot is useful. Row number is on the x-axis and all included variables are on the y-axis. Associations between missingness and observations can be easily seen, as can relationships of missingness between variables.</p>
+<p>In detecting patterns of missingness, this plot is useful. Row number
+is on the x-axis and all included variables are on the y-axis.
+Associations between missingness and observations can be easily seen, as
+can relationships of missingness between variables.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/missing_plot.html">missing_plot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_values-1024x312.png" alt="" width="700"></a></p>
-<p>It was only when writing this post that I discovered the amazing package, <a href="https://naniar.njtierney.com/" class="external-link">naniar</a>. This package is recommended and provides lots of great visualisations for missing data.</p>
+<p>It was only when writing this post that I discovered the amazing
+package, <a href="https://naniar.njtierney.com/" class="external-link">naniar</a>. This
+package is recommended and provides lots of great visualisations for
+missing data.</p>
 </div>
 <div class="section level2">
-<h2 id="look-for-patterns-of-missingness-missing_pattern">3. Look for patterns of missingness: <code>missing_pattern</code><a class="anchor" aria-label="anchor" href="#look-for-patterns-of-missingness-missing_pattern"></a>
+<h2 id="look-for-patterns-of-missingness-missing_pattern">3. Look for patterns of missingness:
+<code>missing_pattern</code><a class="anchor" aria-label="anchor" href="#look-for-patterns-of-missingness-missing_pattern"></a>
 </h2>
-<p><code>missing_pattern</code> simply wraps <code><a href="https://amices.org/mice/reference/md.pattern.html" class="external-link">mice::md.pattern</a></code> using <code>finalfit</code> grammar. This produces a table and a plot showing the pattern of missingness between variables.</p>
+<p><code>missing_pattern</code> simply wraps
+<code><a href="https://amices.org/mice/reference/md.pattern.html" class="external-link">mice::md.pattern</a></code> using <code>finalfit</code> grammar. This
+produces a table and a plot showing the pattern of missingness between
+variables.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex.factor"</span>, 
   <span class="st">"obstruct.factor"</span>,  
@@ -279,12 +337,25 @@
 <span class="co">#&gt; 4     1          1        0               1            1           0   2</span>
 <span class="co">#&gt; 2     1          1        0               1            0           1   2</span>
 <span class="co">#&gt;       0          0       14              21          101         210 346</span></code></pre>
-<p>This allows us to look for patterns of missingness between variables. There are 14 patterns in this data. The number and pattern of missingness help us to determine the likelihood of it being random rather than systematic.</p>
+<p>This allows us to look for patterns of missingness between variables.
+There are 14 patterns in this data. The number and pattern of
+missingness help us to determine the likelihood of it being random
+rather than systematic.</p>
 <div class="section level3">
 <h3 id="make-sure-you-include-missing-data-in-demographics-tables">Make sure you include missing data in demographics tables<a class="anchor" aria-label="anchor" href="#make-sure-you-include-missing-data-in-demographics-tables"></a>
 </h3>
-<p>Table 1 in a healthcare study is often a demographics table of an “explanatory variable of interest” against other explanatory variables/confounders. Do not silently drop missing values in this table. It is easy to do this correctly with summary_factorlist. This function provides a useful summary of a dependent variable against explanatory variables. Despite its name, continuous variables are handled nicely.</p>
-<p><code>na_include=TRUE</code> ensures missing data from the explanatory variables (but not dependent) are included. Note that any p-values are generated across missing groups as well, so run a second time with <code>na_include=FALSE</code> if you wish a hypothesis test only over observed data.</p>
+<p>Table 1 in a healthcare study is often a demographics table of an
+“explanatory variable of interest” against other explanatory
+variables/confounders. Do not silently drop missing values in this
+table. It is easy to do this correctly with summary_factorlist. This
+function provides a useful summary of a dependent variable against
+explanatory variables. Despite its name, continuous variables are
+handled nicely.</p>
+<p><code>na_include=TRUE</code> ensures missing data from the
+explanatory variables (but not dependent) are included. Note that any
+p-values are generated across missing groups as well, so run a second
+time with <code>na_include=FALSE</code> if you wish a hypothesis test
+only over observed data.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Explanatory or confounding variables</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex.factor"</span>, 
@@ -312,11 +383,21 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="check-for-associations-between-missing-and-observed-data-missing_pairs-missing_compare">4. Check for associations between missing and observed data: <code>missing_pairs</code> | <code>missing_compare</code><a class="anchor" aria-label="anchor" href="#check-for-associations-between-missing-and-observed-data-missing_pairs-missing_compare"></a>
+<h2 id="check-for-associations-between-missing-and-observed-data-missing_pairs-missing_compare">4. Check for associations between missing and observed data:
+<code>missing_pairs</code> | <code>missing_compare</code><a class="anchor" aria-label="anchor" href="#check-for-associations-between-missing-and-observed-data-missing_pairs-missing_compare"></a>
 </h2>
-<p>In deciding whether data is MCAR or MAR, one approach is to explore patterns of missingness between levels of included variables. This is particularly important (I would say absolutely required) for a primary outcome measure / dependent variable.</p>
-<p>Take for example “death”. When that outcome is missing it is often for a particular reason. For example, perhaps patients undergoing emergency surgery were less likely to have complete records compared with those undergoing planned surgery. And of course, death is more likely after emergency surgery.</p>
-<p><code>missing_pairs</code> uses functions from the excellent <a href="https://ggobi.github.io/ggally/" class="external-link">GGally</a> package. It produces pairs plots to show relationships between missing values and observed values in all variables.</p>
+<p>In deciding whether data is MCAR or MAR, one approach is to explore
+patterns of missingness between levels of included variables. This is
+particularly important (I would say absolutely required) for a primary
+outcome measure / dependent variable.</p>
+<p>Take for example “death”. When that outcome is missing it is often
+for a particular reason. For example, perhaps patients undergoing
+emergency surgery were less likely to have complete records compared
+with those undergoing planned surgery. And of course, death is more
+likely after emergency surgery.</p>
+<p><code>missing_pairs</code> uses functions from the excellent <a href="https://ggobi.github.io/ggally/" class="external-link">GGally</a> package. It produces
+pairs plots to show relationships between missing values and observed
+values in all variables.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex.factor"</span>, 
   <span class="st">"nodes"</span>, <span class="st">"obstruct.factor"</span>,  
@@ -325,13 +406,19 @@
 <span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/missing_pairs.html">missing_pairs</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs1-1024x775.png" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs1-1024x775.png" alt="" width="700"></a></p>
-<p>For continuous variables (age and nodes), the distributions of observed and missing data can be visually compared. Is there a difference between age and mortality above?</p>
-<p>For discrete, data, counts are presented by default. It is often easier to compare proportions:</p>
+<p>For continuous variables (age and nodes), the distributions of
+observed and missing data can be visually compared. Is there a
+difference between age and mortality above?</p>
+<p>For discrete, data, counts are presented by default. It is often
+easier to compare proportions:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/missing_pairs.html">missing_pairs</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, position <span class="op">=</span> <span class="st">"fill"</span>, <span class="op">)</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs2-1-1024x733.png" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/missing_pairs2-1-1024x733.png" alt="" width="700"></a></p>
-<p>It should be obvious that missingness in Smoking (MCAR) does not relate to sex (row 6, column 3). But missingness in Smoking (MAR) does differ by sex (last row, column 3) as was designed above when the missing data were created.</p>
+<p>It should be obvious that missingness in Smoking (MCAR) does not
+relate to sex (row 6, column 3). But missingness in Smoking (MAR) does
+differ by sex (last row, column 3) as was designed above when the
+missing data were created.</p>
 <p>We can confirm this using <code>missing_compare</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex.factor"</span>, 
@@ -341,6 +428,13 @@
   <span class="fu"><a href="../reference/missing_compare.html">missing_compare</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>row.names<span class="op">=</span><span class="cn">FALSE</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span> <span class="co"># Omit when you run</span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="48%">
+<col width="12%">
+<col width="15%">
+<col width="15%">
+<col width="7%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">Missing data analysis: Smoking (MCAR)</th>
 <th align="left"></th>
@@ -399,6 +493,13 @@
   <span class="fu"><a href="../reference/missing_compare.html">missing_compare</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>row.names<span class="op">=</span><span class="cn">FALSE</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span> <span class="co"># Omit when you run</span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="47%">
+<col width="12%">
+<col width="15%">
+<col width="15%">
+<col width="8%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">Missing data analysis: Smoking (MAR)</th>
 <th align="left"></th>
@@ -451,13 +552,21 @@
 </tr>
 </tbody>
 </table>
-<p>It takes <code>dependent</code> and <code>explanatory</code> variables, but in this context <code>dependent</code> just refers to the variable being tested for missingness against the <code>explanatory</code> variables.</p>
-<p>Comparisons for continuous data use a Kruskal Wallis and for discrete data a chi-squared test.</p>
-<p>As expected, a relationship is seen between Sex and Smoking (MAR) but not Smoking (MCAR).</p>
+<p>It takes <code>dependent</code> and <code>explanatory</code>
+variables, but in this context <code>dependent</code> just refers to the
+variable being tested for missingness against the
+<code>explanatory</code> variables.</p>
+<p>Comparisons for continuous data use a Kruskal Wallis and for discrete
+data a chi-squared test.</p>
+<p>As expected, a relationship is seen between Sex and Smoking (MAR) but
+not Smoking (MCAR).</p>
 <div class="section level3">
 <h3 id="for-those-who-like-an-omnibus-test">For those who like an omnibus test<a class="anchor" aria-label="anchor" href="#for-those-who-like-an-omnibus-test"></a>
 </h3>
-<p>If you are work predominately with numeric rather than discrete data (categorical/factors), you may find these tests from the MissMech package useful. The package and output is well documented, and provides two tests which can be used to determine whether data are MCAR.</p>
+<p>If you are work predominately with numeric rather than discrete data
+(categorical/factors), you may find these tests from the MissMech
+package useful. The package and output is well documented, and provides
+two tests which can be used to determine whether data are MCAR.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
@@ -473,7 +582,8 @@
 <div class="section level2">
 <h2 id="decide-how-to-handle-missing-data">5. Decide how to handle missing data<a class="anchor" aria-label="anchor" href="#decide-how-to-handle-missing-data"></a>
 </h2>
-<p>These <a href="https://www.theanalysisfactor.com/missing-data-mechanism/" class="external-link">pages</a> from Karen Grace-Martin are great for this.</p>
+<p>These <a href="https://www.theanalysisfactor.com/missing-data-mechanism/" class="external-link">pages</a>
+from Karen Grace-Martin are great for this.</p>
 <p>Prior to a standard regression analysis, we can either:</p>
 <ul>
 <li>Delete the variable with the missing data</li>
@@ -489,13 +599,23 @@
 <h3 id="mcar-vs-mar">
 <strong>MCAR</strong> vs MAR<a class="anchor" aria-label="anchor" href="#mcar-vs-mar"></a>
 </h3>
-<p>Using the examples, we identify that Smoking (MCAR) is missing completely at random.</p>
-<p>We know nothing about the missing values themselves, but we know of no plausible reason that the values of the missing data, for say, people who died should be different to the values of the missing data for those who survived. The pattern of missingness is therefore not felt to be MNAR.</p>
+<p>Using the examples, we identify that Smoking (MCAR) is missing
+completely at random.</p>
+<p>We know nothing about the missing values themselves, but we know of
+no plausible reason that the values of the missing data, for say, people
+who died should be different to the values of the missing data for those
+who survived. The pattern of missingness is therefore not felt to be
+MNAR.</p>
 <div class="section level4">
 <h4 id="common-solution">Common solution<a class="anchor" aria-label="anchor" href="#common-solution"></a>
 </h4>
-<p>Depending on the number of data points that are missing, we may have sufficient power with complete cases to examine the relationships of interest.</p>
-<p>We therefore elect to simply omit the patients in whom smoking is missing. This is known as list-wise deletion and will be performed by default in standard regression analyses including <code>finalfit</code>.</p>
+<p>Depending on the number of data points that are missing, we may have
+sufficient power with complete cases to examine the relationships of
+interest.</p>
+<p>We therefore elect to simply omit the patients in whom smoking is
+missing. This is known as list-wise deletion and will be performed by
+default in standard regression analyses including
+<code>finalfit</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex.factor"</span>, 
   <span class="st">"nodes"</span>, <span class="st">"obstruct.factor"</span>,  
@@ -605,8 +725,17 @@
 <li>Imputation</li>
 <li>Model the missing data</li>
 </ol>
-<p>If the variable in question is thought to be particularly important, you may wish to perform a sensitivity analysis. A sensitivity analysis in this context aims to capture the effect of uncertainty on the conclusions drawn from the model. Thus, you may choose to re-label all missing smoking values as “smoker”, and see if that changes the conclusions of your analysis. The same procedure can be performed labeling with “non-smoker”.</p>
-<p>If smoking is not associated with the explanatory variable of interest (bowel obstruction) or the outcome, it may be considered not to be a confounder and so could be omitted. That neatly deals with the missing data issue, but of course may not be appropriate.</p>
+<p>If the variable in question is thought to be particularly important,
+you may wish to perform a sensitivity analysis. A sensitivity analysis
+in this context aims to capture the effect of uncertainty on the
+conclusions drawn from the model. Thus, you may choose to re-label all
+missing smoking values as “smoker”, and see if that changes the
+conclusions of your analysis. The same procedure can be performed
+labeling with “non-smoker”.</p>
+<p>If smoking is not associated with the explanatory variable of
+interest (bowel obstruction) or the outcome, it may be considered not to
+be a confounder and so could be omitted. That neatly deals with the
+missing data issue, but of course may not be appropriate.</p>
 <p>Imputation and modelling are considered below.</p>
 </div>
 </div>
@@ -614,16 +743,37 @@
 <h3 id="mcar-vs-mar-1">MCAR vs <strong>MAR</strong><a class="anchor" aria-label="anchor" href="#mcar-vs-mar-1"></a>
 </h3>
 <p>But life is rarely that simple.</p>
-<p>Consider that the smoking variable is more likely to be missing if the patient is female (missing_compareshows a relationship). But, say, that the missing values are not different from the observed values. Missingness is then MAR.</p>
-<p>If we simply drop all the cases (patients) in which smoking is missing (list-wise deletion), then proportionally we drop more females than men. This may have consequences for our conclusions if sex is associated with our explanatory variable of interest or outcome.</p>
+<p>Consider that the smoking variable is more likely to be missing if
+the patient is female (missing_compareshows a relationship). But, say,
+that the missing values are not different from the observed values.
+Missingness is then MAR.</p>
+<p>If we simply drop all the cases (patients) in which smoking is
+missing (list-wise deletion), then proportionally we drop more females
+than men. This may have consequences for our conclusions if sex is
+associated with our explanatory variable of interest or outcome.</p>
 <div class="section level4">
 <h4 id="common-solution-1">Common solution<a class="anchor" aria-label="anchor" href="#common-solution-1"></a>
 </h4>
-<p><a href="https://github.com/amices/mice" class="external-link">mice</a> is our go to package for multiple imputation. That’s the process of filling in missing data using a best-estimate from all the other data that exists. When first encountered, this may not sound like a good idea.</p>
-<p>However, taking our simple example, if missingness in smoking is predicted strongly by sex (and other observed variables), and the values of the missing data are random, then we can impute (best-guess) the missing smoking values using sex and other variables in the dataset.</p>
-<p>Imputation is not usually appropriate for the explanatory variable of interest or the outcome variable. In both case, the hypothesis is that there is an meaningful association with other variables in the dataset, therefore it doesn’t make sense to use these variables to impute them.</p>
-<p>Here is some code to run <code>mice</code>. The package is well documented, and there are a number of checks and considerations that should be made to inform the imputation process. Read the documentation carefully prior to doing this yourself.</p>
-<p>Note also <code><a href="../reference/missing_predictorMatrix.html">finalfit::missing_predictorMatrix()</a></code>. This provides an easy way to include or exclude variables to be imputed or to be used for imputation.</p>
+<p><a href="https://github.com/amices/mice" class="external-link">mice</a> is our go to
+package for multiple imputation. That’s the process of filling in
+missing data using a best-estimate from all the other data that exists.
+When first encountered, this may not sound like a good idea.</p>
+<p>However, taking our simple example, if missingness in smoking is
+predicted strongly by sex (and other observed variables), and the values
+of the missing data are random, then we can impute (best-guess) the
+missing smoking values using sex and other variables in the dataset.</p>
+<p>Imputation is not usually appropriate for the explanatory variable of
+interest or the outcome variable. In both case, the hypothesis is that
+there is an meaningful association with other variables in the dataset,
+therefore it doesn’t make sense to use these variables to impute
+them.</p>
+<p>Here is some code to run <code>mice</code>. The package is well
+documented, and there are a number of checks and considerations that
+should be made to inform the imputation process. Read the documentation
+carefully prior to doing this yourself.</p>
+<p>Note also <code><a href="../reference/missing_predictorMatrix.html">finalfit::missing_predictorMatrix()</a></code>. This
+provides an easy way to include or exclude variables to be imputed or to
+be used for imputation.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Multivariate Imputation by Chained Equations (mice)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
@@ -857,8 +1007,10 @@
 </tr>
 </tbody>
 </table>
-<p>The final table can easily be exported to Word or as a PDF as described in the “Export” vignette.</p>
-<p>By examining the coefficients, the effect of the imputation compared with the complete case analysis can be clearly seen.</p>
+<p>The final table can easily be exported to Word or as a PDF as
+described in the “Export” vignette.</p>
+<p>By examining the coefficients, the effect of the imputation compared
+with the complete case analysis can be clearly seen.</p>
 </div>
 <div class="section level4">
 <h4 id="other-considerations-1">Other considerations<a class="anchor" aria-label="anchor" href="#other-considerations-1"></a>
@@ -868,8 +1020,16 @@
 <li>Imputing factors with new level for missing data</li>
 <li>Model the missing data</li>
 </ol>
-<p>As above, if the variable does not appear to be important, it may be omitted from the analysis. A sensitivity analysis in this context is another form of imputation. But rather than using all other available information to best-guess the missing data, we simply assign the value as above. Imputation is therefore likely to be more appropriate.</p>
-<p>There is an alternative method to model the missing data for the categorical in this setting – just consider the missing data as a factor level. This has the advantage of simplicity, with the disadvantage of increasing the number of terms in the model. Multiple imputation is generally preferred.</p>
+<p>As above, if the variable does not appear to be important, it may be
+omitted from the analysis. A sensitivity analysis in this context is
+another form of imputation. But rather than using all other available
+information to best-guess the missing data, we simply assign the value
+as above. Imputation is therefore likely to be more appropriate.</p>
+<p>There is an alternative method to model the missing data for the
+categorical in this setting – just consider the missing data as a factor
+level. This has the advantage of simplicity, with the disadvantage of
+increasing the number of terms in the model. Multiple imputation is
+generally preferred.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex.factor"</span>, 
@@ -978,16 +1138,33 @@
 <h3 id="mnar-vs-mar">
 <strong>MNAR</strong> vs MAR<a class="anchor" aria-label="anchor" href="#mnar-vs-mar"></a>
 </h3>
-<p>Missing not at random data is tough in healthcare. To determine if data are MNAR for definite, we need to know their value in a subset of observations (patients).</p>
-<p>Using our example above. Say smoking status is poorly recorded in patients admitted to hospital as an emergency with an obstructing cancer. Obstructing bowel cancers may be larger or their position may make the prognosis worse. Smoking may relate to the aggressiveness of the cancer and may be an independent predictor of prognosis. The missing values for smoking may therefore not be random. Smoking may be more common in the emergency patients and may be more common in those that die.</p>
-<p>There is no easy way to handle this. If at all possible, try to get the missing data. Otherwise, take care when drawing conclusions from analyses where data are thought to be missing not at random.</p>
+<p>Missing not at random data is tough in healthcare. To determine if
+data are MNAR for definite, we need to know their value in a subset of
+observations (patients).</p>
+<p>Using our example above. Say smoking status is poorly recorded in
+patients admitted to hospital as an emergency with an obstructing
+cancer. Obstructing bowel cancers may be larger or their position may
+make the prognosis worse. Smoking may relate to the aggressiveness of
+the cancer and may be an independent predictor of prognosis. The missing
+values for smoking may therefore not be random. Smoking may be more
+common in the emergency patients and may be more common in those that
+die.</p>
+<p>There is no easy way to handle this. If at all possible, try to get
+the missing data. Otherwise, take care when drawing conclusions from
+analyses where data are thought to be missing not at random.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="where-to-next">Where to next<a class="anchor" aria-label="anchor" href="#where-to-next"></a>
 </h2>
-<p>We are now doing more in Stan. Missing data can be imputed directly within a Stan model which feels neat. Stan doesn’t yet have the equivalent of <code>NA</code> which makes passing the data block into Stan a bit of a faff.</p>
-<p>Alternatively, the missing data can be directly modelled in Stan. Examples are provided in the manual. Again, I haven’t found this that easy to do, but there are a number of Stan developments that will hopefully make this more straightforward in the future.</p>
+<p>We are now doing more in Stan. Missing data can be imputed directly
+within a Stan model which feels neat. Stan doesn’t yet have the
+equivalent of <code>NA</code> which makes passing the data block into
+Stan a bit of a faff.</p>
+<p>Alternatively, the missing data can be directly modelled in Stan.
+Examples are provided in the manual. Again, I haven’t found this that
+easy to do, but there are a number of Stan developments that will
+hopefully make this more straightforward in the future.</p>
 </div>
   </div>
 

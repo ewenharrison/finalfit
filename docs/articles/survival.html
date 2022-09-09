@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.52</span>
       </span>
     </div>
 
@@ -104,7 +104,8 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Time-to-event (Survival)</h1>
-                        <h4 data-toc-skip class="author">Ewen Harrison</h4>
+                        <h4 data-toc-skip class="author">Ewen
+Harrison</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/ewenharrison/finalfit/blob/HEAD/vignettes/survival.Rmd" class="external-link"><code>vignettes/survival.Rmd</code></a></small>
@@ -117,9 +118,16 @@
 <div class="section level2">
 <h2 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
 </h2>
-<p>In healthcare, we deal with a lot of binary outcomes. Death yes/no, disease recurrence yes/no, for instance. These outcomes are often easily analysed using binary logistic regression via <code><a href="../reference/finalfit.html">finalfit()</a></code>.</p>
-<p>When the time taken for the outcome to occur is important, we need a different approach. For instance, in patients with cancer, the time taken until recurrence of the cancer is often just as important as the fact it has recurred.</p>
-<p>Finalfit provides a number of functions to make these analyses easy to perform.</p>
+<p>In healthcare, we deal with a lot of binary outcomes. Death yes/no,
+disease recurrence yes/no, for instance. These outcomes are often easily
+analysed using binary logistic regression via
+<code><a href="../reference/finalfit.html">finalfit()</a></code>.</p>
+<p>When the time taken for the outcome to occur is important, we need a
+different approach. For instance, in patients with cancer, the time
+taken until recurrence of the cancer is often just as important as the
+fact it has recurred.</p>
+<p>Finalfit provides a number of functions to make these analyses easy
+to perform.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -136,8 +144,14 @@
 <div class="section level2">
 <h2 id="dataset">Dataset<a class="anchor" aria-label="anchor" href="#dataset"></a>
 </h2>
-<p>We will use the classic “Survival from Malignant Melanoma” dataset which is included in the <code>boot</code> package. The data consist of measurements made on patients with malignant melanoma. Each patient had their tumour removed by surgery at the Department of Plastic Surgery, University Hospital of Odense, Denmark during the period 1962 to 1977.</p>
-<p>We are interested in the association between tumour ulceration and survival after surgery.</p>
+<p>We will use the classic “Survival from Malignant Melanoma” dataset
+which is included in the <code>boot</code> package. The data consist of
+measurements made on patients with malignant melanoma. Each patient had
+their tumour removed by surgery at the Department of Plastic Surgery,
+University Hospital of Odense, Denmark during the period 1962 to
+1977.</p>
+<p>We are interested in the association between tumour ulceration and
+survival after surgery.</p>
 </div>
 <div class="section level2">
 <h2 id="get-data-and-check">Get data and check<a class="anchor" aria-label="anchor" href="#get-data-and-check"></a>
@@ -166,28 +180,41 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $Categorical</span>
 <span class="co">#&gt; data frame with 0 columns and 205 rows</span></code></pre></div>
-<p>As can be seen, all variables are coded as numeric and some need recoding to factors. This is done below for for those we are interested in.</p>
+<p>As can be seen, all variables are coded as numeric and some need
+recoding to factors. This is done below for for those we are interested
+in.</p>
 </div>
 <div class="section level2">
 <h2 id="death-status">Death status<a class="anchor" aria-label="anchor" href="#death-status"></a>
 </h2>
-<p><code>status</code> is the the patients status at the end of the study.</p>
+<p><code>status</code> is the the patients status at the end of the
+study.</p>
 <ul>
 <li>1 indicates that they had died from melanoma;</li>
 <li>2 indicates that they were still alive and;</li>
-<li>3 indicates that they had died from causes unrelated to their melanoma.</li>
+<li>3 indicates that they had died from causes unrelated to their
+melanoma.</li>
 </ul>
 <p>There are three options for coding this.</p>
 <ul>
-<li>Overall survival: considering all-cause mortality, comparing 2 (alive) with 1 (died melanoma)/3 (died other);</li>
-<li>Cause-specific survival: considering disease-specific mortality comparing 2 (alive)/3 (died other) with 1 (died melanoma);</li>
-<li>Competing risks: comparing 2 (alive) with 1 (died melanoma) accounting for 3 (died other); see more below.</li>
+<li>Overall survival: considering all-cause mortality, comparing 2
+(alive) with 1 (died melanoma)/3 (died other);</li>
+<li>Cause-specific survival: considering disease-specific mortality
+comparing 2 (alive)/3 (died other) with 1 (died melanoma);</li>
+<li>Competing risks: comparing 2 (alive) with 1 (died melanoma)
+accounting for 3 (died other); see more below.</li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="time-and-censoring">Time and censoring<a class="anchor" aria-label="anchor" href="#time-and-censoring"></a>
 </h2>
-<p><code>time</code> is the number of days from surgery until either the occurrence of the event (death) or the last time the patient was known to be alive. For instance, if a patient had surgery and was seen to be well in a clinic 30 days later, but there had been no contact since, then the patient’s status would be considered 30 days. This patient is censored from the analysis at day 30, an important feature of time-to-event analyses.</p>
+<p><code>time</code> is the number of days from surgery until either the
+occurrence of the event (death) or the last time the patient was known
+to be alive. For instance, if a patient had surgery and was seen to be
+well in a clinic 30 days later, but there had been no contact since,
+then the patient’s status would be considered 30 days. This patient is
+censored from the analysis at day 30, an important feature of
+time-to-event analyses.</p>
 </div>
 <div class="section level2">
 <h2 id="recode">Recode<a class="anchor" aria-label="anchor" href="#recode"></a>
@@ -202,7 +229,7 @@
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org" class="external-link">forcats</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org/" class="external-link">forcats</a></span><span class="op">)</span>
 <span class="va">melanoma</span> <span class="op">=</span> <span class="va">melanoma</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
     <span class="co"># Overall survival</span>
@@ -237,7 +264,9 @@
 <div class="section level2">
 <h2 id="kaplan-meier-survival-estimator">Kaplan-Meier survival estimator<a class="anchor" aria-label="anchor" href="#kaplan-meier-survival-estimator"></a>
 </h2>
-<p>We can use the excellent <code>survival</code> package to produce the Kaplan-Meier (KM) survival estimator. This is a non-parametric statistic used to estimate the survival function from time-to-event data.</p>
+<p>We can use the excellent <code>survival</code> package to produce the
+Kaplan-Meier (KM) survival estimator. This is a non-parametric statistic
+used to estimate the survival function from time-to-event data.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival" class="external-link">survival</a></span><span class="op">)</span>
 
@@ -258,8 +287,11 @@
 <div class="section level3">
 <h3 id="model">Model<a class="anchor" aria-label="anchor" href="#model"></a>
 </h3>
-<p>The survival object is the first step to performing univariable and multivariable survival analyses.</p>
-<p>If you want to plot survival stratified by a single grouping variable, you can substitute “survival_object ~ 1” by “survival_object ~ factor”</p>
+<p>The survival object is the first step to performing univariable and
+multivariable survival analyses.</p>
+<p>If you want to plot survival stratified by a single grouping
+variable, you can substitute “survival_object ~ 1” by “survival_object ~
+factor”</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Overall survival in whole cohort</span>
 <span class="va">my_survfit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html" class="external-link">survfit</a></span><span class="op">(</span><span class="va">survival_object</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">melanoma</span><span class="op">)</span>
@@ -272,7 +304,10 @@
 <div class="section level3">
 <h3 id="life-table">Life table<a class="anchor" aria-label="anchor" href="#life-table"></a>
 </h3>
-<p>A life table is the tabular form of a KM plot, which you may be familiar with. It shows survival as a proportion, together with confidence limits. The whole table is shown with, <code>summary(my_survfit)</code>.</p>
+<p>A life table is the tabular form of a KM plot, which you may be
+familiar with. It shows survival as a proportion, together with
+confidence limits. The whole table is shown with,
+<code>summary(my_survfit)</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">my_survfit</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Call: survfit(formula = survival_object ~ 1, data = melanoma)</span>
@@ -290,8 +325,13 @@
 <div class="section level2">
 <h2 id="kaplan-meier-plot">Kaplan Meier plot<a class="anchor" aria-label="anchor" href="#kaplan-meier-plot"></a>
 </h2>
-<p>We can plot survival curves using the finalfit wrapper for the package excellent package <code>survminer</code>. There are numerous options available on the help page. You should always include a number-at-risk table under these plots as it is essential for interpretation.</p>
-<p>As can be seen, the probability of dying is much greater if the tumour was ulcerated, compared to those that were not ulcerated.</p>
+<p>We can plot survival curves using the finalfit wrapper for the
+package excellent package <code>survminer</code>. There are numerous
+options available on the help page. You should always include a
+number-at-risk table under these plots as it is essential for
+interpretation.</p>
+<p>As can be seen, the probability of dying is much greater if the
+tumour was ulcerated, compared to those that were not ulcerated.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dependent_os</span> <span class="op">=</span> <span class="st">"Surv(time/365, status_os)"</span>
 <span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ulcer"</span><span class="op">)</span>
@@ -303,7 +343,10 @@
 <div class="section level2">
 <h2 id="cox-proportional-hazards-regression">Cox-proportional hazards regression<a class="anchor" aria-label="anchor" href="#cox-proportional-hazards-regression"></a>
 </h2>
-<p>CPH regression can be performed using the all-in-one <code><a href="../reference/finalfit.html">finalfit()</a></code> function. It produces a table containing counts (proportions) for factors, mean (SD) for continuous variables and a univariable and multivariable CPH regression.</p>
+<p>CPH regression can be performed using the all-in-one
+<code><a href="../reference/finalfit.html">finalfit()</a></code> function. It produces a table containing counts
+(proportions) for factors, mean (SD) for continuous variables and a
+univariable and multivariable CPH regression.</p>
 <div class="section level3">
 <h3 id="univariable-and-multivariable-models">Univariable and multivariable models<a class="anchor" aria-label="anchor" href="#univariable-and-multivariable-models"></a>
 </h3>
@@ -376,7 +419,8 @@
 </tr>
 </tbody>
 </table>
-<p>The labelling of the final table can be easily adjusted as desired.</p>
+<p>The labelling of the final table can be easily adjusted as
+desired.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">melanoma</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu"><a href="../reference/finalfit.html">finalfit</a></span><span class="op">(</span><span class="va">dependent_os</span>, <span class="va">explanatory</span>, add_dependent_label <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
@@ -448,7 +492,9 @@
 <div class="section level3">
 <h3 id="reduced-model">Reduced model<a class="anchor" aria-label="anchor" href="#reduced-model"></a>
 </h3>
-<p>If you are using a backwards selection approach or similar, a reduced model can be directly specified and compared. The full model can be kept or dropped.</p>
+<p>If you are using a backwards selection approach or similar, a reduced
+model can be directly specified and compared. The full model can be kept
+or dropped.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"thickness"</span>, <span class="st">"ulcer"</span><span class="op">)</span>
 <span class="va">melanoma</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
@@ -526,8 +572,17 @@
 <div class="section level3">
 <h3 id="testing-for-proportional-hazards">Testing for proportional hazards<a class="anchor" aria-label="anchor" href="#testing-for-proportional-hazards"></a>
 </h3>
-<p>An assumption of CPH regression is that the hazard (think risk) associated with a particular variable does not change over time. For example, is the magnitude of the increase in risk of death associated with tumour ulceration the same in the early post-operative period as it is in later years?</p>
-<p>The <code><a href="https://rdrr.io/pkg/survival/man/cox.zph.html" class="external-link">cox.zph()</a></code> function from the survival package allows us to test this assumption for each variable. The plot of scaled Schoenfeld residuals should be a horizontal line. The included hypothesis test identifies whether the gradient differs from zero for each variable. No variable significantly differs from zero at the 5% significance level.</p>
+<p>An assumption of CPH regression is that the hazard (think risk)
+associated with a particular variable does not change over time. For
+example, is the magnitude of the increase in risk of death associated
+with tumour ulceration the same in the early post-operative period as it
+is in later years?</p>
+<p>The <code><a href="https://rdrr.io/pkg/survival/man/cox.zph.html" class="external-link">cox.zph()</a></code> function from the survival package allows
+us to test this assumption for each variable. The plot of scaled
+Schoenfeld residuals should be a horizontal line. The included
+hypothesis test identifies whether the gradient differs from zero for
+each variable. No variable significantly differs from zero at the 5%
+significance level.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"thickness"</span>, <span class="st">"ulcer"</span>, <span class="st">"year"</span><span class="op">)</span>
 <span class="va">melanoma</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
@@ -549,8 +604,14 @@
 <div class="section level3">
 <h3 id="stratified-models">Stratified models<a class="anchor" aria-label="anchor" href="#stratified-models"></a>
 </h3>
-<p>One approach to dealing with a violation of the proportional hazards assumption is to stratify by that variable. Including a <code><a href="https://rdrr.io/pkg/survival/man/strata.html" class="external-link">strata()</a></code> term will result in a separate baseline hazard function being fit for each level in the stratification variable. It will be no longer possible to make direct inference on the effect associated with that variable.</p>
-<p>This can be incorporated directly into the explanatory variable list.</p>
+<p>One approach to dealing with a violation of the proportional hazards
+assumption is to stratify by that variable. Including a
+<code><a href="https://rdrr.io/pkg/survival/man/strata.html" class="external-link">strata()</a></code> term will result in a separate baseline hazard
+function being fit for each level in the stratification variable. It
+will be no longer possible to make direct inference on the effect
+associated with that variable.</p>
+<p>This can be incorporated directly into the explanatory variable
+list.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span><span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"ulcer"</span>, <span class="st">"thickness"</span>, <span class="st">"strata(year)"</span><span class="op">)</span>
 <span class="va">melanoma</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
@@ -627,11 +688,24 @@
 <div class="section level3">
 <h3 id="correlated-groups-of-observations">Correlated groups of observations<a class="anchor" aria-label="anchor" href="#correlated-groups-of-observations"></a>
 </h3>
-<p>As a general rule, you should always try to account for any higher structure in your data within the model. For instance, patients may be clustered within particular hospitals.</p>
-<p>There are two broad approaches to dealing with correlated groups of observations.</p>
-<p>A <code><a href="https://rdrr.io/pkg/survival/man/cluster.html" class="external-link">cluster()</a></code> term implies a generalised estimating equations (GEE) approach. Here, a standard CPH model is fitted but the standard errors of the estimated hazard ratios are adjusted to account for correlations.</p>
-<p>A <code><a href="https://rdrr.io/pkg/survival/man/frailty.html" class="external-link">frailty()</a></code> term implies a mixed effects model, where specific random effects term(s) are directly incorporated into the model.</p>
-<p>Both approaches achieve the same goal in different ways. Volumes have been written on GEE vs mixed effects models. We favour the latter approach because of its flexibility and our preference for mixed effects modelling in generalised linear modelling. Note <code><a href="https://rdrr.io/pkg/survival/man/cluster.html" class="external-link">cluster()</a></code> and <code><a href="https://rdrr.io/pkg/survival/man/frailty.html" class="external-link">frailty()</a></code> terms cannot be combined in the same model.</p>
+<p>As a general rule, you should always try to account for any higher
+structure in your data within the model. For instance, patients may be
+clustered within particular hospitals.</p>
+<p>There are two broad approaches to dealing with correlated groups of
+observations.</p>
+<p>A <code><a href="https://rdrr.io/pkg/survival/man/cluster.html" class="external-link">cluster()</a></code> term implies a generalised estimating
+equations (GEE) approach. Here, a standard CPH model is fitted but the
+standard errors of the estimated hazard ratios are adjusted to account
+for correlations.</p>
+<p>A <code><a href="https://rdrr.io/pkg/survival/man/frailty.html" class="external-link">frailty()</a></code> term implies a mixed effects model, where
+specific random effects term(s) are directly incorporated into the
+model.</p>
+<p>Both approaches achieve the same goal in different ways. Volumes have
+been written on GEE vs mixed effects models. We favour the latter
+approach because of its flexibility and our preference for mixed effects
+modelling in generalised linear modelling. Note <code><a href="https://rdrr.io/pkg/survival/man/cluster.html" class="external-link">cluster()</a></code>
+and <code><a href="https://rdrr.io/pkg/survival/man/frailty.html" class="external-link">frailty()</a></code> terms cannot be combined in the same
+model.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Simulate random hospital identifier</span>
 <span class="va">melanoma</span> <span class="op">=</span> <span class="va">melanoma</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
@@ -782,7 +856,9 @@
 </tr>
 </tbody>
 </table>
-<p>The <code><a href="https://rdrr.io/pkg/survival/man/frailty.html" class="external-link">frailty()</a></code> method here is being superseded by the <code>coxme</code> package, and we look forward to incorporating this in the future.</p>
+<p>The <code><a href="https://rdrr.io/pkg/survival/man/frailty.html" class="external-link">frailty()</a></code> method here is being superseded by the
+<code>coxme</code> package, and we look forward to incorporating this in
+the future.</p>
 </div>
 <div class="section level3">
 <h3 id="hazard-ratio-plot">Hazard ratio plot<a class="anchor" aria-label="anchor" href="#hazard-ratio-plot"></a>
@@ -800,9 +876,20 @@
 <div class="section level2">
 <h2 id="competing-risks-regression">Competing risks regression<a class="anchor" aria-label="anchor" href="#competing-risks-regression"></a>
 </h2>
-<p>Competing-risks regression is an alternative to CPH regression. It can be useful if the outcome of interest may not be able to occur simply because something else (like death) has happened first. For instance, in our example it is obviously not possible for a patient to die from melanoma if they have died from another disease first. By simply looking at cause-specific mortality (deaths from melanoma) and considering other deaths as censored, bias may result in estimates of the influence of predictors.</p>
-<p>The approach by Fine and Gray is one option for dealing with this. It is implemented in the package <code>cmprsk</code>. The <code>crr()</code> syntax differs from <code><a href="https://rdrr.io/pkg/survival/man/coxph.html" class="external-link">survival::coxph()</a></code> but <code>finalfit</code> brings these together.</p>
-<p>It uses the <code><a href="../reference/ff_merge.html">finalfit::ff_merge()</a></code> function, which can join any number of models together.</p>
+<p>Competing-risks regression is an alternative to CPH regression. It
+can be useful if the outcome of interest may not be able to occur simply
+because something else (like death) has happened first. For instance, in
+our example it is obviously not possible for a patient to die from
+melanoma if they have died from another disease first. By simply looking
+at cause-specific mortality (deaths from melanoma) and considering other
+deaths as censored, bias may result in estimates of the influence of
+predictors.</p>
+<p>The approach by Fine and Gray is one option for dealing with this. It
+is implemented in the package <code>cmprsk</code>. The
+<code>crr()</code> syntax differs from <code><a href="https://rdrr.io/pkg/survival/man/coxph.html" class="external-link">survival::coxph()</a></code>
+but <code>finalfit</code> brings these together.</p>
+<p>It uses the <code><a href="../reference/ff_merge.html">finalfit::ff_merge()</a></code> function, which can
+join any number of models together.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"thickness"</span>, <span class="st">"ulcer"</span><span class="op">)</span>
 <span class="va">dependent_dss</span> <span class="op">=</span> <span class="st">"Surv(time, status_dss)"</span>
@@ -911,10 +998,17 @@
 <div class="section level2">
 <h2 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h2>
-<p>So here we have various aspects of time-to-event analysis which is commonly used when looking at survival. There are many other applications, some which may not be obvious: for instance we use CPH for modelling length of stay in in hospital.</p>
-<p>Stratification can be used to deal with non-proportional hazards in a particular variable.</p>
-<p>Hierarchical structure in your data can be accommodated with cluster or frailty (random effects) terms.</p>
-<p>Competing risks regression may be useful if your outcome is in competition with another, such as all-cause death, but is currently limited in its ability to accommodate hierarchical structures.</p>
+<p>So here we have various aspects of time-to-event analysis which is
+commonly used when looking at survival. There are many other
+applications, some which may not be obvious: for instance we use CPH for
+modelling length of stay in in hospital.</p>
+<p>Stratification can be used to deal with non-proportional hazards in a
+particular variable.</p>
+<p>Hierarchical structure in your data can be accommodated with cluster
+or frailty (random effects) terms.</p>
+<p>Competing risks regression may be useful if your outcome is in
+competition with another, such as all-cause death, but is currently
+limited in its ability to accommodate hierarchical structures.</p>
 </div>
   </div>
 

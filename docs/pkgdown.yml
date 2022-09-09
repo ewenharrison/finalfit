@@ -1,4 +1,4 @@
-pandoc: 2.11.4
+pandoc: '2.18'
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
@@ -9,5 +9,5 @@ articles:
   finalfit: finalfit.html
   missing: missing.html
   survival: survival.html
-last_built: 2022-08-08T14:09Z
+last_built: 2022-09-09T15:56Z
 
