@@ -1,5 +1,6 @@
 # finalfit 1.0.53
-* correction to weighting of contiuous explanatory variables in `summary_factorlist()`.
+* correction to weighting of continuous explanatory variables in `summary_factorlist()`.
+* fix bug to `coefficient_plot()` when passing `lmmixed()` object. 
 
 # finalfit 1.0.52
 * weighting now available directly in `finalfit()`. 

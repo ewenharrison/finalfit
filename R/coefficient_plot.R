@@ -107,6 +107,14 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 												 confint_type = confint_type, ...)
 	}
 	
+	if(!is.null(lmfit) && is.null(random_effect)){
+		lmfit_df_c = fit2df(lmfit, condense = TRUE, estimate_suffix = " (multivariable)",
+												 confint_type = confint_type, ...)
+	} else if(!is.null(lmfit) && !is.null(random_effect)){
+		lmfit_df_c = fit2df(lmfit, condense = TRUE, estimate_suffix = " (multilevel)",
+												 confint_type = confint_type, ...)
+	}
+	
 	lmfit_df = fit2df(lmfit, condense = FALSE, confint_type = confint_type,  ...)
 
 	# Merge

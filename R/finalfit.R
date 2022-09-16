@@ -211,7 +211,7 @@ finalfit = function(.data, dependent = NULL, explanatory = NULL, explanatory_mul
 #' @rdname finalfit
 #' @export
 finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-											 model_args, weights = NULL, column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label = TRUE,
+											 model_args = NULL, weights = NULL, column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label = TRUE,
 											 dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 											 keep_fit_id=FALSE, ...){
 	
@@ -230,9 +230,9 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 	}
 	
 	# Defaults which can be modified via ...
-	if (is.null(args$estimate_name)) args$estimate_name = "OR"
+	if (is.null(args$estimate_name)) args$estimate_name = "Coefficient"
 	
-	# Logistic regression ----
+	# Linear regression ----
 	# Summary table
 	summary.out = summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
 																	 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE, weights = weights)
@@ -353,7 +353,7 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 #' @rdname finalfit
 #' @export
 finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-												model_args, weights = NULL, column = FALSE, keep_models=FALSE, metrics=FALSE,  add_dependent_label=TRUE,
+												model_args = NULL, weights = NULL, column = FALSE, keep_models=FALSE, metrics=FALSE,  add_dependent_label=TRUE,
 												dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 												keep_fit_id=FALSE, ...){
 	
@@ -499,7 +499,7 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 #' @rdname finalfit
 #' @export
 finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-													model_args, column = TRUE, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
+													model_args = NULL, column = TRUE, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
 													dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 													keep_fit_id=FALSE, ...){
 	
