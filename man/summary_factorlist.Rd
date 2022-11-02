@@ -92,7 +92,8 @@ levels.}
 \item{orderbytotal}{Logical: order final table by total column high to low.}
 
 \item{digits}{Number of digits to round to (1) mean/median, (2) standard
-deviation / interquartile range, (3) p-value, (4) count percentage.}
+deviation / interquartile range, (3) p-value, (4) count percentage, 
+(5) weighted count.}
 
 \item{na_include}{Logical: make explanatory variables missing data explicit
 (\code{NA}).}

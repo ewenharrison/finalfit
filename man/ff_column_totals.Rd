@@ -11,9 +11,10 @@ ff_column_totals(
   dependent,
   na_include_dependent = FALSE,
   percent = TRUE,
-  digits = 1,
+  digits = v(1, 0),
   label = NULL,
-  prefix = ""
+  prefix = "",
+  weights = NULL
 )
 
 finalfit_column_totals(
@@ -22,9 +23,10 @@ finalfit_column_totals(
   dependent,
   na_include_dependent = FALSE,
   percent = TRUE,
-  digits = 1,
+  digits = v(1, 0),
   label = NULL,
-  prefix = ""
+  prefix = "",
+  weights = NULL
 )
 }
 \arguments{
@@ -39,11 +41,13 @@ variable is included in totals.}
 
 \item{percent}{Logical. Include percentage.}
 
-\item{digits}{Integer length 1. Number of digits for percentage.}
+\item{digits}{Integer length 2. Number of digits for (1) percentage, (2) weighted count.}
 
 \item{label}{Character. Label for total row.}
 
 \item{prefix}{Character. Prefix for column totals, e.g "N=".}
+
+\item{weights}{Character vector of length 1: name of column to use for weights.}
 }
 \value{
 Data frame.

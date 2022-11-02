@@ -47,7 +47,8 @@
 #'   levels.
 #' @param orderbytotal Logical: order final table by total column high to low.
 #' @param digits Number of digits to round to (1) mean/median, (2) standard
-#'   deviation / interquartile range, (3) p-value, (4) count percentage.
+#'   deviation / interquartile range, (3) p-value, (4) count percentage, 
+#'   (5) weighted count.
 #' @param na_include Logical: make explanatory variables missing data explicit
 #'   (\code{NA}).
 #' @param na_include_dependent Logical: make dependent variable missing data
@@ -664,8 +665,8 @@ summary_factorlist <- function(.data,
 				ff_column_totals(., df.in, dependent, 
 												 percent = include_col_totals_percent, 
 												 na_include_dependent = na_include_dependent,
-												 digits = digits[4], label = col_totals_rowname, 
-												 prefix = col_totals_prefix)
+												 digits = digits[c(4, 5)], label = col_totals_rowname, 
+												 prefix = col_totals_prefix, weights = weights)
 			} else {
 				.
 			}} %>% 

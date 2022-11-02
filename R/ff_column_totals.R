@@ -6,9 +6,10 @@
 #' @param na_include_dependent Logical. When TRUE, missing data in the dependent
 #'   variable is included in totals.
 #' @param percent Logical. Include percentage.
-#' @param digits Integer length 1. Number of digits for percentage.
+#' @param digits Integer length 2. Number of digits for (1) percentage, (2) weighted count.
 #' @param label Character. Label for total row.
 #' @param prefix Character. Prefix for column totals, e.g "N=".
+#' @param weights Character vector of length 1: name of column to use for weights. 
 #'
 #' @return Data frame.
 #' @export
@@ -29,7 +30,7 @@
 #'  summary_factorlist(dependent, explanatory) %>%
 #'  ff_column_totals(colon_s, dependent)
 ff_column_totals <- function(df.in, .data, dependent, na_include_dependent = FALSE, 
-														 percent = TRUE, digits = 1, label = NULL, prefix = ""){
+														 percent = TRUE, digits = v(1, 0), label = NULL, prefix = "", weights = NULL){
 	if(!any(names(df.in) == "label")) stop("finalfit function must include: add_dependent_label = FALSE")
 
 	if(na_include_dependent){
@@ -45,24 +46,26 @@ ff_column_totals <- function(df.in, .data, dependent, na_include_dependent = FAL
 	
 	# Create column totals
 	totals = .data %>% 
-		dplyr::group_by(!! dplyr::sym(dependent)) %>% 
-		dplyr::count() %>% 
-		dplyr::group_by() %>% 
+		{ if(is.null(weights)){
+			dplyr::count(., !! dplyr::sym(dependent), .drop = FALSE)
+		} else {
+			dplyr::count(., !! dplyr::sym(dependent), .drop = FALSE, wt = !! dplyr::sym(weights))
+		}} %>% 
 		dplyr::mutate(
 			grand_total = sum(n, na.rm = TRUE),
 			percent = 100 * n / grand_total
 		)
-	grand_total = totals %>% dplyr::pull(grand_total) %>% unique()
+	grand_total = totals %>% dplyr::pull(grand_total) %>% unique() %>% round_tidy(digits[[2]])
 	
 	if(percent){
 		totals = totals %>% 
 			dplyr::mutate(
-				n = paste0(prefix, format_n_percent(n, percent, digits))
+				n = paste0(prefix, format_n_percent(n, percent, digits[[1]], digits[[2]]))
 			)
 	} else {
 		totals = totals %>% 
 			dplyr::mutate(
-				n = paste0(prefix, n)
+				n = paste0(prefix, round_tidy(n, digits[[2]]))
 			)
 	}
 	

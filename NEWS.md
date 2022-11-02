@@ -1,3 +1,6 @@
+# finalfit 1.0.54
+* bug fix for column totals with weighted data. 
+
 # finalfit 1.0.53
 * correction to weighting of continuous explanatory variables in `summary_factorlist()`.
 * fix bug to `coefficient_plot()` when passing `lmmixed()` object. 
