@@ -11,7 +11,7 @@ ff_column_totals(
   dependent,
   na_include_dependent = FALSE,
   percent = TRUE,
-  digits = v(1, 0),
+  digits = c(1, 0),
   label = NULL,
   prefix = "",
   weights = NULL
@@ -23,7 +23,7 @@ finalfit_column_totals(
   dependent,
   na_include_dependent = FALSE,
   percent = TRUE,
-  digits = v(1, 0),
+  digits = c(1, 0),
   label = NULL,
   prefix = "",
   weights = NULL

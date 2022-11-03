@@ -30,7 +30,7 @@
 #'  summary_factorlist(dependent, explanatory) %>%
 #'  ff_column_totals(colon_s, dependent)
 ff_column_totals <- function(df.in, .data, dependent, na_include_dependent = FALSE, 
-														 percent = TRUE, digits = v(1, 0), label = NULL, prefix = "", weights = NULL){
+														 percent = TRUE, digits = c(1, 0), label = NULL, prefix = "", weights = NULL){
 	if(!any(names(df.in) == "label")) stop("finalfit function must include: add_dependent_label = FALSE")
 
 	if(na_include_dependent){
