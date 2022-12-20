@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.52</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.55</span>
       </span>
     </div>
 
@@ -87,9 +87,10 @@
   <span class="va">dependent</span>,
   na_include_dependent <span class="op">=</span> <span class="cn">FALSE</span>,
   percent <span class="op">=</span> <span class="cn">TRUE</span>,
-  digits <span class="op">=</span> <span class="fl">1</span>,
+  digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
   label <span class="op">=</span> <span class="cn">NULL</span>,
-  prefix <span class="op">=</span> <span class="st">""</span>
+  prefix <span class="op">=</span> <span class="st">""</span>,
+  weights <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span>
 
 <span class="fu">finalfit_column_totals</span><span class="op">(</span>
@@ -98,9 +99,10 @@
   <span class="va">dependent</span>,
   na_include_dependent <span class="op">=</span> <span class="cn">FALSE</span>,
   percent <span class="op">=</span> <span class="cn">TRUE</span>,
-  digits <span class="op">=</span> <span class="fl">1</span>,
+  digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
   label <span class="op">=</span> <span class="cn">NULL</span>,
-  prefix <span class="op">=</span> <span class="st">""</span>
+  prefix <span class="op">=</span> <span class="st">""</span>,
+  weights <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -128,7 +130,7 @@ variable is included in totals.</p></dd>
 
 
 <dt>digits</dt>
-<dd><p>Integer length 1. Number of digits for percentage.</p></dd>
+<dd><p>Integer length 2. Number of digits for (1) percentage, (2) weighted count.</p></dd>
 
 
 <dt>label</dt>
@@ -137,6 +139,10 @@ variable is included in totals.</p></dd>
 
 <dt>prefix</dt>
 <dd><p>Character. Prefix for column totals, e.g "N=".</p></dd>
+
+
+<dt>weights</dt>
+<dd><p>Character vector of length 1: name of column to use for weights.</p></dd>
 
 </dl></div>
     <div id="value">

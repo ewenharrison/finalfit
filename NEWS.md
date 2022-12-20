@@ -1,3 +1,6 @@
+# finalfit 1.0.55
+* bug fix for `cont_cut` argument in `finalfit()`. #78
+
 # finalfit 1.0.54
 * bug fix for column totals with weighted data. 
 

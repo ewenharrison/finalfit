@@ -16,6 +16,7 @@ finalfit(
   formula = NULL,
   model_args = list(),
   weights = NULL,
+  cont_cut = 5,
   column = NULL,
   keep_models = FALSE,
   metrics = FALSE,
@@ -34,6 +35,7 @@ finalfit.lm(
   random_effect = NULL,
   model_args = NULL,
   weights = NULL,
+  cont_cut = 5,
   column = FALSE,
   keep_models = FALSE,
   metrics = FALSE,
@@ -52,6 +54,7 @@ finalfit.glm(
   random_effect = NULL,
   model_args = NULL,
   weights = NULL,
+  cont_cut = 5,
   column = FALSE,
   keep_models = FALSE,
   metrics = FALSE,
@@ -70,6 +73,7 @@ finalfit.coxph(
   random_effect = NULL,
   model_args = NULL,
   column = TRUE,
+  cont_cut = 5,
   keep_models = FALSE,
   metrics = FALSE,
   add_dependent_label = TRUE,
@@ -110,6 +114,9 @@ Passed to \code{\link{summary_factorlist}}, \code{\link{lm}}, and \code{\link{gl
 to provide weighted summary table and regression (e.g. IPTW). If wish weighted regression
 and non-weighted summary table, pass \code{weights} argument within \code{model_args}. 
 Not available with surival dependent variable.}
+
+\item{cont_cut}{Numeric: number of unique values in continuous variable at
+which to consider it a factor.}
 
 \item{column}{Logical: Compute margins by column rather than row.}
 

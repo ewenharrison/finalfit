@@ -29,6 +29,8 @@
 #' to provide weighted summary table and regression (e.g. IPTW). If wish weighted regression
 #' and non-weighted summary table, pass \code{weights} argument within \code{model_args}. 
 #' Not available with surival dependent variable. 
+#' @param cont_cut  Numeric: number of unique values in continuous variable at
+#'   which to consider it a factor.
 #' @param column Logical: Compute margins by column rather than row.
 #' @param keep_models Logical: include full multivariable model in output when
 #'   working with reduced multivariable model (\code{explanatory_multi}) and/or
@@ -136,7 +138,7 @@
 #' # finalfit_merge(example.multilevel)
 
 finalfit = function(.data, dependent = NULL, explanatory = NULL, explanatory_multi=NULL, random_effect=NULL,
-										formula = NULL, model_args = list(), weights=NULL, 
+										formula = NULL, model_args = list(), weights=NULL, cont_cut = 5, 
 										column=NULL, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
 										dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 										keep_fit_id = FALSE, ...){
@@ -182,12 +184,23 @@ finalfit = function(.data, dependent = NULL, explanatory = NULL, explanatory_mul
 		}
 	}
 	
+	## Continuous data to categorical if unique values below threshold
+	cont_distinct = .data %>%
+		dplyr::select(dplyr::contains(explanatory)) %>% 
+		dplyr::summarise_if(is.numeric, dplyr::n_distinct) %>% 
+		purrr::keep(~ .x < cont_cut) %>% 
+		names()
+	.data = .data %>% 
+		dplyr::mutate_at(cont_distinct, as.factor) %>% 
+		ff_relabel_df(.data)
+	
 	# Arguments to send
 	args = list(.data=.data, dependent=dependent, explanatory=explanatory,
 							explanatory_multi=explanatory_multi,
 							random_effect=random_effect, model_args = model_args, column = column,
 							keep_models=keep_models,
 							metrics=metrics,
+							cont_cut = cont_cut, 
 							add_dependent_label = add_dependent_label,
 							dependent_label_prefix=dependent_label_prefix,
 							dependent_label_suffix=dependent_label_suffix, 
@@ -211,7 +224,8 @@ finalfit = function(.data, dependent = NULL, explanatory = NULL, explanatory_mul
 #' @rdname finalfit
 #' @export
 finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-											 model_args = NULL, weights = NULL, column = FALSE, keep_models=FALSE, metrics=FALSE, add_dependent_label = TRUE,
+											 model_args = NULL, weights = NULL, cont_cut = 5, column = FALSE, keep_models=FALSE, 
+											 metrics=FALSE, add_dependent_label = TRUE,
 											 dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 											 keep_fit_id=FALSE, ...){
 	
@@ -235,7 +249,8 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 	# Linear regression ----
 	# Summary table
 	summary.out = summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
-																	 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE, weights = weights)
+																	 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE, 
+																	 weights = weights, cont_cut = cont_cut)
 	
 	# Univariable
 	lmuni.out = do.call(lmuni, c(list(.data=.data, dependent=dependent, explanatory=explanatory), model_args_in))
@@ -353,7 +368,8 @@ finalfit.lm = function(.data, dependent, explanatory, explanatory_multi=NULL, ra
 #' @rdname finalfit
 #' @export
 finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-												model_args = NULL, weights = NULL, column = FALSE, keep_models=FALSE, metrics=FALSE,  add_dependent_label=TRUE,
+												model_args = NULL, weights = NULL,  cont_cut = 5, 
+												column = FALSE, keep_models=FALSE, metrics=FALSE,  add_dependent_label=TRUE,
 												dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 												keep_fit_id=FALSE, ...){
 	
@@ -377,7 +393,8 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 	# Logistic regression ----
 	# Summary table
 	summary.out = summary_factorlist(.data, dependent, explanatory, p=FALSE, na_include=FALSE,
-																	 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE, weights = weights)
+																	 column=column, total_col=FALSE, orderbytotal=FALSE, fit_id=TRUE, 
+																	 weights = weights, cont_cut = cont_cut)
 	
 	# Univariable
 	glmuni.out = do.call(glmuni, c(list(.data=.data, dependent=dependent, explanatory=explanatory), model_args_in))
@@ -499,7 +516,8 @@ finalfit.glm = function(.data, dependent, explanatory, explanatory_multi=NULL, r
 #' @rdname finalfit
 #' @export
 finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL, random_effect=NULL,
-													model_args = NULL, column = TRUE, keep_models=FALSE, metrics=FALSE, add_dependent_label=TRUE,
+													model_args = NULL, column = TRUE,  cont_cut = 5, keep_models=FALSE, metrics=FALSE, 
+													add_dependent_label=TRUE,
 													dependent_label_prefix="Dependent: ", dependent_label_suffix="", 
 													keep_fit_id=FALSE, ...){
 	
@@ -526,7 +544,7 @@ finalfit.coxph = function(.data, dependent, explanatory, explanatory_multi=NULL,
 	# Summary table
 	summary.out = suppressMessages(
 		suppressWarnings(
-			summary_factorlist(.data, dependent, explanatory, column = column, fit_id=TRUE)
+			summary_factorlist(.data, dependent, explanatory, column = column, fit_id=TRUE, cont_cut = cont_cut)
 		))
 	
 	# Univariable

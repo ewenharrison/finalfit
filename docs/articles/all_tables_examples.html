@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.52</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.55</span>
       </span>
     </div>
 
@@ -3271,50 +3271,50 @@ Hypothesis tests are not run on weighted data, p is set to FALSE.</p>
 <tr class="odd">
 <td align="left">Age (years)</td>
 <td align="left">Mean (SD)</td>
-<td align="right">30.0 (18.3)</td>
-<td align="right">23.5 (20.5)</td>
+<td align="right">59.7 (11.9)</td>
+<td align="right">57.8 (13.6)</td>
 </tr>
 <tr class="even">
 <td align="left">Age</td>
 <td align="left">&lt;40 years</td>
-<td align="right">32.6 (7.2)</td>
-<td align="right">1.0 (9.4)</td>
+<td align="right">32.7 (7.3)</td>
+<td align="right">0.8 (6.0)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">40-59 years</td>
-<td align="right">170.9 (37.8)</td>
-<td align="right">4.2 (38.4)</td>
+<td align="right">167.9 (37.3)</td>
+<td align="right">6.1 (47.4)</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">60+ years</td>
-<td align="right">249.2 (55.0)</td>
-<td align="right">5.7 (52.2)</td>
+<td align="right">249.7 (55.5)</td>
+<td align="right">6.0 (46.7)</td>
 </tr>
 <tr class="odd">
 <td align="left">Sex</td>
 <td align="left">Female</td>
-<td align="right">213.6 (47.2)</td>
-<td align="right">3.7 (34.0)</td>
+<td align="right">213.4 (47.4)</td>
+<td align="right">5.9 (45.7)</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Male</td>
-<td align="right">239.1 (52.8)</td>
-<td align="right">7.3 (66.0)</td>
+<td align="right">236.9 (52.6)</td>
+<td align="right">7.0 (54.3)</td>
 </tr>
 <tr class="odd">
 <td align="left">Obstruction</td>
 <td align="left">No</td>
-<td align="right">364.3 (82.2)</td>
-<td align="right">5.6 (51.3)</td>
+<td align="right">360.2 (82.0)</td>
+<td align="right">7.7 (59.9)</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">Yes</td>
-<td align="right">79.0 (17.8)</td>
-<td align="right">5.4 (48.7)</td>
+<td align="right">79.1 (18.0)</td>
+<td align="right">5.2 (40.1)</td>
 </tr>
 </tbody>
 </table>
@@ -5267,15 +5267,15 @@ missing data.</p>
     <span class="fu"><a href="../reference/finalfit.html">finalfit</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">t</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="18%">
-<col width="11%">
-<col width="10%">
-<col width="10%">
 <col width="24%">
-<col width="24%">
+<col width="10%">
+<col width="9%">
+<col width="9%">
+<col width="22%">
+<col width="22%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">Dependent: mort_5yr</th>
+<th align="left">Dependent: Mortality 5 year</th>
 <th align="left"></th>
 <th align="right">Alive</th>
 <th align="right">Died</th>
@@ -5284,7 +5284,7 @@ missing data.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">age.factor</td>
+<td align="left">Age</td>
 <td align="left">&lt;40 years</td>
 <td align="right">31 (47.0)</td>
 <td align="right">35 (53.0)</td>
@@ -5308,7 +5308,7 @@ missing data.</p>
 <td align="right">0.81 (0.48-1.36, p=0.426)</td>
 </tr>
 <tr class="even">
-<td align="left">sex.factor</td>
+<td align="left">Sex</td>
 <td align="left">Female</td>
 <td align="right">237 (55.2)</td>
 <td align="right">192 (44.8)</td>
@@ -5324,7 +5324,7 @@ missing data.</p>
 <td align="right">0.98 (0.75-1.28, p=0.902)</td>
 </tr>
 <tr class="even">
-<td align="left">obstruct.factor</td>
+<td align="left">Obstruction</td>
 <td align="left">No</td>
 <td align="right">408 (56.7)</td>
 <td align="right">312 (43.3)</td>
@@ -5340,7 +5340,7 @@ missing data.</p>
 <td align="right">1.25 (0.90-1.76, p=0.186)</td>
 </tr>
 <tr class="even">
-<td align="left">perfor.factor</td>
+<td align="left">Perforation</td>
 <td align="left">No</td>
 <td align="right">483 (55.7)</td>
 <td align="right">384 (44.3)</td>
@@ -5381,8 +5381,8 @@ missing data.</p>
 <th align="left"></th>
 <th align="right">unit</th>
 <th align="right">value</th>
-<th align="right">OR (univariable)</th>
-<th align="right">OR (multivariable)</th>
+<th align="right">Coefficient (univariable)</th>
+<th align="right">Coefficient (multivariable)</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -5485,8 +5485,8 @@ missing data.</p>
 <th align="left"></th>
 <th align="right">unit</th>
 <th align="right">value</th>
-<th align="right">OR (univariable)</th>
-<th align="right">OR (multilevel)</th>
+<th align="right">Coefficient (univariable)</th>
+<th align="right">Coefficient (multilevel)</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -5589,8 +5589,8 @@ missing data.</p>
 <th align="left"></th>
 <th align="right">unit</th>
 <th align="right">value</th>
-<th align="right">OR (univariable)</th>
-<th align="right">OR (multilevel)</th>
+<th align="right">Coefficient (univariable)</th>
+<th align="right">Coefficient (multilevel)</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
