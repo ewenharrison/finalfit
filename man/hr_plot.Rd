@@ -16,8 +16,8 @@ hr_plot(
   dependent_label = "Survival",
   prefix = "",
   suffix = ": HR (95\% CI, p-value)",
-  table_text_size = 5,
-  title_text_size = 18,
+  table_text_size = 4,
+  title_text_size = 13,
   plot_opts = NULL,
   table_opts = NULL,
   ...

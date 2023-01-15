@@ -1,0 +1,375 @@
+---
+title: "All plots examples"
+author: "Ewen Harrison"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{All plots examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+	message = FALSE,
+	warning = FALSE,
+	collapse = TRUE,
+	comment = "#>"
+)
+```
+
+## 1 Odds ratio plots
+
+### 1.01 Standard odds ratio plot (forest plot)
+
+This is used to visually present the results from a multivariable generalised linear model (usually logistic regression). 
+
+Here is the model: 
+```{r}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  finalfit(dependent, explanatory) %>% 
+	knitr::kable(row.names=FALSE) # This line only needed for formatting. 
+```
+
+Simply switch to `or_plot()` for plot. 
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory)
+# Note this example uses fig.height=3, fig.width=9
+```
+
+Adjust figure width and height to optimise formatting. 
+
+### 1.02 Mixed effects odds ratio plot (forest plot)
+
+This is used to visually present the results from a mixed effects / multilevel / hierarchical generalised linear model (usually logistic regression). 
+
+Here is the model: 
+```{r}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+random_effect = "hospital"
+colon_s %>%
+  finalfit(dependent, explanatory, random_effect = random_effect)%>% 
+	knitr::kable(row.names=FALSE) # This line only needed for formatting.
+```
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+random_effect = "hospital"
+colon_s %>%
+  or_plot(dependent, explanatory, random_effect = random_effect)
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.03 Plotting a subset of variables from a full model
+
+You may wish to only present a subset of variables from a full model, say an explanatory variable of interest without covariates to avoid table 2 fallacy. 
+
+```{r fig.height=2, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+
+# Run summary_factorlist for variables you wish to include
+## Include total_col = TRUE and fit_id = TRUE
+factorlist  = colon_s %>% 
+	summary_factorlist(dependent, "age.factor", total_col = TRUE, fit_id = TRUE)
+
+# Run full model including factorlist
+colon_s %>%
+  or_plot(dependent, explanatory, factorlist = factorlist)
+# Note this example uses fig.height=2, fig.width=9
+```
+
+### 1.04 Plotting from model object
+
+When a model takes a long time to run, you do not want to re-run it to plot it. Pass the model object to the plotting function. 
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+random_effect = "hospital"
+
+fit = colon_s %>% 
+	glmmixed(dependent, explanatory, random_effect)
+
+# Equivalent to:
+fit = colon_s %>% 
+	lme4::glmer(mort_5yr ~ age.factor + sex.factor + obstruct.factor + perfor.factor + (1 | hospital), 
+							family="binomial", data = .)
+
+# Which is incidentally equivalent to:
+fit = colon_s %>% 
+	lme4::glmer(ff_formula(dependent, explanatory, random_effect),
+							family="binomial", data = .)
+
+# Plot
+system.time(colon_s %>%
+  or_plot(dependent, explanatory, random_effect = random_effect, glmfit = fit)
+)
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.05 Confidence interval type
+
+Change the type of confidence interval. For GLM, this is "profile" by default, but confusingly "default" is also available (Wald) which is quicker but may be biased when the likelihood function is not symmetrical around the maximum likelihood estimate. Translated - best to use "profile" or an alternative approach (like bootstrapping) for final results. 
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory, confint_type = "default")
+
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.06 Remove reference levels
+
+This will remove reference levels for binary variables. 
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory, remove_ref = TRUE)
+
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.07 Manually specifiy x-axis breaks
+
+Note, this will not include labels that are outwith the axis range, i.e., if the axis starts at 0.2, adding 0.1 will not result in any change. Use `plot_opts` to alter axis range. 
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory, breaks = c(0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.8, 2.4))
+
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.08 Adjust table column spacing
+
+Nudge *relative* column positions to manage white space. Use in combination with figure width to optimise. 
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory, column_space = c(-0.5, -0.1, 0.5))
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.09 Adjust or remove dependent variable label
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory, dependent_label = "Mortality")
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.10 Add dependent variable label prefix
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory, prefix = "Figure 1 - ")
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.11 Adjust or remove dependent variable label suffix
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory, suffix = "")
+
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.12 Adjust table text size
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory, table_text_size = 3)
+# Note this example uses fig.height=4, fig.width=9
+```
+
+### 1.13 Adjust title text size
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory, title_text_size = 12)
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.14 Add plot options
+
+This adds further `ggplot` arguments appended in the usual way by "+".
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+library(ggplot2)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+	or_plot(dependent, explanatory,
+					plot_opts = list(xlim(0.1, 3),
+													 xlab("OR (95% CI, log)"),
+													 theme(axis.title = element_text(size=10))
+					)
+	)
+# Note this example uses fig.height=3, fig.width=9
+```
+
+### 1.15 Add other options
+
+Pass any options for `fit2df()` to adjust table, e.g., number of decimal places, confidence interval separator etc. 
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = 'mort_5yr'
+colon_s %>%
+  or_plot(dependent, explanatory,
+  				digits = c(3,3,3), confint_sep = " to ")
+# Note this example uses fig.height=3, fig.width=9
+```
+
+## 2 Hazard ratio plots
+
+### 2.01 Standard hazard ratio plot
+
+This is used to visually present the results from a multivariable Cox Proportional Hazards model. 
+
+Here is the model: 
+```{r}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "Surv(time, status)"
+colon_s %>%
+  finalfit(dependent, explanatory) %>% 
+	knitr::kable(row.names=FALSE) # This line only needed for formatting. 
+```
+
+Simply switch to `hr_plot()` for plot. 
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "Surv(time, status)"
+colon_s %>%
+  hr_plot(dependent, explanatory)
+# Note this example uses fig.height=3, fig.width=9
+```
+
+* All options list for odds ratio plots above (section 1) apply to hazard ratio plots. 
+
+## 3 Coefficient plots
+
+### 3.01 Standard coefficient plots
+
+This is used to visually present the results from a multivariable linear regression model. 
+
+#' # Coefficient plot
+#' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+#' dependent = "nodes"
+#' colon_s %>%
+#'   coefficient_plot(dependent, explanatory)
+
+Here is the model: 
+```{r}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "nodes"
+colon_s %>%
+  finalfit(dependent, explanatory) %>% 
+	knitr::kable(row.names=FALSE) # This line only needed for formatting. 
+```
+
+Simply switch to `coeffcient_plot()` for plot. 
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "nodes"
+colon_s %>%
+  coefficient_plot(dependent, explanatory)
+# Note this example uses fig.height=3, fig.width=9
+```
+
+* All options list for odds ratio plots above (section 1) apply to coefficient ratio plots. 
+
+## 4 Wrapper for all plot types
+
+`ff_plot()` will automatically determine the dependent variable type (binary, survival object, or continuous), and produce the appropriate output (odds ratio, hazard ratio, or coefficient plot). 
+
+```{r fig.height=3, fig.width=9}
+library(finalfit)
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "nodes"
+colon_s %>%
+  ff_plot(dependent, explanatory)
+# Note this example uses fig.height=3, fig.width=9
+```
+
+## 5 Kaplan Meier plots
+
+Use finalfit grammar to plot a survival curve with number-at-risk table using `survminer::ggsurvplot()`. 
+
+### 5.1 Standard KM plot
+
+```{r fig.height=4.5, fig.width=6}
+library(finalfit)
+explanatory = "perfor.factor"
+dependent = "Surv(time, status)"
+colon_s %>%
+	surv_plot(dependent, explanatory)
+```
+
+### 5.2 Adjust using options
+
+Pass any of the options from `survminer::ggsurvplot()`. 
+
+For example:
+
+```{r fig.height=4.5, fig.width=6}
+library(finalfit)
+explanatory = "perfor.factor"
+dependent = "Surv(time, status)"
+colon_s %>%
+	surv_plot(dependent, explanatory, xlab="Time (days)", pval=TRUE, legend="none")
+```
+
+## 6 Missing data plots
+
+See https://finalfit.org/articles/missing.html

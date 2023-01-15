@@ -2,7 +2,7 @@
 % Please edit documentation in R/missing_plot.R
 \name{missing_plot}
 \alias{missing_plot}
-\title{Missing values occurence plot}
+\title{Missing values occurrence plot}
 \usage{
 missing_plot(
   .data,

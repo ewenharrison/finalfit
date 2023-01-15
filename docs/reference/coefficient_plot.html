@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.55</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.6</span>
       </span>
     </div>
 
@@ -35,6 +35,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/all_plots_examples.html">All plots examples</a>
+    </li>
+    <li>
       <a href="../articles/all_tables_examples.html">All tables examples</a>
     </li>
     <li>
@@ -95,8 +98,8 @@
   dependent_label <span class="op">=</span> <span class="cn">NULL</span>,
   prefix <span class="op">=</span> <span class="st">""</span>,
   suffix <span class="op">=</span> <span class="st">": Coefficient, 95% CI, p-value)"</span>,
-  table_text_size <span class="op">=</span> <span class="fl">5</span>,
-  title_text_size <span class="op">=</span> <span class="fl">18</span>,
+  table_text_size <span class="op">=</span> <span class="fl">4</span>,
+  title_text_size <span class="op">=</span> <span class="fl">13</span>,
   plot_opts <span class="op">=</span> <span class="cn">NULL</span>,
   table_opts <span class="op">=</span> <span class="cn">NULL</span>,
   <span class="va">...</span>
@@ -213,15 +216,15 @@ by "+".</p></dd>
 <span class="r-in"><span class="va">colon_s</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">coefficient_plot</span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Note: dependent includes missing data. These are dropped.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 4 rows containing missing values (geom_errorbarh).</span>
-<span class="r-plt img"><img src="coefficient_plot-1.png" alt="" width="700" height="433"></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 4 rows containing missing values (`geom_errorbarh()`).</span>
+<span class="r-plt img"><img src="coefficient_plot-1.png" alt="" width="2188" height="3539"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">colon_s</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">coefficient_plot</span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, table_text_size<span class="op">=</span><span class="fl">4</span>, title_text_size<span class="op">=</span><span class="fl">14</span>,</span>
 <span class="r-in">    plot_opts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Beta, 95% CI"</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Note: dependent includes missing data. These are dropped.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 4 rows containing missing values (geom_errorbarh).</span>
-<span class="r-plt img"><img src="coefficient_plot-2.png" alt="" width="700" height="433"></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 4 rows containing missing values (`geom_errorbarh()`).</span>
+<span class="r-plt img"><img src="coefficient_plot-2.png" alt="" width="2188" height="3539"></span>
 </code></pre></div>
     </div>
   </div>

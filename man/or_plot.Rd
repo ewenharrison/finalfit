@@ -18,8 +18,8 @@ or_plot(
   dependent_label = NULL,
   prefix = "",
   suffix = ": OR (95\% CI, p-value)",
-  table_text_size = 5,
-  title_text_size = 18,
+  table_text_size = 4,
+  title_text_size = 13,
   plot_opts = NULL,
   table_opts = NULL,
   ...
@@ -44,7 +44,7 @@ and \code{\link{glmmixed}()}.}
 
 \item{confint_type}{One of \code{c("profile", "default")} for GLM models or
 \code{c("default", "Wald", "profile", "boot")} for \code{glmer}
-models. Note "default" == "Wald".}
+models.}
 
 \item{remove_ref}{Logical. Remove reference level for factors.}
 

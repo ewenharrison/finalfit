@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.55</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.6</span>
       </span>
     </div>
 
@@ -60,6 +60,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/all_plots_examples.html">All plots examples</a>
+    </li>
+    <li>
       <a href="../articles/all_tables_examples.html">All tables examples</a>
     </li>
     <li>
@@ -338,7 +341,7 @@ tumour was ulcerated, compared to those that were not ulcerated.</p>
 
 <span class="va">melanoma</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu"><a href="../reference/surv_plot.html">surv_plot</a></span><span class="op">(</span><span class="va">dependent_os</span>, <span class="va">explanatory</span>, pval <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<p><img src="survival_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
+<p><img src="survival_files/figure-html/unnamed-chunk-8-1.png" width="1500"></p>
 </div>
 <div class="section level2">
 <h2 id="cox-proportional-hazards-regression">Cox-proportional hazards regression<a class="anchor" aria-label="anchor" href="#cox-proportional-hazards-regression"></a>
@@ -590,7 +593,7 @@ significance level.</p>
     <span class="fu"><a href="https://rdrr.io/pkg/survival/man/cox.zph.html" class="external-link">cox.zph</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="op">{</span><span class="va">zph_result</span> <span class="op">&lt;&lt;-</span> <span class="va">.</span><span class="op">}</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>var<span class="op">=</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
-<p><img src="survival_files/figure-html/unnamed-chunk-12-1.png" width="480"></p>
+<p><img src="survival_files/figure-html/unnamed-chunk-12-1.png" width="1500"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">zph_result</span>
 <span class="co">#&gt;           chisq df     p</span>
@@ -868,9 +871,9 @@ the future.</p>
 <code class="sourceCode R"><span class="va">melanoma</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
     <span class="fu"><a href="../reference/hr_plot.html">hr_plot</a></span><span class="op">(</span><span class="va">dependent_os</span>, <span class="va">explanatory</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">#&gt; Dependent variable is a survival object</span>
-<span class="co">#&gt; Warning: Removed 1 rows containing missing values (geom_point).</span>
-<span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_errorbarh).</span></code></pre>
-<p><img src="survival_files/figure-html/unnamed-chunk-17-1.png" width="672"></p>
+<span class="co">#&gt; Warning: Removed 3 rows containing missing values (`geom_errorbarh()`).</span>
+<span class="co">#&gt; Warning: Removed 1 rows containing missing values (`geom_point()`).</span></code></pre>
+<p><img src="survival_files/figure-html/unnamed-chunk-17-1.png" width="2100"></p>
 </div>
 </div>
 <div class="section level2">

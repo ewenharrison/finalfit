@@ -15,7 +15,7 @@
 #'   and \code{\link{glmmixed}()}.
 #' @param confint_type One of \code{c("profile", "default")} for GLM models or
 #'   \code{c("default", "Wald", "profile", "boot")} for \code{glmer}
-#'   models. Note "default" == "Wald".
+#'   models.
 #' @param remove_ref Logical. Remove reference level for factors.    
 #' @param breaks Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.
 #' @param column_space Adjust table column spacing.
@@ -61,8 +61,8 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 									 breaks=NULL, column_space=c(-0.5, 0, 0.5),
 									 dependent_label = NULL,
 									 prefix = "", suffix = ": OR (95% CI, p-value)",
-									 table_text_size = 5,
-									 title_text_size = 18,
+									 table_text_size = 4,
+									 title_text_size = 13,
 									 plot_opts = NULL, table_opts = NULL, ...){
 	
 	requireNamespace("ggplot2")
@@ -96,7 +96,7 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	# Confidence intervals, default to "profile" for glm and "Wald" for glmer
 	if(is.null(confint_type) && is.null(random_effect)){
 		confint_type = "profile"
-	} else if(is.null(confint_type) && (!is.null(random_effect) | inherits(glmfit) == "glmerMod")){
+	} else if(is.null(confint_type) && (!is.null(random_effect) | inherits(glmfit, "glmerMod"))){
 		confint_type = "default"
 	}
 	
@@ -151,12 +151,12 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	# Plot
 	g1 = ggplot(df.out, aes(x = as.numeric(OR), xmin = as.numeric(L95), xmax  = as.numeric(U95),
 													y = fit_id))+
-		geom_point(aes(size = Total), shape=22, fill="darkblue")+
 		geom_errorbarh(height=0.2) +
 		geom_vline(xintercept = 1, linetype = "longdash", colour = "black")+
+		geom_point(aes(size = Total), shape=22, fill="darkblue")+
 		scale_x_continuous(trans="log10", breaks= breaks)+
 		xlab("Odds ratio (95% CI, log scale)")+
-		theme_classic(14)+
+		theme_classic(11)+
 		theme(axis.title.x = element_text(),
 					axis.title.y = element_blank(),
 					axis.text.y = element_blank(),

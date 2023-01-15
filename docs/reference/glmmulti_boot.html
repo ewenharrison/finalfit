@@ -21,7 +21,7 @@ dependent."><meta property="og:image" content="/logo.png"><!-- mathjax --><scrip
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.55</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.6</span>
       </span>
     </div>
 
@@ -39,6 +39,9 @@ dependent."><meta property="og:image" content="/logo.png"><!-- mathjax --><scrip
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/all_plots_examples.html">All plots examples</a>
+    </li>
+    <li>
       <a href="../articles/all_tables_examples.html">All tables examples</a>
     </li>
     <li>
@@ -155,11 +158,11 @@ intervals on fixed effect model coefficients. Output can be passed to
 <span class="r-in">  <span class="fu">glmmulti_boot</span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, R<span class="op">=</span><span class="fl">100</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="fit2df.html">fit2df</a></span><span class="op">(</span>estimate_suffix<span class="op">=</span><span class="st">"(multivariable (BS CIs))"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             explanatory OR(multivariable (BS CIs))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years  0.57 (0.38-0.86, p&lt;0.001)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years  0.81 (0.53-1.26, p=0.340)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale  0.98 (0.78-1.29, p=0.880)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes  1.25 (0.90-1.64, p=0.160)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes  1.12 (0.47-2.53, p=0.800)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years  0.57 (0.34-1.01, p=0.060)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years  0.81 (0.50-1.32, p=0.500)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale  0.98 (0.78-1.31, p=0.800)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes  1.25 (0.89-1.74, p=0.080)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes  1.12 (0.49-2.25, p=0.880)</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.55</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.6</span>
       </span>
     </div>
 
@@ -35,6 +35,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/all_plots_examples.html">All plots examples</a>
+    </li>
+    <li>
       <a href="../articles/all_tables_examples.html">All tables examples</a>
     </li>
     <li>
@@ -154,14 +157,24 @@ algorithm.</p></dd>
 <span class="r-in"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">missing_predictorMatrix</span><span class="op">(</span>drop_from_imputed <span class="op">=</span></span>
 <span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"obstruct.factor"</span>, <span class="st">"mort_5yr"</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">predM</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Note: Using an external vector in selections is ambiguous.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> Use `all_of(dependent)` instead of `dependent` to silence this message.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">This message is displayed once per session.</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Note: Using an external vector in selections is ambiguous.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> Use `all_of(explanatory)` instead of `explanatory` to silence this message.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">This message is displayed once per session.</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using an external vector in selections was deprecated in tidyselect 1.1.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `all_of()` or `any_of()` instead.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   # Was:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   data %&gt;% select(dependent)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   # Now:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   data %&gt;% select(all_of(dependent))</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using an external vector in selections was deprecated in tidyselect 1.1.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `all_of()` or `any_of()` instead.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   # Was:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   data %&gt;% select(explanatory)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   # Now:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   data %&gt;% select(all_of(explanatory))</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">colon_s</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>

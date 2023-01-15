@@ -66,6 +66,7 @@ reference:
     - '`ff_plot`'
     - '`surv_plot`'
     - '`missing_plot`'
+    - '`missing_pairs`'
   - title: "Missing data functions"
     desc: ~
     contents:
@@ -88,3 +89,15 @@ reference:
     desc: ~
     contents:
     - '`finalfit-package`'
+    
+figures:
+  dev: ragg::agg_png
+  dpi: 300
+  dev.args: []
+  fig.ext: png
+  fig.width: 7.2916667
+  fig.height: ~
+  fig.retina: 2
+  fig.asp: 1.618
+  bg: NA
+  other.parameters: []

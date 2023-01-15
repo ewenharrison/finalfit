@@ -19,7 +19,7 @@ the first row of newdata with all subsequent rows."><meta property="og:image" co
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.55</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.6</span>
       </span>
     </div>
 
@@ -37,6 +37,9 @@ the first row of newdata with all subsequent rows."><meta property="og:image" co
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/all_plots_examples.html">All plots examples</a>
+    </li>
+    <li>
       <a href="../articles/all_tables_examples.html">All tables examples</a>
     </li>
     <li>
@@ -215,15 +218,15 @@ bootstrapped predictions under 1.0, multiplied by two so is two-sided.</p>
 <span class="r-in">  <span class="fu">boot_predict</span><span class="op">(</span><span class="va">newdata</span>, estimate_name <span class="op">=</span> <span class="st">"Predicted probability of death"</span>,</span>
 <span class="r-in">    compare_name <span class="op">=</span> <span class="st">"Absolute risk difference"</span>, R<span class="op">=</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt;40 years           Submucosa          No            0.28 (0.07 to 0.49)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 &lt;40 years           Submucosa         Yes            0.29 (0.04 to 0.56)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 &lt;40 years Adjacent structures          No            0.71 (0.58 to 0.88)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 &lt;40 years Adjacent structures         Yes            0.72 (0.51 to 0.90)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt;40 years           Submucosa          No            0.28 (0.07 to 0.50)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 &lt;40 years           Submucosa         Yes            0.29 (0.06 to 0.57)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 &lt;40 years Adjacent structures          No            0.71 (0.52 to 0.89)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 &lt;40 years Adjacent structures         Yes            0.72 (0.44 to 0.91)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Absolute risk difference</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                              -</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.01 (-0.15 to 0.20, p=0.780)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.44 (0.20 to 0.69, p&lt;0.001)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0.43 (0.16 to 0.67, p&lt;0.001)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.00 (-0.16 to 0.18, p=0.940)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.45 (0.21 to 0.66, p&lt;0.001)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0.43 (0.11 to 0.71, p=0.020)</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Plotting</span></span>
 <span class="r-in"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"nodes"</span>, <span class="st">"extent.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span></span>
@@ -250,7 +253,11 @@ bootstrapped predictions under 1.0, multiplied by two so is two-sided.</p>
 <span class="r-in">      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Probability of death"</span><span class="op">)</span><span class="op">+</span></span>
 <span class="r-in">      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Extent of tumour"</span>, colour <span class="op">=</span> <span class="st">"Extent of tumour"</span><span class="op">)</span><span class="op">+</span></span>
 <span class="r-in">      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Probability of death by lymph node count"</span><span class="op">)</span></span>
-<span class="r-plt img"><img src="boot_predict-1.png" alt="" width="700" height="433"></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Combining variables of class &lt;labelled&gt; and &lt;factor&gt; was deprecated in ggplot2</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> 3.4.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please ensure your variables are compatible before plotting (location:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   `join_keys()`)</span>
+<span class="r-plt img"><img src="boot_predict-1.png" alt="" width="2188" height="3539"></span>
 </code></pre></div>
     </div>
   </div>

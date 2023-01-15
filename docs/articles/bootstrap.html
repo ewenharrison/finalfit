@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.55</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.6</span>
       </span>
     </div>
 
@@ -60,6 +60,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/all_plots_examples.html">All plots examples</a>
+    </li>
+    <li>
       <a href="../articles/all_tables_examples.html">All tables examples</a>
     </li>
     <li>
@@ -197,10 +200,10 @@ those model acronyms, it is straightforward.</p>
     R<span class="op">=</span><span class="fl">100</span>, boot_compare <span class="op">=</span> <span class="cn">FALSE</span>,
     digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.09 to 0.59)</span>
-<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.09 to 0.63)</span>
-<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.50 to 0.86)</span>
-<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.44 to 0.87)</span></code></pre></div>
+<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.09 to 0.58)</span>
+<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.08 to 0.67)</span>
+<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.53 to 0.84)</span>
+<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.49 to 0.88)</span></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for
 demonstration purposes. You should expect to use 1000 to 10000 to ensure
 you have stable estimates.</p>
@@ -237,15 +240,15 @@ predictions under 1.0. Multiplied by two so it is two-sided.</p>
     <span class="co">#compare_name = "Absolute risk difference",</span>
     R<span class="op">=</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.07 to 0.55)</span>
-<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.06 to 0.63)</span>
-<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.51 to 0.88)</span>
-<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.42 to 0.92)</span>
+<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.03 to 0.51)</span>
+<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.02 to 0.66)</span>
+<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.52 to 0.83)</span>
+<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.47 to 0.88)</span>
 <span class="co">#&gt;                      Difference</span>
 <span class="co">#&gt; 1                             -</span>
-<span class="co">#&gt; 2 0.00 (-0.17 to 0.13, p=0.960)</span>
-<span class="co">#&gt; 3  0.39 (0.20 to 0.69, p&lt;0.001)</span>
-<span class="co">#&gt; 4  0.40 (0.08 to 0.69, p&lt;0.001)</span></code></pre></div>
+<span class="co">#&gt; 2 0.00 (-0.10 to 0.20, p=0.940)</span>
+<span class="co">#&gt; 3  0.41 (0.22 to 0.72, p&lt;0.001)</span>
+<span class="co">#&gt; 4  0.42 (0.19 to 0.73, p&lt;0.001)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="what-is-not-included">What is not included?<a class="anchor" aria-label="anchor" href="#what-is-not-included"></a>

@@ -1,4 +1,4 @@
-#' Missing values occurence plot
+#' Missing values occurrence plot
 #'
 #' Create a plot of missing values by observations on the x-axis and variable on
 #' the y-axis. \code{Dependent} and \code{explanatory} are for convenience and are optional.
