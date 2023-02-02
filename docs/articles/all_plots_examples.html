@@ -409,7 +409,7 @@ to plot it. Pass the model object to the plotting function.</p>
 <span class="op">)</span></code></pre></div>
 <p><img src="all_plots_examples_files/figure-html/unnamed-chunk-6-1.png" width="2700"></p>
 <pre><code><span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.614   0.012   0.627</span>
+<span class="co">#&gt;   0.603   0.000   0.604</span>
 <span class="co"># Note this example uses fig.height=3, fig.width=9</span></code></pre>
 </div>
 <div class="section level3">
@@ -577,10 +577,10 @@ number of decimal places, confidence interval separator etc.</p>
 <span class="va">dependent</span> <span class="op">=</span> <span class="st">'mort_5yr'</span>
 <span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/or_plot.html">or_plot</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>,
-                digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>, confint_sep <span class="op">=</span> <span class="st">" to "</span><span class="op">)</span></code></pre></div>
-<p><img src="all_plots_examples_files/figure-html/unnamed-chunk-17-1.png" width="2700"></p>
+                digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>, confint_sep <span class="op">=</span> <span class="st">" to "</span>, column_space <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="all_plots_examples_files/figure-html/unnamed-chunk-17-1.png" width="3000"></p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Note this example uses fig.height=3, fig.width=9</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># Note this example uses fig.height=3, fig.width=10</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
