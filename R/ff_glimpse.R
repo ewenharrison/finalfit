@@ -27,6 +27,7 @@
 
 ff_glimpse <- function(.data, dependent=NULL, explanatory=NULL, digits = 1,
 											 levels_cut = 5){
+	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
 	if(is.null(dependent) && is.null(explanatory)){
 		df.in = .data
 	} else {

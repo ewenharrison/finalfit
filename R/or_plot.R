@@ -44,7 +44,6 @@
 #' library(ggplot2)
 #'
 #' # OR plot
-#' data(colon_s)
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' dependent = "mort_5yr"
 #' colon_s %>%
@@ -127,7 +126,7 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	# Remove proportions from total column and make continuous explanatory reflect dataset
 	df.out$Total = stringr::str_remove(df.out$Total, " \\(.*\\)") %>% 
 		as.numeric()
-	df.out$Total[which(df.out$levels %in% c("Mean (SD)", "Median (IQR)"))] = dim(.data)[1]
+	df.out$Total[which(df.out$levels %in% c("Mean (SD)", "Median (IQR)", "-"))] = dim(.data)[1]
 	
 	# For continuous variables, remove level label
 	df.out$levels[which(df.out$levels %in% c("Mean (SD)", "Median (IQR)"))] = "-"

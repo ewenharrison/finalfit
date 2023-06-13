@@ -85,7 +85,6 @@ library(dplyr)
 library(ggplot2)
 
 # OR plot
-data(colon_s)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
 colon_s \%>\%

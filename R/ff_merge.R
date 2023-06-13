@@ -27,7 +27,6 @@
 #' library(finalfit)
 #' library(dplyr)
 #'
-#' data(colon_s)
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' explanatory_multi = c("age.factor", "obstruct.factor")
 #' random_effect = "hospital"
@@ -62,6 +61,11 @@
 
 ff_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL, last_merge = FALSE){
   if(is.null(factorlist$fit_id)) stop("Include fit_id=TRUE in summary_factorlist()")
+	if(inherits(factorlist, "data.frame.ff") & "(Intercept)" %in% fit2df_df$explanatory){
+		factorlist = dplyr::bind_rows(factorlist, dplyr::tibble(label = "Intercept", fit_id = "(Intercept)")) %>% 
+			mutate(index = ifelse(is.na(index), 0, index)) %>% 
+			replace(is.na(.), "-") 
+	}
   explanatory_name = names(fit2df_df)[1]
   estimate_col_id = ifelse(is.null(estimate_name), "Coefficient|OR|HR", paste0(estimate_name, "|Coefficient|OR|HR"))
   estimate_col = grep(estimate_col_id, names(fit2df_df), value=TRUE)

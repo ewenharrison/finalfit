@@ -29,7 +29,6 @@
 #' library(dplyr)
 #' library(ggplot2)
 #'
-#' data(colon_s)
 #' explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 #' dependent = "Surv(time, status)"
 #' colon_s %>%
@@ -84,7 +83,7 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
   factorlist$Total = as.numeric(stringr::str_extract(as.character(factorlist$all), "^[:digit:]*"))
 
   # Fill in total for continuous variables
-  factorlist$Total[factorlist$levels == "Mean (SD)" | factorlist$levels == "Median (IQR)"] = dim(.data)[1]
+  factorlist$Total[which(factorlist$levels %in% c("Mean (SD)", "Median (IQR)"))] = dim(.data)[1]
   
   # For continuous variables, remove level label
   drop = grepl("Mean \\(SD\\)|Median \\(IQR\\)", factorlist$levels)

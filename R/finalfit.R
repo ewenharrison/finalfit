@@ -197,7 +197,8 @@ finalfit = function(.data, dependent = NULL, explanatory = NULL, explanatory_mul
 	# Arguments to send
 	args = list(.data=.data, dependent=dependent, explanatory=explanatory,
 							explanatory_multi=explanatory_multi,
-							random_effect=random_effect, model_args = model_args, column = column,
+							random_effect=random_effect, model_args = model_args, weights = weights,
+							column = column,
 							keep_models=keep_models,
 							metrics=metrics,
 							cont_cut = cont_cut, 

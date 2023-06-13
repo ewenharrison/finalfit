@@ -53,7 +53,6 @@ produced with a model wrapper followed by the \code{\link{fit2df}()} function
 library(finalfit)
 library(dplyr)
 
-data(colon_s)
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 explanatory_multi = c("age.factor", "obstruct.factor")
 random_effect = "hospital"
