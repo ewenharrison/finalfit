@@ -20,7 +20,7 @@ produced with a model wrapper followed by the fit2df() function
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.61</span>
       </span>
     </div>
 
@@ -92,6 +92,7 @@ produced with a model wrapper followed by the <code><a href="fit2df.html">fit2df
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">boot_compare</span><span class="op">(</span>
   <span class="va">bs.out</span>,
+  confint_level <span class="op">=</span> <span class="fl">0.95</span>,
   confint_sep <span class="op">=</span> <span class="st">" to "</span>,
   comparison <span class="op">=</span> <span class="st">"difference"</span>,
   condense <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -105,6 +106,12 @@ produced with a model wrapper followed by the <code><a href="fit2df.html">fit2df
     <h2>Arguments</h2>
     <dl><dt>bs.out</dt>
 <dd><p>Output from <code><a href="https://rdrr.io/pkg/boot/man/boot.html" class="external-link">boot::boot</a></code>,</p></dd>
+
+
+<dt>confint_level</dt>
+<dd><p>The confidence level to use for the confidence interval. 
+Must be strictly greater than 0 and less than 1. Defaults to 0.95, 
+which corresponds to a 95 percent confidence interval.</p></dd>
 
 
 <dt>confint_sep</dt>

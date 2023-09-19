@@ -19,7 +19,7 @@ summary table."><meta property="og:image" content="/logo.png"><!-- mathjax --><s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.61</span>
       </span>
     </div>
 
@@ -333,7 +333,10 @@ regression models.</p>
 <span class="r-in"><span class="va">dependent</span> <span class="op">=</span> <span class="st">"perfor.factor"</span></span>
 <span class="r-in"><span class="va">colon_s</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">summary_factorlist</span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, p<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Chi-squared approximation may be incorrect</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>There was 1 warning in `dplyr::summarise()`.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `chisq.test(age.factor, perfor.factor)$p.value`.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> Caused by warning in `chisq.test()`:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Chi-squared approximation may be incorrect</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        label      levels          No         Yes     p</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Age (years)   Mean (SD) 59.8 (11.9) 58.4 (13.3) 0.542</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Age   &lt;40 years    68 (7.5)     2 (7.4) 1.000</span>

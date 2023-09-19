@@ -50,7 +50,7 @@ created using mice::pool."><meta property="og:image" content="/logo.png"><!-- ma
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.61</span>
       </span>
     </div>
 
@@ -267,7 +267,7 @@ created using <code><a href="https://amices.org/mice/reference/pool.html" class=
   digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,
   confint_type <span class="op">=</span> <span class="st">"Wald"</span>,
   confint_level <span class="op">=</span> <span class="fl">0.95</span>,
-  confint_sep <span class="op">=</span> <span class="st">"-"</span>,
+  confint_sep <span class="op">=</span> <span class="st">" to "</span>,
   <span class="va">...</span>
 <span class="op">)</span>
 
@@ -525,11 +525,11 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></dd>
 <span class="r-in">  <span class="fu"><a href="glmmulti_boot.html">glmmulti_boot</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>,  R <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">fit2df</span><span class="op">(</span>estimate_suffix<span class="op">=</span><span class="st">" (multivariable (BS CIs))"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             explanatory OR (multivariable (BS CIs))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years   0.57 (0.37-0.93, p=0.040)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years   0.81 (0.47-1.26, p=0.520)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale   0.98 (0.76-1.48, p=0.920)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes   1.25 (0.85-1.83, p=0.220)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes   1.12 (0.45-2.58, p=0.760)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years   0.57 (0.36-1.07, p=0.100)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years   0.81 (0.50-1.49, p=0.520)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale   0.98 (0.73-1.22, p=0.840)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes   1.25 (0.86-1.74, p=0.120)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes   1.12 (0.47-2.72, p=0.940)</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># lm</span></span>
 <span class="r-in"><span class="va">fit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">nodes</span> <span class="op">~</span>  <span class="va">age.factor</span> <span class="op">+</span> <span class="va">sex.factor</span> <span class="op">+</span> <span class="va">obstruct.factor</span> <span class="op">+</span> <span class="va">perfor.factor</span>,</span>
@@ -552,12 +552,12 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></dd>
 <span class="r-in">  <span class="fu"><a href="lmmixed.html">lmmixed</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, <span class="va">random_effect</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">fit2df</span><span class="op">(</span>estimate_suffix<span class="op">=</span><span class="st">" (multilevel"</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> P-value for lmer is estimate assuming t-distribution is normal. Bootstrap for final publication.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             explanatory      Coefficient (multilevel</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years  -0.79 (-1.65-0.07, p=0.035)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years -0.98 (-1.81--0.14, p=0.011)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale  -0.19 (-0.62-0.24, p=0.195)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes  -0.37 (-0.92-0.17, p=0.091)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes   0.23 (-1.01-1.48, p=0.357)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             explanatory         Coefficient (multilevel</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years  -0.79 (-1.65 to 0.07, p=0.035)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years -0.98 (-1.81 to -0.14, p=0.011)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale  -0.19 (-0.62 to 0.24, p=0.195)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes  -0.37 (-0.92 to 0.17, p=0.091)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes   0.23 (-1.01 to 1.48, p=0.357)</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># coxphlist</span></span>
 <span class="r-in"><span class="va">explanatory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age.factor"</span>, <span class="st">"sex.factor"</span>, <span class="st">"obstruct.factor"</span>, <span class="st">"perfor.factor"</span><span class="op">)</span></span>
