@@ -25,7 +25,7 @@
 #' @param estimate_name Name to be given to prediction variable y-hat.
 #' @param confint_level The confidence level to use for the confidence interval. 
 #'   Must be strictly greater than 0 and less than 1. Defaults to 0.95, 
-#'   which corresponds to a 95 percent confidence interval
+#'   which corresponds to a 95 percent confidence interval.
 #' @param conf.method Passed to the type argument of boot::boot.ci(). 
 #'   Defaults to "perc". The allowed types are "perc", "basic", "bca", and "norm". 
 #'   Does not support "stud" or "all"
@@ -146,7 +146,7 @@ boot_predict = function (fit, newdata, type = "response", R = 100,
   bs.out = boot::boot(data = .data, statistic = statistic, R = R,
                         formula = formula, family = family)
 
-  bs.tidy = broom::tidy(bs.out, conf.int = TRUE, conf.level = conf.level, conf.method = conf.method)
+  bs.tidy = broom::tidy(bs.out, conf.int = TRUE, confint.level = confint.level, conf.method = conf.method)
   bs.tidy = data.frame(bs.tidy)
 
 

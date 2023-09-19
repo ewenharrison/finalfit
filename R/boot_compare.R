@@ -6,6 +6,9 @@
 #' (see examples).
 #'
 #' @param bs.out Output from \code{boot::boot},
+#' @param confint_level The confidence level to use for the confidence interval. 
+#'   Must be strictly greater than 0 and less than 1. Defaults to 0.95, 
+#'   which corresponds to a 95 percent confidence interval.
 #' @param confint_sep String separating lower and upper confidence interval
 #' @param condense Logical. FALSE gives numeric values, usually for plotting.
 #'   TRUE gives table for final output.
@@ -23,7 +26,8 @@
 #' @examples
 #' # See boot_predict.
 
-boot_compare = function(bs.out, confint_sep = " to ", comparison = "difference", condense=TRUE,
+boot_compare = function(bs.out, confint_level = 0.95, confint_sep = " to ", 
+												comparison = "difference", condense=TRUE,
                         compare_name = NULL, digits = c(2, 3), ref_symbol = 1){
 
   if(is.null(compare_name)){
@@ -40,12 +44,15 @@ boot_compare = function(bs.out, confint_sep = " to ", comparison = "difference",
     estimate = bs_c / bs_1
     null_ref = 1
   }
-
+  
+  confint_level_low = (1 - confint_level) / 2
+  confint_level_high = 1 - confint_level_low
+  
   if(is.null(dim(estimate))) estimate = matrix(estimate, ncol=1) #allow single vector to pass to apply
 
   estimate_centre = apply(estimate, 2, median)
-  estimate_conf.low = apply(estimate, 2, quantile, probs = c(0.025))
-  estimate_conf.high = apply(estimate, 2, quantile, probs = c(0.975))
+  estimate_conf.low = apply(estimate, 2, quantile, probs = confint_level_low)
+  estimate_conf.high = apply(estimate, 2, quantile, probs = confint_level_high)
   estimate_p1 = apply(estimate, 2, function(x) mean(x < null_ref ))
   estimate_p2 = apply(estimate, 2, function(x) mean(x > null_ref ))
   estimate_p3 = apply(estimate, 2, function(x) mean(x == null_ref ))

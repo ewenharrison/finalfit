@@ -63,7 +63,7 @@ ff_merge = function(factorlist, fit2df_df, ref_symbol = "-", estimate_name=NULL,
   if(is.null(factorlist$fit_id)) stop("Include fit_id=TRUE in summary_factorlist()")
 	if(inherits(factorlist, "data.frame.ff") & "(Intercept)" %in% fit2df_df$explanatory){
 		factorlist = dplyr::bind_rows(factorlist, dplyr::tibble(label = "Intercept", fit_id = "(Intercept)")) %>% 
-			mutate(index = ifelse(is.na(index), 0, index)) %>% 
+			dplyr::mutate(index = ifelse(is.na(index), 0, index)) %>% 
 			replace(is.na(.), "-") 
 	}
   explanatory_name = names(fit2df_df)[1]

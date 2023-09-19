@@ -10,6 +10,8 @@ boot_predict(
   type = "response",
   R = 100,
   estimate_name = NULL,
+  confint_level = 0.95,
+  conf.method = "perc",
   confint_sep = " to ",
   condense = TRUE,
   boot_compare = TRUE,
@@ -34,6 +36,14 @@ predictions are predicted probabilities.}
 \item{R}{Number of simulations. Note default R=100 is very low.}
 
 \item{estimate_name}{Name to be given to prediction variable y-hat.}
+
+\item{confint_level}{The confidence level to use for the confidence interval. 
+Must be strictly greater than 0 and less than 1. Defaults to 0.95, 
+which corresponds to a 95 percent confidence interval.}
+
+\item{conf.method}{Passed to the type argument of boot::boot.ci(). 
+Defaults to "perc". The allowed types are "perc", "basic", "bca", and "norm". 
+Does not support "stud" or "all"}
 
 \item{confint_sep}{String separating lower and upper confidence interval}
 

@@ -6,6 +6,7 @@
 \usage{
 boot_compare(
   bs.out,
+  confint_level = 0.95,
   confint_sep = " to ",
   comparison = "difference",
   condense = TRUE,
@@ -16,6 +17,10 @@ boot_compare(
 }
 \arguments{
 \item{bs.out}{Output from \code{boot::boot},}
+
+\item{confint_level}{The confidence level to use for the confidence interval. 
+Must be strictly greater than 0 and less than 1. Defaults to 0.95, 
+which corresponds to a 95 percent confidence interval.}
 
 \item{confint_sep}{String separating lower and upper confidence interval}
 
