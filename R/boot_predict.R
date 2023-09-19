@@ -23,6 +23,12 @@
 #'   predictions are predicted probabilities.
 #' @param R Number of simulations. Note default R=100 is very low.
 #' @param estimate_name Name to be given to prediction variable y-hat.
+#' @param confint_level The confidence level to use for the confidence interval. 
+#'   Must be strictly greater than 0 and less than 1. Defaults to 0.95, 
+#'   which corresponds to a 95 percent confidence interval
+#' @param conf.method Passed to the type argument of boot::boot.ci(). 
+#'   Defaults to "perc". The allowed types are "perc", "basic", "bca", and "norm". 
+#'   Does not support "stud" or "all"
 #' @param confint_sep String separating lower and upper confidence interval
 #' @param condense Logical. FALSE gives numeric values, usually for plotting.
 #'   TRUE gives table for final output.
@@ -94,7 +100,8 @@
 #'       ggtitle("Probability of death by lymph node count")
 
 boot_predict = function (fit, newdata, type = "response", R = 100,
-                         estimate_name = NULL,
+                         estimate_name = NULL, 
+												 confint_level = 0.95, conf.method = "perc", 
                          confint_sep = " to ", condense=TRUE, boot_compare = TRUE,
                          compare_name = NULL, comparison = "difference", ref_symbol = "-",
                          digits = c(2, 3)){
@@ -139,7 +146,7 @@ boot_predict = function (fit, newdata, type = "response", R = 100,
   bs.out = boot::boot(data = .data, statistic = statistic, R = R,
                         formula = formula, family = family)
 
-  bs.tidy = broom::tidy(bs.out, conf.int = TRUE, conf.level = 0.95, conf.method = "perc") #Future options
+  bs.tidy = broom::tidy(bs.out, conf.int = TRUE, conf.level = conf.level, conf.method = conf.method)
   bs.tidy = data.frame(bs.tidy)
 
 

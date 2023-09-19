@@ -131,7 +131,7 @@ fit2df(...)
   digits = c(2, 2, 3),
   confint_type = "Wald",
   confint_level = 0.95,
-  confint_sep = "-",
+  confint_sep = " to ",
   ...
 )
 

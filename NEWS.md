@@ -1,3 +1,8 @@
+# finalfit 1.0.61
+* bug fixes
+* fit2df.lmerMod() set default `confint_sep = " to "`. 
+* boot.predict() confidence interval limits and methods options added. 
+
 # finalfit 1.0.6
 * new plots example vignette https://finalfit.org/articles/all_plots_examples.html
 * bug fix for `cont_cut` argument in `finalfit()`. #78

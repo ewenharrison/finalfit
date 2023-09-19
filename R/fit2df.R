@@ -447,7 +447,7 @@ fit2df.lmerMod = function(.data, condense=TRUE, metrics=FALSE, remove_intercept=
 													digits=c(2,2,3),
 													confint_type = "Wald",
 													confint_level = 0.95,
-													confint_sep = "-", ...){
+													confint_sep = " to ", ...){
 	
 	df.out = extract_fit(.data=.data, explanatory_name=explanatory_name,
 											 estimate_name=estimate_name, estimate_suffix=estimate_suffix,
