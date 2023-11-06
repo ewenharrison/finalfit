@@ -178,13 +178,8 @@ variable is included in totals.</p></dd>
 <span class="r-in"><span class="co"># Ensure works with missing data in dependent</span></span>
 <span class="r-in"><span class="va">colon_s</span> <span class="op">=</span> <span class="va">colon_s</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in"> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
-<span class="r-in">  mort_5yr <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_explicit_na.html" class="external-link">fct_explicit_na</a></span><span class="op">(</span><span class="va">mort_5yr</span><span class="op">)</span></span>
+<span class="r-in">  mort_5yr <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_na_value_to_level.html" class="external-link">fct_na_value_to_level</a></span><span class="op">(</span><span class="va">mort_5yr</span>, level <span class="op">=</span> <span class="st">"(Missing)"</span><span class="op">)</span></span>
 <span class="r-in"> <span class="op">)</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>There was 1 warning in `dplyr::mutate()`.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `mort_5yr = forcats::fct_explicit_na(mort_5yr)`.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> Caused by warning:</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `fct_explicit_na()` was deprecated in forcats 1.0.0.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `fct_na_value_to_level()` instead.</span>
 <span class="r-in"> <span class="va">colon_s</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in"> <span class="fu"><a href="summary_factorlist.html">summary_factorlist</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in"> <span class="fu">ff_column_totals</span><span class="op">(</span><span class="va">colon_s</span>, <span class="va">dependent</span><span class="op">)</span></span>
@@ -209,7 +204,7 @@ variable is included in totals.</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Ewen Harrison, Tom Drake, Riinu Ots.</p>
+  <p></p><p>Developed by Ewen Harrison, Tom Drake, Riinu Pius.</p>
 </div>
 
 <div class="pkgdown">

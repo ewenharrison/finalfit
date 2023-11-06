@@ -65,7 +65,7 @@ colon_s \%>\%
 # Ensure works with missing data in dependent
 colon_s = colon_s \%>\%
  dplyr::mutate(
-  mort_5yr = forcats::fct_explicit_na(mort_5yr)
+  mort_5yr = forcats::fct_na_value_to_level(mort_5yr, level = "(Missing)")
  )
  colon_s \%>\%
  summary_factorlist(dependent, explanatory) \%>\%

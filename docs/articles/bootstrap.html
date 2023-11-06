@@ -200,10 +200,10 @@ those model acronyms, it is straightforward.</p>
     R<span class="op">=</span><span class="fl">100</span>, boot_compare <span class="op">=</span> <span class="cn">FALSE</span>,
     digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.00 to 0.59)</span>
-<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.00 to 0.62)</span>
-<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.53 to 0.85)</span>
-<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.50 to 0.94)</span></code></pre></div>
+<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.00 to 0.56)</span>
+<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.00 to 0.61)</span>
+<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.47 to 0.86)</span>
+<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.46 to 0.90)</span></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for
 demonstration purposes. You should expect to use 1000 to 10000 to ensure
 you have stable estimates.</p>
@@ -240,15 +240,15 @@ predictions under 1.0. Multiplied by two so it is two-sided.</p>
     <span class="co">#compare_name = "Absolute risk difference",</span>
     R<span class="op">=</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.04 to 0.57)</span>
-<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.04 to 0.66)</span>
-<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.56 to 0.85)</span>
-<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.52 to 0.90)</span>
+<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.08 to 0.55)</span>
+<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.07 to 0.68)</span>
+<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.50 to 0.89)</span>
+<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.40 to 0.91)</span>
 <span class="co">#&gt;                      Difference</span>
 <span class="co">#&gt; 1                             -</span>
-<span class="co">#&gt; 2 0.02 (-0.12 to 0.17, p=0.660)</span>
-<span class="co">#&gt; 3  0.44 (0.18 to 0.69, p&lt;0.001)</span>
-<span class="co">#&gt; 4  0.43 (0.17 to 0.71, p&lt;0.001)</span></code></pre></div>
+<span class="co">#&gt; 2 0.01 (-0.13 to 0.21, p=0.900)</span>
+<span class="co">#&gt; 3  0.41 (0.15 to 0.67, p&lt;0.001)</span>
+<span class="co">#&gt; 4  0.46 (0.11 to 0.67, p=0.020)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="what-is-not-included">What is not included?<a class="anchor" aria-label="anchor" href="#what-is-not-included"></a>
@@ -314,7 +314,7 @@ model predictions, together with comparisons and easy plotting.</p>
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Ewen Harrison, Tom Drake, Riinu Ots.</p>
+<p>Developed by Ewen Harrison, Tom Drake, Riinu Pius.</p>
 </div>
 
 <div class="pkgdown">

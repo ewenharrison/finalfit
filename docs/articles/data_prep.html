@@ -264,13 +264,6 @@ be done in a single pipe.</p>
   <span class="op">)</span> <span class="op">-&gt;</span> <span class="va">melanoma</span>
 
 <span class="fu"><a href="../reference/ff_glimpse.html">ff_glimpse</a></span><span class="op">(</span><span class="va">melanoma</span><span class="op">)</span>
-<span class="co">#&gt; Warning: `fct_explicit_na()` was deprecated in forcats 1.0.0.</span>
-<span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `fct_na_value_to_level()` instead.</span>
-<span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">finalfit</span> package.</span>
-<span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/ewenharrison/finalfit/issues&gt;</span>.</span>
-<span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
-<span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
-<span class="co">#&gt; <span style="color: #555555;">generated.</span></span>
 <span class="co">#&gt; $Continuous</span>
 <span class="co">#&gt;               label var_type   n missing_n missing_percent   mean     sd    min</span>
 <span class="co">#&gt; time           time    &lt;dbl&gt; 205         0             0.0 2152.8 1122.1   10.0</span>
@@ -294,10 +287,10 @@ be done in a single pipe.</p>
 <span class="co">#&gt; status.factor Status    &lt;fct&gt; 205         0             0.0        3</span>
 <span class="co">#&gt; sex.factor       Sex    &lt;fct&gt; 205         0             0.0        2</span>
 <span class="co">#&gt; ulcer.factor   Ulcer    &lt;fct&gt; 205         0             0.0        2</span>
-<span class="co">#&gt;                                                                levels</span>
-<span class="co">#&gt; status.factor "Died from melanoma", "Alive", "Died from other causes"</span>
-<span class="co">#&gt; sex.factor                                           "Male", "Female"</span>
-<span class="co">#&gt; ulcer.factor                                      "Present", "Absent"</span>
+<span class="co">#&gt;                                                                             levels</span>
+<span class="co">#&gt; status.factor "Died from melanoma", "Alive", "Died from other causes", "(Missing)"</span>
+<span class="co">#&gt; sex.factor                                           "Male", "Female", "(Missing)"</span>
+<span class="co">#&gt; ulcer.factor                                      "Present", "Absent", "(Missing)"</span>
 <span class="co">#&gt;               levels_count   levels_percent</span>
 <span class="co">#&gt; status.factor  57, 134, 14 27.8, 65.4,  6.8</span>
 <span class="co">#&gt; sex.factor         79, 126           39, 61</span>
@@ -318,7 +311,7 @@ be done in a single pipe.</p>
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Ewen Harrison, Tom Drake, Riinu Ots.</p>
+<p>Developed by Ewen Harrison, Tom Drake, Riinu Pius.</p>
 </div>
 
 <div class="pkgdown">
