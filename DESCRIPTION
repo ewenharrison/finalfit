@@ -5,7 +5,7 @@ Version: 1.0.7
 Authors@R: c(
   person(given = "Ewen", family = "Harrison", role = c("aut", "cre"), email = "ewen.harrison@ed.ac.uk"),
   person(given = "Tom", family = "Drake", role = c("aut")),
-  person(given = "Riinu", family = "Ots", role = c("aut")))
+  person(given = "Riinu", family = "Pius", role = c("aut")))
 Maintainer: Ewen Harrison <ewen.harrison@ed.ac.uk>
 Description: Generate regression results tables and plots in final 
     format for publication. Explore models and export directly to PDF 
@@ -37,7 +37,7 @@ Imports:
     survival,
     tidyr (>= 1.0.0),
     tidyselect
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Suggests:
     cmprsk, 
     coxme,

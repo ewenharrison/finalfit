@@ -192,7 +192,7 @@ summary1 %>%
 library(dplyr)
 colon_s %>% 
   mutate(
-    smoking_mar = forcats::fct_explicit_na(smoking_mar)
+    smoking_mar = forcats::fct_na_value_to_level(smoking_mar, level = "(Missing)")
   ) %>% 
   finalfit(dependent, explanatory) %>% 
 	knitr::kable(row.names=FALSE, align = c("l", "l", "r", "r", "r", "r"))

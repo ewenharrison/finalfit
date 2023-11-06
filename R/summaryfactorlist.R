@@ -244,13 +244,13 @@ summary_factorlist <- function(.data,
 		df.in = df.in %>% 
 			dplyr::mutate_if(names(.) %in% unlist(explanatory) & 
 											 	sapply(., is.factor),
-											 forcats::fct_explicit_na
+											 	forcats::fct_na_value_to_level, level = "(Missing)"
 			)}
 	
 	if(na_include_dependent & !d_is.numeric){
 		df.in = df.in %>% 
 			dplyr::mutate(
-				!! sym(dependent) := forcats::fct_explicit_na(!! sym(dependent))
+				!! sym(dependent) := forcats::fct_na_value_to_level(!! sym(dependent), level = "(Missing)")
 			)
 	} else if(!na_include_dependent & !d_is.numeric){
 		df.in = df.in %>% 

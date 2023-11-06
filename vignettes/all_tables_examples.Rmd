@@ -442,7 +442,7 @@ explanatory = c("age", "age.factor", "sex.factor", "obstruct.factor")
 dependent = "mort_5yr"
 colon_s %>%
 	mutate(
-		mort_5yr = forcats::fct_explicit_na(mort_5yr)
+		mort_5yr = forcats::fct_na_value_to_level(mort_5yr, level = "(Missing)")
 	) %>% 
   summary_factorlist(dependent, explanatory, p = TRUE, na_include = TRUE,
   									 total_col = TRUE,
