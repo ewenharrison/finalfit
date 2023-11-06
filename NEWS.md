@@ -1,3 +1,8 @@
+# finalfit 1.0.7
+* bug fixes
+* fit2df.lmerMod() set default `confint_sep = " to "`. 
+* boot_predict() and boot_compare() confidence interval limits and methods options added. 
+
 # finalfit 1.0.61
 * bug fixes
 * fit2df.lmerMod() set default `confint_sep = " to "`. 
