@@ -44,7 +44,6 @@
 #'
 #' @seealso \link{finalfit_newdata}
 #'
-#' /code{finalfit} predict functions
 #' @export
 #' @importFrom broom tidy
 #' @importFrom boot boot

@@ -333,7 +333,7 @@ documented separately. However this should work for a single or multilevel
 Bayesian logistic regression done in Stan, as long as the fixed effects are
 specified in the parameters block as a vector named \code{beta}, of length
 \code{P}, where \code{P} is the number of fixed effect parameters. e.g.
-parameters{ vector[P] beta; }
+parameters( vector[P] beta; )
 
 \code{fit2df.mipo} is the model extract method for the \code{mipo} object
 created using \code{mice::pool}.

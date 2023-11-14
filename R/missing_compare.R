@@ -3,13 +3,14 @@
 #' @param .data Dataframe.
 #' @param dependent Variable to test missingness against other variables with.
 #' @param explanatory Variables to have missingness tested against.
+#' @param p Logical: Include null hypothesis statistical test.
 #' @param na_include Include missing data in explanatory variables as a factor
 #'   level.
 #' @param ... Other arguments to \code{\link{summary_factorlist}()}.
 #'
 #' @return A dataframe comparing missing data in the dependent variable across
-#'   explanatory variables. Continuous data are compared with a Kruskal Wallis
-#'   test. Discrete data are compared with a chi-squared test.
+#'   explanatory variables. Continuous data are compared with an Analysis of Variance F-test by default. 
+#'   Discrete data are compared with a chi-squared test.
 #' @export
 #'
 #' @examples
@@ -27,7 +28,7 @@
 #' colon_s %>%
 #'   missing_compare(dependent, explanatory)
 
-missing_compare <- function(.data, dependent, explanatory, na_include = FALSE, ...){
+missing_compare <- function(.data, dependent, explanatory, p = TRUE, na_include = FALSE, ...){
   if(length(dependent) != 1){
     stop("One and only one dependent variable must be provided")
   }
@@ -42,10 +43,9 @@ missing_compare <- function(.data, dependent, explanatory, na_include = FALSE, .
     ) %>% 
     ff_relabel_df(.data)
   
-  args = list(.data=df.out, dependent=dependent, explanatory=explanatory, 
+  args = list(.data=df.out, dependent=dependent, explanatory=explanatory, p = TRUE, 
               na_include = na_include, ...)
   if(is.null(args$column)) args$column = FALSE
-  if(is.null(args$p)) args$p = TRUE
   if(is.null(args$add_dependent_label)) args$add_dependent_label = TRUE
   if(is.null(args$dependent_label_prefix)) args$dependent_label_prefix = "Missing data analysis: "
   

@@ -132,6 +132,4 @@ colon_s \%>\%
 }
 \seealso{
 \link{finalfit_newdata}
-
-/code{finalfit} predict functions
 }

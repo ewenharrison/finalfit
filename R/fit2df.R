@@ -710,7 +710,7 @@ fit2df.crrlist <- function(.data, condense=TRUE, metrics=FALSE,
 #' Bayesian logistic regression done in Stan, as long as the fixed effects are
 #' specified in the parameters block as a vector named \code{beta}, of length
 #' \code{P}, where \code{P} is the number of fixed effect parameters. e.g.
-#' parameters{ vector[P] beta; }
+#' parameters( vector[P] beta; )
 #'
 #' @rdname fit2df
 #' @method fit2df stanfit

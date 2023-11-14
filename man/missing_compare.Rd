@@ -4,7 +4,14 @@
 \alias{missing_compare}
 \title{Compare missing data}
 \usage{
-missing_compare(.data, dependent, explanatory, na_include = FALSE, ...)
+missing_compare(
+  .data,
+  dependent,
+  explanatory,
+  p = TRUE,
+  na_include = FALSE,
+  ...
+)
 }
 \arguments{
 \item{.data}{Dataframe.}
@@ -13,6 +20,8 @@ missing_compare(.data, dependent, explanatory, na_include = FALSE, ...)
 
 \item{explanatory}{Variables to have missingness tested against.}
 
+\item{p}{Logical: Include null hypothesis statistical test.}
+
 \item{na_include}{Include missing data in explanatory variables as a factor
 level.}
 
@@ -20,8 +29,8 @@ level.}
 }
 \value{
 A dataframe comparing missing data in the dependent variable across
-  explanatory variables. Continuous data are compared with a Kruskal Wallis
-  test. Discrete data are compared with a chi-squared test.
+  explanatory variables. Continuous data are compared with an Analysis of Variance F-test by default. 
+  Discrete data are compared with a chi-squared test.
 }
 \description{
 Compare missing data
