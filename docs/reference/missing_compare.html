@@ -84,7 +84,14 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">missing_compare</span><span class="op">(</span><span class="va">.data</span>, <span class="va">dependent</span>, <span class="va">explanatory</span>, na_include <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">missing_compare</span><span class="op">(</span>
+  <span class="va">.data</span>,
+  <span class="va">dependent</span>,
+  <span class="va">explanatory</span>,
+  p <span class="op">=</span> <span class="cn">TRUE</span>,
+  na_include <span class="op">=</span> <span class="cn">FALSE</span>,
+  <span class="va">...</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -101,6 +108,10 @@
 <dd><p>Variables to have missingness tested against.</p></dd>
 
 
+<dt>p</dt>
+<dd><p>Logical: Include null hypothesis statistical test.</p></dd>
+
+
 <dt>na_include</dt>
 <dd><p>Include missing data in explanatory variables as a factor
 level.</p></dd>
@@ -115,8 +126,8 @@ level.</p></dd>
     
 
 <p>A dataframe comparing missing data in the dependent variable across
-  explanatory variables. Continuous data are compared with a Kruskal Wallis
-  test. Discrete data are compared with a chi-squared test.</p>
+  explanatory variables. Continuous data are compared with an Analysis of Variance F-test by default. 
+  Discrete data are compared with a chi-squared test.</p>
     </div>
 
     <div id="ref-examples">

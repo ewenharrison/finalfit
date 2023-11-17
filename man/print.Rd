@@ -7,7 +7,7 @@
 \method{print}{data.frame.ff}(x, ...)
 }
 \arguments{
-\item{.data}{Data frame}
+\item{x}{Data frame}
 }
 \value{
 Data frame with no line numbers

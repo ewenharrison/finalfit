@@ -138,11 +138,11 @@ don’t use it as standard and so need to convert all the models first,
 e.g. to lrm. Again, for my needs it tries to do too much and I find
 datadist awkward.</p>
 <p>Thirdly, I love <a href="https://mc-stan.org/users/interfaces/rstan" class="external-link">Stan</a> for this,
-e.g. used in this <a href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(18)30101-4/fulltext" class="external-link">paper</a>.
-The generated quantities block allows great flexibility to simulate
-whatever you wish from the posterior. I’m a Bayesian at heart will
-always come back to this. But for some applications it’s a bit much, and
-takes some time to get running as I want.</p>
+e.g. used in this <a href="https://doi.org/10.1016/S1473-3099(18)30101-4" class="external-link">paper</a>. The
+generated quantities block allows great flexibility to simulate whatever
+you wish from the posterior. I’m a Bayesian at heart will always come
+back to this. But for some applications it’s a bit much, and takes some
+time to get running as I want.</p>
 <p>I often simply want to predict y-hat from lm and glm with
 bootstrapped intervals and ideally a comparison of explanatory levels
 sets. Just like <code>sim</code> does in <code>Zelig</code>. But I want
@@ -200,10 +200,10 @@ those model acronyms, it is straightforward.</p>
     R<span class="op">=</span><span class="fl">100</span>, boot_compare <span class="op">=</span> <span class="cn">FALSE</span>,
     digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.00 to 0.56)</span>
-<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.00 to 0.61)</span>
-<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.47 to 0.86)</span>
-<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.46 to 0.90)</span></code></pre></div>
+<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.04 to 0.52)</span>
+<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.02 to 0.55)</span>
+<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.51 to 0.89)</span>
+<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.44 to 0.91)</span></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for
 demonstration purposes. You should expect to use 1000 to 10000 to ensure
 you have stable estimates.</p>
@@ -240,15 +240,15 @@ predictions under 1.0. Multiplied by two so it is two-sided.</p>
     <span class="co">#compare_name = "Absolute risk difference",</span>
     R<span class="op">=</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.08 to 0.55)</span>
-<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.07 to 0.68)</span>
-<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.50 to 0.89)</span>
-<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.40 to 0.91)</span>
+<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.03 to 0.55)</span>
+<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.03 to 0.57)</span>
+<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.48 to 0.85)</span>
+<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.42 to 0.91)</span>
 <span class="co">#&gt;                      Difference</span>
 <span class="co">#&gt; 1                             -</span>
-<span class="co">#&gt; 2 0.01 (-0.13 to 0.21, p=0.900)</span>
-<span class="co">#&gt; 3  0.41 (0.15 to 0.67, p&lt;0.001)</span>
-<span class="co">#&gt; 4  0.46 (0.11 to 0.67, p=0.020)</span></code></pre></div>
+<span class="co">#&gt; 2 0.01 (-0.12 to 0.19, p=0.940)</span>
+<span class="co">#&gt; 3  0.44 (0.19 to 0.64, p&lt;0.001)</span>
+<span class="co">#&gt; 4  0.44 (0.16 to 0.69, p=0.020)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="what-is-not-included">What is not included?<a class="anchor" aria-label="anchor" href="#what-is-not-included"></a>

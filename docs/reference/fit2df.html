@@ -30,7 +30,7 @@ documented separately. However this should work for a single or multilevel
 Bayesian logistic regression done in Stan, as long as the fixed effects are
 specified in the parameters block as a vector named beta, of length
 P, where P is the number of fixed effect parameters. e.g.
-parameters vector[P] beta;
+parameters( vector[P] beta; )
 fit2df.mipo is the model extract method for the mipo object
 created using mice::pool."><meta property="og:image" content="/logo.png"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -143,7 +143,7 @@ documented separately. However this should work for a single or multilevel
 Bayesian logistic regression done in Stan, as long as the fixed effects are
 specified in the parameters block as a vector named <code>beta</code>, of length
 <code>P</code>, where <code>P</code> is the number of fixed effect parameters. e.g.
-parameters vector[P] beta;</p>
+parameters( vector[P] beta; )</p>
 <p><code>fit2df.mipo</code> is the model extract method for the <code>mipo</code> object
 created using <code><a href="https://amices.org/mice/reference/pool.html" class="external-link">mice::pool</a></code>.</p>
     </div>
@@ -525,11 +525,11 @@ implemented for <code>lm, coxph or coxphlist</code>.</p></dd>
 <span class="r-in">  <span class="fu"><a href="glmmulti_boot.html">glmmulti_boot</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>,  R <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">fit2df</span><span class="op">(</span>estimate_suffix<span class="op">=</span><span class="st">" (multivariable (BS CIs))"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             explanatory OR (multivariable (BS CIs))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years   0.57 (0.38-0.94, p=0.020)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years   0.81 (0.52-1.30, p=0.360)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale   0.98 (0.70-1.29, p=0.920)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes   1.25 (0.87-1.71, p=0.140)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes   1.12 (0.35-2.81, p=0.820)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 age.factor40-59 years   0.57 (0.28-1.03, p=0.080)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   age.factor60+ years   0.81 (0.42-1.48, p=0.360)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        sex.factorMale   0.98 (0.73-1.29, p=0.980)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    obstruct.factorYes   1.25 (0.84-1.76, p=0.200)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      perfor.factorYes   1.12 (0.43-2.46, p=0.920)</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># lm</span></span>
 <span class="r-in"><span class="va">fit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">nodes</span> <span class="op">~</span>  <span class="va">age.factor</span> <span class="op">+</span> <span class="va">sex.factor</span> <span class="op">+</span> <span class="va">obstruct.factor</span> <span class="op">+</span> <span class="va">perfor.factor</span>,</span>

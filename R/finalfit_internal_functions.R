@@ -13,7 +13,7 @@ ff_eval <- function(.) {
 
 #' Print methods for finalfit data frames
 #'
-#' @param .data Data frame
+#' @param x Data frame
 #' @return Data frame with no line numbers
 #' 
 #' @rdname print

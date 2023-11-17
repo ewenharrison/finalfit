@@ -160,7 +160,7 @@ NULL
 #' @name wcgs
 #'
 #' @format A data frame with 3154 observations on the following 13 variables.
-#'   \itemize{ \item{\code{id}}{ Subject ID } \item{\code{age}}{ Age: age in
+#'   \describe{ \item{\code{id}}{ Subject ID } \item{\code{age}}{ Age: age in
 #'   years } \item{\code{height}}{ Height: height in inches }
 #'   \item{\code{weight}}{ Weight: weight in pounds } \item{\code{sbp}}{
 #'   Systolic blood pressure: mmHg } \item{\code{dbp}}{ Diastolic blood
@@ -168,9 +168,9 @@ NULL
 #'   \item{\code{personality}}{Personality type/Behavior pattern: a factor with
 #'   levels \code{A1}, \code{A2}, \code{B3}, \code{B4} }
 #'   \item{\code{personality_2L}}{ Dichotomous personality type / behavior
-#'   pattern: \code{A} = aggressive; \code{B} = passive }  \item{\code{ncigs0}}{
+#'   pattern: \code{A} = aggressive; \code{B} = passive }  \item{\code{ncigs}}{
 #'   Smoking: Cigarettes/day } \item{\code{smoking}}{ Smoking: \code{No},
-#'   \code{Yes} } \item{\code{arcus0}}{ Corneal arcus: \code{No}, \code{Yes} }
+#'   \code{Yes} } \item{\code{arcus}}{ Corneal arcus: \code{No}, \code{Yes} }
 #'   \item{\code{chd}}{ Coronary heart disease event: \code{No} \code{Yes}}
 #'   \item{\code{typechd}}{ coronary heart disease is a factor with levels
 #'   \code{No}, \code{MI_SD} (MI or sudden death), \code{Silent_MI},
