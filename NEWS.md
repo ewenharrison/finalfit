@@ -1,3 +1,7 @@
+# finalfit 1.071
+* bug fix (tidyselect complaint on checks) #93
+* or_plot() and coefficient_plot() now allowing confidence interval specification via `confint_level` #58
+
 # finalfit 1.0.7
 * bug fixes
 * fit2df.lmerMod() set default `confint_sep = " to "`. 

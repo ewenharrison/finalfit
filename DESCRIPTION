@@ -1,7 +1,7 @@
 Package: finalfit
 Type: Package
 Title: Quickly Create Elegant Regression Results Tables and Plots when Modelling
-Version: 1.0.7
+Version: 1.0.71
 Authors@R: c(
   person(given = "Ewen", family = "Harrison", role = c("aut", "cre"), email = "ewen.harrison@ed.ac.uk"),
   person(given = "Tom", family = "Drake", role = c("aut")),
@@ -36,7 +36,6 @@ Imports:
     stringr,
     survival,
     tidyr (>= 1.0.0),
-    tidyselect
 RoxygenNote: 7.2.3
 Suggests:
     cmprsk, 

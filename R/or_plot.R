@@ -16,6 +16,7 @@
 #' @param confint_type One of \code{c("profile", "default")} for GLM models or
 #'   \code{c("default", "Wald", "profile", "boot")} for \code{glmer}
 #'   models.
+#' @param confint_level The confidence level required.
 #' @param remove_ref Logical. Remove reference level for factors.    
 #' @param breaks Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.
 #' @param column_space Adjust table column spacing.
@@ -56,10 +57,10 @@
 
 or_plot = function(.data, dependent, explanatory, random_effect=NULL, 
 									 factorlist=NULL, glmfit=NULL,
-									 confint_type = NULL, remove_ref = FALSE,
+									 confint_type = NULL, confint_level = 0.95, remove_ref = FALSE,
 									 breaks=NULL, column_space=c(-0.5, 0, 0.5),
 									 dependent_label = NULL,
-									 prefix = "", suffix = ": OR (95% CI, p-value)",
+									 prefix = "", suffix = NULL,
 									 table_text_size = 4,
 									 title_text_size = 13,
 									 plot_opts = NULL, table_opts = NULL, ...){
@@ -103,21 +104,24 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	if(is.null(glmfit) && is.null(random_effect)){
 		glmfit = glmmulti(.data, dependent, explanatory)
 		glmfit_df_c = fit2df(glmfit, condense = TRUE, estimate_suffix = " (multivariable)",
-												 confint_type = confint_type, ...)
+												 confint_type = confint_type, confint_level = confint_level, ...)
 	} else if(is.null(glmfit) && !is.null(random_effect)){
 		glmfit = glmmixed(.data, dependent, explanatory, random_effect)
 		glmfit_df_c = fit2df(glmfit, condense = TRUE, estimate_suffix = " (multilevel)",
-												 confint_type = confint_type, ...)
+												 confint_type = confint_type, confint_level = confint_level, ...)
 	}
 	if(!is.null(glmfit) && is.null(random_effect)){
 		glmfit_df_c = fit2df(glmfit, condense = TRUE, estimate_suffix = " (multivariable)",
-												 confint_type = confint_type, estimate_name = "OR", exp = TRUE, ...)
+												 confint_type = confint_type, confint_level = confint_level, 
+												 estimate_name = "OR", exp = TRUE, ...)
 	} else if(!is.null(glmfit) && !is.null(random_effect)){
 		glmfit_df_c = fit2df(glmfit, condense = TRUE, estimate_suffix = " (multilevel)",
-												 confint_type = confint_type, estimate_name = "OR", exp = TRUE, ...)
+												 confint_type = confint_type, confint_level = confint_level, 
+												 estimate_name = "OR", exp = TRUE, ...)
 	}
 	
-	glmfit_df = fit2df(glmfit, condense = FALSE, confint_type = confint_type,  estimate_name = "OR", exp = TRUE, ...)
+	glmfit_df = fit2df(glmfit, condense = FALSE, confint_type = confint_type,  confint_level = confint_level, 
+										 estimate_name = "OR", exp = TRUE, ...)
 	
 	# Merge
 	df.out = finalfit_merge(factorlist, glmfit_df_c)
@@ -147,14 +151,23 @@ or_plot = function(.data, dependent, explanatory, random_effect=NULL,
 	df.out$levels = as.character(df.out$levels)
 	df.out$fit_id = factor(df.out$fit_id, levels = df.out$fit_id[order(-df.out$index)])
 	
+	# Extract confidence interval name if not 95%
+	confint_name = df.out %>% 
+		dplyr::select(dplyr::matches("(U|L)[[:digit:]][[:digit:]]")) %>% 
+		names()
+	
+	p_value_text = ifelse(confint_level != 0.95, ")", ", p-value)")
+	if(is.null(suffix)) suffix = paste0(": OR (", confint_level*100, "% CI", p_value_text)
+	
 	# Plot
-	g1 = ggplot(df.out, aes(x = as.numeric(OR), xmin = as.numeric(L95), xmax  = as.numeric(U95),
+	g1 = ggplot(df.out, aes(x = as.numeric(OR), 
+													xmin = as.numeric(!! sym(confint_name[1])), xmax  = as.numeric(!! sym(confint_name[2])),
 													y = fit_id))+
 		geom_errorbarh(height=0.2) +
 		geom_vline(xintercept = 1, linetype = "longdash", colour = "black")+
 		geom_point(aes(size = Total), shape=22, fill="darkblue")+
 		scale_x_continuous(trans="log10", breaks= breaks)+
-		xlab("Odds ratio (95% CI, log scale)")+
+		xlab(paste0("Odds ratio (", confint_level*100, "% CI, log scale)")) +
 		theme_classic(11)+
 		theme(axis.title.x = element_text(),
 					axis.title.y = element_blank(),

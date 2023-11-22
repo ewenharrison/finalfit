@@ -12,12 +12,13 @@ coefficient_plot(
   factorlist = NULL,
   lmfit = NULL,
   confint_type = "default",
+  confint_level = 0.95,
   remove_ref = FALSE,
   breaks = NULL,
   column_space = c(-0.5, -0.1, 0.5),
   dependent_label = NULL,
   prefix = "",
-  suffix = ": Coefficient, 95\% CI, p-value)",
+  suffix = NULL,
   table_text_size = 4,
   title_text_size = 13,
   plot_opts = NULL,
@@ -45,6 +46,8 @@ and \code{\link{lmmixed}()}.}
 
 \item{confint_type}{For for \code{lmer} models, one of \code{c("default",
 "Wald", "profile", "boot")} Note "default" == "Wald".}
+
+\item{confint_level}{The confidence level required.}
 
 \item{remove_ref}{Logical. Remove reference level for factors.}
 

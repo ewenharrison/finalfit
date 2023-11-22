@@ -12,12 +12,13 @@ or_plot(
   factorlist = NULL,
   glmfit = NULL,
   confint_type = NULL,
+  confint_level = 0.95,
   remove_ref = FALSE,
   breaks = NULL,
   column_space = c(-0.5, 0, 0.5),
   dependent_label = NULL,
   prefix = "",
-  suffix = ": OR (95\% CI, p-value)",
+  suffix = NULL,
   table_text_size = 4,
   title_text_size = 13,
   plot_opts = NULL,
@@ -45,6 +46,8 @@ and \code{\link{glmmixed}()}.}
 \item{confint_type}{One of \code{c("profile", "default")} for GLM models or
 \code{c("default", "Wald", "profile", "boot")} for \code{glmer}
 models.}
+
+\item{confint_level}{The confidence level required.}
 
 \item{remove_ref}{Logical. Remove reference level for factors.}
 

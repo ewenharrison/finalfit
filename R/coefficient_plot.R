@@ -15,6 +15,7 @@
 #'   and \code{\link{lmmixed}()}.
 #' @param confint_type For for \code{lmer} models, one of \code{c("default",
 #'   "Wald", "profile", "boot")} Note "default" == "Wald".
+#' @param confint_level The confidence level required.
 #' @param remove_ref Logical. Remove reference level for factors.
 #' @param breaks Manually specify x-axis breaks in format \code{c(0.1, 1, 10)}.
 #' @param column_space Adjust table column spacing.
@@ -53,10 +54,11 @@
 
 coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 														factorlist=NULL, lmfit=NULL,
-														confint_type = "default", remove_ref = FALSE,
+														confint_type = "default", confint_level = 0.95, 
+														remove_ref = FALSE,
 														breaks=NULL, column_space=c(-0.5, -0.1, 0.5),
 														dependent_label = NULL,
-														prefix = "", suffix = ": Coefficient, 95% CI, p-value)",
+														prefix = "", suffix = NULL,
 														table_text_size = 4,
 														title_text_size = 13,
 														plot_opts = NULL, table_opts = NULL, ...){
@@ -100,22 +102,22 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 	if(is.null(lmfit) && is.null(random_effect)){
 		lmfit = lmmulti(.data, dependent, explanatory)
 		lmfit_df_c = fit2df(lmfit, condense = TRUE, estimate_suffix = " (multivariable)",
-												 confint_type = confint_type, ...)
+												 confint_type = confint_type, confint_level = confint_level, ...)
 	} else if(is.null(lmfit) && !is.null(random_effect)){
 		lmfit = lmmixed(.data, dependent, explanatory, random_effect)
 		lmfit_df_c = fit2df(lmfit, condense = TRUE, estimate_suffix = " (multilevel)",
-												 confint_type = confint_type, ...)
+												 confint_type = confint_type, confint_level = confint_level, ...)
 	}
 	
 	if(!is.null(lmfit) && is.null(random_effect)){
 		lmfit_df_c = fit2df(lmfit, condense = TRUE, estimate_suffix = " (multivariable)",
-												 confint_type = confint_type, ...)
+												 confint_type = confint_type, confint_level = confint_level, ...)
 	} else if(!is.null(lmfit) && !is.null(random_effect)){
 		lmfit_df_c = fit2df(lmfit, condense = TRUE, estimate_suffix = " (multilevel)",
-												 confint_type = confint_type, ...)
+												 confint_type = confint_type, confint_level = confint_level, ...)
 	}
 	
-	lmfit_df = fit2df(lmfit, condense = FALSE, confint_type = confint_type,  ...)
+	lmfit_df = fit2df(lmfit, condense = FALSE, confint_type = confint_type,  confint_level = confint_level, ...)
 
 	# Merge
 	df.out = finalfit_merge(factorlist, lmfit_df_c)
@@ -140,15 +142,24 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 	# Fix order
 	df.out$levels = as.character(df.out$levels)
 	df.out$fit_id = factor(df.out$fit_id, levels = df.out$fit_id[order(-df.out$index)])
+
+	# Extract confidence interval name if not 95%
+	confint_name = df.out %>% 
+		dplyr::select(dplyr::matches("(U|L)[[:digit:]][[:digit:]]")) %>% 
+		names()
+	
+	p_value_text = ifelse(confint_level != 0.95, ")", ", p-value)")
+	if(is.null(suffix)) suffix = paste0(": Coefficient (", confint_level*100, "% CI", p_value_text)
 	
 	# Plot
-	g1 = ggplot(df.out, aes(x = as.numeric(Coefficient), xmin = as.numeric(L95), xmax  = as.numeric(U95),
+	g1 = ggplot(df.out, aes(x = as.numeric(Coefficient), 
+													xmin = as.numeric(confint_name[1]), xmax  = as.numeric(confint_name[2]),
 													y = fit_id))+
 		geom_errorbarh(height=0.2) +
 		geom_vline(xintercept = 0, linetype = "longdash", colour = "black")+
 		geom_point(aes(size = Total), shape=22, fill="darkblue")+
 		scale_x_continuous(breaks= breaks)+
-		xlab("Coefficient (95% CI)")+
+		xlab(paste0("Coefficient (", confint_level*100, "% CI)")) +
 		theme_classic(11)+
 		theme(axis.title.x = element_text(),
 					axis.title.y = element_blank(),
