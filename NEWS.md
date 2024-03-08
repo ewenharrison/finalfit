@@ -1,3 +1,6 @@
+# finalfit 1.072
+* Remove requirement for ff_label() to convert input to dataframe. 
+
 # finalfit 1.071
 * bug fix (tidyselect complaint on checks) #93
 * or_plot() and coefficient_plot() now allowing confidence interval specification via `confint_level` #58

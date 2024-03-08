@@ -82,7 +82,7 @@ extract_variable_label = function(.data){
 #' colon_s %>% str()
 #'   
 ff_relabel <- function(.data, .labels){
-	if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
+	# if(any(class(.data) %in% c("tbl_df", "tbl"))) .data = data.frame(.data)
 	# Keep only labels for variables in data
 	.labels = .labels[names(.labels) %in% names(.data)]
 	relabel_one <- function(.){
