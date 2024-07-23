@@ -121,6 +121,9 @@
     <loc>/reference/ff_eval.html</loc>
   </url>
   <url>
+    <loc>/reference/ff_expand.html</loc>
+  </url>
+  <url>
     <loc>/reference/ff_formula.html</loc>
   </url>
   <url>
@@ -137,6 +140,9 @@
   </url>
   <url>
     <loc>/reference/ff_metrics.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ff_mode.html</loc>
   </url>
   <url>
     <loc>/reference/ff_newdata.html</loc>
@@ -293,6 +299,9 @@
   </url>
   <url>
     <loc>/reference/summarise_continuous.html</loc>
+  </url>
+  <url>
+    <loc>/reference/summary_df.html</loc>
   </url>
   <url>
     <loc>/reference/summary_factorlist.html</loc>

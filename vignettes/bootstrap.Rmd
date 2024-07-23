@@ -39,7 +39,7 @@ install.packages("finalfit")
 
 ## Create new dataframe of explanatory variable levels
 
-`ff_newdata` (alias: `finalfit_newdata`) is used to generate a new dataframe. I usually want to set 4 or 5 combinations of `x` levels and often find it difficult to get this formatted correctly to use with `predict`. Pass the original dataset, the names of explanatory variables used in the model, and a list of levels for these. For the latter, they can be included as rows or columns. If the data type is incorrect or you try to pass factor levels that don’t exist, it will fail with a useful warning.
+`ff_newdata` (alias: `finalfit_newdata`) is used to generate a new dataframe. See the next section for an alternative approach to doing this. I usually want to set 4 or 5 combinations of `x` levels and often find it difficult to get this formatted correctly to use with `predict`. Pass the original dataset, the names of explanatory variables used in the model, and a list of levels for these. For the latter, they can be included as rows or columns. If the data type is incorrect or you try to pass factor levels that don’t exist, it will fail with a useful warning.
 
 ```{r}
 library(finalfit)
@@ -54,6 +54,20 @@ colon_s %>%
     c("<40 years", "Adjacent structures", "Yes") )) -> newdata
 newdata
 ```
+
+## `ff_expand()` for creating new data frame
+
+`ff_expand()` has been added to aid in setting up new data frames for model prediction. It uses two further functions (`ff_mode()` and `summary_df()`) to generate a data frame which includes the mode of factors (most frequent occurrence of a factor level) and the mean or median of numeric variables, together with an expansion of specified factors to include all combinations of their levels. 
+
+This is commonly needed when simulating model predictions.
+
+```{r}
+library(dplyr)
+colon_s %>% 
+	select(-hospital) %>% 
+	ff_expand(age.factor, sex.factor)
+```
+
 
 ## Run bootstrap simulations of model predictions
 

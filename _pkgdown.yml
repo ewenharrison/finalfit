@@ -27,6 +27,8 @@ reference:
     contents:
     - '`boot_predict`'
     - '`boot_compare`'
+    - '`ff_newdata`'
+    - '`ff_expand`'
   - title: "Helper functions"
     desc: ~
     contents:
@@ -36,10 +38,10 @@ reference:
     - '`ff_formula`'
     - '`ff_glimpse`'
     - '`ff_interaction`'
+    - '`ff_mode`'
     - '`ff_label`'
     - '`ff_merge`'
     - '`ff_metrics`'
-    - '`ff_newdata`'
     - '`ff_percent_only`'
     - '`ff_parse_formula`'
     - '`ff_relabel`'
@@ -57,6 +59,7 @@ reference:
     - '`rm_duplicates`' 
     - '`rm_empty_block`'     
     - '`round_tidy`'
+    - '`summary_df`'
   - title: "Plotting"
     desc: ~
     contents:

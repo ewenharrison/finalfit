@@ -3,7 +3,7 @@ library(dplyr)
 library(forcats)
 
 data(wcgs)
-save(wcgs, file = "data-raw/wcgs.rda")
+save(wcgs, file = "data-raw/wcgs.rda", compress = TRUE)
 
 library(finalfit)
 wcgs = wcgs %>% 

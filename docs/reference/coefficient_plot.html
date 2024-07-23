@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.8</span>
       </span>
     </div>
 
@@ -92,12 +92,13 @@
   factorlist <span class="op">=</span> <span class="cn">NULL</span>,
   lmfit <span class="op">=</span> <span class="cn">NULL</span>,
   confint_type <span class="op">=</span> <span class="st">"default"</span>,
+  confint_level <span class="op">=</span> <span class="fl">0.95</span>,
   remove_ref <span class="op">=</span> <span class="cn">FALSE</span>,
   breaks <span class="op">=</span> <span class="cn">NULL</span>,
   column_space <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.5</span><span class="op">)</span>,
   dependent_label <span class="op">=</span> <span class="cn">NULL</span>,
   prefix <span class="op">=</span> <span class="st">""</span>,
-  suffix <span class="op">=</span> <span class="st">": Coefficient, 95% CI, p-value)"</span>,
+  suffix <span class="op">=</span> <span class="cn">NULL</span>,
   table_text_size <span class="op">=</span> <span class="fl">4</span>,
   title_text_size <span class="op">=</span> <span class="fl">13</span>,
   plot_opts <span class="op">=</span> <span class="cn">NULL</span>,
@@ -140,6 +141,10 @@ and <code><a href="lmmixed.html">lmmixed</a>()</code>.</p></dd>
 <dt>confint_type</dt>
 <dd><p>For for <code>lmer</code> models, one of <code>c("default",
 "Wald", "profile", "boot")</code> Note "default" == "Wald".</p></dd>
+
+
+<dt>confint_level</dt>
+<dd><p>The confidence level required.</p></dd>
 
 
 <dt>remove_ref</dt>
@@ -216,14 +221,22 @@ by "+".</p></dd>
 <span class="r-in"><span class="va">colon_s</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">coefficient_plot</span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Note: dependent includes missing data. These are dropped.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 4 rows containing missing values (`geom_errorbarh()`).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 9 rows containing missing values (`geom_errorbarh()`).</span>
 <span class="r-plt img"><img src="coefficient_plot-1.png" alt="" width="2188" height="3539"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">colon_s</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">coefficient_plot</span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span>, table_text_size<span class="op">=</span><span class="fl">4</span>, title_text_size<span class="op">=</span><span class="fl">14</span>,</span>
 <span class="r-in">    plot_opts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Beta, 95% CI"</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Note: dependent includes missing data. These are dropped.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 4 rows containing missing values (`geom_errorbarh()`).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 9 rows containing missing values (`geom_errorbarh()`).</span>
 <span class="r-plt img"><img src="coefficient_plot-2.png" alt="" width="2188" height="3539"></span>
 </code></pre></div>
     </div>

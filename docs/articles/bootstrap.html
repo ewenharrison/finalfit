@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.8</span>
       </span>
     </div>
 
@@ -157,7 +157,8 @@ other models in the future.</p>
 <h2 id="create-new-dataframe-of-explanatory-variable-levels">Create new dataframe of explanatory variable levels<a class="anchor" aria-label="anchor" href="#create-new-dataframe-of-explanatory-variable-levels"></a>
 </h2>
 <p><code>ff_newdata</code> (alias: <code>finalfit_newdata</code>) is
-used to generate a new dataframe. I usually want to set 4 or 5
+used to generate a new dataframe. See the next section for an
+alternative approach to doing this. I usually want to set 4 or 5
 combinations of <code>x</code> levels and often find it difficult to get
 this formatted correctly to use with <code>predict</code>. Pass the
 original dataset, the names of explanatory variables used in the model,
@@ -183,6 +184,47 @@ levels that don’t exist, it will fail with a useful warning.</p>
 <span class="co">#&gt; 4  &lt;40 years Adjacent structures           Yes</span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="ff_expand-for-creating-new-data-frame">
+<code>ff_expand()</code> for creating new data frame<a class="anchor" aria-label="anchor" href="#ff_expand-for-creating-new-data-frame"></a>
+</h2>
+<p><code><a href="../reference/ff_expand.html">ff_expand()</a></code> has been added to aid in setting up new data
+frames for model prediction. It uses two further functions
+(<code><a href="../reference/ff_mode.html">ff_mode()</a></code> and <code><a href="../reference/summary_df.html">summary_df()</a></code>) to generate a
+data frame which includes the mode of factors (most frequent occurrence
+of a factor level) and the mean or median of numeric variables, together
+with an expansion of specified factors to include all combinations of
+their levels.</p>
+<p>This is commonly needed when simulating model predictions.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'dplyr'</span>
+<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     filter, lag</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
+<span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">hospital</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="../reference/ff_expand.html">ff_expand</a></span><span class="op">(</span><span class="va">age.factor</span>, <span class="va">sex.factor</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 31</span></span>
+<span class="co">#&gt;   age.factor  sex.factor    id rx      sex   age obstruct perfor adhere nodes</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> &lt;40 years   Female       465 Obs   0.521  59.8    0.194 0.029<span style="text-decoration: underline;">1</span>  0.145  3.66</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> &lt;40 years   Male         465 Obs   0.521  59.8    0.194 0.029<span style="text-decoration: underline;">1</span>  0.145  3.66</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 40-59 years Female       465 Obs   0.521  59.8    0.194 0.029<span style="text-decoration: underline;">1</span>  0.145  3.66</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 40-59 years Male         465 Obs   0.521  59.8    0.194 0.029<span style="text-decoration: underline;">1</span>  0.145  3.66</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 60+ years   Female       465 Obs   0.521  59.8    0.194 0.029<span style="text-decoration: underline;">1</span>  0.145  3.66</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 60+ years   Male         465 Obs   0.521  59.8    0.194 0.029<span style="text-decoration: underline;">1</span>  0.145  3.66</span>
+<span class="co">#&gt; <span style="color: #949494;"># ℹ 21 more variables: status &lt;dbl&gt;, differ &lt;dbl&gt;, extent &lt;dbl&gt;, surg &lt;dbl&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   node4 &lt;dbl&gt;, time &lt;dbl&gt;, rx.factor &lt;fct&gt;, obstruct.factor &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   perfor.factor &lt;fct&gt;, adhere.factor &lt;fct&gt;, differ.factor &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   extent.factor &lt;fct&gt;, surg.factor &lt;fct&gt;, node4.factor &lt;fct&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   status.factor &lt;fct&gt;, loccomp &lt;dbl&gt;, loccomp.factor &lt;fct&gt;, time.years &lt;dbl&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   mort_5yr &lt;fct&gt;, age.10 &lt;dbl&gt;, mort_5yr.num &lt;dbl&gt;</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="run-bootstrap-simulations-of-model-predictions">Run bootstrap simulations of model predictions<a class="anchor" aria-label="anchor" href="#run-bootstrap-simulations-of-model-predictions"></a>
 </h2>
 <p><code>boot_predict</code> takes standard <code>lm</code> and
@@ -192,7 +234,7 @@ e.g. <code>lmmulti</code> and <code>glmmulti</code>. In addition, it
 requires a <code>newdata</code> object generated from
 <code>ff_newdata</code>. If you’re new to this, don’t be put off by all
 those model acronyms, it is straightforward.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/boot_predict.html">boot_predict</a></span><span class="op">(</span><span class="va">newdata</span>, 
@@ -200,10 +242,10 @@ those model acronyms, it is straightforward.</p>
     R<span class="op">=</span><span class="fl">100</span>, boot_compare <span class="op">=</span> <span class="cn">FALSE</span>,
     digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.04 to 0.52)</span>
-<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.02 to 0.55)</span>
-<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.51 to 0.89)</span>
-<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.44 to 0.91)</span></code></pre></div>
+<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.00 to 0.51)</span>
+<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.00 to 0.66)</span>
+<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.51 to 0.85)</span>
+<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.46 to 0.90)</span></code></pre></div>
 <p>Note that the number of simulations (<code>R</code>) here is low for
 demonstration purposes. You should expect to use 1000 to 10000 to ensure
 you have stable estimates.</p>
@@ -215,7 +257,7 @@ you have stable estimates.</p>
 outputted in a table/dataframe, which can be passed to
 <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable</a></code>.</p>
 <p>Place this chunk in an .Rmd file:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">table</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><a href="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png" class="external-link"><img src="https://www.datasurg.net/wp-content/uploads/2018/07/table1_boot-1024x225.png" alt="" width="600" class="aligncenter"></a></p>
 </div>
@@ -232,7 +274,7 @@ default, e.g. 2.5 and 97.5 percentiles). A p-value is generated on the
 proportion of values on the other side of the null from the mean,
 e.g. for a ratio greater than 1.0, p is the number of bootstrapped
 predictions under 1.0. Multiplied by two so it is two-sided.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colon_s</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/glmmulti.html">glmmulti</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/boot_predict.html">boot_predict</a></span><span class="op">(</span><span class="va">newdata</span>, 
@@ -240,15 +282,15 @@ predictions under 1.0. Multiplied by two so it is two-sided.</p>
     <span class="co">#compare_name = "Absolute risk difference",</span>
     R<span class="op">=</span><span class="fl">100</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;         Age    Extent of spread Perforation Predicted probability of death</span>
-<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.03 to 0.55)</span>
-<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.03 to 0.57)</span>
-<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.48 to 0.85)</span>
-<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.42 to 0.91)</span>
+<span class="co">#&gt; 1 &lt;40 years           Submucosa          No            0.28 (0.08 to 0.55)</span>
+<span class="co">#&gt; 2 &lt;40 years           Submucosa         Yes            0.29 (0.08 to 0.60)</span>
+<span class="co">#&gt; 3 &lt;40 years Adjacent structures          No            0.71 (0.48 to 0.87)</span>
+<span class="co">#&gt; 4 &lt;40 years Adjacent structures         Yes            0.72 (0.37 to 0.93)</span>
 <span class="co">#&gt;                      Difference</span>
 <span class="co">#&gt; 1                             -</span>
-<span class="co">#&gt; 2 0.01 (-0.12 to 0.19, p=0.940)</span>
-<span class="co">#&gt; 3  0.44 (0.19 to 0.64, p&lt;0.001)</span>
-<span class="co">#&gt; 4  0.44 (0.16 to 0.69, p=0.020)</span></code></pre></div>
+<span class="co">#&gt; 2 0.00 (-0.13 to 0.16, p=1.000)</span>
+<span class="co">#&gt; 3  0.44 (0.19 to 0.66, p&lt;0.001)</span>
+<span class="co">#&gt; 4  0.45 (0.09 to 0.72, p&lt;0.001)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="what-is-not-included">What is not included?<a class="anchor" aria-label="anchor" href="#what-is-not-included"></a>
@@ -266,7 +308,7 @@ immediate plans to add that in, better to do directly.</p>
 <p>Finally, as with all finalfit functions, results can be produced as
 individual variables using <code>condense == FALSE</code>. This is
 particularly useful for plotting.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ewenharrison/finalfit" class="external-link">finalfit</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>

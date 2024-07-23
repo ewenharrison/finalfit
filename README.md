@@ -35,7 +35,7 @@ The package documentation is maintained independently at [finalfit.org](https://
 
 ## Examples
 
-See `getting started` and the `All tables` vignettes for extensive examples.  
+See [Get started](https://finalfit.org/articles/finalfit.html) and the [All tables](https://finalfit.org/articles/all_tables_examples.html) vignettes for extensive examples.  
 
 ### Crosstable / table 1
 
