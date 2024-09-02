@@ -23,7 +23,7 @@
 #'   that class). Optional instead of standard dependent/explanatory format. 
 #'   Do not include if using dependent/explanatory. 
 #' @param model_args List. A list of arguments to pass to 
-#' \code{\link{lm}}, \code{\link{glm}}, \code{\link{coxph}}.  
+#' \code{\link{lm}}, \code{\link{glm}}, \code{coxph}.  
 #' @param weights Character vector of length 1: quoted name of weights variable. 
 #' Passed to \code{\link{summary_factorlist}}, \code{\link{lm}}, and \code{\link{glm}} 
 #' to provide weighted summary table and regression (e.g. IPTW). If wish weighted regression

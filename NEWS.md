@@ -1,25 +1,25 @@
 # finalfit 1.08
-* ff_expand() approach for model simulation added. 
+* `ff_expand(`) approach for model simulation added. 
 * bug fix (tidyselect complaint on checks) #93
-* or_plot() and coefficient_plot() now allowing confidence interval specification via `confint_level` #58
-* Remove requirement for ff_label() to convert input to dataframe. 
+* `or_plot()` and `coefficient_plot(`) now allowing confidence interval specification via `confint_level` #58
+* Remove requirement for `ff_label()` to convert input to dataframe. 
 
 # finalfit 1.072
-* Remove requirement for ff_label() to convert input to dataframe. 
+* Remove requirement for `ff_label()` to convert input to dataframe. 
 
 # finalfit 1.071
 * bug fix (tidyselect complaint on checks) #93
-* or_plot() and coefficient_plot() now allowing confidence interval specification via `confint_level` #58
+* `or_plot()` and `coefficient_plot(`) now allowing confidence interval specification via `confint_level` #58
 
 # finalfit 1.0.7
 * bug fixes
-* fit2df.lmerMod() set default `confint_sep = " to "`. 
-* boot_predict() and boot_compare() confidence interval limits and methods options added. 
+* `fit2df.lmerMod()` set default `confint_sep = " to "`. 
+* `boot_predict()` and `boot_compare()` confidence interval limits and methods options added. 
 
 # finalfit 1.0.61
 * bug fixes
-* fit2df.lmerMod() set default `confint_sep = " to "`. 
-* boot_predict() and boot_compare() confidence interval limits and methods options added. 
+* `fit2df.lmerMod()` set default `confint_sep = " to "`. 
+* `boot_predict()` and `boot_compare()` confidence interval limits and methods options added. 
 
 # finalfit 1.0.6
 * new plots example vignette https://finalfit.org/articles/all_plots_examples.html
@@ -28,7 +28,7 @@
 * correction to weighting of continuous explanatory variables in `summary_factorlist()`.
 * fix bug to `coefficient_plot()` when passing `lmmixed()` object. 
 * weighting now available directly in `finalfit()`. 
-* formula parsed correctly in `lmuni()`, `lmmulti()`, `glmuni()`, `glmmulti()`, `coxphuni()`, coxphmulti().
+* formula parsed correctly in `lmuni()`, `lmmulti()`, `glmuni()`, `glmmulti()`, `coxphuni()`, `coxphmulti()`.
 
 # finalfit 1.0.55
 * bug fix for `cont_cut` argument in `finalfit()`. #78

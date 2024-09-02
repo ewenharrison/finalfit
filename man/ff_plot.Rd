@@ -21,7 +21,7 @@ variables.}
 \code{\link{coefficient_plot}}}
 }
 \value{
-A table and a plot using \code{\link{ggplot2}}
+A table and a plot using \code{ggplot2}.
 }
 \description{
 Wraps \code{\link{or_plot}}, \code{\link{hr_plot}}, and

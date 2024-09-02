@@ -10,7 +10,7 @@
 #' @param ... Pass arguments \code{\link{or_plot}}, \code{\link{hr_plot}}, or
 #' \code{\link{coefficient_plot}}
 #'
-#' @return A table and a plot using \code{\link{ggplot2}}
+#' @return A table and a plot using \code{ggplot2}.
 #' @export
 #' @family finalfit plot functions
 #' @examples
