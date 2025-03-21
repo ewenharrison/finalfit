@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">finalfit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.9</span>
       </span>
     </div>
 
@@ -808,7 +808,7 @@ be used for imputation.</p>
   <span class="co"># Usually run imputation with 10 imputed sets, 4 here for demonstration</span>
   <span class="fu"><a href="https://amices.org/mice/reference/mice.html" class="external-link">mice</a></span><span class="op">(</span>m <span class="op">=</span> <span class="fl">4</span>, predictorMatrix <span class="op">=</span> <span class="va">predM</span>, method <span class="op">=</span> <span class="va">m0</span><span class="op">$</span><span class="va">method</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="co"># Run logistic regression on each imputed set</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></span><span class="op">(</span><span class="fu"><a href="../reference/ff_formula.html">ff_formula</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span><span class="op">)</span>, 
+  <span class="fu"><a href="https://amices.org/mice/reference/with.mids.html" class="external-link">with</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></span><span class="op">(</span><span class="fu"><a href="../reference/ff_formula.html">ff_formula</a></span><span class="op">(</span><span class="va">dependent</span>, <span class="va">explanatory</span><span class="op">)</span><span class="op">)</span>, 
     family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  iter imp variable</span>

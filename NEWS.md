@@ -1,9 +1,12 @@
+# finalfit 1.09
+* Adopt mice 3.17.0 broom convention for names of lower and upper bound of confidence interval #107
+* Expand all plots vignette. 
+
 # finalfit 1.08
 * `ff_expand(`) approach for model simulation added. 
 * bug fix (tidyselect complaint on checks) #93
 * `or_plot()` and `coefficient_plot(`) now allowing confidence interval specification via `confint_level` #58
 * Remove requirement for `ff_label()` to convert input to dataframe. 
-* Adopt mice 3.17.0 broom convention for names of lower and upper bound of confidence interval #107
 
 # finalfit 1.072
 * Remove requirement for `ff_label()` to convert input to dataframe. 
