@@ -27,7 +27,7 @@ Imports:
     gridExtra,
     lme4,
     magrittr,
-    mice,
+    mice (>= 3.17.0),
     pillar,
     pROC,
     purrr,

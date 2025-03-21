@@ -97,7 +97,7 @@ missing_pattern = function(.data, dependent=NULL, explanatory=NULL,
 #' 	summary(conf.int = TRUE, exponentiate = TRUE) %>%
 #' 	# Jiggle into finalfit format
 #' 	mutate(explanatory_name = rownames(.)) %>%
-#' 	select(explanatory_name, estimate, `2.5 %`, `97.5 %`, p.value) %>%
+#' 	select(explanatory_name, estimate, conf.low, conf.high, p.value) %>%
 #' 	condense_fit(estimate_suffix = " (multiple imputation)") %>%
 #' 	remove_intercept() -> fit_imputed
 #'

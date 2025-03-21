@@ -121,7 +121,33 @@ system.time(colon_s %>%
 # Note this example uses fig.height=3, fig.width=9
 ```
 
-### 1.05 Confidence interval type
+### 1.05 Plotting univariable models
+
+
+```{r}
+library(finalfit)
+library(gridExtra)
+
+explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
+dependent = "mort_5yr"
+
+fit_uni = colon_s %>% 
+	glmuni(dependent, explanatory)
+
+p_uni = colon_s %>%
+	or_plot(dependent, explanatory, suffix = " (univariable)", remove_ref = TRUE, 
+					glmfit = fit_uni)
+p_multi = colon_s %>%
+	or_plot(dependent, explanatory, suffix = " (multivariable)", remove_ref = TRUE)
+
+grid.arrange(p_uni, p_multi)
+
+```
+
+
+
+
+### 1.06 Confidence interval type
 
 Change the type of confidence interval. For GLM, this is "profile" by default, but confusingly "default" is also available (Wald) which is quicker but may be biased when the likelihood function is not symmetrical around the maximum likelihood estimate. Translated - best to use "profile" or an alternative approach (like bootstrapping) for final results. 
 
@@ -135,7 +161,7 @@ colon_s %>%
 # Note this example uses fig.height=3, fig.width=9
 ```
 
-### 1.06 Remove reference levels
+### 1.07 Remove reference levels
 
 This will remove reference levels for binary variables. 
 
@@ -149,7 +175,7 @@ colon_s %>%
 # Note this example uses fig.height=3, fig.width=9
 ```
 
-### 1.07 Manually specifiy x-axis breaks
+### 1.08 Manually specifiy x-axis breaks
 
 Note, this will not include labels that are outwith the axis range, i.e., if the axis starts at 0.2, adding 0.1 will not result in any change. Use `plot_opts` to alter axis range. 
 
@@ -163,7 +189,7 @@ colon_s %>%
 # Note this example uses fig.height=3, fig.width=9
 ```
 
-### 1.08 Adjust table column spacing
+### 1.09 Adjust table column spacing
 
 Nudge *relative* column positions to manage white space. Use in combination with figure width to optimise. 
 
@@ -176,7 +202,7 @@ colon_s %>%
 # Note this example uses fig.height=3, fig.width=9
 ```
 
-### 1.09 Adjust or remove dependent variable label
+### 1.10 Adjust or remove dependent variable label
 
 ```{r fig.height=3, fig.width=9}
 library(finalfit)
@@ -187,7 +213,7 @@ colon_s %>%
 # Note this example uses fig.height=3, fig.width=9
 ```
 
-### 1.10 Add dependent variable label prefix
+### 1.11 Add dependent variable label prefix
 
 ```{r fig.height=3, fig.width=9}
 library(finalfit)
@@ -198,7 +224,7 @@ colon_s %>%
 # Note this example uses fig.height=3, fig.width=9
 ```
 
-### 1.11 Adjust or remove dependent variable label suffix
+### 1.12 Adjust or remove dependent variable label suffix
 
 ```{r fig.height=3, fig.width=9}
 library(finalfit)
@@ -210,7 +236,7 @@ colon_s %>%
 # Note this example uses fig.height=3, fig.width=9
 ```
 
-### 1.12 Adjust table text size
+### 1.13 Adjust table text size
 
 ```{r fig.height=3, fig.width=9}
 library(finalfit)
@@ -221,7 +247,7 @@ colon_s %>%
 # Note this example uses fig.height=4, fig.width=9
 ```
 
-### 1.13 Adjust title text size
+### 1.14 Adjust title text size
 
 ```{r fig.height=3, fig.width=9}
 library(finalfit)
@@ -232,7 +258,7 @@ colon_s %>%
 # Note this example uses fig.height=3, fig.width=9
 ```
 
-### 1.14 Add plot options
+### 1.15 Add plot options
 
 This adds further `ggplot` arguments appended in the usual way by "+".
 
@@ -251,7 +277,7 @@ colon_s %>%
 # Note this example uses fig.height=3, fig.width=9
 ```
 
-### 1.15 Add other options
+### 1.16 Add other options
 
 Pass any options for `fit2df()` to adjust table, e.g., number of decimal places, confidence interval separator etc. 
 

@@ -787,7 +787,7 @@ fit2df.mipo <- function(.data, condense=TRUE, metrics=FALSE, remove_intercept=TR
 	df.out = summary_mipo(.data, conf.int = TRUE, 
 															 conf.level = confint_level, 
 															 exponentiate = exp) %>% 
-		dplyr::select(explanatory_name = term, estimate, `2.5 %`, `97.5 %`, p.value)
+		dplyr::select(explanatory_name = term, estimate, conf.low, conf.high, p.value)
 	colnames(df.out) = c(explanatory_name, estimate_name, "L95", "U95", "p")
 	
 	if (condense==TRUE){
