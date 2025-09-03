@@ -76,7 +76,7 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
 
   # Specify breaks if provided
   if(is.null(breaks)){
-    breaks = scales::pretty_breaks()
+    breaks = scales::breaks_log()
   }
 
   # Extract totals (this is CPH specific due to how summary_factorlist works)
@@ -154,9 +154,13 @@ hr_plot = function(.data, dependent, explanatory, factorlist=NULL, coxfit=NULL,
   t1 = t1 + table_opts
 
   # Add dependent name label
-  title = 	plot_title(.data = .data, dependent = dependent, dependent_label = dependent_label, prefix = prefix, suffix = suffix)
-
-  gridExtra::grid.arrange(t1, g1, ncol=2, widths = c(3,2),
-                          top=grid::textGrob(title, x=0.02, y=0.2,
-                                             gp=grid::gpar(fontsize=title_text_size), just="left"))
+  title_text = plot_title(.data, dependent, dependent_label = dependent_label, prefix = prefix, suffix = suffix)
+  
+  title_grob = cowplot::ggdraw() + 
+  	cowplot::draw_label(title_text, x = 0, hjust = 0, size = title_text_size) +
+  	theme(plot.margin = margin(0, 0, 0, 7))
+  
+  cowplot::plot_grid(title_grob,
+  									 cowplot::plot_grid(t1, g1, align = "h", rel_widths = c(3,2)),
+  									 ncol = 1, rel_heights = c(0.1, 1))
 }

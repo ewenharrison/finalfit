@@ -1,7 +1,7 @@
 Package: finalfit
 Type: Package
 Title: Quickly Create Elegant Regression Results Tables and Plots when Modelling
-Version: 1.0.9
+Version: 1.1.0
 Authors@R: c(
   person(given = "Ewen", family = "Harrison", role = c("aut", "cre"), email = "ewen.harrison@ed.ac.uk"),
   person(given = "Tom", family = "Drake", role = c("aut")),
@@ -19,12 +19,11 @@ Imports:
     bdsmatrix,
     boot,
     broom,
+    cowplot,
     dplyr,
     forcats,
     GGally,
     ggplot2,
-    grid,
-    gridExtra,
     lme4,
     magrittr,
     mice (>= 3.17.0),
@@ -36,7 +35,7 @@ Imports:
     stringr,
     survival,
     tidyr (>= 1.0.0),
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Suggests:
     cmprsk, 
     coxme,

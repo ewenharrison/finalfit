@@ -79,7 +79,7 @@
 #' \link{missing_plot},
 #' \link{missing_pairs}.
 #'
-#' @docType package
+#' @docType _PACKAGE
 #' @name finalfit-package
 #'
 #' @importFrom stats as.formula formula coef confint confint.default glm lm logLik pnorm

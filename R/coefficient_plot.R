@@ -56,7 +56,7 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 														factorlist=NULL, lmfit=NULL,
 														confint_type = "default", confint_level = 0.95, 
 														remove_ref = FALSE,
-														breaks=NULL, column_space=c(-0.5, -0.1, 0.5),
+														breaks = NULL, column_space=c(-0.5, -0.1, 0.5),
 														dependent_label = NULL,
 														prefix = "", suffix = NULL,
 														table_text_size = 4,
@@ -95,7 +95,7 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 	}
 	
 	if(is.null(breaks)){
-		breaks = scales::pretty_breaks()
+		breaks = scales::breaks_extended()
 	}
 	
 	# Generate or format lm
@@ -153,7 +153,7 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 	
 	# Plot
 	g1 = ggplot(df.out, aes(x = as.numeric(Coefficient), 
-													xmin = as.numeric(confint_name[1]), xmax  = as.numeric(confint_name[2]),
+													xmin = as.numeric(!! sym(confint_name[1])), xmax  = as.numeric(!! sym(confint_name[2])),
 													y = fit_id))+
 		geom_errorbarh(height=0.2) +
 		geom_vline(xintercept = 0, linetype = "longdash", colour = "black")+
@@ -185,9 +185,13 @@ coefficient_plot = function(.data, dependent, explanatory, random_effect = NULL,
 	t1 = t1 + table_opts
 	
 	# Add dependent name label
-	title = 	plot_title(.data, dependent, dependent_label = dependent_label, prefix = prefix, suffix = suffix)
+	title_text = plot_title(.data, dependent, dependent_label = dependent_label, prefix = prefix, suffix = suffix)
 	
-	gridExtra::grid.arrange(t1, g1, ncol=2, widths = c(3,2),
-													top=grid::textGrob(title, x=0.02, y=0.2,
-																						 gp=grid::gpar(fontsize=title_text_size), just="left"))
+	title_grob = cowplot::ggdraw() + 
+		cowplot::draw_label(title_text, x = 0, hjust = 0, size = title_text_size) +
+		theme(plot.margin = margin(0, 0, 0, 7))
+	
+	cowplot::plot_grid(title_grob,
+										 cowplot::plot_grid(t1, g1, align = "h", rel_widths = c(3,2)),
+										 ncol = 1, rel_heights = c(0.1, 1))
 }

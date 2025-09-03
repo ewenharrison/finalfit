@@ -124,9 +124,8 @@ system.time(colon_s %>%
 ### 1.05 Plotting univariable models
 
 
-```{r}
+```{r fig.height=6, fig.width=9}
 library(finalfit)
-library(gridExtra)
 
 explanatory = c("age.factor", "sex.factor", "obstruct.factor", "perfor.factor")
 dependent = "mort_5yr"
@@ -140,7 +139,7 @@ p_uni = colon_s %>%
 p_multi = colon_s %>%
 	or_plot(dependent, explanatory, suffix = " (multivariable)", remove_ref = TRUE)
 
-grid.arrange(p_uni, p_multi)
+cowplot::plot_grid(p_uni, p_multi, ncol = 1)
 
 ```
 
@@ -374,7 +373,7 @@ Use finalfit grammar to plot a survival curve with number-at-risk table using `s
 
 ### 5.1 Standard KM plot
 
-```{r fig.height=4.5, fig.width=6}
+```{r fig.height=6, fig.width=9}
 library(finalfit)
 explanatory = "perfor.factor"
 dependent = "Surv(time, status)"
@@ -388,7 +387,7 @@ Pass any of the options from `survminer::ggsurvplot()`.
 
 For example:
 
-```{r fig.height=4.5, fig.width=6}
+```{r fig.height=6, fig.width=9}
 library(finalfit)
 explanatory = "perfor.factor"
 dependent = "Surv(time, status)"

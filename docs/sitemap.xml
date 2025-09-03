@@ -1,354 +1,120 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/articles/all_plot_examples.html</loc>
-  </url>
-  <url>
-    <loc>/articles/all_plots_examples.html</loc>
-  </url>
-  <url>
-    <loc>/articles/all_tables_examples.html</loc>
-  </url>
-  <url>
-    <loc>/articles/bootstrap.html</loc>
-  </url>
-  <url>
-    <loc>/articles/data_prep.html</loc>
-  </url>
-  <url>
-    <loc>/articles/export.html</loc>
-  </url>
-  <url>
-    <loc>/articles/finalfit.html</loc>
-  </url>
-  <url>
-    <loc>/articles/finalfit_basics.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/missing.html</loc>
-  </url>
-  <url>
-    <loc>/articles/survival.html</loc>
-  </url>
-  <url>
-    <loc>/articles/tables_gallery.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/google78a4df6d1f82019f.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/boot_compare.html</loc>
-  </url>
-  <url>
-    <loc>/reference/boot_predict.html</loc>
-  </url>
-  <url>
-    <loc>/reference/catTestfisher.html</loc>
-  </url>
-  <url>
-    <loc>/reference/check_recode.html</loc>
-  </url>
-  <url>
-    <loc>/reference/coefficient_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/colname2label.html</loc>
-  </url>
-  <url>
-    <loc>/reference/colon_s.html</loc>
-  </url>
-  <url>
-    <loc>/reference/compoundpipe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/condense_fit.html</loc>
-  </url>
-  <url>
-    <loc>/reference/coxphmulti.html</loc>
-  </url>
-  <url>
-    <loc>/reference/coxphuni.html</loc>
-  </url>
-  <url>
-    <loc>/reference/crrmulti.html</loc>
-  </url>
-  <url>
-    <loc>/reference/crruni.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dependent_label.html</loc>
-  </url>
-  <url>
-    <loc>/reference/error_colon_fct_levels.html</loc>
-  </url>
-  <url>
-    <loc>/reference/expositionpipe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/extract_fit.html</loc>
-  </url>
-  <url>
-    <loc>/reference/extract_labels.html</loc>
-  </url>
-  <url>
-    <loc>/reference/extract_variable_label.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_column_totals.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_describe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_eval.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_expand.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_formula.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_glimpse.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_interaction.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_label.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_merge.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_metrics.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_mode.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_newdata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_parse_formula.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_percent_only.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_permute.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_relabel.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_relabel_df.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_remove_p.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_remove_ref.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_row_totals.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ff_stratify_helper.html</loc>
-  </url>
-  <url>
-    <loc>/reference/finalfit-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/finalfit.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fit2df.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_n_percent.html</loc>
-  </url>
-  <url>
-    <loc>/reference/glmmixed.html</loc>
-  </url>
-  <url>
-    <loc>/reference/glmmulti.html</loc>
-  </url>
-  <url>
-    <loc>/reference/glmmulti_boot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/glmuni.html</loc>
-  </url>
-  <url>
-    <loc>/reference/hr_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/interp.median.html</loc>
-  </url>
-  <url>
-    <loc>/reference/interp.quantiles.html</loc>
-  </url>
-  <url>
-    <loc>/reference/is.survival.html</loc>
-  </url>
-  <url>
-    <loc>/reference/kurtosi.html</loc>
-  </url>
-  <url>
-    <loc>/reference/labels_to_column.html</loc>
-  </url>
-  <url>
-    <loc>/reference/labels_to_level.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lmmixed.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lmmulti.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lmuni.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metrics_hoslem.html</loc>
-  </url>
-  <url>
-    <loc>/reference/missing_compare.html</loc>
-  </url>
-  <url>
-    <loc>/reference/missing_df.html</loc>
-  </url>
-  <url>
-    <loc>/reference/missing_glimpse.html</loc>
-  </url>
-  <url>
-    <loc>/reference/missing_pairs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/missing_pattern.html</loc>
-  </url>
-  <url>
-    <loc>/reference/missing_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/missing_predictorMatrix.html</loc>
-  </url>
-  <url>
-    <loc>/reference/or_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/p_tidy.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plot_title.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.html</loc>
-  </url>
-  <url>
-    <loc>/reference/remove_intercept.html</loc>
-  </url>
-  <url>
-    <loc>/reference/remove_labels.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rm_duplicate_labels.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rm_duplicates.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rm_empty_block.html</loc>
-  </url>
-  <url>
-    <loc>/reference/round_tidy.html</loc>
-  </url>
-  <url>
-    <loc>/reference/skew.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summarise_categorical.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summarise_continuous.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_df.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_factorlist.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_factorlist0.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_factorlist1.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_factorlist2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_factorlist3.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_factorlist4.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_factorlist5.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_factorlist_groups.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_factorlist_stratified.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_formula.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary_mipo.html</loc>
-  </url>
-  <url>
-    <loc>/reference/surv_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/svyglmmulti.html</loc>
-  </url>
-  <url>
-    <loc>/reference/svyglmuni.html</loc>
-  </url>
-  <url>
-    <loc>/reference/variable_type.html</loc>
-  </url>
-  <url>
-    <loc>/reference/wcgs.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/articles/all_plot_examples.html</loc></url>
+<url><loc>/articles/all_plots_examples.html</loc></url>
+<url><loc>/articles/all_tables_examples.html</loc></url>
+<url><loc>/articles/bootstrap.html</loc></url>
+<url><loc>/articles/data_prep.html</loc></url>
+<url><loc>/articles/export.html</loc></url>
+<url><loc>/articles/finalfit.html</loc></url>
+<url><loc>/articles/finalfit_basics.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/missing.html</loc></url>
+<url><loc>/articles/survival.html</loc></url>
+<url><loc>/articles/tables_gallery.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/google78a4df6d1f82019f.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/boot_compare.html</loc></url>
+<url><loc>/reference/boot_predict.html</loc></url>
+<url><loc>/reference/catTestfisher.html</loc></url>
+<url><loc>/reference/check_recode.html</loc></url>
+<url><loc>/reference/coefficient_plot.html</loc></url>
+<url><loc>/reference/colname2label.html</loc></url>
+<url><loc>/reference/colon_s.html</loc></url>
+<url><loc>/reference/compoundpipe.html</loc></url>
+<url><loc>/reference/condense_fit.html</loc></url>
+<url><loc>/reference/coxphmulti.html</loc></url>
+<url><loc>/reference/coxphuni.html</loc></url>
+<url><loc>/reference/crrmulti.html</loc></url>
+<url><loc>/reference/crruni.html</loc></url>
+<url><loc>/reference/dependent_label.html</loc></url>
+<url><loc>/reference/error_colon_fct_levels.html</loc></url>
+<url><loc>/reference/expositionpipe.html</loc></url>
+<url><loc>/reference/extract_fit.html</loc></url>
+<url><loc>/reference/extract_labels.html</loc></url>
+<url><loc>/reference/extract_variable_label.html</loc></url>
+<url><loc>/reference/ff_column_totals.html</loc></url>
+<url><loc>/reference/ff_describe.html</loc></url>
+<url><loc>/reference/ff_eval.html</loc></url>
+<url><loc>/reference/ff_expand.html</loc></url>
+<url><loc>/reference/ff_formula.html</loc></url>
+<url><loc>/reference/ff_glimpse.html</loc></url>
+<url><loc>/reference/ff_interaction.html</loc></url>
+<url><loc>/reference/ff_label.html</loc></url>
+<url><loc>/reference/ff_merge.html</loc></url>
+<url><loc>/reference/ff_metrics.html</loc></url>
+<url><loc>/reference/ff_mode.html</loc></url>
+<url><loc>/reference/ff_newdata.html</loc></url>
+<url><loc>/reference/ff_parse_formula.html</loc></url>
+<url><loc>/reference/ff_percent_only.html</loc></url>
+<url><loc>/reference/ff_permute.html</loc></url>
+<url><loc>/reference/ff_plot.html</loc></url>
+<url><loc>/reference/ff_relabel.html</loc></url>
+<url><loc>/reference/ff_relabel_df.html</loc></url>
+<url><loc>/reference/ff_remove_p.html</loc></url>
+<url><loc>/reference/ff_remove_ref.html</loc></url>
+<url><loc>/reference/ff_row_totals.html</loc></url>
+<url><loc>/reference/ff_stratify_helper.html</loc></url>
+<url><loc>/reference/finalfit-package.html</loc></url>
+<url><loc>/reference/finalfit.html</loc></url>
+<url><loc>/reference/fit2df.html</loc></url>
+<url><loc>/reference/format_n_percent.html</loc></url>
+<url><loc>/reference/glmmixed.html</loc></url>
+<url><loc>/reference/glmmulti.html</loc></url>
+<url><loc>/reference/glmmulti_boot.html</loc></url>
+<url><loc>/reference/glmuni.html</loc></url>
+<url><loc>/reference/hr_plot.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/interp.median.html</loc></url>
+<url><loc>/reference/interp.quantiles.html</loc></url>
+<url><loc>/reference/is.survival.html</loc></url>
+<url><loc>/reference/kurtosi.html</loc></url>
+<url><loc>/reference/labels_to_column.html</loc></url>
+<url><loc>/reference/labels_to_level.html</loc></url>
+<url><loc>/reference/lmmixed.html</loc></url>
+<url><loc>/reference/lmmulti.html</loc></url>
+<url><loc>/reference/lmuni.html</loc></url>
+<url><loc>/reference/metrics_hoslem.html</loc></url>
+<url><loc>/reference/missing_compare.html</loc></url>
+<url><loc>/reference/missing_df.html</loc></url>
+<url><loc>/reference/missing_glimpse.html</loc></url>
+<url><loc>/reference/missing_pairs.html</loc></url>
+<url><loc>/reference/missing_pattern.html</loc></url>
+<url><loc>/reference/missing_plot.html</loc></url>
+<url><loc>/reference/missing_predictorMatrix.html</loc></url>
+<url><loc>/reference/or_plot.html</loc></url>
+<url><loc>/reference/p_tidy.html</loc></url>
+<url><loc>/reference/pipe.html</loc></url>
+<url><loc>/reference/plot_title.html</loc></url>
+<url><loc>/reference/print.html</loc></url>
+<url><loc>/reference/remove_intercept.html</loc></url>
+<url><loc>/reference/remove_labels.html</loc></url>
+<url><loc>/reference/rm_duplicate_labels.html</loc></url>
+<url><loc>/reference/rm_duplicates.html</loc></url>
+<url><loc>/reference/rm_empty_block.html</loc></url>
+<url><loc>/reference/round_tidy.html</loc></url>
+<url><loc>/reference/skew.html</loc></url>
+<url><loc>/reference/summarise_categorical.html</loc></url>
+<url><loc>/reference/summarise_continuous.html</loc></url>
+<url><loc>/reference/summary_df.html</loc></url>
+<url><loc>/reference/summary_factorlist.html</loc></url>
+<url><loc>/reference/summary_factorlist0.html</loc></url>
+<url><loc>/reference/summary_factorlist1.html</loc></url>
+<url><loc>/reference/summary_factorlist2.html</loc></url>
+<url><loc>/reference/summary_factorlist3.html</loc></url>
+<url><loc>/reference/summary_factorlist4.html</loc></url>
+<url><loc>/reference/summary_factorlist5.html</loc></url>
+<url><loc>/reference/summary_factorlist_groups.html</loc></url>
+<url><loc>/reference/summary_factorlist_stratified.html</loc></url>
+<url><loc>/reference/summary_formula.html</loc></url>
+<url><loc>/reference/summary_mipo.html</loc></url>
+<url><loc>/reference/surv_plot.html</loc></url>
+<url><loc>/reference/svyglmmulti.html</loc></url>
+<url><loc>/reference/svyglmuni.html</loc></url>
+<url><loc>/reference/variable_type.html</loc></url>
+<url><loc>/reference/wcgs.html</loc></url>
 </urlset>
+
