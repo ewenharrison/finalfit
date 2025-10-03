@@ -1,3 +1,6 @@
+# finalfit 1.1.1
+* Bug fix #110
+
 # finalfit 1.1.0
 * Fix to all plotting functions as no longer aligning with previous dependencies.
 

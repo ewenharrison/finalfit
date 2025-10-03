@@ -180,13 +180,12 @@ missing_pairs = function(.data, dependent = NULL, explanatory = NULL,
                           function(obs, miss, discrete){
                             if(!discrete){
                               ggplot(data = df.plot) +
-                                geom_boxplot(aes_string(x=miss, y=obs, fill=miss))+
+                                geom_boxplot(aes(x = .data[[miss]], y = .data[[obs]], fill = .data[[miss]]))+
                                 colScale+
                                 scale_x_discrete(limits=c("Miss", "Obs"))+
                                 coord_flip()
-                              #	geom_density(aes_string(x = miss), colour = "darkblue")
                             }else{
-                              ggplot(data = df.plot, aes_string(x = obs, fill=miss)) +
+                              ggplot(data = df.plot, aes(x = .data[[obs]], fill = .data[[miss]])) +
                                 geom_bar(position=position)+
                                 colScale
 

@@ -79,8 +79,8 @@
 #' \link{missing_plot},
 #' \link{missing_pairs}.
 #'
-#' @docType _PACKAGE
-#' @name finalfit-package
+#' @keywords internal 
+"_PACKAGE"
 #'
 #' @importFrom stats as.formula formula coef confint confint.default glm lm logLik pnorm
 #'   quantile setNames model.matrix terms
